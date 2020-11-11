@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020 - 2020 TomTom N.V. All rights reserved.
+  ~
+  ~ This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+  ~ used for internal evaluation purposes or commercial use strictly subject to separate
+  ~ licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+  ~ to use this Software in accordance with the terms of your license agreement. If you are
+  ~ not the licensee then you are not authorised to use this software in any manner and should
+  ~ immediately return it to TomTom N.V.
+  -->
+
+<resources>
+    <string name="frontend_account_menu_item_name">Account</string>
+    <string name="frontend_account_login_screen">Account Login Screen</string>
+    <string name="frontend_account_login_title">Log in</string>
+    <string name="frontend_account_login_message">Hello, please log in to start your session.</string>
+    <string name="frontend_account_login_username">Username</string>
+    <string name="frontend_account_login_password">Password</string>
+    <string name="frontend_account_login_button_text">Log in</string>
+    <string name="frontend_account_info_avatar_description">Avatar Photo</string>
+    <string name="frontend_account_info_welcome_message">Welcome, %1$s</string>
+</resources>
