@@ -35,5 +35,5 @@ object Versions {
 
     // IVI
     // TODO(IVI-2177): Use the latest version.
-    const val INDIGO_PLATFORM = "1.0.866"
+    const val INDIGO_PLATFORM = "1.0.875"
 }
