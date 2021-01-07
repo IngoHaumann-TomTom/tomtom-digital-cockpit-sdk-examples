@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - 2020 TomTom N.V. All rights reserved.
+ * Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -22,18 +22,18 @@ object Versions {
 
     // Android
     const val ANDROIDX_ANNOTATION = "1.1.0"
-    const val ANDROIDX_KTX = "1.2.0"
+    const val ANDROIDX_KTX = "1.3.2"
 
-    const val BUILD_TOOLS = "29.0.3"
+    const val BUILD_TOOLS = "30.0.2"
 
-    const val COMPILE_SDK = 29
+    const val COMPILE_SDK = 30
     const val MIN_SDK = 27
     const val TARGET_SDK = 27
 
     // Automotive
-    const val ANDROID_CAR = "0.0.11"
+    const val ANDROID_CAR = "0.0.12"
 
     // IVI
     // TODO(IVI-2177): Use the latest version.
-    const val INDIGO_PLATFORM = "1.0.875"
+    const val INDIGO_PLATFORM = "1.0.1088"
 }
