@@ -15,8 +15,8 @@ import org.gradle.api.JavaVersion
 
 object Versions {
     // Gradle and plugins
-    const val KOTLIN = "1.4.10"
-    const val ANDROID_PLUGIN = "4.1.0"
+    const val KOTLIN = "1.4.20"
+    const val ANDROID_PLUGIN = "4.1.1"
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
 
@@ -35,5 +35,5 @@ object Versions {
 
     // IVI
     // TODO(IVI-2183): Use the latest version.
-    const val INDIGO_PLATFORM = "1.0.1088"
+    const val INDIGO_PLATFORM = "1.0.1122"
 }

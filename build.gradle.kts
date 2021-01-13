@@ -44,7 +44,6 @@ subprojects {
         apply(plugin = "com.android.library")
     }
     apply(plugin = "kotlin-android")
-    apply(plugin = "kotlin-android-extensions")
 
     apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
 
