@@ -14,6 +14,9 @@ variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
   - template: private-pool-agents/gradle-proxy.yml@devops-templates
   - group: 'IviArtifactoryCredentials'
+  # Version of the Docker images from the `indigo-docker` repo.
+  - name: dockerImageVersion
+    value: '1.0.35'
 
 resources:
   containers:
