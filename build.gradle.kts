@@ -15,6 +15,8 @@ import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 
+apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
+
 plugins {
     `kotlin-dsl`
     id("com.android.application") apply false

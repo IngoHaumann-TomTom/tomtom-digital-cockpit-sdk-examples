@@ -1,0 +1,64 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  branch: 'indigo-platform-canary'
+
+steps:
+  - bash: |
+      set -eux
+      if [[ -z "${{parameters.branch}}" ]] || [[ "${{parameters.branch}}" == "master" ]] || [[ "${{parameters.branch}}" == release* ]]
+      then
+        echo "Parameter branch=${{parameters.branch}} not allowed."
+        exit 1
+      fi
+    displayName: 'Check job parameters'
+
+  - checkout: self
+    persistCredentials: true
+    clean: true
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        updateIndigoLibraries
+      displayName: 'Check for new IndiGO library versions'
+
+  - bash: |
+      set -eux
+      if [ ! -f "Versions.kt" ]
+      then
+        echo "No IndiGO library update was found."
+        exit 1
+      fi
+      REPO_VERSION_FILE="buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/environment/Versions.kt"
+      if ! grep -qs INDIGO_PLATFORM ${REPO_VERSION_FILE}
+      then
+        echo "${REPO_VERSION_FILE} does not exist or does not contain the IndiGO platform version."
+        exit 1
+      fi
+      git config --global user.email "ivi_dev@groups.tomtom.com"
+      git config --global user.name "Azure DevOps"
+      git branch -D ${{parameters.branch}} || true
+      git checkout -b ${{parameters.branch}}
+      echo "##vso[task.setvariable variable=branchCreated]True"
+      mv Versions.kt ${REPO_VERSION_FILE}
+      git commit -a -m "Integrate new versions of IndiGO platform version"
+      git push -f origin ${{parameters.branch}}
+    displayName: 'Push ${{parameters.branch}} branch with updated IndiGO libs'
+
+  - bash: |
+      set -eux
+      git checkout master
+      git branch -D ${{parameters.branch}}
+    displayName: 'Clean up local branches'
+    condition: eq(variables['branchCreated'], 'True')

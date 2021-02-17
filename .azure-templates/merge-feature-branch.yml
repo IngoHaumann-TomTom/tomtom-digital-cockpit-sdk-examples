@@ -1,0 +1,38 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  # Remote branch to merge
+  branch: ''
+
+steps:
+  - bash: |
+      set -eux
+      if [[ -z "${{parameters.branch}}" ]] || [[ "${{parameters.branch}}" == "master" ]] || [[ "${{parameters.branch}}" == release* ]]
+      then
+        echo "Parameter branch=${{parameters.branch}} not allowed."
+        exit 1
+      fi
+    displayName: 'Check job parameters'
+
+  - checkout: self
+    persistCredentials: true
+    clean: true
+
+  - bash: |
+      set -eux
+      git config --global user.email "ivi_dev@groups.tomtom.com"
+      git config --global user.name "Azure DevOps"
+      git config merge.ff only
+      git merge origin/${{parameters.branch}} -m "Merge ${{parameters.branch}} to $(Build.SourceBranchName)"
+      git push origin HEAD:$(Build.SourceBranchName)
+    displayName: 'Merge ${{parameters.branch}} to $(Build.SourceBranchName)'

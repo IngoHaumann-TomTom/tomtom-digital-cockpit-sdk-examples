@@ -14,8 +14,19 @@ variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
   - template: private-pool-agents/gradle-proxy.yml@devops-templates
   - template: .azure-templates/variables.yml
+  - name: indigoBranchName
+    value: indigo-platform-canary
 
 resources:
+  pipelines:
+  - pipeline: indigo_trigger
+    project: IVI
+    source: IndiGO
+    trigger:
+      branches:
+       include:
+         - master
+         - releases/*
   containers:
     # Docker containers with run options for private cloud agents and shared Gradle caches.
     - container: docker_indigo_build
@@ -29,17 +40,62 @@ resources:
 
 pool: 'Private Cloud CPU'
 
+trigger: none
+
 stages:
+
+- stage: PrepareIndigoBranch
+  displayName: IndiGO branch preparation
+  jobs:
+  - job: PrepareIndigoBranch
+    displayName: Preparing IndiGO branch
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/indigo-update.yml
+      parameters:
+        branch: $(indigoBranchName)
+
 - stage: Build
   displayName: 'Build pipeline'
+  dependsOn: PrepareIndigoBranch
   jobs:
     - job: Build
       displayName: 'Build'
       timeoutInMinutes: '15'
       container: 'docker_indigo_build'
       steps:
+        - bash: |
+            set -eux
+            git checkout origin/$(indigoBranchName)
         - template: gradle/gradle.yml@devops-templates
           parameters:
             tasks: build
             displayName: 'Build'
             condition: succeeded()
+
+- stage: MergeIndigoBranch
+  displayName: IndiGO branch merge
+  dependsOn: Build
+  jobs:
+  - job: MergeIndigoBranch
+    displayName: Merge IndiGO canary branch
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/merge-feature-branch.yml
+      parameters:
+        branch: $(indigoBranchName)
+
+- stage: Clean
+  displayName: Clean
+  dependsOn: MergeIndigoBranch
+  condition: always()
+  jobs:
+  - job: RemoveBranch
+    displayName: Remove IndiGO branch
+    container: 'docker_indigo_build'
+    steps:
+    - checkout: self
+      persistCredentials: true
+    - bash: |
+        set -eux
+        git push --delete origin $(indigoBranchName) || true
