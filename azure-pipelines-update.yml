@@ -17,6 +17,8 @@ variables:
   - name: indigoBranchName
     value: indigo-platform-canary
 
+trigger: none
+
 resources:
   pipelines:
   - pipeline: indigo_trigger
@@ -39,8 +41,6 @@ resources:
       name: IVI/devops-templates
 
 pool: 'Private Cloud CPU'
-
-trigger: none
 
 stages:
 
