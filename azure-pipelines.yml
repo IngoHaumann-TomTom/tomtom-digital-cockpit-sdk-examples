@@ -43,3 +43,6 @@ stages:
             tasks: build
             displayName: 'Build'
             condition: succeeded()
+        - template: build/build-cleanup.yml@devops-templates
+          parameters:
+            condition: always()
