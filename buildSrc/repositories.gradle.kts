@@ -16,14 +16,23 @@ repositories {
     // PU IVI repo for internal dependencies
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
 
+    // Repo for shared Android Tools like, UI Controls, resource resolutions,
+    // viewcomparison test setup, animations...
+    maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-release")
+
     // Artifactory cache for Maven Central, JCenter, etc
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/maven-remotes")
+
+    // PU NAV repo for NavTest and Gradle plugins from NAV
+    maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")
 
     // PU NAV repo for NavKit2
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navkit2-maven-release-local")
 
     // PU LNS repo for the Connectivity Agent
     maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
+    // TODO(IVI-594): Remove those repos when LNS will move all libraries in the public one
+    maven("https://maven.tomtom.com:8443/nexus/content/repositories/snapshots/")
     maven("https://maven.tomtom.com:8443/nexus/content/repositories/snapshots-private/") {
         credentials {
             username = "tt-pu-ivi"
