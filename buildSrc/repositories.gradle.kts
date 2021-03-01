@@ -31,12 +31,10 @@ repositories {
 
     // PU LNS repo for the Connectivity Agent
     maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
-    // TODO(IVI-594): Remove those repos when LNS will move all libraries in the public one
-    maven("https://maven.tomtom.com:8443/nexus/content/repositories/snapshots/")
-    maven("https://maven.tomtom.com:8443/nexus/content/repositories/snapshots-private/") {
-        credentials {
-            username = "tt-pu-ivi"
-            password = "voCiJ9anbd"
+    maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases-private/") {
+        credentials{
+            username="tt-pu-ivi"
+            password="voCiJ9anbd"
         }
     }
 }
