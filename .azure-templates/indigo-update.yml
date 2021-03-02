@@ -30,7 +30,7 @@ steps:
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-
-        updateIndigoLibraries
+        generateIndigoLibrariesVersionFile
       displayName: 'Check for new IndiGO library versions'
 
   - bash: |

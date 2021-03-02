@@ -11,7 +11,7 @@
 
 import com.tomtom.ivi.buildsrc.environment.IndigoUpdateHelper
 
-tasks.register("updateIndigoLibraries") {
+tasks.register("generateIndigoLibrariesVersionFile") {
     group = "Help"
     description = "Checks for IndiGO library updates and generates a new Versions.kt file if any update is found."
     doLast {

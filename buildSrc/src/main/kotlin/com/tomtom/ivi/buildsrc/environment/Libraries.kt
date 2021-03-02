@@ -23,7 +23,6 @@ object Libraries {
     object TomTom {
         object Indigo {
             const val PLATFORM_GROUP = "com.tomtom.ivi.platform"
-            const val API_COMMON_MENU = "$PLATFORM_GROUP:api_common_menu:${Versions.INDIGO_PLATFORM}"
             const val API_DEFAULTS_ACTIVITY = "$PLATFORM_GROUP:api_defaults_activity:${Versions.INDIGO_PLATFORM}"
             const val API_DEFAULTS_APPLICATION = "$PLATFORM_GROUP:api_defaults_application:${Versions.INDIGO_PLATFORM}"
             const val API_FRAMEWORK_FRONTEND = "$PLATFORM_GROUP:api_framework_frontend:${Versions.INDIGO_PLATFORM}"

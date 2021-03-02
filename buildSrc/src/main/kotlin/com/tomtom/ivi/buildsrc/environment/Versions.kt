@@ -34,6 +34,6 @@ object Versions {
     const val ANDROID_CAR = "0.0.12"
 
     // IVI
-    // IndiGO platform version is updated by the `updateIndigoLibraries` gradle task.
-    const val INDIGO_PLATFORM = "1.0.1377"
+    // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
+    const val INDIGO_PLATFORM = "1.0.1385"
 }

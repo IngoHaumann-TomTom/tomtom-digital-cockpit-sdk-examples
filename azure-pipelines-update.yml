@@ -12,7 +12,6 @@
 
 variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
-  - template: private-pool-agents/gradle-proxy.yml@devops-templates
   - template: .azure-templates/variables.yml
   - name: indigoBranchName
     value: indigo-platform-canary

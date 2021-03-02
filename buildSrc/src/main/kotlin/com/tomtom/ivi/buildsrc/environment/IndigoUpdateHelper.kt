@@ -11,7 +11,6 @@
 
 package com.tomtom.ivi.buildsrc.environment
 
-import com.tomtom.ivi.buildsrc.environment.Libraries.TomTom.Indigo.API_COMMON_MENU
 import com.tomtom.ivi.buildsrc.environment.Libraries.TomTom.Indigo.PLATFORM_GROUP
 import kotlin.text.Regex
 import java.io.File
