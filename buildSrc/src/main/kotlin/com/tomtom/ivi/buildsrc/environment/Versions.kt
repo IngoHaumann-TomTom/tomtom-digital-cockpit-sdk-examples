@@ -35,5 +35,5 @@ object Versions {
 
     // IVI
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
-    const val INDIGO_PLATFORM = "1.0.1394"
+    const val INDIGO_PLATFORM = "1.0.1396"
 }
