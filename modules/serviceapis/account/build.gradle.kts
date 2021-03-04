@@ -9,18 +9,8 @@
  * immediately return it to TomTom N.V.
  */
 
-package com.tomtom.ivi.example.frontend.account.info
+import com.tomtom.ivi.api.gradle.plugin.extensions.ivi
 
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
-import com.tomtom.ivi.example.frontend.account.AccountFrontend
-
-class AccountInfoPanel(
-    frontendContext: FrontendContext,
-    internal val frontend: AccountFrontend
-) : TaskPanel(frontendContext, Mode.SIDE_BAR) {
-
-    override fun createInitialFragmentInitializer() =
-        IviFragment.Initializer(AccountInfoFragment(), this)
+ivi {
+    serviceApi = true
 }

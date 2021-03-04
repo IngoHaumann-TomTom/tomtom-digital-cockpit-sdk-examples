@@ -26,14 +26,20 @@ object Libraries {
             const val API_DEFAULTS_ACTIVITY = "$PLATFORM_GROUP:api_defaults_activity:${Versions.INDIGO_PLATFORM}"
             const val API_DEFAULTS_APPLICATION = "$PLATFORM_GROUP:api_defaults_application:${Versions.INDIGO_PLATFORM}"
             const val API_FRAMEWORK_FRONTEND = "$PLATFORM_GROUP:api_framework_frontend:${Versions.INDIGO_PLATFORM}"
+            const val CORE_COMMON_LIFECYCLE = "$PLATFORM_GROUP:core_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
             const val CORE_DEBUG_PERMISSIONS = "$PLATFORM_GROUP:core_debug_permissions:${Versions.INDIGO_PLATFORM}"
+            const val CORE_FRAMEWORK_IVISERVICEMANAGER = "$PLATFORM_GROUP:core_framework_iviservicemanager:${Versions.INDIGO_PLATFORM}"
+            const val TOOLS_TESTING_UNIT = "$PLATFORM_GROUP:tools_testing_unit:${Versions.INDIGO_PLATFORM}"
         }
 
         object Automotive {
             const val ANDROID_CAR = "com.tomtom.ivi.ivi-automotive-sdk:android_car_lib:${Versions.ANDROID_CAR}"
         }
-    }
 
+        object Tools {
+            const val CORE_LIVEDATA = "com.tomtom.tools.android:core_livedata:${Versions.TOMTOM_ANDROID_TOOLS}"
+        }
+    }
 }

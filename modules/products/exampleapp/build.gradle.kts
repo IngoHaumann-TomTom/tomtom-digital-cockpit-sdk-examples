@@ -38,8 +38,10 @@ dependencies {
 
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_ACTIVITY)
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_APPLICATION)
-    implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME) // Required for TtiviApplicationTheme.
+    implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.CORE_DEBUG_PERMISSIONS)
 
     implementation(project(":frontends_account"))
+    implementation(project(":serviceapis_account"))
+    runtimeOnly(project(":services_account"))
 }

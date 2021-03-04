@@ -88,16 +88,16 @@
         <EditText
             android:id="@+id/frontend_account_login_screen_login_username_edit"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="?attr/ttivi_size_default_button_height"
             android:autofillHints="textPersonName"
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
             android:inputType="textPersonName|textAutoComplete"
-            android:paddingHorizontal="32dp"
+            android:paddingHorizontal="?attr/ttivi_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.username}"
             android:textColor="?attr/ttivi_color_text_primary"
-            android:textSize="44sp" />
+            android:textSize="?attr/ttivi_text_size_h2" />
 
         <Space
             android:layout_width="match_parent"
@@ -120,16 +120,16 @@
         <EditText
             android:id="@+id/frontend_account_login_screen_login_password_edit"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="?attr/ttivi_size_default_button_height"
             android:autofillHints="textPassword"
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
             android:inputType="textNoSuggestions|text|textPassword|textAutoComplete"
-            android:paddingHorizontal="32dp"
+            android:paddingHorizontal="?attr/ttivi_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.password}"
             android:textColor="?attr/ttivi_color_text_primary"
-            android:textSize="44sp" />
+            android:textSize="?attr/ttivi_text_size_h2" />
 
         <Space
             android:layout_width="match_parent"
@@ -144,13 +144,11 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l"
-            tools:layout_height="64dp" />
+            android:layout_height="?attr/ttivi_spacing_l" />
 
         <com.tomtom.ivi.core.common.uicontrols.buttons.TtiviButton
             style="?attr/ttivi_button_style"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
             android:enabled="@{viewModel.isLoginEnabled}"
             android:onClick="@{() -> viewModel.onLoginClick()}"
             android:text="@string/frontend_account_login_button_text"

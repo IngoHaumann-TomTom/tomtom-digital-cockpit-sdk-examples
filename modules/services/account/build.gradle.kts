@@ -1,3 +1,5 @@
+import com.tomtom.ivi.buildsrc.environment.Libraries
+
 /*
  * Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
  *
@@ -9,18 +11,10 @@
  * immediately return it to TomTom N.V.
  */
 
-package com.tomtom.ivi.example.frontend.account.info
+dependencies {
+    api(project(":serviceapis_account"))
 
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
-import com.tomtom.ivi.example.frontend.account.AccountFrontend
+    implementation(Libraries.TomTom.Indigo.CORE_FRAMEWORK_IVISERVICEMANAGER)
 
-class AccountInfoPanel(
-    frontendContext: FrontendContext,
-    internal val frontend: AccountFrontend
-) : TaskPanel(frontendContext, Mode.SIDE_BAR) {
-
-    override fun createInitialFragmentInitializer() =
-        IviFragment.Initializer(AccountInfoFragment(), this)
+    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

@@ -14,16 +14,62 @@ package com.tomtom.ivi.example.frontend.account
 import com.tomtom.ivi.api.framework.frontend.Frontend
 import com.tomtom.ivi.api.framework.frontend.FrontendContext
 import com.tomtom.ivi.api.framework.frontend.FrontendFactory
+import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
+import com.tomtom.ivi.core.common.lifecycle.livedata.valueUpToDate
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
+import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.tools.android.core.livedata.combine
 
 class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 
-    override fun createMainTaskPanel() = AccountLoginPanel(frontendContext, this)
+    private val accountServiceApi =
+        AccountService.createApi(this, frontendContext.iviServiceProvider)
 
-    internal fun showAccountInfoPanel(displayName: String) {
+    private val isUserLoggedIn =
+        combine(
+            accountServiceApi.serviceAvailable,
+            accountServiceApi.username
+        ) { serviceAvailable, username ->
+            /** [username] is validated by the account service at login. */
+            serviceAvailable == true && username != null
+        }
+
+    private val hasLoginPanel: Boolean
+        get() = panels.valueUpToDate?.filterPanels<AccountLoginPanel>()?.size == 1
+
+    private val hasInfoPanel: Boolean
+        get() = panels.valueUpToDate?.filterPanels<AccountInfoPanel>()?.size == 1
+
+    override fun onCreate() {
+        super.onCreate()
+
+        isUserLoggedIn.observe(this) { loggedIn ->
+            // Switch panels if an user login status changed, iff there is an open panel.
+            when {
+                loggedIn && hasLoginPanel -> goToInfoPanel()
+                !loggedIn && hasInfoPanel -> goToLoginPanel()
+            }
+        }
+    }
+
+    override fun openTaskPanels() {
+        if (isUserLoggedIn.valueUpToDate == true) {
+            goToInfoPanel()
+        } else {
+            goToLoginPanel()
+        }
+    }
+
+    private fun goToInfoPanel() {
         closeAllTaskPanels()
-        addPanel(AccountInfoPanel(frontendContext, displayName, this))
+        addPanel(AccountInfoPanel(frontendContext, this))
+    }
+
+    private fun goToLoginPanel() {
+        closeAllTaskPanels()
+        addPanel(AccountLoginPanel(frontendContext, this))
     }
 
     class Factory : FrontendFactory {

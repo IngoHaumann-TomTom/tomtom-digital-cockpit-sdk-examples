@@ -11,31 +11,34 @@
 
 package com.tomtom.ivi.example.frontend.account.login
 
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
+import com.tomtom.ivi.core.common.lifecycle.livedata.valueUpToDate
+import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.tools.android.core.livedata.allTrue
 
 class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
+    private val accountServiceApi =
+        AccountService.createApi(this, frontendContext.iviServiceProvider)
+
     val username = MutableLiveData("")
     val password = MutableLiveData("")
 
-    val isLoginEnabled = MediatorLiveData<Boolean>().apply {
-        addSource(username) { setValue(validateUsername() && validatePassword()) }
-        addSource(password) { setValue(validateUsername() && validatePassword()) }
-    }
+    val isLoginEnabled = allTrue(
+        accountServiceApi.serviceAvailable,
+        username.map { it.isNotBlank() },
+        password.map { it.isNotBlank() }
+    )
 
     fun onLoginClick() {
-        username.value
-            ?.takeIf { isLoginEnabled.value == true }
-            ?.let { it.first().toUpperCase() + it.substring(1) }
-            ?.let { panel.frontend.showAccountInfoPanel(it) }
+        isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
+            val username = username.value ?: return
+            val password = password.value ?: return
+            accountServiceApi.logInAsync(username, password)
+        }
     }
-
-    private fun validateUsername() =
-        (username.value?.trim()?.length ?: 0) > 1
-
-    private fun validatePassword() =
-        (password.value?.trim()?.length ?: 0) > 2
 }

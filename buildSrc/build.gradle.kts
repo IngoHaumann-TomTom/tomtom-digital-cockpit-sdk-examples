@@ -41,4 +41,5 @@ dependencies {
     implementation(kotlin("gradle-plugin", versions["KOTLIN"]))
     implementation(kotlin("android-extensions", versions["KOTLIN"]))
     implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
+    implementation("com.tomtom.ivi.platform:api_gradle_plugin:${versions["INDIGO_PLATFORM"]}")
 }

@@ -11,9 +11,20 @@
 
 package com.tomtom.ivi.example.frontend.account.info
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
+import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.createApi
+import java.util.*
 
 class AccountInfoViewModel(panel: AccountInfoPanel) : FrontendViewModel<AccountInfoPanel>(panel) {
-    val displayName = MutableLiveData(panel.displayName)
+
+    private val accountServiceApi =
+        AccountService.createApi(this, frontendContext.iviServiceProvider)
+
+    val displayName = accountServiceApi.username.map {
+        it?.capitalize(Locale.ROOT)
+    }
+
+    fun onLogoutClick() = accountServiceApi.logOutAsync()
 }

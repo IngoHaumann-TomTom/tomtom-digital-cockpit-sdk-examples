@@ -9,6 +9,8 @@
  * immediately return it to TomTom N.V.
  */
 
+import com.tomtom.ivi.api.gradle.plugin.extensions.IviDependencySource
+import com.tomtom.ivi.api.gradle.plugin.extensions.ivi
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.buildsrc.environment.Versions
 import com.tomtom.ivi.buildsrc.extensions.android
@@ -24,6 +26,10 @@ plugins {
 }
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
+
+ivi {
+    dependencySource = IviDependencySource.Artifactory(Versions.INDIGO_PLATFORM)
+}
 
 subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))

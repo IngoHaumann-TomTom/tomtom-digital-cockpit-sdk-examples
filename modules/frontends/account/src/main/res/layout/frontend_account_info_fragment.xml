@@ -40,13 +40,24 @@
         <com.tomtom.ivi.core.common.uicontrols.view.TtiviTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="64dp"
+            android:layout_margin="?attr/ttivi_spacing_xxxl"
             android:gravity="start"
             android:text="@{@string/frontend_account_info_welcome_message(viewModel.displayName)}"
             android:textAlignment="textStart"
             android:textColor="?attr/ttivi_color_text_primary"
             auto:ttiviTextSizeIdentifier="H3"
             auto:ttiviTextWeight="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="?attr/ttivi_spacing_l" />
+
+        <com.tomtom.ivi.core.common.uicontrols.buttons.TtiviButton
+            style="?attr/ttivi_button_style"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> viewModel.onLogoutClick()}"
+            android:text="@string/frontend_account_logout_button_text"
+            auto:ttiviActionType="primary" />
     </LinearLayout>
 
 </layout>
