@@ -10,8 +10,14 @@
 # Azure pipelines documentation is available at
 # https://aka.ms/yaml
 
-variables:
-  # Version of the Docker images from the `indigo-docker` repo.
-  # TODO(IVI-3130): Store dockerImageVersion in pipelines Library
-  - name: dockerImageVersion
-    value: '3.1.1'
+parameters:
+  # Remote branch to check out.
+- name: branch
+  type: string
+  default: ''
+
+steps:
+- bash: |
+    set -eux
+    git checkout origin/${{parameters.branch}}
+  condition: and(succeeded(), ne('${{ parameters.branch }}', ''))

@@ -16,15 +16,19 @@ variables:
 
 resources:
   containers:
-    # Docker containers with run options for private cloud agents and shared Gradle caches.
-    - container: docker_indigo_build
-      image: 'indigo/build:$(dockerImageVersion)'
-      endpoint: 'IVI-Docker'
-      options: $(dockerImageDefaultOptions)
+  # Docker containers with run options for private cloud agents and shared Gradle caches.
+  - container: docker_indigo_build
+    image: 'indigo/build:$(dockerImageVersion)'
+    endpoint: 'IVI-Docker'
+    options: $(dockerImageDefaultOptions)
+  - container: docker_indigo_test
+    image: 'indigo/test:$(dockerImageVersion)'
+    endpoint: 'IVI-Docker'
+    options: $(dockerImageTestingOptions)
   repositories:
-    - repository: devops-templates
-      type: git
-      name: IVI/devops-templates
+  - repository: devops-templates
+    type: git
+    name: IVI/devops-templates
 
 pool: 'Private Cloud CPU'
 
@@ -32,16 +36,28 @@ stages:
 - stage: Build
   displayName: 'Build pipeline'
   jobs:
-    - job: Build
-      displayName: 'Build'
-      timeoutInMinutes: '15'
-      container: 'docker_indigo_build'
-      steps:
-        - template: gradle/gradle.yml@devops-templates
-          parameters:
-            tasks: build
-            displayName: 'Build'
-            condition: succeeded()
-        - template: build/build-cleanup.yml@devops-templates
-          parameters:
-            condition: always()
+  - job: Build
+    displayName: Lint & Build
+    timeoutInMinutes: 15
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/build.yml
+    - template: build/build-cleanup.yml@devops-templates
+
+  - job: UnitTests
+    displayName: Unit tests
+    container: 'docker_indigo_test'
+    timeoutInMinutes: 15
+    steps:
+    - template: .azure-templates/test-unit.yml
+    - template: build/build-cleanup.yml@devops-templates
+
+  - job: IntegrationTests
+    displayName: Integration & E2E tests
+    container: 'docker_indigo_test'
+    timeoutInMinutes: 15
+    steps:
+    - bash: |
+        echo "Instrumented tests here."
+      displayName: Run instrumented tests.
+    - template: build/build-cleanup.yml@devops-templates

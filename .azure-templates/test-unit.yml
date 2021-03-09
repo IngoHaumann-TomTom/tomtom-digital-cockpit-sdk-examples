@@ -10,8 +10,16 @@
 # Azure pipelines documentation is available at
 # https://aka.ms/yaml
 
-variables:
-  # Version of the Docker images from the `indigo-docker` repo.
-  # TODO(IVI-3130): Store dockerImageVersion in pipelines Library
-  - name: dockerImageVersion
-    value: '3.1.1'
+steps:
+- template: build-prepare.yml
+  parameters:
+    branch: ${{parameters.branch}}
+
+- template: gradle/gradle-with-tests.yml@devops-templates
+  parameters:
+    tasks: >-
+      test
+    testResultsFiles: '**/TEST-*Test.xml'
+    testRunTitle: 'Unit tests'
+    displayName: 'Run unit tests'
+    condition: succeeded()
