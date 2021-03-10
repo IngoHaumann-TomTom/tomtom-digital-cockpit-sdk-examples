@@ -30,9 +30,13 @@ steps:
 
   - bash: |
       set -eux
-      git config --global user.email "ivi_dev@groups.tomtom.com"
-      git config --global user.name "Azure DevOps"
-      git config merge.ff only
-      git merge origin/${{parameters.branch}} -m "Merge ${{parameters.branch}} to $(Build.SourceBranchName)"
-      git push origin HEAD:$(Build.SourceBranchName)
-    displayName: 'Merge ${{parameters.branch}} to $(Build.SourceBranchName)'
+      git checkout ${{parameters.branch}}
+      git push origin ${{parameters.branch}}:$(Build.SourceBranchName)
+    displayName: 'Push ${{parameters.branch}} to origin/$(Build.SourceBranchName)'
+
+  - bash: |
+      set -eux
+      git checkout $(Build.SourceBranchName)
+      git branch -D ${{parameters.branch}}
+    displayName: 'Clean up local branch'
+    condition: always()

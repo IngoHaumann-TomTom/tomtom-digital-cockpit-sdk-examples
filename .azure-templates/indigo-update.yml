@@ -58,7 +58,7 @@ steps:
 
   - bash: |
       set -eux
-      git checkout master
+      git checkout $(Build.SourceBranchName)
       git branch -D ${{parameters.branch}}
     displayName: 'Clean up local branches'
     condition: eq(variables['branchCreated'], 'True')
