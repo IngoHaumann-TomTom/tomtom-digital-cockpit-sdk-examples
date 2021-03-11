@@ -52,6 +52,7 @@ subprojects {
         apply(plugin = "com.android.library")
     }
     apply(plugin = "kotlin-android")
+    apply(plugin = "kotlin-parcelize")
 
     apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
 

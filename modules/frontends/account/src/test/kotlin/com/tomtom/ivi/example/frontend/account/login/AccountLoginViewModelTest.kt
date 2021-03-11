@@ -9,12 +9,11 @@
  * immediately return it to TomTom N.V.
  */
 
-package com.tomtom.ivi.example.frontent.account.login
+package com.tomtom.ivi.example.frontend.account.login
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.core.common.lifecycle.livedata.UnsetLiveData
-import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
-import com.tomtom.ivi.example.frontend.account.login.AccountLoginViewModel
+import com.tomtom.ivi.example.serviceapi.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.mock.niceMockk
@@ -29,7 +28,10 @@ class AccountLoginViewModelTest : IviTestCase() {
     private val mutableServiceAvailable = MutableLiveData(true)
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
-        every { username } returns UnsetLiveData()
+        every { activeAccount } returns MutableLiveData(ACCOUNT)
+        every { accounts } returns MutableLiveData(
+            mapOf(ACCOUNTID to ACCOUNT)
+        )
     }
 
     private val mockPanel = niceMockk<AccountLoginPanel>()
@@ -84,5 +86,9 @@ class AccountLoginViewModelTest : IviTestCase() {
     companion object {
         private const val USERNAME = "testUser"
         private const val PASSWORD = "testPassword"
+
+        private val ACCOUNTID = AccountId("ACCOUNTID")
+        private val ACCOUNT = Account(ACCOUNTID, USERNAME)
+
     }
 }

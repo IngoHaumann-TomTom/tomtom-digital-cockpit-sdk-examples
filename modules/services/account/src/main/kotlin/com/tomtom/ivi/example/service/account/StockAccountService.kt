@@ -1,14 +1,22 @@
 package com.tomtom.ivi.example.service.account
 
-import com.tomtom.ivi.core.framework.iviservice.IviServerContext
+import androidx.lifecycle.MutableLiveData
+import com.tomtom.ivi.api.framework.iviservice.IviServerContext
+import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
+import com.tomtom.ivi.example.serviceapi.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 
 class StockAccountService(iviServerContext: IviServerContext) :
-    AccountServiceBase(iviServerContext) {
+        AccountServiceBase(iviServerContext) {
+
+    private val mutableAccounts =
+            MutableMirrorableMap<AccountId, Account>()
 
     override fun onCreate() {
         super.onCreate()
-        username = null
+
+        accounts = mutableAccounts
     }
 
     override fun onRequiredPropertiesInitialized() {
@@ -17,14 +25,22 @@ class StockAccountService(iviServerContext: IviServerContext) :
 
     override suspend fun logIn(username: String, password: String): Boolean =
         if (isValidUsername(username) && isValidPassword(password)) {
-            this.username = username
+            val accountId = AccountId(username)
+
+            if (!mutableAccounts.contains(accountId)) {
+                val account = Account(accountId, username)
+                mutableAccounts[accountId] = account
+            }
+
+            activeAccount = mutableAccounts[accountId]
+
             true
         } else {
             false
         }
 
     override suspend fun logOut() {
-        username = null
+        activeAccount = null
     }
 
     companion object {

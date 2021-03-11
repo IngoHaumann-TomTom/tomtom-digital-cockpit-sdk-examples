@@ -1,5 +1,6 @@
 package com.tomtom.ivi.example.serviceapi.account
 
+import com.tomtom.ivi.api.framework.iviservice.mirrormap.MirrorableMap
 import com.tomtom.ivi.core.common.iviserviceannotations.IviService
 import com.tomtom.ivi.core.common.iviserviceannotations.IviServiceFun
 
@@ -11,10 +12,15 @@ import com.tomtom.ivi.core.common.iviserviceannotations.IviServiceFun
 )
 interface AccountService {
     /**
-     * The name of the user that is currently logged in.
-     * `null` if no user is logged in.
+     * Indicates which account is currently active.
+     * `null` if no account is logged in.
      */
-    val username: String?
+    val activeAccount: Account?
+
+    /**
+     * The collection of accounts that have logged in at least once since application started.
+     */
+    val accounts: MirrorableMap<AccountId, Account>
 
     /**
      * Tries to log an user in under [username] with [password].

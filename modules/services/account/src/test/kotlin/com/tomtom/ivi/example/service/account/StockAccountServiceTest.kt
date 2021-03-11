@@ -1,44 +1,59 @@
 package com.tomtom.ivi.example.service.account
 
+import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.tools.testing.mock.niceMockk
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import kotlinx.coroutines.runBlocking
+import org.junit.Before
 import org.junit.Test
 
 class StockAccountServiceTest : IviTestCase() {
 
     private val sut = StockAccountService(niceMockk())
 
+    @Before
+    fun before() {
+        sut.onCreate()
+    }
+    
     @Test
     fun `no user is logged in by default`() {
-        assertNull(sut.username)
+        assertNull(sut.activeAccount)
+        assertEquals(0, sut.accounts.size)
     }
 
     @Test
-    fun `login failed if username or password are incorrect`() = runBlocking {
+    fun `login failed if activeAccount or password are incorrect`() = runBlocking {
         assertFalse(sut.logIn(USERNAME, ""))
-        assertNull(sut.username)
+        assertNull(sut.activeAccount)
+        assertEquals(0, sut.accounts.size)
 
         assertFalse(sut.logIn("", PASSWORD))
-        assertNull(sut.username)
+        assertNull(sut.activeAccount)
+        assertEquals(0, sut.accounts.size)
     }
 
     @Test
-    fun `username is set if user has logged in`() = runBlocking {
+    fun `activeAccount is set if user has logged in`() = runBlocking {
         assertTrue(sut.logIn(USERNAME, PASSWORD))
-        assertEquals(USERNAME, sut.username)
+        assertEquals(USERNAME, sut.activeAccount?.username)
+        assertEquals(1, sut.accounts.size)
     }
 
     @Test
-    fun `username is reset if user has logged out`() = runBlocking {
+    fun `activeAccount is reset if user has logged out`() = runBlocking {
         // GIVEN
         sut.logIn(USERNAME, PASSWORD)
+
+        // THEN
+        assertEquals(1, sut.accounts.size)
 
         // WHEN
         sut.logOut()
 
         // THEN
-        assertNull(sut.username)
+        assertNull(sut.activeAccount)
+        assertEquals(1, sut.accounts.size)
     }
 
     @Test
@@ -48,22 +63,23 @@ class StockAccountServiceTest : IviTestCase() {
         sut.logOut()
 
         // THEN
-        assertNull(sut.username)
+        assertNull(sut.activeAccount)
     }
 
     @Test
-    fun `logging in with the user logged in updates the username`() = runBlocking {
+    fun `logging in with the user logged in updates the activeAccount`() = runBlocking {
         // GIVEN
         sut.logIn(USERNAME, PASSWORD)
 
-        val anotherUsername = "anotherTestUser"
+        val anotherTestUser = "anotherTestUser"
 
         // WHEN
-        val result = sut.logIn(anotherUsername, PASSWORD)
+        val result = sut.logIn(anotherTestUser, PASSWORD)
 
         // THEN
         assertTrue(result)
-        assertEquals(anotherUsername, sut.username)
+        assertEquals(anotherTestUser, sut.activeAccount?.username)
+        assertEquals(2, sut.accounts.size)
     }
 
     companion object {

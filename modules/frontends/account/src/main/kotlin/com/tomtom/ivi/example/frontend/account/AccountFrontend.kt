@@ -30,10 +30,9 @@ class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendConte
     private val isUserLoggedIn =
         combine(
             accountServiceApi.serviceAvailable,
-            accountServiceApi.username
-        ) { serviceAvailable, username ->
-            /** [username] is validated by the account service at login. */
-            serviceAvailable == true && username != null
+            accountServiceApi.activeAccount
+        ) { serviceAvailable, activeAccount ->
+            serviceAvailable == true && activeAccount != null
         }
 
     private val hasLoginPanel: Boolean
