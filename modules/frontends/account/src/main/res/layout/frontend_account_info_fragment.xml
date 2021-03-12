@@ -37,7 +37,7 @@
             android:scaleType="fitStart"
             android:src="@drawable/frontend_account_info_avatar_placeholder" />
 
-        <com.tomtom.ivi.core.common.uicontrols.view.TtiviTextView
+        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="?attr/ttivi_spacing_xxxl"
@@ -45,19 +45,19 @@
             android:text="@{@string/frontend_account_info_welcome_message(viewModel.displayName)}"
             android:textAlignment="textStart"
             android:textColor="?attr/ttivi_color_text_primary"
-            auto:ttiviTextSizeIdentifier="H3"
-            auto:ttiviTextWeight="bold" />
+            auto:ttTextSizeIdentifier="H3"
+            auto:ttTextWeight="bold" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="?attr/ttivi_spacing_l" />
 
-        <com.tomtom.ivi.core.common.uicontrols.buttons.TtiviButton
-            style="?attr/ttivi_button_style"
+        <com.tomtom.tools.android.core.uicontrols.buttons.TtButton
+            style="?attr/tt_button_style"
             android:layout_width="match_parent"
             android:onClick="@{() -> viewModel.onLogoutClick()}"
             android:text="@string/frontend_account_logout_button_text"
-            auto:ttiviActionType="primary" />
+            auto:ttActionType="primary" />
     </LinearLayout>
 
 </layout>
