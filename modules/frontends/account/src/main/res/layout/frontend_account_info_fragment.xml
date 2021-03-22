@@ -40,17 +40,17 @@
         <com.tomtom.tools.android.core.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="?attr/ttivi_spacing_xxxl"
+            android:layout_margin="?attr/tt_spacing_xxxl"
             android:gravity="start"
             android:text="@{@string/frontend_account_info_welcome_message(viewModel.displayName)}"
             android:textAlignment="textStart"
-            android:textColor="?attr/ttivi_color_text_primary"
+            android:textColor="?attr/tt_color_text_primary"
             auto:ttTextSizeIdentifier="H3"
             auto:ttTextWeight="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l" />
+            android:layout_height="?attr/tt_spacing_l" />
 
         <com.tomtom.tools.android.core.uicontrols.buttons.TtButton
             style="?attr/tt_button_style"

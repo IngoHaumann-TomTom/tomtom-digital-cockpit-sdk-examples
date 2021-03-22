@@ -1,11 +1,15 @@
 package com.tomtom.ivi.example.service.account
 
 import com.tomtom.ivi.example.serviceapi.account.AccountId
-import com.tomtom.ivi.tools.testing.mock.niceMockk
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.tools.android.testing.mock.niceMockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class StockAccountServiceTest : IviTestCase() {
 
@@ -15,7 +19,7 @@ class StockAccountServiceTest : IviTestCase() {
     fun before() {
         sut.onCreate()
     }
-    
+
     @Test
     fun `no user is logged in by default`() {
         assertNull(sut.activeAccount)

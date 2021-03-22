@@ -16,10 +16,12 @@ import com.tomtom.ivi.example.serviceapi.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
-import com.tomtom.ivi.tools.testing.mock.niceMockk
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 import org.junit.Test
 
 class AccountLoginViewModelTest : IviTestCase() {

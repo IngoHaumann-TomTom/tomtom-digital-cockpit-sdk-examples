@@ -24,8 +24,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="?attr/ttivi_spacing_xl"
-        android:layout_marginVertical="?attr/ttivi_spacing_xl"
+        android:layout_marginHorizontal="?attr/tt_spacing_xl"
+        android:layout_marginVertical="?attr/tt_spacing_xl"
         android:orientation="vertical"
         tools:layout_marginHorizontal="40dp">
 
@@ -35,14 +35,14 @@
             android:gravity="start"
             android:text="@string/frontend_account_login_title"
             android:textAlignment="textStart"
-            android:textColor="?attr/ttivi_color_text_primary"
+            android:textColor="?attr/tt_color_text_primary"
             auto:ttTextSizeIdentifier="H3"
             auto:ttTextWeight="bold"
             tools:text="@string/frontend_account_login_title" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l"
+            android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
         <com.tomtom.tools.android.core.uicontrols.view.TtTextView
@@ -51,36 +51,36 @@
             android:gravity="start"
             android:text="@string/frontend_account_login_message"
             android:textAlignment="textStart"
-            android:textColor="?attr/ttivi_color_text_secondary"
+            android:textColor="?attr/tt_color_text_secondary"
             auto:ttTextSizeIdentifier="H4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_message" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_xs"
+            android:layout_height="?attr/tt_spacing_xs"
             tools:layout_height="16dp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
-            android:background="?attr/ttivi_color_separation_line"
+            android:background="?attr/tt_color_separation_line"
             tools:layout_height="2dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l"
+            android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
         <com.tomtom.tools.android.core.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/ttivi_spacing_xxs"
+            android:layout_marginBottom="?attr/tt_spacing_xxs"
             android:gravity="start"
             android:labelFor="@id/frontend_account_login_screen_login_username_edit"
             android:text="@string/frontend_account_login_username"
             android:textAlignment="textStart"
-            android:textColor="?attr/ttivi_color_text_secondary"
+            android:textColor="?attr/tt_color_text_secondary"
             auto:ttTextSizeIdentifier="H4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_username" />
@@ -93,26 +93,26 @@
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
             android:inputType="textPersonName|textAutoComplete"
-            android:paddingHorizontal="?attr/ttivi_spacing_l"
+            android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.username}"
-            android:textColor="?attr/ttivi_color_text_primary"
+            android:textColor="?attr/tt_color_text_primary"
             android:textSize="?attr/tt_text_size_h2" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l"
+            android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
         <com.tomtom.tools.android.core.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/ttivi_spacing_xxs"
+            android:layout_marginBottom="?attr/tt_spacing_xxs"
             android:gravity="start"
             android:labelFor="@id/frontend_account_login_screen_login_password_edit"
             android:text="@string/frontend_account_login_password"
             android:textAlignment="textStart"
-            android:textColor="?attr/ttivi_color_text_secondary"
+            android:textColor="?attr/tt_color_text_secondary"
             auto:ttTextSizeIdentifier="H4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_password" />
@@ -125,26 +125,26 @@
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
             android:inputType="textNoSuggestions|text|textPassword|textAutoComplete"
-            android:paddingHorizontal="?attr/ttivi_spacing_l"
+            android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.password}"
-            android:textColor="?attr/ttivi_color_text_primary"
+            android:textColor="?attr/tt_color_text_primary"
             android:textSize="?attr/tt_text_size_h2" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l"
+            android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="64dp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
-            android:background="?attr/ttivi_color_separation_line"
+            android:background="?attr/tt_color_separation_line"
             tools:layout_height="2dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_spacing_l" />
+            android:layout_height="?attr/tt_spacing_l" />
 
         <com.tomtom.tools.android.core.uicontrols.buttons.TtButton
             style="?attr/tt_button_style"

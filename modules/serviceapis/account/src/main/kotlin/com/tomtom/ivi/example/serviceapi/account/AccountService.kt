@@ -1,8 +1,8 @@
 package com.tomtom.ivi.example.serviceapi.account
 
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MirrorableMap
-import com.tomtom.ivi.core.common.iviserviceannotations.IviService
-import com.tomtom.ivi.core.common.iviserviceannotations.IviServiceFun
+import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
+import com.tomtom.ivi.api.framework.iviserviceannotations.IviServiceFun
 
 /**
  * IVI service to manage an account state.
