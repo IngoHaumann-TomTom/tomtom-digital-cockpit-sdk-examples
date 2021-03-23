@@ -15,10 +15,12 @@ import org.gradle.api.JavaVersion
 
 object Versions {
     // Gradle and plugins
+    const val ARTIFACTORY_PLUGIN = "4.13.0"
     const val KOTLIN = "1.4.20"
     const val ANDROID_PLUGIN = "4.1.1"
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
+    const val NAVTEST_PLUGIN = "7.5.2"
 
     // Android
     const val ANDROIDX_ANNOTATION = "1.1.0"

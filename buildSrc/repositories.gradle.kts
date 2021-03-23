@@ -38,3 +38,5 @@ repositories {
         }
     }
 }
+
+val artifactoryRepo by rootProject.extra("https://artifactory.navkit-pipeline.tt3.com/artifactory")

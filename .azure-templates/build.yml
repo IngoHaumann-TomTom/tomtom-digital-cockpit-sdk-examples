@@ -42,3 +42,8 @@ steps:
       assemble
     displayName: 'Assemble APKs'
     condition: succeeded()
+
+- publish: $(System.DefaultWorkingDirectory)/modules/products/exampleapp/build/outputs/apk
+  artifact: builds
+  displayName: 'Publish APKs as pipeline artifact'
+  condition: succeeded()

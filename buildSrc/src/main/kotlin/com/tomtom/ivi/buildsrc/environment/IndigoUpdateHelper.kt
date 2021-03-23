@@ -44,14 +44,15 @@ class IndigoUpdateHelper(val project: Project) {
     fun generateNewVersionFile(oldFile: File, newFile: File) {
         val versionTag = "INDIGO_PLATFORM"
         val versionValue = Regex("""(\d+.\d+.\d+)""")
-
         println("Replacing current IndiGO version with " + latestIndigoVersion)
-
         oldFile.useLines { lines ->
             newFile.bufferedWriter().use { outFile ->
                 lines.forEach { oldLine ->
                     val newLine = when {
-                        oldLine.contains(versionTag) -> oldLine.replace(versionValue, latestIndigoVersion)
+                        oldLine.contains(versionTag) -> oldLine.replace(
+                            versionValue,
+                            latestIndigoVersion
+                        )
                         else -> oldLine
                     }
                     outFile.appendln(newLine)

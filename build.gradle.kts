@@ -55,6 +55,7 @@ subprojects {
     apply(plugin = "kotlin-parcelize")
 
     apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
+    apply(from = rootProject.file("buildSrc/tasks/publish.gradle.kts"))
 
     //TODO(IVI-2756): Remove OptIn when service registration is internal.
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
