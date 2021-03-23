@@ -24,19 +24,19 @@ import org.gradle.kotlin.dsl.create
 class IndigoUpdateHelper(val project: Project) {
 
     private val latestIndigoVersion: String =
-        project.configurations.create("latestIndigoReleaseConfiguration")
-            .apply {
-                val latestIndigoDependency = project.allprojects
-                    .flatMap { it.configurations }
-                    .flatMap { it.dependencies }
-                    .filter { it.group == PLATFORM_GROUP && it.name.startsWith("api_") }
-                    .map { project.dependencies.create("${it.group}:${it.name}:latest.release") }
+            project.configurations.create("latestIndigoReleaseConfiguration")
+                    .apply {
+                        val latestIndigoDependency = project.allprojects
+                                .flatMap { it.configurations }
+                                .flatMap { it.dependencies }
+                                .filter { it.group == PLATFORM_GROUP && it.name.startsWith("api_") }
+                                .first()
+                                .let { project.dependencies.create("${it.group}:${it.name}:latest.release") }
+                        dependencies.add(latestIndigoDependency)
+                    }
+                    .resolvedConfiguration.firstLevelModuleDependencies
                     .first()
-                dependencies.add(latestIndigoDependency)
-            }
-            .resolvedConfiguration.firstLevelModuleDependencies
-            .map { it.moduleVersion }
-            .first()
+                    .moduleVersion
 
     /*
      * Generates a new Versions.kt file with the up-to-date IndiGO platform version.
@@ -44,7 +44,6 @@ class IndigoUpdateHelper(val project: Project) {
     fun generateNewVersionFile(oldFile: File, newFile: File) {
         val versionTag = "INDIGO_PLATFORM"
         val versionValue = Regex("""(\d+.\d+.\d+)""")
-        println("Replacing current IndiGO version with " + latestIndigoVersion)
         oldFile.useLines { lines ->
             newFile.bufferedWriter().use { outFile ->
                 lines.forEach { oldLine ->
@@ -54,6 +53,10 @@ class IndigoUpdateHelper(val project: Project) {
                             latestIndigoVersion
                         )
                         else -> oldLine
+                    }
+                    if (oldLine.contains(versionTag)) {
+                        val currentIndigoVersion :String? = versionValue.find(oldLine)?.value
+                        println("Replacing " + currentIndigoVersion + " IndiGO version with " + latestIndigoVersion)
                     }
                     outFile.appendln(newLine)
                 }

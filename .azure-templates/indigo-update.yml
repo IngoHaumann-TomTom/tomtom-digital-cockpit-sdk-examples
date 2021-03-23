@@ -46,13 +46,14 @@ steps:
         echo "${REPO_VERSION_FILE} does not exist or does not contain the IndiGO platform version."
         exit 1
       fi
+      INDIGO_VERSION="$(grep INDIGO_PLATFORM Versions.kt | awk '{split($0,a," "); print a[5]}')"
       git config --global user.email "ivi_dev@groups.tomtom.com"
       git config --global user.name "Azure DevOps"
       git branch -D ${{parameters.branch}} || true
       git checkout -b ${{parameters.branch}}
       echo "##vso[task.setvariable variable=branchCreated]True"
       mv Versions.kt ${REPO_VERSION_FILE}
-      git commit -a -m "Integrate new versions of IndiGO platform version"
+      git commit -a -m "Integrate new versions of IndiGO platform version: ${INDIGO_VERSION}"
       git push -f origin ${{parameters.branch}}
     displayName: 'Push ${{parameters.branch}} branch with updated IndiGO libs'
 
