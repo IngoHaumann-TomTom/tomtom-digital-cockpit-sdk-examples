@@ -9,7 +9,7 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.api.gradle.plugin.extensions.ivi
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 ivi {
     serviceApi = true

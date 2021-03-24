@@ -9,13 +9,13 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.api.gradle.plugin.extensions.IviDependencySource
-import com.tomtom.ivi.api.gradle.plugin.extensions.ivi
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.buildsrc.environment.Versions
 import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
+import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 
@@ -23,6 +23,8 @@ plugins {
     `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
+    id("ivi-platform") apply true
+    id("ivi-defaults-all") apply true
 }
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))

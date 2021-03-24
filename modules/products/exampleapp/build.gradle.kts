@@ -10,6 +10,13 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+ivi {
+    application {
+        enabled = true
+    }
+}
 
 android {
     buildFeatures {
