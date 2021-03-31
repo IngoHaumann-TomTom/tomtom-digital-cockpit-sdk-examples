@@ -23,8 +23,8 @@ plugins {
     `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
-    id("ivi-platform") apply true
-    id("ivi-defaults-all") apply true
+    id("com.tomtom.ivi.platform") apply true
+    id("com.tomtom.ivi.defaults.all") apply true
 }
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
