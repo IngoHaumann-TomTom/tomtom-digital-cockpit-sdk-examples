@@ -74,13 +74,13 @@ stages:
       # TODO(IVI-3193): Implement dynamic versioning for creation and publishing file.
       - bash: |
           set -eux
-          ls -1A | xargs -d "\n" tar cfz products_indigo_examples-source-1.0.tar.gz
+          ls -1A | xargs -d "\n" tar cfz products_indigo_examples-1.0-sources.tar.gz
         displayName: Archive repository to tar
       - template: publish/push-to-artifactory.yml@devops-templates
         parameters:
           currentProductVersion: "1.0"
           workingDirectory: "$(Build.SourcesDirectory)"
-          folderOrFileName: "products_indigo_examples-source-1.0.tar.gz"
+          folderOrFileName: "products_indigo_examples-1.0-sources.tar.gz"
           condition: not(eq(variables['Build.Reason'], 'Manual'))
 
 - stage: Publishing
