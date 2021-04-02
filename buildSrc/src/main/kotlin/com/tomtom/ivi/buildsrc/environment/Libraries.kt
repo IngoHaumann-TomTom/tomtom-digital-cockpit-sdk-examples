@@ -26,7 +26,6 @@ object Libraries {
             const val API_DEFAULTS_ACTIVITY = "$PLATFORM_GROUP:api_defaults_activity:${Versions.INDIGO_PLATFORM}"
             const val API_DEFAULTS_APPLICATION = "$PLATFORM_GROUP:api_defaults_application:${Versions.INDIGO_PLATFORM}"
             const val API_FRAMEWORK_FRONTEND = "$PLATFORM_GROUP:api_framework_frontend:${Versions.INDIGO_PLATFORM}"
-            const val API_FRAMEWORK_IVISERVICE = "$PLATFORM_GROUP:api_framework_iviservice:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_LIFECYCLE = "$PLATFORM_GROUP:core_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"

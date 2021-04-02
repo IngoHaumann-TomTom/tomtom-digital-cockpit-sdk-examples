@@ -1,5 +1,3 @@
-import com.tomtom.ivi.buildsrc.environment.Libraries
-
 /*
  * Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
  *
@@ -10,6 +8,8 @@ import com.tomtom.ivi.buildsrc.environment.Libraries
  * not the licensee then you are not authorised to use this software in any manner and should
  * immediately return it to TomTom N.V.
  */
+
+import com.tomtom.ivi.buildsrc.environment.Libraries
 
 dependencies {
     api(project(":serviceapis_account"))

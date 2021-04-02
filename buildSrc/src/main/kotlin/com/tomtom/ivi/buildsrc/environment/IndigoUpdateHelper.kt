@@ -12,31 +12,28 @@
 package com.tomtom.ivi.buildsrc.environment
 
 import com.tomtom.ivi.buildsrc.environment.Libraries.TomTom.Indigo.PLATFORM_GROUP
-import kotlin.text.Regex
-import java.io.File
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.create
+import java.io.File
 
 /**
  * This class retrieves the last available IndiGO product version available in Artifactory and
  * provides a method to replace the current INDIGO_PLATFORM version value in the 'Versions.kt' file.
  */
-class IndigoUpdateHelper(val project: Project) {
+class IndigoUpdateHelper(private val project: Project) {
 
     private val latestIndigoVersion: String =
-            project.configurations.create("latestIndigoReleaseConfiguration")
-                    .apply {
-                        val latestIndigoDependency = project.allprojects
-                                .flatMap { it.configurations }
-                                .flatMap { it.dependencies }
-                                .filter { it.group == PLATFORM_GROUP && it.name.startsWith("api_") }
-                                .first()
-                                .let { project.dependencies.create("${it.group}:${it.name}:latest.release") }
-                        dependencies.add(latestIndigoDependency)
-                    }
-                    .resolvedConfiguration.firstLevelModuleDependencies
-                    .first()
-                    .moduleVersion
+        project.configurations.create("latestIndigoReleaseConfiguration")
+            .apply {
+                val latestIndigoDependency = project.allprojects
+                    .flatMap { it.configurations }
+                    .flatMap { it.dependencies }
+                    .first { it.group == PLATFORM_GROUP && it.name.startsWith("api_") }
+                    .let { project.dependencies.create("${it.group}:${it.name}:latest.release") }
+                dependencies.add(latestIndigoDependency)
+            }
+            .resolvedConfiguration.firstLevelModuleDependencies
+            .first()
+            .moduleVersion
 
     /*
      * Generates a new Versions.kt file with the up-to-date IndiGO platform version.
@@ -55,8 +52,8 @@ class IndigoUpdateHelper(val project: Project) {
                         else -> oldLine
                     }
                     if (oldLine.contains(versionTag)) {
-                        val currentIndigoVersion :String? = versionValue.find(oldLine)?.value
-                        println("Replacing " + currentIndigoVersion + " IndiGO version with " + latestIndigoVersion)
+                        val currentIndigoVersion: String? = versionValue.find(oldLine)?.value
+                        println("Replacing $currentIndigoVersion IndiGO version with $latestIndigoVersion")
                     }
                     outFile.appendln(newLine)
                 }
