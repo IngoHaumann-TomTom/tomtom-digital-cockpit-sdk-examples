@@ -1,0 +1,39 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+steps:
+- template: gradle/gradle.yml@devops-templates
+  parameters:
+    tasks: buildVersion
+    displayName: 'Obtain version info'
+
+- bash: |
+    set -eux
+
+    version_description=$( cat $(Build.SourcesDirectory)/build/version.txt )
+    test "$version_description" != ""
+    version_canPublish=$( cat $(Build.SourcesDirectory)/build/canPublish.txt )
+    test "$version_canPublish" != ""
+
+    echo "Version: \"$version_description\""
+    echo "Can be published: $version_canPublish"
+
+    # Remove the shell flag -x to prevent a DevOps bug:
+    # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
+    set +x
+
+    # Export the version information to the next steps using VSO task variables.
+    echo "##vso[task.setvariable variable=semver;isOutput=true]$version_description"
+    echo "##vso[task.setvariable variable=canPublish;isOutput=true]$version_canPublish"
+  displayName: 'Parse version info'
+  name: versionInfo
+

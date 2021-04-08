@@ -18,6 +18,8 @@ import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
+// TODO(IVI-2890): Use the Gradle plugin.
+apply(from = rootProject.file("buildSrc/tasks/buildVersion.gradle.kts"))
 
 plugins {
     `kotlin-dsl`
@@ -32,6 +34,11 @@ apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
 ivi {
     dependencySource = IviDependencySource.Artifactory(Versions.INDIGO_PLATFORM)
 }
+
+// Set up the git version for Android and CI
+val buildVersions = com.tomtom.ivi.buildsrc.environment.BuildVersioning(rootProject)
+val versionCode: Int by extra(buildVersions.versionCode)
+val versionName: String by extra(buildVersions.versionName)
 
 subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
@@ -78,6 +85,10 @@ subprojects {
         defaultConfig {
             minSdkVersion(Versions.MIN_SDK)
             targetSdkVersion(Versions.TARGET_SDK)
+            if (isApplicationProject) {
+                versionCode = rootProject.extra.get("versionCode") as Int
+                versionName = rootProject.extra.get("versionName") as String
+            }
         }
 
         compileOptions {

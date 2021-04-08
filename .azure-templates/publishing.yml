@@ -11,14 +11,30 @@
 # https://aka.ms/yaml
 
 steps:
-  - download: current
-    artifact: builds
+- checkout: self
+  persistCredentials: true
 
-  - template: gradle/gradle.yml@devops-templates
-    parameters:
-      tasks: >-
-        artifactoryPublish
-        -PpublishUsername=$(ARTIFACTORY_USERNAME)
-        -PpublishPassword=$(ARTIFACTORY_PASSWORD)
-      displayName: Publish APKs to Artifactory
-      condition: succeeded()
+# Retrieve the current product version into the $(semver) variable.
+- template: product-get-version.yml
+
+- download: current
+  artifact: builds
+
+- template: gradle/gradle.yml@devops-templates
+  parameters:
+    tasks: >-
+      artifactoryPublish
+      -PpublishUsername=$(ARTIFACTORY_USERNAME)
+      -PpublishPassword=$(ARTIFACTORY_PASSWORD)
+    displayName: Publish APKs to Artifactory
+    condition: succeeded()
+
+- bash: |
+    set -eu
+    git config --global user.email "ivi_dev@groups.tomtom.com"
+    git config --global user.name "Azure DevOps"
+    echo "Tagging commit with $(versionInfo.semver)"
+    git tag "$(versionInfo.semver)"
+    git push origin "$(versionInfo.semver)"
+  displayName: Tag commit
+  condition: succeeded()
