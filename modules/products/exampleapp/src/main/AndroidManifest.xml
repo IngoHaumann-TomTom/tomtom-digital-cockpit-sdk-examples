@@ -15,7 +15,7 @@
     package="com.tomtom.ivi.example.product.exampleapp">
 
     <application
-        android:name="com.tomtom.ivi.example.product.exampleapp.ExampleApplication"
+        android:name="com.tomtom.ivi.api.defaults.application.DefaultApplication"
         android:allowBackup="false"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"

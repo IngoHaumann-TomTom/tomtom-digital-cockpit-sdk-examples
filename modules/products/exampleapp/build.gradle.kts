@@ -9,12 +9,20 @@
  * immediately return it to TomTom N.V.
  */
 
+import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
+/**
+ * Configures the main application.
+ */
 ivi {
     application {
         enabled = true
+        services {
+            // Register the account service in the application.
+            addHost(accountServiceHost)
+        }
     }
 }
 
@@ -47,6 +55,4 @@ dependencies {
     implementation(Libraries.TomTom.Indigo.CORE_DEBUG_PERMISSIONS)
 
     implementation(project(":frontends_account"))
-    implementation(project(":serviceapis_account"))
-    runtimeOnly(project(":services_account"))
 }

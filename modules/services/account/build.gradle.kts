@@ -14,7 +14,5 @@ import com.tomtom.ivi.buildsrc.environment.Libraries
 dependencies {
     api(project(":serviceapis_account"))
 
-    implementation(Libraries.TomTom.Indigo.CORE_FRAMEWORK_IVISERVICEMANAGER)
-
     testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

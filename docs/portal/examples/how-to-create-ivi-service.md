@@ -25,7 +25,7 @@ To create an IVI service, you need to perform the following steps:
 
 1. [Define an IVI service interface](#the-ivi-service-interface).
 2. [Create an implementation of the IVI service interface](#the-ivi-service-implementation).
-3. [Run the service as an Android service](#run-service-as-an-android-service).
+3. [Deploy the service](#service-deployment).
 4. [Use the service API in the client side code](#use-the-ivi-service-in-the-client-side-code).
 
 ## IVI service interface project
@@ -61,6 +61,7 @@ file.
 **src/main/AndroidManifest.xml**
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 
 <manifest package="com.tomtom.ivi.example.serviceapi.account" />
 ```
@@ -92,8 +93,8 @@ interface AccountService {
     suspend fun logOut()
 
     // The service interface must at least contain the empty companion object, which will be
-    // extended with a few methods by the IVI service framework.
-    // Kotlin does now allow to extend the companion object if it has not been declared.
+    // extended by the IVI service framework.
+    // Kotlin does not allow extending the companion object if it has not been declared.
     companion object
 }
 ```
@@ -103,7 +104,8 @@ methods must have the `suspend` modifier and the `IviServiceFun` annotation. The
 annotation is required to distinguish methods of the service interface from auxiliary methods added
 by Kotlin/Java compiler. The interface must at least contain the empty companion object, which will
 be extended by the IVI service framework with a few methods, such as `createApi`
-and `createApiOrNull`.
+and `createApiOrNull`. Kotlin does not allow extending the companion object if it has not been
+declared.
 
 The package may have multiple service interfaces defined, although each must have a distinct
 identifier. The package may contain other classes, functions, and any other Kotlin code like a
@@ -154,36 +156,18 @@ build script.
 dependencies {
     // The IVI service interface project provides the base class for an implementation.
     implementation(project(":serviceapis_account"))
-
-    // Provides the base class for Android server to run the service in a separate process.
-    implementation(Libraries.TomTom.Indigo.CORE_FRAMEWORK_IVISERVICEMANAGER)
 }
 ```
 
 The IVI service implementation project is an Android project, so it must have
-an `AndroidManifest.xml`file. The IVI service should not run from the main/UI thread, so it can be
-pushed to a separate process to run as an Android service in a dedicated process. To setup an
-Android service, declare an application with a service in the manifest.
-
-The `android:name` attribute specifies the application class that will be declared later.
-
-The `android:process` attribute is the name of a process where the server should run. By setting
-this attribute to a process name that's shared with another application, multiple servers can be run
-in the same process. For more information about `android:process`
-see [Android documentation](https://developer.android.com/guide/topics/manifest/application-element#proc)
-.
+an `AndroidManifest.xml`file.
 
 **src/main/AndroidManifest.xml**
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 
-<manifest package="com.tomtom.ivi.example.service.account"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application>
-        <service android:name=".AndroidServer" android:process=":server.account" />
-    </application>
-</manifest>
+<manifest package="com.tomtom.ivi.example.service.account" />
 ```
 
 ### The service implementation
@@ -262,83 +246,148 @@ The implementation of the service methods is similar to the implementation of a 
 interface. It can declare new properties although they will not be visible in the service API
 interface.
 
-## Run service as an Android service
+## Service deployment
 
-Android service requires an application class to run. The IVI service framework provides a base
-class `IviAndroidServer` for a server application. It has an abstract factory
-method `createIviServer` for an IVI server. The framework provides the `SimpleIviServiceServer` with
-basic server functionality.
+An IVI service can be deployed in binder and direct mode. In binder mode the service runs as an
+Android service in a separate process. In direct mode the service runs in a thread of the main
+application. Binder mode is preferred and used by default.
 
-**src/main/kotlin/com/tomtom/ivi/example/service/account/AndroidServer.kt**
+Direct mode should be used if and only if binder mode cannot be used. For example, if a service must
+run in the main process due to strict performance requirements or functional limitations.
+
+The deployment configuration is defined in the build script of the main or test application module.
+
+### Create a service host
+
+An IVI service needs a host to run. A host may run multiple services. The IVI service framework
+provides the factory interface `IviServiceHostBuilder` to build a service host. There is also the
+generic implementation of a service host that takes a list of service interface implementations. The
+factory implementation must at least contain the empty companion object, which will be extended by
+the IVI service framework. Kotlin does not allow extending the companion object if it has not been
+declared.
+
+**src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHostBuilder.kt**
 
 ```kotlin
 package com.tomtom.ivi.example.service.account
 
-import com.tomtom.ivi.api.framework.iviservice.IviServerBase
-import com.tomtom.ivi.api.framework.iviservice.IviServerContext
-import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceServer
-import com.tomtom.ivi.core.framework.iviservicemanager.IviAndroidServer
+import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
+// The factory interface to build a service host.
+import com.tomtom.ivi.api.framework.iviservice.IviServiceHostBuilder
+// The simple implementation of a service host.
+import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
 
-class AndroidServer : IviAndroidServer() {
-    override fun createIviServer(iviServerContext: IviServerContext): IviServerBase =
-        SimpleIviServiceServer(setOf(StockAccountService(iviServerContext)))
-}
-```
-
-### Register the IVI server
-
-To run the server and its services, the server has to be registered in the main application.
-
-First, add dependencies for the main application at `modules/products/exampleapp`.
-
-**build.gradle.kts**
-
-```kotlin
-dependencies {
-    // Other application dependencies.
-
-    implementation(project(":serviceapis_account"))
-    runtimeOnly(project(":services_account"))
-}
-```
-
-The service's registration requires a connection class, which is generated by the IVI service
-framework in the `serviceapis_account` package. Then there is a runtime dependency to the service
-implementation with the Android service.
-
-Then, register a binder connection to the account service in the main application
-class (`ExampleApplication`).
-
-**src/main/kotlin/com/tomtom/ivi/example/product/exampleapp/ExampleApplication.kt**
-
-```kotlin
-package com.tomtom.ivi.example.product.exampleapp
-
-import com.tomtom.ivi.api.defaults.application.DefaultApplication
-import com.tomtom.ivi.api.framework.iviservice.IviServerId
-import com.tomtom.ivi.example.serviceapi.account.AccountServiceBinderConnection
-
-class ExampleApplication : DefaultApplication() {
-    override fun registerBinderServers() {
-        super.registerBinderServers()
-
-        with(serviceManager) {
-            registerServerManager(
-                createBinderServerManager(
-                    IviServerId("com.tomtom.ivi.example.service.account.AndroidServer"),
-                    AccountServiceBinderConnection.createRegistration()
-                )
+class AccountServiceHostBuilder : IviServiceHostBuilder() {
+    override fun build(iviServiceHostBuilder: IviServiceHostContext) =
+        SimpleIviServiceHost(
+            // Pass the service interface implementation to run in the host.
+            setOf(
+                StockAccountService(iviServerContext)
             )
+        )
+
+    // The factory implementation must at least contain the empty companion object, which will be
+    // extended by the IVI service framework.
+    // Kotlin does not allow extending the companion object if it has not been declared.
+    companion object
+}
+```
+
+### Configure deployment
+
+Define a deployment configuration for a service host in the `buildSrc` so it can be used in all
+projects, including tests.
+
+**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountServiceHost.kt**
+
+```kotlin
+package com.tomtom.ivi.buildsrc.config.services
+
+import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
+
+/**
+ * Defines a configuration for the account service.
+ *
+ * The configuration specifies the service host implementation and the list of interfaces implemented
+ * by this service host.
+ */
+val accountServiceHost = IviServiceHostConfig(
+    serviceHostName = "AccountServiceHost",
+    // The module with the implementation of the service host builder interface.
+    implementationModule = ExampleModuleReference("services_account"),
+    interfaces = listOf(
+        IviServiceInterfaceConfig(
+            serviceName = "AccountService",
+            // The module with the service interface.
+            serviceApiModule = ExampleModuleReference("serviceapis_account")
+        )
+    )
+)
+```
+
+The deployment configuration uses `ExampleModuleReference` that resolves a module name into the
+full-qualified package. It is defined once and used for all configurations.
+Create `ExampleModuleReference` in `buildSrc`.
+
+**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/ExampleModuleReference.kt**
+
+```kotlin
+package com.tomtom.ivi.buildsrc.dependencies
+
+import com.tomtom.ivi.gradle.api.common.dependencies.ModuleReference
+
+class ExampleModuleReference(moduleName: String) : ModuleReference(
+    groupName = GROUP_NAME,
+    moduleName = moduleName,
+    packageName = convertModuleNameToPackageName(moduleName)
+) {
+    companion object {
+        private fun convertModuleNameToPackageName(moduleName: String): String {
+            val hierarchy = moduleName.split("_", limit = 2)
+
+            val category = hierarchy[0].let {
+                when (it) {
+                    "services" -> "service"
+                    "serviceapis" -> "serviceapi"
+                    else -> it
+                }
+            }
+            val module = hierarchy[1]
+            return "$GROUP_NAME.$ROOT_NAME.$category.$module"
         }
+
+        private const val ROOT_NAME = "example"
+        private const val GROUP_NAME = "com.tomtom.ivi"
     }
 }
 ```
 
-To register the service, override `DefaultApplication.registerBinderServers`. Call the super method
-to register default IVI services. Create a new server manager for a binder server, where
-`IviServerId` takes the full-qualified class name of the server application, declared
-above.`AccountServiceBinderConnection` class is a generated by the IVI service framework for IPC
-communications using Android Binder.
+The `ExampleModuleReference.convertModuleNameToPackageName` resolves a module's name
+like `serviceapis_account` into `com.tomtom.ivi.example.serviceapi.account`.
+
+Then create the deployment configuration for the account service host in the main application's
+build script.
+
+**modules/products/exampleapp/build.gradle.kts**
+
+```kotlin
+import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+ivi {
+    application {
+        enabled = true
+        services {
+            // Register the account service to the application.
+            addHost(accountServiceHost)
+        }
+    }
+}
+
+// The rest of the build script, dependencies, etc.
+```
 
 ## Use the IVI service in the client side code
 
@@ -347,7 +396,7 @@ example, `AccountServiceApi`. The API instance is created with `<ServiceInterfac
 or `<ServiceInterface>.createApiOrNull(...)`. The former requires a service to be registered and
 running, and the latter is an optional connection.
 
-To use the service API, create an instance with `createApi` in the viewmodel of the account login
+To use the service API, create an instance with `createApi` in the view-model of the account login
 page of the account frontend.
 
 **src/main/kotlin/com/tomtom/ivi/example/frontend/account/login/AccountLoginViewModel.kt**
@@ -374,7 +423,8 @@ class AccountLoginViewModel(panel: AccountLoginPanel) :
     val username = MutableLiveData("")
     val password = MutableLiveData("")
 
-    // [allTrue] is a LiveData transformation that emits `true` on all sources becoming `true`.
+    // [allTrue] is a LiveData transformation that emits `true` when all sources become `true`,
+    // and `false` otherwise.
     val isLoginEnabled = allTrue(
         // Wait till the service becomes available.
         accountServiceApi.serviceAvailable,
@@ -384,7 +434,8 @@ class AccountLoginViewModel(panel: AccountLoginPanel) :
 
     fun onLoginClick() {
         // `LiveData.valueUpToDate` returns the current value if it is available. 
-        // Unlike `LiveData.value` it uses an observer to obtain the value, so it can be used with LiveData's transformations.
+        // Unlike `LiveData.value` it uses an observer to obtain the value, so it can be used
+        // with LiveData's transformations.
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
             val username = username.value ?: return
             val password = password.value ?: return
@@ -401,10 +452,10 @@ class AccountLoginViewModel(panel: AccountLoginPanel) :
 }
 ```
 
-The service's client API is very similar to the service interface. Service properties are mirrored
-in the API instance as `LiveData` of the original type. For example,`val activeAccount: Account?` in
-the service interface becomes `val activeAccount: LiveData<Account?>`. Service methods are mapped
-with two execution models:
+The service's client API is similar to the service interface. Service properties are mirrored in the
+API instance as `LiveData` of the original type. For example,`val activeAccount: Account?` in the
+service interface becomes `val activeAccount: LiveData<Account?>`. Service methods are mapped to two
+execution models:
 as [coroutine](https://kotlinlang.org/docs/async-programming.html#coroutines) `coLogIn(...)` and
 async call `logInAsync(...)`.
 
@@ -437,9 +488,8 @@ class AccountInfoViewModel(panel: AccountInfoPanel) : FrontendViewModel<AccountI
 
 Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
 
-This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
-used for internal evaluation purposes or commercial use strictly subject to separate
-licensee agreement between you and TomTom. If you are the licensee, you are only permitted
-to use this Software in accordance with the terms of your license agreement. If you are
-not the licensee then you are not authorised to use this software in any manner and should
-immediately return it to TomTom N.V.
+This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be used for
+internal evaluation purposes or commercial use strictly subject to separate licensee agreement
+between you and TomTom. If you are the licensee, you are only permitted to use this Software in
+accordance with the terms of your license agreement. If you are not the licensee then you are not
+authorised to use this software in any manner and should immediately return it to TomTom N.V.

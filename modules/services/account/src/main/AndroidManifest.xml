@@ -11,12 +11,4 @@
   ~ immediately return it to TomTom N.V.
   -->
 
-<manifest package="com.tomtom.ivi.example.service.account"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application>
-        <service
-            android:name=".AndroidServer"
-            android:process=":server.account" />
-    </application>
-</manifest>
+<manifest package="com.tomtom.ivi.example.service.account" />

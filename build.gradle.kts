@@ -26,7 +26,7 @@ plugins {
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.tomtom.ivi.platform") apply true
-    id("com.tomtom.ivi.defaults.all") apply true
+    id("com.tomtom.ivi.defaults.core") apply true
 }
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))

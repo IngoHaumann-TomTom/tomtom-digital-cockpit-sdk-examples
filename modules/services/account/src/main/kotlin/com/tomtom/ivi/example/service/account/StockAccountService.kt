@@ -11,14 +11,14 @@
 
 package com.tomtom.ivi.example.service.account
 
-import com.tomtom.ivi.api.framework.iviservice.IviServerContext
+import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.example.serviceapi.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 
-class StockAccountService(iviServerContext: IviServerContext) :
-    AccountServiceBase(iviServerContext) {
+class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
+    AccountServiceBase(iviServiceHostContext) {
 
     private val mutableAccounts = MutableMirrorableMap<AccountId, Account>()
 

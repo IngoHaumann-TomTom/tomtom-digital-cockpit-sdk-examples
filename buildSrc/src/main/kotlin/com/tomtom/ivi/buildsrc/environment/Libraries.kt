@@ -30,7 +30,6 @@ object Libraries {
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
             const val CORE_DEBUG_PERMISSIONS = "$PLATFORM_GROUP:core_debug_permissions:${Versions.INDIGO_PLATFORM}"
-            const val CORE_FRAMEWORK_IVISERVICEMANAGER = "$PLATFORM_GROUP:core_framework_iviservicemanager:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_UNIT = "$PLATFORM_GROUP:tools_testing_unit:${Versions.INDIGO_PLATFORM}"
         }
 
