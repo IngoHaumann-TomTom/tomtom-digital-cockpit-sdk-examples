@@ -63,12 +63,12 @@ class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendConte
 
     private fun goToInfoPanel() {
         closeAllTaskPanels()
-        addPanel(AccountInfoPanel(frontendContext, this))
+        addPanel(AccountInfoPanel(frontendContext))
     }
 
     private fun goToLoginPanel() {
         closeAllTaskPanels()
-        addPanel(AccountLoginPanel(frontendContext, this))
+        addPanel(AccountLoginPanel(frontendContext))
     }
 
     class Factory : FrontendFactory {

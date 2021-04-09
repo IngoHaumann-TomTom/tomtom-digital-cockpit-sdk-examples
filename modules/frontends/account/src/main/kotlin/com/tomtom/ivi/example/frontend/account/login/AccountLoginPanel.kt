@@ -14,10 +14,9 @@ package com.tomtom.ivi.example.frontend.account.login
 import com.tomtom.ivi.api.framework.frontend.FrontendContext
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
-import com.tomtom.ivi.example.frontend.account.AccountFrontend
 
-class AccountLoginPanel(frontendContext: FrontendContext, internal val frontend: AccountFrontend) :
-    TaskPanel(frontendContext, Mode.SIDE_BAR) {
+class AccountLoginPanel(frontendContext: FrontendContext)
+    : TaskPanel(frontendContext, Mode.SIDE_BAR) {
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(AccountLoginFragment(), this)
 }
