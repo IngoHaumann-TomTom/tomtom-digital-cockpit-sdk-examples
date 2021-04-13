@@ -68,9 +68,10 @@ stages:
     container: 'docker_indigo_test'
     timeoutInMinutes: 15
     steps:
-    - bash: |
-        echo "Instrumented tests here."
-      displayName: Run instrumented tests.
+    - template: .azure-templates/test-instrumented.yml
+      parameters:
+        testTasks: >-
+          connectedAndroidTest
     - template: build/build-cleanup.yml@devops-templates
 
 - stage: Publishing

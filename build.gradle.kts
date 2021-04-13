@@ -16,6 +16,8 @@ import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 // TODO(IVI-2890): Use the Gradle plugin.
@@ -25,11 +27,20 @@ plugins {
     `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
+    id("com.tomtom.navui.emulators-plugin") apply false
     id("com.tomtom.ivi.platform") apply true
     id("com.tomtom.ivi.defaults.core") apply true
 }
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
+
+// Make a single directory where to store all test results.
+val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+val testRootDir: File by extra(File(rootProject.projectDir, "IviTest"))
+val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().format(formatter)))
+
+// Configure Android emulator options.
+apply(from = file("emulators.gradle.kts"))
 
 ivi {
     dependencySource = IviDependencySource.Artifactory(Versions.INDIGO_PLATFORM)
@@ -89,6 +100,7 @@ subprojects {
                 versionCode = rootProject.extra.get("versionCode") as Int
                 versionName = rootProject.extra.get("versionName") as String
             }
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
         compileOptions {
@@ -141,6 +153,8 @@ subprojects {
             // NOTE: Do not strip any binaries: they should already come stripped from the
             // release artifacts; and since we don't use an NDK, they cannot be stripped anyway.
             doNotStrip("*.so")
+            pickFirst("META-INF/io.netty.versions.properties")
+            exclude("META-INF/INDEX.LIST")
         }
 
         // Split the output into multiple APKs based on their ABI.

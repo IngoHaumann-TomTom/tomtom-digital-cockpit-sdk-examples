@@ -1,0 +1,64 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  # Name for the artifacts produced (should be unique within pipeline).
+  artifactName: ''
+  # Remote branch to check out.
+  branch: ''
+  # List of instrumented tests to run.
+  testTasks: ''
+  # The amount of emulators to be started using one avd.
+  nrOfEmulators: 1
+
+steps:
+  - template: build-prepare.yml
+    parameters:
+      branch: ${{parameters.branch}}
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        killEmulators
+        deleteEmulators
+        createEmulators
+        startEmulators
+      projectOptions: >-
+        -Pemulators=${{parameters.nrOfEmulators}}
+        -PemulatorDirectory=$(Build.SourcesDirectory)/TestAVDs
+      displayName: 'Start emulators'
+
+  - template: gradle/gradle-with-tests.yml@devops-templates
+    parameters:
+      tasks: ${{parameters.testTasks}}
+      projectOptions: >-
+        --max-workers=12
+      testResultsFiles: '**/androidTest*/**/TEST-*.xml'
+      testRunTitle: 'Tests'
+      displayName: 'Run tests'
+      condition: succeeded()
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        pullLogs
+        pullMetadata
+      displayName: 'Retrieve emulator logs and metadata'
+      condition: succeededOrFailed()
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        killEmulators
+        deleteEmulators
+      displayName: 'Stop emulators'
+      condition: always()

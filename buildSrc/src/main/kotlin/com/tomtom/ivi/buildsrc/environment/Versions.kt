@@ -21,6 +21,7 @@ object Versions {
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
     const val NAVTEST_PLUGIN = "7.5.2"
+    const val NAVUI_EMULATORS_PLUGIN = "1.3.1"
 
     // Android
     const val ANDROIDX_ANNOTATION = "1.1.0"
@@ -42,5 +43,5 @@ object Versions {
 
     // IVI
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
-    const val INDIGO_PLATFORM = "1.0.1620"
+    const val INDIGO_PLATFORM = "1.0.1629"
 }

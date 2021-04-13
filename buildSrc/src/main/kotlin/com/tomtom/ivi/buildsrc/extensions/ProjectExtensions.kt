@@ -13,8 +13,10 @@ package com.tomtom.ivi.buildsrc.extensions
 
 import com.android.build.gradle.TestedExtension
 import org.gradle.api.Action
+import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 val Project.android: TestedExtension
@@ -31,3 +33,31 @@ fun TestedExtension.kotlinOptions(action: Action<KotlinJvmOptions>) =
  */
 fun Project.getGradleProperty(key: String, default: Boolean) =
     properties[key]?.toString()?.toBoolean() ?: default
+
+/**
+ * Retrieves a property from a project's ExtraProperties extension if available, or a default value
+ * if not.
+ *
+ * @param propertyName The name of the property to attempt to retrieve.
+ * @param defaultValue The default value to return if the property is not set.
+ */
+fun ExtraPropertiesExtension.getOrDefault(propertyName: String, defaultValue: Any): Any =
+    if (has(propertyName)) {
+        get(propertyName)!!
+    } else {
+        defaultValue
+    }
+
+/**
+ * Assert variant for Gradle scripts.
+ *
+ * Assertions don't normally work in Gradle: this variant fails the script execution immediately.
+ *
+ * @param value Expression to verify.
+ * @param lazyMessage Expression to report as error message.
+ */
+fun gradleAssert(value: Boolean, lazyMessage: () -> String) {
+    if (!value) {
+        throw GradleException(lazyMessage())
+    }
+}

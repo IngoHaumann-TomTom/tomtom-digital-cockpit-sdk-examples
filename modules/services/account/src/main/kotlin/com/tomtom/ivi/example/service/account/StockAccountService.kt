@@ -41,10 +41,11 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
                 activeAccount = account
             }
         }
-    }
 
-    override fun onRequiredPropertiesInitialized() {
-        serviceReady = true
+        // The account service cannot run without the account settings service.
+        settingsServiceApi.serviceAvailable.observe(this) {
+            serviceReady = it
+        }
     }
 
     override suspend fun logIn(username: String, password: String): Boolean =
