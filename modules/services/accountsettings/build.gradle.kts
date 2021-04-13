@@ -9,12 +9,17 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.buildsrc.environment.Libraries
 
-ivi {
-    serviceApi = true
+plugins {
+    `kotlinx-serialization`
 }
 
 dependencies {
-    api(project(":common_account"))
+    implementation(project(":serviceapis_accountsettings"))
+    implementation(Libraries.Kotlin.SERIALIZATION)
+    implementation(Libraries.TomTom.Indigo.API_SERVICES_SETTINGSMANAGEMENT)
+    implementation(Libraries.TomTom.Tools.CORE_LIVEDATA)
+
+    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

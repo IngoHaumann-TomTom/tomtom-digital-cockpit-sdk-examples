@@ -298,7 +298,7 @@ class AccountServiceHostBuilder : IviServiceHostBuilder() {
 Define a deployment configuration for a service host in the `buildSrc` so it can be used in all
 projects, including tests.
 
-**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountServiceHost.kt**
+**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountService.kt**
 
 ```kotlin
 package com.tomtom.ivi.buildsrc.config.services
@@ -388,6 +388,52 @@ ivi {
 
 // The rest of the build script, dependencies, etc.
 ```
+
+### Deploy multiple service hosts in the same process
+
+Closely related services may be deployed in the same process to reduce IPC overhead. For example,
+the account settings service, which is used by the account service, and the account service may be
+deployed together.
+
+File `buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountService.kt` contains
+service host configurations for account services, `accountServiceHost`
+and `accountSettingsServiceHost`. To deploy them in the same process, add runtime configuration to
+the application config.
+
+**modules/products/exampleapp/build.gradle.kts**
+
+```kotlin
+import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
+import com.tomtom.ivi.buildsrc.config.services.accountSettingsServiceHost
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+ivi {
+    application {
+        enabled = true
+        services {
+            // Register the account service in the application.
+            addHost(accountServiceHost)
+            // Register the account settings service in the application.
+            addHost(accountSettingsServiceHost)
+        }
+        runtime {
+            deployments {
+                create(globalRuntime) {
+                    useDefaults()
+
+                    // Deploys the account and account settings services in the same process.
+                    deployServiceHosts(inList(accountServiceHost, accountSettingsServiceHost))
+                        .withProcessName("accountservicehost")
+                }
+            }
+        }
+    }
+}
+
+// The rest of the build script, dependencies, etc.
+```
+
+Now both hosts run in the same `accountservicehost` process.
 
 ## Use the IVI service in the client side code
 

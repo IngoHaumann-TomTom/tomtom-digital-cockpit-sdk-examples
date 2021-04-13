@@ -9,12 +9,23 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+package com.tomtom.ivi.example.common.account
 
-ivi {
-    serviceApi = true
-}
+import android.os.Parcelable
+import com.tomtom.ivi.api.common.uid.Uid
+import kotlinx.parcelize.Parcelize
 
-dependencies {
-    api(project(":common_account"))
+@Parcelize
+data class Account(
+    /**
+     * Unique ID for the account.
+     */
+    val accountUid: Uid<Account>,
+
+    /**
+     * A string representing the name of the account.
+     */
+    val username: String
+) : Parcelable {
+    constructor(username: String) : this(Uid.new(), username)
 }

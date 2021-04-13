@@ -11,21 +11,36 @@
 
 package com.tomtom.ivi.example.service.account
 
+import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
-import com.tomtom.ivi.example.serviceapi.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountId
+import com.tomtom.ivi.api.framework.iviservice.queueOrRun
+import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
+import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
+import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
+import com.tomtom.tools.android.core.livedata.valueUpToDate
 
+// TODO(IVI-3049): Add integration tests.
 class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
 
-    private val mutableAccounts = MutableMirrorableMap<AccountId, Account>()
+    private val settingsServiceApi = AccountSettingsService.createApi(this, iviServiceProvider)
+
+    private val mutableAccounts = MutableMirrorableMap<Uid<Account>, Account>()
 
     override fun onCreate() {
         super.onCreate()
 
         accounts = mutableAccounts
+
+        // Executes an action once on the service becoming available.
+        settingsServiceApi.queueOrRun { service ->
+            service.activeAccount.valueUpToDate?.let { account ->
+                mutableAccounts[account.accountUid] = account
+                activeAccount = account
+            }
+        }
     }
 
     override fun onRequiredPropertiesInitialized() {
@@ -33,23 +48,18 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     }
 
     override suspend fun logIn(username: String, password: String): Boolean =
-        if (isValidUsername(username) && isValidPassword(password)) {
-            val accountId = AccountId(username)
-
-            if (!mutableAccounts.contains(accountId)) {
-                val account = Account(accountId, username)
-                mutableAccounts[accountId] = account
+        null != takeIf { isValidUsername(username) && isValidPassword(password) }
+            ?.run {
+                activeAccount = mutableAccounts.values.find { it.username == username }
+                    ?: run {
+                        Account(username).also { mutableAccounts[it.accountUid] = it }
+                    }
+                settingsServiceApi.coUpdateActiveAccount(activeAccount)
             }
-
-            activeAccount = mutableAccounts[accountId]
-
-            true
-        } else {
-            false
-        }
 
     override suspend fun logOut() {
         activeAccount = null
+        settingsServiceApi.coUpdateActiveAccount(activeAccount)
     }
 
     companion object {

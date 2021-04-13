@@ -13,18 +13,17 @@ package com.tomtom.ivi.example.frontend.account
 
 import androidx.lifecycle.MutableLiveData
 import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
+import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
-import com.tomtom.ivi.example.serviceapi.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
+import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import org.junit.Test
 
 class AccountFrontendTest : IviTestCase() {
     private val mutableAccount = MutableLiveData<Account?>(null).also {
@@ -32,9 +31,7 @@ class AccountFrontendTest : IviTestCase() {
         mockkService(AccountService.Companion::createApi) {
             every { serviceAvailable } returns MutableLiveData(true)
             every { activeAccount } returns it
-            every { accounts } returns MutableLiveData(
-                mapOf(ACCOUNT1ID to ACCOUNT1, ACCOUNT2ID to ACCOUNT2)
-            )
+            every { accounts } returns MutableLiveData(TestData.accountsMap)
         }
     }
 
@@ -46,7 +43,7 @@ class AccountFrontendTest : IviTestCase() {
         mutableAccount.value = null
 
         // WHEN an user has logged in.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
 
         // THEN the frontend does not open a panel.
         assertTrue(sut.panels.getOrAwaitValue().isEmpty())
@@ -55,7 +52,7 @@ class AccountFrontendTest : IviTestCase() {
     @Test
     fun `frontend does not open a panel after an user has logged out`() {
         // GIVEN an user is logged in.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
 
         // WHEN the user has logged out
         mutableAccount.value = null
@@ -80,7 +77,7 @@ class AccountFrontendTest : IviTestCase() {
     @Test
     fun `frontend opens an info panel if the user is logged in`() {
         // GIVEN the user is logged in.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
 
         // WHEN the frontend opens a task panel.
         sut.openTaskPanels()
@@ -98,7 +95,7 @@ class AccountFrontendTest : IviTestCase() {
         sut.openTaskPanels()
 
         // WHEN the user is logged in.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
 
         // THEN the frontend opens an info panel.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
@@ -109,7 +106,7 @@ class AccountFrontendTest : IviTestCase() {
     fun `frontend goes from info panel to login panel after logout`() {
         // GIVEN the user is logged in.
         // AND the frontend opens an info panel.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
         sut.openTaskPanels()
 
         // WHEN the user is logged out
@@ -124,21 +121,14 @@ class AccountFrontendTest : IviTestCase() {
     fun `frontend does not re-open info panel if an user has changed`() {
         // GIVEN the user is logged in.
         // AND the frontend has an info panel opened.
-        mutableAccount.value = ACCOUNT1
+        mutableAccount.value = TestData.testAccount
         sut.openTaskPanels()
 
         // WHEN another user is logged in.
-        mutableAccount.value = ACCOUNT2
+        mutableAccount.value = TestData.anotherTestAccount
 
         // THEN the frontend still has an info panel opened.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
         assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountInfoPanel>().size)
-    }
-
-    companion object {
-        private val ACCOUNT1ID = AccountId("ACCOUNT1")
-        private val ACCOUNT1 = Account(ACCOUNT1ID, "USER1")
-        private val ACCOUNT2ID = AccountId("ACCOUNT2")
-        private val ACCOUNT2 = Account(ACCOUNT2ID, "USER2")
     }
 }

@@ -37,6 +37,9 @@ object Versions {
     // Automotive
     const val ANDROID_CAR = "0.0.12"
 
+    // Kotlin
+    const val KOTLINX_SERIALIZATION = "1.0.1"
+
     // IVI
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
     const val INDIGO_PLATFORM = "1.0.1620"

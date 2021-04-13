@@ -9,12 +9,18 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+package com.tomtom.ivi.example.frontend.account
 
-ivi {
-    serviceApi = true
-}
+import com.tomtom.ivi.example.common.account.Account
 
-dependencies {
-    api(project(":common_account"))
+object TestData {
+    const val USERNAME = "Username"
+    const val PASSWORD = "Password"
+
+    private const val ANOTHER_USERNAME = "AnotherUsername"
+
+    val testAccount = Account(USERNAME)
+    val anotherTestAccount = Account(ANOTHER_USERNAME)
+
+    val accountsMap = listOf(testAccount, anotherTestAccount).associateBy { it.accountUid }.toMap()
 }

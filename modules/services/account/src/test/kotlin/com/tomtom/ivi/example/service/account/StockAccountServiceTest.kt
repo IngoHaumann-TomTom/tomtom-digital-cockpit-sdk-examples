@@ -11,8 +11,12 @@
 
 package com.tomtom.ivi.example.service.account
 
+import androidx.lifecycle.MutableLiveData
+import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
+import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
+import io.mockk.every
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -23,10 +27,17 @@ import kotlin.test.assertTrue
 
 class StockAccountServiceTest : IviTestCase() {
 
-    private val sut = StockAccountService(niceMockk())
+    private val sut = run {
+        // An account settings service mock must be configured before the account service is
+        // created.
+        mockkService(AccountSettingsService.Companion::createApi) {
+            every { serviceAvailable } returns MutableLiveData(true)
+            every { activeAccount } returns MutableLiveData()
+        }
+    }.let { StockAccountService(niceMockk()) }
 
     @Before
-    fun before() {
+    fun createSut() {
         sut.onCreate()
     }
 

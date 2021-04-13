@@ -11,9 +11,11 @@
 
 package com.tomtom.ivi.example.serviceapi.account
 
+import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MirrorableMap
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviServiceFun
+import com.tomtom.ivi.example.common.account.Account
 
 /**
  * IVI service to manage an account state.
@@ -31,7 +33,7 @@ interface AccountService {
     /**
      * The collection of accounts that have logged in at least once since application started.
      */
-    val accounts: MirrorableMap<AccountId, Account>
+    val accounts: MirrorableMap<Uid<Account>, Account>
 
     /**
      * Tries to log an user in under [username] with [password].

@@ -40,6 +40,7 @@ dependencies {
 
     implementation(kotlin("gradle-plugin", versions["KOTLIN"]))
     implementation(kotlin("android-extensions", versions["KOTLIN"]))
+    implementation(kotlin("serialization", versions["KOTLIN"]))
     implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
     implementation("com.tomtom.ivi.gradle:api_plugins_platform:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:${versions["INDIGO_PLATFORM"]}")

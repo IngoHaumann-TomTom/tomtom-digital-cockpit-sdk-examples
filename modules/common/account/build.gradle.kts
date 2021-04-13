@@ -9,12 +9,8 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
-
-ivi {
-    serviceApi = true
-}
+import com.tomtom.ivi.buildsrc.environment.Libraries
 
 dependencies {
-    api(project(":common_account"))
+    api(Libraries.TomTom.Indigo.API_COMMON_UID)
 }

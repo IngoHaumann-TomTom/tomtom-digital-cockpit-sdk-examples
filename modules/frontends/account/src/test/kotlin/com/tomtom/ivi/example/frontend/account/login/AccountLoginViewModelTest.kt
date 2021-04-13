@@ -12,17 +12,16 @@
 package com.tomtom.ivi.example.frontend.account.login
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.example.serviceapi.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountId
+import com.tomtom.ivi.example.frontend.account.TestData
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
+import org.junit.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import org.junit.Test
 
 class AccountLoginViewModelTest : IviTestCase() {
 
@@ -30,10 +29,8 @@ class AccountLoginViewModelTest : IviTestCase() {
     private val mutableServiceAvailable = MutableLiveData(true)
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
-        every { activeAccount } returns MutableLiveData(ACCOUNT)
-        every { accounts } returns MutableLiveData(
-            mapOf(ACCOUNTID to ACCOUNT)
-        )
+        every { activeAccount } returns MutableLiveData(TestData.testAccount)
+        every { accounts } returns MutableLiveData(TestData.accountsMap)
     }
 
     private val mockPanel = niceMockk<AccountLoginPanel>()
@@ -47,27 +44,27 @@ class AccountLoginViewModelTest : IviTestCase() {
 
     @Test
     fun `login button is disabled if password field is empty`() {
-        sut.username.value = USERNAME
+        sut.username.value = TestData.USERNAME
         assertFalse(sut.isLoginEnabled.getOrAwaitValue())
     }
 
     @Test
     fun `login button is disabled if username field is empty`() {
-        sut.password.value = PASSWORD
+        sut.password.value = TestData.PASSWORD
         assertFalse(sut.isLoginEnabled.getOrAwaitValue())
     }
 
     @Test
     fun `login button is enabled if username and password are correct`() {
-        sut.username.value = USERNAME
-        sut.password.value = PASSWORD
+        sut.username.value = TestData.USERNAME
+        sut.password.value = TestData.PASSWORD
         assertTrue(sut.isLoginEnabled.getOrAwaitValue())
     }
 
     @Test
     fun `login button is disabled if service is not available`() {
-        sut.username.value = USERNAME
-        sut.password.value = PASSWORD
+        sut.username.value = TestData.USERNAME
+        sut.password.value = TestData.PASSWORD
         mutableServiceAvailable.value = false
 
         assertFalse(sut.isLoginEnabled.getOrAwaitValue())
@@ -75,22 +72,13 @@ class AccountLoginViewModelTest : IviTestCase() {
 
     @Test
     fun `login button click calls service`() {
-        sut.username.value = USERNAME
-        sut.password.value = PASSWORD
+        sut.username.value = TestData.USERNAME
+        sut.password.value = TestData.PASSWORD
 
         sut.onLoginClick()
 
         verify {
-            mockAccountService.logInAsync(USERNAME, PASSWORD, any())
+            mockAccountService.logInAsync(TestData.USERNAME, TestData.PASSWORD, any())
         }
-    }
-
-    companion object {
-        private const val USERNAME = "testUser"
-        private const val PASSWORD = "testPassword"
-
-        private val ACCOUNTID = AccountId("ACCOUNTID")
-        private val ACCOUNT = Account(ACCOUNTID, USERNAME)
-
     }
 }

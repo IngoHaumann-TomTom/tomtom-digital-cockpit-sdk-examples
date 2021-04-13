@@ -17,6 +17,7 @@ import com.tomtom.ivi.api.framework.frontend.FrontendMetadata
 import com.tomtom.ivi.api.frontend.userprofile.userProfileFrontendMetadata
 import com.tomtom.ivi.example.frontend.account.accountFrontendMetadata
 
+// TODO(IVI-3021): Add E2E tests.
 class ExampleActivity : DefaultActivity() {
     override val frontendMetadata: Collection<FrontendMetadata> =
         defaultFrontendMetadata + frontendsToAdd - frontendsToRemove

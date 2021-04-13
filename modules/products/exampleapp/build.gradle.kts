@@ -9,8 +9,9 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
+import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier.Companion.globalRuntime
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 /**
@@ -20,8 +21,18 @@ ivi {
     application {
         enabled = true
         services {
-            // Register the account service in the application.
-            addHost(accountServiceHost)
+            // Register the account and account settings services in the application.
+            addHosts(accountServiceHosts)
+        }
+        runtime {
+            deployments {
+                create(globalRuntime) {
+                    useDefaults()
+                    // Deploys the account and account settings services in the same process.
+                    deployServiceHosts(inList(accountServiceHosts))
+                        .withProcessName("accountservicehost")
+                }
+            }
         }
     }
 }

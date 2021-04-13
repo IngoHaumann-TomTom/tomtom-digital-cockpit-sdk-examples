@@ -12,7 +12,7 @@
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 ivi {
-    serviceApi = true
+    settingsServiceApi = true
 }
 
 dependencies {

@@ -9,25 +9,16 @@
  * immediately return it to TomTom N.V.
  */
 
-package com.tomtom.ivi.example.serviceapi.account
+package com.tomtom.ivi.example.service.accountsettings
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.tomtom.ivi.api.framework.iviservice.IviServiceHostBuilder
+import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
+import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
 
-@Parcelize
-data class AccountId(val value: String) : Parcelable {
-    override fun toString() = value
+class AccountSettingsServiceHostBuilder : IviServiceHostBuilder() {
+
+    override fun build(iviServiceHostContext: IviServiceHostContext) =
+        SimpleIviServiceHost(setOf(StockAccountSettingsService(iviServiceHostContext)))
+
+    companion object
 }
-
-@Parcelize
-data class Account (
-    /**
-     * Unique ID for the account.
-     */
-    val accountId: AccountId,
-
-    /**
-     * A string representing the name of the account.
-     */
-    val username: String
-): Parcelable

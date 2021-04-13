@@ -9,12 +9,21 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+package com.tomtom.ivi.example.service.accountsettings
 
-ivi {
-    serviceApi = true
-}
+import com.tomtom.ivi.example.common.account.Account
+import kotlinx.serialization.json.Json
+import org.junit.Test
+import kotlin.test.assertEquals
 
-dependencies {
-    api(project(":common_account"))
+class AccountSerializerTest {
+    @Test
+    fun `serialize and deserialize an account`() {
+        val account = Account("username")
+
+        val serialized = Json.encodeToString(AccountSerializer, account)
+        val deserialized = Json.decodeFromString(AccountSerializer, serialized)
+
+        assertEquals(account, deserialized)
+    }
 }

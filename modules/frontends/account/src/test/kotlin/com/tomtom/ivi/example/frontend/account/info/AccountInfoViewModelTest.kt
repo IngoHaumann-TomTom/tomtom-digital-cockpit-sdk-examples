@@ -12,25 +12,22 @@
 package com.tomtom.ivi.example.frontend.account.info
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.example.serviceapi.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountId
+import com.tomtom.ivi.example.frontend.account.TestData
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
-import kotlin.test.assertEquals
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class AccountInfoViewModelTest : IviTestCase() {
     // Service mock must be configured before a view model is created.
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns MutableLiveData(true)
-        every { activeAccount } returns MutableLiveData(ACCOUNT)
-        every { accounts } returns MutableLiveData(
-            mapOf(ACCOUNTID to ACCOUNT)
-        )
+        every { activeAccount } returns MutableLiveData(TestData.testAccount)
+        every { accounts } returns MutableLiveData(TestData.accountsMap)
     }
 
     private val mockPanel = niceMockk<AccountInfoPanel>()
@@ -39,7 +36,7 @@ class AccountInfoViewModelTest : IviTestCase() {
 
     @Test
     fun `username is prepared for display`() {
-        assertEquals(TESTUSER, sut.displayName.getOrAwaitValue())
+        assertEquals(TestData.testAccount.username, sut.displayName.getOrAwaitValue())
     }
 
     @Test
@@ -49,12 +46,5 @@ class AccountInfoViewModelTest : IviTestCase() {
         verify {
             mockAccountService.logOutAsync(any())
         }
-    }
-
-    companion object {
-        private const val TESTUSER = "TestUser"
-
-        private val ACCOUNTID = AccountId("ACCOUNTID")
-        private val ACCOUNT = Account(ACCOUNTID, TESTUSER)
     }
 }
