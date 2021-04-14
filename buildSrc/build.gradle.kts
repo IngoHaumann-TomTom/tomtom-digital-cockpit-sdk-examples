@@ -14,6 +14,7 @@ buildscript {
 }
 
 apply("repositories.gradle.kts")
+apply("versionsMap.gradle.kts")
 
 plugins {
     `kotlin-dsl`
@@ -24,23 +25,13 @@ kotlinDslPluginOptions {
 }
 
 dependencies {
-    /**
-     * Workaround to load versions from this module's version object. This is needed because
-     * this module's build script needs to know the versions of the build tools in order to build the
-     * versions object. To resolve this cyclic dependency, we parse the code file manually. This
-     * approach should be avoided anywhere else as Versions can just be accessed directly.
-     */
-    val versionsFile = "Versions.kt"
-    val versionRegex = "\\s*const val (\\w+) *= *\"([^\"]+)\"".toRegex()
-    val versions: Map<String, String> = fileTree(projectDir)
-        .find { it.name == versionsFile }
-        ?.readLines()
-        ?.mapNotNull { versionRegex.find(it)?.groups }
-        ?.associate { it[1]!!.value to it[2]!!.value }!!
+    val versions: Map<String, String> by rootProject.extra
 
     implementation(kotlin("gradle-plugin", versions["KOTLIN"]))
     implementation(kotlin("android-extensions", versions["KOTLIN"]))
     implementation(kotlin("serialization", versions["KOTLIN"]))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
     implementation("com.tomtom.ivi.gradle:api_plugins_platform:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:${versions["INDIGO_PLATFORM"]}")

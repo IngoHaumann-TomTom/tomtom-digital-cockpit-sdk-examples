@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.buildsrc.extensions
 
-import com.android.build.gradle.TestedExtension
+import com.android.build.gradle.BaseExtension
 import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.Project
@@ -19,13 +19,13 @@ import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
-val Project.android: TestedExtension
-    get() = extensions.getByType(TestedExtension::class.java)
+val Project.android: BaseExtension
+    get() = extensions.getByType(BaseExtension::class.java)
 
-fun Project.android(action: Action<TestedExtension>) =
+fun Project.android(action: Action<BaseExtension>) =
     action.execute(android)
 
-fun TestedExtension.kotlinOptions(action: Action<KotlinJvmOptions>) =
+fun BaseExtension.kotlinOptions(action: Action<KotlinJvmOptions>) =
     action.execute((this as ExtensionAware).extensions.getByType(KotlinJvmOptions::class.java))
 
 /**

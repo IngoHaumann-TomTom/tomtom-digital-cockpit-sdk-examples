@@ -54,23 +54,13 @@ val versionName: String by extra(buildVersions.versionName)
 subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
 
-    configurations.all {
-        resolutionStrategy {
-            eachDependency {
-                if (requested.group == "org.jetbrains.kotlin" &&
-                    requested.name in listOf("kotlin-reflect", "kotlin-stdlib-jdk8")
-                ) {
-                    useVersion("1.4.0")
-                }
-            }
-        }
+    when {
+        isApplicationProject ->
+            apply(plugin = "com.android.application")
+        else ->
+            apply(plugin = "com.android.library")
     }
 
-    if (isApplicationProject) {
-        apply(plugin = "com.android.application")
-    } else {
-        apply(plugin = "com.android.library")
-    }
     apply(plugin = "kotlin-android")
     apply(plugin = "kotlin-parcelize")
 
@@ -85,6 +75,8 @@ subprojects {
     }
 
     dependencies {
+        implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation(Libraries.Android.ANNOTATION)
         implementation(Libraries.Android.KTX)
     }
