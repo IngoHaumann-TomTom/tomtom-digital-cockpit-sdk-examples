@@ -98,5 +98,6 @@ stages:
       parameters:
         currentProductVersion: "$(product_version)"
         workingDirectory: "$(Build.SourcesDirectory)"
+        artifactId: "products_indigo_examples"
         folderOrFileName: "products_indigo_examples-$(product_version)-sources.tar.gz"
         condition: and(eq(variables.isMainlineBuild, true), succeeded())
