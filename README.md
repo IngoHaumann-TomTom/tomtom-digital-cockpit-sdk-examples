@@ -35,6 +35,28 @@ The root directory for modules. All Gradle modules inside are within two levels 
 * `modules/services`
   Modules with implementations of IVI services.
 
+## Configuration
+
+In order to build the project using dependencies from the IVI Nexus repository, credentials need to
+be provided to access this repository. This can be done in three different ways:
+
+### `Specify credentials throuh the commandline`
+```bash
+-PnexusUsername=<username> -PnexusPassword=<password>
+```
+
+### `Store credentials in gradle.properties`
+```bash
+nexusUsername=<username>
+nexusPassword=<password>
+```
+
+### `Store credentials in local.properties`
+```bash
+nexusUsername=<username>
+nexusPassword=<password>
+```
+
 ## Build
 
 Build the application with plugins:

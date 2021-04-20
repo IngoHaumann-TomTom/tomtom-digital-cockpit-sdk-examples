@@ -1,0 +1,43 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+steps:
+  - checkout: self
+  - checkout: indigoqa
+  - bash: |
+      set -eux
+      mkdir $(Build.SourcesDirectory)/artifacts
+    displayName: Create download directory
+
+    # Download artifacts from Artifactory by providing the version of the artifact, and publish
+    # these to Nexus. The values of the parameters below can be entered from the pipeline's UI.
+  - task: PythonScript@0
+    displayName: Publish artifacts to Nexus
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/PublishToNexus.py
+      pythonInterpreter: /usr/bin/python3.8
+      arguments:
+        --nexus_user $(NEXUS_USERNAME)
+        --nexus_pass $(NEXUS_PASSWORD)
+        --artifactory_user $(ARTIFACTORY_USERNAME)
+        --artifactory_pass $(ARTIFACTORY_PASSWORD)
+        --version $(VERSION_SDK)
+        --version_examples $(VERSION_EXAMPLES)
+        --version_bugsee_api_key $(VERSION_BUGSEE_API_KEY)
+        --version_navkit2_api_key $(VERSION_NAVKIT2_API_KEY)
+        --version_lineageos $(VERSION_LINEAGEOS)
+        --version_android_car_lib $(VERSION_ANDROID_CAR_LIB)
+        --version_sdk_communications $(VERSION_SDK_COMMUNICATIONS)
+        --version_alexa_aace $(VERSION_ALEXA_AACE)
+        --version_emulator $(VERSION_EMULATOR)
+        --download_base_path $(Build.SourcesDirectory)/artifacts

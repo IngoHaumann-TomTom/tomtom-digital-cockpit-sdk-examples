@@ -13,8 +13,18 @@ repositories {
     // Local artifact cache
     mavenLocal()
 
-    // PU IVI repo for internal dependencies
-    maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
+    // PU IVI repo for external parties
+    if (project.hasProperty("nexusUsername")) {
+        maven("https://repo.tomtom.com/repository/ivi") {
+            credentials {
+                username = properties["nexusUsername"].toString()
+                password = properties["nexusPassword"].toString()
+            }
+        }
+    } else {
+        // PU IVI repo for internal dependencies
+        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
+    }
 
     // Repo for shared Android Tools like, UI Controls, resource resolutions,
     // viewcomparison test setup, animations...
