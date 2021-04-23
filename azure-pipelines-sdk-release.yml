@@ -42,7 +42,6 @@ pool: 'Private Cloud CPU'
 
 stages:
 - stage: Publishing
-  displayName: Publish SDK
   jobs:
   - job: PublishToNexus
     timeoutInMinutes: 60
@@ -53,16 +52,17 @@ stages:
     - template: build/build-cleanup.yml@devops-templates
 
 - stage: Verification
-  displayName: Verify SDK contents
   dependsOn: Publishing
   jobs:
-  - job: Build
-    displayName: Build the example app
+  - job: DownloadAndVerify
+    displayName: Verify SDK contents
     timeoutInMinutes: 15
     container: docker_indigo_build
     steps:
+    - template: .azure-templates/downloading-nexus.yml
     - template: gradle/gradle.yml@devops-templates
       parameters:
+        cwd: $(Build.SourcesDirectory)/downloads/sdk/examples/sources
         tasks: >-
           assemble
         projectOptions: >-
