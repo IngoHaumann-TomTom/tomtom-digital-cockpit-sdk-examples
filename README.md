@@ -40,7 +40,7 @@ The root directory for modules. All Gradle modules inside are within two levels 
 In order to build the project using dependencies from the IVI Nexus repository, credentials need to
 be provided to access this repository. This can be done in three different ways:
 
-### `Specify credentials throuh the commandline`
+### `Specify credentials through the commandline`
 ```bash
 -PnexusUsername=<username> -PnexusPassword=<password>
 ```
