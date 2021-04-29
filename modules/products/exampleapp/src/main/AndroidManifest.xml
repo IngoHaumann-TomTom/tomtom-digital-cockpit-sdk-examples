@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
   ~
   ~ This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
@@ -28,6 +27,7 @@
         <activity
             android:name="com.tomtom.ivi.core.debug.permissions.SetupActivity"
             android:clearTaskOnLaunch="true"
+            android:exported="true"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <meta-data
@@ -48,7 +48,15 @@
 
         <activity
             android:name="com.tomtom.ivi.example.product.exampleapp.ExampleActivity"
-            android:launchMode="singleTask">
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <action android:name="com.tomtom.ivi.example.product.exampleapp.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
             <intent-filter>
                 <!-- Both this intent filter and the next one need to be specified for android to
                      accept an application as the default dialer.

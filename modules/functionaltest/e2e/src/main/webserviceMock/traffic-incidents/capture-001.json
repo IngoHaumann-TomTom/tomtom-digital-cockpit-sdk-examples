@@ -1,0 +1,2249 @@
+[
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67320/43069.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 92,
+    "responseTotalDurationMs": 186,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "175a6591-e33b-4a21-acd1-99401e10b4ff"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67320/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 114,
+    "responseTotalDurationMs": 407,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "78d83a03-a6c4-42ca-9132-7b4343415f25"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67320/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 76,
+    "responseTotalDurationMs": 131,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "e7327c1b-23aa-433a-b0c9-64adddcb34bf"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67320/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 96,
+    "responseTotalDurationMs": 392,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "19143c68-7895-44f1-9535-3d0333eb633e"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67320/43073.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 93,
+    "responseTotalDurationMs": 413,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9401f76e4a8a330d3cc7756cea35127d\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "50befa50-5e56-41b2-b52d-d9aa3c643a9d"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5M6y8glElKUmJaWmayQmZecmZKaV6IQ4O8pJCnEx8DAyMjExMzMwsLKysYmwajEynnC5YWFFH9mcn5efHJiSWp6flFlvIEUb0pqcXJRZkFJJlDcQIo1JTUnsVKKMzcxPS-zpDQlVYqzKD8xJb6ksiBVSrQEYls8WCg5vyy1KDE9VYqjID8TrECJSYFDiYOLLTknvzg1BchjAGIWJR4uLp_85MQcBZA2JTYulrTSnBwlbi7O4pLEopJ4oG6NBoUKJqldjFyiGP5Jy8kvF5IR4kH2kASTEhfYO1xvGC8w0sJPpPgE7HgAasVyTI0BAAA\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43069.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 116,
+    "responseTotalDurationMs": 403,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "6ec2cc8d-7b82-4339-8ec3-a427b7d54cd7"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 87,
+    "responseTotalDurationMs": 125,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "0d26188a-1f2a-4dcc-bf27-cec009d41541"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 158,
+    "responseTotalDurationMs": 164,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "67189bfd-fdd6-4e18-ae0f-661cd2b30fa4"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 76,
+    "responseTotalDurationMs": 143,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "7ffa5e7a-4e0c-4f6a-aff7-177f73b89cc6"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 75,
+    "responseTotalDurationMs": 79,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "ff2a1c59-9ab8-4b22-970b-df301901e2b8"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 131,
+    "responseTotalDurationMs": 204,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "22cfe1d8-e2d0-4aff-bf80-dae458eb22ed"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67321/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 87,
+    "responseTotalDurationMs": 92,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "e5b1c37e-c440-40b5-84f7-b872e81cede7"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43069.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 143,
+    "responseTotalDurationMs": 404,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "69f053b0-8e9a-49af-b908-b2b019c34346"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 145,
+    "responseTotalDurationMs": 226,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "4760fa1a-9042-459e-aeb9-580708317480"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 89,
+    "responseTotalDurationMs": 94,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "fd89f1dd-7376-424a-89ba-8f4d21d6c86c"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 77,
+    "responseTotalDurationMs": 157,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "3402125d-41b8-414a-8f15-8332022412df"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 84,
+    "responseTotalDurationMs": 88,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "cd3d7618-81a3-4f37-ad41-cb22213fa8a9"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 93,
+    "responseTotalDurationMs": 152,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "8fa9af59-d3bf-4a02-95ff-500394db425e"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67322/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 169,
+    "responseTotalDurationMs": 173,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "5d52d53c-bf75-40ee-9b81-851fbc1ea7f8"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43069.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 157,
+    "responseTotalDurationMs": 358,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 51
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "f96eda76-92cd-42c2-8581-b87aeef0f281"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 78,
+    "responseTotalDurationMs": 167,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "05e65065-3a95-4af8-a6dd-aff7bf6c9242"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 83,
+    "responseTotalDurationMs": 87,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "c3c03701-0d15-4072-9cfd-424f962bae19"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 80,
+    "responseTotalDurationMs": 153,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"b25cb57c7c0163e4d195be6583d32be0\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "b7f3c869-30cd-44bd-a613-84ff9120a1df"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA7WQvU7DMBSFkzRNbPMXTCsVK0KRJybUHQZWBn4GBGyRZbvBUrArx1C6McBMBxYegmdpB-ApkMojkLZLJTYkhjvcc66O7nfIa4Ba55b1eopnSnMlpHbZ2ekRTvG65_l-EDQaYdhsRlHHp2DzEb2kk-QK7-Bk2Y3jCMz9d_KVjpNLsqG40TlnThbGDvMuWROy4lb1nar1LmkKWbIhgTes0MrdCkmgNUzkbtiXpO0WD-VziZs7aVkhCegbtTiIryUTShc0yAAFKOKlqaSoN6-ekGKUHCttbFYazspslkIRAkbLvKoB6QqClWPW5XUghdsno-nTx9vFIYUollrM1N2H7D4gnz5q_-qmV5oB3sOry_idgKZwVg2ZxAejsPUdAuh5ZBrGz-HWON7_jzr-xj4H-wHa_Zzy9QEAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"1a3c093c079095c278312010b9b6b12e\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 78,
+    "responseTotalDurationMs": 82,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"1a3c093c079095c278312010b9b6b12e\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 50
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "25971e4e-4166-46e7-aef8-5f23c5874ede"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 83,
+    "responseTotalDurationMs": 156,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 35
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "7e1743db-8688-46df-8229-74572da4af47"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 108,
+    "responseTotalDurationMs": 113,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "52981717-510e-41ac-8a62-085e17f1c1de"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43069.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 190,
+    "responseTotalDurationMs": 448,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "d33c35a2-2655-431b-bd6e-0c0e7c3d0be5"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 94,
+    "responseTotalDurationMs": 283,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "ed3dd50b-c1f7-4c84-989c-99934121f41b"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43070.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 431,
+    "responseTotalDurationMs": 441,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 49
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "f928a1ef-78ef-483c-be98-3c491dac9410"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 131,
+    "responseTotalDurationMs": 249,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "6fd138d6-8909-4325-91b5-68b500aaa402"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 81,
+    "responseTotalDurationMs": 90,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 50
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "7d30e056-70fa-42ea-b441-038d983fe881"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      }
+    ],
+    "responseContent": ""
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 110,
+    "responseTotalDurationMs": 390,
+    "responseStatusCode": 200,
+    "responseStatusDescription": "OK",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Content-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "Content-Type",
+        "value": "image/pbf"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 32
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "19099102-9151-4f6f-8fed-35a9a48072d3"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      },
+      {
+        "key": "Transfer-Encoding",
+        "value": "chunked"
+      }
+    ],
+    "responseContent": "H4sIAAAAAAAEA5Pi5GJNzS0oqaxgAgBc66YkCwAAAA\u003d\u003d"
+  },
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67324/43072.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 121,
+    "responseTotalDurationMs": 128,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"9c634b041084ce0fc47a419e2a71352b\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 50
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "28dc9378-27ed-4c1c-ab88-4abbbb32403c"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619601720"
+      }
+    ],
+    "responseContent": ""
+  }
+]

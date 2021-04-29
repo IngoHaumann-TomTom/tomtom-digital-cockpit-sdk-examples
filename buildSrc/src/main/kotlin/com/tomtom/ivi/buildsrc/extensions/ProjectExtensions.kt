@@ -12,6 +12,7 @@
 package com.tomtom.ivi.buildsrc.extensions
 
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.TestExtension
 import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.Project
@@ -24,6 +25,12 @@ val Project.android: BaseExtension
 
 fun Project.android(action: Action<BaseExtension>) =
     action.execute(android)
+
+val Project.androidTest: TestExtension
+    get() = extensions.getByType(TestExtension::class.java)
+
+fun Project.androidTest(action: Action<TestExtension>) =
+    action.execute(androidTest)
 
 fun BaseExtension.kotlinOptions(action: Action<KotlinJvmOptions>) =
     action.execute((this as ExtensionAware).extensions.getByType(KotlinJvmOptions::class.java))

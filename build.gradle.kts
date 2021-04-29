@@ -9,6 +9,7 @@
  * immediately return it to TomTom N.V.
  */
 
+import com.android.builder.core.BuilderConstants
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.buildsrc.environment.Versions
 import com.tomtom.ivi.buildsrc.extensions.android
@@ -16,6 +17,8 @@ import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.navtest.NavTestAndroidProjectExtension
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -27,6 +30,8 @@ plugins {
     `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
+    id("com.android.test") apply false
+    id("com.tomtom.navtest") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
     id("com.tomtom.ivi.platform") apply true
     id("com.tomtom.ivi.defaults.core") apply true
@@ -51,14 +56,52 @@ val buildVersions = com.tomtom.ivi.buildsrc.environment.BuildVersioning(rootProj
 val versionCode: Int by extra(buildVersions.versionCode)
 val versionName: String by extra(buildVersions.versionName)
 
+// Set up global test options
+tasks.withType<Test> {
+    testLogging {
+        // Logging exceptions verbosely helps on CI to immediately see the source of testing
+        // errors, especially in case of crashes.
+        exceptionFormat = TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+    }
+}
+
+// Set up the NavTest framework.
+navTest {
+    // Specify where the report and artifacts of the tests will be archived
+    outputDir = testOutputDirectory
+
+    deviceUsageReport {
+        enabled = true
+    }
+
+    timeline {
+        enabled = true
+    }
+
+    suites {
+        create("unit") {
+            includeTags += "unit"
+        }
+        create("integration") {
+            includeTags += "integration"
+        }
+        create("e2e") {
+            includeTags += "e2e"
+        }
+    }
+}
+
 subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
+    val isAndroidTestProject by extra(getGradleProperty("isAndroidTestProject", false))
 
     when {
-        isApplicationProject ->
-            apply(plugin = "com.android.application")
-        else ->
-            apply(plugin = "com.android.library")
+        isApplicationProject -> apply(plugin = "com.android.application")
+        isAndroidTestProject -> apply(plugin = "com.android.test")
+        else -> apply(plugin = "com.android.library")
     }
 
     apply(plugin = "kotlin-android")
@@ -155,6 +198,7 @@ subprojects {
             isEnable = true
             include(
                 com.android.sdklib.devices.Abi.ARM64_V8A.toString(),
+                com.android.sdklib.devices.Abi.ARMEABI_V7A.toString(),
                 com.android.sdklib.devices.Abi.X86_64.toString()
             )
         }
@@ -165,6 +209,44 @@ subprojects {
             java.srcDir(path)
             File(projectDir, path).takeIf { it.exists() }?.let {
                 projectSourceSets += it.absolutePath
+            }
+        }
+    }
+
+    if (isApplicationProject || isAndroidTestProject) {
+        apply(plugin = "com.tomtom.navtest")
+
+        configure<NavTestAndroidProjectExtension> {
+            // Applies for functional tests under "androidTest" directory.
+            androidTest {
+                enabled = true
+                // Tags are set by subprojects.
+
+                // Allow specifying the test-class via command-line
+                if (project.hasProperty("testClass")) {
+                    instrumentationArguments.className = project.properties["testClass"] as String
+                }
+            }
+
+            pluginManager.withPlugin("com.tomtom.ivi.platform.activity-test") {
+                androidTest {
+                    testTags += "integration"
+                    timeout = 10 * 60
+                }
+            }
+            pluginManager.withPlugin("com.tomtom.ivi.platform.service-test") {
+                androidTest {
+                    testTags += "integration"
+                }
+            }
+
+            if (!isAndroidTestProject) {
+                // Applies for unit tests under "test" directory.
+                unit {
+                    enabled = true
+                    testTags += "unit"
+                    variantFilter = { it.buildType.name == BuilderConstants.DEBUG }
+                }
             }
         }
     }

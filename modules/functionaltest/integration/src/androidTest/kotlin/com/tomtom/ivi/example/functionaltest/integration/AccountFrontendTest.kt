@@ -18,6 +18,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.tomtom.ivi.core.serviceapi.menu.MenuServiceMock
 import com.tomtom.ivi.example.frontend.account.accountFrontendMetadata
 import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.AccountServiceApi
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.servicemockextensions.menuservice.injectMenuItemClicked
 import com.tomtom.ivi.tools.testing.frontend.FrontendTestCase
@@ -33,16 +34,15 @@ import kotlin.test.assertTrue
 class AccountFrontendTest : FrontendTestCase(
     testFrontendMetadataConfig = defaultTestFrontendMetadataConfig + accountFrontendMetadata
 ) {
-    private val accountServiceApi by lazy {
-        // API wrapper cannot be created before test environment is fully configured, hence create
-        // a wrapper lazily.
-        createApiWrapper { lifecycleOwner, iviServiceProvider ->
-            AccountService.createApi(lifecycleOwner, iviServiceProvider)
-        }
-    }
+    // An API wrapper cannot be created before test environment is fully configured, hence create
+    // it later with @Before method.
+    private lateinit var accountServiceApi: AccountServiceApi
 
     @Before
-    fun waitForAccountService() {
+    fun createServiceApi() {
+        accountServiceApi = createApiWrapper { lifecycleOwner, iviServiceProvider ->
+            AccountService.createApi(lifecycleOwner, iviServiceProvider)
+        }
         assertTrue(accountServiceApi.serviceAvailable.waitForLiveData { value -> value })
     }
 

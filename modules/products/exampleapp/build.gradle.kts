@@ -43,7 +43,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.tomtom.ivi.example"
+        applicationId = "com.tomtom.ivi.example.product.exampleapp"
     }
 
     buildTypes {
@@ -58,12 +58,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":frontends_account"))
     implementation(Libraries.TomTom.Automotive.ANDROID_CAR)
-
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_ACTIVITY)
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_APPLICATION)
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.CORE_DEBUG_PERMISSIONS)
 
-    implementation(project(":frontends_account"))
 }

@@ -1,0 +1,65 @@
+[
+  {
+    "tags": [],
+    "requestUri": "/traffic/map/4/tile/incidents/17/67323/43071.pbf?key\u003d-HIDDEN-",
+    "requestHeaders": [
+      {
+        "key": "Accept-Encoding",
+        "value": "gzip"
+      },
+      {
+        "key": "If-None-Match",
+        "value": "W/\"b25cb57c7c0163e4d195be6583d32be0\""
+      }
+    ],
+    "protocolVersion": "HTTP/1.1",
+    "method": "GET",
+    "testIdentifiers": [
+      "openAccountFrontendFromMainMenu(com.tomtom.ivi.example.functionaltest.e2e.AccountFrontendTest)"
+    ],
+    "responseInitialDurationMs": 154,
+    "responseTotalDurationMs": 162,
+    "responseStatusCode": 304,
+    "responseStatusDescription": "Not Modified",
+    "responseHeaders": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Expose-Headers",
+        "value": "Tracking-ID"
+      },
+      {
+        "key": "Connection",
+        "value": "keep-alive"
+      },
+      {
+        "key": "Date",
+        "dynamicHeader": "DATE_TIME_CURRENT"
+      },
+      {
+        "key": "ETag",
+        "value": "W/\"b25cb57c7c0163e4d195be6583d32be0\""
+      },
+      {
+        "key": "Expires",
+        "dynamicHeader": "DATE_TIME_OFFSET",
+        "dateOffsetSec": 33
+      },
+      {
+        "key": "Strict-Transport-Security",
+        "value": "max-age\u003d15724800; includeSubDomains"
+      },
+      {
+        "key": "Tracking-ID",
+        "value": "c3b4d68f-8cad-4a38-86a0-675998756547"
+      },
+      {
+        "key": "TrafficModelID",
+        "value": "1619604740"
+      }
+    ],
+    "responseContent": ""
+  }
+]

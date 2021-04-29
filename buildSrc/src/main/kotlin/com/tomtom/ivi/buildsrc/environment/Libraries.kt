@@ -35,8 +35,13 @@ object Libraries {
             const val CORE_COMMON_LIFECYCLE = "$PLATFORM_GROUP:core_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
+            const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
             const val CORE_DEBUG_PERMISSIONS = "$PLATFORM_GROUP:core_debug_permissions:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FRONTEND = "$PLATFORM_GROUP:tools_testing_frontend:${Versions.INDIGO_PLATFORM}"
+            const val TOOLS_TESTING_FUNCTIONAL = "$PLATFORM_GROUP:tools_testing_functional:${Versions.INDIGO_PLATFORM}"
+            const val TOOLS_TESTING_MAINMENUFRONTEND = "$PLATFORM_GROUP:tools_testing_mainmenufrontend:${Versions.INDIGO_PLATFORM}"
+            const val TOOLS_TESTING_NAVIGATIONFUNCTIONAL = "$PLATFORM_GROUP:tools_testing_navigationfunctional:${Versions.INDIGO_PLATFORM}"
+            const val TOOLS_TESTING_SYSTEMUI = "$PLATFORM_GROUP:tools_testing_systemui:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_UNIT = "$PLATFORM_GROUP:tools_testing_unit:${Versions.INDIGO_PLATFORM}"
         }
 
