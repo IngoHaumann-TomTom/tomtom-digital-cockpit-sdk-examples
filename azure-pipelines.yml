@@ -23,7 +23,16 @@ variables:
       eq(variables['System.DefinitionId'], 1986)
       ) ]
 
-trigger: none
+# Trigger builds on new commits on stable branches.
+# Builds from PRs are triggered by the Branch Policy in the repo settings.
+# Builds on `master` are batched together when possible, to reduce the number of
+# concurrent builds from merged PRs.
+trigger:
+  batch: true
+  branches:
+    include:
+      - 'master'
+      - 'release/*'
 
 resources:
   containers:
