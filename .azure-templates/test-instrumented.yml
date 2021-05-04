@@ -55,6 +55,15 @@ steps:
       displayName: 'Retrieve emulator logs and metadata'
       condition: succeededOrFailed()
 
+  - template: publish/publish-pipeline-artifact.yml@devops-templates
+    parameters:
+      contents: |
+        IviTest/**
+        deviceLogs/**
+      displayName: 'Publish test results'
+      artifact: ${{parameters.artifactName}}-results
+      condition: succeededOrFailed()
+
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-

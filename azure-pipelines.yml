@@ -70,6 +70,7 @@ stages:
     steps:
     - template: .azure-templates/test-instrumented.yml
       parameters:
+        artifactName: integration-test
         testTasks: >-
           runDebugAndroidTests
     - template: build/build-cleanup.yml@devops-templates

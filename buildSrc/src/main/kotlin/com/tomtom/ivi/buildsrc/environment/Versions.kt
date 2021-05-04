@@ -20,7 +20,7 @@ object Versions {
     const val ANDROID_PLUGIN = "4.1.1"
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
-    const val NAVTEST_PLUGIN = "7.5.2"
+    const val NAVTEST_PLUGIN = "8.4.0"
     const val NAVUI_EMULATORS_PLUGIN = "1.3.1"
 
     // Android

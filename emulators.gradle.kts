@@ -360,13 +360,11 @@ fun DeviceProfile.configureIndigoDeviceProfile() {
     hardware {
         screen {
             size = "xlarge"
-            diagonalLength = 12.30
-            pixelDensity = "mdpi"
-            screenRatio = "notlong"
-            xDimension = 1600
-            yDimension = 1200
-            xdpi = 162.60
-            ydpi = 162.60
+            diagonalLength = 10.50
+            pixelDensity = "280dpi"
+            screenRatio = "long"
+            xDimension = 2560
+            yDimension = 1600
             touch {
                 multiTouch = "jazz-hands"
                 mechanism = "finger"
@@ -503,6 +501,9 @@ fun AvdInfo.configureIndigoEmulatorInstance(isHeadless: Boolean) {
             // Disable the Alexa Client Auto Service in the headless emulator, since it's not used.
             runShell("pm disable --user 10 com.amazon.alexaautoclientservice")
         }
+
+        // Set the density to match the value of the "samsung-galaxy_tab_s5e_for_indigo" tablet
+        runShell("wm density 288")
 
         // Increase logcat buffer size to 16M
         runShell("logcat -G 16M")

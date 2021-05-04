@@ -56,7 +56,7 @@ stages:
   jobs:
   - job: DownloadAndVerify
     displayName: Verify SDK contents
-    timeoutInMinutes: 15
+    timeoutInMinutes: 30
     container: docker_indigo_build
     steps:
     - template: .azure-templates/downloading-nexus.yml
