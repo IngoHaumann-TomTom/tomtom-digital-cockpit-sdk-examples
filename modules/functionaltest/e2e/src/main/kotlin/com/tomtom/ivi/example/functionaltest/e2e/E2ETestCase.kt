@@ -13,6 +13,7 @@ package com.tomtom.ivi.example.functionaltest.e2e
 
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.tomtom.ivi.api.framework.iviservice.IviInstanceId
 import com.tomtom.ivi.core.config.navkit2.getDefaultNavkit2Config
 import com.tomtom.ivi.tools.testing.functional.CreateApiCallback
 import com.tomtom.ivi.tools.testing.functional.GetServiceIdsCallback
@@ -66,11 +67,17 @@ abstract class E2ETestCase :
     @Before
     fun checkCoreComponentsAreDisplayed() = assertCoreContentsAreDisplayed()
 
-    override fun <R> createApiWrapper(callback: CreateApiCallback<R>) =
-        createApiWrapperInternal(callback)
+    override fun <R> createApiWrapper(
+        iviInstanceId: IviInstanceId,
+        callback: CreateApiCallback<R>
+    ) =
+        createApiWrapperInternal(iviInstanceId, callback)
 
-    override fun getServiceIdsWrapper(callback: GetServiceIdsCallback) =
-        getServiceIdsWrapperInternal(callback)
+    override fun getServiceIdsWrapper(
+        iviInstanceId: IviInstanceId,
+        callback: GetServiceIdsCallback
+    ) =
+        getServiceIdsWrapperInternal(iviInstanceId, callback)
 
     companion object {
         /**
