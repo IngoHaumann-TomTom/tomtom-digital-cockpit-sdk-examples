@@ -21,7 +21,4 @@
     <string name="frontend_account_info_avatar_description">Avatar Photo</string>
     <string name="frontend_account_info_welcome_message">Welcome, %1$s</string>
     <string name="frontend_account_logout_button_text">Logout</string>
-    <string name="frontend_account_notification_title_text">Welcome %s</string>
-    <string name="frontend_account_notification_description_text">%s has been successfully logged in.</string>
-    <string name="frontend_account_notification_invalid_username">Invalid username</string>
 </resources>

@@ -12,12 +12,10 @@
 package com.tomtom.ivi.example.frontend.account
 
 import androidx.lifecycle.MutableLiveData
-import androidx.test.platform.app.InstrumentationRegistry
 import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
-import com.tomtom.ivi.example.frontend.account.notification.AccountNotificationPanel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
@@ -39,10 +37,29 @@ class AccountFrontendTest : IviTestCase() {
 
     private val sut = AccountFrontend(niceMockk()).apply { onCreate() }
 
-    private fun getAccountNotificationPanels() =
-        sut.panels
-            .getOrAwaitValue()
-            .filterPanels<AccountNotificationPanel>()
+    @Test
+    fun `frontend does not open a panel after an user has logged in`() {
+        // GIVEN no user is logged in.
+        mutableAccount.value = null
+
+        // WHEN an user has logged in.
+        mutableAccount.value = TestData.testAccount
+
+        // THEN the frontend does not open a panel.
+        assertTrue(sut.panels.getOrAwaitValue().isEmpty())
+    }
+
+    @Test
+    fun `frontend does not open a panel after an user has logged out`() {
+        // GIVEN an user is logged in.
+        mutableAccount.value = TestData.testAccount
+
+        // WHEN the user has logged out
+        mutableAccount.value = null
+
+        // THEN the frontend does not open a panel.
+        assertTrue(sut.panels.getOrAwaitValue().isEmpty())
+    }
 
     @Test
     fun `frontend opens a login panel if no user is logged in`() {
@@ -58,72 +75,44 @@ class AccountFrontendTest : IviTestCase() {
     }
 
     @Test
-    fun `frontend opens an info panel if a user is logged in`() {
-        // GIVEN an user is logged in.
+    fun `frontend opens an info panel if the user is logged in`() {
+        // GIVEN the user is logged in.
         mutableAccount.value = TestData.testAccount
-        // AND the notification is dismissed
-        sut.panels.getOrAwaitValue().filterPanels<AccountNotificationPanel>().forEach {
-            it.dismiss()
-        }
 
         // WHEN the frontend opens a task panel.
         sut.openTaskPanels()
 
-        // THEN the frontend opens a info panel.
+        // THEN the frontend opens an info panel.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
         assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountInfoPanel>().size)
     }
 
     @Test
-    fun `frontend shows a notification after an user has logged in`() {
+    fun `frontend goes from login panel to info panel after login`() {
         // GIVEN no user is logged in.
+        // AND the frontend opens a login panel.
         mutableAccount.value = null
+        sut.openTaskPanels()
 
-        // WHEN an user has logged in.
+        // WHEN the user is logged in.
         mutableAccount.value = TestData.testAccount
 
-        // THEN the frontend shows only a single notification panel with correct username.
+        // THEN the frontend opens an info panel.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
-        assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountNotificationPanel>().size)
-        assertEquals(
-            TestData.testAccount.username,
-            getAccountNotificationPanels().first().userName.get(
-                InstrumentationRegistry.getInstrumentation().targetContext
-            )
-        )
-    }
-
-    @Test
-    fun `frontend does not open a panel or show a notification after an user has logged out`() {
-        // GIVEN an user is logged in.
-        mutableAccount.value = TestData.testAccount
-        // AND the notification is dismissed
-        sut.panels.getOrAwaitValue().filterPanels<AccountNotificationPanel>().forEach {
-            it.dismiss()
-        }
-
-        // WHEN the user is logged out
-        mutableAccount.value = null
-
-        // THEN the frontend does not open a panel.
-        assertTrue(sut.panels.getOrAwaitValue().isEmpty())
+        assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountInfoPanel>().size)
     }
 
     @Test
     fun `frontend goes from info panel to login panel after logout`() {
         // GIVEN the user is logged in.
-        mutableAccount.value = TestData.testAccount
-        // AND the notification is dismissed
-        sut.panels.getOrAwaitValue().filterPanels<AccountNotificationPanel>().forEach {
-            it.dismiss()
-        }
         // AND the frontend opens an info panel.
+        mutableAccount.value = TestData.testAccount
         sut.openTaskPanels()
 
         // WHEN the user is logged out
         mutableAccount.value = null
 
-        // THEN the frontend opens an login panel.
+        // THEN the frontend opens an info panel.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
         assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountLoginPanel>().size)
     }
@@ -131,25 +120,15 @@ class AccountFrontendTest : IviTestCase() {
     @Test
     fun `frontend does not re-open info panel if an user has changed`() {
         // GIVEN the user is logged in.
-        mutableAccount.value = TestData.testAccount
-        // AND the notification is dismissed
-        sut.panels.getOrAwaitValue().filterPanels<AccountNotificationPanel>().forEach {
-            it.dismiss()
-        }
         // AND the frontend has an info panel opened.
+        mutableAccount.value = TestData.testAccount
         sut.openTaskPanels()
 
         // WHEN another user is logged in.
         mutableAccount.value = TestData.anotherTestAccount
 
-        // THEN a notification is shown with the new username.
+        // THEN the frontend still has an info panel opened.
         assertEquals(1, sut.panels.getOrAwaitValue().size)
-        assertEquals(1, getAccountNotificationPanels().size)
-        assertEquals(
-            TestData.anotherTestAccount.username,
-            getAccountNotificationPanels().first().userName.get(
-                InstrumentationRegistry.getInstrumentation().targetContext
-            )
-        )
+        assertEquals(1, sut.panels.getOrAwaitValue().filterPanels<AccountInfoPanel>().size)
     }
 }
