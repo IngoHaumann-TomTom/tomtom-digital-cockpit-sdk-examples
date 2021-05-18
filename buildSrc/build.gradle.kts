@@ -20,10 +20,6 @@ plugins {
     `kotlin-dsl`
 }
 
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
-}
-
 dependencies {
     val versions: Map<String, String> by rootProject.extra
 

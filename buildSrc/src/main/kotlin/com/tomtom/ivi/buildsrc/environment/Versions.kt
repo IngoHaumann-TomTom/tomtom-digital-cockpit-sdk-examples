@@ -16,11 +16,11 @@ import org.gradle.api.JavaVersion
 object Versions {
     // Gradle and plugins
     const val ARTIFACTORY_PLUGIN = "4.13.0"
-    const val KOTLIN = "1.4.20"
-    const val ANDROID_PLUGIN = "4.1.1"
+    const val KOTLIN = "1.4.31"
+    const val ANDROID_PLUGIN = "4.2.0"
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
-    const val NAVTEST_PLUGIN = "8.4.0"
+    const val NAVTEST_PLUGIN = "10.0.1"
     const val NAVUI_EMULATORS_PLUGIN = "1.3.1"
 
     // Android
@@ -39,9 +39,9 @@ object Versions {
     const val ANDROID_CAR = "0.0.12"
 
     // Kotlin
-    const val KOTLINX_SERIALIZATION = "1.0.1"
+    const val KOTLINX_SERIALIZATION = "1.1.0"
 
     // IVI
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
-    const val INDIGO_PLATFORM = "1.0.1776"
+    const val INDIGO_PLATFORM = "1.0.1786"
 }

@@ -55,6 +55,7 @@ class IndigoUpdateHelper(private val project: Project) {
                         val currentIndigoVersion: String? = versionValue.find(oldLine)?.value
                         println("Replacing $currentIndigoVersion IndiGO version with $latestIndigoVersion")
                     }
+                    @Suppress("DEPRECATION")
                     outFile.appendln(newLine)
                 }
             }
