@@ -22,6 +22,9 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 // TODO(IVI-2890): Use the Gradle plugin.
 apply(from = rootProject.file("buildSrc/tasks/buildVersion.gradle.kts"))
@@ -36,8 +39,6 @@ plugins {
     id("com.tomtom.ivi.platform") apply true
     id("com.tomtom.ivi.defaults.core") apply true
 }
-
-apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
 
 // Make a single directory where to store all test results.
 val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")

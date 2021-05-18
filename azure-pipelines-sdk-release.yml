@@ -18,6 +18,7 @@ variables:
   # Variable groups used below are defined in the project's Pipelines Library.
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
+  - group: 'AzureStorage'
 
 resources:
   containers:

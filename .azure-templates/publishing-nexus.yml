@@ -15,7 +15,7 @@ steps:
   - checkout: indigoqa
   - bash: |
       set -eux
-      mkdir $(Build.SourcesDirectory)/artifacts
+      mkdir $(System.DefaultWorkingDirectory)/downloads
     displayName: Create download directory
 
     # Download artifacts from Artifactory by providing the version of the artifact, and publish
@@ -31,13 +31,17 @@ steps:
         --nexus_pass $(NEXUS_PASSWORD)
         --artifactory_user $(ARTIFACTORY_USERNAME)
         --artifactory_pass $(ARTIFACTORY_PASSWORD)
-        --version $(VERSION_SDK)
+        --version_platform $(VERSION_PLATFORM)
         --version_examples $(VERSION_EXAMPLES)
         --version_bugsee_api_key $(VERSION_BUGSEE_API_KEY)
         --version_navkit2_api_key $(VERSION_NAVKIT2_API_KEY)
         --version_lineageos $(VERSION_LINEAGEOS)
         --version_android_car_lib $(VERSION_ANDROID_CAR_LIB)
-        --version_sdk_communications $(VERSION_SDK_COMMUNICATIONS)
-        --version_alexa_aace $(VERSION_ALEXA_AACE)
-        --version_emulator $(VERSION_EMULATOR)
-        --download_base_path $(Build.SourcesDirectory)/artifacts
+        --version_communications_sdk $(VERSION_COMMUNICATIONS_SDK)
+        --version_alexa_auto_sdk $(VERSION_ALEXA_AUTO_SDK)
+        --download_base_path $(System.DefaultWorkingDirectory)/downloads
+
+  # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
+  - publish: $(System.DefaultWorkingDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
+    artifact: repo-sys-img
+    displayName: Publish the repo-sys-img.xml file as pipeline artifact
