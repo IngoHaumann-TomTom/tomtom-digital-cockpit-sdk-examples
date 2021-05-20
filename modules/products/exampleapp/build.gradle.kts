@@ -10,8 +10,12 @@
  */
 
 import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
+import com.tomtom.ivi.buildsrc.config.services.customContactsServiceHost
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServicesConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier.Companion.globalRuntime
+import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.defaultPlatformServiceHosts
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 /**
@@ -23,6 +27,9 @@ ivi {
         services {
             // Register the account and account settings services in the application.
             addHosts(accountServiceHosts)
+
+            // Register the custom contacts service.
+            replaceDefaultHost(customContactsServiceHost)
         }
         runtime {
             deployments {
@@ -65,4 +72,18 @@ dependencies {
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.CORE_DEBUG_PERMISSIONS)
 
+}
+
+/**
+ * Replace the default service host by the new service host when at least one interface is common in
+ * [IviServiceHostConfig.interfaces].
+ * If no common interfaces found, the new host is added and no default host is removed.
+ */
+fun IviServicesConfig.replaceDefaultHost(exampleServiceHost : IviServiceHostConfig) {
+    defaultPlatformServiceHosts.firstOrNull {
+        it.interfaces.intersect(exampleServiceHost.interfaces).isNotEmpty()
+    }?.let { iviDefaultServiceHost ->
+        removeHost(iviDefaultServiceHost)
+    }
+    addHost(exampleServiceHost)
 }

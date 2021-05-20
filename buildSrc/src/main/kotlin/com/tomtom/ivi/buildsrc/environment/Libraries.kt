@@ -43,6 +43,10 @@ object Libraries {
             const val TOOLS_TESTING_NAVIGATIONFUNCTIONAL = "$PLATFORM_GROUP:tools_testing_navigationfunctional:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_SYSTEMUI = "$PLATFORM_GROUP:tools_testing_systemui:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_UNIT = "$PLATFORM_GROUP:tools_testing_unit:${Versions.INDIGO_PLATFORM}"
+
+            object ServiceApis {
+                const val CORE_SERVICEAPIS_CONTACTS = "$PLATFORM_GROUP:core_serviceapis_contacts:${Versions.INDIGO_PLATFORM}"
+            }
         }
 
         object Automotive {
