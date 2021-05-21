@@ -30,8 +30,10 @@ repositories {
     // viewcomparison test setup, animations...
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-release")
 
-    // Artifactory cache for Maven Central, JCenter, etc
-    maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/maven-remotes")
+    // External repositories
+    mavenCentral()
+    google()
+    maven("https://plugins.gradle.org/m2/")
 
     // PU NAV repo for NavTest and Gradle plugins from NAV
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")
