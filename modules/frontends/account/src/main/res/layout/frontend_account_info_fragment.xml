@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/tt_spacing_l" />
 
-        <com.tomtom.tools.android.core.uicontrols.button.TtButton
+        <com.tomtom.tools.android.api.uicontrols.button.TtButton
             style="?attr/tt_button_style"
             android:layout_width="match_parent"
             android:onClick="@{() -> viewModel.onLogoutClick()}"

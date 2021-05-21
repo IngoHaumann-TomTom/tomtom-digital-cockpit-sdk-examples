@@ -22,7 +22,7 @@ dependencies {
 
     implementation(Libraries.TomTom.Indigo.API_FRAMEWORK_FRONTEND)
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
-    implementation(Libraries.TomTom.Indigo.CORE_COMMON_LIFECYCLE)
+    implementation(Libraries.TomTom.Indigo.API_COMMON_LIFECYCLE)
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_UICONTROLS)
     implementation(Libraries.TomTom.Tools.CORE_LIVEDATA)
 
