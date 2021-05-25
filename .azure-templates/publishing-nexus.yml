@@ -42,6 +42,6 @@ steps:
         --download_base_path $(System.DefaultWorkingDirectory)/downloads
 
   # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
-  - publish: $(System.DefaultWorkingDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
-    artifact: repo-sys-img
-    displayName: Publish the repo-sys-img.xml file as pipeline artifact
+  # - publish: $(System.DefaultWorkingDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
+  #   artifact: repo-sys-img
+  #   displayName: Publish the repo-sys-img.xml file as pipeline artifact
