@@ -21,7 +21,10 @@ import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
 class CustomContactsServiceHostBuilder : IviServiceHostBuilder() {
 
     override fun build(iviServiceHostContext: IviServiceHostContext) =
-        SimpleIviServiceHost(setOf(CustomContactsService(iviServiceHostContext)))
+        SimpleIviServiceHost(
+            iviServiceHostContext,
+            setOf(CustomContactsService(iviServiceHostContext))
+        )
 
     companion object
 }

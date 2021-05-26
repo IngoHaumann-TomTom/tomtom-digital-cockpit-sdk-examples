@@ -14,7 +14,7 @@ package com.tomtom.ivi.example.product.exampleapp
 import com.tomtom.ivi.api.common.experimental.IviExperimental
 import com.tomtom.ivi.api.defaults.activity.DefaultActivity
 import com.tomtom.ivi.api.framework.frontend.FrontendMetadata
-import com.tomtom.ivi.api.framework.iviservice.IviInstanceId
+import com.tomtom.ivi.api.framework.iviinstance.IviInstanceId
 import com.tomtom.ivi.api.frontend.userprofile.userProfileFrontendMetadata
 import com.tomtom.ivi.example.frontend.account.accountFrontendMetadata
 

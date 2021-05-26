@@ -18,7 +18,10 @@ import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
 class AccountServiceHostBuilder : IviServiceHostBuilder() {
 
     override fun build(iviServiceHostContext: IviServiceHostContext) =
-        SimpleIviServiceHost(setOf(StockAccountService(iviServiceHostContext)))
+        SimpleIviServiceHost(
+            iviServiceHostContext,
+            setOf(StockAccountService(iviServiceHostContext))
+        )
 
     companion object
 }
