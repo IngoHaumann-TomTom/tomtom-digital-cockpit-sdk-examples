@@ -7,10 +7,12 @@ import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
 import com.tomtom.ivi.tools.testing.mainmenufrontend.onMainMenuView
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference
+import org.junit.Ignore
 import org.junit.Test
 
 class AccountFrontendTest : E2ETestCase() {
     @Test
+    @Ignore("IVI-3916")
     fun openAccountFrontendFromMainMenu() {
         onMainMenuView(MainMenuButton("Account"))
             .check(matches(isDisplayed()))
