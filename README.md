@@ -57,19 +57,10 @@ nexusUsername=<username>
 nexusPassword=<password>
 ```
 
-## Build
+## Building and running IndiGO
 
-Build the application with plugins:
-
-```bash
-./gradlew build
-```
-
-Install the application on all available devices:
-
-```bash
-./gradlew installDebug
-```
+To setup your development environment and to run the IndiGO example app, read
+[docs/getting-started-linux.md](docs/getting-started-linux.md)
 
 ## Copyright
 

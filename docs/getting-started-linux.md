@@ -6,34 +6,38 @@ title: IndiGO SDK getting started guide for Ubuntu 20.04
 
 This is a step-by-step guide on how to compile and run the IndiGO example application.
 
-First you will need to install Android Studio paired with OpenJDK 11, get TomTom Maps API keys and get access to our SDK downloads. Then you will be able to compile and run your first IndiGO application.
+First you will need to install Android Studio using OpenJDK 11, get
+TomTom Maps API keys and get access to our SDK downloads. Then you will be able to
+compile and run your first IndiGO application.
 
 ## Install Android Studio
 
-Follow the instructions as found on the [official Android guide](https://developer.android.com/studio/install).
+To install the Android Studio IDE, follow the instructions from the [official Android guide](https://developer.android.com/studio/install).
 
 ## Install OpenJDK 11
 
-The IndiGO SDK requires OpenJDK 11; other versions may work but are not supported. To install it, run the following command on a terminal:
+The IndiGO SDK requires OpenJDK 11; other versions may work but are not supported. To install it,
+run the following command in a terminal:
 
 ```bash
 $ sudo apt install openjdk-11-jdk
 ```
 
-You might already have other versions of JDK installed. Verify it by running:
+You might already have other versions of JDK installed. Verify this by running:
 
 ```bash
 $ sudo update-java-alternatives -l
 java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64
 ```
 
-If you see the output above, then you only have OpenJDK and your are all set. If you see multiple java versions as output, you need to make sure you have the correct one set as default:
+If you see the output above, then you only have OpenJDK and you are all set. If you see multiple
+Java versions in the output, you need to make sure you have the correct one set as the default:
 
 ```bash
 $ sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
 ```
 
-Then you can verify that the correct java version is in use by running:
+Then you can verify that the correct Java version is in use by running:
 
 ```bash
 $ java --version
@@ -44,38 +48,76 @@ OpenJDK 64-Bit Server VM (build 11.0.11+9-Ubuntu-0ubuntu2.20.04, mixed mode, sha
 
 As you can see above, OpenJDK 11 is in use.
 
-## Installing the IndiGO emulator
+## Download and decompress IndiGO SDK
 
-On Android Studio, go into Tools -> SDK Manager -> SDK Update Sites and add a new entry with the following information:
+Download the IndiGO SDK from [Nexus](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-sdk).
+
+Unzip it and you will find another zip file inside of it: the example app source
+code.
+Unzip that one as well and then follow the following instructions to setup an
+environment in which to run IndiGO.
+
+## Running IndiGO
+
+IndiGO can run on Android emulators (AVDs) in addition to the reference / demo
+hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has
+been created for running IndiGO. This configuration contains a number of
+customizations to the emulator hardware and the Android platform on which it
+runs. This emulator can be used for development on top of IndiGO and runs
+x86_64 AOSP with Android 11 Automotive.
+
+The following sections describe how to download the correct Android emulator
+configuration.
+
+### Installing the IndiGO emulator
+
+In Android Studio, go to `Tools -> SDK Manager -> SDK Update Sites` and add a
+new entry with the following name and URL:
 
 > Name: `TomTom IndiGO Update Site - Android 11 Emulators`
 >
 > URL: `https://repo.tomtom.com/repository/ivi/com/tomtom/ivi/ivi-automotive-sdk/aaos-system-images/center-display/12/center-display-12.xml`
 
-Enable `Use Authentication` and enter your TomTom Nexus credentials.
+Tick `Use Authentication`, and enter your TomTom Nexus credentials and click
+`OK`.
 
-Switch to the SDK platforms tab, click show package details on the bottom right, then click on "Indigo Automotive Android System Image Intel x86 Atom_64 System Image" and confirm to start the download process.
+Switch to the `SDK platforms` tab, tick `Show Package Details` on the bottom
+right. Then locate the
+`Indigo Automotive Android System Image Intel x86 Atom_64 System Image` item in
+the list. You may need to expand the Android 11 section to see the right item.
 
-After the download completes, on the example app directory, run:
+![Android Studio SDK platforms download list](images/android_studio_sdk_platforms_download_list.png "Android Studio SDK platforms download list")
+
+Select the system image and start downloading it.
+
+After the download completes, go to your terminal, change directory to the root
+directory of the example app and run:
 
 ```bash
 $ ./gradlew startDevelopmentEmulator
 ```
 
-It will create the emulator if not created yet, then run it.
+This will create the emulator if it has not been created before and then start
+it.
 
 ## Get API Keys
 
-You should have received API keys from TomTom. Those should be used in the example app.
+You should have received API keys from TomTom. Those should be used in the
+example app.
 
 [TODO(IVI-3759)]: # (How to use the API keys inside the example app?)
 
-## Download and decompress IndiGO SDK
+## Compiling the IndiGO example app
 
-Download the IndiGO SDK from [Nexus](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-sdk).
+The IndiGO example app can be built using Gradle on the command line.
+To compile, run the following command from the example app root directory:
 
-Unzip it and you will find another zip inside of it, the example app source code. Unzip that one as well and you are set to compile the example app.
+```bash
+./gradlew build
+```
 
-## Compiling IndiGO example app
+To install the application on all available devices, run:
 
-Follow instructions in [README.md](../README.md).
+```bash
+./gradlew installDebug
+```
