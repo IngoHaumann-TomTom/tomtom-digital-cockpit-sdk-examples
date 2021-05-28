@@ -39,6 +39,9 @@ steps:
         --version_android_car_lib $(VERSION_ANDROID_CAR_LIB)
         --version_communications_sdk $(VERSION_COMMUNICATIONS_SDK)
         --version_alexa_auto_sdk $(VERSION_ALEXA_AUTO_SDK)
+        --version_navtest $(VERSION_NAVTEST)
+        --version_navui_emul_plugin $(VERSION_NAVUI_EMUL_PLUGIN)
+        --version_tt_android_tools $(VERSION_TT_ANDROID_TOOLS)
         --download_base_path $(Build.SourcesDirectory)/downloads
 
   # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
