@@ -45,21 +45,27 @@ ivi {
 }
 
 android {
-    buildFeatures {
-        dataBinding = true
-    }
-
     defaultConfig {
         applicationId = "com.tomtom.ivi.example.product.exampleapp"
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
+    signingConfigs.maybeCreate("release")
+
     buildTypes {
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 }

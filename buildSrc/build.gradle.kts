@@ -12,12 +12,21 @@
 buildscript {
     apply("repositories.gradle.kts")
 }
-
 apply("repositories.gradle.kts")
 apply("versionsMap.gradle.kts")
 
 plugins {
     `kotlin-dsl`
+}
+
+gradlePlugin {
+    plugins {
+        // A plugin to configure the signing config of an APK.
+        register("IVI Signing Config Plugin") {
+            id = "ivi-signing-config"
+            implementationClass = "com.tomtom.ivi.buildsrc.common.signingconfig.SigningConfigPlugin"
+        }
+    }
 }
 
 dependencies {

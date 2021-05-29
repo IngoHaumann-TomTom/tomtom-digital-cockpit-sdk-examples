@@ -100,6 +100,12 @@ $ ./gradlew startDevelopmentEmulator
 This will create the emulator if it has not been created before and then start
 it.
 
+## Installing the example application on a custom device
+
+Some features of the IndiGO example application require system permissions. For instance, you won't be able to play music using Spotify nor use HVAC features. If you want to install the example app on a different emulator or device, you need to make sure that it is signed with the corresponding platform key.
+
+The platform key and password files are in the `keystore` directory. Drop in your platform keys replacing the existing ones in that directory, rebuild and deploy.
+
 ## Get API Keys
 
 You should have received API keys from TomTom. Those should be used in the

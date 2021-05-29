@@ -215,6 +215,7 @@ subprojects {
     }
 
     if (isApplicationProject || isAndroidTestProject) {
+        apply(plugin = "ivi-signing-config")
         apply(plugin = "com.tomtom.navtest")
 
         configure<NavTestAndroidProjectExtension> {
