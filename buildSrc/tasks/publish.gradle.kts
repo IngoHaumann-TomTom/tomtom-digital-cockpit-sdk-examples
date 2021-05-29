@@ -46,16 +46,15 @@ extensions.getByType(PublishingExtension::class.java).apply {
                 }
 
                 ProjectAbis.enabledAbis.forEach { abi ->
-                    val unsigned = if (variantName.equals("debug")) "" else "-unsigned"
                     val output = File(
                         rootProject.file(
                             "../builds/${variantName}"
                         ),
-                        "${project.name}-${abi}-${variantName}${unsigned}.apk"
+                        "${project.name}-${abi}-${variantName}.apk"
                     )
 
                     publication.artifact(output) {
-                        extension = "${abi}${unsigned}.apk"
+                        extension = "${abi}.apk"
                         classifier = variantName
                     }
                 }
