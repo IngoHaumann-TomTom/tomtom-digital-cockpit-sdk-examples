@@ -19,7 +19,7 @@ dependencies {
     implementation(project(":serviceapis_accountsettings"))
     implementation(Libraries.Kotlin.SERIALIZATION)
     implementation(Libraries.TomTom.Indigo.API_SERVICES_SETTINGSMANAGEMENT)
-    implementation(Libraries.TomTom.Tools.CORE_LIVEDATA)
+    implementation(Libraries.TomTom.Tools.API_LIVEDATA)
 
     testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

@@ -34,6 +34,7 @@ repositories {
     mavenCentral()
     google()
     maven("https://plugins.gradle.org/m2/")
+    maven("https://jitpack.io")
 
     // PU NAV repo for NavTest and Gradle plugins from NAV
     maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")

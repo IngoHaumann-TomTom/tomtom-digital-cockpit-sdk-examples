@@ -19,8 +19,8 @@ import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
-import com.tomtom.tools.android.core.livedata.combine
-import com.tomtom.tools.android.core.livedata.valueUpToDate
+import com.tomtom.tools.android.api.livedata.combine
+import com.tomtom.tools.android.api.livedata.valueUpToDate
 
 class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 

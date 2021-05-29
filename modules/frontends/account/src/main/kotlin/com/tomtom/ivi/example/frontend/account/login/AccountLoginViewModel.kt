@@ -16,8 +16,8 @@ import androidx.lifecycle.map
 import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
-import com.tomtom.tools.android.core.livedata.allTrue
-import com.tomtom.tools.android.core.livedata.valueUpToDate
+import com.tomtom.tools.android.api.livedata.allTrue
+import com.tomtom.tools.android.api.livedata.valueUpToDate
 
 class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {

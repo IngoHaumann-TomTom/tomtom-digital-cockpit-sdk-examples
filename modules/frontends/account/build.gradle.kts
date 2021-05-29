@@ -24,7 +24,7 @@ dependencies {
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.API_COMMON_LIFECYCLE)
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_UICONTROLS)
-    implementation(Libraries.TomTom.Tools.CORE_LIVEDATA)
+    implementation(Libraries.TomTom.Tools.API_LIVEDATA)
 
     testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

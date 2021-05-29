@@ -19,7 +19,7 @@ import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
-import com.tomtom.tools.android.core.livedata.valueUpToDate
+import com.tomtom.tools.android.api.livedata.valueUpToDate
 
 // TODO(IVI-3049): Add integration tests.
 class StockAccountService(iviServiceHostContext: IviServiceHostContext) :

@@ -17,7 +17,7 @@ import com.tomtom.ivi.api.service.settingsmanagement.SettingUpdateStrategy
 import com.tomtom.ivi.api.service.settingsmanagement.StringSettingKey
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsServiceBase
-import com.tomtom.tools.android.core.livedata.valueUpToDate
+import com.tomtom.tools.android.api.livedata.valueUpToDate
 import kotlinx.serialization.json.Json
 
 class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :

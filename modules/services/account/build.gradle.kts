@@ -14,7 +14,7 @@ import com.tomtom.ivi.buildsrc.environment.Libraries
 dependencies {
     implementation(project(":serviceapis_account"))
     implementation(project(":serviceapis_accountsettings"))
-    implementation(Libraries.TomTom.Tools.CORE_LIVEDATA)
+    implementation(Libraries.TomTom.Tools.API_LIVEDATA)
 
     testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }

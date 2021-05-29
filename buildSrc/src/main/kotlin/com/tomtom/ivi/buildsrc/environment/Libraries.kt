@@ -54,7 +54,7 @@ object Libraries {
         }
 
         object Tools {
-            const val CORE_LIVEDATA = "com.tomtom.tools.android:core_livedata:${Versions.TOMTOM_ANDROID_TOOLS}"
+            const val API_LIVEDATA = "com.tomtom.tools.android:api_livedata:${Versions.TOMTOM_ANDROID_TOOLS}"
         }
     }
 }
