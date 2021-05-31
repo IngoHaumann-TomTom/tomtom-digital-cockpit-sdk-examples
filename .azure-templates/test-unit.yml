@@ -19,6 +19,9 @@ steps:
   parameters:
     tasks: >-
       test
+    projectOptions: >-
+      -PnexusUsername=$(NEXUS_USERNAME)
+      -PnexusPassword=$(NEXUS_PASSWORD)
     testResultsFiles: '**/TEST-*Test.xml'
     testRunTitle: 'Unit tests'
     displayName: 'Run unit tests'
