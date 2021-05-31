@@ -54,8 +54,16 @@ resources:
 pool: 'Private Cloud CPU'
 
 stages:
+- stage: ProductVersion
+  displayName: Product version
+  jobs:
+  - template: .azure-templates/product-get-version.yml
+
 - stage: Build
   displayName: 'Build pipeline'
+  condition: succeeded()
+  variables:
+    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
   jobs:
   - job: Build
     displayName: Lint & Build
@@ -87,6 +95,11 @@ stages:
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
+  dependsOn:
+    - ProductVersion
+    - Build
+  variables:
+    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
   jobs:
   - job: Publish
     container: 'docker_indigo_build'
@@ -95,11 +108,12 @@ stages:
     - template: .azure-templates/publishing.yml
 
   - job: PublishRepository
-    displayName: publishing Repository to Artifactory
+    displayName: Publishing Repository to Artifactory
     dependsOn: Publish
+    condition: and(eq(variables.isMainlineBuild, true), succeeded())
     container: 'docker_indigo_build'
     variables:
-      product_version: $[ dependencies.Publish.outputs['versionInfo.semver'] ]
+      product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
     steps:
     - bash: |
         set -eux

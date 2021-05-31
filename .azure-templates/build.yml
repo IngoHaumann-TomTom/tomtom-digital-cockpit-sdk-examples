@@ -25,10 +25,11 @@ steps:
   parameters:
     tasks: >-
       lint
+    projectOptions:
       ${{parameters.extraLintParameters}}
-    projectOptions: >-
       -PnexusUsername=$(NEXUS_USERNAME)
       -PnexusPassword=$(NEXUS_PASSWORD)
+      -PiviVersion=$(product_version)
     displayName: 'Run linters'
     condition: succeeded()
 
@@ -46,6 +47,7 @@ steps:
     projectOptions: >-
       -PnexusUsername=$(NEXUS_USERNAME)
       -PnexusPassword=$(NEXUS_PASSWORD)
+      -PiviVersion=$(product_version)
     displayName: 'Assemble APKs'
     condition: succeeded()
 

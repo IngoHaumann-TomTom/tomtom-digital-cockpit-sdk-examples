@@ -10,30 +10,24 @@
 # Azure pipelines documentation is available at
 # https://aka.ms/yaml
 
-steps:
-- template: gradle/gradle.yml@devops-templates
-  parameters:
-    tasks: buildVersion
-    displayName: 'Obtain version info'
+jobs:
+  - job: Version
+    displayName: Get product version
+    container: 'docker_indigo_build'
+    steps:
+      - bash: |
+          set -eux
 
-- bash: |
-    set -eux
+          version_semver=$(gitversion /nocache /verbosity error /showvariable FullSemVer)
+          test -n "$version_semver"
 
-    version_description=$( cat $(Build.SourcesDirectory)/build/version.txt )
-    test "$version_description" != ""
-    version_canPublish=$( cat $(Build.SourcesDirectory)/build/canPublish.txt )
-    test "$version_canPublish" != ""
+          echo "Product version: \"$version_semver\""
 
-    echo "Version: \"$version_description\""
-    echo "Can be published: $version_canPublish"
+          # Remove the shell flag -x to prevent a DevOps bug:
+          # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
+          set +x
 
-    # Remove the shell flag -x to prevent a DevOps bug:
-    # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
-    set +x
-
-    # Export the version information to the next steps using VSO task variables.
-    echo "##vso[task.setvariable variable=semver;isOutput=true]$version_description"
-    echo "##vso[task.setvariable variable=canPublish;isOutput=true]$version_canPublish"
-  displayName: 'Parse version info'
-  name: versionInfo
-
+          # Export the version information to the next steps using VSO task variables.
+          echo "##vso[task.setvariable variable=product_version;isOutput=true]$version_semver"
+        displayName: 'Parse version info'
+        name: version

@@ -17,27 +17,28 @@ import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.gradle.api.plugin.tools.version.iviAndroidVersionCode
+import com.tomtom.ivi.gradle.api.plugin.tools.version.iviVersion
 import com.tomtom.navtest.NavTestAndroidProjectExtension
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
-// TODO(IVI-2890): Use the Gradle plugin.
-apply(from = rootProject.file("buildSrc/tasks/buildVersion.gradle.kts"))
 
 plugins {
     `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.android.test") apply false
+    id("com.tomtom.ivi.defaults.core") apply true
+    id("com.tomtom.ivi.platform") apply true
+    id("com.tomtom.ivi.tools.version") apply true
     id("com.tomtom.navtest") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
-    id("com.tomtom.ivi.platform") apply true
-    id("com.tomtom.ivi.defaults.core") apply true
 }
 
 // Make a single directory where to store all test results.
@@ -51,11 +52,6 @@ apply(from = file("emulators.gradle.kts"))
 ivi {
     dependencySource = IviDependencySource.Artifactory(Versions.INDIGO_PLATFORM)
 }
-
-// Set up the git version for Android and CI
-val buildVersions = com.tomtom.ivi.buildsrc.environment.BuildVersioning(rootProject)
-val versionCode: Int by extra(buildVersions.versionCode)
-val versionName: String by extra(buildVersions.versionName)
 
 // Set up global test options
 tasks.withType<Test> {
@@ -133,8 +129,8 @@ subprojects {
             minSdkVersion(Versions.MIN_SDK)
             targetSdkVersion(Versions.TARGET_SDK)
             if (isApplicationProject) {
-                versionCode = rootProject.extra.get("versionCode") as Int
-                versionName = rootProject.extra.get("versionName") as String
+                versionCode = iviAndroidVersionCode
+                versionName = iviVersion
             }
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -225,8 +221,8 @@ subprojects {
                 // Tags are set by subprojects.
 
                 // Allow specifying the test-class via command-line
-                if (project.hasProperty("testClass")) {
-                    instrumentationArguments.className = project.properties["testClass"] as String
+                findProperty("testClass")?.let{
+                    instrumentationArguments.className = it as String
                 }
             }
 
