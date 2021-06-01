@@ -260,11 +260,16 @@ The deployment configuration is defined in the build script of the main or test 
 ### Create a service host
 
 An IVI service needs a host to run. A host may run multiple services. The IVI service framework
-provides the factory interface `IviServiceHostBuilder` to build a service host. There is also the
-generic implementation of a service host that takes a list of service interface implementations. The
-factory implementation must at least contain the empty companion object, which will be extended by
-the IVI service framework. Kotlin does not allow extending the companion object if it has not been
+provides the abstract builder class `IviServiceHostBuilder` to build a service host. There is also
+the generic implementation of a service host that takes a list of service interface implementations.
+The generic implementation can be created by implementing the `SimpleIviServiceHostBuilder`.
+
+The builder class must at least contain the empty companion object, which will be extended by the
+IVI service framework. Kotlin does not allow extending the companion object if it has not been
 declared.
+
+The builder class need to have the mandatory "ServiceHostBuilder" suffix to allow it to be used
+by the generated deployment code.
 
 **src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHostBuilder.kt**
 
@@ -272,23 +277,17 @@ declared.
 package com.tomtom.ivi.example.service.account
 
 import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-// The factory interface to build a service host.
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostBuilder
-// The simple implementation of a service host.
-import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
+// The simple implementation of a service host builder.
+import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHostBuilder
 
-class AccountServiceHostBuilder : IviServiceHostBuilder() {
-    override fun build(iviServiceHostContext: IviServiceHostContext) =
-        SimpleIviServiceHost(
-            // Pass the service host context to the service host.
-            iviServiceHostContext,
-            // Pass the service interface implementation to run in the host.
-            setOf(
-                StockAccountService(iviServiceHostContext)
-            )
-        )
+// `ServiceHostBuilder` suffix is mandatory.
+class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    // The factory implementation must at least contain the empty companion object, which will be
+   override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+       // Return the service interface implementation to run in the host.
+       listOf(StockAccountService(iviServiceHostContext))
+
+    // The builder implementation must at least contain the empty companion object, which will be
     // extended by the IVI service framework.
     // Kotlin does not allow extending the companion object if it has not been declared.
     companion object
@@ -312,12 +311,13 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfac
 /**
  * Defines a configuration for the account service.
  *
- * The configuration specifies the service host implementation and the list of interfaces implemented
- * by this service host.
+ * The configuration specifies the service host implementation and the list of interfaces
+ * implemented by this service host.
  */
 val accountServiceHost = IviServiceHostConfig(
-    serviceHostName = "AccountServiceHost",
-    // The module with the implementation of the service host builder interface.
+    // Needs to match with the name of the builder class.
+    serviceHostBuilderName = "AccountServiceHostBuilder",
+    // The module with the implementation of the service host builder class.
     implementationModule = ExampleModuleReference("services_account"),
     interfaces = listOf(
         IviServiceInterfaceConfig(

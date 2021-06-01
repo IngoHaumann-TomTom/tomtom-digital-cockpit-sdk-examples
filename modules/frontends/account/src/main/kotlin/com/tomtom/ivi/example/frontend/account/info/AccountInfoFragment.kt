@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.frontend.account.info
 
 import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.example.frontends.account.databinding.FrontendAccountInfoFragmentBinding
+import com.tomtom.ivi.example.frontend.account.databinding.FrontendAccountInfoFragmentBinding
 
 class AccountInfoFragment : IviFragment<AccountInfoPanel, AccountInfoViewModel>(
     AccountInfoViewModel::class

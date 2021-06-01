@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.frontend.account.login
 
 import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.example.frontends.account.databinding.FrontendAccountLoginFragmentBinding
+import com.tomtom.ivi.example.frontend.account.databinding.FrontendAccountLoginFragmentBinding
 
 class AccountLoginFragment
     : IviFragment<AccountLoginPanel, AccountLoginViewModel>(AccountLoginViewModel::class) {

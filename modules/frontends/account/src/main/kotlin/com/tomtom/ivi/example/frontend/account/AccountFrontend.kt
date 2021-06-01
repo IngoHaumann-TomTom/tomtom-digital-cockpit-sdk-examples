@@ -13,7 +13,6 @@ package com.tomtom.ivi.example.frontend.account
 
 import com.tomtom.ivi.api.framework.frontend.Frontend
 import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.FrontendFactory
 import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
@@ -69,10 +68,5 @@ class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendConte
     private fun goToLoginPanel() {
         closeAllTaskPanels()
         addPanel(AccountLoginPanel(frontendContext))
-    }
-
-    class Factory : FrontendFactory {
-        override fun createFrontend(frontendContext: FrontendContext) =
-            AccountFrontend(frontendContext)
     }
 }

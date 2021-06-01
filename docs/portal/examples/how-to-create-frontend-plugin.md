@@ -6,8 +6,8 @@ Frontend plug-ins are the User Interface (UI) modules of the IndiGO platform. Th
 
 Each frontend is registered with the frontend framework at runtime, by supplying a set of metadata which describes the frontend characteristics. Each metadata contains details such as:
 
-- An identifier to uniquely identify it.
-- A `FrontendFactory` instance which can be used by the framework to create the `Frontend` instance.
+- An identifier to uniquely identify the metadata.
+- A `FrontendBuilder` factory which can be used by the framework to create the `Frontend` instance.
 - Whether the `Frontend` should start at start-up (the default) or gets started on demand. 
 - Optionally, a menu item can be added to the main menu to open the `Frontend`'s main task panel.
 
@@ -23,7 +23,7 @@ In this example, we will create a new frontend for managing an account on the de
 Creating a frontend consists of a number of steps:
 
 - [Create the `Frontend` class, deriving the abstract `Frontend` class (see API doc).](#creating-the-frontend-class)
-- [Create the `FrontendFactory` class (see API doc).](#creating-the-frontendfactory-class)
+- [Create the `FrontendBuilder` class (see API doc).](#creating-the-frontendbuilder-class)
 - [Create the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
 - [Define and register the metadata.](#defining-the-metadata)
 
@@ -57,20 +57,18 @@ There are two callbacks for when an event is triggered to show a `TaskPanel` on 
 The first one (``createMainTaskPanel``) should be overridden if a frontend only wants to display a single `TaskPanel` at a time when the UI is shown. The second one (`openTaskPanels`) should be overridden if more flexibility is needed in deciding what panels should be opened.
 **Note:** that only one method should be overridden at a time, as only one of them will be called. The order is not guaranteed for future platform versions.
 
-### Creating the FrontendFactory class
+### Creating the FrontendBuilder class
 
-Add a `Factory` class, derived from `FrontendFactory` class. Override the `createFrontend()` method in the `Factory` and return an instance of the `AccountFrontend` class.
+Add a `AccountFrontendBuilder` class, derived from `FrontendBuilder` class. Override the `build()` method in the class and return an instance of the `AccountFrontend` class.
 
 ```kotlin
 ...
-import com.tomtom.ivi.api.framework.frontend.FrontendFactory
+import com.tomtom.ivi.api.framework.frontend.FrontendBuilder
 
-class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
-    // ...
-    class Factory : FrontendFactory {
-        override fun createFrontend(frontendContext: FrontendContext) =
-            AccountFrontend(frontendContext)
-    }
+class AccountFrontendBuilder() {
+
+    override fun build(frontendContext: FrontendContext) =
+        AccountFrontend(frontendContext)
 }
 ```
 
@@ -125,14 +123,14 @@ Create the metadata used to register the `Frontend`, specifying the options rele
 
 ```kotlin
 val accountFrontendMetadata = FrontendMetadata(
-    AccountFrontend.Factory(),
+    "AccountFrontend"
     FrontendStartupPolicy.LAUNCH_FRONTEND_ON_DEMAND,
     MenuItem(
         AccountFrontend::class.qualifiedName!!,
         R.drawable.frontend_account_menu_item_icon,
         R.string.frontend_account_menu_item_name
     )
-)
+) { AccountFrontendBuilder() }
 ```
 
 This metadata can now be used to add this `Frontend` plug-in to the IndiGO application.
@@ -161,6 +159,12 @@ class ExampleActivity : DefaultActivity() {
 }
 ```
 
+## Copyright
 
+Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
 
-
+This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be used for
+internal evaluation purposes or commercial use strictly subject to separate licensee agreement
+between you and TomTom. If you are the licensee, you are only permitted to use this Software in
+accordance with the terms of your license agreement. If you are not the licensee then you are not
+authorised to use this software in any manner and should immediately return it to TomTom N.V.

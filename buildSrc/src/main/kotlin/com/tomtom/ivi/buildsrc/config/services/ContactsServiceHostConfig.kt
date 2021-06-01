@@ -22,7 +22,7 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfac
  * The configuration specifies the service host implementation for the contacts service interface.
  */
 val customContactsServiceHost = IviServiceHostConfig(
-    serviceHostName = "CustomContactsServiceHost",
+    serviceHostBuilderName = "CustomContactsServiceHostBuilder",
     implementationModule = ExampleModuleReference("services_customcontacts"),
     interfaces = listOf(
         IviServiceInterfaceConfig(
@@ -31,4 +31,3 @@ val customContactsServiceHost = IviServiceHostConfig(
         )
     )
 )
-

@@ -11,13 +11,11 @@
 
 package com.tomtom.ivi.example.frontend.account
 
-import com.tomtom.ivi.api.framework.frontend.FrontendMetadata
-import com.tomtom.ivi.api.framework.frontend.FrontendStartupPolicy
+import com.tomtom.ivi.api.common.menu.MenuItem
 
-// TODO(IVI-3834): [accountFrontendMetadata] will be removed. Will be generated.
-val accountFrontendMetadata =
-    FrontendMetadata(
-        "AccountFrontend",
-        FrontendStartupPolicy.LAUNCH_FRONTEND_ON_DEMAND,
-        accountMenuItem
-    ) { AccountFrontendBuilder() }
+val accountMenuItem =
+    MenuItem(
+        AccountFrontend::class.qualifiedName!!,
+        R.drawable.frontend_account_menu_item_icon,
+        R.string.frontend_account_menu_item_name
+    )

@@ -23,7 +23,7 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfac
  * there.
  */
 private val accountSettingsServiceHost = IviServiceHostConfig(
-    serviceHostName = "AccountSettingsServiceHost",
+    serviceHostBuilderName = "AccountSettingsServiceHostBuilder",
     implementationModule = ExampleModuleReference("services_accountsettings"),
     interfaces = listOf(
         IviServiceInterfaceConfig(
@@ -40,7 +40,7 @@ private val accountSettingsServiceHost = IviServiceHostConfig(
  * there.
  */
 private val accountServiceHost = IviServiceHostConfig(
-    serviceHostName = "AccountServiceHost",
+    serviceHostBuilderName = "AccountServiceHostBuilder",
     implementationModule = ExampleModuleReference("services_account"),
     interfaces = listOf(
         IviServiceInterfaceConfig(
@@ -52,4 +52,3 @@ private val accountServiceHost = IviServiceHostConfig(
 )
 
 val accountServiceHosts = listOf(accountServiceHost, accountSettingsServiceHost)
-

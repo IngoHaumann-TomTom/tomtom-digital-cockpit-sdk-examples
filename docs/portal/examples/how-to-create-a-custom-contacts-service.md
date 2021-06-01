@@ -36,7 +36,7 @@ configuration class that inherits from the `IviServiceHostConfig` class.
 
 ```kotlin
 val customContactsServiceHost = IviServiceHostConfig(
-    serviceHostName = "CustomContactsServiceHost",
+    serviceHostBuilderName = "CustomContactsServiceHostBuilder",
     implementationModule = ExampleModuleReference("services_customcontacts"),
     interfaces = listOf(
         IviServiceInterfaceConfig(
@@ -55,13 +55,10 @@ platform needs a service host builder class with the specific
 name `CustomContactsServiceHostBuilder`.
 
 ```kotlin
-class CustomContactsServiceHostBuilder : IviServiceHostBuilder() {
+class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    override fun build(iviServiceHostContext: IviServiceHostContext) =
-        SimpleIviServiceHost(
-            iviServiceHostContext,
-            setOf(CustomContactsService(iviServiceHostContext))
-        )
+    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+        listOf(CustomContactsService(iviServiceHostContext))
 
     companion object
 }

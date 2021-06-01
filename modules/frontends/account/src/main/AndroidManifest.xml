@@ -11,4 +11,4 @@
   ~ immediately return it to TomTom N.V.
   -->
 
-<manifest package="com.tomtom.ivi.example.frontends.account" />
+<manifest package="com.tomtom.ivi.example.frontend.account" />
