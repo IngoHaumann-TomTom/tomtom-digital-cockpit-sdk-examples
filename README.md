@@ -35,31 +35,40 @@ The root directory for modules. All Gradle modules inside are within two levels 
 * `modules/services`
   Modules with implementations of IVI services.
 
-## Configuration
+## Building and running
 
 In order to build the project using dependencies from the IVI Nexus repository, credentials need to
-be provided to access this repository. This can be done in three different ways:
+be provided to access this repository. This can be done in different ways:
+
+### `Store credentials in ~/.gradle/gradle.properties`
+
+```bash
+nexusUsername=<username>
+nexusPassword=<password>
+```
+
+And then build with:
+
+```bash
+./gradlew build
+```
 
 ### `Specify credentials through the commandline`
+
 ```bash
--PnexusUsername=<username> -PnexusPassword=<password>
+./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
 ```
 
-### `Store credentials in gradle.properties`
-```bash
-nexusUsername=<username>
-nexusPassword=<password>
+## Setup development environment
+
+In order to run the example app, you need to take some additional steps, such
+as creating an Android Automotive emulator. This is done with
+
+```
+./gradlew createDevelopmentEmulator
 ```
 
-### `Store credentials in local.properties`
-```bash
-nexusUsername=<username>
-nexusPassword=<password>
-```
-
-## Building and running IndiGO
-
-To setup your development environment and to run the IndiGO example app, read
+For the entire setup process, please consult the following page:
 [docs/getting-started-linux.md](docs/getting-started-linux.md)
 
 ## Copyright
