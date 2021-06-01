@@ -41,8 +41,6 @@ steps:
     parameters:
       tasks: ${{parameters.testTasks}}
       projectOptions: >-
-        -PnexusUsername=$(NEXUS_USERNAME)
-        -PnexusPassword=$(NEXUS_PASSWORD)
         --max-workers=12
       testResultsFiles: '**/androidTest*/**/TEST-*.xml'
       testRunTitle: 'Tests'

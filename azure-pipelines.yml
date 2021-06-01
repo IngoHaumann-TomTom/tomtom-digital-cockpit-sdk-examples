@@ -15,7 +15,6 @@ variables:
   - template: .azure-templates/variables.yml
   # Variable groups containing the passwords used below are defined in the project's Pipelines Library.
   - group: IviArtifactoryCredentials
-  - group: IviNexusCredentials
   # Use to limit jobs to builds of the 'master' branch, made on the pipeline whose definition id
   # is 1986 (the IndiGO Docs main pipeline).
   - name: isMainlineBuild

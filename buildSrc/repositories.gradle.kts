@@ -44,6 +44,12 @@ repositories {
 
     // PU LNS repo for the Connectivity Agent
     maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
+    maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases-private/") {
+        credentials{
+            username="tt-pu-ivi"
+            password="voCiJ9anbd"
+        }
+    }
 }
 
 val artifactoryRepo by rootProject.extra("https://artifactory.navkit-pipeline.tt3.com/artifactory")
