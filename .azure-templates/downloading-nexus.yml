@@ -94,11 +94,3 @@ steps:
     cleanDestinationFolder: false
     overwriteExistingFiles: false
   displayName: Extract tomtom-indigo-sdk-$(VERSION_PLATFORM).tar.gz
-
-- task: ExtractFiles@1
-  inputs:
-    archiveFilePatterns: '**/*.tar.gz'
-    destinationFolder: '$(Build.SourcesDirectory)/downloads/sdk/examples/sources'
-    cleanDestinationFolder: false
-    overwriteExistingFiles: false
-  displayName: Extract the sources
