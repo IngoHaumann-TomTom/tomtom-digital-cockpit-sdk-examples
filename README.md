@@ -59,17 +59,10 @@ And then build with:
 ./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
 ```
 
-## Setup development environment
-
-In order to run the example app, you need to take some additional steps, such
-as creating an Android Automotive emulator. This is done with
-
-```
-./gradlew createDevelopmentEmulator
-```
+## Setting up the development environment
 
 For the entire setup process, please consult the following page:
-[docs/getting-started-linux.md](docs/getting-started-linux.md)
+[docs/getting-started.md](docs/getting-started.md)
 
 ## Copyright
 
