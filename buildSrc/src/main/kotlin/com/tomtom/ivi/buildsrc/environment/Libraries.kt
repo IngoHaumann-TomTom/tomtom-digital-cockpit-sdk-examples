@@ -46,6 +46,7 @@ object Libraries {
 
             object ServiceApis {
                 const val CORE_SERVICEAPIS_CONTACTS = "$PLATFORM_GROUP:core_serviceapis_contacts:${Versions.INDIGO_PLATFORM}"
+                const val CORE_SERVICEAPIS_RECENTCALLS = "$PLATFORM_GROUP:core_serviceapis_recentcalls:${Versions.INDIGO_PLATFORM}"
             }
         }
 

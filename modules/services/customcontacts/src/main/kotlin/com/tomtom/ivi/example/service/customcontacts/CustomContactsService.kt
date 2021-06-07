@@ -74,9 +74,8 @@ class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
         synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
         // Bind the contacts property to an empty mutable map.
         contacts = mutableContacts
-        // Set the service ready and clients can call any Api of the service.
+        // Set the service to ready. Now clients can call the service's APIs.
         serviceReady = true
-
         // The source of contacts is ready and synchronization starts.
         synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
         // Updating the contacts property with some contacts from the source
@@ -84,7 +83,7 @@ class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     }
 
     override fun onDestroy() {
-        // Put here cleaning code if necessary.
+        // Put cleanup code here, if necessary.
         super.onDestroy()
     }
 

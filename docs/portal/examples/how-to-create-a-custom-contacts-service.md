@@ -5,14 +5,14 @@ contacts. A product may provide its own implementation of the [ContactsService] 
 existing implementation. In order for the UI to be able to display contacts from this service, a
 custom contacts service needs to be written. This document describes how to do this.
 
-## Create a custom contacts service
+## How to create a custom contacts service
 
 The following sections describe how to create a custom contacts service implementation.
 
 ### Service module setup
 
-To create a custom contacts service, add a manifest file in your module and add a dependency to
-the [ContactsService] in your gradle file.
+To create a custom contacts service, add a manifest file to your module and add a dependency to
+the [ContactsService] to your gradle file.
 
 Your `AndroidManifest.xml` should contain:
 
@@ -32,7 +32,8 @@ dependencies {
 ### Service configuration
 
 To configure a contacts service to use your custom implementation, define a service host
-configuration class that inherits from the `IviServiceHostConfig` class.
+configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
+in a file, like `ContactsServiceHostConfig.kt` in the `buildScr` module, within the `config.services` folder.
 
 ```kotlin
 val customContactsServiceHost = IviServiceHostConfig(
@@ -69,7 +70,7 @@ Every service host configuration needs to be registered in your application. Thi
 know which service should be started with which implementation when a client requires the access to
 a service api.
 
-To register this configuration, add the service host in your application gradle file:
+To register this configuration, add the service host to your application gradle file:
 
 ```kotlin
 ivi {

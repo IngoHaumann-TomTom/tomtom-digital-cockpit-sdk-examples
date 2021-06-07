@@ -11,6 +11,7 @@
 
 import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
 import com.tomtom.ivi.buildsrc.config.services.customContactsServiceHost
+import com.tomtom.ivi.buildsrc.config.services.customRecentCallsServiceHost
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServicesConfig
@@ -30,6 +31,9 @@ ivi {
 
             // Register the custom contacts service.
             replaceDefaultHost(customContactsServiceHost)
+
+            // Register the custom recent calls service.
+            replaceDefaultHost(customRecentCallsServiceHost)
         }
         runtime {
             deployments {
