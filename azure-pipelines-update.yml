@@ -54,6 +54,7 @@ stages:
     displayName: Preparing IndiGO branch
     container: 'docker_indigo_build'
     steps:
+    - bash: echo "Resetting trigger"
     - template: .azure-templates/indigo-update.yml
       parameters:
         branch: $(indigoBranchName)
