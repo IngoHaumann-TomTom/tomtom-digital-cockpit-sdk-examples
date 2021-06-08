@@ -12,7 +12,6 @@ import org.junit.Test
 
 class AccountFrontendTest : E2ETestCase() {
     @Test
-    @Ignore("IVI-3916")
     fun openAccountFrontendFromMainMenu() {
         onMainMenuView(MainMenuButton("Account"))
             .check(matches(isDisplayed()))
