@@ -10,6 +10,14 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+ivi {
+    configurationGenerator {
+        enabled = true
+    }
+    optInToExperimentalApis = true
+}
 
 dependencies {
     implementation(project(":serviceapis_account"))

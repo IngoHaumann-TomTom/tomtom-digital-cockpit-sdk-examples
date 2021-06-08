@@ -13,6 +13,7 @@ import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 ivi {
     settingsServiceApi = true
+    optInToExperimentalApis = true
 }
 
 dependencies {

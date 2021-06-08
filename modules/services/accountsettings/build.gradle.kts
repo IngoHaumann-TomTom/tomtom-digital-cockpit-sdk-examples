@@ -10,9 +10,17 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 plugins {
     `kotlinx-serialization`
+}
+
+ivi {
+    configurationGenerator {
+        enabled = true
+    }
+    optInToExperimentalApis = true
 }
 
 dependencies {

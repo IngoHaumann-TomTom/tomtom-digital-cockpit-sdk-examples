@@ -14,6 +14,7 @@ package com.tomtom.ivi.example.frontend.account.login
 import androidx.lifecycle.MutableLiveData
 import com.tomtom.ivi.example.frontend.account.TestData
 import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
@@ -30,7 +31,7 @@ class AccountLoginViewModelTest : IviTestCase() {
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
         every { activeAccount } returns MutableLiveData(TestData.testAccount)
-        every { accounts } returns MutableLiveData(TestData.accountsMap)
+        every { loggedInAccounts } returns MutableLiveData(TestData.accountsMap)
     }
 
     private val mockPanel = niceMockk<AccountLoginPanel>()
@@ -78,7 +79,7 @@ class AccountLoginViewModelTest : IviTestCase() {
         sut.onLoginClick()
 
         verify {
-            mockAccountService.logInAsync(TestData.USERNAME, TestData.PASSWORD, any())
+            mockAccountService.logInAsync(TestData.USERNAME, SensitiveString(TestData.PASSWORD), any())
         }
     }
 }

@@ -11,20 +11,38 @@
 
 package com.tomtom.ivi.example.service.accountsettings
 
+import com.tomtom.ivi.api.framework.configuration.LongDynamicConfigurationKey
 import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
+import com.tomtom.ivi.api.service.settingsmanagement.LongSettingKey
 import com.tomtom.ivi.api.service.settingsmanagement.SettingScope
 import com.tomtom.ivi.api.service.settingsmanagement.SettingUpdateStrategy
 import com.tomtom.ivi.api.service.settingsmanagement.StringSettingKey
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsServiceBase
-import com.tomtom.tools.android.api.livedata.valueUpToDate
 import kotlinx.serialization.json.Json
+import java.time.Instant
 
 class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :
     AccountSettingsServiceBase(iviServiceHostContext) {
 
     override val settingsKeyPrefix: String = SETTINGS_KEY_PREFIX
     override val settingsVersion: Int = SETTINGS_VERSION
+
+    // No configuration available, we update the setting manually.
+    override val loginTimestampConfigurationKey: LongDynamicConfigurationKey? = null
+    override val loginTimestampSettingKey: LongSettingKey = LOGIN_TIMESTAMP_SETTING_KEY
+
+    // The `onlineAccountValidPeriodInDays` setting has default values provided by the dynamic
+    // configuration key.
+    // All methods for the setting have default implementation.
+    override val onlineLoginValidPeriodInDaysConfigurationKey: LongDynamicConfigurationKey =
+        com.tomtom.ivi.example.account.onlineAccountValidPeriodInDays
+
+    override val onlineLoginValidPeriodInDaysSettingKey: LongSettingKey =
+        onlineLoginValidPeriodInDaysConfigurationKey.toSettingKey(
+            SettingScope.APPLICATION,
+            SETTINGS_KEY_PREFIX
+        )
 
     override suspend fun initActiveAccount(storedSettingsVersion: Int) {
         settingsManagementServiceApi.coCreateSetting(
@@ -37,7 +55,11 @@ class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) 
             }
         )
 
-        activeAccount = readActiveAccountFromStorage()
+        activeAccount = loadSettingIfAvailable(
+            storedSettingsVersion,
+            { readActiveAccountFromStorage() },
+            { null }
+        )
     }
 
     override suspend fun readActiveAccountFromStorage(): Account? =
@@ -47,20 +69,49 @@ class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) 
             ?.let { deserialize(it) }
 
     override suspend fun writeActiveAccountToStorage(newValue: Account?) {
-        with(settingsManagementServiceApi) {
-            sessionToken.valueUpToDate?.let { token ->
-                val value = newValue?.let { serialize(it) } ?: ""
-                coPutSetting(token, ACTIVE_ACCOUNT_SETTING_KEY, value)
-            }
+        settingsWriter { sessionToken ->
+            val value = newValue?.let { serialize(it) } ?: ""
+            coPutSetting(sessionToken, ACTIVE_ACCOUNT_SETTING_KEY, value)
         }
+
+        updateLoginTimestamp(newValue?.let { Instant.now().epochSecond } ?: 0L)
+    }
+
+    private suspend fun updateLoginTimestamp(timestamp: Long) {
+        settingsWriter { sessionToken ->
+            coPutSetting(
+                sessionToken,
+                LOGIN_TIMESTAMP_SETTING_KEY,
+                timestamp
+            )
+        }
+
+        loginTimestamp = timestamp
+    }
+
+    override suspend fun initLoginTimestamp(storedSettingsVersion: Int) {
+        settingsManagementServiceApi.coCreateSetting(
+            serviceId,
+            loginTimestampSettingKey,
+            0L,
+            SettingUpdateStrategy.ALWAYS_UPDATE
+        )
+
+        loginTimestamp = loadSettingIfAvailable(
+            storedSettingsVersion,
+            { readLoginTimestampFromStorage() },
+            { 0L }
+        )
     }
 
     companion object {
         private const val SETTINGS_KEY_PREFIX = "com.tomtom.ivi.example.account"
-        private const val SETTINGS_VERSION = 1
+        private const val SETTINGS_VERSION = 2
 
         private val ACTIVE_ACCOUNT_SETTING_KEY =
             StringSettingKey(SettingScope.APPLICATION, "$SETTINGS_KEY_PREFIX.activeAccount")
+        private val LOGIN_TIMESTAMP_SETTING_KEY =
+            LongSettingKey(SettingScope.USER_PROFILE, "$SETTINGS_KEY_PREFIX.loginTimestamp")
 
         private fun serialize(account: Account): String =
             Json.encodeToString(AccountSerializer, account)

@@ -25,5 +25,16 @@ interface AccountSettingsService {
     @IviSetting(accessMode = IviSettingAccessMode.READ_WRITE)
     val activeAccount: Account?
 
+    /**
+     * The timestamp of the moment of logging in seconds since Epoch.
+     * It is 0L if there is no logged in user.
+     * It is updated when `activeAccount` is changed.
+     */
+    @IviSetting(accessMode = IviSettingAccessMode.READ_ONLY)
+    val loginTimestamp: Long
+
+    @IviSetting(accessMode = IviSettingAccessMode.READ_ONLY)
+    val onlineLoginValidPeriodInDays: Long
+
     companion object
 }

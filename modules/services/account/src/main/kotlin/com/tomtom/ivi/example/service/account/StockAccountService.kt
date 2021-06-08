@@ -17,28 +17,44 @@ import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.api.framework.iviservice.queueOrRun
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
+import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
+import com.tomtom.tools.android.api.livedata.requireValue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 
-// TODO(IVI-3049): Add integration tests.
+
 class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
 
+    private val onlineAccountEndpoint =
+        iviServiceHostContext.staticConfigurationProvider.getStaticConfiguration(
+            com.tomtom.ivi.example.account.onlineAccountEndpoint
+        )
+
     private val settingsServiceApi = AccountSettingsService.createApi(this, iviServiceProvider)
 
-    private val mutableAccounts = MutableMirrorableMap<Uid<Account>, Account>()
+    private val mutableLoggedInAccounts = MutableMirrorableMap<Uid<Account>, Account>()
 
     override fun onCreate() {
         super.onCreate()
 
-        accounts = mutableAccounts
+        loggedInAccounts = mutableLoggedInAccounts
 
         // Executes an action once on the service becoming available.
         settingsServiceApi.queueOrRun { service ->
-            service.activeAccount.valueUpToDate?.let { account ->
-                mutableAccounts[account.accountUid] = account
-                activeAccount = account
+            // Stored account could be logged in a while ago, lets check if it is still valid.
+            val daysSinceLogin = Instant.ofEpochSecond(service.loginTimestamp.requireValue())
+                .until(Instant.now(), ChronoUnit.DAYS)
+            if (daysSinceLogin >= service.onlineLoginValidPeriodInDays.requireValue()) {
+                service.updateActiveAccountAsync(null)
+            } else {
+                service.activeAccount.valueUpToDate?.let { account ->
+                    mutableLoggedInAccounts[account.accountUid] = account
+                    activeAccount = account
+                }
             }
         }
 
@@ -48,20 +64,34 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
         }
     }
 
-    override suspend fun logIn(username: String, password: String): Boolean =
-        null != takeIf { isValidUsername(username) && isValidPassword(password) }
-            ?.run {
-                activeAccount = mutableAccounts.values.find { it.username == username }
-                    ?: run {
-                        Account(username).also { mutableAccounts[it.accountUid] = it }
-                    }
-                settingsServiceApi.coUpdateActiveAccount(activeAccount)
+    override suspend fun logIn(username: String, password: SensitiveString): Boolean {
+        val account = mutableLoggedInAccounts.values.find { it.username == username }
+            ?: logInOnline(username, password)?.also {
+                mutableLoggedInAccounts[it.accountUid] = it
             }
 
-    override suspend fun logOut() {
-        activeAccount = null
-        settingsServiceApi.coUpdateActiveAccount(activeAccount)
+        account?.let {
+            activeAccount = it
+            settingsServiceApi.coUpdateActiveAccount(activeAccount)
+        }
+
+        return account != null
     }
+
+    override suspend fun logOut() {
+        activeAccount?.let{
+            mutableLoggedInAccounts.remove(it.accountUid)
+            activeAccount = null
+            settingsServiceApi.coUpdateActiveAccount(null)
+        }
+    }
+
+    private fun logInOnline(username: String, password: SensitiveString): Account? =
+        takeIf { isValidUsername(username) && isValidPassword(password.value) }?.run {
+            // Pretend we make an online request.
+            onlineAccountEndpoint
+            Account(username)
+        }
 
     companion object {
         private fun isValidUsername(value: String) = value.trim().length > 1

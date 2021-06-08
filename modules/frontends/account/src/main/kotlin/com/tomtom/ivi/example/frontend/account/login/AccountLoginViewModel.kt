@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.tools.android.api.livedata.allTrue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
@@ -38,7 +39,7 @@ class AccountLoginViewModel(panel: AccountLoginPanel) :
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
             val username = username.value ?: return
             val password = password.value ?: return
-            accountServiceApi.logInAsync(username, password)
+            accountServiceApi.logInAsync(username, SensitiveString(password))
         }
     }
 }

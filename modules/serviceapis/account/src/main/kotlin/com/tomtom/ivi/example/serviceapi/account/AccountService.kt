@@ -33,14 +33,14 @@ interface AccountService {
     /**
      * The collection of accounts that have logged in at least once since application started.
      */
-    val accounts: MirrorableMap<Uid<Account>, Account>
+    val loggedInAccounts: MirrorableMap<Uid<Account>, Account>
 
     /**
      * Tries to log an user in under [username] with [password].
      * Returns `true` if the user is logged in successfully, `false` otherwise.
      */
     @IviServiceFun
-    suspend fun logIn(username: String, password: String): Boolean
+    suspend fun logIn(username: String, password: SensitiveString): Boolean
 
     /**
      * Logs the currently logged in user out.

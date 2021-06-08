@@ -1,0 +1,11 @@
+{
+  "packageName": "com.tomtom.ivi.example.account",
+  "keys": [
+    {
+      "name": "onlineAccountEndpoint",
+      "description": "The URI of the endpoint of the online account API",
+      "type": "String",
+      "value": "https://www.example.com/account/"
+    }
+  ]
+}

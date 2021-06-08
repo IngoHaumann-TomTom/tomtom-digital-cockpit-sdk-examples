@@ -12,6 +12,7 @@
 package com.tomtom.ivi.example.service.account
 
 import androidx.lifecycle.MutableLiveData
+import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
@@ -20,6 +21,7 @@ import io.mockk.every
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import java.time.Instant
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -33,6 +35,8 @@ class StockAccountServiceTest : IviTestCase() {
         mockkService(AccountSettingsService.Companion::createApi) {
             every { serviceAvailable } returns MutableLiveData(true)
             every { activeAccount } returns MutableLiveData()
+            every { loginTimestamp } returns MutableLiveData(Instant.now().epochSecond)
+            every { onlineLoginValidPeriodInDays} returns MutableLiveData(90L)
         }
     }.let { StockAccountService(niceMockk()) }
 
@@ -44,25 +48,25 @@ class StockAccountServiceTest : IviTestCase() {
     @Test
     fun `no user is logged in by default`() {
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.accounts.size)
+        assertEquals(0, sut.loggedInAccounts.size)
     }
 
     @Test
     fun `login failed if activeAccount or password are incorrect`() = runBlocking {
-        assertFalse(sut.logIn(USERNAME, ""))
+        assertFalse(sut.logIn(USERNAME, SensitiveString("")))
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.accounts.size)
+        assertEquals(0, sut.loggedInAccounts.size)
 
         assertFalse(sut.logIn("", PASSWORD))
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.accounts.size)
+        assertEquals(0, sut.loggedInAccounts.size)
     }
 
     @Test
     fun `activeAccount is set if user has logged in`() = runBlocking {
         assertTrue(sut.logIn(USERNAME, PASSWORD))
         assertEquals(USERNAME, sut.activeAccount?.username)
-        assertEquals(1, sut.accounts.size)
+        assertEquals(1, sut.loggedInAccounts.size)
     }
 
     @Test
@@ -71,14 +75,14 @@ class StockAccountServiceTest : IviTestCase() {
         sut.logIn(USERNAME, PASSWORD)
 
         // THEN
-        assertEquals(1, sut.accounts.size)
+        assertEquals(1, sut.loggedInAccounts.size)
 
         // WHEN
         sut.logOut()
 
         // THEN
         assertNull(sut.activeAccount)
-        assertEquals(1, sut.accounts.size)
+        assertTrue(sut.loggedInAccounts.isEmpty())
     }
 
     @Test
@@ -104,11 +108,11 @@ class StockAccountServiceTest : IviTestCase() {
         // THEN
         assertTrue(result)
         assertEquals(anotherTestUser, sut.activeAccount?.username)
-        assertEquals(2, sut.accounts.size)
+        assertEquals(2, sut.loggedInAccounts.size)
     }
 
     companion object {
         private const val USERNAME = "testUser"
-        private const val PASSWORD = "testPassword"
+        private val PASSWORD = SensitiveString("testPassword")
     }
 }
