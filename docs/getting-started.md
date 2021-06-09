@@ -343,3 +343,15 @@ which launches a context menu, press the down arrow (instead of pressing the gre
 - Press "START ROUTE DEMO"
 - And close the debug menu
 
+## I am using a Mac(book) with an M1 chip and cannot start the Android emulator
+
+Attempting to start the Android emulator results in `The emulator process for AVD IndiGO_Emulator was killed` 
+and installing the emulator accelerator package from the Android Update Site results in 
+`Your CPU does not support VT-x. Unfortunately, your computer does not support hardware accelerated virtualization.`
+
+The M1 Apple Silicon chip is not an Intel-based chip and so the hardware accelerated virtualization package does 
+not work on this processor architecture. Special setup is required to get the Android emulator (not just the 
+IndiGO-specific one) to work. Official support for this chip from Android is still in progress.
+
+See this [blog post](https://medium.com/mobile-app-development-publication/my-journey-to-setup-android-emulator-for-m1-macbook-pro-b8365321b3e7) 
+for a guide on setting up the Android emulator to run on a Mac with an M1 processor.
