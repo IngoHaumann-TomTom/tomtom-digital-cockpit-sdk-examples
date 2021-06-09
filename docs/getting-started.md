@@ -129,8 +129,7 @@ In the `Tablet` category, look for an item called `IndiGO_Test_Device`.
 Select `IndiGO_Test_Device` and click `Edit Device` to change the device type. In the `Configure Hardware Profile` dialog, 
 change the `Device Type` from "Phone/Tablet" to "Android Automotive". Set the emulator's RAM to 3072MB, then click `Finish`. 
 
-![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png 
-"Android Studio Configure Hardware Profile device type")
+![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png "Android Studio Configure Hardware Profile device type")
 
 The hardware profile of the emulator that will be created should now be configured to be an automotive device.
 
@@ -168,9 +167,34 @@ ones in that directory, rebuild and deploy.
 You should have received API keys from TomTom. Those should be used in the
 example app for navigation related features to work.
 
-[TODO(IVI-3759)]: # (How to use the API keys inside the example app?)
+[TODO(IVI-3759)]: # "How to use the API keys inside the example app?"
 
 ## Compiling the IndiGO example app
+
+### Accessing the binary artifact repository
+
+In order to access IndiGO platform dependencies from the IVI Nexus repository (a binary repository hosted by TomTom), 
+credentials need to be provided. This can be done in different ways:
+
+**Specifying credentials from the cmdline**
+
+```bash
+./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
+```
+
+**Storing credentials globally in the gradle.properties file**
+
+You can also store the credentials in your `gradle.properties` file, in the folder specified by the `GRADLE_USER_HOME` 
+environment variable, this is usually in the `~/.gradle/` folder.
+
+In the `~/.gradle/gradle.properties` file, add the following
+
+```bash
+nexusUsername=<username>
+nexusPassword=<password>
+```
+
+### Building with Android Studio
 
 The IndiGO example app can be built using Android Studio. 
 
@@ -188,3 +212,134 @@ Build and run the application by clicking the green `play` icon. Ensure that the
 is the IndiGO automotive emulator that was created earlier in this tutorial.
 
 ![Android Studio build and run](images/android_studio_build.png "Android Studio build and run")
+
+
+
+# Frequently Asked Questions
+
+## When I compile there are a lot of unresolved dependencies
+
+**Missing credentials**
+
+For example, you get the following compilation errors:
+
+```bash
+Execution failed for task ':buildSrc:compileKotlin'.
+> Could not resolve all files for configuration ':buildSrc:compileClasspath'.
+   > Could not find com.tomtom.ivi.gradle:api_plugins_platform:1.0.1859.
+     Searched in the following locations:
+     etc...
+```
+Then your Nexus credentials may be stored incorrectly, or be missing.
+Check that you have stored them inside `~/.gradle/gradle.properties`, in the format:
+```bash
+nexusUsername=<username>
+nexusPassword=<password>
+```
+**Note** that the username and password should **not** be surrounded by quotation marks.
+
+If they are in the correct place, then the `GRADLE_USER_HOME` environment variable may be set to something else than 
+the `~/.gradle/` folder. Check the variable and move the `gradle.properties` file to the correct place. You 
+can also see what it is set to during the build, by compiling with `--debug` and look for `Gradle user home:` in the 
+log.
+
+**Incorrect Nexus repository credentials**
+
+If you see `Received status code 401 from server: Unauthorized` in the build output, then gradle can find the
+credentials, but they are incorrect.
+
+For example:
+
+```bash
+> Could not GET 'https://repo.tomtom.com/repository/ivi/com/tomtom/ivi/gradle/api_plugins_platform/1.0.1859/api_plugins_platform-1.0.1859.pom'. Received status code 401 from server: Unauthorized
+```
+
+
+
+## There is no map and e.g. search does not work
+
+When you start the application for the first time, you should see a map of the world, as a background to the 
+application.
+
+If this is not there, it may mean that the device/emulator cannot connect to a network.
+
+Enable Wi-Fi in Settings on the emulator and then Cold Boot the emulator from the AVD Manager.
+
+To do this:
+
+**Enable Wi-Fi in Settings on the emulator**
+- Press the Home button (the circle in the sidebar outside the emulator screen)
+- Select `Car Launcher as Home` -> `Just Once`
+- Press the Android application icon (nine dots in a grid) on the bottom of the screen
+- Scroll down and open `Settings`
+- Select `Network & internet`
+- Enable Wi-Fi by pressing the toggle button so it turns blue
+- Shut down the emulator by selecting `Quit` in the emulator menu
+
+**Cold Boot the emulator**
+
+In Android Studio go to: `Tools -> Avd Manager`. On the right-hand side of each configured AVD there is a down arrow, 
+which launches a context menu, press the down arrow (instead of pressing the green Play button), and select 
+`Cold Boot Now` to cold boot the emulator.
+
+For a real device, either make sure the Wi-Fi it is connected to has an internet connection, or a valid SIM connected 
+to a provider.
+
+
+
+## How do I open the Debug Menu?
+
+IndiGO provides a debug menu with various debug/developer options for accessing functionality that would not 
+normally be available to an end-user (for example; starting a route demo).
+
+Open the debug menu on the emulator by pressing the backtick ("\`") key on your keyboard.
+
+On a real device, long press the "volume down" key.
+
+To close the menu, perform the same action again.
+
+
+
+## How do I start a Route Demo?
+
+A route demo is a simulation of a drive along a currently planned route on the device, this may be useful to see what 
+happens at the various points along the route, without the need to go for an actual drive.
+
+To plan a route, long press on any point on the map, and a route will be planned from the current position, to this 
+position.
+
+In order to allow position simulation, you first need to enable Developer Options in Android:
+
+- Go to the Settings menu
+  - On the emulator follow these steps:
+    - Press Home button (the circle in the sidebar outside the emulator screen)
+    - Select `Car Launcher as Home` -> `Just Once`
+    - Press the Android application icon (nine dots in a grid) on the bottom of the screen
+    - Scroll down and open `Settings`
+- Scroll down and open System, then open About
+- Find "Build number" and tap this seven times, you should see a "You are now a developer!" toast appear, to confirm 
+that developer options are enabled
+
+Enable mock location
+
+- Go back to the System menu and scroll down to "Developer options"
+- Scroll down and select "Select mock location app"
+- Select "IVI Example"
+
+This setting is persistent until you uninstall the application.
+
+Then close the emulator and cold boot it, to start it again.
+
+Cold boot the emulator:
+In Android Studio go to: `Tools -> Avd Manager`. On the right-hand side of each configured AVD there is a down arrow, 
+which launches a context menu, press the down arrow (instead of pressing the green Play button), and select 
+`Cold Boot Now` to cold boot the emulator.
+
+**Start a Route Demo**
+
+- Make sure a route is planned
+- Open the debug menu
+- Scroll right until you find the 'Navigation' tab.
+- Press "START ROUTE DEMO"
+- And close the debug menu
+
