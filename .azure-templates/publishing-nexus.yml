@@ -23,6 +23,7 @@ steps:
     # Download artifacts from Artifactory by providing the version of the artifact, and publish
     # these to Nexus. The values of the parameters below can be entered from the pipeline's UI.
   - task: PythonScript@0
+    name: Nexus
     displayName: Publish artifacts to Nexus
     inputs:
       scriptSource: 'filePath'
