@@ -35,6 +35,13 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
+  - repository: ivi-example-app
+    type: git
+    name: IVI/ivi-example-app
+    ref: refs/tags/$(VERSION_EXAMPLES)
+  - repository: indigo
+    type: git
+    name: IVI/indigo
 
 trigger:
 - none
@@ -59,6 +66,8 @@ stages:
     displayName: Verify SDK contents
     timeoutInMinutes: 30
     container: docker_indigo_build
+    variables:
+      VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
     steps:
     - template: .azure-templates/downloading-nexus.yml
     - template: gradle/gradle.yml@devops-templates
