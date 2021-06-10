@@ -127,21 +127,19 @@ tasks.create("createDevelopmentEmulator") {
             startEmulatorsTask.avds = it
         }
     }
-    finalizedBy(":startDevelopmentEmulator")
 }
-
 /**
  * Internal task.
  *
  * Starts the development emulator. Can not be invoked on the command line.
  */
 tasks.create("startDevelopmentEmulator") {
-    dependsOn(":createEmulators")
-    mustRunAfter(":createEmulators")
+    dependsOn(":createDevelopmentEmulator")
+    mustRunAfter(":createDevelopmentEmulator")
     doLast {
         val userAvdConfigFile = File(avdDirectory, "$indigoDevelopmentEmulatorName.ini")
         userAvdConfigFile.writeText(
-            """
+                """
             avd.ini.encoding=UTF-8
             path=${avdDirectory.absolutePath}/$indigoDevelopmentEmulatorName.avd
             path.rel=avd/$indigoDevelopmentEmulatorName.avd
@@ -153,11 +151,11 @@ tasks.create("startDevelopmentEmulator") {
         // the emulators plugin.
         val qemuConfigFile = File(avdDirectory, "$indigoDevelopmentEmulatorName.avd/config.ini")
         val config = qemuConfigFile.readText()
-            // The AVD manager won't recognize an unknown device whose configuration contains
-            // the 'hw.device.name' key. Delete it to make Android Studio consider it.
-            .replace(Regex("hw.device.name=.*"), "") +
-            // Enable input from hardware keyboards, to be able to type from the host.
-            "hw.keyboard=yes\n"
+                // The AVD manager won't recognize an unknown device whose configuration contains
+                // the 'hw.device.name' key. Delete it to make Android Studio consider it.
+                .replace(Regex("hw.device.name=.*"), "") +
+                // Enable input from hardware keyboards, to be able to type from the host.
+                "hw.keyboard=yes\n"
         qemuConfigFile.writeText(config)
     }
     finalizedBy(":startEmulators")
