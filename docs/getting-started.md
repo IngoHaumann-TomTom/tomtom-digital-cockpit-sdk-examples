@@ -126,8 +126,18 @@ In the `Tablet` category, look for an item called `IndiGO_Test_Device`.
 
 ![Android Studio select hardware](images/android_studio_select_hardware_tablet.png "Android Studio select hardware")
 
-Select `IndiGO_Test_Device` and click `Edit Device` to change the device type. In the `Configure Hardware Profile` dialog, 
-change the `Device Type` from "Phone/Tablet" to "Android Automotive". Set the emulator's RAM to 3072MB, then click `Finish`. 
+Select `IndiGO_Test_Device`.
+
+Now the device type of the emulator needs to be changed to "Android Automotive". 
+
+**Note for Mac(book)s with an M1 processor:** There is no Android Automotive emulator available for this chip yet. If you 
+are using this type of computer, skip to the next step and proceed to the step after that to configure the emulator's 
+RAM instead.
+
+To change the device type, click on `Edit Device`. In the `Configure Hardware Profile` dialog, change the `Device Type` 
+from "Phone/Tablet" to "Android Automotive". 
+
+Set the emulator's RAM to 3072MB, then click `Finish`. 
 
 ![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png "Android Studio Configure Hardware Profile device type")
 
@@ -139,8 +149,17 @@ Back on the `Select Hardware` dialog box, there should now be an item called `In
 
 Select this device and choose `Next` to continue creating the AVD.
 
-Select `Android R` (API level 30) as the System Image, downloading it first if necessary (by clicking "Download" next to 
-the Release Name). 
+Now the correct System Image of the emulator needs to be select.
+
+If you are *not* using a Mac(book) with an M1 processor:
+
+* Select `Android R` (API level 30) as the System Image, downloading it first if necessary (by clicking "Download" next to the 
+  Release Name). 
+  
+If you are using a Mac(book) with an M1 processor:
+
+* Select `Other Images` and choose `Android S` for an `arm64-v8a` system image downloading it first if necessary (by clicking 
+  "Download" next to the Release Name).
 
 ![Android Studio system image](images/android_studio_android_r.png "Android Studio system image Android R")
 
@@ -353,5 +372,5 @@ The M1 Apple Silicon chip is not an Intel-based chip and so the hardware acceler
 not work on this processor architecture. Special setup is required to get the Android emulator (not just the 
 IndiGO-specific one) to work. Official support for this chip from Android is still in progress.
 
-See this [blog post](https://medium.com/mobile-app-development-publication/my-journey-to-setup-android-emulator-for-m1-macbook-pro-b8365321b3e7) 
-for a guide on setting up the Android emulator to run on a Mac with an M1 processor.
+In the instructions above, for configuring an Android Virtual Device, there are special exceptions for computers 
+with this processor, please check that you have followed those exceptions.
