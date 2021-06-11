@@ -30,14 +30,14 @@
         android:orientation="vertical"
         tools:layout_marginHorizontal="40dp">
 
-        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:text="@string/frontend_account_login_title"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_color_text_primary"
-            auto:ttTextSizeIdentifier="H3"
+            auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold"
             tools:text="@string/frontend_account_login_title" />
 
@@ -46,14 +46,14 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:text="@string/frontend_account_login_message"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_color_text_secondary"
-            auto:ttTextSizeIdentifier="H4"
+            auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_message" />
 
@@ -73,7 +73,7 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?attr/tt_spacing_xxs"
@@ -82,7 +82,7 @@
             android:text="@string/frontend_account_login_username"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_color_text_secondary"
-            auto:ttTextSizeIdentifier="H4"
+            auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_username" />
 
@@ -105,7 +105,7 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?attr/tt_spacing_xxs"
@@ -114,7 +114,7 @@
             android:text="@string/frontend_account_login_password"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_color_text_secondary"
-            auto:ttTextSizeIdentifier="H4"
+            auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_password" />
 

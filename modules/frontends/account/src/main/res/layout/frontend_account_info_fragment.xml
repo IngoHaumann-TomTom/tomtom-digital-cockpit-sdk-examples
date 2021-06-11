@@ -38,7 +38,7 @@
             android:scaleType="fitStart"
             android:src="@drawable/frontend_account_info_avatar_placeholder" />
 
-        <com.tomtom.tools.android.core.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="?attr/tt_spacing_xxxl"
@@ -46,7 +46,7 @@
             android:text="@{@string/frontend_account_info_welcome_message(viewModel.displayName)}"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_color_text_primary"
-            auto:ttTextSizeIdentifier="H3"
+            auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold" />
 
         <Space
