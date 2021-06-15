@@ -20,7 +20,7 @@ trigger: none
 
 resources:
   pipelines:
-  - pipeline: indigo_trigger
+  - pipeline: indigo_trigger_reset
     project: IVI
     source: IndiGO
     trigger:
