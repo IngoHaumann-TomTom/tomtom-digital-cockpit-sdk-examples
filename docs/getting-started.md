@@ -119,47 +119,55 @@ Android Studio. Click `Create Virtual Device`.
 
 You should now be presented with a list of different Android devices that the emulator can emulate. 
 
-Firstly, the correct emulator device needs to be configured to be an automotive device as, by default, Android devices are 
-categorized as phones or tablets.
+Firstly, the correct emulator device needs to be configured to be an automotive device as, by default, Android devices 
+are categorized as phones or tablets.
 
 In the `Tablet` category, look for an item called `IndiGO_Test_Device`.
 
 ![Android Studio select hardware](images/android_studio_select_hardware_tablet.png "Android Studio select hardware")
 
-Select `IndiGO_Test_Device`.
+Select `IndiGO_Test_Device`, and click `Edit Device...` to the right of the screen.
 
-Now the device type of the emulator needs to be changed to "Android Automotive". 
+If you are using a Mac(book) **without** an M1 processor:
 
-**Note for Mac(book)s with an M1 processor:** There is no Android Automotive emulator available for this chip yet. If you 
-are using this type of computer, skip to the next step and proceed to the step after that to configure the emulator's 
-RAM instead.
+* In the `Configure Hardware Profile` dialog, change the 
+  `Device Type` from "Phone/Tablet" to "Android Automotive".
 
-To change the device type, click on `Edit Device`. In the `Configure Hardware Profile` dialog, change the `Device Type` 
-from "Phone/Tablet" to "Android Automotive". 
+If you are using a Mac(book) **with** an M1 processor:
 
-Set the emulator's RAM to 3072MB, then click `Finish`. 
+* There is no Android Automotive emulator available for this chip yet, so keep the 
+  `Device Type` as "Phone/Tablet"
+
+For both types of processors:
+
+* Set the emulator's RAM to 3072 MB, and then click `Finish`. 
+
 
 ![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png "Android Studio Configure Hardware Profile device type")
 
 The hardware profile of the emulator that will be created should now be configured to be an automotive device.
 
-Back on the `Select Hardware` dialog box, there should now be an item called `IndiGO_Test_Device` in the `Automotive` category.
+Back on the `Select Hardware` dialog box, there should now be an item called `IndiGO_Test_Device` in the `Automotive` 
+category.
+
+If you are using a Mac(book) **with** an M1 processor, select the `Tablet` category instead, to see the `IndiGO_Test_Device`.
 
 ![Android Studio Select Hardware Automotive](images/android_studio_select_hardware_automotive.png "Android Studio Select Hardware Automotive")
 
 Select this device and choose `Next` to continue creating the AVD.
 
-Now the correct System Image of the emulator needs to be select.
+Now the correct System Image of the emulator needs to be selected.
 
-If you are *not* using a Mac(book) with an M1 processor:
+If you are using a Mac(book) **without** an M1 processor:
 
-* Select `Android R` (API level 30) as the System Image, downloading it first if necessary (by clicking "Download" next to the 
-  Release Name). 
-  
-If you are using a Mac(book) with an M1 processor:
+* Select the `x86 Images` tab, and choose `Android R` (API level 30) as the System Image, downloading it first if necessary (by clicking "Download" 
+next to the Release Name). 
 
-* Select `Other Images` and choose `Android S` for an `arm64-v8a` system image downloading it first if necessary (by clicking 
-  "Download" next to the Release Name).
+
+If you are using a Mac(book) **with** an M1 processor:
+
+* Select the `Other Images` tab, and choose `Android S` for an `arm64-v8a` system image downloading it first if necessary (by 
+clicking "Download" next to the Release Name).
 
 ![Android Studio system image](images/android_studio_android_r.png "Android Studio system image Android R")
 
@@ -220,15 +228,16 @@ The IndiGO example app can be built using Android Studio.
 Open the project by going to `File -> Open` and then selecting the `build.gradle.kts` file in the folder that
 you unzipped the source code to.
 
-Gradle Sync should start running automatically and Android Studio will configure the project and download its dependencies. 
-If it does not, start it manually by clicking on the Gradle Sync icon. This step may take a few minutes.
+Gradle Sync should start running automatically and Android Studio will configure the project and download its 
+dependencies. If it does not, start it manually by clicking on the Gradle Sync icon. This step may take a few minutes.
 
 ![Android Studio gradle sync](images/android_studio_gradle_sync.png "Android Studio gradle sync")
 
 Now you can browse the source code in the IDE.
 
-Build and run the application by clicking the green `play` icon. Ensure that the device that the application will run on
-is the IndiGO automotive emulator that was created earlier in this tutorial.
+Build and run the application by clicking on the green `play` icon. Ensure that the device that the application will 
+run on is the IndiGO automotive emulator that was created earlier in this tutorial.
+
 
 ![Android Studio build and run](images/android_studio_build.png "Android Studio build and run")
 
@@ -236,7 +245,7 @@ is the IndiGO automotive emulator that was created earlier in this tutorial.
 
 # Frequently Asked Questions
 
-## When I compile there are a lot of unresolved dependencies
+## 1) When I compile there are a lot of unresolved dependencies
 
 **Missing credentials**
 
@@ -275,7 +284,7 @@ For example:
 
 
 
-## There is no map and e.g. search does not work
+## 2) There is no map and e.g. search does not work
 
 When you start the application for the first time, you should see a map of the world, as a background to the 
 application.
@@ -301,15 +310,13 @@ In Android Studio go to: `Tools -> Avd Manager`. On the right-hand side of each 
 which launches a context menu, press the down arrow (instead of pressing the green Play button), and select 
 `Cold Boot Now` to cold boot the emulator.
 
-For a real device, either make sure the Wi-Fi it is connected to has an internet connection, or a valid SIM connected 
-to a provider.
+For a real device, make sure that it has a working Internet connection.
 
 
+## 3) How do I open the Debug Menu?
 
-## How do I open the Debug Menu?
-
-IndiGO provides a debug menu with various debug/developer options for accessing functionality that would not 
-normally be available to an end-user (for example; starting a route demo).
+IndiGO provides a debug menu with various debug/developer options for accessing functionality that would  
+normally not be available to an end-user (for example: starting a route demo).
 
 Open the debug menu on the emulator by pressing the backtick ("\`") key on your keyboard.
 
@@ -319,7 +326,7 @@ To close the menu, perform the same action again.
 
 
 
-## How do I start a Route Demo?
+## 4) How do I start a Route Demo?
 
 A route demo is a simulation of a drive along a currently planned route on the device, this may be useful to see what 
 happens at the various points along the route, without the need to go for an actual drive.
@@ -362,7 +369,7 @@ which launches a context menu, press the down arrow (instead of pressing the gre
 - Press "START ROUTE DEMO"
 - And close the debug menu
 
-## I am using a Mac(book) with an M1 chip and cannot start the Android emulator
+## 5) I am using a Mac(book) with an M1 chip and cannot start the Android emulator
 
 Attempting to start the Android emulator results in `The emulator process for AVD IndiGO_Emulator was killed` 
 and installing the emulator accelerator package from the Android Update Site results in 
@@ -374,3 +381,32 @@ IndiGO-specific one) to work. Official support for this chip from Android is sti
 
 In the instructions above, for configuring an Android Virtual Device, there are special exceptions for computers 
 with this processor, please check that you have followed those exceptions.
+
+## 6) I am using a Mac and the Android emulator is slow at starting
+
+The emulator for Mac may be slow at starting up on some configurations, especially the first time. To alleviate that 
+problem, there are a few things you can try.
+
+Locate the `config.ini` file for the AVD you're using when running IndiGO in the emulator. If you have followed the 
+instructions [here](#installing-the-indigo-emulator), it should be in this location:
+
+```bash
+~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini
+```
+
+Otherwise it should be one of the other `.avd` directories in `~/.android/avd/`.
+
+Enabling sound may cause the emulator to use a high CPU percentage. If you don't need sound, try disabling it:
+
+```bash
+hw.audioInput=no
+hw.audioOutput=no
+```
+
+Also check that you have sufficient RAM:
+
+```bash
+hw.ramSize=3072
+```
+
+
