@@ -15,7 +15,7 @@ import org.gradle.api.JavaVersion
 
 object Versions {
     // Gradle and plugins
-    const val ARTIFACTORY_PLUGIN = "4.13.0"
+    const val ARTIFACTORY_PLUGIN = "4.24.4"
     const val KOTLIN = "1.4.31"
     const val ANDROID_PLUGIN = "4.2.0"
     const val JVM = "1.8"
