@@ -15,21 +15,17 @@ import com.tomtom.ivi.api.common.experimental.IviExperimental
 import com.tomtom.ivi.api.defaults.activity.DefaultActivity
 import com.tomtom.ivi.api.framework.frontend.FrontendMetadata
 import com.tomtom.ivi.api.framework.iviinstance.IviInstanceId
-import com.tomtom.ivi.api.frontend.userprofile.userProfileFrontendMetadata
 import com.tomtom.ivi.example.frontend.account.accountFrontendMetadata
 
 // TODO(IVI-3021): Add E2E tests.
 class ExampleActivity : DefaultActivity() {
     @OptIn(IviExperimental::class)
     override fun getFrontendMetadata(iviInstanceId: IviInstanceId): Collection<FrontendMetadata> =
-        super.getFrontendMetadata(iviInstanceId) + frontendsToAdd - frontendsToRemove
+        super.getFrontendMetadata(iviInstanceId) + frontendsToAdd
 
     companion object {
         private val frontendsToAdd = listOf(
             accountFrontendMetadata
-        )
-        private val frontendsToRemove = listOf(
-            userProfileFrontendMetadata
         )
     }
 }

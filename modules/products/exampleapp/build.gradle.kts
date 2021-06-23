@@ -13,9 +13,12 @@ import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
 import com.tomtom.ivi.buildsrc.config.services.customContactsServiceHost
 import com.tomtom.ivi.buildsrc.config.services.customRecentCallsServiceHost
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier.Companion.globalRuntime
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.contactsServiceHost
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.recentCallsServiceHost
+import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileFrontend
+import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileMenuItem
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 /**
@@ -24,6 +27,17 @@ import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 ivi {
     application {
         enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                useDefaults()
+                frontends {
+                    remove(userProfileFrontend)
+                }
+                menuItems {
+                    remove(userProfileMenuItem)
+                }
+            }
+        }
         services {
             // Register the account and account settings services in the application.
             addHosts(accountServiceHosts)
