@@ -92,7 +92,11 @@ configuration.
 
 ### Installing the IndiGO emulator
 
-In Android Studio, go to `Tools -> SDK Manager -> SDK Update Sites` and add a
+First add the following file `docs/resources/devices.xml` (from the Example source), to your 
+`~/.android/` folder (or for Windows: `%UserProfile%\.android\`). If Android Studio is running, 
+make sure it is restarted, so that the new file is picked up.
+
+Thereafter in Android Studio, go to `Tools -> SDK Manager -> SDK Update Sites` and add a
 new entry with the following name and URL:
 
 > Name: `TomTom IndiGO Update Site - Android 11 Emulators`
@@ -409,4 +413,35 @@ Also check that you have sufficient RAM:
 hw.ramSize=3072
 ```
 
+
+## 7) RuntimeException: Required support for OpenGL standard derivatives is missing.
+
+When you launch the application on emulator, it crashes and restarts in a never-ending loop. Look 
+in the logcat log, and if you get the following error, you need to set the OpenGL ES API level to 
+3.1 in the emulator.
+
+```bash
+com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLThread 667
+    Process: com.tomtom.ivi.example.product.exampleapp, PID: 5705
+    java.lang.RuntimeException: Required support for OpenGL standard derivatives is missing.
+        at com.tomtom.navkit.map.TomTomNavKitMapJNI.SurfaceAdapter_onSurfaceCreated(Native Method)
+        at com.tomtom.navkit.map.SurfaceAdapter.onSurfaceCreated(SurfaceAdapter.java:170)
+        at com.tomtom.navkit.map.sdk.MapView$Renderer.onSurfaceCreated(MapView.java:320)
+        at android.opengl.GLSurfaceView$GLThread.guardedRun(GLSurfaceView.java:1541)
+        at android.opengl.GLSurfaceView$GLThread.run(GLSurfaceView.java:1272)
+        
+```
+
+
+To fix this:
+
+- Go to the Extended Controls menu of the emulator (this is in the sidebar next to the emulator 
+when it's running), press the three dots at the bottom of the bar.
+- Go down and select Settings on the left hand side.
+- Then select the "Advanced" tab at the top right.
+- It should say "Desktop native OpenGL" to the left, and "Renderer maximum (up to OpenGL ES 3.1)", 
+see picture below.
+- Then restart the emulator, for the settings change to take effect.
+
+![Emulator OpenGL Settings](images/emulator_opengl_settings.png "Emulator OpenGL Settings")
 
