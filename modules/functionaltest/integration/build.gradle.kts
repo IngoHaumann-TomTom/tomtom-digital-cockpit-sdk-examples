@@ -9,13 +9,17 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 
 plugins {
     id("com.tomtom.ivi.platform.activity-test")
 }
+
+apply(from = rootProject.file("iviservicehosts.gradle.kts"))
+
+val accountServiceHosts: List<IviServiceHostConfig> by project.extra
 
 ivi {
     application {

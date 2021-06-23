@@ -296,14 +296,12 @@ class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
 ### Configure deployment
 
-Define a deployment configuration for a service host in the `buildSrc` so it can be used in all
-projects, including tests.
+Define a deployment configuration for a service host in the top level `iviservicehosts.gradle.kts`
+file so it can be used in all projects, including tests.
 
-**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountService.kt**
+**<rootDir>/iviservicehosts.gradle.kts**
 
 ```kotlin
-package com.tomtom.ivi.buildsrc.config.services
-
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
@@ -314,19 +312,21 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfac
  * The configuration specifies the service host implementation and the list of interfaces
  * implemented by this service host.
  */
-val accountServiceHost = IviServiceHostConfig(
-    // Needs to match with the name of the builder class.
-    serviceHostBuilderName = "AccountServiceHostBuilder",
-    // The module with the implementation of the service host builder class.
-    implementationModule = ExampleModuleReference("services_account"),
-    interfaces = listOf(
-        IviServiceInterfaceConfig(
-            serviceName = "AccountService",
-            // The module with the service interface.
-            serviceApiModule = ExampleModuleReference("serviceapis_account")
+val accountServiceHost by extra {
+    IviServiceHostConfig(
+        // Needs to match with the name of the builder class.
+        serviceHostBuilderName = "AccountServiceHostBuilder",
+        // The module with the implementation of the service host builder class.
+        implementationModule = ExampleModuleReference("services_account"),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "AccountService",
+                // The module with the service interface.
+                serviceApiModule = ExampleModuleReference("serviceapis_account")
+            )
         )
     )
-)
+}
 ```
 
 The deployment configuration uses `ExampleModuleReference` that resolves a module name into the
@@ -375,8 +375,15 @@ build script.
 **modules/products/exampleapp/build.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+// Define the service host configs as defined in the top level `iviservicehosts.gradle.kts` file.
+apply(from = rootProject.file("iviservicehosts.gradle.kts"))
+
+// Use Gradle's extra extensions to obtain the `accountServiceHost` config as defined in the
+// top level `iviservicehosts.gradle.kts` file.
+val accountServiceHost: IviServiceHostConfig by project.extra
 
 ivi {
     application {
@@ -397,35 +404,39 @@ Closely related services may be deployed in the same process to reduce IPC overh
 the account settings service, which is used by the account service, and the account service may be
 deployed together.
 
-File `buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/config/services/AccountService.kt` contains
-service host configurations for account services, `accountServiceHost`
-and `accountSettingsServiceHost`. To deploy them in the same process, add runtime configuration to
-the application config.
+The top level `iviservicehosts.gradle.kts` file contains service host configurations for account
+services, `accountServiceHost` and `accountSettingsServiceHost`. To deploy them in the same
+process, add runtime configuration to the application config.
 
 **modules/products/exampleapp/build.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.buildsrc.config.services.accountServiceHost
-import com.tomtom.ivi.buildsrc.config.services.accountSettingsServiceHost
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+// Define the service host configs as defined in the top level `iviservicehosts.gradle.kts` file.
+apply(from = rootProject.file("iviservicehosts.gradle.kts"))
+
+// Use Gradle's extra extensions to obtain the `accountServiceHosts` config as defined in the
+// top level `iviservicehosts.gradle.kts` file.
+val accountServiceHosts: List<IviServiceHostConfig> by project.extra
 
 ivi {
     application {
         enabled = true
         services {
-            // Register the account service in the application.
-            addHost(accountServiceHost)
-            // Register the account settings service in the application.
-            addHost(accountSettingsServiceHost)
+            // Register the account service and the account settings service in the application.
+            addHosts(accountServiceHosts)
         }
         runtime {
             deployments {
-                create(globalRuntime) {
+                create(RuntimeDeploymentIdentifier.globalRuntime) {
                     useDefaults()
 
                     // Deploys the account and account settings services in the same process.
-                    deployServiceHosts(inList(accountServiceHost, accountSettingsServiceHost))
-                        .withProcessName("accountservicehost")
+                    deployServiceHosts(inList(accountServiceHosts))
+                        .withProcessName("account")
                 }
             }
         }
@@ -435,7 +446,7 @@ ivi {
 // The rest of the build script, dependencies, etc.
 ```
 
-Now both hosts run in the same `accountservicehost` process.
+Now both hosts run in the same process.
 
 ## Use the IVI service in the client side code
 

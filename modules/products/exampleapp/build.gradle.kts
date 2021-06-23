@@ -9,17 +9,21 @@
  * immediately return it to TomTom N.V.
  */
 
-import com.tomtom.ivi.buildsrc.config.services.accountServiceHosts
-import com.tomtom.ivi.buildsrc.config.services.customContactsServiceHost
-import com.tomtom.ivi.buildsrc.config.services.customRecentCallsServiceHost
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier.Companion.globalRuntime
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.contactsServiceHost
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.recentCallsServiceHost
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileFrontend
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileMenuItem
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+apply(from = rootProject.file("iviservicehosts.gradle.kts"))
+
+val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+val customContactsServiceHost: IviServiceHostConfig by project.extra
+val customRecentCallsServiceHost: IviServiceHostConfig by project.extra
 
 /**
  * Configures the main application.
@@ -53,11 +57,11 @@ ivi {
         }
         runtime {
             deployments {
-                create(globalRuntime) {
+                create(RuntimeDeploymentIdentifier.globalRuntime) {
                     useDefaults()
                     // Deploys the account and account settings services in the same process.
                     deployServiceHosts(inList(accountServiceHosts))
-                        .withProcessName("accountservicehost")
+                        .withProcessName("account")
                 }
             }
         }
