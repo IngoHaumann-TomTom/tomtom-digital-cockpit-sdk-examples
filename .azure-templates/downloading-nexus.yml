@@ -82,7 +82,7 @@ steps:
 
 - template: download/download-and-verify.yml@devops-templates
   parameters:
-    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.indigoGroup}}/tomtom-indigo-sdk/$(VERSION_PLATFORM)/tomtom-indigo-sdk-$(VERSION_PLATFORM).tar.gz
+    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.indigoGroup}}/tomtom-indigo-sdk/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz
     displayName: Download and verify SDK archive
     userName: $(NEXUS_USERNAME)
     password: $(NEXUS_PASSWORD)
@@ -93,4 +93,4 @@ steps:
     destinationFolder: '$(Build.SourcesDirectory)/downloads/sdk'
     cleanDestinationFolder: false
     overwriteExistingFiles: false
-  displayName: Extract tomtom-indigo-sdk-$(VERSION_PLATFORM).tar.gz
+  displayName: Extract tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz

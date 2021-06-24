@@ -68,11 +68,12 @@ stages:
     container: docker_indigo_build
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
+      PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
     steps:
     - template: .azure-templates/downloading-nexus.yml
     - template: gradle/gradle.yml@devops-templates
       parameters:
-        cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+        cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-$(PATCH_VERSION_EXAMPLES)-sources
         tasks: >-
           assemble
         projectOptions: >-
