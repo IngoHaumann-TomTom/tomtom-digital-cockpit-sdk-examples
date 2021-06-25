@@ -13,7 +13,7 @@ Each frontend is registered with the frontend framework at runtime, by supplying
 
 Each frontend can have one or more panels associated with it. A `Panel` is not bound to a specific `Context`. It encapsulates the `Fragment` displaying the UI.
 
-![Frontend](images/frontend_panel_relation.png)
+![Frontend panel relation](images/frontend_panel_relation.svg)
 
 
 ## Creating a new frontend
