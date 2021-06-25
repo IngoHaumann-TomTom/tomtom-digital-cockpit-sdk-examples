@@ -73,7 +73,7 @@ stages:
     - template: .azure-templates/downloading-nexus.yml
     - template: gradle/gradle.yml@devops-templates
       parameters:
-        cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+        cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
         tasks: >-
           assemble
         projectOptions: >-
