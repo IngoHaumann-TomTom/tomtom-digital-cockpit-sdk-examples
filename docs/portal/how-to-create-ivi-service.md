@@ -283,9 +283,9 @@ import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHostBuilder
 // `ServiceHostBuilder` suffix is mandatory.
 class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-   override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
-       // Return the service interface implementation to run in the host.
-       listOf(StockAccountService(iviServiceHostContext))
+    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+        // Return the service interface implementation to run in the host.
+        listOf(StockAccountService(iviServiceHostContext))
 
     // The builder implementation must at least contain the empty companion object, which will be
     // extended by the IVI service framework.

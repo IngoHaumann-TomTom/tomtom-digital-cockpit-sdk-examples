@@ -4,11 +4,11 @@ title: IndiGO APK installation
 
 # IndiGO APK installation
 
-For installation on hardware and enabling all the functionality, you need to sign the application, 
+For installation on hardware and enabling all the functionality, you need to sign the application,
 install it on the system partition, and do some additional configurations, as explained below.
 
-The IndiGO SDK comes with a prebuilt emulator image and a prebuilt image for our reference 
-hardware (Samsung Galaxy S5E tablet), based on version 18.1 of LineageOS, which in turn is based 
+The IndiGO SDK comes with a prebuilt emulator image and a prebuilt image for our reference
+hardware (Samsung Galaxy S5E tablet), based on version 18.1 of LineageOS, which in turn is based
 on Android 11.
 
 To use IndiGO on your own hardware read through the information below.
@@ -30,39 +30,39 @@ To use IndiGO on your own hardware read through the information below.
 
 ## Automotive vs. plain Android
 
-In principle, IndiGO can run on any Android device with an IndiGO-supported CPU architecture, but 
-the experience will be poorer. If using non-automotive Android, for example, Bluetooth will not 
-behave as expected. This is because standard Android uses Headset and Handsfree server profiles, 
-as the mobile is the audio source that goes to e.g. a BT headset. Android Automotive instead 
-enables the client profile, as the car head unit connects to a mobile instead, and streams from 
-it. Therefore, do not use Bluetooth features such as calling, companion app integration, or media 
-streaming. 
+In principle, IndiGO can run on any Android device with an IndiGO-supported CPU architecture, but
+the experience will be poorer. If using non-automotive Android, for example, Bluetooth will not
+behave as expected. This is because standard Android uses Headset and Handsfree server profiles,
+as the mobile is the audio source that goes to e.g. a BT headset. Android Automotive instead
+enables the client profile, as the car head unit connects to a mobile instead, and streams from
+it. Therefore, do not use Bluetooth features such as calling, companion app integration, or media
+streaming.
 
 Also, support for secondary displays like a cluster display, and AC controls, is missing.
 
-Android Automotive will support all car-related functionality such as calling, media streaming and 
+Android Automotive will support all car-related functionality such as calling, media streaming and
 air conditioning controls.
 
 More limitations are present in certain domains. Read below for more information.
 
 ## System signature vs. Root access
 
-To enable some features, especially regarding media, the application needs to be signed and 
-installed on the system partition. You can read more about privileged and system permissions 
+To enable some features, especially regarding media, the application needs to be signed and
+installed on the system partition. You can read more about privileged and system permissions
 [here](https://source.android.com/devices/tech/config/perms-allowlist).
 
 **Sign the IndiGO APK with the same key that was used for signing the system image.**
 
-The Indigo platform debug key and password files (used for the pre-created tablet and emulator 
-images) are in the `keystore/` directory in the example source. If you're not using the 
-pre-created tablet or emulator images, you can simply replace these with your own platform keys, 
+The Indigo platform debug key and password files (used for the pre-created tablet and emulator
+images) are in the `keystore/` directory in the example source. If you're not using the
+pre-created tablet or emulator images, you can simply replace these with your own platform keys,
 and rebuild.
 
 **Then push the APK to the system partition**
 
 - Remount the system partition to be writeable.
-- Copy the `privapp-permissions-tomtom.xml` (found in the `permissions/` folder) file to 
-`/system/etc/permissions` on the device.
+- Copy the `privapp-permissions-tomtom.xml` (found in the `permissions/` folder) file to
+  `/system/etc/permissions` on the device.
 - Install the IndiGO APK to `/system/priv-app` on the device.
 
 ```bash
@@ -72,14 +72,14 @@ $ adb shell mkdir /system/priv-app/TomTomIndigo
 $ adb push integration_products_indigo.apk /system/priv-app/TomTomIndigo/
 ```
 
-If it's not possible to sign the APK with the system signature, there will be the following 
+If it's not possible to sign the APK with the system signature, there will be the following
 limitations (note that you should still follow the two other steps):
-- Media being played by the system will not be visible in the process bar, nor will it be possible 
-to control it.
-- The media source Spotify will never work: IndiGO needs to be signed with platform keys for 
-Spotify to communicate with it.
+- Media being played by the system will not be visible in the process bar, nor will it be possible
+  to control it.
+- The media source Spotify will never work: IndiGO needs to be signed with platform keys for
+  Spotify to communicate with it.
 
-To work around the first problem, enable media notification access. This fixes access to all media 
+To work around the first problem, enable media notification access. This fixes access to all media
 sources except Spotify.
 
 ```bash
@@ -87,53 +87,53 @@ $ adb root
 $ adb shell cmd notification allow_listener com.tomtom.ivi.integration.product.indigo/com.tomtom.ivi.stock.service.media.MediaNotificationListener
 ```
 
-Spotify only communicates with system apps signed with the platform signature, so if your APK is 
-unsigned or not a system app, this command will only allow you to control Spotify playback started 
+Spotify only communicates with system apps signed with the platform signature, so if your APK is
+unsigned or not a system app, this command will only allow you to control Spotify playback started
 with the default AOSP media player, but not to browse Spotify content from within IndiGO.
 
 ## Domain-specific notes
 
 ### Text-To-Speech
 
-Since Android Automotive doesn't come with a TTS engine by default, you will need to install a TTS 
+Since Android Automotive doesn't come with a TTS engine by default, you will need to install a TTS
 engine APK for Messaging TTS and Navigation voice instructions to work.
 
-There are many TTS engines available for Android, our reference hardware currently uses the Google 
+There are many TTS engines available for Android, our reference hardware currently uses the Google
 Text-to-Speech application.
 
 ### Multimedia sources
 
-IndiGO supports any Android Automotive media source that can also be found in the Android 
+IndiGO supports any Android Automotive media source that can also be found in the Android
 Automotive Play Store; additionally, any media app which supports Android Auto can be used.
 
-It is not yet possible to log in to multimedia apps (such as IHeartRadio or Spotify) from within 
+It is not yet possible to log in to multimedia apps (such as IHeartRadio or Spotify) from within
 IndiGO.
 
 On Automotive Android, it is possible to log in to the source by tapping on it in the app launcher.
 
-From plain Android it is only possible to do so via a media controller app, like the one from 
+From plain Android it is only possible to do so via a media controller app, like the one from
 Google (https://github.com/googlesamples/android-media-controller)
 
-If the hardware and AOSP build both support Radio (FM/AM/DAB), the radio multimedia source in 
-IndiGO should also work (albeit with a confusing user interface, as no specialization work for 
+If the hardware and AOSP build both support Radio (FM/AM/DAB), the radio multimedia source in
+IndiGO should also work (albeit with a confusing user interface, as no specialization work for
 radio has yet been made).
 
 ### Phone
 
-To automatically configure IndiGO as the default dialer app, set Indigo as the default dialer in 
+To automatically configure IndiGO as the default dialer app, set Indigo as the default dialer in
 system settings (Settings->Apps & Notifications->Default apps).
 
-Pair a phone with Bluetooth and ensure that all necessary profiles (such as Phone calls, Media 
-audio, Text messages and Contact Sharing) are enabled by tapping on the phone name in settings. 
+Pair a phone with Bluetooth and ensure that all necessary profiles (such as Phone calls, Media
+audio, Text messages and Contact Sharing) are enabled by tapping on the phone name in settings.
 You should thereafter be able to use the phone from Indigo.
 
 ### Using 3rd party functionality
 
 #### Using Spotify
 
-In order to use the Spotify Media Player you need to create and use a Spotify account. On whatever 
-device you're installing our APK on, install and open the Spotify application for Android 
-Automotive (spotify-aam-release-4.2.1-20210308.apk) and login with your Spotify credentials. As 
+In order to use the Spotify Media Player you need to create and use a Spotify account. On whatever
+device you're installing our APK on, install and open the Spotify application for Android
+Automotive (spotify-aam-release-4.2.1-20210308.apk) and login with your Spotify credentials. As
 soon as you are logged in you can start using Spotify in IndiGO.
 
 #### 3rd party application binaries
