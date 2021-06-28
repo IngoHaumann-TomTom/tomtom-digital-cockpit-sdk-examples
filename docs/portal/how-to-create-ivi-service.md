@@ -6,15 +6,15 @@ An IVI application consists of IVI services for the business logic, and frontend
 combines layouts, panels, and view models. Panels and associated view models are rather short-living
 components that are created to display something on screen, and are destroyed as soon as content
 disappears. Services live much longer, almost matching the application lifetime. Apart from
-Application Platform services, there can be application services that work with dedicated frontends.
-Such services may suit as a model for a frontend.
+Application Platform services, there can be application services that work with dedicated
+frontends. Such services may suit as a model for a frontend.
 
 ## Overview of the example application
 
-The example application adds the account frontend for the default IndiGO application. The account
-frontend adds new panels to show account information or login page, which can be invoked by a menu
-item. Account status is managed by the account service. The source code for the frontend and service
-can be found at [modules](/modules).
+The example application replaces IndiGO's user profile frontend with the account frontend.
+The account frontend adds new panels to show account information or a login page, which can be
+invoked by a menu item. Account status is managed by the account service. The source code for the
+frontend and service can be found at [modules](/modules).
 
 ## The plan
 
@@ -259,17 +259,18 @@ The deployment configuration is defined in the build script of the main or test 
 
 ### Create a service host
 
-An IVI service needs a host to run. A host may run multiple services. The IVI service framework
-provides the abstract builder class `IviServiceHostBuilder` to build a service host. There is also
-the generic implementation of a service host that takes a list of service interface implementations.
-The generic implementation can be created by implementing the `SimpleIviServiceHostBuilder`.
+An IVI service needs a host to run. A host may implement multiple service interfaces. The IVI
+service framework provides the abstract builder class `IviServiceHostBuilder` to build a service
+host. There is also the generic implementation of a service host that takes a list of service
+interface implementations. The generic implementation can be created by implementing the
+`SimpleIviServiceHostBuilder`.
 
-The builder class must at least contain the empty companion object, which will be extended by the
+The builder class must at least contain an empty companion object, which will be extended by the
 IVI service framework. Kotlin does not allow extending the companion object if it has not been
 declared.
 
-The builder class need to have the mandatory "ServiceHostBuilder" suffix to allow it to be used
-by the generated deployment code.
+The builder class must follow a specific naming convention. It must have a "ServiceHostBuilder"
+suffix and must start with an upper case character.
 
 **src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHostBuilder.kt**
 
@@ -287,16 +288,16 @@ class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
         // Return the service interface implementation to run in the host.
         listOf(StockAccountService(iviServiceHostContext))
 
-    // The builder implementation must at least contain the empty companion object, which will be
+    // The builder implementation must at least contain an empty companion object, which will be
     // extended by the IVI service framework.
     // Kotlin does not allow extending the companion object if it has not been declared.
     companion object
 }
 ```
 
-### Configure deployment
+### Configure the deployment
 
-Define a deployment configuration for a service host in the top level `iviservicehosts.gradle.kts`
+Define an IVI service host implementation in the top level `iviservicehosts.gradle.kts`
 file so it can be used in all projects, including tests.
 
 **<rootDir>/iviservicehosts.gradle.kts**
@@ -329,48 +330,12 @@ val accountServiceHost by extra {
 }
 ```
 
-The deployment configuration uses `ExampleModuleReference` that resolves a module name into the
-full-qualified package. It is defined once and used for all configurations.
-Create `ExampleModuleReference` in `buildSrc`.
+The service host build configuration uses the `ExampleModuleReference` class to resolve a module
+name into the full-qualified package. It is defined once and used for all configurations. See
+[How to integrate Indigo in Gradle](../how-to-integrate-indigo-in-gradle.md#module-references)
+for details.
 
-**buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/ExampleModuleReference.kt**
-
-```kotlin
-package com.tomtom.ivi.buildsrc.dependencies
-
-import com.tomtom.ivi.gradle.api.common.dependencies.ModuleReference
-
-class ExampleModuleReference(moduleName: String) : ModuleReference(
-    groupName = GROUP_NAME,
-    moduleName = moduleName,
-    packageName = convertModuleNameToPackageName(moduleName)
-) {
-    companion object {
-        private fun convertModuleNameToPackageName(moduleName: String): String {
-            val hierarchy = moduleName.split("_", limit = 2)
-
-            val category = hierarchy[0].let {
-                when (it) {
-                    "services" -> "service"
-                    "serviceapis" -> "serviceapi"
-                    else -> it
-                }
-            }
-            val module = hierarchy[1]
-            return "$GROUP_NAME.$ROOT_NAME.$category.$module"
-        }
-
-        private const val ROOT_NAME = "example"
-        private const val GROUP_NAME = "com.tomtom.ivi"
-    }
-}
-```
-
-The `ExampleModuleReference.convertModuleNameToPackageName` resolves a module's name
-like `serviceapis_account` into `com.tomtom.ivi.example.serviceapi.account`.
-
-Then create the deployment configuration for the account service host in the main application's
-build script.
+Register the service host build configuration in the main application's build script.
 
 **modules/products/exampleapp/build.gradle.kts**
 
@@ -397,56 +362,6 @@ ivi {
 
 // The rest of the build script, dependencies, etc.
 ```
-
-### Deploy multiple service hosts in the same process
-
-Closely related services may be deployed in the same process to reduce IPC overhead. For example,
-the account settings service, which is used by the account service, and the account service may be
-deployed together.
-
-The top level `iviservicehosts.gradle.kts` file contains service host configurations for account
-services, `accountServiceHost` and `accountSettingsServiceHost`. To deploy them in the same
-process, add runtime configuration to the application config.
-
-**modules/products/exampleapp/build.gradle.kts**
-
-```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
-
-// Define the service host configs as defined in the top level `iviservicehosts.gradle.kts` file.
-apply(from = rootProject.file("iviservicehosts.gradle.kts"))
-
-// Use Gradle's extra extensions to obtain the `accountServiceHosts` config as defined in the
-// top level `iviservicehosts.gradle.kts` file.
-val accountServiceHosts: List<IviServiceHostConfig> by project.extra
-
-ivi {
-    application {
-        enabled = true
-        services {
-            // Register the account service and the account settings service in the application.
-            addHosts(accountServiceHosts)
-        }
-        runtime {
-            deployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-
-                    // Deploys the account and account settings services in the same process.
-                    deployServiceHosts(inList(accountServiceHosts))
-                        .withProcessName("account")
-                }
-            }
-        }
-    }
-}
-
-// The rest of the build script, dependencies, etc.
-```
-
-Now both hosts run in the same process.
 
 ## Use the IVI service in the client side code
 

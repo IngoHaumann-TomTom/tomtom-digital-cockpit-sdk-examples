@@ -16,9 +16,10 @@ import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.tomtom.ivi.core.serviceapi.menu.MenuServiceMock
-import com.tomtom.ivi.example.frontend.account.accountFrontendMetadata
+import com.tomtom.ivi.example.frontend.account.accountMenuItem
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceApi
+import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.tools.servicemockextensions.menuservice.injectMenuItemClicked
 import com.tomtom.ivi.tools.testing.frontend.FrontendTestCase
@@ -31,9 +32,7 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class AccountFrontendTest : FrontendTestCase(
-    testFrontendMetadataConfig = defaultTestFrontendMetadataConfig + accountFrontendMetadata
-) {
+class AccountFrontendTest : FrontendTestCase() {
     // An API wrapper cannot be created before test environment is fully configured, hence create
     // it later with @Before method.
     private lateinit var accountServiceApi: AccountServiceApi
@@ -63,7 +62,9 @@ class AccountFrontendTest : FrontendTestCase(
     @Test
     fun frontendOpensInfoPanelIfUserHasLoggedIn() {
         // GIVEN The user has logged in.
-        runBlocking { accountServiceApi.coLogIn("username", "password") }
+        runBlocking {
+            accountServiceApi.coLogIn("username", SensitiveString("password"))
+        }
 
         // WHEN The frontend is invoked from the menu.
         tapAccountMenuItem()
@@ -86,7 +87,9 @@ class AccountFrontendTest : FrontendTestCase(
     @Test
     fun frontendOpensLoginPanelIfUserHasLoggedOut() {
         // GIVEN The user has logged in.
-        runBlocking { accountServiceApi.coLogIn("username", "password") }
+        runBlocking {
+            accountServiceApi.coLogIn("username", SensitiveString("password"))
+        }
         // AND The frontend is invoked from the menu.
         tapAccountMenuItem()
         // AND The info view is open.
@@ -108,7 +111,7 @@ class AccountFrontendTest : FrontendTestCase(
     }
 
     private fun tapAccountMenuItem() = withIviServiceMockOnTestThread(MenuServiceMock::class) {
-        injectMenuItemClicked(accountFrontendMetadata.launchMenuItem)
+        injectMenuItemClicked(accountMenuItem)
     }
 
     companion object {

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Frontend plugins are the User Interface (UI) modules of the IndiGO platform. They are independent 
+Frontend plugins are the User Interface (UI) modules of the IndiGO platform. They are independent
 modules and can be included independently in the IndiGO platform at build time. As the platform is 
 deployed as one APK, the frontend plugins all run in the UI thread. Frontend plugins are typically 
 kept free of business logic, which is instead implemented in a service plugin (which also run in 
@@ -21,21 +21,30 @@ which describes the frontend characteristics. Each metadata contains details suc
 Each frontend can have one or more panels associated with it. A `Panel` is not bound to a specific 
 `Context`. It encapsulates the `Fragment` displaying the UI.
 
-![Frontend panel relation](images/frontend_panel_relation.svg)
+A menu item can be associated to a `Frontend`. This menu item is added to the main menu to open
+the `Frontend`'s main task panel and can be used to create the frontend on demand.
 
+Each frontend can have one or more panels associated with it. A `Panel` is not bound to a specific
+`Context`. It encapsulates the `Fragment` displaying the UI.
+
+![Frontend panel relation](images/frontend_panel_relation.svg)
 
 ## Creating a new frontend
 
-In this example, we will create a new frontend for managing an account on the device. It will 
-provide a login screen where you can enter a username and a password to login, and if the user is 
-logged in, you have the option to logout again.
+In this example, we will create a new frontend for managing an account on the device. It will
+provide a login screen where you can enter a username and a password to login, and if the user is
+logged in, you have the option to logout again. We will also add a menu item that will be
+associated to the new frontend. The final step will be to let the new frontend replace IndiGO's
+user profile frontend.
 
-Creating a frontend consists of a number of steps:
+Creating a frontend and the menu item consists of a number of steps:
 
-- [Create the `Frontend` class, deriving the abstract `Frontend` class (see API doc).](#creating-the-frontend-class)
-- [Create the `FrontendBuilder` class (see API doc).](#creating-the-frontendbuilder-class)
-- [Create the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
-- [Define and register the metadata.](#defining-the-metadata)
+- [Creating the `Frontend` class, deriving the abstract `Frontend` class (see API doc).](#creating-the-frontend-class)
+- [Creating the `FrontendBuilder` class (see API doc).](#creating-the-frontendbuilder-class)
+- [Creating the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
+- [Creating the `MenuItem` instance.](#creating-the-menu-item)
+- [Defining the frontend and the menu item build config.](#defining-the-frontend-and-the-menu-item-build-config)
+- [Registering the frontend and the menu item build config.](#registering-the-frontend-and-the-menu-item-build-config)
 
 ### Creating the frontend class
 
@@ -50,8 +59,8 @@ class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendConte
 }
 ```
 
-There are no abstract methods in the `Frontend` class, but some methods, like the lifecycle ones, 
-are good to consider implementing.
+There are no abstract methods in the `Frontend` class, but some methods, like the lifecycle ones
+(see below), are good to consider implementing.
 
 #### Frontend lifecycle methods
 
@@ -62,19 +71,15 @@ are good to consider implementing.
 
 There are two callbacks for when an event is triggered to show a `TaskPanel` on the screen.
 
-- `createMainTaskPanel` - overridde to display a single `TaskPanel` when the UI is shown.
-- `openTaskPanels` - overridde when more control is needed over which panels should be shown.
+- `createMainTaskPanel` - override it to display a single `TaskPanel` when the UI is shown.
+- `openTaskPanels` - override it when more control is needed over which panels should be shown.
 
-The first one (``createMainTaskPanel``) should be overridden if a frontend only wants to display a 
-single `TaskPanel` at a time when the UI is shown. The second one (`openTaskPanels`) should be 
-overridden if more flexibility is needed in deciding what panels should be opened.
-__Note:__ that only one method should be overridden at a time, as only one of them will be called. 
-The order is not guaranteed for future platform versions.
+**Note:** A frontend class must override only one of the two methods.
 
 ### Creating the FrontendBuilder class
 
-Add a `AccountFrontendBuilder` class, derived from `FrontendBuilder` class. Override the `build()` 
-method in the class and return an instance of the `AccountFrontend` class.
+Add an `AccountFrontendBuilder` class, derived from `FrontendBuilder` class. Override the `build()`
+method in the class and return a new instance of the `AccountFrontend` class.
 
 ```kotlin
 ...
@@ -87,18 +92,21 @@ class AccountFrontendBuilder() {
 }
 ```
 
+The builder class must follow a specific naming convention. It must have a "FrontendBuilder"
+suffix and must start with an upper case character.
+
 ### Creating the panel
 
-There are a number of specialised `Panel` classes that can be used in the platform (see `Panel` API 
-documentation). For this example we will create a `Panel` class inheriting from the `TaskPanel` 
-class.
+There are a number of specialised `Panel` classes that can be used in the platform (see `Panel`
+API documentation). For this example we will create a `Panel` class inheriting from the
+`TaskPanel` class.
 
-A `TaskPanel` is typically launched by tapping one of the menu buttons, like opening Contacts; or 
-some other UI event, like opening the Climate panel. It encapsulates a task that the user may 
+A `TaskPanel` is typically launched by tapping one of the menu items, like opening Contacts;
+or some other UI event, like opening the Climate panel. It encapsulates a task that the user may
 perform, typically away from the map, going back to the map when the task is finished.
 
-Derive from the `TaskPanel` class, and override the `createInitialFragmentInitializer()` method, 
-which should return an instance of the `Fragment` class (described further down).
+Derive from the `TaskPanel` class, and override the `createInitialFragmentInitializer()` method,
+which should return a new instance of the `Fragment` class (described further down).
 
 ```kotlin
 class AccountLoginPanel(frontendContext: FrontendContext)
@@ -109,8 +117,8 @@ class AccountLoginPanel(frontendContext: FrontendContext)
 }
 ```
 
-Also create a `ViewModel` class, derived from the `FrontendViewModel` class. The `ViewModel` is the 
-ViewModel in the Model-View-ViewModel (MVVM) pattern, which role is to expose streams of data 
+Also create a `ViewModel` class, derived from the `FrontendViewModel` class. The `ViewModel` is the
+ViewModel in the Model-View-ViewModel (MVVM) pattern, which role is to expose streams of data
 relevant to the view and streams of events to the model.
 
 ```kotlin
@@ -126,7 +134,7 @@ class AccountLoginViewModel(panel: AccountLoginPanel)
 }
 ```
 
-Finally create a `Fragment` class using the newly created `Panel` and `ViewModel` classes, 
+Finally create a `Fragment` class using the newly created `Panel` and `ViewModel` classes,
 overriding the `viewFactory` property. The IndiGO platform is designed to work well with the 
 MVVM pattern, and this is used in the `onCreateView` callback as a convenience to inflate a data 
 binding layout and using that in the fragment. If an `onCreateView` custom implementation still is 
@@ -142,51 +150,179 @@ class AccountLoginFragment
 }
 ```
 
-### Defining the metadata
+### Creating a menu item
 
-Create the metadata used to register the `Frontend`, specifying the options relevant to your 
-`Frontend`. This example will add a new icon to the menu, and it will be started on demand. See 
-`FrontendMetadata` for a complete list of options.
+In this tutorial a menu item is added to the main menu that will open the main task panel of the
+`AccountFrontend`. To add the menu item to the main menu we need a `MenuItem` instance.
+
+Create an `AccountMenuItem.kt` file, add a property in the file and assign it a `MenuItem`
+instance. The name of the property must follow a specific naming convention. It must have a
+"MenuItem" suffix and must start with a lower case character.
 
 ```kotlin
-val accountFrontendMetadata = FrontendMetadata(
-    "AccountFrontend"
-    FrontendStartupPolicy.LAUNCH_FRONTEND_ON_DEMAND,
-    MenuItem(
-        AccountFrontend::class.qualifiedName!!,
-        R.drawable.frontend_account_menu_item_icon,
-        R.string.frontend_account_menu_item_name
-    )
-) { AccountFrontendBuilder() }
+val accountMenuItem = MenuItem(
+    AccountFrontend::class.qualifiedName!!,
+    R.drawable.frontend_account_menu_item_icon,
+    R.string.frontend_account_menu_item_name
+)
 ```
 
-This metadata can now be used to add this `Frontend` plugin to the IndiGO application.
+The `MenuItem` constructor takes a unique ID, a `DrawableResolver` and a `StringResolver`. The
+latter two resolve the icon and the name of the menu item. In the above example the resolvers are
+defined as Android resources.
 
-#### Adding metadata to the application
+### Defining the frontend and menu item build config
 
-Each system frontend that is part of the IndiGO platform has an associated `FrontendMetadata` 
-object, which is added to a default collection of `Frontend`s (held in `defaultFrontendMetadata`). 
-This can be used as a base for adding a new `Frontend` or removing unwanted frontends.
+Create the frontend and menu item build configurations. These configuration will be used to
+register the frontend and the menu item to the framework at build time.
 
-In the example application, the newly created frontend replaces the system user-profile frontend.
+Define a frontend implementation and a menu item implementation in the top-level
+`frontends-and-menuitems.gradle.kts` file so it can be used in all projects, including tests.
+
+**<rootDir>/frontends-and-menuitems.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.api.defaults.frontends.defaultFrontendMetadata
+import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendCreationPolicy
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
 
-class ExampleActivity : DefaultActivity() {
-    override val frontendMetadata: Collection<FrontendMetadata> =
-        defaultFrontendMetadata + frontendsToAdd - frontendsToRemove
+/**
+ * Defines the implementation and the configuration of the account frontend.
+ */
+val accountFrontend by extra {
+    FrontendConfig(
+        // Needs to match with the name of the builder class.
+        frontendBuilderName = "AccountFrontendBuilder",
+        // The module containing the frontend implementation.
+        implementationModule = ExampleModuleReference("frontends_account"),
+        // Create the frontend on demand. It will be created when the menu item is selected.
+        creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+    )
+}
 
-    companion object {
-        private val frontendsToAdd = listOf(
-            accountFrontendMetadata
-        )
-        private val frontendsToRemove = listOf(
-            userProfileFrontendMetadata
-        )
-    }
+val accountMenuItem by extra {
+    // We can use `FrontendConfig.toMenuItem()` as the menu item is defined in the same module as
+    // the frontend implementation. The argument given needs to match with the property that
+    // was created earlier in the tutorial.
+    accountFrontend.toMenuItem("accountMenuItem")
 }
 ```
+
+The above build configurations use the `ExampleModuleReference` to resolve a module name into
+the full-qualified package. It is defined once and used for all configurations. See
+[How to integrate Indigo in Gradle](../how-to-integrate-indigo-in-gradle.md#module-references)
+for details.
+
+### Registering the frontend and the menu item build config
+
+The last step is to register the frontend and the menu item to build configurations in the main
+application's build script.
+
+**modules/products/exampleapp/build.gradle.kts**
+
+```kotlin
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+// Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
+// file.
+apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
+
+// Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
+// defined in the top-level `frontends-and-menuitems.gradle.kts` file.
+val accountFrontend: FrontendConfig by project.extra
+val accountMenuItem: MenuItemConfig by project.extra
+
+plugins {
+    // Apply the plugin to use to default frontends and menu items.
+    id("com.tomtom.ivi.defaults.core")
+}
+
+ivi {
+    application {
+        enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                // Use the default frontends and menu items as defined by the
+                // `com.tomtom.ivi.defaults.core` plugin.
+                useDefaults()
+                frontends {
+                    // Register the `accountFrontend`.
+                    add(accountFrontend)
+                }
+                menuItems {
+                    // Register the `accountMenuItem` and associate it with the `accountFrontend`.
+                    addLast(accountMenuItem to accountFrontend)
+                }
+            }
+        }
+    }
+}
+
+// The rest of the build script, dependencies, etc.
+```
+
+The above example adds the `accountFrontend` and the `accountMenuItem` to the default IVI
+instance. A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI
+instance. See [How to configure the runtime deployment](../how-to-configure-the-runtime-deployment.md)
+for more details about IVI instance configurations.
+
+The final step is to let the new frontend replace IndiGO's user profile frontend. For this
+we have to use 'replace' instead of `add`. The same applies for the user profile menu item.
+
+**modules/products/exampleapp/build.gradle.kts**
+
+```kotlin
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileFrontend
+import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileMenuItem
+import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+
+// Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
+// file.
+apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
+
+// Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
+// defined in the top-level `frontends-and-menuitems.gradle.kts` file.
+val accountFrontend: FrontendConfig by project.extra
+val accountMenuItem: MenuItemConfig by project.extra
+
+plugins {
+    // Apply the plugin to use to default frontends and menu items.
+    id("com.tomtom.ivi.defaults.core")
+}
+
+ivi {
+    application {
+        enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                // Use the default frontends and menu items as defined by the
+                // `com.tomtom.ivi.defaults.core` plugin.
+                useDefaults()
+                frontends {
+                    // Replace the IndiGO's user profile frontend with the `accountFrontend`.
+                    replace(userProfileFrontend, accountFrontend)
+                }
+                menuItems {
+                    // Replace the IndiGO's user profile menu item with the `accountMenuItem`
+                    // and associate it with the `accountFrontend`.
+                    replace(userProfileMenuItem, accountMenuItem to accountFrontend)
+                }
+            }
+        }
+    }
+}
+
+// The rest of the build script, dependencies, etc.
+```
+
+The above example replaces the `userProfileFrontend` with the `accountFrontend` and replaces
+the `userProfileMenuItem` with the `accountMenuItem`.
 
 ## Copyright
 

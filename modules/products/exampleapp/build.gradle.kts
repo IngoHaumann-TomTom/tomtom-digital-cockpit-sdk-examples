@@ -10,8 +10,10 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
 import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.contactsServiceHost
 import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.recentCallsServiceHost
@@ -25,6 +27,11 @@ val accountServiceHosts: List<IviServiceHostConfig> by project.extra
 val customContactsServiceHost: IviServiceHostConfig by project.extra
 val customRecentCallsServiceHost: IviServiceHostConfig by project.extra
 
+apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
+
+val accountFrontend: FrontendConfig by project.extra
+val accountMenuItem: MenuItemConfig by project.extra
+
 /**
  * Configures the main application.
  */
@@ -35,10 +42,10 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 useDefaults()
                 frontends {
-                    remove(userProfileFrontend)
+                    replace(userProfileFrontend, accountFrontend)
                 }
                 menuItems {
-                    remove(userProfileMenuItem)
+                    replace(userProfileMenuItem, accountMenuItem to accountFrontend)
                 }
             }
         }
