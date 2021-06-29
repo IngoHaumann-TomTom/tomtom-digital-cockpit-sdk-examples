@@ -210,41 +210,39 @@ subprojects {
         }
     }
 
-    if (isApplicationProject || isAndroidTestProject) {
-        apply(plugin = "ivi-signing-config")
-        apply(plugin = "com.tomtom.navtest")
+    apply(plugin = "ivi-signing-config")
+    apply(plugin = "com.tomtom.navtest")
 
-        configure<NavTestAndroidProjectExtension> {
-            // Applies for functional tests under "androidTest" directory.
+    configure<NavTestAndroidProjectExtension> {
+        // Applies for functional tests under "androidTest" directory.
+        androidTest {
+            enabled = true
+            // Tags are set by subprojects.
+
+            // Allow specifying the test-class via command-line
+            findProperty("testClass")?.let {
+                instrumentationArguments.className = it as String
+            }
+        }
+
+        pluginManager.withPlugin("com.tomtom.ivi.platform.activity-test") {
             androidTest {
+                testTags += "integration"
+                timeout = 10 * 60
+            }
+        }
+        pluginManager.withPlugin("com.tomtom.ivi.platform.service-test") {
+            androidTest {
+                testTags += "integration"
+            }
+        }
+
+        if (!isAndroidTestProject) {
+            // Applies for unit tests under "test" directory.
+            unit {
                 enabled = true
-                // Tags are set by subprojects.
-
-                // Allow specifying the test-class via command-line
-                findProperty("testClass")?.let{
-                    instrumentationArguments.className = it as String
-                }
-            }
-
-            pluginManager.withPlugin("com.tomtom.ivi.platform.activity-test") {
-                androidTest {
-                    testTags += "integration"
-                    timeout = 10 * 60
-                }
-            }
-            pluginManager.withPlugin("com.tomtom.ivi.platform.service-test") {
-                androidTest {
-                    testTags += "integration"
-                }
-            }
-
-            if (!isAndroidTestProject) {
-                // Applies for unit tests under "test" directory.
-                unit {
-                    enabled = true
-                    testTags += "unit"
-                    variantFilter = { it.buildType.name == BuilderConstants.DEBUG }
-                }
+                testTags += "unit"
+                variantFilter = { it.buildType.name == BuilderConstants.DEBUG }
             }
         }
     }
