@@ -15,6 +15,7 @@ import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.api.framework.iviservice.queueOrRun
+import com.tomtom.ivi.example.account.StaticConfiguration.onlineAccountEndpointConfigKey
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
@@ -31,7 +32,7 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
 
     private val onlineAccountEndpoint =
         iviServiceHostContext.staticConfigurationProvider.getStaticConfiguration(
-            com.tomtom.ivi.example.account.onlineAccountEndpoint
+            onlineAccountEndpointConfigKey
         )
 
     private val settingsServiceApi = AccountSettingsService.createApi(this, iviServiceProvider)
@@ -79,7 +80,7 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     }
 
     override suspend fun logOut() {
-        activeAccount?.let{
+        activeAccount?.let {
             mutableLoggedInAccounts.remove(it.accountUid)
             activeAccount = null
             settingsServiceApi.coUpdateActiveAccount(null)

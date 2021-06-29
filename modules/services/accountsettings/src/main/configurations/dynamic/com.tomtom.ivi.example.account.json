@@ -3,7 +3,7 @@
   "packageName": "com.tomtom.ivi.example.account",
   "keys": [
     {
-      "name": "onlineAccountValidPeriodInDays",
+      "name": "onlineLoginValidPeriodInDaysConfigKey",
       "description": "Number of days that an online login stays valid.",
       "type": "Long",
       "values": [
