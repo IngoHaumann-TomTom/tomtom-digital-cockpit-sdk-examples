@@ -21,19 +21,7 @@ import java.io.File
  */
 class IndigoUpdateHelper(private val project: Project) {
 
-    private val latestIndigoVersion: String =
-        project.configurations.create("latestIndigoReleaseConfiguration")
-            .apply {
-                val latestIndigoDependency = project.allprojects
-                    .flatMap { it.configurations }
-                    .flatMap { it.dependencies }
-                    .first { it.group == PLATFORM_GROUP && it.name.startsWith("api_") }
-                    .let { project.dependencies.create("${it.group}:${it.name}:latest.release") }
-                dependencies.add(latestIndigoDependency)
-            }
-            .resolvedConfiguration.firstLevelModuleDependencies
-            .first()
-            .moduleVersion
+    private val latestIndigoVersion = project.property("latestIndigoVersion") as String
 
     /*
      * Generates a new Versions.kt file with the up-to-date IndiGO platform version.

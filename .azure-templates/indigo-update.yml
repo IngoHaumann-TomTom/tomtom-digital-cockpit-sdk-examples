@@ -31,6 +31,8 @@ steps:
     parameters:
       tasks: >-
         generateIndigoLibrariesVersionFile
+      projectOptions: >-
+        -PlatestIndigoVersion=$(PRODUCT_VERSION)
       displayName: 'Check for new IndiGO library versions'
 
   - bash: |
