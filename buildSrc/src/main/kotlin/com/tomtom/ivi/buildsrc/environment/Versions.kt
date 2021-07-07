@@ -17,10 +17,10 @@ object Versions {
     // Gradle and plugins
     const val ARTIFACTORY_PLUGIN = "4.24.4"
     const val KOTLIN = "1.4.31"
-    const val ANDROID_PLUGIN = "4.2.0"
+    const val ANDROID_PLUGIN = "4.2.1"
     const val JVM = "1.8"
     val JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
-    const val NAVTEST_PLUGIN = "10.0.1"
+    const val NAVTEST_PLUGIN = "10.0.3"
     const val NAVUI_EMULATORS_PLUGIN = "1.3.1"
 
     // Android
@@ -33,7 +33,7 @@ object Versions {
     const val MIN_SDK = 27
     const val TARGET_SDK = 27
 
-    const val TOMTOM_ANDROID_TOOLS = "0.0.126"
+    const val TOMTOM_ANDROID_TOOLS = "0.0.137"
 
     // Automotive
     const val ANDROID_CAR = "0.0.12"
