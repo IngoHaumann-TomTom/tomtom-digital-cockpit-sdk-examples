@@ -14,7 +14,7 @@
     package="com.tomtom.ivi.example.product.exampleapp">
 
     <application
-        android:name="com.tomtom.ivi.api.defaults.application.DefaultApplication"
+        android:name=".ExampleApplication"
         android:allowBackup="false"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
@@ -47,7 +47,7 @@
         </activity>
 
         <activity
-            android:name="com.tomtom.ivi.example.product.exampleapp.ExampleActivity"
+            android:name=".ExampleActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">

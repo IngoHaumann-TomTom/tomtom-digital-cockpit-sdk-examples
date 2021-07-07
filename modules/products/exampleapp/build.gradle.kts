@@ -107,6 +107,8 @@ dependencies {
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_ACTIVITY)
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_APPLICATION)
     implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
+    implementation(Libraries.TomTom.Indigo.CORE_CONFIG_NAVKIT2)
     implementation(Libraries.TomTom.Indigo.CORE_DEBUG_PERMISSIONS)
-
+    // TODO(IVI-3179): Remove IVI_NAVKIT_API_KEY.
+    implementation(Libraries.TomTom.Indigo.NAVKIT2_API_KEY)
 }

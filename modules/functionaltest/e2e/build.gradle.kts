@@ -30,7 +30,6 @@ androidTest {
 
 dependencies {
     implementation(project(":frontends_account"))
-    implementation(Libraries.TomTom.Indigo.CORE_CONFIG_NAVKIT2)
     implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_FUNCTIONAL)
     implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_MAINMENUFRONTEND)
     implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_NAVIGATIONFUNCTIONAL)

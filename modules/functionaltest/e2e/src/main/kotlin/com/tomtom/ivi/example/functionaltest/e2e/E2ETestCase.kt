@@ -14,7 +14,6 @@ package com.tomtom.ivi.example.functionaltest.e2e
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.tomtom.ivi.api.framework.iviinstance.IviInstanceId
-import com.tomtom.ivi.core.config.navkit2.getDefaultNavkit2Config
 import com.tomtom.ivi.tools.testing.functional.CreateApiCallback
 import com.tomtom.ivi.tools.testing.functional.GetServiceIdsCallback
 import com.tomtom.ivi.tools.testing.functional.IviActivityTestCase
@@ -22,7 +21,7 @@ import com.tomtom.ivi.tools.testing.functional.IviE2eTestCase
 import com.tomtom.ivi.tools.testing.functional.WebserviceMockRuleConfig
 import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuIsDisplayed
 import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule
-import com.tomtom.ivi.tools.testing.navigationfunctional.toWebserviceMockRuleConfig
+import com.tomtom.ivi.tools.testing.navigationfunctional.createWebserviceMockRuleConfig
 import com.tomtom.ivi.tools.testing.systemui.SystemUiIdlingResourceRule
 import com.tomtom.ivi.tools.testing.systemui.assertCoreContentsAreDisplayed
 import org.junit.Before
@@ -51,7 +50,7 @@ abstract class E2ETestCase :
     val systemUiIdlingResourceRule = SystemUiIdlingResourceRule(activityRule)
 
     override val initialWebserviceMockRuleConfig: WebserviceMockRuleConfig
-        get() = getDefaultNavkit2Config().toWebserviceMockRuleConfig(
+        get() = createWebserviceMockRuleConfig(
             isWebserviceCaptureRun,
             shouldIncludeNavigation = true,
             shouldIncludeMapDisplay = true,

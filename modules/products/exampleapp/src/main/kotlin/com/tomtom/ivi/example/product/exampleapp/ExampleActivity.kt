@@ -13,6 +13,5 @@ package com.tomtom.ivi.example.product.exampleapp
 
 import com.tomtom.ivi.api.defaults.activity.DefaultActivity
 
-// TODO(IVI-3021): Add E2E tests.
 class ExampleActivity : DefaultActivity()
 
