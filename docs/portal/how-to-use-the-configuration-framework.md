@@ -192,9 +192,8 @@ import com.tomtom.ivi.example.account.StaticConfiguration.onlineAccountEndpointC
 class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
     
-    private val onlineAccountEndpoint = iviServiceHostContext
-        .staticConfigurationProvider
-        .getStaticConfiguration(onlineAccountEndpointConfigKey)
+    private val onlineAccountEndpoint =
+        iviServiceHostContext.staticConfigurationProvider[onlineAccountEndpointConfigKey]
 }    
 ```
 

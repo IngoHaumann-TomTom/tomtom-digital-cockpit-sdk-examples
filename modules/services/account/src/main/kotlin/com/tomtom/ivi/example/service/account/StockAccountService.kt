@@ -31,9 +31,7 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
 
     private val onlineAccountEndpoint =
-        iviServiceHostContext.staticConfigurationProvider.getStaticConfiguration(
-            onlineAccountEndpointConfigKey
-        )
+        iviServiceHostContext.staticConfigurationProvider[onlineAccountEndpointConfigKey]
 
     private val settingsServiceApi = AccountSettingsService.createApi(this, iviServiceProvider)
 
