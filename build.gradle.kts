@@ -115,8 +115,8 @@ subprojects {
     }
 
     dependencies {
-        implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        // Enforces the same version for Kotlin libraries.
+        implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
 
         constraints {
             // kotlin-reflect dependency is not constrained up by kotlin-bom, so we need to
@@ -126,7 +126,6 @@ subprojects {
 
         implementation(Libraries.Android.ANNOTATION)
         implementation(Libraries.Android.KTX)
-
     }
 
     android {

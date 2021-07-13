@@ -33,10 +33,10 @@ dependencies {
     val versions: Map<String, String> by rootProject.extra
 
     implementation(kotlin("gradle-plugin", versions["KOTLIN"]))
+    // Enforces the same version for Kotlin libraries.
+    implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(kotlin("android-extensions", versions["KOTLIN"]))
     implementation(kotlin("serialization", versions["KOTLIN"]))
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jfrog.buildinfo:build-info-extractor-gradle:${versions["ARTIFACTORY_PLUGIN"]}")
     implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
     implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:${versions["INDIGO_PLATFORM"]}")
