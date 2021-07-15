@@ -19,7 +19,8 @@ import com.tomtom.ivi.tools.testing.functional.GetServiceIdsCallback
 import com.tomtom.ivi.tools.testing.functional.IviActivityTestCase
 import com.tomtom.ivi.tools.testing.functional.IviE2eTestCase
 import com.tomtom.ivi.tools.testing.functional.WebserviceMockRuleConfig
-import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuIsDisplayed
+import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
+import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuButtonIsDisplayed
 import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule
 import com.tomtom.ivi.tools.testing.navigationfunctional.createWebserviceMockRuleConfig
 import com.tomtom.ivi.tools.testing.systemui.SystemUiIdlingResourceRule
@@ -61,10 +62,16 @@ abstract class E2ETestCase :
         .outerRule(NavkitConfigurationMockRule(webserviceMockUri))
 
     @Before
-    fun waitForMainMenu() = waitForMainMenuIsDisplayed(timeoutMs = DEFAULT_WAIT_MAIN_MENU_TIMEOUT)
+    fun waitForMainMenuIsDisplayed() {
+        // Wait for system UI to show container for main menu and for home.
+        assertCoreContentsAreDisplayed()
 
-    @Before
-    fun checkCoreComponentsAreDisplayed() = assertCoreContentsAreDisplayed()
+        // Wait for main menu frontend to display the buttons.
+        waitForMainMenuButtonIsDisplayed(
+            MainMenuButton.NAVIGATION,
+            timeoutMs = DEFAULT_WAIT_MAIN_MENU_TIMEOUT
+        )
+    }
 
     override fun <R> createApiWrapper(
         iviInstanceId: IviInstanceId,

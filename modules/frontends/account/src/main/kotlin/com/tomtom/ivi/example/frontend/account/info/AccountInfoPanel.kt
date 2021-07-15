@@ -15,8 +15,8 @@ import com.tomtom.ivi.api.framework.frontend.FrontendContext
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
 
-class AccountInfoPanel(frontendContext: FrontendContext)
-    : TaskPanel(frontendContext, Mode.SIDE_BAR) {
+class AccountInfoPanel(frontendContext: FrontendContext) :
+    TaskPanel(frontendContext, Mode.SIDE_BAR) {
 
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(AccountInfoFragment(), this)

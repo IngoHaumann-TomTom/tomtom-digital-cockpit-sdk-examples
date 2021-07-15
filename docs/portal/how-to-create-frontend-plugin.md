@@ -42,9 +42,9 @@ Creating a frontend and the menu item consists of a number of steps:
 - [Creating the `Frontend` class, deriving the abstract `Frontend` class (see API doc).](#creating-the-frontend-class)
 - [Creating the `FrontendBuilder` class (see API doc).](#creating-the-frontendbuilder-class)
 - [Creating the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
-- [Creating the `MenuItem` instance.](#creating-the-menu-item)
-- [Defining the frontend and the menu item build config.](#defining-the-frontend-and-the-menu-item-build-config)
-- [Registering the frontend and the menu item build config.](#registering-the-frontend-and-the-menu-item-build-config)
+- [Creating a `MenuItem`.](#creating-a-menu-item)
+- [Defining the frontend and menu item build config.](#defining-the-frontend-and-menu-item-build-config)
+- [Registering the frontend and menu item build config.](#registering-the-frontend-and-menu-item-build-config)
 
 ### Creating the frontend class
 
@@ -82,10 +82,9 @@ Add an `AccountFrontendBuilder` class, derived from `FrontendBuilder` class. Ove
 method in the class and return a new instance of the `AccountFrontend` class.
 
 ```kotlin
-...
 import com.tomtom.ivi.api.framework.frontend.FrontendBuilder
 
-class AccountFrontendBuilder() {
+class AccountFrontendBuilder {
 
     override fun build(frontendContext: FrontendContext) =
         AccountFrontend(frontendContext)
@@ -109,9 +108,9 @@ Derive from the `TaskPanel` class, and override the `createInitialFragmentInitia
 which should return a new instance of the `Fragment` class (described further down).
 
 ```kotlin
-class AccountLoginPanel(frontendContext: FrontendContext)
-    : TaskPanel(frontendContext, Mode.SIDE_BAR) {
-{
+class AccountLoginPanel(frontendContext: FrontendContext) :
+    TaskPanel(frontendContext, Mode.SIDE_BAR) {
+
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(AccountLoginFragment(), this)
 }
@@ -122,8 +121,9 @@ ViewModel in the Model-View-ViewModel (MVVM) pattern, which role is to expose st
 relevant to the view and streams of events to the model.
 
 ```kotlin
-class AccountLoginViewModel(panel: AccountLoginPanel)
-    : FrontendViewModel<AccountLoginPanel>(panel) {
+class AccountLoginViewModel(panel: AccountLoginPanel) :
+    FrontendViewModel<AccountLoginPanel>(panel) {
+
     val username = MutableLiveData("")
     val password = MutableLiveData("")
     // ...
@@ -135,18 +135,16 @@ class AccountLoginViewModel(panel: AccountLoginPanel)
 ```
 
 Finally create a `Fragment` class using the newly created `Panel` and `ViewModel` classes,
-overriding the `viewFactory` property. The IndiGO platform is designed to work well with the 
-MVVM pattern, and this is used in the `onCreateView` callback as a convenience to inflate a data 
+overriding the `viewFactory` property. The IndiGO platform is designed to work well with the MVVM
+pattern, and this is used in the `onCreateView` callback as a convenience to inflate a data 
 binding layout and using that in the fragment. If an `onCreateView` custom implementation still is 
 preferred, the `viewFactory` property can be left as null instead.
 
 ```kotlin
-class AccountLoginFragment
-    : IviFragment<AccountLoginPanel, AccountLoginViewModel>(AccountLoginViewModel::class) {
-    override val viewFactory =
-        ViewFactory(FrontendAccountLoginFragmentBinding::inflate) {
-            it.viewModel = viewModel
-        }
+class AccountLoginFragment :
+    IviFragment<AccountLoginPanel, AccountLoginViewModel>(AccountLoginViewModel::class) {
+
+    override val viewFactory = ViewFactory(FrontendAccountLoginFragmentBinding::inflate)
 }
 ```
 
@@ -210,10 +208,10 @@ val accountMenuItem by extra {
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
 the full-qualified package. It is defined once and used for all configurations. See
-[How to integrate Indigo in Gradle](../how-to-integrate-indigo-in-gradle.md#module-references)
+[How to integrate Indigo in Gradle](how-to-integrate-indigo-in-gradle.md#module-references)
 for details.
 
-### Registering the frontend and the menu item build config
+### Registering the frontend and menu item build config
 
 The last step is to register the frontend and the menu item to build configurations in the main
 application's build script.
@@ -266,7 +264,7 @@ ivi {
 
 The above example adds the `accountFrontend` and the `accountMenuItem` to the default IVI
 instance. A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI
-instance. See [How to configure the runtime deployment](../how-to-configure-the-runtime-deployment.md)
+instance. See [How to configure the runtime deployment](how-to-configure-the-runtime-deployment.md)
 for more details about IVI instance configurations.
 
 The final step is to let the new frontend replace IndiGO's user profile frontend. For this
