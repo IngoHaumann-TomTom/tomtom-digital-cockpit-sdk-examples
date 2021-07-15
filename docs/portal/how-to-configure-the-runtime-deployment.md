@@ -92,7 +92,6 @@ ivi {
             deployments {
                 // Create "Global" runtime deployment to deploy all global IVI service hosts.
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    iviInstances = listOf(IviInstanceIdentifier.global)
                     deployServiceHosts(all())
                 }
                 // Create "CenterStack" runtime deployment to deploy all service hosts for the
