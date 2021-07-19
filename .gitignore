@@ -1,8 +1,8 @@
 **/.gradle/
 **/build/
+*.swp
 /local.properties
 IviTest
-
 # IntelliJ
 *.iml
 .idea/workspace.xml
