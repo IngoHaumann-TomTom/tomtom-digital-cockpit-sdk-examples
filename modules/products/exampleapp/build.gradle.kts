@@ -31,6 +31,8 @@ apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
 
 val accountFrontend: FrontendConfig by project.extra
 val accountMenuItem: MenuItemConfig by project.extra
+val hierarchyFrontend: FrontendConfig by project.extra
+val hierarchyMenuItem: MenuItemConfig by project.extra
 
 /**
  * Configures the main application.
@@ -43,9 +45,11 @@ ivi {
                 useDefaults()
                 frontends {
                     replace(userProfileFrontend, accountFrontend)
+                    add(hierarchyFrontend)
                 }
                 menuItems {
                     replace(userProfileMenuItem, accountMenuItem to accountFrontend)
+                    addLast(hierarchyMenuItem to hierarchyFrontend)
                 }
             }
         }

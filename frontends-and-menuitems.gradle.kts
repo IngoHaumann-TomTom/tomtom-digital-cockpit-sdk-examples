@@ -82,3 +82,15 @@ val accountFrontend by extra {
 val accountMenuItem by extra {
     accountFrontend.toMenuItem("accountMenuItem")
 }
+
+val hierarchyFrontend by extra {
+    FrontendConfig(
+        frontendBuilderName = "HierarchyFrontendBuilder",
+        implementationModule = ExampleModuleReference("frontends_hierarchy"),
+        creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+    )
+}
+
+val hierarchyMenuItem by extra {
+    hierarchyFrontend.toMenuItem("hierarchyMenuItem")
+}

@@ -84,7 +84,7 @@ method in the class and return a new instance of the `AccountFrontend` class.
 ```kotlin
 import com.tomtom.ivi.api.framework.frontend.FrontendBuilder
 
-class AccountFrontendBuilder {
+class AccountFrontendBuilder: FrontendBuilder() {
 
     override fun build(frontendContext: FrontendContext) =
         AccountFrontend(frontendContext)
