@@ -50,7 +50,7 @@ val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().f
 apply(from = file("emulators.gradle.kts"))
 
 ivi {
-    dependencySource = IviDependencySource.Artifactory(Versions.INDIGO_PLATFORM)
+    dependencySource = IviDependencySource.ArtifactRepository(Versions.INDIGO_PLATFORM)
 }
 
 // Set up global test options
