@@ -19,7 +19,7 @@ variables:
   - group: 'AzureStorage'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
-  - group: 'NavKit2ApiKey`
+  - group: 'NavKit2ApiKey'
 
 resources:
   containers:
