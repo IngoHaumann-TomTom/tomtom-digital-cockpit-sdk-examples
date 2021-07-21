@@ -37,8 +37,6 @@ object Libraries {
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
             const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
             const val CORE_DEBUG_PERMISSIONS = "$PLATFORM_GROUP:core_debug_permissions:${Versions.INDIGO_PLATFORM}"
-            // TODO(IVI-3179): Remove NAVKIT2_API_KEY.
-            const val NAVKIT2_API_KEY = "$PLATFORM_GROUP:navkit2apikey:${Versions.IVI_NAVKIT2_API_KEY}"
             const val TOOLS_TESTING_FRONTEND = "$PLATFORM_GROUP:tools_testing_frontend:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FUNCTIONAL = "$PLATFORM_GROUP:tools_testing_functional:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_MAINMENUFRONTEND = "$PLATFORM_GROUP:tools_testing_mainmenufrontend:${Versions.INDIGO_PLATFORM}"

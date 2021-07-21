@@ -68,9 +68,11 @@ plugins as `implementation` dependencies to the `buildSrc`. The following adds t
 dependencies {
     val indigoPlatformVersion = ...
 
-    // Mandatory: For configure the IVI application at build time.
+    // Optional: Plugin to configure the IVI application at build time.
     implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:$indigoPlatformVersion")
-    // Mandatory: For configure the IVI application at build time.
+    // Optional: Plugin to configure the NavKit2 API key at build time.
+    implementation("com.tomtom.ivi.gradle:api_plugins_defaultsnavkit2:$indigoPlatformVersion")
+    // Mandatory: Plugin to configure the IVI application at build time.
     implementation("com.tomtom.ivi.gradle:api_plugins_platform:$indigoPlatformVersion")
     // Optional: Plugin for versioning the APK based on the Git repository information.
     implementation("com.tomtom.ivi.gradle:api_plugins_tools:$indigoPlatformVersion")
@@ -85,8 +87,6 @@ Apply the following plugins in the top level `build.gradle.kts` file:
 plugins {
     `kotlin-dsl`
     ...
-    // Optional: To use defaults from the default IndiGO IVI application.
-    id("com.tomtom.ivi.defaults.core")
     // Mandatory: For configure the IVI application at build time.
     id("com.tomtom.ivi.platform")
     // Optional: Plugin for versioning the APK based on the Git repository information.
@@ -108,6 +108,15 @@ To integrate IndiGO platform into an APK, you can add the following to the `buil
 of the project that builds the APK:
 
 ```kotlin
+
+plugins {
+    // Optional: To use defaults from the default IndiGO IVI application.
+    id("com.tomtom.ivi.defaults.core")
+
+    // Optional: To configure the NavKit2 API key at build time.
+    id("com.tomtom.ivi.defaults.navkit2")
+}
+
 ivi {
     application {
         enabled = true

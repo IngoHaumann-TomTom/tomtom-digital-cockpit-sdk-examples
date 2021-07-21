@@ -16,9 +16,10 @@ variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
   - template: .azure-templates/variables.yml
   # Variable groups used below are defined in the project's Pipelines Library.
+  - group: 'AzureStorage'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
-  - group: 'AzureStorage'
+  - group: 'NavKit2ApiKey`
 
 resources:
   containers:
@@ -79,6 +80,7 @@ stages:
         projectOptions: >-
           -PnexusUsername=$(NEXUS_USERNAME)
           -PnexusPassword=$(NEXUS_PASSWORD)
+          -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
         displayName: 'Assemble APKs using dependencies from Nexus'
         condition: succeeded()
     - template: build/build-cleanup.yml@devops-templates

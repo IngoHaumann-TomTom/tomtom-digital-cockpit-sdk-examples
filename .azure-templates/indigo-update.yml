@@ -33,6 +33,7 @@ steps:
         generateIndigoLibrariesVersionFile
       projectOptions: >-
         -PlatestIndigoVersion=$(PRODUCT_VERSION)
+        -PuseInternalNavkit2ApiKey=true
       displayName: 'Check for new IndiGO library versions'
 
   - bash: |

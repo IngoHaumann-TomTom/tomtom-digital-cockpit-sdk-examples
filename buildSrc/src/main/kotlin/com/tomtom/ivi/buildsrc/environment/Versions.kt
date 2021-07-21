@@ -41,10 +41,6 @@ object Versions {
     // Kotlin
     const val KOTLINX_SERIALIZATION = "1.1.0"
 
-    // TODO(IVI-3179): Remove [IVI_NAVKIT_API_KEY].
-    // IVI keys
-    const val IVI_NAVKIT2_API_KEY = "1.0"
-
     // IVI
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
     const val INDIGO_PLATFORM = "1.0.2084"
