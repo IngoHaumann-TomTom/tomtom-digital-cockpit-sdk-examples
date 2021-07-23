@@ -57,5 +57,11 @@ object Libraries {
         object Tools {
             const val API_LIVEDATA = "com.tomtom.tools.android:api_livedata:${Versions.TOMTOM_ANDROID_TOOLS}"
         }
+
+        object CommunicationsSdk {
+            const val COMMON = "com.tomtom.ivi.sdk.communications:sdk_communications_common:${Versions.IVI_COMMUNICATIONS_SDK}"
+            const val CLIENT = "com.tomtom.ivi.sdk.communications:sdk_communications_client:${Versions.IVI_COMMUNICATIONS_SDK}"
+            const val EXAMPLESERVICE = "com.tomtom.ivi.sdk.communications:sdk_communications_exampleservice:${Versions.IVI_COMMUNICATIONS_SDK}"
+        }
     }
 }

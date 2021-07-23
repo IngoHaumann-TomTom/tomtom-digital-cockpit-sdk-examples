@@ -29,6 +29,7 @@ plugins {
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))
 
 val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+val customCompanionExampleServiceHost: IviServiceHostConfig by project.extra
 val customContactsServiceHost: IviServiceHostConfig by project.extra
 val customRecentCallsServiceHost: IviServiceHostConfig by project.extra
 
@@ -70,6 +71,8 @@ ivi {
             // host.
             removeHost(recentCallsServiceHost)
             addHost(customRecentCallsServiceHost)
+
+            addHost(customCompanionExampleServiceHost)
         }
         runtime {
             deployments {

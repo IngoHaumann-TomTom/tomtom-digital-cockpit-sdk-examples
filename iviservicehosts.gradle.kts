@@ -81,6 +81,19 @@ val accountServiceHosts by extra {
     listOf(accountServiceHost, accountSettingsServiceHost)
 }
 
+val customCompanionExampleServiceHost by extra {
+    IviServiceHostConfig(
+        serviceHostBuilderName = "CustomCompanionServiceHostBuilder",
+        implementationModule = ExampleModuleReference("services_customcompanionexample"),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "CompanionExampleService",
+                serviceApiModule = ExampleModuleReference("serviceapis_companionexample")
+            )
+        )
+    )
+}
+
 val customContactsServiceHost by extra {
     IviServiceHostConfig(
         serviceHostBuilderName = "CustomContactsServiceHostBuilder",

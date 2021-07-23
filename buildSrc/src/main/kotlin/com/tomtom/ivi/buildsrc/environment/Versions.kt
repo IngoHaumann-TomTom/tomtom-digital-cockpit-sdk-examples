@@ -42,6 +42,10 @@ object Versions {
     const val KOTLINX_SERIALIZATION = "1.1.0"
 
     // IVI
+
+    // Communications Sdk
+    const val IVI_COMMUNICATIONS_SDK = "0.1.51"
+
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
     const val INDIGO_PLATFORM = "1.0.2084"
 }
