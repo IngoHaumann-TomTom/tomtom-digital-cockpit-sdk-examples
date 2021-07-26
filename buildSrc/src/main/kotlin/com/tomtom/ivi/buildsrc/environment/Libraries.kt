@@ -18,6 +18,7 @@ object Libraries {
     object Android {
         const val ANNOTATION = "androidx.annotation:annotation:${Versions.ANDROIDX_ANNOTATION}"
         const val KTX = "androidx.core:core-ktx:${Versions.ANDROIDX_KTX}"
+        const val LIFECYCLE_SERVICE = "androidx.lifecycle:lifecycle-service:${Versions.ANDROIDX_LIFECYCLE}"
     }
 
     object Kotlin {
@@ -47,6 +48,7 @@ object Libraries {
             object ServiceApis {
                 const val CORE_SERVICEAPIS_CONTACTS = "$PLATFORM_GROUP:core_serviceapis_contacts:${Versions.INDIGO_PLATFORM}"
                 const val CORE_SERVICEAPIS_RECENTCALLS = "$PLATFORM_GROUP:core_serviceapis_recentcalls:${Versions.INDIGO_PLATFORM}"
+                const val CORE_SERVICEAPIS_TELECOM = "$PLATFORM_GROUP:core_serviceapis_telecom:${Versions.INDIGO_PLATFORM}"
             }
         }
 
