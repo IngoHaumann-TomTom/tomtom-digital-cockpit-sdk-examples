@@ -29,9 +29,9 @@
         android:orientation="vertical"
         android:padding="0dp">
 
-        <com.tomtom.tools.android.core.uicontrols.view.breadcrumbsbar.TtBreadcrumbsBarView
-            android:id="@id/tt_breadcrumbs_bar"
-            style="?attr/tt_breadcrumbs_bar_style"
+        <com.tomtom.tools.android.core.uicontrols.view.navigationbar.TtNavigationBar
+            android:id="@id/tt_navigation_bar"
+            style="?attr/tt_navigation_bar_style"
             auto:layout_constraintStart_toStartOf="parent"
             auto:layout_constraintTop_toTopOf="parent" />
 
