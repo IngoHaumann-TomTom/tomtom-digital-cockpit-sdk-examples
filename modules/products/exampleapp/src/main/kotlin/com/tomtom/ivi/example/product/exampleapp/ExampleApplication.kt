@@ -66,6 +66,7 @@ class ExampleApplication : DefaultApplication() {
          * is set to `true`.
          */
         private val NAVKIT2_API_KEY by lazy<String> {
+            @Suppress("StopShip")
             TODO("Implement obtaining the NavKit2 API key.")
         }
     }
