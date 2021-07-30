@@ -82,10 +82,12 @@ Install the downloaded JDK file:
 Download the latest version of the IndiGO SDK from
 [Nexus](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-sdk).
 
-After logging in to Nexus you can find the latest version under `com -> tomtom -> indigo -> 
-tomtom-indigo-sdk`.
-- Clicking on the latest `tomtom-indigo-sdk-<versions>.tar.gz` file to open it.
-- Then click the link at `Path` in the menu to the right to start downloading.
+After logging in to Nexus you can find the SDK versions under `com -> tomtom -> indigo -> 
+tomtom-indigo-sdk`:
+
+- Click on the `+` icon left of the latest version to open this folder.
+- Click on the `tomtom-indigo-sdk-<versions>.tar.gz` file to see its details in the panel on the right.
+- Click the link at `Path` in the panel on the right to start downloading the SDK.
 
 Extract the downloaded file and you find the example app source code inside it. Then follow the
 instructions below to setup an environment in which to run IndiGO.
@@ -97,7 +99,7 @@ __Windows:__
 
 __Windows Note:__
 
-The IndiGO SDK contains some files with a long path name, expecially in the `docs` folder, but the
+The IndiGO SDK contains some files with a long path name, especially in the `docs` folder, but the
 path length on Windows is restricted to 260 characters. See
 [this article in Microsoft Developer](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation)
 if you wish to use longer path names.
@@ -115,11 +117,96 @@ alternatives ways to configure the key.
 
 > > __Windows:__ Use the `%UserProfile%\.gradle` folder.
 
+## Accessing the binary artifact repository (Nexus)
+
+In order to access IndiGO platform dependencies from the IVI Nexus repository (a binary repository
+hosted by TomTom), credentials need to be provided. This can be done in different ways:
+
+- Specify credentials from the command line:
+
+> > __Linux or Mac:__ 
+```bash
+    ./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
+```
+
+> > __Windows:__
+```bash
+    .\gradlew.bat -PnexusUsername=<username> -PnexusPassword=<password> build
+```
+
+- Storing credentials globally in the `gradle.properties` file:
+
+> > You can also store the credentials in your `gradle.properties` file, in the folder specified by
+the `GRADLE_USER_HOME` environment variable, usually `~/.gradle/`
+
+> > __Windows:__ Use the `%UserProfile%\.gradle` folder.
+
+> > In your `gradle.properties` file, add the following:
+
+```bash
+    nexusUsername=<your-username>
+    nexusPassword=<your-password>
+```
 ## Install Android Studio
 
 To install the Android Studio IDE, follow the instructions from the
 [official Android guide](https://developer.android.com/studio/install).
 Note that you need a minimum version of 4.2.x of Android Studio for Java 11 to work correctly.
+
+- In the dialog box `Import Android Studio Settings` select `Do not import settings` and click `OK`.
+
+> ![Import Android Studio Settings](images/android_studio_import_settings.png "Import Android Studio Settings")
+
+### Gradle plugin for Android Studio
+
+Android Studio may propose upgrading its Gradle plugin:
+
+> ![Upgrade Gradle Plugin](images/android_studio_upgrade_gradle_plugin.png "Upgrade Gradle Plugin")
+
+You can safely upgrade to version 4.2.2, but do _NOT_ upgrade to a higher version because the
+IndiGO SDK is not yet compatible with it.
+
+### Building with Android Studio
+
+The IndiGO example app can be built using Android Studio:
+
+- Open the project:
+
+> > In dialog box `Welcome to Android Studio` select `Open an Existing Project`.
+
+> > When this dialog does not show, you can open the project via `File -> Open`.
+
+> > Select the `build.gradle.kts` file from the
+`examples/products_indigo_examples_<version>-sources` folder where you extracted the source code.
+
+- Ensure that Android Studio uses `OpenJDK11`:
+
+> > Go to `File -> Project Structure -> SDK Location`.
+
+> > Under `JDK Location` select the OpenJDK version that you downloaded earlier, then click `OK`.
+
+- Gradle Sync should start running automatically, then Android Studio will configure the project and
+download its dependencies. If it does not, start it manually by clicking on the Gradle Sync icon.
+This step may take a few minutes.
+
+> > ![Android Studio gradle sync](images/android_studio_gradle_sync.png "Android Studio gradle sync")
+
+- Now you can browse the source code in the IDE.
+
+- Build the application by clicking on the green `hammer` icon:
+
+> > ![Android Studio build project](images/android_studio_build_project.png "Android Studio build project")
+
+- __Note:__ Building the application may report an error like:
+
+```bash
+    License for package Android SDK Build-Tools 30.0.2 not accepted.
+```
+
+> > To solve this, open the SDK Manager via `Tools -> SDK Manager` in tab `SDK Tools`, tick
+`Show Package Details` and install the required package and/or accept its license terms.
+
+## The IndiGO emulator
 
 IndiGO can run on Android emulators (Android Virtual Devices, AVDs) in addition to the reference /
 demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has been created
@@ -131,26 +218,25 @@ __Note:__ The IndiGO platform also runs on a standard Android device, with an In
 architecture. However, some features may not work as IndiGO is implemented for the Android
 Automotive variant.
 
-### The IndiGO emulator
-
 Follow these steps to install the IndiGO emulator image in Android Studio:
 
-- Add the file `docs/resources/devices.xml` (from the Example source), to your `~/.android/`
+- Add the file `docs/resources/devices.xml` (from the `examples` source), to your `~/.android/`
 folder.
 
 > __Windows:__ Add the file to your `%UserProfile%\.android\` folder.
 
 - If Android Studio is running, make sure it is restarted, so that the new file is picked up.
 
-- Thereafter in Android Studio, go to `Tools -> SDK Manager` or to `File -> Settings -> Appearance &
-Behavior -> System Settings -> Android SDK`, select tab `SDK Update Sites` and add a new entry
-with the following name and URL:
+- Open the SDK Manager via `Tools -> SDK Manager`.
+
+- In the SDK Manager, select tab `SDK Update Sites` and add a new entry with the following name and
+URL:
 
 > > Name: `TomTom IndiGO Update Site - Android 11 Emulators`
 > >
-> > URL: `https://repo.tomtom.com/repository/ivi/com/tomtom/ivi/ivi-automotive-sdk/aaos-system-images/center-display/12/center-display-12.xml`
+> > URL: `https://aaos.blob.core.windows.net/indigo-automotive/repo-sys-img.xml`
 
-- Tick `Use Authentication`, enter your TomTom Nexus credentials and click `Apply`.
+- Tick `Use Authentication`, enter your TomTom Nexus credentials and click `Apply` to activate this update site.
 
 - Switch to tab `SDK platforms` and tick `Show Package Details` on the bottom right. Then locate
 the `Indigo Automotive Android System Image` in the list. You may need to expand the Android 11
@@ -165,8 +251,7 @@ close the SDK Manager.
 
 Follow these steps to create an emulator device based on the IndiGO emulator:
 
-- Open the AVD Manager (Android Virtual Device Manager) via `Tools -> AVD Manager` or via `Help ->
-Find Action -> AVD Manager`.
+- Open the AVD Manager (Android Virtual Device Manager) via `Tools -> AVD Manager`.
 
 - Click `Create Virtual Device`:
 
@@ -198,7 +283,7 @@ yet, so keep the `Device Type` as `Phone/Tablet`.
 
 > > ![Android Studio Select Hardware Automotive](images/android_studio_select_hardware_automotive.png "Android Studio Select Hardware Automotive")
 
-> __Mac(book) _with_ an M1 processor:__ You see this item in category `Tablet`.
+> > __Mac(book) _with_ an M1 processor:__ You see this item in category `Tablet`.
 
 - Select this device `IndiGO_Test_Device` and choose `Next` to continue creating the AVD.
 
@@ -233,7 +318,7 @@ the Release Name).
     - Click the three dots at the bottom in the sidebar next to the emulator screen. This opens the
       `Extended Controls` menu.
     - Select `Settings` at the left.
-    - Select the `Advanced` tab at the top right.
+    - Select the `Advanced` tab at the top.
     - This should say `Desktop native OpenGL` and `Renderer maximum (up to OpenGL ES 3.1)`, see
       picture below.
 ![Emulator OpenGL Settings](images/emulator_opengl_settings.png "Emulator OpenGL Settings")
@@ -246,77 +331,11 @@ the Release Name).
       menu. Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot
       Now`.
 
-## Compiling the IndiGO example app
-
-### Accessing the binary artifact repository
-
-In order to access IndiGO platform dependencies from the IVI Nexus repository (a binary repository
-hosted by TomTom), credentials need to be provided. This can be done in different ways:
-
-- Specify credentials from the command line:
-
-> > __Linux or Mac:__ 
-```bash
-    ./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
-```
-
-> > __Windows:__
-```bash
-    .\gradlew.bat -PnexusUsername=<username> -PnexusPassword=<password> build
-```
-
-- Storing credentials globally in the `gradle.properties` file:
-
-> > You can also store the credentials in your `gradle.properties` file, in the folder specified by
-the `GRADLE_USER_HOME` environment variable, usually `~/.gradle/`
-
-> > __Windows:__ Use the `%UserProfile%\.gradle` folder.
-
-> > In your `gradle.properties` file, add the following:
-
-```bash
-    nexusUsername=<your-username>
-    nexusPassword=<your-password>
-```
-
-### Building with Android Studio
-
-The IndiGO example app can be built using Android Studio:
-
-- Open the project.
-
-> Go to `File -> Open`, then select the `build.gradle.kts` file from the
-`examples/products_indigo_examples_<version>-sources`
-folder where you extracted the source code.
-
-- Ensure that Android Studio uses `OpenJDK11`.
-
-> > Go to `File -> Project Structure -> SDK Location`.
-
-> > Under `JDK Location` select the OpenJDK version that you downloaded earlier, then click `OK`.
-
-- Gradle Sync should start running automatically, then Android Studio will configure the project and
-download its dependencies. If it does not, start it manually by clicking on the Gradle Sync icon.
-This step may take a few minutes.
-
-> > ![Android Studio gradle sync](images/android_studio_gradle_sync.png "Android Studio gradle sync")
-
-- Now you can browse the source code in the IDE.
-
 - Build and run the application by clicking on the green `play` icon. Ensure that the device that
 the application will run on is the IndiGO automotive emulator that was created earlier in this
 tutorial.
 
-> > ![Android Studio build and run](images/android_studio_build.png "Android Studio build and run")
-
-- __Note:__ Building the application may report an error like:
-
-```bash
-    License for package Android SDK Build-Tools 30.0.2 not accepted.
-```
-
-> > To solve this, open the SDK Manager via `Tools -> SDK Manager` in tab `SDK Tools`, tick
-`Show Package Details` and install the required package and/or accept its license terms.
+> > ![Android Studio build and run](images/android_studio_build_and_run.png "Android Studio build and run")
 
 ## Installing on a custom device
 
