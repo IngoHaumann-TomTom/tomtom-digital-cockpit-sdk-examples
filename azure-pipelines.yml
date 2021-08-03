@@ -49,6 +49,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
+    ref: refs/tags/1.0.0
 
 pool: 'Private Cloud CPU'
 
