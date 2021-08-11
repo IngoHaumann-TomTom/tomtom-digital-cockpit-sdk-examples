@@ -42,7 +42,7 @@ defining the Android fragment and creating the instance of the view model.
 Please refer to the [frontend plugin guide](how-to-create-frontend-plugin.md) to get started.
 
 This user interface will use a specialization of the base user interface panel type [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel),
-[BaseMediaTaskPanel](com.tomtom.ivi.api.common.mediasources.BaseMediaTaskPanel). This panel type is
+[MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel). This panel type is
 more suitable for media apps, as it contains media-specific facilities.
 
 This being simply an example, the user interface is very sparse and only contains one panel to
@@ -50,7 +50,7 @@ display, and no functionality other than basic browsing and playing.
 
 ### Example panel
 
-The example's panel class, based on [BaseMediaTaskPanel](com.tomtom.ivi.api.common.mediasources.BaseMediaTaskPanel),
+The example's panel class, based on [MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel),
 enables browsing through both the stations recognized by the radio, and the raw frequencies offered
 by each radio band.
 
@@ -72,7 +72,7 @@ import com.tomtom.ivi.api.common.media.Options
 import com.tomtom.ivi.api.common.media.RootSourceClient
 import com.tomtom.ivi.api.common.media.SourceId
 import com.tomtom.ivi.api.common.media.actions.standard.PlayMediaIdFromSourceAction
-import com.tomtom.ivi.api.common.mediasources.BaseMediaTaskPanel
+import com.tomtom.ivi.api.common.mediasources.MediaTaskPanel
 import com.tomtom.ivi.api.common.mediasources.MediaFrontendContext
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.core.serviceapi.media.MediaService
@@ -83,7 +83,7 @@ object RadioSourceId :
     SourceId("com.android.car.radio", "com.android.car.radio.service.RadioAppService")
 
 class RadioPanel(mediaContext: MediaFrontendContext) :
-    BaseMediaTaskPanel(mediaContext, RadioSourceId, null) {
+    MediaTaskPanel(mediaContext, RadioSourceId, null) {
 
     init {
         Options.isItemDumpingEnabled = true
@@ -226,9 +226,9 @@ can logically separate different groups of contents.
 ### Panel creation classes
 
 A media-oriented set of classes is available to ease implementation of new panels:
-[BaseMediaSourcePanel](com.tomtom.ivi.api.common.mediasources.BaseMediaSourcePanel),
-[BaseMediaSourceViewModel](com.tomtom.ivi.api.common.mediasources.BaseMediaSourceViewModel) and
-[BaseMediaSourceFragment](com.tomtom.ivi.api.common.mediasources.BaseMediaSourceFragment).
+[MediaSourcePanel](com.tomtom.ivi.api.common.mediasources.MediaSourcePanel),
+[MediaSourceViewModel](com.tomtom.ivi.api.common.mediasources.MediaSourceViewModel) and
+[MediaSourceFragment](com.tomtom.ivi.api.common.mediasources.MediaSourceFragment).
 
 These classes are meant to be used together to create new user experiences while still adhering to
 the Android guidelines. These provide a full framework to integrate with [SourceClient](com.tomtom.ivi.api.common.media.SourceClient)s.

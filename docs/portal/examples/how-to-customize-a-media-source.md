@@ -146,21 +146,21 @@ MediaServiceBase: event=onAvailableActionsChanged([PauseAction(id=ivi_media:paus
 The ID `un-heart_this_station` from the last `Action(id=un-heart_this_station)` is then needed to
 remove the favorite state from the current station.
 
-A new [MediaControl](com.tomtom.ivi.api.common.mediasources.controls.MediaControl) is needed. Since
-this seems to be a simple toggle behavior, the [ToggleMediaControl](com.tomtom.ivi.api.common.mediasources.controls.ToggleMediaControl)
+A new [ActionMediaControl](com.tomtom.ivi.api.common.mediasources.controls.ActionMediaControl) is needed.
+Since this seems to be a simple toggle behavior, the [ToggleActionMediaControl](com.tomtom.ivi.api.common.mediasources.controls.ToggleActionMediaControl)
 specialization fits better the use case:
 
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.mediasources.controls.ToggleMediaControl
+import com.tomtom.ivi.api.common.mediasources.controls.ToggleActionMediaControl
 
 // This needs to match the Android MediaBrowserService package and class name of the media source.
 object ExampleInternetRadioSourceId :
     SourceId("com.example.exampleinternetradio", "com.example.MediaService")
 
-class HeartMediaControl(context: MediaControlContext) :
-    ToggleMediaControl(context, ExampleInternetRadioSourceId) {
+class HeartActionMediaControl(context: MediaControlContext) :
+    ToggleActionMediaControl(context, ExampleInternetRadioSourceId) {
 
     override val id = "example_media_source_heart_action"
 
@@ -177,7 +177,7 @@ class HeartMediaControl(context: MediaControlContext) :
 
     object Factory : MediaControlFactory {
         override fun createControlFor(mediaControlContext: MediaControlContext) =
-            HeartMediaControl(mediaControlContext)
+            HeartActionMediaControl(mediaControlContext)
     }
 }
 ```
@@ -194,7 +194,7 @@ import com.tomtom.ivi.api.defaults.mediasources.defaultMediaConfiguration
 
 // ...
 init {
-    defaultMediaConfiguration.appendSecondaryMediaControl(HeartMediaControl.Factory)
+    defaultMediaConfiguration.appendSecondaryMediaControl(HeartActionMediaControl.Factory)
 }
 ```
 
