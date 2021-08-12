@@ -52,8 +52,7 @@ steps:
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-
-        pullLogs
-        pullMetadata
+        pullDeviceDebugInfo
       projectOptions: >-
         -PuseInternalNavkit2ApiKey=true
       displayName: 'Retrieve emulator logs and metadata'

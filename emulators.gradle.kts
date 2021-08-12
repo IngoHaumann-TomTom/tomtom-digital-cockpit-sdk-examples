@@ -10,12 +10,14 @@
  */
 
 import com.android.ddmlib.AndroidDebugBridge
+import com.android.ddmlib.AndroidDebugBridge.IDeviceChangeListener
 import com.android.ddmlib.CollectingOutputReceiver
 import com.android.ddmlib.FileListingService
 import com.android.ddmlib.FileListingService.FileEntry
 import com.android.ddmlib.IDevice
 import com.android.ddmlib.SyncService.getNullProgressMonitor
 import com.android.ddmlib.logcat.LogCatMessage
+import com.android.ddmlib.logcat.LogCatReceiverTask
 import com.android.sdklib.devices.Abi
 import com.google.gson.GsonBuilder
 import com.tomtom.ivi.buildsrc.environment.Versions
@@ -24,8 +26,10 @@ import com.tomtom.ivi.buildsrc.extensions.gradleAssert
 import com.tomtom.navui.emulators.EmulatorsExtension
 import com.tomtom.navui.emulators.dsl.AvdInfo
 import com.tomtom.navui.emulators.dsl.DeviceProfile
+import com.tomtom.navui.emulators.extensions.avdId
 import com.tomtom.navui.emulators.tasks.CreateEmulatorsTask
 import com.tomtom.navui.emulators.tasks.StartEmulatorsTask
+import com.tomtom.navui.emulators.tasks.StopEmulatorsTask
 import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -64,6 +68,9 @@ val avdDirectory = File(
         "${project.gradle.gradleUserHomeDir.parent}/.android/avd"
     ).toString()
 )
+val enableMultiDisplay = extras.getOrDefault("multiDisplay", "false").toString().toBoolean()
+var isRunningInDevelopmentEmulatorContext = false
+
 gradleAssert(avdDirectory.exists() || avdDirectory.mkdirs()) {
     "Unable to create AVD directory '${avdDirectory.absolutePath}'."
 }
@@ -84,8 +91,8 @@ emulators {
     outputDir = emulatorOutputDirectory
 
     maxConcurrentStart = emulatorCount
-    startDelay = 10
-    startTimeout = 300
+    startDelay = 20
+    startTimeout = 900
     nrOfRetries = 1
     waitForFirstEmulator = false
 
@@ -93,9 +100,94 @@ emulators {
         create(indigoDeviceProfileName) { configureIndigoDeviceProfile() }
     }
 
+    // By default configure headless emulator avd info.
     avds {
         create(indigoHeadlessEmulatorName) {
             configureIndigoEmulatorInstance(isHeadless = true)
+        }
+    }
+}
+
+val createEmulators = tasks.named<CreateEmulatorsTask>(CreateEmulatorsTask.TASK_NAME)
+val startEmulators = tasks.named<StartEmulatorsTask>(StartEmulatorsTask.TASK_NAME)
+val stopEmulators = tasks.named<StopEmulatorsTask>(StopEmulatorsTask.TASK_NAME)
+
+fun getQemuConfigFile(isDeveloperEmulator: Boolean) = when (isDeveloperEmulator) {
+    true -> File(avdDirectory, "$indigoDevelopmentEmulatorName.avd/config.ini")
+    false -> File(avdDirectory, "$indigoHeadlessEmulatorName.avd/config.ini")
+}
+
+val adbBridge: AndroidDebugBridge by lazy {
+    AndroidDebugBridge.initIfNeeded(false)
+    AndroidDebugBridge.createBridge(10_000, TimeUnit.MILLISECONDS)
+}
+
+val logcatTracingThreads = mutableMapOf<String, Thread>()
+
+/**
+ * In addition to standard `createEmulators` functionality do the following:
+ * - Enable multi-display configuration based on `multiDisplay` extras.
+ * - Ensure that starting emulator corresponds to recent configuration.
+ * - Ensure that only one type of emulator (test or development) is launched at the same time.
+ */
+startEmulators {
+    dependsOn(createEmulators)
+    dependsOn(adjustQemuConfigFileForMultidisplay)
+
+    doFirst {
+        val qemuConfigFile = getQemuConfigFile(isRunningInDevelopmentEmulatorContext)
+        logger.quiet("Using emulator configuration file `${qemuConfigFile.absolutePath}`.")
+
+        // Record all devices' initial logcat to help debug start-up failures.
+        AndroidDebugBridge.addDeviceChangeListener(object : IDeviceChangeListener {
+            override fun deviceConnected(device: IDevice) = startRecordingLogcat(device)
+            override fun deviceChanged(device: IDevice, changeMask: Int) = Unit
+            override fun deviceDisconnected(device: IDevice) = Unit
+        })
+    }
+    doLast {
+        val runningEmulatorTypes = adbBridge.devices.distinctBy { it.avdName }
+        gradleAssert(runningEmulatorTypes.size <= 1) {
+            "Multiple types of emulator are running concurrently:\n" +
+                " ${runningEmulatorTypes.joinToString { it.name }}\n" +
+                "This is not recommended, as it will make some tests fail."
+        }
+    }
+}
+
+val adjustQemuConfigFileForMultidisplay by tasks.registering {
+    mustRunAfter(createEmulators)
+
+    doFirst {
+        val qemuConfigFile = getQemuConfigFile(isRunningInDevelopmentEmulatorContext)
+        val config = qemuConfigFile
+            .readText()
+            .configureMultiDisplay(enableMultiDisplay, DisplayConfiguration.secondaryDisplay)
+        qemuConfigFile.writeText(config)
+    }
+}
+
+/**
+ * Replace AVD Info for NavUI emulator tasks with the development emulator AVD Info.
+ * Call it every time when tasks for develement emulator, before delegating to NavUI tasks.
+ */
+fun setDevelopmentEmulatorAvdInfoContext() {
+    if (isRunningInDevelopmentEmulatorContext) {
+        // Skip registering if this is already configured.
+        return
+    }
+    isRunningInDevelopmentEmulatorContext = true
+
+    logger.quiet("Replace headless AVD with development AVD for all NavUI emulator tasks")
+    AvdInfo(indigoDevelopmentEmulatorName).apply {
+        configureIndigoEmulatorInstance(isHeadless = false)
+    }.let {
+        createEmulators.get().avds = listOf(it)
+        startEmulators.get().avds = listOf(it)
+        emulatorsExtension.avds {
+            create(indigoDevelopmentEmulatorName) {
+                configureIndigoEmulatorInstance(isHeadless = false)
+            }
         }
     }
 }
@@ -108,38 +200,26 @@ emulators {
  *
  * Do not use this task along with others when invoking Gradle.
  */
-tasks.create("createDevelopmentEmulator") {
+val createDevelopmentEmulator = tasks.register("createDevelopmentEmulator") {
     doFirst {
         logger.warn("Creating development emulator with image: '$defaultEmulatorImage'")
-        // Just for this run, replace the CI AVD with the development AVD; otherwise the former
-        // will be created and started together with the latter.
-        val createEmulatorsTask =
-            project.tasks.named(CreateEmulatorsTask.TASK_NAME).get() as CreateEmulatorsTask
-        val startEmulatorsTask =
-            project.tasks.named(StartEmulatorsTask.TASK_NAME).get() as StartEmulatorsTask
-
-        listOf(
-            AvdInfo(indigoDevelopmentEmulatorName).apply {
-                configureIndigoEmulatorInstance(isHeadless = false)
-            }
-        ).let {
-            createEmulatorsTask.avds = it
-            startEmulatorsTask.avds = it
-        }
+        setDevelopmentEmulatorAvdInfoContext()
     }
+    finalizedBy(createEmulators)
+    finalizedBy(createDevelopmentEmulatorPostInitialize)
 }
+
 /**
  * Internal task.
  *
- * Starts the development emulator. Can not be invoked on the command line.
+ * Delegates creation of the development emulator to [CreateEmulatorsTask].
+ * Can not be invoked on the command line.
  */
-tasks.create("startDevelopmentEmulator") {
-    dependsOn(":createDevelopmentEmulator")
-    mustRunAfter(":createDevelopmentEmulator")
+val createDevelopmentEmulatorPostInitialize by tasks.registering {
     doLast {
         val userAvdConfigFile = File(avdDirectory, "$indigoDevelopmentEmulatorName.ini")
         userAvdConfigFile.writeText(
-                """
+            """
             avd.ini.encoding=UTF-8
             path=${avdDirectory.absolutePath}/$indigoDevelopmentEmulatorName.avd
             path.rel=avd/$indigoDevelopmentEmulatorName.avd
@@ -151,21 +231,45 @@ tasks.create("startDevelopmentEmulator") {
         // the emulators plugin.
         val qemuConfigFile = File(avdDirectory, "$indigoDevelopmentEmulatorName.avd/config.ini")
         val config = qemuConfigFile.readText()
-                // The AVD manager won't recognize an unknown device whose configuration contains
-                // the 'hw.device.name' key. Delete it to make Android Studio consider it.
-                .replace(Regex("hw.device.name=.*"), "") +
-                // Enable input from hardware keyboards, to be able to type from the host.
-                "hw.keyboard=yes\n"
+            // The AVD manager won't recognize an unknown device whose configuration contains
+            // the 'hw.device.name' key. Delete it to make Android Studio consider it.
+            .replace(Regex("hw.device.name=.*"), "") +
+            // Enable input from hardware keyboards, to be able to type from the host.
+            "hw.keyboard=yes\n"
         qemuConfigFile.writeText(config)
     }
-    finalizedBy(":startEmulators")
+}
+
+createDevelopmentEmulatorPostInitialize {
+    mustRunAfter(createEmulators)
 }
 
 /**
- * Retrieves logs from all connected devices at the same time.
+ * Start the development emulator.
  */
-tasks.create("deleteDevelopmentEmulator") {
-    dependsOn(":killEmulators")
+val startDevelopmentEmulator = tasks.register("startDevelopmentEmulator") {
+    dependsOn(createDevelopmentEmulator)
+    doFirst {
+        setDevelopmentEmulatorAvdInfoContext()
+    }
+    finalizedBy(startEmulators)
+}
+
+/**
+ * Terminate the development emulator instance.
+ */
+val stopDevelopmentEmulator = tasks.register("stopDevelopmentEmulator") {
+    doFirst {
+        setDevelopmentEmulatorAvdInfoContext()
+    }
+    finalizedBy(stopEmulators)
+}
+
+/**
+ * Delete all data of the development emulator.
+ */
+tasks.register("deleteDevelopmentEmulator") {
+    dependsOn(killEmulators)
     doLast {
         File(avdDirectory, "$indigoDevelopmentEmulatorName.ini").delete()
         File(avdDirectory, "$indigoDevelopmentEmulatorName.avd").deleteRecursively()
@@ -175,8 +279,8 @@ tasks.create("deleteDevelopmentEmulator") {
 /**
  * Forcibly terminates any running emulator instance.
  */
-tasks.create("killEmulators") {
-    dependsOn(":stopEmulators")
+val killEmulators = tasks.register("killEmulators") {
+    dependsOn(stopEmulators)
     doLast {
         exec {
             executable = "pkill"
@@ -196,41 +300,64 @@ tasks.create("killEmulators") {
 }
 
 /**
- * Retrieves logs from all connected devices at the same time.
- * The logs will be placed in the current NavTest directory inside the project root directory, in a
- * `deviceLogs` subdirectory, which will contain one sub-directory per device named as that
- * device's serial number.
+ * Retrieves debugging device information from all connected devices.
+ * The logs will be placed in the current NavTest directory in the `logs` subdirectory, along with
+ * the start-up information generated by the NavTest emulators plugin.
  */
-tasks.create("pullLogs") {
+tasks.register("pullDeviceDebugInfo") {
     val dropboxFolder = "/data/system/dropbox"
     doLast {
-        AndroidDebugBridge.initIfNeeded(false)
-        val bridge = AndroidDebugBridge.createBridge(10000, TimeUnit.MILLISECONDS)
-        gradleAssert(bridge.devices.isNotEmpty()) {
-            "There are no connected devices to pull logs from!"
-        }
+        if (adbBridge.devices.isNotEmpty()) {
+            adbBridge.devices.forEach { avd ->
+                // Before pulling the dropbox folder, get rid of the irrelevant files.
+                avd.runShell(
+                    "rm -rf " +
+                        "$dropboxFolder/system_server_strictmode* " +
+                        "$dropboxFolder/system_app_strictmode* " +
+                        "$dropboxFolder/keymaster*"
+                )
+                avd.pullDirectory(
+                    dropboxFolder,
+                    avd.getLogDir()
+                )
 
-        bridge.devices.forEach { avd ->
-            val targetDir = File(rootProject.projectDir, "deviceLogs/${avd.serialNumber}/")
-            gradleAssert(targetDir.exists() || targetDir.mkdirs()) {
-                "Unable to create device logs directory '${targetDir.absolutePath}'."
+                // Retrieve device properties and store them in JSON form.
+                val jsonMetadata = mutableMapOf<String, Map<String, String>>()
+                jsonMetadata["density"] =
+                    convertKeyValueToMap("density", avd.runShell("wm density"))
+                jsonMetadata["size"] = convertKeyValueToMap("size", avd.runShell("wm size"))
+                jsonMetadata["properties"] =
+                    convertKeyValueToMap("getprop", avd.runShell("getprop"))
+                jsonMetadata["package list"] =
+                    convertKeyValueToMap("pm list packages", avd.runShell("pm list packages"))
+
+                val jsonString: String =
+                    GsonBuilder().setPrettyPrinting().create().toJson(jsonMetadata)
+                File(avd.getLogDir(), "device-metadata.json").writeText(jsonString)
             }
-            // Before pulling the dropbox folder, get rid of the irrelevant files.
-            avd.runShell(
-                "rm -rf " +
-                    "$dropboxFolder/system_server_strictmode* " +
-                    "$dropboxFolder/system_app_strictmode* " +
-                    "$dropboxFolder/keymaster*"
-            )
-            avd.pullDirectory(
-                dropboxFolder,
-                targetDir
-            )
-
-            // Clean-up the dropbox after pulling it from a connected device.
-            avd.runShell("rm -r /data/anr/* /data/tombstones/* $dropboxFolder/*")
+        } else {
+            logger.warn("There are no connected devices to pull logs from.")
         }
     }
+}
+
+fun startRecordingLogcat(device: IDevice) {
+    // Always select a new logcat file for every new connection.
+    // The emulator might have been just reconnected, or killed and recreated.
+    var idx = 1
+    var logFile: File
+    do {
+        logFile = File(device.getLogDir(), "logcat-${idx++}.txt")
+    } while (logFile.exists())
+
+    val task = LogCatReceiverTask(device)
+    task.addLogCatListener { msgList: List<LogCatMessage> ->
+        logFile.appendText(msgList.joinToString("\n") + "\n")
+    }
+    val id = device.avdId ?: device.serialNumber
+    // When the ADB connection is restarted (e.g. when rooting), a new listener must be created.
+    logcatTracingThreads[id]?.interrupt()
+    logcatTracingThreads[id] = Thread(task, "logcat-$id").apply { start() }
 }
 
 fun convertPackageListToMap(key: String, output: String): Map<String, String> {
@@ -239,13 +366,13 @@ fun convertPackageListToMap(key: String, output: String): Map<String, String> {
     }
     val listOfPackages = mutableListOf<String>()
     output.lines().forEach { line ->
-        val keyValue = line.split(':', limit = 2).map { it -> it.trim() }
+        val keyValue = line.split(':', limit = 2).map { it.trim() }
         if ((keyValue.size >= 2) and (keyValue[0] == "package")) {
             listOfPackages.add(keyValue[1])
         }
     }
     val dictionaryOfValues = mutableMapOf<String, String>()
-    dictionaryOfValues.put("packages", listOfPackages.joinToString())
+    dictionaryOfValues["packages"] = listOfPackages.joinToString()
     gradleAssert(dictionaryOfValues.isNotEmpty()) {
         "Empty list found for packages."
     }
@@ -258,61 +385,15 @@ fun convertKeyValueToMap(key: String, output: String): Map<String, String> {
     }
     val dictionaryOfValues = mutableMapOf<String, String>()
     output.lines().forEach { line ->
-        val keyValue = line.split(':', limit = 2).map { it -> it.trim().trim('[').trim(']') }
+        val keyValue = line.split(':', limit = 2).map { it.trim().trim('[', ']') }
         if (keyValue.size >= 2) {
-            dictionaryOfValues.put(keyValue[0], keyValue[1])
+            dictionaryOfValues[keyValue[0]] = keyValue[1]
         }
     }
     gradleAssert(dictionaryOfValues.isNotEmpty()) {
         "Empty values found for $key."
     }
     return dictionaryOfValues
-}
-
-/**
- * Retrieves metadata from all connected devices at the same time.
- * The metadata will be placed in the current NavTest directory inside the project root directory, in a
- * `deviceLogs` subdirectory, which will contain one sub-directory per device named as that
- * device's serial number.
- */
-tasks.create("pullMetadata") {
-    doLast {
-        AndroidDebugBridge.initIfNeeded(false)
-        val bridge = AndroidDebugBridge.createBridge(10000, TimeUnit.MILLISECONDS)
-        gradleAssert(bridge.devices.isNotEmpty()) {
-            "There are no connected devices to pull metadata from!"
-        }
-
-        bridge.devices.forEach { avd ->
-            val jsonMetadata = mutableMapOf<String, Map<String, String>>()
-            val targetDir = File(rootProject.projectDir, "deviceLogs/${avd.serialNumber}/")
-            gradleAssert(targetDir.exists() || targetDir.mkdirs()) {
-                "Unable to create device metadata directory '${targetDir.absolutePath}'."
-            }
-
-            jsonMetadata["density"] = convertKeyValueToMap("density", avd.runShell("wm density"))
-            jsonMetadata["size"] = convertKeyValueToMap("size", avd.runShell("wm size"))
-            jsonMetadata["properties"] = convertKeyValueToMap("getprop", avd.runShell("getprop"))
-            jsonMetadata["package list"] =
-                convertKeyValueToMap("pm list packages", avd.runShell("pm list packages"))
-
-            val jsonString: String = GsonBuilder().setPrettyPrinting().create().toJson(jsonMetadata)
-            File(targetDir, "device-metadata.json").writeText(jsonString)
-        }
-    }
-}
-
-/**
- * This ensures that only one type of emulator is launched at the same time.
- */
-tasks.getByPath(":startEmulators").doLast {
-    val bridge = AndroidDebugBridge.createBridge(10000, TimeUnit.MILLISECONDS)
-    val runningEmulatorTypes = bridge.devices.distinctBy { it.avdName }
-    gradleAssert(runningEmulatorTypes.size <= 1) {
-        "Multiple types of emulator are running concurrently:\n" +
-            " ${runningEmulatorTypes.joinToString { it.name }}\n" +
-            "This is not recommended, as it will make some tests fail."
-    }
 }
 
 /**
@@ -332,7 +413,7 @@ fun IDevice.pullDirectory(directory: String, targetDir: File) {
 
     logger.info("Pulling directory '$directory' from device: $this")
     val messages: MutableList<LogCatMessage> = mutableListOf()
-    val receiver = com.android.ddmlib.logcat.LogCatReceiverTask(this)
+    val receiver = LogCatReceiverTask(this)
     receiver.addLogCatListener { messages.addAll(it) }
 
     try {
@@ -347,6 +428,16 @@ fun IDevice.pullDirectory(directory: String, targetDir: File) {
             logger.warn("> $it")
         }
     }
+}
+
+fun IDevice.getLogDir(): File {
+    val id = avdId ?: serialNumber
+    val testOutputDirectory: File by extra
+    val targetDir = File(testOutputDirectory, "logs/$id/")
+    gradleAssert(targetDir.exists() || targetDir.mkdirs()) {
+        "Unable to create device logs directory '${targetDir.absolutePath}'."
+    }
+    return targetDir
 }
 
 /**
@@ -500,23 +591,23 @@ fun AvdInfo.configureIndigoEmulatorInstance(isHeadless: Boolean) {
             runShell("pm disable --user 10 com.amazon.alexaautoclientservice")
         }
 
-        // Set the density to match the value of the "samsung-galaxy_tab_s5e_for_indigo" tablet
+        // Set the density to match the value of the "samsung-galaxy_tab_s5e_for_indigo" tablet.
         runShell("wm density 288")
 
-        // Increase logcat buffer size to 16M
+        // Increase logcat buffer size to 16M.
         runShell("logcat -G 16M")
 
-        // Disable mobile data
+        // Disable mobile data.
         runShell("svc data disable")
         runShell("settings put global wifi_scan_always_enabled 0")
 
-        // Enable wifi
+        // Enable wifi.
         runShell("svc wifi enable")
 
-        // Disable location
+        // Disable location.
         runShell("settings put secure location_providers_allowed -gps")
 
-        // Disable automatic date/time & configure time-format to 24 hours
+        // Disable automatic date/time & configure time-format to 24 hours.
         runShell("settings put global auto_time 0")
         runShell("settings put global auto_time_zone 0")
         runShell("settings put system time_12_24 24")
@@ -525,7 +616,7 @@ fun AvdInfo.configureIndigoEmulatorInstance(isHeadless: Boolean) {
         runShell("settings put global art_verifier_verify_debuggable 0")
 
         // Disable the calendar app, as it can crash.
-        runShell("pm disable com.android.calendar")
+        runShell("pm disable --user 10 com.android.calendar")
 
         // Set time
         val formatter = DateTimeFormatter.ofPattern("MMddHHmmyyy.ss")
@@ -536,11 +627,47 @@ fun AvdInfo.configureIndigoEmulatorInstance(isHeadless: Boolean) {
 
         // Disable peek notifications to avoid pop-ups on top of the product.
         runShell("settings put global heads_up_notifications_enabled 0")
+
+        // Set procrank's log level to FATAL_WITHOUT_ABORT: due to an issue with /proc/<pid>/pagemap
+        // files on an emulator image, procrank produces a huge amount of ERROR logs.
+        runShell("setprop log.tag.procrank FATAL_WITHOUT_ABORT")
     }
 }
 
 fun IDevice.runShell(command: String): String {
-    val receiver = CollectingOutputReceiver()
-    executeShellCommand(command, receiver)
-    return receiver.output
+    val launchCommand = {
+        val receiver = CollectingOutputReceiver()
+        executeShellCommand(command, receiver)
+        receiver.output
+    }
+    return try {
+        launchCommand()
+    } catch (ex: Exception) {
+        val id = avdId ?: serialNumber
+        logger.quiet("[$id] Shell command execution failed (got: $ex), retrying once: \"$command\"")
+        launchCommand()
+    }
+}
+
+fun String.configureMultiDisplay(multiDisplay: Boolean, displayOne: DisplayConfiguration): String {
+    return replace(Regex("hw\\.display.\\..*\n"), "").let {
+        when (multiDisplay) {
+            true -> {
+                logger.quiet("Configuring secondary display: hw.display1=$displayOne")
+                it + "hw.display1.width = ${displayOne.width}\n" +
+                    "hw.display1.height = ${displayOne.height}\n" +
+                    "hw.display1.density = ${displayOne.density}\n"
+            }
+            false -> {
+                logger.quiet("Configuring only primary display")
+                it
+            }
+        }
+    }
+}
+
+data class DisplayConfiguration(val width: Int, val height: Int, val density: Int) {
+    companion object {
+        val secondaryDisplay = DisplayConfiguration(1200, 1600, 288)
+    }
 }
