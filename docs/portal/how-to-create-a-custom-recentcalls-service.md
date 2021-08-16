@@ -117,14 +117,14 @@ private val recentCallsSource = listOf(
         displayName = "Caller",
         phoneNumber = PhoneNumber("+2811111111", PhoneNumberType.Mobile),
         duration = Duration.ofSeconds(60),
-        timestamp = Instant.now()
+        creationTime = Instant.now()
     ),
     RecentCallsService.RecentCall(
         type = RecentCallsService.CallType.OUTGOING,
         displayName = "Receiver",
         phoneNumber = PhoneNumber("+2822222222", PhoneNumberType.Work),
         duration = Duration.ZERO,
-        timestamp = Instant.parse("2020-04-09T10:15:30.00Z")
+        creationTime = Instant.parse("2020-04-09T10:15:30.00Z")
     ),
 )
 ```

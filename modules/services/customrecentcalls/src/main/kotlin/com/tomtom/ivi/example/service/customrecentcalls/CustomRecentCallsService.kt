@@ -33,14 +33,14 @@ class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
             displayName = "John Smith",
             phoneNumber = PhoneNumber("+281111111", PhoneNumberType.Mobile),
             duration = Duration.ofSeconds(60),
-            timestamp = Instant.now()
+            creationTime = Instant.now()
         ),
         RecentCallsService.RecentCall(
             type = RecentCallsService.CallType.OUTGOING,
             displayName = "Kelly Goodwin",
             phoneNumber = PhoneNumber("+2822222222", PhoneNumberType.Work),
             duration = Duration.ZERO,
-            timestamp = Instant.now().minus(Duration.ofHours(1))
+            creationTime = Instant.now().minus(Duration.ofHours(1))
         ),
     )
 
