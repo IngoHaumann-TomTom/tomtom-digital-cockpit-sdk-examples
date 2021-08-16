@@ -57,7 +57,7 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
                 testProperty = it?.stuff ?: ""
             }
             client.testLiveDataMapProperty.observe(this@CustomCompanionExampleService) { sourceMap ->
-                mutableTestMap.keys.retainAll(sourceMap.keys)
+                mutableTestMap.keys.retainAll(sourceMap.keys.map { it.value })
                 mutableTestMap.putAll(sourceMap.map { it.key.value to (it.value?.stuff ?: "") })
             }
         }

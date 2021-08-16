@@ -17,6 +17,7 @@ import com.tomtom.ivi.core.common.contacts.PhoneNumberType
 import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
 import com.tomtom.ivi.core.serviceapi.recentcalls.RecentCallsService
 import com.tomtom.ivi.core.serviceapi.recentcalls.RecentCallsServiceBase
+import com.tomtom.ivi.core.serviceapi.recentcalls.RecentCallsService.RecentCall
 import java.time.Duration
 import java.time.Instant
 
@@ -48,14 +49,17 @@ class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
         super.onCreate()
         // Initialize the synchronization status.
         synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
-        // Initialize the recentCalls property with an empty list.
-        recentCalls = listOf()
+        // Initialize the recentCallsDescending property with an empty list.
+        recentCallsDescending = listOf()
         // Set the service to ready. Now clients can call the service's APIs.
         serviceReady = true
         // The source of recent calls is ready and synchronization starts.
         synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
-        // Update the recent calls property with some recent calls from the source.
-        recentCalls = recentCallsSource
+        // Update recentCallsDescending with the list of recent calls from the source.
+        // Make sure that the list is in descending chronological order.
+        // If a client (typically a view model) requires the list in a different order,
+        // then it should resort the list before use.
+        recentCallsDescending = recentCallsSource.sortedByDescending(RecentCall::creationTime)
     }
 
     override fun onDestroy() {

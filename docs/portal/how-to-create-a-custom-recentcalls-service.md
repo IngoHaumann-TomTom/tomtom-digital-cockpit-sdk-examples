@@ -141,19 +141,22 @@ override fun onCreate() {
     super.onCreate()
     // Initialize the synchronization status.
     synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
-    // Initialize the recentCalls property with an empty list.
-    recentCalls = emptyList()
+    // Initialize the recentCallsDescending property with an empty list.
+    recentCallsDescending = emptyList()
     // Set the service ready and clients can call any Api of the service.
     serviceReady = true
     // The source of recent calls is ready and synchronization starts.
     synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
-    // Update the recent recentCalls with some recent calls from the source
-    recentCalls = recentCallsSource
+    // Update recentCallsDescending with the list of recent calls from the source.
+    // Make sure that the list is in descending chronological order.
+    // If a client (typically a view model) requires the list in a different order,
+    // then it should resort the list before use.
+    recentCallsDescending = recentCallsSource.sortedByDescending(RecentCall::timestamp)
 }
 ```
 
-The [RecentCallsService.recentCalls] and [RecentCallsService.synchronizationStatus] properties have
-been initialized.
+The [RecentCallsService.recentCallsDescending] and [RecentCallsService.synchronizationStatus]
+properties have been initialized.
 
 When the service is destroyed:
 

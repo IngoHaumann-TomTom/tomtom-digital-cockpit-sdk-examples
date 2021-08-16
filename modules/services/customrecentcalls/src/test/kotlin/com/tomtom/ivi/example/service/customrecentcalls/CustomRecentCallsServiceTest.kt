@@ -30,9 +30,9 @@ class CustomRecentCallsServiceTest : IviTestCase() {
     @Test
     fun initialization() {
         // GIVEN-WHEN-THEN
-        assertEquals(2, sut.recentCalls.size)
-        assertEquals("John Smith", sut.recentCalls[0].displayName)
-        assertEquals("Kelly Goodwin", sut.recentCalls[1].displayName)
+        assertEquals(2, sut.recentCallsDescending.size)
+        assertEquals("John Smith", sut.recentCallsDescending[0].displayName)
+        assertEquals("Kelly Goodwin", sut.recentCallsDescending[1].displayName)
         assertEquals(SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.synchronizationStatus)
     }
 }
