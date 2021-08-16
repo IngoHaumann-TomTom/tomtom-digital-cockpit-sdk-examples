@@ -18,6 +18,7 @@ test -n "$files" || die "Cannot find input files of type '.md'"
 for input_file in $files
 do
   output_file=$output_dir/${input_file%.md}".html"
-  pandoc -s -o "$output_file" "$input_file" || die "Pandoc failed on input file: $input_file."
+  pandoc -s -c style.css -o "$output_file" "$input_file" || die "Pandoc failed on input file: $input_file."
 done
 
+cp ../style.css $output_dir/style.css
