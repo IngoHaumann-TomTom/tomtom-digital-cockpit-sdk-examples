@@ -527,4 +527,18 @@ To fix this, set the emulator's OpenGL ES API level to 3.1 and restart the emula
 [_above_](#an-indigo-emulator-device) under `Set the Emulator's OpenGL` and
 `Now restart the emulator`.
 
+### 8) Android Studio does not install the application
+
+Sometimes Android Studio does not install your new application after a rebuild but instead launches
+a previously installed version present on the emulator or target device. To solve this, enable the
+package manager to handle installs:
+
+- Open dialog `Run/Debug Configurations` via `Run -> Edit Configurations...`.
+- In this dialog tick the box `Always install with package manager`.
+
+Configuration `Run IVI Example` as delivered with the SDK has these settings pre-configured.
+
+![Android Studio package manager](images/android_studio_package_manager.png "Android Studio package manager")
+
+
 
