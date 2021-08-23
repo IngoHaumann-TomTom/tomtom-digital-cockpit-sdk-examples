@@ -8,7 +8,7 @@ defined by Protobuf definition files. These files are then used to generate code
 imported by the IVI system and the companion app.
 
 For an overview of the companion app communications architecture look at
-[How to communicatie with a companion app](how-to-communicate-with-a-companion-app.md).
+[How to communicatie with a companion app](how-to-communicate-with-a-companion-app.html).
 
 To create a new remote companion app service the following steps need to be taken:
 * [Define a protobuf service description for your service](#how-to-define-a-new-service-description).

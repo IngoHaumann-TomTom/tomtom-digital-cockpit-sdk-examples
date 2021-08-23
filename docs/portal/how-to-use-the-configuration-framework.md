@@ -29,7 +29,7 @@ item. Account status is managed by the account service. When the user is authent
 login is stored in persistent storage by the account settings service, so the user does not need to
 log in again after restart of the application.
 The source code for the frontend and service can be found at [modules](/modules).
-Also see [how to create IVI service](how-to-create-ivi-service.md), and the API reference
+Also see [how to create IVI service](how-to-create-ivi-service.html), and the API reference
 documentation for an `IviService` annotation.
 
 To demonstrate the usage of configurations, the account service will use a static configuration

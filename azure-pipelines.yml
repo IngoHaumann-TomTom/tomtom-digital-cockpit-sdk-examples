@@ -71,6 +71,7 @@ stages:
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/build.yml
+    - template: .azure-templates/docs.yml
     - template: build/build-cleanup.yml@devops-templates
 
   - job: UnitTests

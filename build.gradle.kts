@@ -254,21 +254,8 @@ subprojects {
     }
 }
 
-tasks.register<Copy>("copyDocumentationImages") {
-    from("${project.projectDir}/docs/portal/images") {
-        include("*.png")
-        include("*.svg")
-    }
-    into(buildDir.resolve("html/portal/images"))
-}
-
-tasks.register<Exec>("convertDocs") {
+tasks.register<Exec>("docs") {
     workingDir("${project.projectDir}/docs/portal")
-    commandLine("${project.projectDir}/docs/convert.sh")
-    args("${project.projectDir}/build/html/portal")
-}
-
-tasks.register("docs") {
-    dependsOn(":convertDocs")
-    dependsOn(":copyDocumentationImages")
+    commandLine("${project.projectDir}/docs/portal/convert.sh")
+    args("${project.projectDir}/docs/portal/html")
 }

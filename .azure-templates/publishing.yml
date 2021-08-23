@@ -33,6 +33,14 @@ steps:
 
 - download: current
   artifact: builds
+- download: current
+  artifact: example-app-docs
+
+- bash: |
+    set -eux
+    cd $(Pipeline.Workspace)
+    tar -czvf example-app-docs.tar.gz example-app-docs
+  displayName: Archive Example App documentation
 
 - template: gradle/gradle.yml@devops-templates
   parameters:
@@ -43,7 +51,7 @@ steps:
       -PpublishPassword=$(ARTIFACTORY_PASSWORD)
       -PiviVersion=$(product_version)
       -PuseInternalNavkit2ApiKey=true
-    displayName: Publish APKs to Artifactory
+    displayName: Publish APKs and docs to Artifactory
     condition: succeeded()
 
 - bash: |

@@ -60,6 +60,14 @@ extensions.getByType(PublishingExtension::class.java).apply {
                 }
             }
         }
+        create<MavenPublication>("exampleAppDocs") {
+            artifact(File(rootProject.projectDir, "../example-app-docs.tar.gz")) {
+                extension = "tar.gz"
+            }
+            groupId = "com.tomtom.ivi"
+            version = findProperty("iviVersion") as String
+            artifactId = "example-app-docs"
+        }
     }
 }
 
@@ -79,7 +87,7 @@ artifactory {
             }
         })
         defaults(delegateClosureOf<GroovyObject> {
-            invokeMethod("publications", arrayOf("apk"))
+            invokeMethod("publications", arrayOf("apk, exampleAppDocs"))
             setProperty("publishArtifacts", true)
             setProperty("publishPom", true)
         })

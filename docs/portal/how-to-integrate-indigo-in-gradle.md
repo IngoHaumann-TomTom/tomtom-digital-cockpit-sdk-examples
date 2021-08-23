@@ -141,8 +141,8 @@ You can use `ExampleModuleReference.kt` in
 
 See:
 
-- [How to create an IVI service](examples/how-to-create-ivi-service.md)
-- [How to create a frontend plugin](examples/how-to-create-frontend-plugin.md)
+- [How to create an IVI service](examples/how-to-create-ivi-service.html)
+- [How to create a frontend plugin](examples/how-to-create-frontend-plugin.html)
 
 ## Copyright
 

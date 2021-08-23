@@ -14,4 +14,4 @@ variables:
   # Version of the Docker images from the `indigo-docker` repo.
   # TODO(IVI-3130): Store dockerImageVersion in pipelines Library
   - name: dockerImageVersion
-    value: '3.1.1'
+    value: '3.1.10'

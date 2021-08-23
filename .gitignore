@@ -2,6 +2,7 @@
 **/build/
 *.swp
 /local.properties
+docs/portal/html/
 IviTest
 # IntelliJ
 *.iml

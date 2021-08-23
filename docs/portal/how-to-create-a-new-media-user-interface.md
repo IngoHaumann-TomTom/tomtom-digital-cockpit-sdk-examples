@@ -22,10 +22,10 @@ A few examples of media apps which are not suitable for the default user interfa
 If such drastic customizations are not necessary, for example if the only needs are fixing up how
 the content from a media app is displayed to the user, or to add an icon to perform an action
 specific to that app, using the default media user interface should be preferred and
-[appropriately customized](how-to-customize-a-media-source.md).
+[appropriately customized](how-to-customize-a-media-source.html).
 
 For this guide, knowledge of the IndiGO media APIs [api_common_media] and [api_common_mediasources]
-will greatly help. In the [media overview](/indigo/media-domain.md) documentation, more details can
+will greatly help. In the [media overview](/indigo/media-domain.html) documentation, more details can
 be found over the Android Automotive Media framework and how IndiGO uses it. 
 
 ## Concepts
@@ -39,7 +39,7 @@ This user interface will be a new panel. A panel is composed by three classes: a
 to define the logic; a view model, [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
 potentially using data binding; an [IviFragment](com.tomtom.ivi.api.framework.frontend.IviFragment)
 defining the Android fragment and creating the instance of the view model.
-Please refer to the [frontend plugin guide](how-to-create-frontend-plugin.md) to get started.
+Please refer to the [frontend plugin guide](how-to-create-frontend-plugin.html) to get started.
 
 This user interface will use a specialization of the base user interface panel type [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel),
 [MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel). This panel type is

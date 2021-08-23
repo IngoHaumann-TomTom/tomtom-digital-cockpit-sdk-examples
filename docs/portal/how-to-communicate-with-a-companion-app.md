@@ -85,7 +85,7 @@ A [CommunicationsClient] instance creates client service *proxy* instances for e
 that is connected, which support The particular service.
 
 To learn how to create a new remote companion app service, see
-[How to create a new remote companion service](how-to-create-a-new-remote-companion-service.md)
+[How to create a new remote companion service](how-to-create-a-new-remote-companion-service.html)
 
 To use this, two things need to be done:
 - [Setting up communications using Bluetooth Low Energy on the IVI side](#setting-up-communications-using-bluetooth-low-energy-on-the-ivi-side).

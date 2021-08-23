@@ -112,7 +112,7 @@ navigation-related features to work.
 Set the `navkit2ApiKey` property to your NavKit2 API key in the top level `local.properties` file or
 in your `gradle.properties` file, in the folder specified by the `GRADLE_USER_HOME` environment
 variable, usually `~/.gradle/`. See
-[How to configure the NavKit2 API key](how-to-configure-the-navkit2-api-key.md) for details and
+[How to configure the NavKit2 API key](how-to-configure-the-navkit2-api-key.html) for details and
 alternatives ways to configure the key.
 
 > > __Windows:__ Use the `%UserProfile%\.gradle` folder.

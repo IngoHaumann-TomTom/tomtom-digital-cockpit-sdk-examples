@@ -208,7 +208,7 @@ val accountMenuItem by extra {
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
 the full-qualified package. It is defined once and used for all configurations. See
-[How to integrate Indigo in Gradle](how-to-integrate-indigo-in-gradle.md#module-references)
+[How to integrate Indigo in Gradle](how-to-integrate-indigo-in-gradle.html#module-references)
 for details.
 
 ### Registering the frontend and menu item build config
@@ -264,7 +264,7 @@ ivi {
 
 The above example adds the `accountFrontend` and the `accountMenuItem` to the default IVI
 instance. A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI
-instance. See [How to configure the runtime deployment](how-to-configure-the-runtime-deployment.md)
+instance. See [How to configure the runtime deployment](how-to-configure-the-runtime-deployment.html)
 for more details about IVI instance configurations.
 
 The final step is to let the new frontend replace IndiGO's user profile frontend. For this
