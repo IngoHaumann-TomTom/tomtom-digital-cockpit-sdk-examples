@@ -75,7 +75,7 @@ ivi {
             addHost(customCompanionExampleServiceHost)
         }
         runtime {
-            deployments {
+            globalDeployments {
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
                     useDefaults()
                     // Deploys the account and account settings services in the same process.

@@ -35,7 +35,7 @@ ivi {
         enabled = true
         ...
         runtime {
-            deployments {
+            globalDeployments {
                 // Create the "Global" runtime deployment.
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
                     // Apply the default runtime deployments. This deploys all IVI service hosts
@@ -89,11 +89,13 @@ ivi {
             }
         }
         runtime {
-            deployments {
+            globalDeployments {
                 // Create "Global" runtime deployment to deploy all global IVI service hosts.
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
                     deployServiceHosts(all())
                 }
+            }
+            multipleInstanceDeployments {
                 // Create "CenterStack" runtime deployment to deploy all service hosts for the
                 // "CenterStack" IVI instances.
                 create(RuntimeDeploymentIdentifier("CenterStackRuntime")) {
