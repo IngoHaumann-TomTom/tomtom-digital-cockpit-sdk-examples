@@ -57,7 +57,7 @@ steps:
       echo "##vso[task.setvariable variable=branchCreated]True"
       mv Versions.kt ${REPO_VERSION_FILE}
       git diff > $(Build.ArtifactStagingDirectory)/indigo-update.patch
-      git commit -a -m "Integrate new versions of IndiGO platform version: ${INDIGO_VERSION}"
+      git commit -a -m "Last integrated version of IndiGO platform: ${INDIGO_VERSION}"
     displayName: 'Commit updated IndiGO lib to ${{parameters.branch}} branch'
 
 
