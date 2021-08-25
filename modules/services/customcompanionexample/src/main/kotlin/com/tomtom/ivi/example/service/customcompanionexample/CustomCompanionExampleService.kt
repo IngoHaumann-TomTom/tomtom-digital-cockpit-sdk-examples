@@ -31,13 +31,18 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext) :
     CompanionExampleServiceBase(iviServiceHostContext) {
 
-    // Map of all connected companion apps. Every connected companion app provides its own proxy.
+    /**
+     * Map of all connected companion apps. Every connected companion app provides its own proxy.
+     */
     private val companionAppProxies = mutableMapOf<ServiceProviderId, ExampleService>()
 
     private val mutableTestMap = MutableMirrorableMap<Int, String>().also { testMap = it }
 
-    // The communications client context that indicates what service we want to connect to
-    // (in this case the ExampleService).
+    /**
+     * The communications client context that indicates what service we want to connect to (in this
+     * case the ExampleService).
+     */
+    // TODO(IVI-4703): Remove [OptIn] when [CommunicationsClientContext] allows it.
     @OptIn(ExperimentalCoroutinesApi::class)
     private val communicationsClientContext = CommunicationsClientContext(
         iviServiceHostContext.context,
@@ -46,8 +51,10 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
     )
 
     private val communicationsServiceClientListener = object : CommunicationsClientListener {
-        // This is called when a companion app that provides the ExampleService is connected .
-        // Each service provided by a companion app has a unique service provider ID.
+        /**
+         * This is called when a companion app that provides the ExampleService is connected .
+         * Each service provided by a companion app has a unique service provider ID.
+         */
         override fun onServiceConnected(
             serviceProviderUuid: ServiceProviderId,
             client: CommunicationsServiceBase
@@ -62,13 +69,18 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
             }
         }
 
-        // This is called when a connection is lost to a previously connected service.
+        /**
+         * This is called when a connection is lost to a previously connected service.
+         */
         override fun onServiceDisconnected(serviceProviderUuid: ServiceProviderId) {
             companionAppProxies.remove(serviceProviderUuid)
         }
     }
 
-    // This starts listening to available [ExampleService] services on any connected companion app.
+    /**
+     * This starts listening to available [ExampleService] services on any connected companion app.
+     */
+    // TODO(IVI-4703): Remove [OptIn] when [CommunicationsClient] allows it.
     @OptIn(ExperimentalCoroutinesApi::class)
     val communicationsClient = CommunicationsClient(
         communicationsClientContext,
@@ -81,7 +93,9 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
     }
 
     override suspend fun testFunctionCall(bar: String): String? {
-        // Proxy a service api function call to the first connected companion app.
+        /**
+         * Proxy a service api function call to the first connected companion app.
+         */
         return companionAppProxies.values.firstOrNull()?.testFunctionCall(
             ExampleMessageRequest.newBuilder()
                 .setBar(bar)
