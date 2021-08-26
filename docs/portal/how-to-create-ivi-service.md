@@ -235,8 +235,10 @@ In the given example, nullable property `activeAccount` is set to `null` by defa
 need to initialize it in `onCreate`. Although it is good for readability to initialize all the
 properties explicitly.
 
-After the service is created, it is not yet available for clients until it declares its availability
-by changing the `serviceReady` property. It can be set in the `onCreate` when all properties are
+__Note:__ After the service is created, it is not yet available for clients until it declares its
+availability by changing the __`serviceReady`__ property to `true`.
+
+The `serviceReady` property can be set in the `onCreate` when all properties have been
 initialized. If the property has deferred initialization, because it depends on a LiveData value of
 another service for example, the availability can be changed via `onRequiredPropertiesInitialized`.
 This function is called when all (required) non-nullable properties are initialized with values.
