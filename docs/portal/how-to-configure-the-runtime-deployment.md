@@ -147,6 +147,40 @@ class.
 
 The above example defines an `PassengerActivity` that is associate to the `Passenger` IVI Instance.
 
+## How to run an Android service in the same process as an IVI service host
+
+Standard Android services (not IVI service hosts) are not managed by the IVI platform in any way.
+The IVI build config only allows an Android service to be deployed in a configurable process name.
+For instance, it is possible to deploy an Android service in the same process as an IVI service
+host without the need to hardcode the process name of the Android service in the
+`AndroidManifest.xml` file.
+
+```kotlin
+val androidService = AndroidServiceConfig("com....Service")
+val someServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        services {
+            addHost(someServiceHost)
+        }
+        globalRuntime {
+             create(RuntimeDeploymentIdentifier.global) {
+                 useDefaults()
+                 deployServiceHost(someServiceHost)
+                 deployAndroidService(androidService).inSameProcessAs(someServiceHost)
+             }
+        }
+    }
+}
+```
+
+The above example deploys `com....Service` in the same process as the `someServiceHost`.
+
+__Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
+  Android service into the build.
+
 ## Copyright
 
 Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
