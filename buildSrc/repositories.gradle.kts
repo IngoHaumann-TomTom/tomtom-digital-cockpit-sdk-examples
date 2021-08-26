@@ -9,22 +9,21 @@
  * immediately return it to TomTom N.V.
  */
 
+ /*
+  * Note:
+  * This configuration file is intended for TomTom developers that have access to the internal
+  * Artifactory repositories.
+  * To compile the Example app as an external developer, you should use the SDK that is published
+  * on TomTom's Nexus server. Replace this file with repositories.gradle.sdk.kts and follow the
+  * instructions in docs/portal/getting-started.md.
+  */
+
 repositories {
     // Local artifact cache
     mavenLocal()
 
-    // PU IVI repo for external parties
-    if (project.hasProperty("nexusUsername")) {
-        maven("https://repo.tomtom.com/repository/ivi") {
-            credentials {
-                username = properties["nexusUsername"].toString()
-                password = properties["nexusPassword"].toString()
-            }
-        }
-    } else {
-        // PU IVI repo for internal dependencies
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
-    }
+    // PU IVI repo for internal dependencies
+    maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
 
     // Repo for shared Android Tools like, UI Controls, resource resolutions,
     // viewcomparison test setup, animations...

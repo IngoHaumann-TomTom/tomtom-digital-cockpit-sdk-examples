@@ -13,6 +13,7 @@ repositories {
     // Local artifact cache
     mavenLocal()
 
+    // TomTom PU IVI repo for the IndiGO product
     maven("https://repo.tomtom.com/repository/ivi") {
         credentials {
             username = properties["nexusUsername"].toString()
@@ -26,8 +27,9 @@ repositories {
     maven("https://plugins.gradle.org/m2/")
     maven("https://jitpack.io")
 
-    // PU LNS repo for the Connectivity Agent
+    // TomTom PU LNS repo for the Connectivity Agent
     maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
 }
 
+// TODO(IVI-4701): Remove Artifactory reference.
 val artifactoryRepo by rootProject.extra("https://artifactory.navkit-pipeline.tt3.com/artifactory")
