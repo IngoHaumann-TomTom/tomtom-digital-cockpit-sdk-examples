@@ -61,7 +61,7 @@ extensions.getByType(PublishingExtension::class.java).apply {
             }
         }
         create<MavenPublication>("exampleAppDocs") {
-            artifact(File(rootProject.projectDir, "../example-app-docs.tar.gz")) {
+            artifact(File(rootProject.projectDir, "example-app-docs.tar.gz")) {
                 extension = "tar.gz"
             }
             groupId = "com.tomtom.ivi"

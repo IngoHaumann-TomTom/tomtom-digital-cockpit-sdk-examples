@@ -6,6 +6,7 @@ docs/portal/html/
 IviTest
 # IntelliJ
 *.iml
+.docs/portal/html
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
