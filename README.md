@@ -62,7 +62,7 @@ And then build with:
 ## Setting up the development environment
 
 For the entire setup process, please consult the following page:
-[docs/getting-started.md](docs/getting-started.md)
+[docs/portal/getting-started.md](docs/portal/getting-started.md)
 
 ## Copyright
 
