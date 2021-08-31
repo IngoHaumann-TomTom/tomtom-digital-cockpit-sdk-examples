@@ -11,14 +11,6 @@
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
 
-// TODO(IVI-4703): Remove `RequiresOptIn` when `Libraries.TomTom.CommunicationsSdk.CLIENT`
-//   allows it.
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-    kotlinOptions.freeCompilerArgs += listOf(
-        "-Xopt-in=kotlin.RequiresOptIn"
-    )
-}
-
 dependencies {
     implementation(project(":serviceapis_companionexample"))
     implementation(Libraries.TomTom.CommunicationsSdk.CLIENT)

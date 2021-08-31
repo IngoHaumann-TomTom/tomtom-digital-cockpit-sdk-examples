@@ -42,8 +42,6 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
      * The communications client context that indicates what service we want to connect to (in this
      * case the ExampleService).
      */
-    // TODO(IVI-4703): Remove [OptIn] when [CommunicationsClientContext] allows it.
-    @OptIn(ExperimentalCoroutinesApi::class)
     private val communicationsClientContext = CommunicationsClientContext(
         iviServiceHostContext.context,
         this,
@@ -80,8 +78,6 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
     /**
      * This starts listening to available [ExampleService] services on any connected companion app.
      */
-    // TODO(IVI-4703): Remove [OptIn] when [CommunicationsClient] allows it.
-    @OptIn(ExperimentalCoroutinesApi::class)
     val communicationsClient = CommunicationsClient(
         communicationsClientContext,
         communicationsServiceClientListener
