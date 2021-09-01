@@ -220,13 +220,6 @@ Automotive variant.
 
 Follow these steps to install the IndiGO emulator image in Android Studio:
 
-- Add the file `docs/resources/devices.xml` (from the `examples` source), to your `~/.android/`
-folder.
-
-> __Windows:__ Add the file to your `%UserProfile%\.android\` folder.
-
-- If Android Studio is running, make sure it is restarted, so that the new file is picked up.
-
 - Open the SDK Manager via `Tools -> SDK Manager`.
 
 - In the SDK Manager, select tab `SDK Update Sites` and add a new entry with the following name and
@@ -249,7 +242,16 @@ close the SDK Manager.
 
 ### An IndiGO emulator device
 
-Follow these steps to create an emulator device based on the IndiGO emulator:
+An IndiGO emulator device for the x86-64 platform can be created with Gradle tasks:
+
+- `createTestEmulator` to create a headless device for testing.
+
+- `createDevelopmentEmulator` to create a device for development.
+
+> > The hardware profile of the emulator is configured to be an automotive device.
+
+_Mac(book) _with_ an M1 processor:__ No Android Automotive emulator is available for this chip yet,
+so the device has to be created manually:
 
 - Open the AVD Manager (Android Virtual Device Manager) via `Tools -> AVD Manager`.
 
@@ -259,70 +261,44 @@ Follow these steps to create an emulator device based on the IndiGO emulator:
 
 > > You should now be presented with a list of devices definitions.
 
-- In the `Tablet` category, find item `IndiGO_Test_Device`:
-
-> > ![Android Studio select hardware](images/android_studio_select_hardware_tablet.png "Android Studio select hardware")
-
-- Select `IndiGO_Test_Device`, and click `Edit Device...` at the right side of the screen. This
-shows the dialog `Configure Hardware Profile` for the `IndiGO_Test_Device`.
-
-> > Change the `Device Type` from "Phone/Tablet" to "Android Automotive":
+- Find `IndiGO_Test_Device` in the `Automotive` category, and click `Edit Device...` on the right
+  side of the screen. This will show the dialog `Configure Hardware Profile` for the
+  `IndiGO_Test_Device`.
 
 > > ![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png "Android Studio Configure Hardware Profile device type")
 
-> > Set the emulator's RAM to 3072 MB, and click `Finish`.
-
-> > The hardware profile of the emulator is now configured to be an automotive device. This will be
-used for emulator devices to be created.
-
-> > __Mac(book) _with_ an M1 processor:__ No Android Automotive emulator is available for this chip
-yet, so keep the `Device Type` as `Phone/Tablet`.
-
-- Back in dialog `Select Hardware`, you now see in category `Automotive` an item called
-`IndiGO_Test_Device`:
-
-> > ![Android Studio Select Hardware Automotive](images/android_studio_select_hardware_automotive.png "Android Studio Select Hardware Automotive")
-
-> > __Mac(book) _with_ an M1 processor:__ You see this item in category `Tablet`.
+- Change the `Device Type` from `Android Automotive` to `Phone/Tablet`.
 
 - Select this device `IndiGO_Test_Device` and choose `Next` to continue creating the AVD.
 
 - Now the correct System Image of the emulator needs to be selected.
 
-> > Select tab `x86 Images` and choose `Android R` (API level 30) as the System Image, downloading
-it first if necessary (by clicking "Download" next to the Release Name).
+> > Select tab `Other Images` and choose `Android S` for `arm64-v8a` as the System Image,
+> > downloading it first if necessary (by clicking `Download` next to the Release Name).
 
-> > ![Android Studio system image](images/android_studio_android_r.png "Android Studio system image Android R")
+An emulator device can be started via the Device Manager in Android Studio or the Gradle tasks
+`startTestEmulator` and `startDevelopmentEmulator`. To stop a device, run `stopTestEmulator` or
+`stopDevelopmentEmulator`.
 
-> > Click `Next` then `Finish`.
+__Mac(book) _with_ an M1 processor:__ An emulator device should only be started via the
+Device Manager.
 
-> > __Mac(book) _with_ an M1 processor:__ Select tab `Other Images` and choose `Android S` for
-`arm64-v8a` as the System Image, downloading it first if necessary (by clicking "Download" next to
-the Release Name).
+When the emulator device is started for the first time, it has to be configured to use OpenGL ES
+API level to 3.1:
 
-- You now see a new IndiGO emulator device listed in the AVD Manager:
+- Click the three dots at the bottom in the sidebar next to the emulator screen. This opens the
+  `Extended Controls` menu.
 
-> > ![Android Studio IndiGO automotive emulator](images/android_studio_indigo_automotive_emulator.png "Android Studio IndiGO automotive emulator")
+- Select `Settings` at the left.
 
-- Click the triangular `play` icon on the right to start the emulator.
+- Select the `Advanced` tab at the top.
 
-- Enable wifi:
-    - Click the Home button (circle) in the sidebar next to the emulator screen.
-    - Select `Car Launcher as Home` -> `Just Once`.
-    - Press the Android Applications icon (nine dots in a grid) on the bottom of the screen.
-    - Scroll down and open `Settings`.
-    - Select `Network & internet`.
-    - Enable `Wi-Fi` by pressing the toggle button so it turns blue.
+- This should say `Desktop native OpenGL` and `Renderer maximum (up to OpenGL ES 3.1)`, see
+  picture below.
 
-- Set the emulator's OpenGL ES API level to 3.1:
-    - Click the three dots at the bottom in the sidebar next to the emulator screen. This opens the
-      `Extended Controls` menu.
-    - Select `Settings` at the left.
-    - Select the `Advanced` tab at the top.
-    - This should say `Desktop native OpenGL` and `Renderer maximum (up to OpenGL ES 3.1)`, see
-      picture below.
-![Emulator OpenGL Settings](images/emulator_opengl_settings.png "Emulator OpenGL Settings")
-    - Close the `Extended Controls` menu.
+> > ![Emulator OpenGL Settings](images/emulator_opengl_settings.png "Emulator OpenGL Settings")
+
+- Close the `Extended Controls` menu.
 
 - Now restart the emulator, for the new settings to take effect:
     - Click the `x` in the upper-right corner of the emulator sidebar.
@@ -331,7 +307,7 @@ the Release Name).
       menu. Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot
       Now`.
 
-- Build and run the application by clicking on the green `play` icon. Ensure that the device that
+Build and run the application by clicking on the green `play` icon. Ensure that the device that
 the application will run on is the IndiGO automotive emulator that was created earlier in this
 tutorial.
 
@@ -485,9 +461,9 @@ Locate the `config.ini` file for the AVD you are using when running IndiGO in th
 have followed the instructions [here](#the-indigo-emulator), it should be at the
 following location:
 
-__Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
+__Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device.avd/config.ini`
 
-__Windows:__ `%UserProfile%\.android\avd\IndiGO_Test_Device_API_30.avd\config.ini`
+__Windows:__ `%UserProfile%\.android\avd\IndiGO_Test_Device.avd\config.ini`
 
 Otherwise it could be in one of the other `.avd` folders at that location.
 

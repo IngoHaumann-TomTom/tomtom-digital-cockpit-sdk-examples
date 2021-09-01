@@ -16,6 +16,7 @@ import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
+import com.tomtom.ivi.gradle.api.plugin.emulators.iviEmulators
 import com.tomtom.ivi.gradle.api.plugin.platform.ivi
 import com.tomtom.ivi.gradle.api.plugin.tools.version.iviAndroidVersionCode
 import com.tomtom.ivi.gradle.api.plugin.tools.version.iviVersion
@@ -35,6 +36,7 @@ plugins {
     id("com.android.library") apply false
     id("com.android.test") apply false
     id("com.tomtom.ivi.platform") apply true
+    id("com.tomtom.ivi.emulators") apply true
     id("com.tomtom.ivi.tools.version") apply true
     id("com.tomtom.navtest") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
@@ -45,11 +47,26 @@ val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"
 val testRootDir: File by extra(File(rootProject.projectDir, "IviTest"))
 val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().format(formatter)))
 
-// Configure Android emulator options.
-apply(from = file("emulators.gradle.kts"))
-
 ivi {
     dependencySource = IviDependencySource.ArtifactRepository(Versions.INDIGO_PLATFORM)
+}
+
+iviEmulators {
+    findProperty("emulatorsDirectory")?.toString()?.let {
+        emulatorsDirectory = File(it)
+    }
+    findProperty("multiDisplay")?.toString()?.toBoolean()?.let {
+        enableMultiDisplay = it
+    }
+    findProperty("numberOfEmulators")?.toString()?.toInt()?.let {
+        numberOfInstances = it
+    }
+    findProperty("emulatorImage")?.let {
+        emulatorImage = it.toString()
+    }
+    minApiLevel = Versions.MIN_SDK
+    outputDirectory = testOutputDirectory
+    targetApiLevel = Versions.COMPILE_SDK
 }
 
 // Set up global test options
