@@ -10,8 +10,8 @@
  */
 
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendCreationPolicy
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 
 /**
  * This file defines the frontend implementations and the menu item implementations used
@@ -22,10 +22,10 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
  * this file in the `build.gradle.kts` file and by using Gradle's extra extension.
  *
  * ```kotlin
- * import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
- * import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
- * import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
- * import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+ * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+ * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+ * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
+ * import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
  *
  * // Define the frontends and menu items as defined in top level
  * // `frontends-and-menuitems.gradle.kts` file.
@@ -38,7 +38,7 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
  *
  * plugins {
  *     // Apply the plugin to use to default frontends and menu items.
- *     id("com.tomtom.ivi.defaults.core")
+ *     id("com.tomtom.ivi.platform.defaults.core")
  * }
  *
  * ivi {
@@ -47,7 +47,7 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
  *         iviInstances {
  *             create(IviInstanceIdentifier.default) {
  *                 // Use the defaults frontends and menu items as defined by the
- *                 // `com.tomtom.ivi.defaults.core` plugin.
+ *                 // `com.tomtom.ivi.platform.defaults.core` plugin.
  *                 useDefaults()
  *                 frontends {
  *                     // Register the `accountFrontend`.

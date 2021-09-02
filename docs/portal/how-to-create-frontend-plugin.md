@@ -181,8 +181,8 @@ Define a frontend implementation and a menu item implementation in the top-level
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendCreationPolicy
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 
 /**
  * Defines the implementation and the configuration of the account frontend.
@@ -219,10 +219,10 @@ application's build script.
 **modules/products/exampleapp/build.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 // Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
 // file.
@@ -235,7 +235,7 @@ val accountMenuItem: MenuItemConfig by project.extra
 
 plugins {
     // Apply the plugin to use to default frontends and menu items.
-    id("com.tomtom.ivi.defaults.core")
+    id("com.tomtom.ivi.platform.defaults.core")
 }
 
 ivi {
@@ -244,7 +244,7 @@ ivi {
         iviInstances {
             create(IviInstanceIdentifier.default) {
                 // Use the default frontends and menu items as defined by the
-                // `com.tomtom.ivi.defaults.core` plugin.
+                // `com.tomtom.ivi.platform.defaults.core` plugin.
                 useDefaults()
                 frontends {
                     // Register the `accountFrontend`.
@@ -273,12 +273,12 @@ we have to use 'replace' instead of `add`. The same applies for the user profile
 **modules/products/exampleapp/build.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileFrontend
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileMenuItem
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileFrontend
+import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileMenuItem
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 // Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
 // file.
@@ -291,7 +291,7 @@ val accountMenuItem: MenuItemConfig by project.extra
 
 plugins {
     // Apply the plugin to use to default frontends and menu items.
-    id("com.tomtom.ivi.defaults.core")
+    id("com.tomtom.ivi.platform.defaults.core")
 }
 
 ivi {
@@ -300,7 +300,7 @@ ivi {
         iviInstances {
             create(IviInstanceIdentifier.default) {
                 // Use the default frontends and menu items as defined by the
-                // `com.tomtom.ivi.defaults.core` plugin.
+                // `com.tomtom.ivi.platform.defaults.core` plugin.
                 useDefaults()
                 frontends {
                     // Replace the IndiGO's user profile frontend with the `accountFrontend`.

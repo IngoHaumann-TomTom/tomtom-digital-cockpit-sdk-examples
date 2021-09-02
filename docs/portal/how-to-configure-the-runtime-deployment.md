@@ -21,10 +21,10 @@ instances of the service host to run in separate processes.
 In the main application build script, you can override the default runtime deployment. For example:
 
 ```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))
 
@@ -64,10 +64,10 @@ be mapped to a runtime deployment. The following example defines two IVI instanc
 deployment.
 
 ```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.mainMenuFrontend
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.defaults.config.mainMenuFrontend
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 val centerStackIviInstance = IviInstanceIdentifier("CenterStack")
 val passengerIviInstance = IviInstanceIdentifier("Passenger")

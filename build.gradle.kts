@@ -15,10 +15,10 @@ import com.tomtom.ivi.buildsrc.environment.Versions
 import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
-import com.tomtom.ivi.gradle.api.common.dependencies.IviDependencySource
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
-import com.tomtom.ivi.gradle.api.plugin.tools.version.iviAndroidVersionCode
-import com.tomtom.ivi.gradle.api.plugin.tools.version.iviVersion
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviDependencySource
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+import com.tomtom.ivi.platform.gradle.api.tools.version.iviAndroidVersionCode
+import com.tomtom.ivi.platform.gradle.api.tools.version.iviVersion
 import com.tomtom.navtest.NavTestAndroidProjectExtension
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,8 +34,8 @@ plugins {
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.android.test") apply false
-    id("com.tomtom.ivi.platform") apply true
-    id("com.tomtom.ivi.tools.version") apply true
+    id("com.tomtom.ivi.platform.framework.config") apply true
+    id("com.tomtom.ivi.platform.tools.version") apply true
     id("com.tomtom.navtest") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
 }
@@ -209,7 +209,8 @@ subprojects {
         }
     }
 
-    apply(plugin = "ivi-signing-config")
+    apply(plugin = "com.tomtom.ivi.platform.tools.signing-config")
+
     apply(plugin = "com.tomtom.navtest")
 
     configure<NavTestAndroidProjectExtension> {
@@ -224,15 +225,10 @@ subprojects {
             }
         }
 
-        pluginManager.withPlugin("com.tomtom.ivi.platform.activity-test") {
+        pluginManager.withPlugin("com.tomtom.ivi.platform.framework.config.activity-test") {
             androidTest {
                 testTags += "integration"
                 timeout = 10 * 60
-            }
-        }
-        pluginManager.withPlugin("com.tomtom.ivi.platform.service-test") {
-            androidTest {
-                testTags += "integration"
             }
         }
 

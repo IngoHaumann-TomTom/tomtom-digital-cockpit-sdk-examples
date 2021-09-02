@@ -10,14 +10,14 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
-    id("com.tomtom.ivi.platform.activity-test")
+    id("com.tomtom.ivi.platform.framework.config.activity-test")
 }
 
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))

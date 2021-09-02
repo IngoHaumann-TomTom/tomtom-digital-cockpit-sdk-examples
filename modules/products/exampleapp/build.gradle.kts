@@ -10,20 +10,20 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.MenuItemConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.contactsServiceHost
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.recentCallsServiceHost
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileFrontend
-import com.tomtom.ivi.gradle.api.plugin.defaultsplatform.userProfileMenuItem
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.defaults.config.contactsServiceHost
+import com.tomtom.ivi.platform.gradle.api.defaults.config.recentCallsServiceHost
+import com.tomtom.ivi.platform.gradle.api.defaults.config.userProfileFrontend
+import com.tomtom.ivi.platform.gradle.api.defaults.config.userProfileMenuItem
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
-    id("com.tomtom.ivi.defaults.core")
-    id("com.tomtom.ivi.defaults.navkit2")
+    id("com.tomtom.ivi.platform.defaults.core")
+    id("com.tomtom.ivi.platform.defaults.navkit2")
 }
 
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))

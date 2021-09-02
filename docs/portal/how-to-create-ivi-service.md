@@ -306,8 +306,8 @@ file so it can be used in all projects, including tests.
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
 
 /**
  * Defines a configuration for the account service.
@@ -342,8 +342,8 @@ Register the service host build configuration in the main application's build sc
 **modules/products/exampleapp/build.gradle.kts**
 
 ```kotlin
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 // Define the service host configs as defined in the top level `iviservicehosts.gradle.kts` file.
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))

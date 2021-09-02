@@ -13,8 +13,7 @@ import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.buildsrc.extensions.androidTest
 
 plugins {
-    id("com.tomtom.ivi.tools.allow-mock-location")
-    id("com.tomtom.ivi.tools.webservice-mock")
+    id("com.tomtom.ivi.platform.tools.navkit2-functionaltest")
 }
 
 androidTest {

@@ -360,7 +360,7 @@ stored incorrectly or are missing.
 ```bash
 Execution failed for task ':buildSrc:compileKotlin'.
 > Could not resolve all files for configuration ':buildSrc:compileClasspath'.
-   > Could not find com.tomtom.ivi.gradle:api_plugins_platform:1.0.1859.
+   > Could not find com.tomtom.ivi.platform.gradle:api_framework_config:1.0.2264.
      Searched in the following locations:
      etc...
 ```

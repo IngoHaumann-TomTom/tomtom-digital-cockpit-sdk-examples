@@ -69,13 +69,13 @@ dependencies {
     val indigoPlatformVersion = ...
 
     // Optional: Plugin to configure the IVI application at build time.
-    implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:$indigoPlatformVersion")
     // Optional: Plugin to configure the NavKit2 API key at build time.
-    implementation("com.tomtom.ivi.gradle:api_plugins_defaultsnavkit2:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_defaults_navkit2:$indigoPlatformVersion")
     // Mandatory: Plugin to configure the IVI application at build time.
-    implementation("com.tomtom.ivi.gradle:api_plugins_platform:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$indigoPlatformVersion")
     // Optional: Plugin for versioning the APK based on the Git repository information.
-    implementation("com.tomtom.ivi.gradle:api_plugins_tools:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_version:$indigoPlatformVersion")
 }
 ```
 
@@ -88,9 +88,9 @@ plugins {
     `kotlin-dsl`
     ...
     // Mandatory: For configure the IVI application at build time.
-    id("com.tomtom.ivi.platform")
+    id("com.tomtom.ivi.platform.framework.config")
     // Optional: Plugin for versioning the APK based on the Git repository information.
-    id("com.tomtom.ivi.tools.version")
+    id("com.tomtom.ivi.platform.tools.version")
 }
 ```
 
@@ -111,10 +111,10 @@ of the project that builds the APK:
 
 plugins {
     // Optional: To use defaults from the default IndiGO IVI application.
-    id("com.tomtom.ivi.defaults.core")
+    id("com.tomtom.ivi.platform.defaults.core")
 
     // Optional: To configure the NavKit2 API key at build time.
-    id("com.tomtom.ivi.defaults.navkit2")
+    id("com.tomtom.ivi.platform.defaults.navkit2")
 }
 
 ivi {

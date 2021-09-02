@@ -49,7 +49,7 @@ and `configurations/dynamic` directories of the source set.
 For example: `<moduleRoot>/src/main/configurations/static`.
 
 The JSON file schema is fully documented in the API reference documentation of
-`com.tomtom.ivi.gradle.api.common.configurationgenerator.IviConfigurationGeneratorConfig`.
+`com.tomtom.ivi.platform.gradle.api.common.configurationgenerator.IviConfigurationGeneratorConfig`.
 
 ### Static configuration file
 

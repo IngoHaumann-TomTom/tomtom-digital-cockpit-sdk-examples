@@ -27,8 +27,8 @@ You can override static configuration values in Android resources. See
 additional instructions.
 
 Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top level
-`gradle.properties` file or do not apply the `com.tomtom.ivi.defaults.navkit2` Gradle plugin to
-disable the build time check.
+`gradle.properties` file or do not apply the `com.tomtom.ivi.platform.defaults.navkit2` Gradle
+plugin to disable the build time check.
 
 This option is preferred if you want to simplify the project setup. However it requires the key to
 be added to your SCM.
@@ -41,8 +41,8 @@ The `ExampleApplication` class contains an example how to configure a
 `Navkit2ApiKeyStaticConfigurationProvider` instance.
 
 Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top level
-`gradle.properties` file or do not apply the `com.tomtom.ivi.defaults.navkit2` Gradle plugin to
-disable the build time check.
+`gradle.properties` file or do not apply the `com.tomtom.ivi.platform.defaults.navkit2` Gradle
+plugin to disable the build time check.
 
 This option is preferred if you want to obtain and configure the key at runtime.
 

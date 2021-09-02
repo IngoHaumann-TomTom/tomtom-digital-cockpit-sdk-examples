@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.buildsrc.dependencies
 
-import com.tomtom.ivi.gradle.api.common.dependencies.ModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
 
 /**
  * Example [ModuleReference] extension.

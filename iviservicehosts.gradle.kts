@@ -10,10 +10,10 @@
  */
 
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.gradle.api.common.dependencies.IviPlatformModuleReference
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceDependencies
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceDependencies
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
 
 /**
  * This file defines the IVI service host implementations and the list of interfaces hosted by
@@ -24,8 +24,8 @@ import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceInterfac
  * this file in the `build.gradle.kts` file and by using Gradle's extra extension.
  *
  * ```kotlin
- * import com.tomtom.ivi.gradle.api.common.iviapplication.config.IviServiceHostConfig
- * import com.tomtom.ivi.gradle.api.plugin.platform.ivi
+ * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+ * import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
  *
  * apply(from = rootProject.file("iviservicehosts.gradle.kts"))
  *

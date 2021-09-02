@@ -19,16 +19,6 @@ plugins {
     `kotlin-dsl`
 }
 
-gradlePlugin {
-    plugins {
-        // A plugin to configure the signing config of an APK.
-        register("IVI Signing Config Plugin") {
-            id = "ivi-signing-config"
-            implementationClass = "com.tomtom.ivi.buildsrc.common.signingconfig.SigningConfigPlugin"
-        }
-    }
-}
-
 dependencies {
     val versions: Map<String, String> by rootProject.extra
 
@@ -39,10 +29,13 @@ dependencies {
     implementation(kotlin("serialization", versions["KOTLIN"]))
     implementation("org.jfrog.buildinfo:build-info-extractor-gradle:${versions["ARTIFACTORY_PLUGIN"]}")
     implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
-    implementation("com.tomtom.ivi.gradle:api_plugins_defaultscore:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.gradle:api_plugins_defaultsnavkit2:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.gradle:api_plugins_platform:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.gradle:api_plugins_tools:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_defaults_navkit2:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_framework_config:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_framework_frontend:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_navkit2test:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_signingconfig:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_version:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.navtest:navtest-core:${versions["NAVTEST_PLUGIN"]}")
     implementation("com.tomtom.navui:emulators-plugin:${versions["NAVUI_EMULATORS_PLUGIN"]}")
 }
