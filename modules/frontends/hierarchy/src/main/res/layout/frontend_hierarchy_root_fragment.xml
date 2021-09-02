@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:padding="0dp">
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="?attr/tt_spacing_xxxl"

@@ -30,7 +30,7 @@
         android:orientation="vertical"
         tools:layout_marginHorizontal="40dp">
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
@@ -46,7 +46,7 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
@@ -73,7 +73,7 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?attr/tt_spacing_xxs"
@@ -105,7 +105,7 @@
             android:layout_height="?attr/tt_spacing_l"
             tools:layout_height="32dp" />
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?attr/tt_spacing_xxs"

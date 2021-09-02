@@ -38,7 +38,7 @@
             android:scaleType="fitStart"
             android:src="@drawable/frontend_account_info_avatar_placeholder" />
 
-        <com.tomtom.tools.android.api.uicontrols.view.TtTextView
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="?attr/tt_spacing_xxxl"
