@@ -104,18 +104,48 @@ path length on Windows is restricted to 260 characters. See
 [this article in Microsoft Developer](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation)
 if you wish to use longer path names.
 
-## Get API keys
+## Get NavKit2 API key
 
-You have received NavKit2 API key(s) from TomTom. These must be used in the example app for the
-navigation-related features to work.
+The IndiGO SDK uses TomTom's online NavKit2 services, for which an API key is required. An
+evaluation key with limited authorisation can be acquired immediately. After signing TomTom's
+evaluation agreement, these restrictions are removed and you can experience the full functionality
+of the IndiGO SDK and NavKit2.
 
-Set the `navkit2ApiKey` property to your NavKit2 API key in the top level `local.properties` file or
-in your `gradle.properties` file, in the folder specified by the `GRADLE_USER_HOME` environment
-variable, usually `~/.gradle/`. See
+### Register as a TomTom Developer and get your API key
+
+- Navigate to [developer.tomtom.com](https://developer.tomtom.com/) and click `Register`, then fill
+out the registration form.
+- You will receive a confirmation email; click `Activate Account` and go to your
+[TomTom Developer dashboard](https://developer.tomtom.com/user/me/apps).
+- The API key you get assigned should be used in the IndiGO SDK, but it must still be authorised by
+TomTom for the NavKit2 features used by IndiGO. See also section
+[Evaluation agreement](#evaluation-agreement).
+
+> ![My first API key](images/tomtom_my_first_api_key.png "My First API key")
+
+### Install API key
+
+Now that you received your NavKit2 API key, it can be used with the IndiGO SDK.
+
+- Set the `navkit2ApiKey` property to your NavKit2 API key in the top level `local.properties` file
+or in your `gradle.properties` file. The `local.properties` file is located in your local SDK
+folder. The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
+environment variable, usually `~/.gradle/`. See
 [How to configure the NavKit2 API key](how-to-configure-the-navkit2-api-key.html) for details and
 alternatives ways to configure the key.
 
 > > __Windows:__ Use the `%UserProfile%\.gradle` folder.
+
+### Evaluation agreement
+
+The initial API key has restrictions on the functionality and the amount of requests you can do.
+To enjoy the full functionality, apply for an evaluation agreement with TomTom.
+
+- For now: Ask your TomTom contact person to establish an evaluation agreement.
+- Later: In your TomTom Developer Portal, request evaluating the Digital Cockpit.
+
+__Note:__ You will not get a new API key, but the restrictions on your API key will be removed by
+TomTom.
 
 ## Accessing the binary artifact repository (Nexus)
 
