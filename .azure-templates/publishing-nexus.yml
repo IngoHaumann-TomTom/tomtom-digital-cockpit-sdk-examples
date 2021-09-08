@@ -27,7 +27,7 @@ steps:
     displayName: Publish artifacts to Nexus
     inputs:
       scriptSource: 'filePath'
-      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/PublishToNexus.py
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/indigo.py
       pythonInterpreter: /usr/bin/python3.8
       arguments:
         --nexus_user $(NEXUS_USERNAME)
