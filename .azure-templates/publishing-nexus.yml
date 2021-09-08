@@ -37,7 +37,7 @@ steps:
         --version_examples $(VERSION_EXAMPLES)
         --version_lineageos $(VERSION_LINEAGEOS)
         --download_base_path $(System.DefaultWorkingDirectory)/downloads
-        --indigo_sources_directory $(Build.SourcesDirectory)/indigo
+        --indigo_sources_path $(Build.SourcesDirectory)/indigo
 
   # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
   - publish: $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
