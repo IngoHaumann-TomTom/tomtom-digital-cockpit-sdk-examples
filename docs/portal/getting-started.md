@@ -289,24 +289,20 @@ Follow these steps to create an emulator device based on the IndiGO emulator:
 
 > > You should now be presented with a list of devices definitions.
 
-- In the `Tablet` category, find item `IndiGO_Test_Device`:
+- In the `Automotive` category, find item `IndiGO_Test_Device`:
 
-> > ![Android Studio select hardware](images/android_studio_select_hardware_tablet.png "Android Studio select hardware")
+> > ![Android Studio select hardware](images/android_studio_select_hardware_automotive.png "Android Studio select hardware")
 
 - Select `IndiGO_Test_Device`, and click `Edit Device...` at the right side of the screen. This
 shows the dialog `Configure Hardware Profile` for the `IndiGO_Test_Device`.
 
-> > Change the `Device Type` from "Phone/Tablet" to "Android Automotive":
-
-> > ![Android Studio Configure Hardware Profile device type](images/android_studio_configure_hardware_profile_select_device_type.png "Android Studio Configure Hardware Profile device type")
-
-> > Set the emulator's RAM to 3072 MB, and click `Finish`.
+- Set the emulator's RAM to 3072 MB, and click `Finish`.
 
 > > The hardware profile of the emulator is now configured to be an automotive device. This will be
 used for emulator devices to be created.
-
+> >
 > > __Mac(book) _with_ an M1 processor:__ No Android Automotive emulator is available for this chip
-yet, so keep the `Device Type` as `Phone/Tablet`.
+yet, so you need to change the `Device Type` from `Android Automotive` to `Phone/Tablet`.
 
 - Back in dialog `Select Hardware`, you now see in category `Automotive` an item called
 `IndiGO_Test_Device`:
@@ -366,6 +362,21 @@ the application will run on is the IndiGO automotive emulator that was created e
 tutorial.
 
 > > ![Android Studio build and run](images/android_studio_build_and_run.png "Android Studio build and run")
+
+Emulator devices can also be managed with the Gradle tasks:
+
+- `createTestEmulator`, `startTestEmulator`, `stopTestEmulator`, `deleteTestEmulator`
+  to manage a headless device suitable for testing.
+
+- `createDevelopmentEmulator`, `startDevelopmentEmulator`, `stopDevelopmentEmulator`,
+  `deleteDevelopmentEmulator` to manage a device suitable for development.
+
+- `killEmulators` to forcibly stop any running emulator instances.
+
+Emulator devices, which are created with the Gradle tasks, are visible in the Device Manager in
+Android Studio.
+
+__Note:__ Emulator devices, which are created with the Gradle tasks, have wifi enabled.
 
 ## Installing on a custom device
 

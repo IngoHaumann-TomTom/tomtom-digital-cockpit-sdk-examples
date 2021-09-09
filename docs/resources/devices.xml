@@ -119,5 +119,6 @@ GL_OES_vertex_type_10_10_10_2</d:gl-extensions>
       <d:keyboard-state>keyshidden</d:keyboard-state>
       <d:nav-state>navhidden</d:nav-state>
     </d:state>
+    <d:tag-id>android-automotive</d:tag-id>
   </d:device>
 </d:devices>

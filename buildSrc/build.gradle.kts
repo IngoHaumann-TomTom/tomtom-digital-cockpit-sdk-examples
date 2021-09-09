@@ -35,6 +35,7 @@ dependencies {
     implementation("com.tomtom.ivi.platform.gradle:api_framework_frontend:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.ivi.platform.gradle:api_tools_navkit2test:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.ivi.platform.gradle:api_tools_signingconfig:${versions["INDIGO_PLATFORM"]}")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_emulators:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.ivi.platform.gradle:api_tools_version:${versions["INDIGO_PLATFORM"]}")
     implementation("com.tomtom.navtest:navtest-core:${versions["NAVTEST_PLUGIN"]}")
     implementation("com.tomtom.navui:emulators-plugin:${versions["NAVUI_EMULATORS_PLUGIN"]}")
