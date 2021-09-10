@@ -21,7 +21,7 @@ test -n "$input_files" || die "Cannot find input files of type '.md'"
 for in_file in $input_files
 do
   out_file=$output_dir/${in_file%.md}".html"
-  pandoc -s -c style.css -o "$out_file" "$in_file" || die "Pandoc failed on input file: $in_file."
+  pandoc -s --number-sections -c style.css -o "$out_file" "$in_file" || die "Pandoc failed on input file: $in_file."
 done
 
 cp style.css $output_dir/style.css || die "Cannot copy stylesheets."
