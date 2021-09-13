@@ -1,0 +1,10 @@
+
+source: src
+destination: build
+layouts_dir: template
+
+strict_front_matter: true
+disable_disk_cache: true
+
+exclude:
+  - template/*

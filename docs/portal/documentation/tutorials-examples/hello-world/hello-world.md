@@ -1,7 +1,0 @@
-# IndiGO Hello World application
-
-Placeholder: The IndiGO Hello World application
-
-URL: https://developer.tomtom.com/indigo/documentation/tutorials-examples/hello-world
-
-JIRA: 
