@@ -146,7 +146,7 @@ of the IndiGO SDK and NavKit2.
 out the registration form.
 - You will receive a confirmation email; click `Activate Account` and go to your
 [TomTom Developer dashboard](https://developer.tomtom.com/user/me/apps).
-- The API key you get assigned should be used in the IndiGO SDK, but it must still be authorised by
+- The API key you get assigned should be used in the IndiGO SDK, but it must still be authorized by
 TomTom for the NavKit2 features used by IndiGO. See also section
 [Evaluation agreement](#evaluation-agreement).
 

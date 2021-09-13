@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright © 2020 TomTom NV. All rights reserved.
+  ~
+  ~ This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+  ~ used for internal evaluation purposes or commercial use strictly subject to separate
+  ~ license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+  ~ to use this software in accordance with the terms of your license agreement. If you are
+  ~ not the licensee, then you are not authorized to use this software in any manner and should
+  ~ immediately return or destroy it.
+  -->
 <d:devices xmlns:d="http://schemas.android.com/sdk/devices/5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
     <d:name>IndiGO_Test_Device</d:name>
