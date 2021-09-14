@@ -261,7 +261,12 @@ subprojects {
 }
 
 tasks.register<Exec>("docs") {
-    workingDir("${project.projectDir}/docs/portal")
-    commandLine("${project.projectDir}/docs/portal/convert.sh")
-    args("${project.projectDir}/docs/portal/html")
+    val portalDirectory = "${project.projectDir}/docs/portal"
+    val outputDirectory = portalDirectory + "/html"
+    description = "Generate html documentation in '$outputDirectory'"
+    group = "Documentation"
+
+    workingDir(portalDirectory)
+    commandLine(portalDirectory + "/convert.sh")
+    args(outputDirectory)
 }
