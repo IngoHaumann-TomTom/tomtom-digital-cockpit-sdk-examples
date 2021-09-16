@@ -1,0 +1,65 @@
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+!define API_BACKGROUND e5e5e5
+!define API_BORDER bebebe
+!define FRONTEND_BACKGROUND bcdcf5
+!define FRONTEND_BORDER 8dc3eb
+!define SERVICE_BACKGROUND f8c9df
+!define SERVICE_BORDER f29ac2
+!define ANDROID_BACKGROUND 65a7a9
+!define ANDROID_BORDER 008d8d
+!define ANDROID_SERVICE_BACKGROUND e94743
+!define ANDROID_SERVICE_BORDER 87382B
+
+' Component diagram - connector
+skinparam interface {
+  backgroundColor #SERVICE_BACKGROUND
+  borderColor #SERVICE_BORDER
+}
+
+' Component diagram - components
+skinparam component {
+  BackgroundColor<<Api>> #API_BACKGROUND
+  BorderColor<<Api>> #API_BORDER
+  BackgroundColor<<Frontend>> #FRONTEND_BACKGROUND
+  BorderColor<<Frontend>> #FRONTEND_BORDER
+  BackgroundColor<<Service>> #SERVICE_BACKGROUND
+  BorderColor<<Service>> #SERVICE_BORDER
+  BackgroundColor<<Android>> #ANDROID_BACKGROUND
+  BorderColor<<Android>> #ANDROID_BORDER
+  BackgroundColor<<AndroidService>> #ANDROID_SERVICE_BACKGROUND
+  BorderColor<<AndroidService>> #ANDROID_SERVICE_BORDER
+}
+
+' Class diagram
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #API_BACKGROUND
+  BorderColor<<Api>> #API_BORDER
+  BackgroundColor<<Frontend>> #FRONTEND_BACKGROUND
+  BorderColor<<Frontend>> #FRONTEND_BORDER
+  BackgroundColor<<Service>> #SERVICE_BACKGROUND
+  BorderColor<<Service>> #SERVICE_BORDER
+  BackgroundColor<<Android>> #ANDROID_BACKGROUND
+  BorderColor<<Android>> #ANDROID_BORDER
+  BackgroundColor<<AndroidService>> #ANDROID_SERVICE_BACKGROUND
+  BorderColor<<AndroidService>> #ANDROID_SERVICE_BORDER
+}
+
+' Class diagram - class icon
+skinparam stereotypeCBackgroundColor<<Api>> #API_BORDER
+skinparam stereotypeCBackgroundColor<<Frontend>> #FRONTEND_BORDER
+skinparam stereotypeCBackgroundColor<<Service>> #SERVICE_BORDER
+skinparam stereotypeCBackgroundColor<<Android>> #ANDROID_BORDER
+skinparam stereotypeCBackgroundColor<<AndroidService>> #ANDROID_SERVICE_BORDER
+
+' Class diagram - interface icon
+skinparam stereotypeIBackgroundColor<<Api>> #API_BORDER
+skinparam stereotypeIBackgroundColor<<Frontend>> #FRONTEND_BORDER
+skinparam stereotypeIBackgroundColor<<Service>> #SERVICE_BORDER
+skinparam stereotypeIBackgroundColor<<Android>> #ANDROID_BORDER
+skinparam stereotypeIBackgroundColor<<AndroidService>> #ANDROID_SERVICE_BORDER

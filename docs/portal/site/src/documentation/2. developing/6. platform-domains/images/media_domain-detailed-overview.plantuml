@@ -1,0 +1,40 @@
+@startuml
+!include theme.plantuml
+
+package "Application frontend"<<Rectangle>> {
+    class MyPanel<<Frontend>>
+}
+
+package "IndiGO application suite"<<Rectangle>> {
+    package "core_serviceapis_media" {
+        interface MediaService<<Service>>
+        class MediaServiceApi<<Service>>
+
+        MediaServiceApi .> MediaService: is generated based on
+    }
+    package "api_common_media" {
+        class SourceClient<<Api>>
+    }
+
+    package "api_common_mediasources" {
+        class PolicyProvider<<Api>>
+        interface MediaTaskPanelPolicy<<Api>>
+    }
+}
+
+package "Android "<<Rectangle>> {
+    class MediaBrowser<<Android>>
+    class MediaBrowserService<<AndroidService>>
+}
+
+package "Media source"<<Rectangle>> {
+    class AppMediaBrowserService<<Android>> extends MediaBrowserService
+}
+
+MyPanel --> SourceClient : connects\nto source
+MyPanel --> PolicyProvider : uses\npolicies
+PolicyProvider -> MediaTaskPanelPolicy
+MyPanel -> MediaServiceApi : uses
+SourceClient --> MediaBrowser
+MediaBrowser -right-> MediaBrowserService
+@enduml

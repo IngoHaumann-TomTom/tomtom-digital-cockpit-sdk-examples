@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="518px" preserveAspectRatio="none" style="width:638px;height:518px;background:#FFFFFF;" version="1.1" viewBox="0 0 638 518" width="638px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="321" x="152" y="16.708">Overview of the settings framework</text><!--MD5=[f9ba5bf973e7832d2ce5ed59077b93f7]
+entity DB--><path d="M196.5,475.9531 C196.5,465.9531 270,465.9531 270,465.9531 C270,465.9531 343.5,465.9531 343.5,475.9531 L343.5,501.25 C343.5,511.25 270,511.25 270,511.25 C270,511.25 196.5,511.25 196.5,501.25 L196.5,475.9531 " fill="#D3D3D3" style="stroke:#000000;stroke-width:1.5;"/><path d="M196.5,475.9531 C196.5,485.9531 270,485.9531 270,485.9531 C270,485.9531 343.5,485.9531 343.5,475.9531 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="127" x="206.5" y="502.9482">Persistent storage</text><!--MD5=[2a4a9f02db2d080640020709b526018d]
+entity SMS--><rect fill="#90EE90" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="250" x="145" y="309.9531"/><rect fill="#90EE90" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="375" y="314.9531"/><rect fill="#90EE90" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="373" y="316.9531"/><rect fill="#90EE90" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="373" y="320.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="210" x="160" y="342.9482">Settings Management service</text><!--MD5=[fa57c4b3b70b1750ab165056ff8321db]
+entity SSA--><rect fill="#FFFFE0" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="152" x="7" y="168.9531"/><rect fill="#FFFFE0" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="139" y="173.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="137" y="175.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="137" y="179.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="22" y="201.9482">Settings service</text><!--MD5=[6ba27cb6ab6c98fb8258247a8e3f62be]
+entity SSB--><rect fill="#FFFFE0" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="152" x="194" y="168.9531"/><rect fill="#FFFFE0" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="326" y="173.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="324" y="175.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="324" y="179.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="209" y="201.9482">Settings service</text><!--MD5=[0dd0a4aad595271ab548ca6ce44c5bcd]
+entity SSC--><rect fill="#FFFFE0" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="152" x="381" y="168.9531"/><rect fill="#FFFFE0" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="513" y="173.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="511" y="175.9531"/><rect fill="#FFFFE0" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="511" y="179.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="396" y="201.9482">Settings service</text><!--MD5=[22029b2902cbfefb11350e8ee6e306b3]
+entity F--><rect fill="#BCDCF5" height="46.2969" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="104" x="125" y="27.9531"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="209" y="32.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="207" y="34.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="207" y="38.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="140" y="60.9482">Frontend</text><!--MD5=[8ad42e69c823d91e931492f14bc2a1bb]
+entity S--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="113" x="289.5" y="27.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="382.5" y="32.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="380.5" y="34.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="380.5" y="38.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="304.5" y="60.9482">IVI service</text><!--MD5=[93a61f7a2896f4a74da962bcff60f4d2]
+link SMS to DB--><path d="M270,356.2731 C270,383.8231 270,430.6631 270,460.2831 " fill="none" id="SMS-to-DB" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="270,465.6031,274,456.6031,270,460.6031,266,456.6031,270,465.6031" style="stroke:#A80036;stroke-width:1.0;"/><path d="M275,390.9531 L275,430.9531 L478,430.9531 L478,400.9531 L468,390.9531 L275,390.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M468,390.9531 L468,400.9531 L478,400.9531 L468,390.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="281" y="408.02">Manages raw setting values</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="146" x="281" y="423.1528">in a persistent storage</text><!--MD5=[c798904075c7b5e1fa7f50190fbe4b7e]
+link SSA to SMS--><path d="M112.63,214.9731 C146.18,239.9131 200.74,280.4731 236,306.6831 " fill="none" id="SSA-to-SMS" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="240.2,309.8031,235.3657,301.2224,236.188,306.8191,230.5913,307.6415,240.2,309.8031" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[51dfe99d85a43e5e789f05c34f234958]
+link SSB to SMS--><path d="M270,214.9731 C270,239.2331 270,278.2731 270,304.5031 " fill="none" id="SSB-to-SMS" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="270,309.5731,274,300.5731,270,304.5731,266,300.5731,270,309.5731" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[06d10a59e42bafdd076e3081324fdbbd]
+link SSC to SMS--><path d="M427.37,214.9731 C393.82,239.9131 339.26,280.4731 304,306.6831 " fill="none" id="SSC-to-SMS" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="299.8,309.8031,309.4087,307.6415,303.812,306.8191,304.6343,301.2224,299.8,309.8031" style="stroke:#A80036;stroke-width:1.0;"/><path d="M390,249.9531 L390,274.9531 L631,274.9531 L631,259.9531 L621,249.9531 L390,249.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M621,249.9531 L621,259.9531 L631,259.9531 L621,249.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="220" x="396" y="267.02">Manages type-safe setting values</text><!--MD5=[38836e4209656bba157325bcef0f796e]
+link F to SSA--><path d="M162.11,73.9731 C145.56,98.4331 118.86,137.9231 101.12,164.1531 " fill="none" id="F-to-SSA" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="98.14,168.5731,106.4937,163.3563,100.9398,164.4305,99.8656,158.8766,98.14,168.5731" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[35d8ea8f37f443c23cf7061192675254]
+link F to SSB--><path d="M191.74,73.9731 C208.1,98.4331 234.52,137.9231 252.07,164.1531 " fill="none" id="F-to-SSB" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="255.02,168.5731,253.3328,158.8699,252.2366,164.4195,246.687,163.3233,255.02,168.5731" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a4400d90c40a23c97762593168a056dc]
+link S to SSB--><path d="M333.96,73.9731 C320.58,98.4331 298.99,137.9231 284.65,164.1531 " fill="none" id="S-to-SSB" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="282.24,168.5731,290.0694,162.5982,284.6403,164.1869,283.0515,158.7578,282.24,168.5731" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cf94786df54d773b68922a3361874fda]
+link S to SSC--><path d="M363.59,73.9731 C383.2,98.5431 414.91,138.2531 435.86,164.4831 " fill="none" id="S-to-SSC" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="439.13,168.5731,436.6397,159.0443,436.01,164.666,430.3883,164.0363,439.13,168.5731" style="stroke:#A80036;stroke-width:1.0;"/><path d="M419,108.9531 L419,133.9531 L626,133.9531 L626,118.9531 L616,108.9531 L419,108.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><path d="M616,108.9531 L616,118.9531 L626,118.9531 L616,108.9531 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186" x="425" y="126.02">Type-safe access to settings</text><!--MD5=[aa9539b0e0b896a2cd190b32e74f6947]
+@startuml
+'https://plantuml.com/object-diagram
+
+!include theme.plantuml
+
+title Overview of the settings framework
+
+database "Persistent storage" as DB #LightGray
+
+component [Settings Management service] as SMS #LightGreen
+
+component [Settings service] as SSA #LightYellow
+component [Settings service] as SSB #LightYellow
+component [Settings service] as SSC #LightYellow
+
+component [Frontend] as F<<Frontend>>
+component [IVI service] as S<<Service>>
+
+SMS - -> DB
+note on link: Manages raw setting values\nin a persistent storage
+
+SSA - -> SMS
+SSB - -> SMS
+SSC - -> SMS
+note on link: Manages type-safe setting values
+
+F - -> SSA
+F - -> SSB
+
+S - -> SSB
+S - -> SSC
+note left on link: Type-safe access to settings
+@enduml
+
+@startuml
+
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+
+title Overview of the settings framework
+
+database "Persistent storage" as DB #LightGray
+
+component [Settings Management service] as SMS #LightGreen
+
+component [Settings service] as SSA #LightYellow
+component [Settings service] as SSB #LightYellow
+component [Settings service] as SSC #LightYellow
+
+component [Frontend] as F<<Frontend>>
+component [IVI service] as S<<Service>>
+
+SMS - -> DB
+note on link: Manages raw setting values\nin a persistent storage
+
+SSA - -> SMS
+SSB - -> SMS
+SSC - -> SMS
+note on link: Manages type-safe setting values
+
+F - -> SSA
+F - -> SSB
+
+S - -> SSB
+S - -> SSC
+note left on link: Type-safe access to settings
+@enduml
+
+PlantUML version 1.2021.8(Sat Jun 26 10:20:59 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: ANSI_X3.4-1968
+Language: en
+Country: US
+--></g></svg>

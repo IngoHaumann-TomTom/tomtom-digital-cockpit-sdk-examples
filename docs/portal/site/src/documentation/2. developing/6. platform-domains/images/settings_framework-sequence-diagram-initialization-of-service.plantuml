@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include theme.plantuml
+
+title Initialization of a settings service
+
+participant "Settings service" as SettingsService
+participant "Settings Management service" as SettingsManagementService
+
+group Load stored settings version
+    SettingsService -> SettingsManagementService: createSetting(version, default)
+    SettingsManagementService -> SettingsService: OK
+
+    SettingsService -> SettingsManagementService: getSetting(version)
+    SettingsManagementService -> SettingsService: return a stored or the default value
+end
+
+loop for each setting
+    SettingsService -> SettingsManagementService: createSetting(setting, default)
+    SettingsManagementService -> SettingsService: OK
+
+    SettingsService -> SettingsManagementService: getSetting(setting)
+    SettingsManagementService -> SettingsService: return a stored or the default value
+end
+@enduml
+

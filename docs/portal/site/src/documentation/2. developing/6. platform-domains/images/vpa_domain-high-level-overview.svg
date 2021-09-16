@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="448px" preserveAspectRatio="none" style="width:433px;height:448px;" version="1.1" viewBox="0 0 433 448" width="433px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="222" x="99" y="16.708">VPA domain architecture</text><!--MD5=[87a69700ba4a1e183985b3cf69829d65]
+cluster IndiGO application suite--><rect fill="#FFFFFF" height="203" style="stroke:#000000;stroke-width:1.5;" width="358" x="36" y="27.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="191" x="119.5" y="42.9482">IndiGO application suite</text><!--MD5=[31b330a205b4bc153b3a1d564eb9a981]
+cluster IndiGO platform (VPA adaptations)--><rect fill="#FFFFFF" height="97" style="stroke:#000000;stroke-width:1.5;" width="420" x="7" y="254.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="275" x="79.5" y="269.9482">IndiGO platform (VPA adaptations)</text><!--MD5=[0a1e8d0c2c399de8c6898e50d075811d]
+entity VPA2 Frontend--><rect fill="#BCDCF5" height="46.2969" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="145" x="232.5" y="62.9531"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="357.5" y="67.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="355.5" y="69.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="355.5" y="73.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="247.5" y="95.9482">VPA2 Frontend</text><!--MD5=[67531abd5d3f7f9f1689593c92ee36bd]
+entity VPA1 Frontend--><rect fill="#BCDCF5" height="46.2969" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="145" x="52.5" y="62.9531"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="177.5" y="67.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="175.5" y="69.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="175.5" y="73.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="67.5" y="95.9482">VPA1 Frontend</text><!--MD5=[ad26f1822ffac31c69a03f902cdaef5f]
+entity VPA Mediator Service--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="192" x="119" y="168.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="291" y="173.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="289" y="175.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="289" y="179.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="134" y="201.9482">VPA Mediator Service</text><!--MD5=[eca183fa8d0069b2d4e5c715588ffbd4]
+entity Stock VPA1 Service--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="177" x="22.5" y="289.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="179.5" y="294.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="177.5" y="296.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="177.5" y="300.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="37.5" y="322.9482">Stock VPA1 Service</text><!--MD5=[5f94a80db22c7b24fa9dab0a8619151e]
+entity Stock VPA2 Service--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="177" x="234.5" y="289.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="391.5" y="294.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="389.5" y="296.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="389.5" y="300.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="249.5" y="322.9482">Stock VPA2 Service</text><!--MD5=[28283d573302b556f1265f2c4319d75c]
+entity VPA1 Engine--><rect fill="#90EE90" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="130" x="46" y="395.9531"/><rect fill="#90EE90" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="156" y="400.9531"/><rect fill="#90EE90" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="154" y="402.9531"/><rect fill="#90EE90" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="154" y="406.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="61" y="428.9482">VPA1 Engine</text><!--MD5=[321c818a0d690f4118f8dbcf88015f4e]
+entity VPA2 Engine--><rect fill="#FFF8DC" height="46.2969" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="130" x="258" y="395.9531"/><rect fill="#FFF8DC" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="368" y="400.9531"/><rect fill="#FFF8DC" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="366" y="402.9531"/><rect fill="#FFF8DC" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="366" y="406.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="273" y="428.9482">VPA2 Engine</text><!--MD5=[55bdef3ca0b6dfa1caf8e0bda64a3fc0]
+link VPA1 Frontend to VPA Mediator Service--><path d="M144.09,109.0131 C158.29,125.4131 177.71,147.8631 192.64,165.1131 " fill="none" id="VPA1 Frontend-to-VPA Mediator Service" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="195.94,168.9331,193.0643,159.5134,192.6637,165.1561,187.0211,164.7555,195.94,168.9331" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d97aeb95c9e3e2a9ba294f436557ef93]
+link VPA2 Frontend to VPA Mediator Service--><path d="M285.91,109.0131 C271.71,125.4131 252.29,147.8631 237.36,165.1131 " fill="none" id="VPA2 Frontend-to-VPA Mediator Service" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="234.06,168.9331,242.9789,164.7555,237.3363,165.1561,236.9357,159.5134,234.06,168.9331" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[dae83afa898618c238c64f4cf27a999a]
+link VPA Mediator Service to Stock VPA1 Service--><path d="M195.68,215.0531 C178.21,235.0531 152.45,264.5231 133.94,285.7131 " fill="none" id="VPA Mediator Service-to-Stock VPA1 Service" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="130.57,289.5631,139.5068,285.424,133.8625,285.8002,133.4862,280.1559,130.57,289.5631" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4c55cc484ac750b427c69a277d798a9e]
+link VPA Mediator Service to Stock VPA2 Service--><path d="M235.06,215.0531 C253.21,235.0531 279.95,264.5231 299.18,285.7131 " fill="none" id="VPA Mediator Service-to-Stock VPA2 Service" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="302.68,289.5631,299.6126,280.2041,299.3273,285.8538,293.6776,285.5684,302.68,289.5631" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[588aef86e89141547fcc4a093ef1114f]
+link Stock VPA1 Service to VPA1 Engine--><path d="M111,336.0131 C111,352.0031 111,373.7331 111,390.7931 " fill="none" id="Stock VPA1 Service-to-VPA1 Engine" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="111,395.9331,115,386.9331,111,390.9331,107,386.9331,111,395.9331" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[020c4c457ae2d0e8845dd7f2cc6dea44]
+link Stock VPA2 Service to VPA2 Engine--><path d="M323,336.0131 C323,352.0031 323,373.7331 323,390.7931 " fill="none" id="Stock VPA2 Service-to-VPA2 Engine" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="323,395.9331,327,386.9331,323,390.9331,319,386.9331,323,395.9331" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[762d26fc3574748c3bc426898025734f]
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title VPA domain architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    [VPA2 Frontend]<<Frontend>>
+    [VPA1 Frontend]<<Frontend>>
+    [VPA Mediator Service]<<Service>>
+}
+
+package "IndiGO platform (VPA adaptations)" {
+    [Stock VPA1 Service]<<Service>>
+    [Stock VPA2 Service]<<Service>>
+}
+component [VPA1 Engine] #LightGreen
+component [VPA2 Engine] #CornSilk
+
+[VPA1 Frontend] - -> [VPA Mediator Service]
+[VPA2 Frontend] - -> [VPA Mediator Service]
+[VPA Mediator Service] - -> [Stock VPA1 Service]
+[VPA Mediator Service] - -> [Stock VPA2 Service]
+[Stock VPA1 Service] - -> [VPA1 Engine]
+[Stock VPA2 Service] - -> [VPA2 Engine]
+
+@enduml
+
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+skinparam packageStyle rectangle
+
+title VPA domain architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    [VPA2 Frontend]<<Frontend>>
+    [VPA1 Frontend]<<Frontend>>
+    [VPA Mediator Service]<<Service>>
+}
+
+package "IndiGO platform (VPA adaptations)" {
+    [Stock VPA1 Service]<<Service>>
+    [Stock VPA2 Service]<<Service>>
+}
+component [VPA1 Engine] #LightGreen
+component [VPA2 Engine] #CornSilk
+
+[VPA1 Frontend] - -> [VPA Mediator Service]
+[VPA2 Frontend] - -> [VPA Mediator Service]
+[VPA Mediator Service] - -> [Stock VPA1 Service]
+[VPA Mediator Service] - -> [Stock VPA2 Service]
+[Stock VPA1 Service] - -> [VPA1 Engine]
+[Stock VPA2 Service] - -> [VPA2 Engine]
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 11:25:05 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

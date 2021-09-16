@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include theme.plantuml
+
+title Overview of the settings framework
+
+database "Persistent storage" as DB #LightGray
+
+component [Settings Management service] as SMS #LightGreen
+
+component [Settings service] as SSA #LightYellow
+component [Settings service] as SSB #LightYellow
+component [Settings service] as SSC #LightYellow
+
+component [Frontend] as F<<Frontend>>
+component [IVI service] as S<<Service>>
+
+SMS --> DB
+note on link: Manages raw setting values\nin a persistent storage
+
+SSA --> SMS
+SSB --> SMS
+SSC --> SMS
+note on link: Manages type-safe setting values
+
+F --> SSA
+F --> SSB
+
+S --> SSB
+S --> SSC
+note left on link: Type-safe access to settings
+@enduml
