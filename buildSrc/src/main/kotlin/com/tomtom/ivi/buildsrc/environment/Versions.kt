@@ -5,7 +5,7 @@
  * used for internal evaluation purposes or commercial use strictly subject to separate
  * license agreement between you and TomTom NV. If you are the licensee, you are only permitted
  * to use this software in accordance with the terms of your license agreement. If you are
- * not the licensee, then you are not authorized to use this software in any manner and should
+ * not the licensee, you are not authorized to use this software in any manner and should
  * immediately return or destroy it.
  */
 
@@ -34,7 +34,7 @@ object Versions {
     const val MIN_SDK = 27
     const val TARGET_SDK = 27
 
-    const val TOMTOM_ANDROID_TOOLS = "0.0.180"
+    const val TOMTOM_ANDROID_TOOLS = "0.0.194"
 
     // Automotive
     const val ANDROID_CAR = "0.0.12"
