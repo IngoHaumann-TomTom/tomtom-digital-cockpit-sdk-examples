@@ -454,7 +454,9 @@ class AccountInfoViewModel(panel: AccountInfoPanel) : FrontendViewModel<AccountI
     private val accountServiceApi =
         AccountService.createApi(this, frontendContext.iviServiceProvider)
 
-    val displayName = accountServiceApi.activeAccount.map { it?.username?.capitalize(Locale.ROOT) }
+    val displayName = accountServiceApi.activeAccount.map {
+        it?.username?.replaceFirstChar(Char::uppercaseChar)
+    }
 
     fun onLogoutClick() = accountServiceApi.logOutAsync()
 }

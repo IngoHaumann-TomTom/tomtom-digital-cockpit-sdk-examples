@@ -9,9 +9,11 @@
  * immediately return or destroy it.
  */
 
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.api.BaseVariant
 import com.android.build.gradle.api.VersionedVariant
 import com.tomtom.ivi.buildsrc.environment.ProjectAbis
-import com.tomtom.navtest.extensions.buildVariants
 import groovy.lang.GroovyObject
 import org.jfrog.gradle.plugin.artifactory.ArtifactoryPluginUtil
 import org.jfrog.gradle.plugin.artifactory.dsl.ArtifactoryPluginConvention
@@ -71,6 +73,15 @@ extensions.getByType(PublishingExtension::class.java).apply {
     }
 }
 
+val Project.buildVariants: DomainObjectSet<out BaseVariant>
+    get() {
+        val plugins = project.plugins
+        val extensions = project.extensions
+        return when {
+            plugins.hasPlugin(AppPlugin::class.java) -> extensions.getByType(AppExtension::class.java).applicationVariants
+            else -> throw GradleException("could not retrieve variants for project ${project.name} - android plugin not applied ?")
+        }
+    }
 
 fun Project.artifactory(configure: ArtifactoryPluginConvention.() -> Unit): Unit =
     configure(project.convention.getPluginByName("artifactory"))

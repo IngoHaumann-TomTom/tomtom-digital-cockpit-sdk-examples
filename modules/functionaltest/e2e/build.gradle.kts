@@ -18,11 +18,13 @@ plugins {
 
 androidTest {
     targetProjectPath = ":products_exampleapp"
+}
 
-    configure<com.tomtom.navtest.NavTestAndroidProjectExtension> {
+android {
+    navTest.android {
         androidTest {
-            enabled = true
-            testTags += "e2e"
+            enabled.set(true)
+            testTags.add("e2e")
         }
     }
 }

@@ -20,7 +20,10 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 import com.tomtom.ivi.platform.gradle.api.tools.version.iviAndroidVersionCode
 import com.tomtom.ivi.platform.gradle.api.tools.emulators.iviEmulators
 import com.tomtom.ivi.platform.gradle.api.tools.version.iviVersion
-import com.tomtom.navtest.NavTestAndroidProjectExtension
+import com.tomtom.navtest.android.android
+import com.tomtom.navtest.android.androidRoot
+import com.tomtom.navtest.extensions.navTest
+import com.tomtom.navtest.extensions.navTestRoot
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
@@ -39,6 +42,7 @@ plugins {
     id("com.tomtom.ivi.platform.tools.emulators") apply true
     id("com.tomtom.ivi.platform.tools.version") apply true
     id("com.tomtom.navtest") apply true
+    id("com.tomtom.navtest.android") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
 }
 
@@ -82,16 +86,18 @@ tasks.withType<Test> {
 }
 
 // Set up the NavTest framework.
-navTest {
+navTestRoot {
     // Specify where the report and artifacts of the tests will be archived
-    outputDir = testOutputDirectory
+    outputDir.set(testOutputDirectory)
 
-    deviceUsageReport {
-        enabled = true
+    androidRoot {
+        deviceUsageReport {
+            enabled.set(true)
+        }
     }
 
     timeline {
-        enabled = true
+        enabled.set(true)
     }
 
     suites {
@@ -142,8 +148,8 @@ subprojects {
         buildToolsVersion = Versions.BUILD_TOOLS
 
         defaultConfig {
-            minSdkVersion(Versions.MIN_SDK)
-            targetSdkVersion(Versions.TARGET_SDK)
+            minSdk = Versions.MIN_SDK
+            targetSdk = Versions.TARGET_SDK
             if (isApplicationProject) {
                 versionCode = iviAndroidVersionCode
                 versionName = iviVersion
@@ -197,12 +203,12 @@ subprojects {
 
         packagingOptions {
             // For NavKit 2, pick the first binary found when there are multiple.
-            pickFirst("lib/**/*.so")
+            pickFirsts.add("lib/**/*.so")
             // NOTE: Do not strip any binaries: they should already come stripped from the
             // release artifacts; and since we don't use an NDK, they cannot be stripped anyway.
-            doNotStrip("*.so")
-            pickFirst("META-INF/io.netty.versions.properties")
-            exclude("META-INF/INDEX.LIST")
+            jniLibs.keepDebugSymbols.add("*.so")
+            pickFirsts.add("META-INF/io.netty.versions.properties")
+            resources.excludes.add("META-INF/INDEX.LIST")
         }
 
         // Split the output into multiple APKs based on their ABI.
@@ -224,37 +230,39 @@ subprojects {
                 projectSourceSets += it.absolutePath
             }
         }
-    }
 
-    apply(plugin = "com.tomtom.ivi.platform.tools.signing-config")
 
-    apply(plugin = "com.tomtom.navtest")
+        apply(plugin = "com.tomtom.ivi.platform.tools.signing-config")
 
-    configure<NavTestAndroidProjectExtension> {
-        // Applies for functional tests under "androidTest" directory.
-        androidTest {
-            enabled = true
-            // Tags are set by subprojects.
+        apply(plugin = "com.tomtom.navtest")
+        apply(plugin = "com.tomtom.navtest.android")
 
-            // Allow specifying the test-class via command-line
-            findProperty("testClass")?.let {
-                instrumentationArguments.className = it as String
-            }
-        }
-
-        pluginManager.withPlugin("com.tomtom.ivi.platform.framework.config.activity-test") {
+        navTest.android {
+            // Applies for functional tests under "androidTest" directory.
             androidTest {
-                testTags += "integration"
-                timeout = 10 * 60
-            }
-        }
+                enabled.set(true)
+                // Tags are set by subprojects.
 
-        if (!isAndroidTestProject) {
-            // Applies for unit tests under "test" directory.
-            unit {
-                enabled = true
-                testTags += "unit"
-                variantFilter = { it.buildType.name == BuilderConstants.DEBUG }
+                // Allow specifying the test-class via command-line
+                findProperty("testClass")?.let {
+                    instrumentationArguments.className.set(it as String)
+                }
+            }
+
+            pluginManager.withPlugin("com.tomtom.ivi.platform.framework.config.activity-test") {
+                androidTest {
+                    testTags.add("integration")
+                    timeout.set(10 * 60)
+                }
+            }
+
+            if (!isAndroidTestProject) {
+                // Applies for unit tests under "test" directory.
+                unit {
+                    enabled.set(true)
+                    testTags.add("unit")
+                    variantFilter = { it.buildType == BuilderConstants.DEBUG }
+                }
             }
         }
     }

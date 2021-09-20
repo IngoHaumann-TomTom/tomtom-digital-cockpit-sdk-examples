@@ -9,6 +9,7 @@
  * immediately return or destroy it.
  */
 
+import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 ivi {
@@ -17,4 +18,5 @@ ivi {
 
 dependencies {
     api(project(":common_account"))
+    implementation(Libraries.TomTom.Indigo.API_COMMON_UID)
 }

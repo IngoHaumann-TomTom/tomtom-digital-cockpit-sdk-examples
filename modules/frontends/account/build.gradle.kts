@@ -19,5 +19,6 @@ dependencies {
     implementation(project(":serviceapis_account"))
 
     implementation(Libraries.TomTom.Indigo.API_COMMON_LIFECYCLE)
+    implementation(Libraries.TomTom.Indigo.API_COMMON_UID)
     implementation(Libraries.TomTom.Tools.API_LIVEDATA)
 }

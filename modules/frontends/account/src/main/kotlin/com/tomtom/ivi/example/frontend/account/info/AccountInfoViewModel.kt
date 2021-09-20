@@ -15,7 +15,6 @@ import androidx.lifecycle.map
 import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
-import java.util.Locale
 
 class AccountInfoViewModel(panel: AccountInfoPanel) :
     FrontendViewModel<AccountInfoPanel>(panel) {
@@ -23,7 +22,9 @@ class AccountInfoViewModel(panel: AccountInfoPanel) :
     private val accountServiceApi =
         AccountService.createApi(this, frontendContext.iviServiceProvider)
 
-    val displayName = accountServiceApi.activeAccount.map { it?.username?.capitalize(Locale.ROOT) }
+    val displayName = accountServiceApi.activeAccount.map {
+        it?.username?.replaceFirstChar(Char::uppercaseChar)
+    }
 
     fun onLogoutClick() = accountServiceApi.logOutAsync()
 }
