@@ -36,7 +36,7 @@
             android:gravity="start"
             android:text="@string/frontend_account_login_title"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold"
             tools:text="@string/frontend_account_login_title" />
@@ -52,7 +52,7 @@
             android:gravity="start"
             android:text="@string/frontend_account_login_message"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_secondary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_message" />
@@ -65,7 +65,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
-            android:background="?attr/tt_color_separation_line"
+            android:background="?attr/tt_surface_content_color_subdued"
             tools:layout_height="2dp" />
 
         <Space
@@ -81,7 +81,7 @@
             android:labelFor="@id/frontend_account_login_screen_login_username_edit"
             android:text="@string/frontend_account_login_username"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_secondary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_username" />
@@ -97,7 +97,7 @@
             android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.username}"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             android:textSize="?attr/tt_text_size_h2" />
 
         <Space
@@ -113,7 +113,7 @@
             android:labelFor="@id/frontend_account_login_screen_login_password_edit"
             android:text="@string/frontend_account_login_password"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_secondary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_password" />
@@ -129,7 +129,7 @@
             android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.password}"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             android:textSize="?attr/tt_text_size_h2" />
 
         <Space
@@ -140,7 +140,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
-            android:background="?attr/tt_color_separation_line"
+            android:background="?attr/tt_surface_content_color_subdued"
             tools:layout_height="2dp" />
 
         <Space

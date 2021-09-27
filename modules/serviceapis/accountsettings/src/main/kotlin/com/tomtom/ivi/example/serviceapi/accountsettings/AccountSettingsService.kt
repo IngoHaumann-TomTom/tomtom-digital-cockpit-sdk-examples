@@ -20,7 +20,6 @@ import com.tomtom.ivi.example.common.account.Account
 @IviService(
     serviceId = "com.tomtom.ivi.example.service.accountsettings"
 )
-@OptIn(IviExperimental::class)
 interface AccountSettingsService {
     @IviSetting(accessMode = IviSettingAccessMode.READ_WRITE)
     val activeAccount: Account?

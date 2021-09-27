@@ -15,6 +15,6 @@
     android:thickness="0dp">
     <stroke
         android:width="4dp"
-        android:color="?attr/tt_color_separation_line" />
+        android:color="?attr/tt_surface_content_color_subdued" />
     <corners android:radius="40dp" />
 </shape>

@@ -42,7 +42,7 @@
             android:gravity="start"
             android:text="@{viewModel.selectedItem}"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold" />
 
@@ -53,7 +53,7 @@
             android:gravity="start"
             android:text="@string/frontend_hierarchy_leaf_fragment"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h3" />
 
     </LinearLayout>

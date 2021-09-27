@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:background="?attr/tt_color_black"
+            android:background="@android:color/black"
             android:contentDescription="@string/frontend_account_info_avatar_description"
             android:scaleType="fitStart"
             android:src="@drawable/frontend_account_info_avatar_placeholder" />
@@ -45,7 +45,7 @@
             android:gravity="start"
             android:text="@{@string/frontend_account_info_welcome_message(viewModel.displayName)}"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_color_text_primary"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold" />
 
