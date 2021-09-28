@@ -17,6 +17,7 @@ variables:
   - group: IviArtifactoryCredentials
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
+  - group: 'NavKit2ApiKey'
   # Use to limit jobs to builds of the 'master' branch, made on the pipeline whose definition id
   # is 1986 (the IndiGO Docs main pipeline).
   - name: isMainlineBuild
