@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="690px" preserveAspectRatio="none" style="width:470px;height:690px;background:#FFFFFF;" version="1.1" viewBox="0 0 470 690" width="470px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="209" x="124" y="16.7225">Messaging Architecture</text><!--MD5=[87a69700ba4a1e183985b3cf69829d65]
+cluster IndiGO application suite--><rect fill="#FFFFFF" height="203" style="stroke:#000000;stroke-width:1.5;" width="266" x="7" y="27.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="176" x="52" y="42.9809">IndiGO application suite</text><!--MD5=[f1b15d1f15a93a89342c26e44dc14812]
+cluster IndiGO platform--><rect fill="#FFFFFF" height="309" style="stroke:#000000;stroke-width:1.5;" width="453" x="11" y="254.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="118" x="178.5" y="269.9809">IndiGO platform</text><!--MD5=[3a9fc073d9e52b74335e8281335ce9d0]
+cluster Communications Sdk--><rect fill="#FFFFFF" height="97" style="stroke:#000000;stroke-width:1.5;" width="192" x="219" y="587.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="155" x="237.5" y="602.9809">Communications Sdk</text><!--MD5=[e26aa663ced764771af3d37513bf4dbc]
+entity MessagingFrontend--><rect fill="#BCDCF5" height="46.3151" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="171" x="54.5" y="62.9713"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="205.5" y="67.9713"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="203.5" y="69.9713"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="203.5" y="73.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="69.5" y="95.9809">Messaging Frontend</text><!--MD5=[6c7ec6d323004ef8784941964f24eebd]
+entity MessagingAppService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="234" x="23" y="168.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="237" y="173.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="235" y="175.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="235" y="179.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="38" y="201.9809">Messaging Application Service</text><!--MD5=[46cf3a060a0336fd8c51be832ecdc61e]
+entity MessagingService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="160" x="60" y="289.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="200" y="294.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="198" y="296.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="198" y="300.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="75" y="322.9809">Messaging Service</text><!--MD5=[b50557027b98b833fc7c7f64747b0d2b]
+entity SmsService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="119" x="27.5" y="501.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="126.5" y="506.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="124.5" y="508.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="124.5" y="512.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79" x="42.5" y="534.9809">Sms Service</text><!--MD5=[749dba8efb449784bbec434ba9b55b76]
+entity CompanionAppMessagingService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="266" x="182" y="501.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="428" y="506.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="426" y="508.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="426" y="512.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="226" x="197" y="534.9809">Companion App Messaging Service</text><!--MD5=[064e03ec69c6e782a6e204d8aca6dfa4]
+entity MessagingProviderService--><rect fill="#E5E5E5" height="46.3151" rx="5" ry="5" style="stroke:#BEBEBE;stroke-width:1.5;" width="217" x="31.5" y="395.9713"/><rect fill="#E5E5E5" height="10" style="stroke:#BEBEBE;stroke-width:1.5;" width="15" x="228.5" y="400.9713"/><rect fill="#E5E5E5" height="2" style="stroke:#BEBEBE;stroke-width:1.5;" width="4" x="226.5" y="402.9713"/><rect fill="#E5E5E5" height="2" style="stroke:#BEBEBE;stroke-width:1.5;" width="4" x="226.5" y="406.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="46.5" y="428.9809">Messaging Provider Service</text><!--MD5=[33284370292c430a15d352ff83144e8d]
+entity CommMessagingService--><rect fill="#FEFECE" height="46.3151" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="160" x="235" y="622.9713"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="375" y="627.9713"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="373" y="629.9713"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="373" y="633.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="250" y="655.9809">Messaging Service</text><!--MD5=[68a88268138a386e72f9ee23aa219161]
+link MessagingFrontend to MessagingAppService--><path d="M140,109.0313 C140,125.0213 140,146.7513 140,163.8113 " fill="none" id="MessagingFrontend-to-MessagingAppService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="140,168.9513,144,159.9513,140,163.9513,136,159.9513,140,168.9513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[22cbeeea6c1d3cdea4ea652ea0fb5a1c]
+link MessagingAppService to MessagingService--><path d="M140,215.0713 C140,234.6513 140,263.3213 140,284.4013 " fill="none" id="MessagingAppService-to-MessagingService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="140,289.5813,144,280.5813,140,284.5813,136,280.5813,140,289.5813" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[fdcf7b7b7a1364a67c97cd744974c643]
+link MessagingService to MessagingProviderService--><path d="M140,336.0313 C140,352.0213 140,373.7513 140,390.8113 " fill="none" id="MessagingService-to-MessagingProviderService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="140,395.9513,144,386.9513,140,390.9513,136,386.9513,140,395.9513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[902d5c285f2e667b48cb6065bc62b18b]
+reverse link MessagingProviderService to SmsService--><path d="M119.5,460.1913 C112.27,474.3913 104.4,489.8213 98.22,501.9513 " fill="none" id="MessagingProviderService-backto-SmsService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="113.44,456.6713,128.76,442.0313,125.92,463.0213,113.44,456.6713" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[f1a4abde9f0be768c78e7c2410022386]
+reverse link MessagingProviderService to CompanionAppMessagingService--><path d="M194.51,452.3713 C221.63,468.4813 253.71,487.5413 277.94,501.9513 " fill="none" id="MessagingProviderService-backto-CompanionAppMessagingService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="190.73,458.2613,177.11,442.0313,197.88,446.2313,190.73,458.2613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[46b0528e7cd8d1dd525ad54ef0cd21ea]
+link CompanionAppMessagingService to CommMessagingService--><path d="M315,548.0713 C315,567.6513 315,596.3213 315,617.4013 " fill="none" id="CompanionAppMessagingService-to-CommMessagingService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="315,622.5813,319,613.5813,315,617.5813,311,613.5813,315,622.5813" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8a53f2e8efd3b4267bc8ff030283cf14]
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Messaging Architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    component MessagingFrontend as [Messaging Frontend]<<Frontend>>
+    component MessagingAppService as [Messaging Application Service]<<Service>>
+}
+
+package "IndiGO platform"<<Rectangle>> {
+    component MessagingService as [Messaging Service]<<Service>>
+    component SmsService as [Sms Service]<<Service>>
+    component CompanionAppMessagingService as [Companion App Messaging Service]<<Service>>
+    component MessagingProviderService as [Messaging Provider Service]<<Api>>
+}
+
+package "Communications Sdk" {
+    component CommMessagingService as [Messaging Service]
+}
+
+MessagingFrontend -d-> MessagingAppService
+MessagingAppService -d-> MessagingService
+MessagingService -d-> MessagingProviderService
+MessagingProviderService <|-d- SmsService
+MessagingProviderService <|-d- CompanionAppMessagingService
+CompanionAppMessagingService -d-> CommMessagingService
+
+
+@enduml
+
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+skinparam packageStyle rectangle
+
+title Messaging Architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    component MessagingFrontend as [Messaging Frontend]<<Frontend>>
+    component MessagingAppService as [Messaging Application Service]<<Service>>
+}
+
+package "IndiGO platform"<<Rectangle>> {
+    component MessagingService as [Messaging Service]<<Service>>
+    component SmsService as [Sms Service]<<Service>>
+    component CompanionAppMessagingService as [Companion App Messaging Service]<<Service>>
+    component MessagingProviderService as [Messaging Provider Service]<<Api>>
+}
+
+package "Communications Sdk" {
+    component CommMessagingService as [Messaging Service]
+}
+
+MessagingFrontend -d-> MessagingAppService
+MessagingAppService -d-> MessagingService
+MessagingService -d-> MessagingProviderService
+MessagingProviderService <|-d- SmsService
+MessagingProviderService <|-d- CompanionAppMessagingService
+CompanionAppMessagingService -d-> CommMessagingService
+
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 14:40:07 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

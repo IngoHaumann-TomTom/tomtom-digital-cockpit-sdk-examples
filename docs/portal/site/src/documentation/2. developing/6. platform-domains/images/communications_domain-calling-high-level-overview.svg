@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="584px" preserveAspectRatio="none" style="width:832px;height:584px;background:#FFFFFF;" version="1.1" viewBox="0 0 832 584" width="832px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="176" x="321.5" y="16.7225">Calling Architecture</text><!--MD5=[87a69700ba4a1e183985b3cf69829d65]
+cluster IndiGO application suite--><rect fill="#FFFFFF" height="97" style="stroke:#000000;stroke-width:1.5;" width="242" x="421" y="27.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="176" x="454" y="42.9809">IndiGO application suite</text><!--MD5=[f1b15d1f15a93a89342c26e44dc14812]
+cluster IndiGO platform--><rect fill="#FFFFFF" height="203" style="stroke:#000000;stroke-width:1.5;" width="819" x="7" y="148.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="118" x="357.5" y="163.9809">IndiGO platform</text><!--MD5=[6dd2f378bbb92bac41757861ddd11092]
+cluster Android--><rect fill="#FFFFFF" height="203" style="stroke:#000000;stroke-width:1.5;" width="375" x="219" y="375.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="58" x="377.5" y="390.9809">Android</text><!--MD5=[e480a7a7eb5b34b18fcd6e16c8ae1303]
+entity CommunicationsFrontend--><rect fill="#BCDCF5" height="46.3151" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="210" x="437" y="62.9713"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="627" y="67.9713"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="625" y="69.9713"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="625" y="73.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="170" x="452" y="95.9809">Communications Frontend</text><!--MD5=[1cb71393ff0a625010a597007d33b1d5]
+entity TelecomService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="146" x="23" y="183.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="149" y="188.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="147" y="190.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="147" y="194.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="38" y="216.9809">Telecom Service</text><!--MD5=[17cedc89c2f8724ff41a83ea6edee681]
+entity ContactsService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="148" x="662" y="183.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="790" y="188.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="788" y="190.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="788" y="194.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="677" y="216.9809">Contacts Service</text><!--MD5=[9631afebd8d9e756e1c33b83aeeb51a5]
+entity RecentCallsService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="170" x="457" y="183.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="607" y="188.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="605" y="190.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="605" y="194.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="472" y="216.9809">Recent Calls Service</text><!--MD5=[6df79b660d447c139d32e1f8c40ddefb]
+entity IviInCallService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="143" x="29.5" y="289.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="152.5" y="294.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="150.5" y="296.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="150.5" y="300.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103" x="44.5" y="322.9809">Ivi Incall Service</text><!--MD5=[4e70998f0929f83cc602362fab35c130]
+entity CustomConnectionService--><rect fill="#F8C9DF" height="46.3151" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="217" x="204.5" y="183.9713"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="401.5" y="188.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="399.5" y="190.9713"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="399.5" y="194.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="219.5" y="216.9809">Custom Connection Service</text><!--MD5=[470dbabe9a39027d501f5582e9e4345c]
+entity TelecomManager--><rect fill="#65A7A9" height="46.3151" rx="5" ry="5" style="stroke:#008D8D;stroke-width:1.5;" width="156" x="235" y="410.9713"/><rect fill="#65A7A9" height="10" style="stroke:#008D8D;stroke-width:1.5;" width="15" x="371" y="415.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="369" y="417.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="369" y="421.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="250" y="443.9809">Telecom Manager</text><!--MD5=[f9180e32e7ed242bbbe444cb08edbb1e]
+entity ContentResolver--><rect fill="#65A7A9" height="46.3151" rx="5" ry="5" style="stroke:#008D8D;stroke-width:1.5;" width="151" x="426.5" y="410.9713"/><rect fill="#65A7A9" height="10" style="stroke:#008D8D;stroke-width:1.5;" width="15" x="557.5" y="415.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="555.5" y="417.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="555.5" y="421.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="441.5" y="443.9809">Content Resolver</text><!--MD5=[bbee5637a6e601f200f5188184feb3c8]
+entity ConnectionService--><rect fill="#65A7A9" height="46.3151" rx="5" ry="5" style="stroke:#008D8D;stroke-width:1.5;" width="229" x="235.5" y="516.9713"/><rect fill="#65A7A9" height="10" style="stroke:#008D8D;stroke-width:1.5;" width="15" x="444.5" y="521.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="442.5" y="523.9713"/><rect fill="#65A7A9" height="2" style="stroke:#008D8D;stroke-width:1.5;" width="4" x="442.5" y="527.9713"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="189" x="250.5" y="549.9809">Bluetooth Connection Service</text><!--MD5=[8bce1c42dd8c2854929ff577907d6f82]
+link CommunicationsFrontend to TelecomService--><path d="M436.85,90.1313 C364.35,95.3513 267,108.5013 187,140.9713 C164.11,150.2613 141.5,166.3713 124.54,180.2313 " fill="none" id="CommunicationsFrontend-to-TelecomService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="120.36,183.6913,129.8416,181.0269,124.2093,180.5003,124.7359,174.868,120.36,183.6913" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5e78221fade48cbd740ac691c30b6497]
+link CommunicationsFrontend to ContactsService--><path d="M587.36,109.0513 C605.59,118.3613 626.6,129.6513 645,140.9713 C664.82,153.1613 686.02,168.1813 702.97,180.7113 " fill="none" id="CommunicationsFrontend-to-ContactsService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="707.19,183.8413,702.3557,175.2606,703.178,180.8573,697.5813,181.6797,707.19,183.8413" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e6d37d05b3ec874086bbfe443e136cb7]
+link CommunicationsFrontend to RecentCallsService--><path d="M542,109.0713 C542,128.6513 542,157.3213 542,178.4013 " fill="none" id="CommunicationsFrontend-to-RecentCallsService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="542,183.5813,546,174.5813,542,178.5813,538,174.5813,542,183.5813" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2c11a5453f483f9534e95b2ef19643f3]
+reverse link TelecomService to IviInCallService--><path d="M97.31,235.1613 C98.13,252.2313 99.17,273.9613 99.94,289.9513 " fill="none" id="TelecomService-backto-IviInCallService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="97.06,230.0313,93.4752,239.2046,97.2883,235.0261,101.4668,238.8393,97.06,230.0313" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[040543bdb5014f2a3bc3d8a72312dfe1]
+link ContactsService to ContentResolver--><path d="M712.71,230.3713 C669.08,272.3213 575.29,362.5013 528.99,407.0213 " fill="none" id="ContactsService-to-ContentResolver" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="525.2,410.6613,534.4551,407.2935,528.7992,407.1906,528.9021,401.5347,525.2,410.6613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[351c1c5b9a89dc04a507423e0447c888]
+link RecentCallsService to ContentResolver--><path d="M538.02,230.3713 C530.64,271.8913 514.85,360.6913 506.85,405.6713 " fill="none" id="RecentCallsService-to-ContentResolver" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="505.97,410.6613,511.5029,402.5135,506.8569,405.7406,503.6298,401.0945,505.97,410.6613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ebc9372ba565bd569d4264841216b519]
+reverse link IviInCallService to TelecomManager--><path d="M144.91,338.6213 C182.77,359.8713 236.95,390.2813 273.47,410.7813 " fill="none" id="IviInCallService-backto-TelecomManager" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="140.38,336.0713,146.2545,343.9764,144.7352,338.5274,150.1842,337.008,140.38,336.0713" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5211eb1604d46271846e1de6c53ae883]
+link TelecomService to TelecomManager--><path d="M123.66,230.3113 C142.9,246.2713 168.79,268.6113 190,289.9713 C228.27,328.5113 268.57,377.1313 292.22,406.5913 " fill="none" id="TelecomService-to-TelecomManager" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="295.58,410.8013,293.0855,401.2736,292.4583,406.8956,286.8363,406.2684,295.58,410.8013" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[204ad31af1e402e042c11216afea064c]
+link TelecomManager to ConnectionService--><path d="M322.67,462.1613 C328.13,477.5013 334.92,496.5913 340.37,511.9113 " fill="none" id="TelecomManager-ConnectionService" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="342.16,516.9513,342.9226,507.132,340.4892,512.2387,335.3825,509.8053,342.16,516.9513" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="320.85,457.0313,320.0874,466.8506,322.5208,461.7439,327.6275,464.1773,320.85,457.0313" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[7d2def35aea2216ee18060cc3bd681c7]
+link CustomConnectionService to TelecomManager--><path d="M313,235.3713 C313,278.6513 313,362.3413 313,405.5913 " fill="none" id="CustomConnectionService-TelecomManager" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="313,410.6613,317,401.6613,313,405.6613,309,401.6613,313,410.6613" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="313,230.3713,309,239.3713,313,235.3713,317,239.3713,313,230.3713" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e955401e01a06502c7a62e261ffbd0c8]
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Calling Architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    component CommunicationsFrontend as [Communications Frontend]<<Frontend>>
+}
+
+package "IndiGO platform"<<Rectangle>> {
+    component TelecomService as [Telecom Service]<<Service>>
+    component ContactsService as [Contacts Service]<<Service>>
+    component RecentCallsService as [Recent Calls Service]<<Service>>
+    component IviInCallService as [Ivi Incall Service]<<Service>>
+    component CustomConnectionService as [Custom Connection Service]<<Service>>
+}
+
+package "Android"<<Rectangle>> {
+    component TelecomManager as [Telecom Manager]<<Android>>
+    component ContentResolver as [Content Resolver]<<Android>>
+    component ConnectionService as [Bluetooth Connection Service]<<Android>>
+}
+
+CommunicationsFrontend -d-> TelecomService
+CommunicationsFrontend -d-> ContactsService
+CommunicationsFrontend -d-> RecentCallsService
+
+IviInCallService -u-> TelecomService
+ContactsService -d-> ContentResolver
+RecentCallsService -d-> ContentResolver
+
+TelecomManager -u-> IviInCallService
+TelecomService -d-> TelecomManager
+
+TelecomManager <- -> ConnectionService
+TelecomManager <-u-> CustomConnectionService
+
+@enduml
+
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+skinparam packageStyle rectangle
+
+title Calling Architecture
+
+package "IndiGO application suite"<<Rectangle>> {
+    component CommunicationsFrontend as [Communications Frontend]<<Frontend>>
+}
+
+package "IndiGO platform"<<Rectangle>> {
+    component TelecomService as [Telecom Service]<<Service>>
+    component ContactsService as [Contacts Service]<<Service>>
+    component RecentCallsService as [Recent Calls Service]<<Service>>
+    component IviInCallService as [Ivi Incall Service]<<Service>>
+    component CustomConnectionService as [Custom Connection Service]<<Service>>
+}
+
+package "Android"<<Rectangle>> {
+    component TelecomManager as [Telecom Manager]<<Android>>
+    component ContentResolver as [Content Resolver]<<Android>>
+    component ConnectionService as [Bluetooth Connection Service]<<Android>>
+}
+
+CommunicationsFrontend -d-> TelecomService
+CommunicationsFrontend -d-> ContactsService
+CommunicationsFrontend -d-> RecentCallsService
+
+IviInCallService -u-> TelecomService
+ContactsService -d-> ContentResolver
+RecentCallsService -d-> ContentResolver
+
+TelecomManager -u-> IviInCallService
+TelecomService -d-> TelecomManager
+
+TelecomManager <- -> ConnectionService
+TelecomManager <-u-> CustomConnectionService
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 14:40:07 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
