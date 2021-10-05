@@ -1,50 +1,30 @@
-# How to create a frontend plugin
+---
+title: How to create a frontend plugin
+layout: default
+---
+For an introduction to frontend plugins in the IndiGO platform, see 
+([Frontend Plugins](/indigo/documentation/developing/plugins))
 
 ## Introduction
-
-Frontend plugins are the User Interface (UI) modules of the IndiGO platform. They are independent
-modules and can be included independently in the IndiGO platform at build time. As the platform is 
-deployed as one APK, the frontend plugins all run in the UI thread. Frontend plugins are typically 
-kept free of business logic, which is instead implemented in a service plugin (which also run in 
-separate threads from each other - see the service plugin documentation). IndiGO comes with a 
-number of default frontends and corresponding service plugins, for example; the media player, the 
-phone application, etc.
-
-Each frontend is registered with the frontend framework at runtime, by supplying a set of metadata 
-which describes the frontend characteristics. Each metadata contains details such as:
-
-- An identifier to uniquely identify the metadata.
-- A `FrontendBuilder` factory which can be used by the framework to create the `Frontend` instance.
-- Whether the `Frontend` should start at start-up (the default) or gets started on demand.
-- Optionally, a menu item can be added to the main menu to open the `Frontend`'s main task panel.
-
-Each frontend can have one or more panels associated with it. A `Panel` is not bound to a specific 
-`Context`. It encapsulates the `Fragment` displaying the UI.
-
-A menu item can be associated to a `Frontend`. This menu item is added to the main menu to open
-the `Frontend`'s main task panel and can be used to create the frontend on demand.
-
-Each frontend can have one or more panels associated with it. A `Panel` is not bound to a specific
-`Context`. It encapsulates the `Fragment` displaying the UI.
-
-![Frontend panel relation](images/frontend_panel_relation.svg)
-
-## Creating a new frontend
-
 In this example, we will create a new frontend for managing an account on the device. It will
 provide a login screen where you can enter a username and a password to login, and if the user is
-logged in, you have the option to logout again. We will also add a menu item that will be
-associated to the new frontend. The final step will be to let the new frontend replace IndiGO's
-user profile frontend.
+logged in, you have the option to logout again. We will also add a menu item to the main menu that 
+will be associated to the new frontend. The final step will be to let the new frontend replace 
+IndiGO's user profile frontend.
 
 Creating a frontend and the menu item consists of a number of steps:
 
-- [Creating the `Frontend` class, deriving the abstract `Frontend` class (see API doc).](#creating-the-frontend-class)
-- [Creating the `FrontendBuilder` class (see API doc).](#creating-the-frontendbuilder-class)
+- [Creating the `Frontend` class, deriving the abstract `Frontend` class.](#creating-the-frontend-class)
+- [Creating the `FrontendBuilder` class.](#creating-the-frontendbuilder-class)
 - [Creating the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
 - [Creating a `MenuItem`.](#creating-a-menu-item)
 - [Defining the frontend and menu item build config.](#defining-the-frontend-and-menu-item-build-config)
 - [Registering the frontend and menu item build config.](#registering-the-frontend-and-menu-item-build-config)
+
+For more information on all the classes and APIs, 
+[see the API reference documentation](/indigo/api-reference/indigo-api-reference).
+
+All the code snippets in this guide can also be found in the IndiGO example application.
 
 ### Creating the frontend class
 
@@ -74,7 +54,7 @@ There are two callbacks for when an event is triggered to show a `TaskPanel` on 
 - `createMainTaskPanel` - override it to display a single `TaskPanel` when the UI is shown.
 - `openTaskPanels` - override it when more control is needed over which panels should be shown.
 
-**Note:** A frontend class must override only one of the two methods.
+**Note:** A frontend class must override only one of these two methods.
 
 ### Creating the FrontendBuilder class
 
@@ -96,9 +76,9 @@ suffix and must start with an upper case character.
 
 ### Creating the panel
 
-There are a number of specialised `Panel` classes that can be used in the platform (see `Panel`
-API documentation). For this example we will create a `Panel` class inheriting from the
-`TaskPanel` class.
+There are a number of specialised `Panel` classes that can be used in the platform (see 
+`com.tomtom.ivi.api.framework.frontend.panels` package in the API documentation). For this example 
+we will create a `Panel` class inheriting from the `TaskPanel` class.
 
 A `TaskPanel` is typically launched by tapping one of the menu items, like opening Contacts;
 or some other UI event, like opening the Climate panel. It encapsulates a task that the user may
@@ -147,6 +127,11 @@ class AccountLoginFragment :
     override val viewFactory = ViewFactory(FrontendAccountLoginFragmentBinding::inflate)
 }
 ```
+
+See [this page](https://developer.android.com/topic/libraries/data-binding/expressions), for more 
+information on how how data-binding works in Android and how the `ViewModel` class binds to the 
+XML layout. It also explains how the `FrontendAccountLoginFragmentBinding` class that you pass 
+in to the ViewFactory, is auto generated.
 
 ### Creating a menu item
 
@@ -224,8 +209,8 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstan
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-// Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
-// file.
+// Define the frontends and menu items as defined in the top-level 
+// `frontends-and-menuitems.gradle.kts` file.
 apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
 
 // Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
