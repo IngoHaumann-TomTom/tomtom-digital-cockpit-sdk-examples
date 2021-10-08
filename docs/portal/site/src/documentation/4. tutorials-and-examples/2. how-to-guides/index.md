@@ -71,7 +71,7 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
   This guide explains how to install and use the customized IndiGO Android Automotive system image
   on the reference hardware.
 
-- [How to install IndiGO on hardware](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-install-on-hardware)
+- [How to install IndiGO on hardware](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-install-indigo-on-hardware)
 
   This guide explains how to sign the application, install it on the system partition, and do some
   additional configurations, if required.

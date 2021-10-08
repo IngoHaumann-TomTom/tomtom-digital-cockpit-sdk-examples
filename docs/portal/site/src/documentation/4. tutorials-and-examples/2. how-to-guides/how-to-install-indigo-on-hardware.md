@@ -1,5 +1,5 @@
 ---
-title: IndiGO APK Installation
+title: How to Install IndiGO on Hardware
 layout: default
 ---
 
