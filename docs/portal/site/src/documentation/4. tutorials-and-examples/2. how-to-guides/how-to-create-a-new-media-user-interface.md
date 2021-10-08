@@ -25,33 +25,40 @@ the content from a media app is displayed to the user, or to add an icon to perf
 specific to that app, using the default media user interface should be preferred and
 [appropriately customized](how-to-customize-a-media-source.html).
 
-For this guide, knowledge of the IndiGO media APIs [api_common_media] and [api_common_mediasources]
-will greatly help. In the [media overview](/indigo/media-domain.html) documentation, more details can
-be found over the Android Automotive Media framework and how IndiGO uses it. 
+For this guide, knowledge of the IndiGO [media library](api.common.media) and
+[media sources library](api.common.mediasources) will greatly help. In the
+[media overview](/indigo/documentation/developing/platform-domains/media), more details can be
+found over the Android Automotive Media framework and how IndiGO uses it.
 
 ## Concepts
 
 The guide will implement the user interface for a simple radio made available in the system through
 the standard [Android Automotive Radio API](https://source.android.com/devices/automotive/radio).
-Through the standard API for media, an Android [media browser service](https://developer.android.com/reference/androidx/media/MediaBrowserServiceCompat)
-will provide access to an hardware radio tuner module.
+Through the standard API for media, an Android
+[media browser service](https://developer.android.com/reference/kotlin/androidx/media/MediaBrowserServiceCompat)
+will provide access to a hardware radio tuner module.
 
-This user interface will be a new panel. A panel is composed by three classes: a [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel)
-to define the logic; a view model, [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
+This user interface will be a new panel. A panel is composed by three classes: a
+[TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel) to define the logic; a view
+model, [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
 potentially using data binding; an [IviFragment](com.tomtom.ivi.api.framework.frontend.IviFragment)
 defining the Android fragment and creating the instance of the view model.
-Please refer to the [frontend plugin guide](how-to-create-a-frontend-plugin.html) to get started.
+Please refer to the
+[frontend plugin guide](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-a-frontend-plugin)
+to get started.
 
-This user interface will use a specialization of the base user interface panel type [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel),
-[MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel). This panel type is
-more suitable for media apps, as it contains media-specific facilities.
+This user interface will use a specialization of the base user interface panel type
+[TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel),
+[MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel). This panel type is more
+suitable for media apps, as it contains media-specific facilities.
 
 This being simply an example, the user interface is very sparse and only contains one panel to
 display, and no functionality other than basic browsing and playing.
 
 ### Example panel
 
-The example's panel class, based on [MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel),
+The example's panel class, based on
+[MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel),
 enables browsing through both the stations recognized by the radio, and the raw frequencies offered
 by each radio band.
 
@@ -124,8 +131,9 @@ class RadioPanel(mediaContext: MediaFrontendContext) :
 
 ### Example view model
 
-The view model, a [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
-transforms the panel's data into information ready to use in a view.
+The view model, a
+[FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel), transforms
+the panel's data into information ready to use in a view.
 
 In this example, the `RadioRecyclerViewItem` type represents an entry to display with a standard
 Android RecyclerView adapter.
@@ -170,7 +178,8 @@ class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
         }
 
     fun onBackPressed() = panel.onBackPressed()
-    fun onStationsButtonClicked() = panel.stationsMediaItem.valueUpToDate?.let { panel.selectType(it) }
+    fun onStationsButtonClicked() =
+        panel.stationsMediaItem.valueUpToDate?.let { panel.selectType(it) }
 }
 ```
 
@@ -178,8 +187,10 @@ class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
 
 The fragment, based off [IviFragment](com.tomtom.ivi.api.framework.frontend.IviFragment), is mostly
 a container for glue code to connect the ViewModel to the XML layout, represented by
-`RadioFragmentBinding`; additionally, it links the [SourceClient](com.tomtom.ivi.api.common.media.SourceClient)
-used in the panel to the necessary Android [Context](https://developer.android.com/reference/kotlin/android/content/Context).
+`RadioFragmentBinding`; additionally, it links the
+[SourceClient](com.tomtom.ivi.api.common.media.SourceClient)
+used in the panel to the necessary Android
+[Context](https://developer.android.com/reference/kotlin/android/content/Context).
 
 ```kotlin
 import android.content.Context
@@ -213,13 +224,16 @@ To create more complex user interfaces, additional facilities are provided:
 
 ### Media visualization components
 
-Standardizing how media contents are displayed is not a simple task; to simplify it, the [MediaItemView](com.tomtom.ivi.api.common.mediasources.MediaItemView)
+Standardizing how media contents are displayed is not a simple task; to simplify it, the
+[MediaItemView](com.tomtom.ivi.api.common.mediasources.MediaItemView)
 View has the flexibility to display artwork, title and sub-title for media items in a predictable
 way.
 
-[MediaContentView](com.tomtom.ivi.api.common.mediasources.MediaContentView), a [RecyclerView](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView)
+[MediaContentView](com.tomtom.ivi.api.common.mediasources.MediaContentView), a
+[RecyclerView](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView)
 specialization, displays media items according to their type as specified by the Android Automotive
-Media APIs. Its item types, defined by the [MediaGroupItem](com.tomtom.ivi.api.common.mediasources.MediaGroupItem)
+Media APIs. Its item types, defined by the
+[MediaGroupItem](com.tomtom.ivi.api.common.mediasources.MediaGroupItem)
 sealed class, will be displayed together without restriction as dictated by the standard: a part of
 the displayed content can be shown as a lists, while another can be laid out in a grid, and headers
 can logically separate different groups of contents.
@@ -232,4 +246,5 @@ A media-oriented set of classes is available to ease implementation of new panel
 [MediaSourceFragment](com.tomtom.ivi.api.common.mediasources.MediaSourceFragment).
 
 These classes are meant to be used together to create new user experiences while still adhering to
-the Android guidelines. These provide a full framework to integrate with [SourceClient](com.tomtom.ivi.api.common.media.SourceClient)s.
+the Android guidelines. These provide a full framework to integrate with
+[SourceClient](com.tomtom.ivi.api.common.media.SourceClient)s.
