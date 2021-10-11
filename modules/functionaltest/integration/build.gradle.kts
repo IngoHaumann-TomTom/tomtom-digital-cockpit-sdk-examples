@@ -47,6 +47,14 @@ ivi {
             addHosts(accountServiceHosts)
         }
     }
+
+    /**
+     * TODO(IVI-2177): The public interface of the E2E testing classes are not yet stable.
+     *   Therefore, this annotation is needed in this and customer projects. Before the mentioned
+     *   ticket is closed, check if this is still needed, or change the mentioned ticket reference
+     *   to the relevant ticket which relates to making the E2E testing classes stable.
+     */
+    optInToExperimentalApis = true
 }
 
 dependencies {
