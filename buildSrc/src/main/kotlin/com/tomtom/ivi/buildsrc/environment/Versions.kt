@@ -49,5 +49,5 @@ object Versions {
     const val IVI_COMMUNICATIONS_SDK = "0.1.62"
 
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
-    const val INDIGO_PLATFORM = "1.0.2481"
+    const val INDIGO_PLATFORM = "1.0.2483"
 }
