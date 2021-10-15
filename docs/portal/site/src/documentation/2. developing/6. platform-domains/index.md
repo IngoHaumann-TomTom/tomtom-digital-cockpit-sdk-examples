@@ -13,13 +13,13 @@ turn-by-turn guidance or free driving, the system will keep operating normally u
 content. Online navigation enables fresh and always up-to-date map content.
 [Navigation](1.%20navigation-domain.html)
 
-## Communication
+## Communications
 
 Users expect communication, instant messaging, media consumption, social networking, and
 location-based services to be usable anywhere and anytime. IndiGO provides a seamless connection to
 the users’ digital life, whether it is a phone call or replying to instant messages that arrive
 while driving.
-[Communication](2.%20communications-domain.html)
+[Communications](2.%20communications-domain.html)
  
 ## Media
 
@@ -36,15 +36,15 @@ temperature of the oil, or opening a window, IndiGO provides the means to give d
 over their vehicle.
 [Vehicle Functions](4.%20vehicle-functions-domain.html)
 
-## Voice Personal Assistant
+## Voice Personal Assistant (VPA)
 
 IndiGO allows the integration of 3rd-party voice engines to support voice personal assistants 
 (VPAs) in the vehicle. A generalized interface enables the customer to speak commands and reply 
 to system queries by voice. For example, the user can ask the system to make a phone call or find 
 a nearby petrol station by talking.
-[Voice Personal Assistant](5.%20vpa-domain.html)
+[Voice Personal Assistant (VPA)](5.%20vpa-domain.html)
 
-## Customization & Personalization
+## Configuration Framework
 
 Branding is important, which is why IndiGO provides the means to customize its look. Colors,
 margins, sizes, and fonts, can all be changed by applying a different theme. IndiGO also supplies a
