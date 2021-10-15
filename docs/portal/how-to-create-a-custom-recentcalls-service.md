@@ -1,0 +1,177 @@
+## Introduction
+
+The IVI platform comes with a [RecentCallsService] interface for accessing recent calls information.
+A product may provide its own implementation of the [RecentCallsService] interface or use an
+existing implementation. In case that the existing implementation of a [RecentCallsService] is
+inadequate (For example if we want to show only the recent calls of the day, filtering out older
+calls) it is possible to define a custom recent calls service. In order for the UI to be able to
+display recent calls from this service, a custom recent calls service needs to be written. This
+document describes how to do this.
+
+## How to create a custom recent calls service
+
+The following sections describe how to create a custom recent calls service implementation.
+
+### Service module setup
+
+To create a custom recent calls service, add a manifest file to your module and add a dependency to
+the [RecentCallsService] to your gradle file.
+
+Your `AndroidManifest.xml` should contain:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.tomtom.ivi.example.service.customrecentcalls"/>
+```
+
+Your gradle file should contain:
+
+```kotlin
+dependencies {
+    implementation("com.tomtom.ivi.platform:core_serviceapis_recentcalls:1.0.1847")
+}
+```
+
+### Service configuration
+
+To configure a recent calls service to use your custom implementation, define a service host
+configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
+in a file, like `RecentCallsServiceHostConfig.kt`, in the `buildScr` module, within the
+`config.services` folder.
+
+```kotlin
+val customRecentCallsServiceHost = IviServiceHostConfig(
+    serviceHostName = "CustomRecentCallsServiceHost",
+    implementationModule = ExampleModuleReference("services_customrecentcalls"),
+    interfaces = listOf(
+        IviServiceInterfaceConfig(
+            serviceName = "RecentCallsService",
+            serviceApiModule = IviPlatformModuleReference("core_serviceapis_recentcalls")
+        )
+    )
+)
+```
+
+In this configuration, the `services_customrecentcalls` module defines the implementation for
+the `core_serviceapis_recentcalls` interface.
+
+In order to create the service host configuration named `CustomRecentCallsServiceHost`, the IVI
+platform needs a service host builder class with the specific
+name `CustomRecentCallsServiceHostBuilder`.
+
+```kotlin
+class CustomRecentCallsServiceHostBuilder : IviServiceHostBuilder() {
+
+    override fun build(iviServiceHostContext: IviServiceHostContext) =
+        SimpleIviServiceHost(
+            iviServiceHostContext,
+            setOf(CustomRecentCallsService(iviServiceHostContext))
+        )
+
+    companion object
+}
+```
+
+__Note__
+Every service host configuration needs to be registered in your application. This is so that the
+platform knows which service should be started with which implementation when a client requires
+the access to a service api.
+
+To register this configuration, add the service host to your application gradle file:
+
+```kotlin
+ivi {
+    application {
+        services {
+            // Register the custom recent calls service.
+            addHost(customRecentCallsServiceHost)
+        }
+    }
+}
+```
+
+### Service definition
+
+In order to create a recent calls service implementation you need to create a class that
+inherits from the `RecentCallsServiceBase` base class.
+
+```kotlin
+class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
+    RecentCallsServiceBase(iviServiceHostContext) {
+}
+```
+
+__Note__
+The recent calls service implementation can define any kind of source as the list of recent calls,
+like for example the Android's [CallLog provider][CallLogProviderLinkRef].
+
+In this example, the recent calls service always returns a list of two hardcoded calls. The list of
+recent calls contains those two recent calls after initialization. The list `recentCallsSource` is
+the source of recent calls:
+
+```kotlin
+// The source of recent calls.
+private val recentCallsSource = listOf(
+    RecentCallsService.RecentCall(
+        type = RecentCallsService.CallType.INCOMING,
+        displayName = "Caller",
+        phoneNumber = PhoneNumber("+2811111111", PhoneNumberType.Mobile),
+        duration = Duration.ofSeconds(60),
+        creationTime = Instant.now()
+    ),
+    RecentCallsService.RecentCall(
+        type = RecentCallsService.CallType.OUTGOING,
+        displayName = "Receiver",
+        phoneNumber = PhoneNumber("+2822222222", PhoneNumberType.Work),
+        duration = Duration.ZERO,
+        creationTime = Instant.parse("2020-04-09T10:15:30.00Z")
+    ),
+)
+```
+
+### Service lifecycle
+
+To manage the initialization and destruction of the service, override the `onCreate` and `onDestroy`
+methods.
+
+When the service is created:
+
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+    // Initialize the synchronization status.
+    synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
+    // Initialize the recentCallsDescending property with an empty list.
+    recentCallsDescending = emptyList()
+    // Set the service ready and clients can call any Api of the service.
+    serviceReady = true
+    // The source of recent calls is ready and synchronization starts.
+    synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
+    // Update recentCallsDescending with the list of recent calls from the source.
+    // Make sure that the list is in descending chronological order.
+    // If a client (typically a view model) requires the list in a different order,
+    // then it should resort the list before use.
+    recentCallsDescending = recentCallsSource.sortedByDescending(RecentCall::timestamp)
+}
+```
+
+The [RecentCallsService.recentCallsDescending] and [RecentCallsService.synchronizationStatus]
+properties have been initialized.
+
+When the service is destroyed:
+
+```kotlin
+override fun onDestroy() {
+    // Put here cleaning code if necessary.
+    super.onDestroy()
+}
+```
+
+## External links
+
+- Recent calls service.
+- [CallLog provider][CallLogProviderLinkRef].
+
+[TODO(IVI-3777)]: # (Add the link to recent calls service module or reference API)
+
+[CallLogProviderLinkRef]: https://developer.android.com/reference/android/provider/CallLog
