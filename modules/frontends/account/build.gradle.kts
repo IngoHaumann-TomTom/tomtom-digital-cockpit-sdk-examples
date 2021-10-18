@@ -10,9 +10,20 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
     id("com.tomtom.ivi.platform.framework.frontend")
+}
+
+ivi {
+    /**
+     * TODO(IVI-2177): The public interface of the unit testing classes are not yet stable.
+     *   Therefore, this annotation is needed in this and customer projects. Before the mentioned
+     *   ticket is closed, check if this is still needed, or change the mentioned ticket reference
+     *   to the relevant ticket which relates to making the unit testing classes stable.
+     */
+    optInToExperimentalApis = true
 }
 
 dependencies {
