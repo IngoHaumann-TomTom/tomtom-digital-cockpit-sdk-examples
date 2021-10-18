@@ -16,6 +16,7 @@ package com.tomtom.ivi.buildsrc.environment
  */
 object Libraries {
     object Android {
+        const val ACTIVITY = "androidx.activity:activity-ktx:${Versions.ANDROIDX_ACTIVITY}"
         const val ANNOTATION = "androidx.annotation:annotation:${Versions.ANDROIDX_ANNOTATION}"
         const val KTX = "androidx.core:core-ktx:${Versions.ANDROIDX_KTX}"
         const val LIFECYCLE_SERVICE = "androidx.lifecycle:lifecycle-service:${Versions.ANDROIDX_LIFECYCLE}"
@@ -28,6 +29,7 @@ object Libraries {
     object TomTom {
         object Indigo {
             const val PLATFORM_GROUP = "com.tomtom.ivi.platform"
+            const val API_COMMON_DEBUGTAB = "$PLATFORM_GROUP:api_common_debugtab:${Versions.INDIGO_PLATFORM}"
             const val API_COMMON_LIFECYCLE = "$PLATFORM_GROUP:api_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val API_COMMON_UID = "$PLATFORM_GROUP:api_common_uid:${Versions.INDIGO_PLATFORM}"
             const val API_DEFAULTS_ACTIVITY = "$PLATFORM_GROUP:api_defaults_activity:${Versions.INDIGO_PLATFORM}"
@@ -36,6 +38,7 @@ object Libraries {
             const val API_SERVICES_SETTINGSMANAGEMENT = "$PLATFORM_GROUP:api_services_settingsmanagement:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
+            const val CORE_COMMON_UIEMBEDDING = "$PLATFORM_GROUP:core_common_uiembedding:${Versions.INDIGO_PLATFORM}"
             const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
             const val CORE_DEBUG_PERMISSIONS = "$PLATFORM_GROUP:core_debug_permissions:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FRONTEND = "$PLATFORM_GROUP:tools_testing_frontend:${Versions.INDIGO_PLATFORM}"

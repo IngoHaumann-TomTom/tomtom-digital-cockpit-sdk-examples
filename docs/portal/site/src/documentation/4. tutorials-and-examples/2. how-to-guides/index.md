@@ -29,6 +29,11 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
   This guide explains how to define the interface of your service, how to implement and deploy it,
   and how to use it from the client side.
 
+- [How to add a debug tab](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-configure-debug-tabs)
+
+  This guide explains how to create a new tab for the debug menu, and how to customize the existing
+  tabs.
+
 ## Media
 
 - [How to create a new media user interface](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-a-new-media-user-interface)

@@ -11,6 +11,7 @@
 
 import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
@@ -39,6 +40,8 @@ val accountFrontend: FrontendConfig by project.extra
 val accountMenuItem: MenuItemConfig by project.extra
 val hierarchyFrontend: FrontendConfig by project.extra
 val hierarchyMenuItem: MenuItemConfig by project.extra
+val debugFrontend: FrontendConfig by project.extra
+val activityViewDebugTabFrontendExtension: FrontendExtensionConfig by project.extra
 
 /**
  * Configures the main application.
@@ -52,6 +55,9 @@ ivi {
                 frontends {
                     replace(userProfileFrontend, accountFrontend)
                     add(hierarchyFrontend)
+                    configureIfPresent(debugFrontend) {
+                        addExtension(activityViewDebugTabFrontendExtension)
+                    }
                 }
                 menuItems {
                     replace(userProfileMenuItem, accountMenuItem to accountFrontend)
@@ -114,6 +120,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":debugtabs_activityview"))
     implementation(project(":frontends_account"))
     implementation(Libraries.TomTom.Automotive.ANDROID_CAR)
     implementation(Libraries.TomTom.Indigo.API_DEFAULTS_ACTIVITY)

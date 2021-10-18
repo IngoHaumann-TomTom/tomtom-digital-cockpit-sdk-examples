@@ -33,6 +33,7 @@ class ExampleModuleReference(moduleName: String) : ModuleReference(
 
             val category = hierarchy[0].let {
                 when (it) {
+                    "debugtabs" -> "debugtab"
                     "frontends" -> "frontend"
                     "products" -> "product"
                     "services" -> "service"

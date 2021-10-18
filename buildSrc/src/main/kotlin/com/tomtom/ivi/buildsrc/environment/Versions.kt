@@ -25,6 +25,7 @@ object Versions {
     const val NAVUI_EMULATORS_PLUGIN = "2.0.0"
 
     // Android
+    const val ANDROIDX_ACTIVITY = "1.3.1"
     const val ANDROIDX_ANNOTATION = "1.1.0"
     const val ANDROIDX_KTX = "1.3.2"
     const val ANDROIDX_LIFECYCLE = "2.3.1"

@@ -10,8 +10,10 @@
  */
 
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 
 /**
  * This file defines the frontend implementations and the menu item implementations used
@@ -93,4 +95,26 @@ val hierarchyFrontend by extra {
 
 val hierarchyMenuItem by extra {
     hierarchyFrontend.toMenuItem("hierarchyMenuItem")
+}
+
+/**
+ * This [project] [extra] refers to a frontend that comes from the IndiGO platform.
+ * The debug frontend displays on request a non-user-facing development panel.
+ */
+val debugFrontend by extra {
+    FrontendConfig(
+        frontendBuilderName = "DebugFrontendBuilder",
+        implementationModule = IviPlatformModuleReference("stock_frontends_debug")
+    )
+}
+
+/**
+ * This [project] [extra] refers to the `ActivityView` debug tab frontend extension.
+ * This debug panel tab is also a showcase for modal panels and 3rd party activity embedding.
+ */
+val activityViewDebugTabFrontendExtension by extra {
+    FrontendExtensionConfig(
+        frontendExtensionName = "activityViewDebugTabFrontendExtension",
+        implementationModule = ExampleModuleReference("debugtabs_activityview")
+    )
 }
