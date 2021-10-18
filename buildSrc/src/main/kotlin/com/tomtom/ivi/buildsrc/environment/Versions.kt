@@ -36,7 +36,7 @@ object Versions {
     const val MIN_SDK = 27
     const val TARGET_SDK = 27
 
-    const val TOMTOM_ANDROID_TOOLS = "0.0.202"
+    const val TOMTOM_ANDROID_TOOLS = "0.0.220"
 
     // Automotive
     const val ANDROID_CAR = "0.0.12"

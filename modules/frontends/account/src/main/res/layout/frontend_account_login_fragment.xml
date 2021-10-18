@@ -81,7 +81,7 @@
             android:labelFor="@id/frontend_account_login_screen_login_username_edit"
             android:text="@string/frontend_account_login_username"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_username" />
@@ -113,7 +113,7 @@
             android:labelFor="@id/frontend_account_login_screen_login_password_edit"
             android:text="@string/frontend_account_login_password"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
             tools:text="@string/frontend_account_login_password" />
