@@ -1,6 +1,6 @@
 
-source: src
-destination: build
+source: build/intermediate
+destination: build/html
 layouts_dir: template
 
 strict_front_matter: true

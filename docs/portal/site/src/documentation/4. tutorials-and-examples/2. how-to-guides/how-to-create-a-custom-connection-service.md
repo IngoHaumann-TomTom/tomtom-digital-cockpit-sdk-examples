@@ -9,9 +9,11 @@ as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of an online 
 or messaging service and make and receive calls using the existing communications framework for
 these new services.
 
-A [ConnectionService] is a service used by Android to implement calling functionality (e.g. phone
+A [ConnectionService](https://developer.android.com/reference/android/telecom/ConnectionService) 
+is a service used by Android to implement calling functionality (e.g. phone
 calling or any VOIP calling service like WhatsApp). Another communications service can be supported
-by implementing a custom [ConnectionService].
+by implementing a custom 
+[ConnectionService](https://developer.android.com/reference/android/telecom/ConnectionService).
 
 ## How to create a custom connection service
 
@@ -45,7 +47,9 @@ package="com.tomtom.ivi.example.service.customconnection">
 </manifest>
 ```
 
-Add a dependency to the [TelecomService] and [LifecycleService] in your Gradle file:
+Add a dependency to the [TelecomService](TTIVI_INDIGO_API) and 
+[LifecycleService](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
+in your Gradle file:
 
 ```kotlin
 dependencies {
@@ -54,11 +58,15 @@ dependencies {
 }
 ```
 
-The dependency to the [TelecomService] is necessary in order to use `CallState` and `toPhoneUri`,
-both required for the phone call state management.
+The dependency to the [TelecomService](TTIVI_INDIGO_API) is necessary in order to use `CallState` and
+`toPhoneUri`, both required for the phone call state management.
 
-The dependency to the [LifecycleService] is necessary in order to create a dispatcher in your custom
-service class as it is not possible to inherit from [LifecycleService] directly:
+The dependency to the 
+[LifecycleService](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
+is necessary in order to create a dispatcher in your custom service class as it is not possible to 
+inherit from 
+[LifecycleService](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
+directly:
 
 ```kotlin
 private val dispatcher = ServiceLifecycleDispatcher(this)
@@ -67,7 +75,8 @@ private val dispatcher = ServiceLifecycleDispatcher(this)
 ### Service preparation
 
 To use your custom implementation you need to create an internal object
-`CustomConnectionServiceHolder.kt` that will create and store an instance of [CustomConnectionService].
+`CustomConnectionServiceHolder.kt` that will create and store an instance of 
+`CustomConnectionService`.
 
 ```kotlin
 internal object CustomConnectionServiceHolder {
@@ -90,18 +99,21 @@ internal object CustomConnectionServiceHolder {
 }
 ```
 
-`customConnectionService` will be set when the [TelecomManager] binds to the
-[CustomConnectionService], which will happen when creating an incoming or outgoing call. If there
-is no more ongoing call, the [TelecomManager] unbinds the [CustomConnectionService] and this shall
-be null.
+`CustomConnectionService` will be set when the 
+[TelecomManager](https://developer.android.com/reference/android/telecom/TelecomManager) binds to 
+the `CustomConnectionService`, which will happen when creating an incoming or outgoing call. If 
+there is no more ongoing call, the 
+[TelecomManager](https://developer.android.com/reference/android/telecom/TelecomManager) unbinds 
+the `CustomConnectionService` and this shall be null.
 
 ### Service definition
 
 In order to create a connection service implementation you need to create a class that inherits from
 the `ConnectionService` and `LifecycleOwner` classes. It should implement the required functions
-from [ConnectionService] like `onCreateOutgoingConnection`, `onCreateOutgoingConnectionFailed`,
-`onCreateIncomingConnection` and `onCreateIncomingConnectionFailed`. It should also implement
-`getLifecycle` from [LifecycleService].
+from [ConnectionService](https://developer.android.com/reference/android/telecom/ConnectionService) 
+like `onCreateOutgoingConnection`, `onCreateOutgoingConnectionFailed`, `onCreateIncomingConnection` 
+and `onCreateIncomingConnectionFailed`. It should also implement `getLifecycle` from
+[LifecycleService](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService).
 
 ```kotlin
 class CustomConnectionService : ConnectionService(), LifecycleOwner {
@@ -245,7 +257,8 @@ override fun onCreate() {
 }
 ```
 
-[CustomConnectionServiceHolder] creates and stores an instance of the [CustomConnectionService].
+The `CustomConnectionServiceHolder` creates and stores an instance of the 
+`CustomConnectionService`.
 
 When the service is destroyed:
 
@@ -258,13 +271,11 @@ override fun onDestroy() {
 }
 ```
 
-The instance of the [CustomConnectionService] is null.
+The instance of the `CustomConnectionService` is null.
 
 ## External links
 
 - Telecom service.
-- [ConnectionServices][ConnectionServicesLinkRef].
+- [ConnectionServices](https://developer.android.com/reference/android/telecom/ConnectionService).
 
 [TODO(IVI-3777)]: # (Add the link to telecom service module or reference API)
-
-[ConnectionServicesLinkRef]: https://developer.android.com/reference/android/telecom/ConnectionService

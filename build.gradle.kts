@@ -268,6 +268,7 @@ subprojects {
     }
 }
 
+// TODO(IVI-4959): Remove the old 'docs' task.
 tasks.register<Exec>("docs") {
     val portalDirectory = "${project.projectDir}/docs/portal"
     val outputDirectory = portalDirectory + "/html"
@@ -277,4 +278,20 @@ tasks.register<Exec>("docs") {
     workingDir(portalDirectory)
     commandLine(portalDirectory + "/convert.sh")
     args(outputDirectory)
+}
+
+// TODO(IVI-4959): Rename this task to 'docs'.
+/**
+ * This task requires you to have Python3 and Ruby packages installed on your system.
+ * For installing the Ruby packages, consult the README.md under docs/portal/site.
+ */
+tasks.register<Exec>("portal") {
+    val portalDirectory = "${project.projectDir}/docs/portal/site"
+    val outputDirectory = "${project.projectDir}/build/portal"
+    description = "Generate Developer Portal files in '$outputDirectory'."
+    group = "Documentation"
+
+    workingDir(portalDirectory)
+    commandLine("python3")
+    args("scripts/generate_portal.py", outputDirectory)
 }

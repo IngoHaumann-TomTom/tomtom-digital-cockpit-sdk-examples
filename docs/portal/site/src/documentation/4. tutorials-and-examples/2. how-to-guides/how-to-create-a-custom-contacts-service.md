@@ -3,10 +3,11 @@ title: How to Create a Custom Contacts Service
 layout: default
 ---
 
-The IVI platform comes with a [ContactsService] interface for getting access to address book
-contacts. A product may provide its own implementation of the [ContactsService] interface or use an
-existing implementation. In order for the UI to be able to display contacts from this service, a
-custom contacts service needs to be written. This document describes how to do this.
+The IVI platform comes with a [ContactsService](TTIVI_INDIGO_API) interface for getting access to 
+address book contacts. A product may provide its own implementation of the 
+[ContactsService](TTIVI_INDIGO_API) interface or use an existing implementation. In order for the 
+UI to be able to display contacts from this service, a custom contacts service needs to be written. 
+This document describes how to do this.
 
 ## How to create a custom contacts service
 
@@ -15,7 +16,7 @@ The following sections describe how to create a custom contacts service implemen
 ### Service module setup
 
 To create a custom contacts service, add a manifest file to your module and add a dependency to
-the [ContactsService] to your gradle file.
+the [ContactsService](TTIVI_INDIGO_API) to your gradle file.
 
 Your `AndroidManifest.xml` should contain:
 
@@ -36,7 +37,8 @@ dependencies {
 
 To configure a contacts service to use your custom implementation, define a service host
 configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
-in a file, like `ContactsServiceHostConfig.kt` in the `buildScr` module, within the `config.services` folder.
+in a file, like `ContactsServiceHostConfig.kt` in the `buildScr` module, within the`config.services` 
+folder.
 
 ```kotlin
 val customContactsServiceHost = IviServiceHostConfig(
@@ -101,7 +103,8 @@ class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
 
 __Note__
 The contacts service implementation can define any kind of source for the list of contacts, like for
-example the Android's [Contacts provider][ContactsProviderLinkRef].
+example the Android's 
+[Contacts provider](https://developer.android.com/guide/topics/providers/contacts-provider).
 
 In this example the contacts service contains two contacts. The list of contacts contains those two
 contacts after initialization. Only the contact with the id `1` has an image. The mutable
@@ -172,8 +175,8 @@ override fun onCreate() {
 }
 ```
 
-The [ContactsService.contacts] and [ContactsService.synchronizationStatus] properties have been
-initialized.
+The [ContactsService](TTIVI_INDIGO_API)`.contacts` and 
+[ContactsService](TTIVI_INDIGO_API)`.synchronizationStatus` properties have been initialized.
 
 When the service is destroyed:
 
@@ -205,8 +208,7 @@ override suspend fun getImage(contactId: ContactId): Bitmap? {
 ## External links
 
 - Contacts service.
-- [Contacts provider][ContactsProviderLinkRef].
+- [Contacts provider](https://developer.android.com/guide/topics/providers/contacts-provider).
 
 [TODO(IVI-3777)]: # (Add the link to contacts service module or reference API)
 
-[ContactsProviderLinkRef]: https://developer.android.com/guide/topics/providers/contacts-provider

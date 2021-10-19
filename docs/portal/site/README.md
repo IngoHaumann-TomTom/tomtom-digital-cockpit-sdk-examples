@@ -6,8 +6,8 @@ files to populate the developer portal with.
 ## Introduction
 
 The documentation in the `/src` folder covers 3 sections on the developer portal:
-- Home
 - Documentation
+- API Reference
 - Releases
 
 These sections are updated on the developer portal by uploading the generated HTML files for each 
@@ -62,18 +62,14 @@ consult [the Jekyll installation documentation](https://jekyllrb.com/docs/instal
 To generate the HTML files:
 
 ```bash
-jekyll build
+./gradlew portal
 ```
 
-The HTML files are generated in the `build/` directory, under their respective section folders. A 
-few notes on the generated files:
+The HTML files are generated in the `build/html` directory, under their respective 
+section folders. A few notes on the generated files:
 
 - The generated files will have no styling, so they will be rendered as plain HTML when previewed. 
   The styling will get added automatically to the pages when uploaded to the developer portal.
 - The generated HTML pages lack any form of navigation when previewed, as there is no index page 
   that lists the site's content. This also will be added by the developer portal.
-
-To clean the build files from the working directory:
-```bash
-jekyll clean
-```
+  
