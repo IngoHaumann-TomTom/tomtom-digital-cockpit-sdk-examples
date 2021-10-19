@@ -89,7 +89,7 @@ which should return a new instance of the `Fragment` class (described further do
 
 ```kotlin
 class AccountLoginPanel(frontendContext: FrontendContext) :
-    TaskPanel(frontendContext, Mode.SIDE_BAR) {
+    TaskPanel(frontendContext) {
 
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(AccountLoginFragment(), this)

@@ -15,6 +15,8 @@ import com.tomtom.ivi.api.framework.frontend.FrontendContext
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
 
+// TODO(IVI-5437): Remove dependency on Mode.SIDE_BAR.
+@Suppress("DEPRECATION")
 class AccountInfoPanel(frontendContext: FrontendContext) :
     TaskPanel(frontendContext, Mode.SIDE_BAR) {
 
