@@ -155,7 +155,7 @@ The above example defines an `PassengerActivity` that is associate to the `Passe
 Standard Android services (not IVI service hosts) are not managed by the IVI platform in any way.
 The IVI build config only allows an Android service to be deployed in a configurable process name.
 For instance, it is possible to deploy an Android service in the same process as an IVI service
-host without the need to hardcode the process name of the Android service in the
+host without the need to hardcode the process name of the Android service in an
 `AndroidManifest.xml` file.
 
 ```kotlin
@@ -179,7 +179,40 @@ ivi {
 }
 ```
 
-The above example deploys `com....Service` in the same process as the `someServiceHost`.
+The above example deploys `com....Service` in the same process as `someServiceHost`.
 
 __Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
   Android service into the build.
+
+## How to run a broadcast receiver in the same process as an IVI service host
+
+Android broadcast receivers are not managed by the IVI platform in any way. The IVI build config
+only allows a broadcast receiver to be deployed in a configurable process name. For instance, it
+is possible to deploy a broadcast receiver in the same process as an IVI service host without the
+need to hardcode the process name of the broadcast receiver in an `AndroidManifest.xml` file.
+
+```kotlin
+val broadcastReceiver = BroadcastReceiverConfig("com....BroadcastReceiver")
+val someServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        services {
+            addHost(someServiceHost)
+        }
+        globalRuntime {
+             create(RuntimeDeploymentIdentifier.global) {
+                 useDefaults()
+                 deployServiceHost(someServiceHost)
+                 deployBroadcastReceiver(broadcastReceiver).inSameProcessAs(someServiceHost)
+             }
+        }
+    }
+}
+```
+
+The above example deploys `com....BroadcastReceiver` in the same process as `someServiceHost`.
+
+__Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
+  broadcast receiver into the build.
