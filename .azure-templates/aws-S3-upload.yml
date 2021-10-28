@@ -1,0 +1,36 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+# An Azure template used to upload documentation to Amazon S3.
+
+parameters:
+  artifactName: ''
+  apiSubFolder: ''
+  version: ''
+  syncLatest: false
+
+steps:
+  - download: current
+    artifact: ${{parameters.artifactName}}
+    displayName: 'Download ${{parameters.artifactName}} artifact'
+    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'false'))
+  - bash: |
+      set -eux
+      cd $(Pipeline.Workspace)/${{parameters.artifactName}}
+      aws s3 sync html/ s3://devportal-bucket/downloads/indigo/${{parameters.apiSubFolder}}/${{parameters.version}}/
+    displayName: 'Upload api docs v${{parameters.version}} to S3'
+    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'false'))
+  - bash: |
+      set -eux
+      aws s3 sync s3://devportal-bucket/downloads/indigo/${{parameters.apiSubFolder}}/${{parameters.version}}/ s3://devportal-bucket/downloads/indigo/${{parameters.apiSubFolder}}/latest/
+    displayName: 'Sync latest api docs with v${{parameters.version}}'
+    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'true'))

@@ -17,6 +17,7 @@ variables:
   - template: .azure-templates/variables.yml
   # Variable groups used below are defined in the project's Pipelines Library.
   - group: 'AzureStorage'
+  - group: 'AmazonWebServices'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
   - group: 'NavKit2ApiKey'
@@ -36,7 +37,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/1.0.0
+    ref: refs/tags/1.0.6
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
@@ -44,6 +45,10 @@ resources:
   - repository: indigo
     type: git
     name: IVI/indigo
+  - repository: tomtom-android-tools
+    type: github
+    endpoint: tomtom-internal_bilkes_personal
+    name: tomtom-internal/TomTom-Android-Tools
 
 trigger:
 - none
@@ -51,37 +56,211 @@ trigger:
 pool: 'Private Cloud CPU'
 
 stages:
-- stage: Publishing
-  jobs:
-  - job: PublishToNexus
-    timeoutInMinutes: 60
-    displayName: Publish artifacts to Nexus
-    container: docker_indigo_delivery
-    steps:
-    - template: .azure-templates/publishing-nexus.yml
-    - template: build/build-cleanup.yml@devops-templates
+  - stage: Versions
+    displayName: 'Get versions'
+    jobs:
+      - job: GetVersions
+        displayName: 'Get versions'
+        container: docker_indigo_delivery
+        steps:
+          - checkout: ivi-example-app
+          - checkout: indigo
+          - bash: |
+              set -ex
+              cd $(Build.SourcesDirectory)/ivi-example-app
+              INDIGO_PLATFORM=$(find . -name Versions.kt |xargs cat $1 |grep -E "INDIGO_PLATFORM" |grep -Eo "[0-9]\.[0-9].[0-9]+")
+              cd $(Build.SourcesDirectory)/indigo
+              git checkout tags/$INDIGO_PLATFORM
+              tomtomAndroidTools=$(find . -name libraries.versions.toml |xargs cat $1 |grep "tomtomAndroidTools = " |grep -Eo "[0-9]\.[0-9].[0-9]+")
+              echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
+              echo "##vso[task.setvariable variable=tomtomAndroidTools;isOutput=true]$tomtomAndroidTools"
+            name: Version
+            displayName: 'Expose versions to Azure'
+          - template: build/build-cleanup.yml@devops-templates
 
-- stage: Verification
-  dependsOn: Publishing
-  jobs:
-  - job: DownloadAndVerify
-    displayName: Verify SDK contents
-    timeoutInMinutes: 30
-    container: docker_indigo_build
+  - stage: Documentation
+    displayName: 'Generate API docs'
+    dependsOn: Versions
+    variables:
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
+    jobs:
+      - job: GenerateTomTomAndroidToolsApiDocs
+        displayName: 'Generate TomTom Android Tools API docs'
+        timeoutInMinutes: 15
+        container: docker_indigo_build
+        steps:
+          - checkout: tomtom-android-tools
+          - bash: |
+              cd $(Build.SourcesDirectory)
+              git checkout tags/$(VERSION_TOMTOM_ANDROID_TOOLS)
+            displayName: 'Checkout TomTom Android Tools v$(VERSION_TOMTOM_ANDROID_TOOLS)'
+          - template: gradle/gradle.yml@devops-templates
+            parameters:
+              tasks: >-
+                docs
+              gradleJvmRuntimeOptions:
+                '-Xmx8G -XX:MaxMetaspaceSize=8G'
+              displayName: 'Generate TomTom Android Tools API docs'
+          - publish: $(Build.SourcesDirectory)/build/docs/
+            artifact: tomtom-android-tools-api-docs
+            displayName: 'Publish TomTom Android Tools API docs as a pipeline artifact'
+          - template: build/build-cleanup.yml@devops-templates
+      - job: GenerateGradlepluginsApiDocs
+        displayName: 'Generate IndiGO gradleplugins API docs'
+        timeoutInMinutes: 10
+        container: docker_indigo_build
+        steps:
+          - checkout: indigo
+          - bash: |
+              cd $(Build.SourcesDirectory)
+              git checkout tags/$(VERSION_PLATFORM)
+            displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
+          - template: gradle/gradle.yml@devops-templates
+            parameters:
+              tasks: >-
+                docs
+              projectOptions:
+                '-p gradleplugins/'
+              gradleJvmRuntimeOptions:
+                '-Xmx8G -XX:MaxMetaspaceSize=8G'
+              displayName: 'Generate IndiGO gradleplugins API docs'
+          - publish: $(Build.SourcesDirectory)/gradleplugins/build/docs/
+            artifact: indigo-gradleplugins-api-docs
+            displayName: 'Publish IndiGO gradleplugins API docs as a pipeline artifact'
+          - template: build/build-cleanup.yml@devops-templates
+      - job: TomtomAndroidToolsApiDocsToS3
+        displayName: 'Upload TomTom Android Tools API docs to S3'
+        timeoutInMinutes: 10
+        container: docker_indigo_delivery
+        dependsOn: GenerateTomTomAndroidToolsApiDocs
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              artifactName: tomtom-android-tools-api-docs
+              apiSubFolder: android-tools-api
+              version: $(VERSION_TOMTOM_ANDROID_TOOLS)
+          - template: build/build-cleanup.yml@devops-templates
+      - job: IndigoGradlepluginsApiDocsToS3
+        displayName: 'Upload IndiGO gradleplugins API docs to S3'
+        timeoutInMinutes: 10
+        container: docker_indigo_delivery
+        dependsOn: GenerateGradlepluginsApiDocs
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              artifactName: indigo-gradleplugins-api-docs
+              apiSubFolder: indigo-gradleplugins-api
+              version: $(VERSION_PLATFORM)
+          - template: build/build-cleanup.yml@devops-templates
+      - job: GenerateIndigoApiDocs
+        displayName: 'Generate IndiGO API docs'
+        timeoutInMinutes: 20
+        container: 'docker_indigo_build'
+        dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3 ]
+        steps:
+          - checkout: indigo
+          - bash: |
+              cd $(Build.SourcesDirectory)
+              git checkout tags/$(VERSION_PLATFORM)
+            displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
+          - template: gradle/gradle.yml@devops-templates
+            parameters:
+              tasks: >-
+                docs
+              gradleJvmRuntimeOptions:
+                '-Xmx8G -XX:MaxMetaspaceSize=8G'
+              displayName: 'Generate IndiGO API docs'
+          - publish: $(System.DefaultWorkingDirectory)/build/docs
+            artifact: indigo-api-docs
+            displayName: 'Publish IndiGO API docs as a pipeline artifact'
+          - template: build/build-cleanup.yml@devops-templates
+      - job: IndigoApiDocsToS3
+        displayName: 'Upload IndiGO API docs to S3'
+        timeoutInMinutes: 10
+        container: docker_indigo_delivery
+        dependsOn: GenerateIndigoApiDocs
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              artifactName: indigo-api-docs
+              apiSubFolder: indigo-api
+              version: $(VERSION_PLATFORM)
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              artifactName: indigo-gradleplugins-api-docs
+              apiSubFolder: indigo-gradleplugins-api
+              version: $(VERSION_PLATFORM)
+          - template: build/build-cleanup.yml@devops-templates
+
+  - stage: Publishing
+    dependsOn: []
+    displayName: 'Publish artifacts'
+    jobs:
+      - job: PublishToNexus
+        timeoutInMinutes: 60
+        displayName: Publish artifacts to Nexus
+        container: docker_indigo_delivery
+        steps:
+          - template: .azure-templates/publishing-nexus.yml
+          - template: build/build-cleanup.yml@devops-templates
+
+    - stage: Verification
+      dependsOn: [ Publishing, Documentation ]
+      variables:
+        VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
+        PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
+      jobs:
+        - job: DownloadAndVerify
+          displayName: 'Verify SDK contents'
+          timeoutInMinutes: 30
+          container: docker_indigo_build
+          steps:
+            - template: .azure-templates/downloading-nexus.yml
+            - template: gradle/gradle.yml@devops-templates
+              parameters:
+                cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+                tasks: >-
+                  assemble
+                projectOptions: >-
+                  -PnexusUsername=$(NEXUS_USERNAME)
+                  -PnexusPassword=$(NEXUS_PASSWORD)
+                  -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
+                displayName: 'Assemble APKs using dependencies from Nexus'
+            - template: build/build-cleanup.yml@devops-templates
+
+  - stage: Publication
+    dependsOn: Verification
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
-      PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
-    steps:
-    - template: .azure-templates/downloading-nexus.yml
-    - template: gradle/gradle.yml@devops-templates
-      parameters:
-        cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
-        tasks: >-
-          assemble
-        projectOptions: >-
-          -PnexusUsername=$(NEXUS_USERNAME)
-          -PnexusPassword=$(NEXUS_PASSWORD)
-          -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
-        displayName: 'Assemble APKs using dependencies from Nexus'
-        condition: succeeded()
-    - template: build/build-cleanup.yml@devops-templates
+      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
+    jobs:
+      # TODO(IVI-4866): Publish Example App source to github as part of the SDK release
+      - job: SyncLatestApiDocumentation
+        displayName: 'Sync latest API documentation'
+        timeoutInMinutes: 10
+        container: docker_indigo_delivery
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              apiSubFolder: android-tools-api
+              artifactName: tomtom-android-tools-api-docs
+              version: $(VERSION_TOMTOM_ANDROID_TOOLS)
+              syncLatest: true
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              apiSubFolder: indigo-api
+              artifactName: indigo-api-docs
+              version: $(VERSION_PLATFORM)
+              syncLatest: true
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              apiSubFolder: indigo-gradleplugins-api
+              artifactName: indigo-gradleplugins-api-docs
+              version: $(VERSION_PLATFORM)
+              syncLatest: true
+          - template: build/build-cleanup.yml@devops-templates
