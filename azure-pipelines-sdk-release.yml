@@ -233,7 +233,7 @@ stages:
           - template: build/build-cleanup.yml@devops-templates
 
   - stage: Publication
-    dependsOn: Verification
+    dependsOn: [ Verification, Publishing, Versions ]
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
