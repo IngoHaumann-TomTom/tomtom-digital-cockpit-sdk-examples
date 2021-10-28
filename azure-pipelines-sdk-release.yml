@@ -208,29 +208,29 @@ stages:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
 
-    - stage: Verification
-      dependsOn: [ Publishing, Documentation ]
-      variables:
-        VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
-        PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
-      jobs:
-        - job: DownloadAndVerify
-          displayName: 'Verify SDK contents'
-          timeoutInMinutes: 30
-          container: docker_indigo_build
-          steps:
-            - template: .azure-templates/downloading-nexus.yml
-            - template: gradle/gradle.yml@devops-templates
-              parameters:
-                cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
-                tasks: >-
-                  assemble
-                projectOptions: >-
-                  -PnexusUsername=$(NEXUS_USERNAME)
-                  -PnexusPassword=$(NEXUS_PASSWORD)
-                  -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
-                displayName: 'Assemble APKs using dependencies from Nexus'
-            - template: build/build-cleanup.yml@devops-templates
+  - stage: Verification
+    dependsOn: [ Publishing, Documentation ]
+    variables:
+      VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
+      PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
+    jobs:
+      - job: DownloadAndVerify
+        displayName: 'Verify SDK contents'
+        timeoutInMinutes: 30
+        container: docker_indigo_build
+        steps:
+          - template: .azure-templates/downloading-nexus.yml
+          - template: gradle/gradle.yml@devops-templates
+            parameters:
+              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+              tasks: >-
+                assemble
+              projectOptions: >-
+                -PnexusUsername=$(NEXUS_USERNAME)
+                -PnexusPassword=$(NEXUS_PASSWORD)
+                -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
+              displayName: 'Assemble APKs using dependencies from Nexus'
+          - template: build/build-cleanup.yml@devops-templates
 
   - stage: Publication
     dependsOn: Verification
@@ -253,14 +253,14 @@ stages:
               syncLatest: true
           - template: .azure-templates/aws-S3-upload.yml
             parameters:
-              apiSubFolder: indigo-api
-              artifactName: indigo-api-docs
+              apiSubFolder: indigo-gradleplugins-api
+              artifactName: indigo-gradleplugins-api-docs
               version: $(VERSION_PLATFORM)
               syncLatest: true
           - template: .azure-templates/aws-S3-upload.yml
             parameters:
-              apiSubFolder: indigo-gradleplugins-api
-              artifactName: indigo-gradleplugins-api-docs
+              apiSubFolder: indigo-api
+              artifactName: indigo-api-docs
               version: $(VERSION_PLATFORM)
               syncLatest: true
           - template: build/build-cleanup.yml@devops-templates
