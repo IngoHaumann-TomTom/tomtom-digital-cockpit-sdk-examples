@@ -47,11 +47,13 @@ INPUT_CHECK_FILE = "documentation/2. developing/index.md"
 
 # TODO(IVI-5408): Replace latest by SDK Release versions.
 INDIGO_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest"
+INDIGO_GRADLEPLUGINS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api/latest"
 ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/android-tools-api/latest"
 JSON_POSTFIX_URL = "scripts/navigation-pane.json"
 
 # The placeholders in the Markdown files will get replaced by an API Reference URL.
 INDIGO_PLACEHOLDER = "TTIVI_INDIGO_API"
+INDIGO_GRADLEPLUGINS_PLACEHOLDER = "TTIVI_INDIGO_GRADLEPLUGINS_API"
 ANDROID_TOOLS_PLACEHOLDER = "TTIVI_ANDROID_TOOLS_API"
 
 # TODO(IVI-5445): Add support for API elements within backticks.
@@ -60,6 +62,7 @@ REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
 
 # Regex patterns to retrieve full API-links: [api-element](placeholder).
 REGEX_INDIGO_PLACEHOLDER = f"\[.*?\]\({INDIGO_PLACEHOLDER}\)"
+REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({INDIGO_GRADLEPLUGINS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
 def input_validation():
@@ -110,16 +113,23 @@ def process_placeholders():
     '''Replace placeholders with API Reference URLs.'''
     file_paths = Path(INTERMEDIATE_DIR).rglob(TARGET_FILETYPE)
     indigo_map = get_json_map(os.path.join(INDIGO_BASE_URL, JSON_POSTFIX_URL))
+    indigo_gradleplugins_map = get_json_map(os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, JSON_POSTFIX_URL))
     android_tools_map = get_json_map(os.path.join(ANDROID_TOOLS_BASE_URL, JSON_POSTFIX_URL))
     for path in file_paths:
         with open(path, 'r+') as file:
             content = file.read()
+            # Replace Indigo API Reference placeholders.
             for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
                 content = content.replace(INDIGO_PLACEHOLDER, \
-                    os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path)))
+                    os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path)), 1)
+            # Replace Indigo Gradleplugins API Reference placeholders.
+            for match in re.findall(REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER, content):
+                content = content.replace(INDIGO_GRADLEPLUGINS_PLACEHOLDER, \
+                    os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, url_lookup(indigo_gradleplugins_map, match, path)), 1)
+            # Replace TomTom Android Tools API Reference placeholders.
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
                 content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
-                    os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path)))
+                    os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path)), 1)
             file.seek(0)
             file.write(content)
             file.truncate()
