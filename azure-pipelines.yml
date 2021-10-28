@@ -56,7 +56,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/1.0.5
+    ref: refs/tags/1.0.8
 
 pool: 'Private Cloud CPU'
 
@@ -88,6 +88,7 @@ stages:
         product_version: $(product_version)
         report_filename: products_indigo_examples
         artifactory_location: products_indigo_examples
+        bdtools_environment: prod
 
 - stage: Build
   displayName: 'Build pipeline'
