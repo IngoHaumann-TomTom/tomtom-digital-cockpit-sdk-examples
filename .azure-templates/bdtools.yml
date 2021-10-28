@@ -14,3 +14,5 @@ projects:
   - name: ivi-indigo-docs
     scan_type:
       - FULL_SCAN
+    passthrough:
+      - --detect.gradle.included.configurations=releaseRuntimeClasspath
