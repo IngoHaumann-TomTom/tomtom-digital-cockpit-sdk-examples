@@ -19,7 +19,7 @@ package "IndiGO platform"<<Rectangle>> {
 package "Android"<<Rectangle>> {
     component TelecomManager as [Telecom Manager]<<Android>>
     component ContentResolver as [Content Resolver]<<Android>>
-    component ConnectionService as [Bluetooth Connection Service]<<Android>>
+    component ConnectionService as [HFP Connection Service]<<Android>>
 }
 
 CommunicationsFrontend -d-> TelecomService
