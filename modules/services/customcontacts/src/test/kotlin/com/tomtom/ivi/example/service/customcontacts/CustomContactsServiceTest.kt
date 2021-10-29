@@ -11,7 +11,6 @@
 
 package com.tomtom.ivi.example.service.customcontacts
 
-import com.tomtom.ivi.api.common.experimental.IviExperimental
 import com.tomtom.ivi.core.common.contacts.ContactId
 import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
 import com.tomtom.ivi.tools.testing.unit.IviTestCase

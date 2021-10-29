@@ -11,7 +11,6 @@
 
 package com.tomtom.ivi.example.serviceapi.accountsettings
 
-import com.tomtom.ivi.api.common.experimental.IviExperimental
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviSetting
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviSettingAccessMode
