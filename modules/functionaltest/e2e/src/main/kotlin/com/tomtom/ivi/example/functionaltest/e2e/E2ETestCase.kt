@@ -51,12 +51,11 @@ abstract class E2ETestCase :
     val systemUiIdlingResourceRule = SystemUiIdlingResourceRule(activityRule)
 
     override val initialWebserviceMockRuleConfig: WebserviceMockRuleConfig
-        get() = createWebserviceMockRuleConfig(
-            isWebserviceCaptureRun,
-            shouldIncludeNavigation = true,
-            shouldIncludeMapDisplay = true,
-            shouldIncludeTrafficIncidents = true
-        )
+        get() = createWebserviceMockRuleConfig(isWebserviceCaptureRun) {
+            includeNavigationWithAllowedMax10FailedRequests()
+            includeMapDisplay()
+            includeTrafficIncidents()
+        }
 
     override val preActivityRule: RuleChain = RuleChain
         .outerRule(NavkitConfigurationMockRule(webserviceMockUri))
