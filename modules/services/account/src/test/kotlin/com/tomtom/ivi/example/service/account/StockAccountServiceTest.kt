@@ -31,7 +31,7 @@ class StockAccountServiceTest : IviTestCase() {
 
     private val sut = run {
         // An account settings service mock must be configured before the account service is
-        // created.
+        // created, because the account service is dependent upon the account settings service.
         mockkService(AccountSettingsService.Companion::createApi) {
             every { serviceAvailable } returns MutableLiveData(true)
             every { activeAccount } returns MutableLiveData()

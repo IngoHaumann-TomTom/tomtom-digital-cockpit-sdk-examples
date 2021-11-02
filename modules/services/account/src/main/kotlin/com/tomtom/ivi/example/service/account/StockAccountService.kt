@@ -42,9 +42,10 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
 
         loggedInAccounts = mutableLoggedInAccounts
 
-        // Executes an action once on the service becoming available.
+        // Executes an action once when the service becomes available.
         settingsServiceApi.queueOrRun { service ->
-            // Stored account could be logged in a while ago, lets check if it is still valid.
+            // The client could have successfully logged in in the past, let's check if the login
+            // is still valid.
             val daysSinceLogin = Instant.ofEpochSecond(service.loginTimestamp.requireValue())
                 .until(Instant.now(), ChronoUnit.DAYS)
             if (daysSinceLogin >= service.onlineLoginValidPeriodInDays.requireValue()) {
@@ -87,7 +88,7 @@ class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
 
     private fun logInOnline(username: String, password: SensitiveString): Account? =
         takeIf { isValidUsername(username) && isValidPassword(password.value) }?.run {
-            // Pretend we make an online request.
+            // Simulate making an online request.
             onlineAccountEndpoint
             Account(username)
         }

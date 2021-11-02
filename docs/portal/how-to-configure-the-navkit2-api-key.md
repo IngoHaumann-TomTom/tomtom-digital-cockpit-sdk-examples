@@ -3,20 +3,30 @@
 You have received NavKit2 API key(s) from TomTom. These must be used in the example app for the
 navigation-related features to work.
 
-The NavKit2 API key(s) can be configured is various way depending on your development and
+The NavKit2 API key(s) can be configured in various ways depending on your development and
 production needs:
 
-- [Via local.properties or Gradle properties](#via-localproperties-or-gradle-properties).
+- [Via a `local.properties` file or via Gradle properties](#via-a-localproperties-file-or-via-gradle-properties).
 - [By overriding the static configuration values in Android resources](#by-overriding-the-static-configuration-values-in-android-resources).
 - [Or with a static configuration provider](#with-a-static-configuration-provider).
 
-## Via local.properties or Gradle properties
+## Via a `local.properties` file or via Gradle properties
 
-The easiest way it to set the `navkit2ApiKey` property to your NavKit2 API in the
-top level `local.properties` file or as Gradle property.
+The easiest way is to set the `navkit2ApiKey` property to your NavKit2 API in your
+top-level `local.properties` file or as Gradle property in your `gradle.properties` file.
+
+The `gradle.properties` file can be found in `~/.gradle/gradle.properties` on Mac/Linux
+and in `%UserProfile%\.gradle\gradle.properties` on Windows.
+
+To set the `navkit2ApiKey` in your `gradle.properties` file, add the following:
+
+```
+navkit2ApiKey=<your NavKit2 API key here>
+```
+
 
 This option is preferred if you do not want to add the NavKit2 API key to your SCM (Git). In this
-case you can configure the key in `local.properties` file (which is not supposed to be added to a
+case, you can configure the key in your `local.properties` file (which is not supposed to be added to a
 SCM) or configure the key in the `gradle.properties` files in the Gradle user home directory. The
 latter option makes the key available in any Gradle project.
 

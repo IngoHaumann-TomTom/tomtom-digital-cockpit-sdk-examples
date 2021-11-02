@@ -30,13 +30,13 @@ class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) 
     override val settingsKeyPrefix: String = settingKeyPrefix
     override val settingsVersion: Int = SETTINGS_VERSION
 
-    // No configuration available, we update the setting manually.
+    // No configuration available, update the setting manually.
     override val loginTimestampConfigurationKey: LongDynamicConfigurationKey? = null
     override val loginTimestampSettingKey: LongSettingKey = LOGIN_TIMESTAMP_SETTING_KEY
 
     // The `onlineLoginValidPeriodInDays` setting has default values provided by the dynamic
     // configuration key.
-    // All methods for the setting have default implementation.
+    // All methods for the setting have a default implementation.
     override val onlineLoginValidPeriodInDaysConfigurationKey: LongDynamicConfigurationKey =
         onlineLoginValidPeriodInDaysConfigKey
 
