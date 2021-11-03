@@ -56,9 +56,9 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/1.0.8
+    ref: refs/tags/2.0.0
 
-pool: 'Private Cloud CPU'
+pool: 'IVI 2.0'
 
 stages:
 - stage: ProductVersion
