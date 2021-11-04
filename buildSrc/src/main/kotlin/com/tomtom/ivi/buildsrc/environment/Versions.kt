@@ -36,7 +36,7 @@ object Versions {
     const val MIN_SDK = 27
     const val TARGET_SDK = 27
 
-    const val TOMTOM_ANDROID_TOOLS = "0.0.220"
+    const val TOMTOM_ANDROID_TOOLS = "0.0.240"
 
     // Automotive
     const val ANDROID_CAR = "0.0.12"
@@ -50,5 +50,5 @@ object Versions {
     const val IVI_COMMUNICATIONS_SDK = "0.1.72"
 
     // IndiGO platform version is updated by the `generateIndigoLibrariesVersionFile` gradle task.
-    const val INDIGO_PLATFORM = "1.0.2678"
+    const val INDIGO_PLATFORM = "1.0.2679"
 }
