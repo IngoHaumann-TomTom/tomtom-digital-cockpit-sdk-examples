@@ -67,7 +67,7 @@ radio.
 ```kotlin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import androidx.media2.common.MediaItem
+import com.tomtom.ivi.api.common.media.IviMediaItem
 import com.tomtom.ivi.api.common.media.Options
 import com.tomtom.ivi.api.common.media.RootSourceClient
 import com.tomtom.ivi.api.common.media.SourceId
@@ -98,7 +98,7 @@ class RadioPanel(mediaContext: MediaFrontendContext) :
         it.filter { item -> EXTRA_RADIO_FOLDER_TYPE_VALUE_BANDS == item.folderTypeOrNull() }
     }
 
-    internal fun selectType(type: MediaItem) = sourceClient.browseTo(type)
+    internal fun selectType(type: IviMediaItem) = sourceClient.browseTo(type)
 
     internal fun startRadio(id: String) =
         mediaService.launchActionAsync(PlayMediaIdFromSourceAction(RadioSourceId, id))
@@ -112,11 +112,11 @@ class RadioPanel(mediaContext: MediaFrontendContext) :
         private const val EXTRA_RADIO_FOLDER_TYPE_VALUE_FAVORITES = 2L
         private const val EXTRA_RADIO_FOLDER_TYPE_VALUE_BANDS = 3L
 
-        private fun LiveData<List<MediaItem>>.mapToFolderType(type: Long) =
+        private fun LiveData<List<IviMediaItem>>.mapToFolderType(type: Long) =
             map { it.single { item -> type == item.folderTypeOrNull() } }
 
-        private fun MediaItem.folderTypeOrNull(): Long? =
-            metadata?.extras?.getLong(EXTRA_RADIO_FOLDER_TYPE)
+        private fun IviMediaItem.folderTypeOrNull(): Long? =
+            getLong(EXTRA_RADIO_FOLDER_TYPE)
     }
 }
 ```
