@@ -99,8 +99,6 @@ stages:
             parameters:
               tasks: >-
                 docs
-              projectOptions: >-
-                -Dorg.gradle.jvmargs="-Xmx8G -XX:MaxMetaspaceSize=8G"
               displayName: 'Generate TomTom Android Tools API docs'
           - publish: $(Build.SourcesDirectory)/build/docs/
             artifact: tomtom-android-tools-api-docs
@@ -121,7 +119,6 @@ stages:
               tasks: >-
                 docs
               projectOptions: >-
-                -Dorg.gradle.jvmargs="-Xmx8G -XX:MaxMetaspaceSize=8G"
                 -p gradleplugins/
               displayName: 'Generate IndiGO gradleplugins API docs'
           - publish: $(Build.SourcesDirectory)/gradleplugins/build/docs/
@@ -169,8 +166,6 @@ stages:
             parameters:
               tasks: >-
                 docs
-              projectOptions: >-
-                -Dorg.gradle.jvmargs="-Xmx8G -XX:MaxMetaspaceSize=8G"
               displayName: 'Generate IndiGO API docs'
           - publish: $(System.DefaultWorkingDirectory)/build/docs
             artifact: indigo-api-docs
