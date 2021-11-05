@@ -13,7 +13,7 @@ package com.tomtom.ivi.example.functionaltest.e2e
 
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.tomtom.ivi.api.framework.iviinstance.IviInstanceId
+import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
 import com.tomtom.ivi.tools.testing.functional.CreateApiCallback
 import com.tomtom.ivi.tools.testing.functional.GetServiceIdsCallback
 import com.tomtom.ivi.tools.testing.functional.IviActivityTestCase

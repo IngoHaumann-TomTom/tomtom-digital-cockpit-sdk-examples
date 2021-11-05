@@ -14,7 +14,7 @@ package com.tomtom.ivi.example.debugtab.activityview
 import com.tomtom.ivi.api.framework.frontend.FrontendContext
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.api.framework.frontend.panels.ModalPanel
-import com.tomtom.ivi.core.common.uiembedding.TtiviActivityView
+import com.tomtom.ivi.platform.framework.api.common.uiembedding.TtiviActivityView
 
 /**
  * [ModalPanel] showing a [TtiviActivityView].

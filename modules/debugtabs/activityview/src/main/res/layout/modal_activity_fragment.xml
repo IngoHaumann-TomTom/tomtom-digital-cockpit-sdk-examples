@@ -20,7 +20,7 @@
             type="com.tomtom.ivi.example.debugtab.activityview.ModalActivityViewModel" />
     </data>
 
-    <com.tomtom.ivi.core.common.uiembedding.TtiviActivityView
+    <com.tomtom.ivi.platform.framework.api.common.uiembedding.TtiviActivityView
         android:id="@+id/modal_activity_fragment_activity_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

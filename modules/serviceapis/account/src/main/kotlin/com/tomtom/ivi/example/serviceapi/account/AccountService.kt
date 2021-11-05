@@ -11,11 +11,11 @@
 
 package com.tomtom.ivi.example.serviceapi.account
 
-import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.api.framework.iviservice.mirrormap.MirrorableMap
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
 import com.tomtom.ivi.api.framework.iviserviceannotations.IviServiceFun
 import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 
 /**
  * IVI service to manage an account state.

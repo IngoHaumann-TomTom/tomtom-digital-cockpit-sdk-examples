@@ -15,8 +15,8 @@ import android.app.PendingIntent
 import android.content.Intent
 import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.api.framework.frontend.panels.ModalPanel
-import com.tomtom.ivi.core.common.uiembedding.TtiviActivityView
 import com.tomtom.ivi.example.debugtab.activityview.databinding.ModalActivityFragmentBinding
+import com.tomtom.ivi.platform.framework.api.common.uiembedding.TtiviActivityView
 import com.tomtom.kotlin.traceevents.TraceEventListener
 import com.tomtom.kotlin.traceevents.Tracer
 

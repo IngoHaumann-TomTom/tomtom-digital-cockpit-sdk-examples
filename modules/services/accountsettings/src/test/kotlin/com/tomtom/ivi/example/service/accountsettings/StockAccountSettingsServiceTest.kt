@@ -12,13 +12,13 @@
 package com.tomtom.ivi.example.service.accountsettings
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.api.service.settingsmanagement.IntSettingKey
 import com.tomtom.ivi.api.service.settingsmanagement.SettingsManagementService
 import com.tomtom.ivi.api.service.settingsmanagement.SettingsManagementSessionToken
 import com.tomtom.ivi.api.service.settingsmanagement.StringSettingKey
 import com.tomtom.ivi.api.service.settingsmanagement.createApi
 import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 import com.tomtom.ivi.tools.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.clearAllMocks

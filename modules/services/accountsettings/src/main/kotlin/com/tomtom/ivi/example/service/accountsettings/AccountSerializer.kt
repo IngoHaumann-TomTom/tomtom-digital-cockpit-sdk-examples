@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.service.accountsettings
 
-import com.tomtom.ivi.api.common.uid.Uid
 import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -18,5 +18,5 @@ ivi {
 
 dependencies {
     api(project(":common_account"))
-    implementation(Libraries.TomTom.Indigo.API_COMMON_UID)
+    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UID)
 }

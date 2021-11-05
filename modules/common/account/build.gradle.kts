@@ -12,5 +12,5 @@
 import com.tomtom.ivi.buildsrc.environment.Libraries
 
 dependencies {
-    api(Libraries.TomTom.Indigo.API_COMMON_UID)
+    api(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UID)
 }

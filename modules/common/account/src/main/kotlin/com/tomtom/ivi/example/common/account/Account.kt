@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.common.account
 
 import android.os.Parcelable
-import com.tomtom.ivi.api.common.uid.Uid
+import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

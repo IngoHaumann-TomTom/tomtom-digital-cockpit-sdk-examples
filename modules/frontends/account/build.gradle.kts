@@ -29,7 +29,7 @@ ivi {
 dependencies {
     implementation(project(":serviceapis_account"))
 
-    implementation(Libraries.TomTom.Indigo.API_COMMON_LIFECYCLE)
-    implementation(Libraries.TomTom.Indigo.API_COMMON_UID)
+    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_LIFECYCLE)
+    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UID)
     implementation(Libraries.TomTom.Tools.API_LIVEDATA)
 }
