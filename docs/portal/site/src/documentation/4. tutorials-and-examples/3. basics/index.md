@@ -17,3 +17,4 @@ layout: default
 
   This guide explains how to create a new tab for the debug menu, and how to customize the existing
   tabs.
+

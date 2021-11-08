@@ -7,3 +7,4 @@ layout: default
 
   This guide explains how to create static and dynamic configurations by using the configuration
   generator, and how to use these to customize the application.
+

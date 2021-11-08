@@ -11,3 +11,4 @@ layout: default
 
   This guide explains how to configure your IndiGO project to work with the NavKit2 API key you have
   received from TomTom.
+

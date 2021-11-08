@@ -11,4 +11,5 @@ layout: default
 - [How to install IndiGO on hardware](/indigo/documentation/tutorials-and-examples/hardware/install-indigo-on-hardware)
 
   This guide explains how to sign the application, install it on the system partition, and do some
-  additional configurations, if required.
+  additional configurations if required.
+

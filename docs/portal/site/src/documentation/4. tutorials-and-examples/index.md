@@ -14,7 +14,7 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
 
 - [How to configure the NavKit2 API key](/indigo/documentation/tutorials-and-examples/setup/configure-the-navkit2-api-key)
 
-  This guide explains how to configure your IndiGO project to work with the NavKit2 API key you have
+  This guide explains how to configure your IndiGO project to work with the NavKit2 API Key you have
   received from TomTom.
 
 ## Basics
@@ -79,7 +79,7 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
 - [How to install IndiGO on hardware](/indigo/documentation/tutorials-and-examples/hardware/install-indigo-on-hardware)
 
   This guide explains how to sign the application, install it on the system partition, and do some
-  additional configurations, if required.
+  additional configurations if required.
 
 ## Deployment
 
@@ -87,3 +87,4 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
 
   This guide explains how to run services in a separate process, configure multiple IndiGO
   instances, and how to deploy Android services in the same process as an IVI service.
+

@@ -11,3 +11,4 @@ layout: default
 
   This guide explains how to add a new media source that will automatically show up as an additional
   choice in the media panel.
+

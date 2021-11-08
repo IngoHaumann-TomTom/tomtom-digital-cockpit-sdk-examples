@@ -3,7 +3,7 @@ title: Platform Domains
 layout: default
 ---
 
-The IndiGO platform is divided into a number of functional domains, which are summarized here.
+The IndiGO platform is divided into a number of functional domains which are summarized here.
 
 ## Navigation
 
@@ -41,17 +41,18 @@ over their vehicle.
 IndiGO allows the integration of 3rd-party voice engines to support voice personal assistants 
 (VPAs) in the vehicle. A generalized interface enables the customer to speak commands and reply 
 to system queries by voice. For example, the user can ask the system to make a phone call or find 
-a nearby petrol station by talking.
+a nearby hospital by talking.
 [Voice Personal Assistant (VPA)](/indigo/documentation/developing/platform-domains/voice-personal-assistant-vpa)
 
 ## Configuration Framework
 
 Branding is important, which is why IndiGO provides the means to customize its look. Colors,
-margins, sizes, and fonts, can all be changed by applying a different theme. IndiGO also supplies a
-set of UI components that share a look-and-feel and that adhere to the theme, such that the user 
+margins, sizes, and fonts can all be changed by applying a different theme. IndiGO also supplies a
+set of UI components that share a look-and-feel and adhere to the theme, such that the user 
 can have a seamless UI experience.
 [Configuration Framework](/indigo/documentation/developing/platform-domains/configuration-framework)
 
 ## Settings Framework
 
 [Settings Framework](/indigo/documentation/developing/platform-domains/settings-framework)
+

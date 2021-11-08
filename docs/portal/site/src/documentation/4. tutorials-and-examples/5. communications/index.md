@@ -17,3 +17,4 @@ layout: default
 
   This guide explains how to add a recent calls service that provides information that IndiGO can
   display in the recent calls panel.
+

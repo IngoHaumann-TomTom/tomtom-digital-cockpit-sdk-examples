@@ -7,3 +7,4 @@ layout: default
 
   This guide explains how to run services in a separate process, configure multiple IndiGO
   instances, and how to deploy Android services in the same process as an IVI service.
+
