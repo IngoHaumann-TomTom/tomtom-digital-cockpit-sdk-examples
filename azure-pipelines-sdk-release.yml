@@ -220,8 +220,8 @@ stages:
               tasks: >-
                 assemble
               projectOptions: >-
-                -PnexusUsername=$(NEXUS_USERNAME)
-                -PnexusPassword=$(NEXUS_PASSWORD)
+                -PnexusUsername=$(VERIFICATION_USERNAME)
+                -PnexusPassword=$(VERIFICATION_PASSWORD)
                 -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
               displayName: 'Assemble APKs using dependencies from Nexus'
           - template: build/build-cleanup.yml@devops-templates
