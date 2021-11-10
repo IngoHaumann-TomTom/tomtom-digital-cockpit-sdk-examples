@@ -45,6 +45,9 @@ resources:
   - repository: indigo
     type: git
     name: IVI/indigo
+  - repository: indigo-ca-communication
+    type: git
+    name: IVI/indigo-ca-communication
   - repository: tomtom-android-tools
     type: github
     endpoint: tomtom-internal_bilkes_personal
@@ -67,13 +70,19 @@ stages:
           - checkout: indigo
           - bash: |
               set -ex
+
               cd $(Build.SourcesDirectory)/ivi-example-app
-              INDIGO_PLATFORM=$(find . -name Versions.kt |xargs cat $1 |grep -E "INDIGO_PLATFORM" |grep -Eo "[0-9]\.[0-9].[0-9]+")
+              INDIGO_PLATFORM=$(find . -name Versions.kt |xargs cat $1 |grep -E "INDIGO_PLATFORM" |grep -Eo "[0-9].[0-9].[0-9]+")
+
               cd $(Build.SourcesDirectory)/indigo
               git checkout tags/$INDIGO_PLATFORM
-              tomtomAndroidTools=$(find . -name libraries.versions.toml |xargs cat $1 |grep "tomtomAndroidTools = " |grep -Eo "[0-9]\.[0-9].[0-9]+")
+              tomlFilePath=$(find . -name libraries.versions.toml)
+              tomtomAndroidTools=$(cat $tomlFilePath |grep "tomtomAndroidTools = " |grep -Eo "[0-9].[0-9].[0-9]+")
+              iviCommunicationsSdk=$(cat $tomlFilePath |grep "iviCommunicationsSdk = " |grep -Eo "[0-9].[0-9].[0-9]+")
+
               echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
               echo "##vso[task.setvariable variable=tomtomAndroidTools;isOutput=true]$tomtomAndroidTools"
+              echo "##vso[task.setvariable variable=iviCommunicationsSdk;isOutput=true]$iviCommunicationsSdk"
             name: Version
             displayName: 'Expose versions to Azure'
           - template: build/build-cleanup.yml@devops-templates
@@ -84,6 +93,7 @@ stages:
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.iviCommunicationsSdk'] ]
     jobs:
       - job: GenerateTomTomAndroidToolsApiDocs
         displayName: 'Generate TomTom Android Tools API docs'
@@ -125,6 +135,25 @@ stages:
             artifact: indigo-gradleplugins-api-docs
             displayName: 'Publish IndiGO gradleplugins API docs as a pipeline artifact'
           - template: build/build-cleanup.yml@devops-templates
+      - job: GenerateCommunicationSdkApiDocs
+        displayName: 'Generate IndiGO communications SDK API docs'
+        timeoutInMinutes: 10
+        container: docker_indigo_build
+        steps:
+          - checkout: indigo-ca-communication
+          - bash: |
+              cd $(Build.SourcesDirectory)
+              git checkout tags/$(VERSION_COMMUNICATIONS_SDK)
+            displayName: 'Checkout IndiGO communications SDK v$(VERSION_COMMUNICATIONS_SDK)'
+          - template: gradle/gradle.yml@devops-templates
+            parameters:
+              tasks: >-
+                docs
+              displayName: 'Generate IndiGO communications SDK API docs'
+          - publish: $(Build.SourcesDirectory)/build/docs/
+            artifact: indigo-communications-sdk-api-docs
+            displayName: 'Publish IndiGO communications SDK API docs as a pipeline artifact'
+          - template: build/build-cleanup.yml@devops-templates
       - job: TomtomAndroidToolsApiDocsToS3
         displayName: 'Upload TomTom Android Tools API docs to S3'
         timeoutInMinutes: 10
@@ -151,11 +180,24 @@ stages:
               apiSubFolder: indigo-gradleplugins-api
               version: $(VERSION_PLATFORM)
           - template: build/build-cleanup.yml@devops-templates
+      - job: IndigoCommunicationSdkApiDocsToS3
+        displayName: 'Upload IndiGO communications SDK API docs to S3'
+        timeoutInMinutes: 10
+        container: docker_indigo_delivery
+        dependsOn: GenerateCommunicationSdkApiDocs
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              artifactName: indigo-communications-sdk-api-docs
+              apiSubFolder: indigo-comms-api
+              version: $(VERSION_COMMUNICATIONS_SDK)
+          - template: build/build-cleanup.yml@devops-templates
       - job: GenerateIndigoApiDocs
         displayName: 'Generate IndiGO API docs'
         timeoutInMinutes: 20
         container: 'docker_indigo_build'
-        dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3 ]
+        dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
         steps:
           - checkout: indigo
           - bash: |
@@ -183,12 +225,6 @@ stages:
               artifactName: indigo-api-docs
               apiSubFolder: indigo-api
               version: $(VERSION_PLATFORM)
-          - template: .azure-templates/aws-S3-upload.yml
-            parameters:
-              artifactName: indigo-gradleplugins-api-docs
-              apiSubFolder: indigo-gradleplugins-api
-              version: $(VERSION_PLATFORM)
-          - template: build/build-cleanup.yml@devops-templates
 
   - stage: Publishing
     dependsOn: []
@@ -231,6 +267,7 @@ stages:
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.iviCommunicationsSdk']
     jobs:
       # TODO(IVI-4866): Publish Example App source to github as part of the SDK release
       - job: SyncLatestApiDocumentation
@@ -250,6 +287,12 @@ stages:
               apiSubFolder: indigo-gradleplugins-api
               artifactName: indigo-gradleplugins-api-docs
               version: $(VERSION_PLATFORM)
+              syncLatest: true
+          - template: .azure-templates/aws-S3-upload.yml
+            parameters:
+              apiSubFolder: indigo-comms-api
+              artifactName: indigo-communications-sdk-api-docs
+              version: $(VERSION_COMMUNICATIONS_SDK)
               syncLatest: true
           - template: .azure-templates/aws-S3-upload.yml
             parameters:
