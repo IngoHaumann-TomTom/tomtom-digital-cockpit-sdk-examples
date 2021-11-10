@@ -56,7 +56,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.0.0
+    ref: refs/tags/2.0.1
 
 pool: 'IVI 2.0'
 
@@ -79,6 +79,7 @@ stages:
     steps:
     - template: .azure-templates/build.yml
     - template: .azure-templates/docs.yml
+    - template: .azure-templates/portal_check.yml
     - template: build/build-cleanup.yml@devops-templates
 
   - job: UnitTests

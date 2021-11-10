@@ -287,11 +287,20 @@ tasks.register<Exec>("docs") {
  */
 tasks.register<Exec>("portal") {
     val portalDirectory = "${project.projectDir}/docs/portal/site"
-    val outputDirectory = "${project.projectDir}/build/portal"
-    description = "Generate Developer Portal files in '$outputDirectory'."
+    description = "Generate and validate Developer Portal content."
     group = "Documentation"
 
     workingDir(portalDirectory)
     commandLine("python3")
-    args("scripts/generate_portal.py", outputDirectory)
+    args("-B", "scripts/portal_generator.py", "build_jekyll")
+}
+
+tasks.register<Exec>("portal_check") {
+    val portalDirectory = "${project.projectDir}/docs/portal/site"
+    description = "Validate Developer Portal content."
+    group = "Documentation"
+
+    workingDir(portalDirectory)
+    commandLine("python3")
+    args("-B", "scripts/portal_generator.py")
 }
