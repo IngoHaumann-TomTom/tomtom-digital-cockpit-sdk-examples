@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.example.product.exampleapp
 
-import com.tomtom.ivi.api.defaults.activity.DefaultActivity
+import com.tomtom.ivi.platform.framework.api.product.defaultactivity.DefaultActivity
 
 class ExampleActivity : DefaultActivity()
 

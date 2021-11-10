@@ -122,9 +122,10 @@ option is to selectively deploy services across deployments.
 
 To use an IVI instance, an Android Activity needs to be bound to an IVI instance. The Android
 manifest entry for the activity must define a metadata entry with the name
-`com.tomtom.ivi.api.framework.activity.IVI_INSTANCE` and the value of the name of IVI instance.
-The activity must subclass the `com.tomtom.ivi.api.framework.activity.IviActivity` class.
-To use the default system UI use `com.tomtom.ivi.api.framework.activity.DefaultActivity` as base
+`com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE` and the value of the name of
+IVI instance. The activity must subclass the
+`com.tomtom.ivi.platform.framework.api.product.activity.IviActivity` class. To use the default
+system UI use `com.tomtom.ivi.platform.framework.api.product.activity.DefaultActivity` as base
 class.
 
 ```xml
@@ -140,7 +141,7 @@ class.
     </intent-filter>
 
     <meta-data
-        android:name="com.tomtom.ivi.api.framework.activity.IVI_INSTANCE"
+        android:name="com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE"
         android:value="Passenger" />
 </activity>
 ```

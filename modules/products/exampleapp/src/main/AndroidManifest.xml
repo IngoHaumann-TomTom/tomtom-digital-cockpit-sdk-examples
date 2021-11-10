@@ -25,16 +25,16 @@
         tools:ignore="Instantiatable">
 
         <activity
-            android:name="com.tomtom.ivi.core.debug.permissions.SetupActivity"
+            android:name="com.tomtom.ivi.platform.framework.api.product.debugpermissions.SetupActivity"
             android:clearTaskOnLaunch="true"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <meta-data
-                android:name="com.tomtom.ivi.core.debug.permissions.META_DATA_KEY_APPLICATION_NAME_RES_ID"
+                android:name="com.tomtom.ivi.platform.debugpermissions.META_DATA_KEY_APPLICATION_NAME_RES_ID"
                 android:resource="@string/app_name" />
             <meta-data
-                android:name="com.tomtom.ivi.core.debug.permissions.META_DATA_KEY_MAIN_ACTIVITY_CLASS_NAME"
+                android:name="com.tomtom.ivi.platform.debugpermissions.META_DATA_KEY_MAIN_ACTIVITY_CLASS_NAME"
                 android:value="com.tomtom.ivi.example.product.exampleapp.ExampleActivity" />
 
             <intent-filter>
