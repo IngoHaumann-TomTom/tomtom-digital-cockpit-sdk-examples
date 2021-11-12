@@ -3,98 +3,106 @@ title: Documentation
 layout: default
 ---
 
-Creating an IndiGO product requires two parts: development and vehicle integration. We provide
-information on both parts here on this developer portal. You can use the site map on the left to
-skip ahead, or search for specific content by using the search bar above; just click the magnifying
-glass and enter your query.
+## What is IndIGO?
 
-## Building for IndiGO
+IndiGO is a framework to deliver Android-based digital cockpits. It includes an application
+platform to support the development of highly integrated applications on top of Android Automotive. It
+also offers a complete set of industrial strength end-user applications, that can be customized to 
+the needs of a car maker.
 
-Starting on a new project with an unfamiliar code base can be a daunting task. This documentation
-will explain the necessary steps to set up your environment properly, where and how to get the
-required keys and dependencies, and where to find example implementations and how-to guides for
-several types of plugins.
+IndiGO offers a fully customizable system UI, which allows applications to work together in a more
+integrated way than the standard Android application-switching system UI does. Individual
+applications are not just visually seamlessly integrated, they work together to provide
+a single, consistent, cohesive and task-oriented user experience for the end-user, without moving
+from one app to another.
 
-When you've completed the [getting started](#getting-started) guide, you can have a look at the
-[example application](#example-application) or perhaps already follow along with a
-[how-to](#how-to-guides) to add a first plugin of your own.
+## Out-of-the-box included stock components
 
-### Getting started
+IndiGO comes out-of-the-box with a comprehensive set of automotive grade services and
+applications, ready to be used for commercial purposes. We call these out-of-the-box components 
+_stock components_. 
 
-Before you can start development with the IndiGO platform, you'll have to make sure your system is
-set up correctly. The [getting started guide](/indigo/documentation/getting-started) will help you
-set up an environment in which IndiGO development is possible.
+Stock applications can be used “plug-and-play” or they can be customized to the
+car maker’s needs. Performing customization is not limited to visual changes, but may also include
+modified or added features. And using the extensive set of IndiGO platform APIs, which extend the
+standard Android Automotive APIs, new applications can be added with much less effort compared to 
+standard Android Automotive development.
 
-In separate steps it will tell you which JDK is required, how to obtain a TomTom NavKit2 API key to
-be able to use maps and navigation features, how to set up an Android emulator, and configure your
-Android Studio.
+The following diagram shows everything that’s included in IndiGO, all stock components
+(purple colored) and how these relate to other software in a vehicle.
 
-### Developing
+## Building your first IndiGO product
 
-When you've set up your development environment, you are ready to start developing an IndiGO
-application.
+At the far left of the diagram we see a yellow box called _IndiGO integrated product (APK)_. This is
+“the Android application that integrates the IndiGO application platform and its applications”. It
+is typically the application that fully controls the center stack and optionally provides
+information to the cluster display.
 
-Make sure you've familiarized yourself with the [architecture and design of
-IndiGO](/indigo/documentation/developing/). Understanding this will make it easier to grasp the
-IndiGO concepts of plugins, UI components, and more.
+![IndiGO architecture](images/indigo-architecture.png)
 
-IndiGO has a [plugin](/indigo/documentation/developing/plugins) architecture so you can easily add
-your functionality, or remove what you don't need. [Services](/indigo/documentation/developing/)
-provide data to frontends, both of which are also plugins. The [system
-UI](/indigo/documentation/developing/system-ui) and [UI
-components](/indigo/documentation/developing/ui-components) are defined in such a way that they can
-be [themed](/indigo/documentation/developing/theming-and-customization) easily.
+The IndiGO SDK includes an “IVI Example App” that integrates the platform
+with all of the stock applications for IndiGO. The example is a fully working IVI system,
+including phone calling, contacts handling, messaging, notifications, multimedia, navigation and
+much more, all production-level code. All of the applications included in that example
+application are shown at the top of the diagram, in the section “IndiGO Application Suite”. The 
+[Getting Started Guide](/indigo/documentation/getting-started) explains
+step-by-step how to set up your development environment to build that example application.
 
-To better understand the relation between the various plugins within a functional domain, we provide
-some [high level overviews](/indigo/documentation/developing/platform-domains/) of these areas. For
-example: [navigation](/indigo/documentation/developing/platform-domains/navigation),
-[media](/indigo/documentation/developing/platform-domains/media),
-[communications](/indigo/documentation/developing/platform-domains/communications),
-[configuration](/indigo/documentation/developing/platform-domains/configuration-framework),
-[settings](/indigo/documentation/developing/platform-domains/settings-framework), [vehicle
-functions](/indigo/documentation/developing/platform-domains/vehicle-functions), and [Voice Personal
-Assistants (VPA)](/indigo/documentation/developing/platform-domains/voice-personal-assistant-vpa).
+## Using stock components to assemble your product
 
-### Example application
+When you look at the source code of the IVI Example App, you will notice the Kotlin code for the
+product is really just a couple of lines of code. Most of the work is done by a Gradle build file
+that pulls in all the stock components that provide the actual functionality of the application. In
+the diagram, these stock components are the puzzle pieces in the blocks “IndiGO Application Suite”
+and “IndiGO Application Platform”.
 
-The [example application](/indigo/documentation/tutorials-and-examples/example-app) repository is provided as
-a sample implementation. The application allows you to verify your build environment by making sure
-Gradle can build this IndiGO example APK and install it on an emulator.
+Forking and building the IVI Example App is a great way to start development of a new IVI system. It
+gets you up and running really fast. From there on, you can easily modify or add any puzzle pieces
+you need and you’ll have a working system from day one.
 
-The example application also contains several examples on how to add functionality to your product.
+## Customizing stock components to match your needs
 
-__Note:__ All these examples are currently part of a single application. A future release will split
-the example app repository into a collection of applications, each demonstrating only a single
-functionality.
+Let’s look a bit closer at how to customize a “stock application”. Suppose you wish to make the
+Communications application that provides phone calling look or behave differently. As you can see
+from the diagram, Communications is split into two puzzle pieces, “Communications UI” and
+“Communications app service”. TomTom provides stock versions of these puzzle pieces
+in an external binary repository that you would use to pull these puzzle pieces from.
 
-### How-to guides
+The User Interface (UI) component contains just the user interface: the graphics, the buttons and the connection to
+the application service that implements the functionality, such as calling a phone number. The “app service”
+contains the application logic. It knows how to do things, but it leaves what that looks like to the
+“UI” component. Together these two components make up the Communications application.
 
-When you're familiar with the IndiGO architecture and the way it names and uses plugins and
-components, you can start following one of the
-[how-to guides](/indigo/documentation/tutorials-and-examples/how-to-guides). A how-to guide will lead you step by step
-through the process of adding functionality to your product.
+Now, if you want to just change what the application looks like, you just have to provide an
+alternative UI puzzle piece to your application. You can still pull the “app service” from the
+TomTom Nexus repository. This means you can also automatically get the latest version of the “app
+service”, even if you modified the UI. That is really useful for staying up-to-date with your
+applications.
 
-There are how-to guides on basics like adding a
-[frontend](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-a-frontend-plugin)
-or a
-[service](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-an-ivi-service),
-up to more advanced topics like [installing on your own
-hardware](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-install-on-hardware) or
-[adding custom actions to a media
-source](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-customize-a-media-source).
+Should you want to change or add functionality to the application, then you need to customize the
+“app service” and provide it yourself. In that case, you can use the source code of the provided
+service or application as a starting point. 
+All of the other apps would still be pulled from our Nexus and you can still benefit from
+the automatic updates for those. That is a powerful way of completely customizing the look and feel
+of applications, with limited effort.
 
-## Integrating IndiGO in a vehicle
+## The benefits of using stock components
 
-__Note:__ This documentation is not finished yet.
+As you can see from the number of puzzle pieces in the diagram, IndiGO is extremely modular: almost
+anything that is provided out-of-the-box can be customized or replaced. But many of the applications
+can also be customized without any code changes, by applying a different theme to them, or by
+modifying their static configuration files.
 
-[TODO(IVI-4769)]:# (Create Vehicle Integration overview page)
+Besides the benefit of kick starting your development with our stock puzzle pieces, the modular
+architecture provide another great benefit: we, at TomTom, keep updating IndiGO and provide new
+versions of applications and services over time. By pulling these components from our Nexus, your
+system can easily benefit from software updates that we provide for the IndiGO platform and its
+applications. This includes security updates as well as functional improvements.
 
-## API reference
+## Building your own services and applications
 
-Developing for IndiGO requires a set of Application Programming Interfaces (API): the main IndiGO
-API and the TomTom Android Tools API. The reference documentation for both can be found on the
-[API reference documentation page](/indigo/api-reference). It provides the details of all classes and functions, and insights into the relation between all modules and packages.
-
-## IndiGO releases
-
-All IndiGO releases are listed [here](/indigo/releases).
+Next to the components, or puzzle pieces, there are green boxes in the diagram. These depict the
+APIs that IndiGO offers on top of Android Automotive. These APIs are complementary to Android APIs;
+they do not try to mimic or reimplement any Android behavior, but rather extend the Android APIs
+with a lot of useful APIs for IVI software development. The description of these APIs can be found
+in the API reference section of this site.
