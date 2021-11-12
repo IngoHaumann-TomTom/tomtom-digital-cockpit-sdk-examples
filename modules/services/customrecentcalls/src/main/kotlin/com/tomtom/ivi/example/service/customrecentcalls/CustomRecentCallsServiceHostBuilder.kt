@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.service.customrecentcalls
 
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostBuilder
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHost
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHost
 
 /**
  * The builder class for the `CustomRecentCallsServiceHost`.

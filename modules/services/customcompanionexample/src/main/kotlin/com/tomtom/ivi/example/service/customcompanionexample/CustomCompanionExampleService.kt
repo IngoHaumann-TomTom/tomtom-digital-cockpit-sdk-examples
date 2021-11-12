@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.service.customcompanionexample
 
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.example.serviceapi.companionexample.CompanionExampleServiceBase
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.sdk.communications.client.CommunicationsClient
 import com.tomtom.ivi.sdk.communications.client.CommunicationsClientContext
 import com.tomtom.ivi.sdk.communications.client.CommunicationsClientListener

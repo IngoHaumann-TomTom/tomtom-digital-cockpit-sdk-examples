@@ -11,9 +11,6 @@
 
 package com.tomtom.ivi.example.service.account
 
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
-import com.tomtom.ivi.api.framework.iviservice.queueOrRun
 import com.tomtom.ivi.example.account.StaticConfiguration.onlineAccountEndpointConfigKey
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
@@ -21,6 +18,9 @@ import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
 import com.tomtom.ivi.platform.framework.api.common.uid.Uid
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.queueOrRun
 import com.tomtom.tools.android.api.livedata.requireValue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 import java.time.Instant

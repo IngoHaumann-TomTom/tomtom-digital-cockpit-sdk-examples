@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.serviceapi.companionexample
 
-import com.tomtom.ivi.api.framework.iviservice.mirrormap.MirrorableMap
-import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
-import com.tomtom.ivi.api.framework.iviserviceannotations.IviServiceFun
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MirrorableMap
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviService
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviServiceFun
 
 /**
  * IVI service api for the companion service. This is used to illustrate how to proxy a companion

@@ -13,8 +13,6 @@ package com.tomtom.ivi.example.service.customcontacts
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-import com.tomtom.ivi.api.framework.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.core.common.contacts.Address
 import com.tomtom.ivi.core.common.contacts.AddressType
 import com.tomtom.ivi.core.common.contacts.Contact
@@ -23,6 +21,8 @@ import com.tomtom.ivi.core.common.contacts.PhoneNumber
 import com.tomtom.ivi.core.common.contacts.PhoneNumberType
 import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
 import com.tomtom.ivi.core.serviceapi.contacts.ContactsServiceBase
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
 
 /**
  * A custom contacts service that contains two contacts. Only the contact with the id `1` has an

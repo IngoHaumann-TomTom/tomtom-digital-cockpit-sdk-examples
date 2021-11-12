@@ -11,10 +11,10 @@
 
 package com.tomtom.ivi.example.serviceapi.accountsettings
 
-import com.tomtom.ivi.api.framework.iviserviceannotations.IviService
-import com.tomtom.ivi.api.framework.iviserviceannotations.IviSetting
-import com.tomtom.ivi.api.framework.iviserviceannotations.IviSettingAccessMode
 import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviService
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviSetting
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviSettingAccessMode
 
 @IviService(
     serviceId = "com.tomtom.ivi.example.service.accountsettings"

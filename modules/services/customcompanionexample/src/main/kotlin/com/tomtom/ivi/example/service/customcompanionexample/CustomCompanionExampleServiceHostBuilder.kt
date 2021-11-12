@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.service.customcompanionexample
 
-import com.tomtom.ivi.api.framework.iviservice.IviServiceHostContext
-import com.tomtom.ivi.api.framework.iviservice.SimpleIviServiceHostBuilder
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
 
 /**
  * The builder class for the `CustomCompanionServiceHost`.
