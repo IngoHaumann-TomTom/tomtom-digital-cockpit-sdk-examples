@@ -1,0 +1,19 @@
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+cloud VehicleData as "Vehicle data"
+
+package "Hardware/Head Unit" {
+    package "Android System Image"{
+        component "IndiGo Application suite" as Indigo<<Frontend>>
+        package "Android Automotive OS"{
+            component "VHAL" as VHAL<<AndroidService>>
+        }
+        component "Tier1 specific VHAL Implementation" as VHALService <<Android>>
+    }
+}
+Indigo <-> VHAL:VehiceProperty
+VHAL <--> VHALService:HIDL
+VHALService <--> VehicleData:CAN or other protocol
+@enduml

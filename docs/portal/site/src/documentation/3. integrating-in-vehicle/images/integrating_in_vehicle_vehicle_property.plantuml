@@ -1,0 +1,37 @@
+@startuml
+autonumber
+
+rnote over "IndiGO Application"
+Button pressed
+endrnote
+
+"IndiGO Application" -> "CarPropertyManager\n(Android Car)" : setBooleanProperty\n(AC_AUTO,true)
+
+box "AAOS" #LightGreen
+participant "CarPropertyManager\n(Android Car)"
+participant VHAL
+participant HIDL
+end box
+
+"CarPropertyManager\n(Android Car)" -> VHAL : setProperty\n(AC_AUTO, true)
+VHAL -> HIDL : set\n(HVAC_AC_AUTO, true)
+
+HIDL -> "VHAL Implementation" : set\n(HVAC_AC_AUTO, true)
+ "VHAL Implementation" -> CAN : send frame
+
+rnote over CAN
+Automatic AC mode
+ changes fan speed
+endrnote
+
+CAN ->  "VHAL Implementation" : receive frame
+ "VHAL Implementation" -> HIDL: set\n(HVAC_FAN_SPEED, 2)
+HIDL -> VHAL: set\n(HVAC_FAN_SPEED, 2)
+VHAL -> "CarPropertyManager\n(Android Car)": setProperty\n(HVAC_FAN_SPEED, 2)
+"CarPropertyManager\n(Android Car)" ->"IndiGO Application": onChangeEvent\n(HVAC_FAN_SPEED, 2)
+
+rnote over "IndiGO Application"
+Fan speed
+indication changes
+endrnote
+@enduml
