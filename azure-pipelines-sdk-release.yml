@@ -267,7 +267,7 @@ stages:
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
-      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.iviCommunicationsSdk']
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.iviCommunicationsSdk'] ]
     jobs:
       # TODO(IVI-4866): Publish Example App source to github as part of the SDK release
       - job: SyncLatestApiDocumentation
