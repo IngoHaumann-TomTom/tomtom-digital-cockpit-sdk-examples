@@ -68,19 +68,7 @@ platform. Each how-to guide explains step-by-step how you can extend IndiGO.
 
   This guide explains how to create static and dynamic configurations by using the configuration
   generator, and how to use these to customize the application.
-
-## Hardware
-
-- [Flash the reference hardware](/indigo/documentation/tutorials-and-examples/hardware/flash-reference-hardware)
-
-  This guide explains how to install and use the customized IndiGO Android Automotive system image
-  on the reference hardware.
-
-- [Install IndiGO on hardware](/indigo/documentation/tutorials-and-examples/hardware/install-indigo-on-hardware)
-
-  This guide explains how to sign the application, install it on the system partition, and do some
-  additional configurations if required.
-
+  
 ## Deployment
 
 - [Configure the runtime deployment of the IVI System](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
