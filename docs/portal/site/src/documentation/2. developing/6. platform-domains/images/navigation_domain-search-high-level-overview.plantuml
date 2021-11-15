@@ -1,0 +1,51 @@
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Search
+
+package "IndiGO application suite"<<Rectangle>> {
+    component StockSearchFrontend as [Stock Search Frontend]<<Frontend>>
+    component SearchUiComponentApi as [Search Ui Component Api]<<Api>>
+
+}
+
+package "IndiGO platform"<<Rectangle>> {
+    package "Common APIs" {
+        component Coordinate as [Coordinate]<<Api>>
+        component TripId as [Trip Id]<<Api>>
+        component TripPlan as [Trip Plan]<<Api>>
+        component TripPlanError as [Trip Plan Error]<<Api>>
+
+    }
+    component NavigationConnectionService as [Navigation Connection Service]<<Service>>
+    component NavigationService as [Navigation Service]<<Service>>
+    component VehicleLocationService as [Vehicle Location Service]<<Service>>
+}
+
+package "NavKit2"<<Rectangle>> {
+    component FtsResult as [Fts Result]<<Api>>
+    component Search as [Search]<<Api>>
+}
+
+package "NavKit2UI"<<Rectangle>> {
+}
+
+StockSearchFrontend -d-> NavigationConnectionService
+StockSearchFrontend -d-> NavigationService
+StockSearchFrontend -d-> VehicleLocationService
+
+NavigationService -d-> Coordinate
+NavigationService -d-> TripId
+NavigationService -d-> TripPlan
+NavigationService -d-> TripPlanError
+
+VehicleLocationService -d-> Coordinate
+
+SearchUiComponentApi -d-> NavKit2UI
+SearchUiComponentApi -d-> NavKit2
+NavKit2UI -d-> NavKit2
+
+
+
+@enduml
