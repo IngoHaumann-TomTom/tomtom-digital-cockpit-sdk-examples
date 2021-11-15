@@ -21,6 +21,9 @@ REGEX_URL = "(?<=\()http[^)]+(?=\))"
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
 
+# Error placeholder for HTTP Requests.
+HTTP_ERROR = 1000
+
 def url_validator(target_dir):
     '''
     Validates the URLs found in Markdown files within a target directory by sending HTTP requests
@@ -39,10 +42,14 @@ def url_validator(target_dir):
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
             for match in re.findall(REGEX_URL, content):
-                print(f"Checking URL {match} in {path}.")
-                status = requests.head(match).status_code
-                # Check for client and server error responses.
-                if status >= 400 or status == 204:
-                    errors.append(f"{match} in {path}.")
+                print(f"Checking URL {match} in {path}")
+                try:
+                    status = requests.head(match).status_code
+                except:
+                    status = HTTP_ERROR
+                finally:
+                    # Check for client and server error responses.
+                    if status >= 400 or status == 204:
+                        errors.append(f"{match} in {path}")
     if len(errors):
         raise ConnectionError("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))

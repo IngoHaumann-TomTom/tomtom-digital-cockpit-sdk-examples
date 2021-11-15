@@ -285,19 +285,19 @@ tasks.register<Exec>("docs") {
  * This task requires you to have Python3 and Ruby packages installed on your system.
  * For installing the Ruby packages, consult the README.md under docs/portal/site.
  */
-tasks.register<Exec>("portal") {
+tasks.register<Exec>("portal_export") {
     val portalDirectory = "${project.projectDir}/docs/portal/site"
-    description = "Generate and validate Developer Portal content."
+    description = "Generates Developer Portal content for export."
     group = "Documentation"
 
     workingDir(portalDirectory)
     commandLine("python3")
-    args("-B", "scripts/portal_generator.py", "build_jekyll")
+    args("-B", "scripts/portal_generator.py", "export")
 }
 
 tasks.register<Exec>("portal_check") {
     val portalDirectory = "${project.projectDir}/docs/portal/site"
-    description = "Validate Developer Portal content."
+    description = "Validates Developer Portal content."
     group = "Documentation"
 
     workingDir(portalDirectory)

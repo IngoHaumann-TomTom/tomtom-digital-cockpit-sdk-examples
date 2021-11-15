@@ -180,4 +180,4 @@ ivi {
 The above example deploys `com....Service` in the same process as the `someServiceHost`.
 
 __Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
-  Android service into the build.
+Android service into the build.

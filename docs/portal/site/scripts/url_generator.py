@@ -20,17 +20,20 @@ TARGET_FILETYPE = "*.md"
 # TODO(IVI-5408): Replace latest by SDK Release versions.
 INDIGO_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest"
 INDIGO_GRADLEPLUGINS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api/latest"
+INDIGO_COMMS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-comms-api/latest"
 ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/android-tools-api/latest"
 JSON_POSTFIX_URL = "scripts/navigation-pane.json"
 
 # The placeholders in the Markdown files that will be replaced by an API Reference URL.
 INDIGO_PLACEHOLDER = "TTIVI_INDIGO_API"
 INDIGO_GRADLEPLUGINS_PLACEHOLDER = "TTIVI_INDIGO_GRADLEPLUGINS_API"
+INDIGO_COMMS_PLACEHOLDER = "TTIVI_INDIGO_COMMS_API"
 ANDROID_TOOLS_PLACEHOLDER = "TTIVI_ANDROID_TOOLS_API"
 
 # Regex patterns to find API-links: [api-element](placeholder).
 REGEX_INDIGO_PLACEHOLDER = f"\[.*?\]\({INDIGO_PLACEHOLDER}\)"
 REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({INDIGO_GRADLEPLUGINS_PLACEHOLDER}\)"
+REGEX_INDIGO_COMMS_PLACEHOLDER = f"\[.*?\]\({INDIGO_COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
 # TODO(IVI-5445): Add support for API elements within backticks.
@@ -39,6 +42,15 @@ REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
 
 # Regex pattern to retrieve all placeholders.
 REGEX_GENERIC_PLACEHOLDER = "(?<=\]\()TTIVI_.*?(?=\))"
+
+def is_valid_placeholder(match):
+    '''
+    Checks whether 'match' has correct placeholder syntax. Returns a boolean.
+    '''
+    return match == INDIGO_PLACEHOLDER or \
+        match == INDIGO_GRADLEPLUGINS_PLACEHOLDER or \
+        match == INDIGO_COMMS_PLACEHOLDER or \
+        match == ANDROID_TOOLS_PLACEHOLDER
 
 def get_json_map(json_url):
     '''
@@ -56,6 +68,7 @@ def get_json_map(json_url):
     map
         A map of 'api_element' and 'url' key-value pairs.
     '''
+    print(f"Retrieving JSON data from {json_url}")
     raw_json = json.loads(urlopen(json_url).read())
     if not raw_json:
         raise ConnectionError(f"JSON cannot be retrieved from {json_url}.")
@@ -89,7 +102,7 @@ def url_lookup(api_reference_map, regex_match, path):
     url = api_reference_map.get(api_element)
     if not url:
         raise KeyError(f"API element '{api_element}' in file {path} cannot be found in the API Reference map.")
-    print(f"Generating URL for {api_element} in file {path}.")
+    print(f"Generating URL for {api_element} in file {path}")
     return url
 
 def validate_placeholders(target_dir):
@@ -107,10 +120,8 @@ def validate_placeholders(target_dir):
         with open(path, 'r+', encoding="utf-8") as file:
             content = file.read()
             for match in re.findall(REGEX_GENERIC_PLACEHOLDER, content):
-                if match != INDIGO_PLACEHOLDER and \
-                    match != INDIGO_GRADLEPLUGINS_PLACEHOLDER and \
-                    match != ANDROID_TOOLS_PLACEHOLDER:
-                    errors.append(f"{match} in file {path}.")
+                if not is_valid_placeholder(match):
+                    errors.append(f"{match} in file {path}")
     if len(errors):
         raise SyntaxError("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))
 
@@ -127,21 +138,22 @@ def url_generator(target_dir):
 
     indigo_map = get_json_map(os.path.join(INDIGO_BASE_URL, JSON_POSTFIX_URL))
     indigo_gradleplugins_map = get_json_map(os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, JSON_POSTFIX_URL))
+    indigo_comms_map = get_json_map(os.path.join(INDIGO_COMMS_BASE_URL, JSON_POSTFIX_URL))
     android_tools_map = get_json_map(os.path.join(ANDROID_TOOLS_BASE_URL, JSON_POSTFIX_URL))
-    count = 0
 
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
             content = file.read()
-            # Replace Indigo API Reference placeholders.
+            # Replace TTIVI_ placeholders.
             for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
                 content = content.replace(INDIGO_PLACEHOLDER, \
                     os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path)), 1)
-            # Replace Indigo Gradleplugins API Reference placeholders.
             for match in re.findall(REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER, content):
                 content = content.replace(INDIGO_GRADLEPLUGINS_PLACEHOLDER, \
                     os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, url_lookup(indigo_gradleplugins_map, match, path)), 1)
-            # Replace TomTom Android Tools API Reference placeholders.
+            for match in re.findall(REGEX_INDIGO_COMMS_PLACEHOLDER, content):
+                content = content.replace(INDIGO_COMMS_PLACEHOLDER, \
+                    os.path.join(INDIGO_COMMS_BASE_URL, url_lookup(indigo_comms_map, match, path)), 1)
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
                 content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
                     os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path)), 1)
