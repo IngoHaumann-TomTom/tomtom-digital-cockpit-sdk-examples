@@ -69,7 +69,8 @@ stages:
           - checkout: ivi-example-app
           - checkout: indigo
           - bash: |
-              set -ex
+              # Do not use "set -eux" here, otherwise vso commands below will contain an extra quote at the end
+              set -e
 
               cd $(Build.SourcesDirectory)/ivi-example-app
               INDIGO_PLATFORM=$(find . -name Versions.kt |xargs cat $1 |grep -E "INDIGO_PLATFORM" |grep -Eo "[0-9].[0-9].[0-9]+")
