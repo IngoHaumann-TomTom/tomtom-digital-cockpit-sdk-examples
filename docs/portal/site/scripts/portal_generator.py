@@ -44,7 +44,7 @@ from url_validator import url_validator
 
 SOURCE_DIR = "src"
 TARGET_DIR = "build/intermediate"
-INPUT_CHECK_FILE = "documentation/2. developing/index.md"
+INPUT_CHECK_FILE = "documentation/3. development/index.md"
 
 def verify_working_directory():
     '''Verifies whether script is run from correct working directory.'''
@@ -56,7 +56,7 @@ def is_jekyll_build():
     Returns a boolean to indicate whether this script is run with the optional argument "build".
     If true, the script will convert the Markdown files to HTML using Jekyll.
     '''
-    return len(sys.argv) == 3 and sys.argv[2] == "build_jekyll"
+    return len(sys.argv) == 2 and sys.argv[1] == "build_jekyll"
 
 def clean_old_files():
     '''Clean old build files.'''
