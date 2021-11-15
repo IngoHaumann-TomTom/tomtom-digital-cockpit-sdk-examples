@@ -38,9 +38,9 @@ while driving.
  
 ## Voice Personal Assistant (VPA)
 
-IndiGO allows the integration of 3rd-party voice engines to support voice personal assistants 
-(VPAs) in the vehicle. A generalized interface enables the customer to speak commands and reply 
-to system queries by voice. For example, the user can ask the system to make a phone call or find 
+IndiGO allows the integration of 3rd-party voice engines to support voice personal assistants
+(VPAs) in the vehicle. A generalized interface enables the customer to speak commands and repl
+to system queries by voice. For example, the user can ask the system to make a phone call or find
 a nearby hospital by talking.
 [Voice Personal Assistant (VPA)](/indigo/documentation/development/platform-domains/voice-personal-assistant-vpa)
 
@@ -48,11 +48,14 @@ a nearby hospital by talking.
 
 Branding is important, which is why IndiGO provides the means to customize its look. Colors,
 margins, sizes, and fonts can all be changed by applying a different theme. IndiGO also supplies a
-set of UI components that share a look-and-feel and adhere to the theme, such that the user 
+set of UI components that share a look-and-feel and adhere to the theme, such that the user
 can have a seamless UI experience.
 [Configuration Framework](/indigo/documentation/development/platform-domains/configuration-framework)
 
 ## Settings Framework
 
+It may be important to remember some of the state of your service or frontend. The user expects some
+continuity when relaunching an app, and a consistent state between road trips. IndiGO facilitates
+that by providing a settings service where you can store and retrieve your setting values in a
+type-safe manner.
 [Settings Framework](/indigo/documentation/development/platform-domains/settings-framework)
-
