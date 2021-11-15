@@ -93,9 +93,11 @@ or
 
 ## Integrating IndiGO in a vehicle
 
-__Note:__ This documentation is not finished yet.
-
-[TODO(IVI-4769)]:# (Create Vehicle Integration overview page)
+Read more about integrating
+[IndiGO in a vehicle](/indigo/documentation/integrating-indigo/integrating-in-vehicle) or on other 
+hardware and the 
+[hardware requirements](/indigo/documentation/integrating-indigo/hardware-requirements) 
+for the IndiGO platform.
 
 ## API reference
 
