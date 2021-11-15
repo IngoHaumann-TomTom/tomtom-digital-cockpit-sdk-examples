@@ -29,7 +29,7 @@ class HierarchyChildPanel(
     frontendContext: FrontendContext,
     val node: Node,
     private val addPanel: AddPanel
-) : TaskPanel(frontendContext, Mode.MAXIMIZED) {
+) : TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
         MutableLiveData(StaticStringResolver(node.name))

@@ -32,7 +32,7 @@ typealias AddPanel = (panel: Panel) -> Unit
  * The panel at the root of the hierarchy.
  */
 class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel)
-    : TaskPanel(frontendContext, Mode.MAXIMIZED) {
+    : TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
         MutableLiveData(ResourceStringResolver(R.string.frontend_hierarchy_root_panel))

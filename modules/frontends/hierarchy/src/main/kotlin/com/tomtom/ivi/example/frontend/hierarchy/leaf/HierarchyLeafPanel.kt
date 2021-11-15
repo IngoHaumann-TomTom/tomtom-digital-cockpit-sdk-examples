@@ -24,7 +24,7 @@ import com.tomtom.tools.android.api.resourceresolution.string.StringResolver
  * Displays a [node] that is at the leaf of the tree, meaning it has no children.
  */
 class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node)
-    : TaskPanel(frontendContext, Mode.MAXIMIZED) {
+    : TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
         MutableLiveData(StaticStringResolver(node.name))
