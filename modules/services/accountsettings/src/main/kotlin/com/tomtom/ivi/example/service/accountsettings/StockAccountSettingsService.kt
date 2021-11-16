@@ -11,7 +11,6 @@
 
 package com.tomtom.ivi.example.service.accountsettings
 
-import com.tomtom.ivi.api.framework.configuration.LongDynamicConfigurationKey
 import com.tomtom.ivi.api.service.settingsmanagement.LongSettingKey
 import com.tomtom.ivi.api.service.settingsmanagement.SettingScope
 import com.tomtom.ivi.api.service.settingsmanagement.SettingUpdateStrategy
@@ -20,6 +19,7 @@ import com.tomtom.ivi.example.account.DynamicConfiguration.onlineLoginValidPerio
 import com.tomtom.ivi.example.account.DynamicConfiguration.settingKeyPrefix
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsServiceBase
+import com.tomtom.ivi.platform.framework.api.configuration.api.LongDynamicConfigurationKey
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import kotlinx.serialization.json.Json
 import java.time.Instant
