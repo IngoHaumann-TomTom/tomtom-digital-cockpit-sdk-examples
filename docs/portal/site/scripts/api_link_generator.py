@@ -36,7 +36,6 @@ REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({INDIGO_GRADLEPLUGINS_PLACEH
 REGEX_INDIGO_COMMS_PLACEHOLDER = f"\[.*?\]\({INDIGO_COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
-# TODO(IVI-5445): Add support for API elements within backticks.
 # Regex pattern to retrieve the API element without brackets.
 REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
 
@@ -99,10 +98,23 @@ def url_lookup(api_reference_map, regex_match, path):
         The URL postfix of the matched API element.
     '''
     api_element = (re.search(REGEX_API_ELEMENT, regex_match)).group(0)
+
+    if api_element == None:
+        raise SyntaxError(f"API element cannot be captured from regex match {regex_match} in {path}.")
+
+    # Trim api_element when surrounded by backticks.
+    if api_element[0] == '`' and api_element[-1] == '`':
+        api_element = api_element[1:-1]
+
+    # Trim api_element when prepended by '@'.
+    if api_element[0] == '@':
+        api_element = api_element[1:]
+
     url = api_reference_map.get(api_element)
     if not url:
         raise KeyError(f"API element '{api_element}' in file {path} cannot be found in the API Reference map.")
     print(f"Generating URL for {api_element} in file {path}")
+
     return url
 
 def validate_placeholders(target_dir):
@@ -113,7 +125,7 @@ def validate_placeholders(target_dir):
     Parameters
     -----------
     target_dir : str
-        The files within this directory will checked for placeholder syntax.
+        The files within this directory will be checked for placeholder syntax.
     '''
     errors = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
@@ -125,7 +137,7 @@ def validate_placeholders(target_dir):
     if len(errors):
         raise SyntaxError("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))
 
-def url_generator(target_dir):
+def api_link_generator(target_dir):
     '''
     Replaces all API placeholders with the corresponding API Reference URLs.
 
@@ -144,6 +156,7 @@ def url_generator(target_dir):
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
             content = file.read()
+
             # Replace TTIVI_ placeholders.
             for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
                 content = content.replace(INDIGO_PLACEHOLDER, \

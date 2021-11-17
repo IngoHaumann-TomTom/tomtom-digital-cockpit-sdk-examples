@@ -40,7 +40,7 @@
 import shutil
 import os
 import sys
-from url_generator import url_generator
+from api_link_generator import api_link_generator
 from url_validator import url_validator
 from versions_generator import populate_versions
 
@@ -80,7 +80,7 @@ def build_jekyll():
 verify_working_directory()
 clean_old_files()
 create_intermediate_files()
-url_generator(TARGET_DIR)
+api_link_generator(TARGET_DIR)
 if is_export():
     populate_versions(os.path.join(TARGET_DIR, API_REFERENCE_DIR))
 url_validator(TARGET_DIR)
