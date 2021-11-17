@@ -3,8 +3,22 @@ title: Tutorials and Examples
 layout: default
 ---
 
-This is a list of how-to guides on topics that you may come across while developing for the IndiGO
-platform. Each how-to guide explains step-by-step how you can extend IndiGO.
+This is a list of tutorials and how-to guides on topics that you may come across while developing 
+for the IndiGO platform. Each how-to guide explains step-by-step how you can extend IndiGO.
+
+
+## Example application
+
+The example application is provided as a sample implementation. The application allows you to 
+verify your build environment by making sure Gradle can build this IndiGO example APK and install 
+it on an emulator. The application also contains several examples on how to add functionality to 
+your product.
+
+Check out the functionality of the IndiGO platform in the 
+[walk-through](/indigo/documentation/introduction/example-app) of the example application, or get 
+it yourself by following our [getting started](/indigo/documentation/getting-started) guide.
+
+Additional functionality is described in the tutorials and how-to guides below.
 
 ## Setup
 

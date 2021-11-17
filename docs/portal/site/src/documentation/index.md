@@ -8,6 +8,8 @@ information on both parts here on this developer portal. You can use the site ma
 skip ahead, or search for specific content by using the search bar above; just click the magnifying
 glass and enter your query.
 
+## Introducing IndiGO
+
 A good start is the [introduction](/indigo/introduction) section to find out more about IndiGO, 
 the concepts and the building blocks that make up the platform.
 
@@ -15,12 +17,12 @@ the concepts and the building blocks that make up the platform.
 
 Starting on a new project with an unfamiliar code base can be a daunting task. This documentation
 will explain the necessary steps to set up your environment properly, where and how to get the
-required keys and dependencies, and where to find example implementations and how-to guides for
+required keys and dependencies, and where to find example implementations and tutorials for
 several types of plugins.
 
 When you've completed the [getting started](#getting-started) guide, you can have a look at the
 [example application](#example-application) or perhaps already follow along with a
-[how-to](#how-to-guides) to add a first plugin of your own.
+[tutorials](#tutorials) to add a first plugin of your own.
 
 ### Getting started
 
@@ -64,38 +66,39 @@ areas. This includes:
 
 ### Example application
 
-The [example application](/indigo/documentation/tutorials-and-examples/example-app) repository is 
-provided as a sample implementation. The application allows you to verify your build environment 
-by making sure Gradle can build this IndiGO example APK and install it on an emulator.
+The example application is provided as a sample implementation. The application allows you to 
+verify your build environment by making sure Gradle can build this IndiGO example APK and install 
+it on an emulator. The example application also contains several examples on how to add 
+functionality to your product.
 
-The example application also contains several examples on how to add functionality to your product.
+Check out the functionality of the IndiGO platform in the 
+[walk-through](/indigo/documentation/introduction/example-app) of the example application, or get 
+it yourself by following our [getting started](/indigo/documentation/getting-started) guide.
 
-__Note:__ All these examples are currently part of a single application. A future release will 
+Additional functionality is described in the [tutorials](#tutorials) section.
+
+__Note:__ All the examples are currently part of a single application. A future release will 
 split the example app repository into a collection of applications, each demonstrating only a 
 single functionality.
 
-### How-to guides
+### Tutorials
 
 When you're familiar with the IndiGO architecture and the way it names and uses plugins and
 components, you can start following one of the
-[how-to guides](/indigo/documentation/tutorials-and-examples/how-to-guides). 
-A how-to guide will lead you step by step
-through the process of adding functionality to your product.
+[tutorials](/indigo/documentation/tutorials-and-examples). 
+A tutorial will lead you step by step through the process of adding functionality to your product.
 
-There are how-to guides on basics like adding a
-[frontend](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-a-frontend-plugin)
+There are tutorials on basics like adding a
+[frontend](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 or a
-[service](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-create-an-ivi-service),
+[service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service),
 up to more advanced topics like 
-[installing on your own hardware](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-install-on-hardware) 
-or 
-[adding custom actions to a media source](/indigo/documentation/tutorials-and-examples/how-to-guides/how-to-customize-a-media-source).
+[adding custom actions to a media source](/indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
 
-## Integrating IndiGO in a vehicle
+## Integrating IndiGO
 
-Read more about integrating
-[IndiGO in a vehicle](/indigo/documentation/integrating-indigo/integrating-in-vehicle) or on other 
-hardware and the 
+Read more about [integrating IndiGO](/indigo/documentation/integrating-indigo) in a vehicle or on 
+other hardware and the 
 [hardware requirements](/indigo/documentation/integrating-indigo/hardware-requirements) 
 for the IndiGO platform.
 
