@@ -22,7 +22,7 @@ these values are not used. To use them:
   (This is not the case in this example by default.)
 
 It is also possible to configure the NavKit2 API key without any code changes. You can do this by
-setting the `navkit2ApiKey` property to your NavKit2 API key in the top level `local.properties`
+setting the `navkit2ApiKey` property to your NavKit2 API key in the top-level `local.properties`
 file or as a Gradle property.
 
 The `navkit2DefaultApiKeyConfigKey` configuration value is used as a fallback for key configuration

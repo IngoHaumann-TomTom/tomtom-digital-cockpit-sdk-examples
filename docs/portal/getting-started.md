@@ -156,7 +156,7 @@ TomTom for the NavKit2 features used by IndiGO. See also section
 
 Now that you received your NavKit2 API key, it can be used with the IndiGO SDK.
 
-- Set the `navkit2ApiKey` property to your NavKit2 API key in the top level `local.properties` file
+- Set the `navkit2ApiKey` property to your NavKit2 API key in the top-level `local.properties` file
 or in your `gradle.properties` file. The `local.properties` file is located in your local SDK
 folder. The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
 environment variable, usually `~/.gradle/`. See

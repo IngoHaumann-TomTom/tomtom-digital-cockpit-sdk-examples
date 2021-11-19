@@ -299,7 +299,7 @@ class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
 ### Configure the deployment
 
-Define an IVI service host implementation in the top level `iviservicehosts.gradle.kts`
+Define an IVI service host implementation in the top-level `iviservicehosts.gradle.kts`
 file so it can be used in all projects, including tests.
 
 **<rootDir>/iviservicehosts.gradle.kts**
@@ -345,11 +345,11 @@ Register the service host build configuration in the main application's build sc
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-// Define the service host configs as defined in the top level `iviservicehosts.gradle.kts` file.
+// Define the service host configs as defined in the top-level `iviservicehosts.gradle.kts` file.
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))
 
 // Use Gradle's extra extensions to obtain the `accountServiceHost` config as defined in the
-// top level `iviservicehosts.gradle.kts` file.
+// top-level `iviservicehosts.gradle.kts` file.
 val accountServiceHost: IviServiceHostConfig by project.extra
 
 ivi {

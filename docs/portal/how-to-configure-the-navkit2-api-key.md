@@ -36,7 +36,7 @@ You can override static configuration values in Android resources. See
 `./modules/products/exampleapp/src/main/res/values/navkit2apikeys.xml` for a template and
 additional instructions.
 
-Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top level
+Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top-level
 `gradle.properties` file or do not apply the `com.tomtom.ivi.platform.defaults.navkit2` Gradle
 plugin to disable the build time check.
 
@@ -50,7 +50,7 @@ that provides the key. For this you can use a `Navkit2ApiKeyStaticConfigurationP
 The `ExampleApplication` class contains an example how to configure a
 `Navkit2ApiKeyStaticConfigurationProvider` instance.
 
-Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top level
+Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in the top-level
 `gradle.properties` file or do not apply the `com.tomtom.ivi.platform.defaults.navkit2` Gradle
 plugin to disable the build time check.
 

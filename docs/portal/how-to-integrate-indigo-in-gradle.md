@@ -81,7 +81,7 @@ dependencies {
 
 ## Root project configuration
 
-Apply the following plugins in the top level `build.gradle.kts` file:
+Apply the following plugins in the top-level `build.gradle.kts` file:
 
 ```kotlin
 plugins {

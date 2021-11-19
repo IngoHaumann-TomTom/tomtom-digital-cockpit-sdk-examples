@@ -24,7 +24,7 @@ class ExampleApplication : DefaultApplication() {
      *
      * By default [CONFIGURE_NAVKIT2_API_KEY_STATIC_CONFIGURATION_PROVIDER] is set to `false`,
      * as it is also possible to configure the NavKit2 API key without any code changes. You can
-     * do this by setting the `navkit2ApiKey` property to your NavKit2 API key in the top level
+     * do this by setting the `navkit2ApiKey` property to your NavKit2 API key in the top-level
      * `local.properties` file or as a Gradle property. This approach is preferred if you just
      * want to get it working.
      *

@@ -29,12 +29,12 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendE
  * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
  * import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
  *
- * // Define the frontends and menu items as defined in top level
+ * // Define the frontends and menu items as defined in top-level
  * // `frontends-and-menuitems.gradle.kts` file.
  * apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
  *
  * // Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
- * // defined in the top level `frontends-and-menuitems.gradle.kts` file.
+ * // defined in the top-level `frontends-and-menuitems.gradle.kts` file.
  * val accountFrontend: FrontendConfig by project.extra
  * val accountMenuItem: MenuItemConfig by project.extra
  *
