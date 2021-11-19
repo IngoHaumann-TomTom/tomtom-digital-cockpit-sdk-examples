@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>{{ page.title }}</title>
-  </head>
-  <body>
-    <style type="text/css">
-        img {
-          display: block;
-          margin-top: 2rem;
-          margin-bottom: 2rem;
-        }
-    </style>
-    {{ content }}
-  </body>
+
+<head>
+  <title>{{ page.title }}</title>
+</head>
+
+<body>
+  <style type="text/css">
+    .content img {
+      display: block;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .content :not(pre) code {
+      background: none;
+      font-size: inherit;
+      font-weight: 700;
+      opacity: 0.7;
+      letter-spacing: 0.2px;
+      padding: 0;
+    }
+
+    .content :not(pre) a code,
+    .content code a {
+      opacity: 1;
+      color: inherit !important;
+    }
+
+    .content p {
+      margin: 20px 0;
+    }
+
+    .content h2 {
+      margin-top: 40px;
+    }
+  </style>
+  {{ content }}
+</body>
+
 </html>
