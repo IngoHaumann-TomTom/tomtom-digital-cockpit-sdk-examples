@@ -13,20 +13,3 @@ tasks.register("setupEnv") {
     dependsOn(":installRepositoriesCfg")
 }
 
-/*
- * This dirty, dirty hack disables a check done by the Android Gradle plugin which literally causes
- * hundreds of thousands of lines of stacktraces on builds launched with the `--info` and `--debug`
- * command line arguments. We seem to not have any build scripts responsible for the warnings
- * Google complains about: they all come from dependencies.
- *
- * The warning in question:
- * ```
- * java.lang.RuntimeException: Configuration '<whatever>' was resolved during configuration time.
- * This is a build performance and scalability issue.
- * See https://github.com/gradle/gradle/issues/2298
- * ```
- *
- * When updating the Android Gradle plugin, verify the state of the issue above, and if it's fixed
- * in the new version, remove this.
- */
-project.extensions.add("_internalAndroidGradlePluginDependencyCheckerRegistered", true)
