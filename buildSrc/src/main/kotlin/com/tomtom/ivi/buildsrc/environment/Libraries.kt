@@ -30,7 +30,6 @@ object Libraries {
         object Indigo {
             const val PLATFORM_GROUP = "com.tomtom.ivi.platform"
             const val API_COMMON_DEBUGTAB = "$PLATFORM_GROUP:api_common_debugtab:${Versions.INDIGO_PLATFORM}"
-            const val API_FRAMEWORK_FRONTEND = "$PLATFORM_GROUP:api_framework_frontend:${Versions.INDIGO_PLATFORM}"
             const val API_SERVICES_SETTINGSMANAGEMENT = "$PLATFORM_GROUP:api_services_settingsmanagement:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
@@ -41,6 +40,7 @@ object Libraries {
             const val FRAMEWORK_API_PRODUCT_DEBUGPERMISSIONS = "$PLATFORM_GROUP:platform_framework_api_product_debugpermissions:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_PRODUCT_DEFAULTACTIVITY = "$PLATFORM_GROUP:platform_framework_api_product_defaultactivity:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_PRODUCT_DEFAULTAPPLICATION = "$PLATFORM_GROUP:platform_framework_api_product_defaultapplication:${Versions.INDIGO_PLATFORM}"
+            const val FRONTEND_API_COMMON_FRONTEND = "$PLATFORM_GROUP:platform_frontend_api_common_frontend:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FRONTEND = "$PLATFORM_GROUP:tools_testing_frontend:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FUNCTIONAL = "$PLATFORM_GROUP:tools_testing_functional:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_MAINMENUFRONTEND = "$PLATFORM_GROUP:tools_testing_mainmenufrontend:${Versions.INDIGO_PLATFORM}"

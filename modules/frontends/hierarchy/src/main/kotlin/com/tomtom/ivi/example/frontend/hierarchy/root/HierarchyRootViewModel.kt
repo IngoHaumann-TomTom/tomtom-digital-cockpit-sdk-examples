@@ -11,10 +11,11 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy.root
 
-import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.frontend.hierarchy.Node
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 
-class HierarchyRootViewModel(panel: HierarchyRootPanel) : FrontendViewModel<HierarchyRootPanel>(panel) {
+class HierarchyRootViewModel(panel: HierarchyRootPanel) :
+    FrontendViewModel<HierarchyRootPanel>(panel) {
 
     val children = listOf(
         Node("One", listOf(Node("One A"))),

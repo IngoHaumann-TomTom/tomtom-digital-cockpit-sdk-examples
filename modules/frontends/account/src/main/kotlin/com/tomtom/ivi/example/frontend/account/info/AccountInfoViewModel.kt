@@ -12,9 +12,9 @@
 package com.tomtom.ivi.example.frontend.account.info
 
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 
 class AccountInfoViewModel(panel: AccountInfoPanel) :
     FrontendViewModel<AccountInfoPanel>(panel) {

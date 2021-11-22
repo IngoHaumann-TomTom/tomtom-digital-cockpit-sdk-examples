@@ -31,8 +31,8 @@ All the code snippets in this guide can also be found in the IndiGO example appl
 Create a new frontend by deriving the `Frontend` framework class.
 
 ```kotlin
-import com.tomtom.ivi.api.framework.frontend.Frontend
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
     // ...
@@ -62,7 +62,7 @@ Add an `AccountFrontendBuilder` class, derived from `FrontendBuilder` class. Ove
 method in the class and return a new instance of the `AccountFrontend` class.
 
 ```kotlin
-import com.tomtom.ivi.api.framework.frontend.FrontendBuilder
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 
 class AccountFrontendBuilder: FrontendBuilder() {
 
@@ -77,8 +77,8 @@ suffix and must start with an upper case character.
 ### Creating the panel
 
 There are a number of specialised `Panel` classes that can be used in the platform (see 
-`com.tomtom.ivi.api.framework.frontend.panels` package in the API documentation). For this example 
-we will create a `Panel` class inheriting from the `TaskPanel` class.
+`com.tomtom.ivi.platform.frontend.api.common.frontend.panels` package in the API documentation).
+For this example we will create a `Panel` class inheriting from the `TaskPanel` class.
 
 A `TaskPanel` is typically launched by tapping one of the menu items, like opening Contacts;
 or some other UI event, like opening the Climate panel. It encapsulates a task that the user may

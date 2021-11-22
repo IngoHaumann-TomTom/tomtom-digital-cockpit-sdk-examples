@@ -382,9 +382,9 @@ package com.tomtom.ivi.example.frontend.account.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.allTrue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 
@@ -444,9 +444,9 @@ implementation.
 package com.tomtom.ivi.example.frontend.account.info
 
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import java.util.Locale
 
 class AccountInfoViewModel(panel: AccountInfoPanel) : FrontendViewModel<AccountInfoPanel>(panel) {

@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy.leaf
 
-import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.example.frontend.hierarchy.databinding.FrontendHierarchyLeafFragmentBinding
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 class HierarchyLeafFragment :
     IviFragment<HierarchyLeafPanel, HierarchyLeafViewModel>(HierarchyLeafViewModel::class) {

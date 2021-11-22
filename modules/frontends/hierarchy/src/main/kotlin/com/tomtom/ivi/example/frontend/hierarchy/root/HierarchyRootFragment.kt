@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy.root
 
-import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.example.frontend.hierarchy.databinding.FrontendHierarchyRootFragmentBinding
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 class HierarchyRootFragment :
     IviFragment<HierarchyRootPanel, HierarchyRootViewModel>(HierarchyRootViewModel::class) {

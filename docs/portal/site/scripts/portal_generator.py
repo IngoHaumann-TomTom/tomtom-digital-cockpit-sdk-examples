@@ -35,7 +35,7 @@
 # An example of replacing an API Reference placeholder by an API Reference URL:
 #   [OverlayPanel](TTIVI_INDIGO_API)
 # becomes
-#   [OverlayPanel](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_framework_frontend/com.tomtom.ivi.api.framework.frontend.panels/-overlay-panel/index.html)
+#   [OverlayPanel](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/platform_frontend_api_common_frontend/com.tomtom.ivi.platform.frontend.api.common.frontend.panels/-overlay-panel/index.html)
 
 import shutil
 import os

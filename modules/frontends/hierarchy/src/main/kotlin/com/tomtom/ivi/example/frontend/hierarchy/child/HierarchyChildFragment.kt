@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy.child
 
-import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.example.frontend.hierarchy.databinding.FrontendHierarchyChildFragmentBinding
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 class HierarchyChildFragment :
     IviFragment<HierarchyChildPanel, HierarchyChildViewModel>(HierarchyChildViewModel::class) {

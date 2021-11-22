@@ -12,8 +12,8 @@
 package com.tomtom.ivi.example.debugtab.activityview
 
 import com.tomtom.ivi.api.common.debugtab.DebugTabFrontendExtension
-import com.tomtom.ivi.api.framework.frontend.FrontendExtension
-import com.tomtom.ivi.api.framework.frontend.panels.DebugPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
 
 /**
  * This [FrontendExtension] adds a new tab for the [DebugPanel] of the example app.

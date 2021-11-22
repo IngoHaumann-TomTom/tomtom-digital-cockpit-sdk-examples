@@ -35,13 +35,17 @@ the standard [Android Automotive Radio API](https://source.android.com/devices/a
 Through the standard API for media, an Android [media browser service](https://developer.android.com/reference/androidx/media/MediaBrowserServiceCompat)
 will provide access to an hardware radio tuner module.
 
-This user interface will be a new panel. A panel is composed by three classes: a [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel)
-to define the logic; a view model, [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
-potentially using data binding; an [IviFragment](com.tomtom.ivi.api.framework.frontend.IviFragment)
+This user interface will be a new panel. A panel is composed by three classes: a
+[TaskPanel](com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel)
+to define the logic; a view model,
+[FrontendViewModel](com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel),
+potentially using data binding; an
+[IviFragment](com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment)
 defining the Android fragment and creating the instance of the view model.
 Please refer to the [frontend plugin guide](how-to-create-frontend-plugin.html) to get started.
 
-This user interface will use a specialization of the base user interface panel type [TaskPanel](com.tomtom.ivi.api.framework.frontend.panels.TaskPanel),
+This user interface will use a specialization of the base user interface panel type
+[TaskPanel](com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel),
 [MediaTaskPanel](com.tomtom.ivi.api.common.mediasources.MediaTaskPanel). This panel type is
 more suitable for media apps, as it contains media-specific facilities.
 
@@ -74,9 +78,9 @@ import com.tomtom.ivi.api.common.media.SourceId
 import com.tomtom.ivi.api.common.media.actions.standard.PlayMediaIdFromSourceAction
 import com.tomtom.ivi.api.common.mediasources.MediaTaskPanel
 import com.tomtom.ivi.api.common.mediasources.MediaFrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
 import com.tomtom.ivi.core.serviceapi.media.MediaService
 import com.tomtom.ivi.core.serviceapi.media.createApi
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 // This is an example source ID, matching the default Android Automotive car radio service.
 object RadioSourceId :
@@ -123,7 +127,7 @@ class RadioPanel(mediaContext: MediaFrontendContext) :
 
 ### Example view model
 
-The view model, a [FrontendViewModel](com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel),
+The view model, a [FrontendViewModel](com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel),
 transforms the panel's data into information ready to use in a view.
 
 In this example, the `RadioRecyclerViewItem` type represents an entry to display with a standard
@@ -140,7 +144,7 @@ import androidx.lifecycle.map
 import com.tomtom.ivi.api.common.media.mediaArtUriOrNull
 import com.tomtom.ivi.api.common.media.mediaUriStringOrNull
 import com.tomtom.ivi.api.common.media.titleOrNull
-import com.tomtom.ivi.api.framework.frontend.viewmodels.FrontendViewModel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 
 class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
@@ -175,14 +179,14 @@ class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
 
 ### Example fragment
 
-The fragment, based off [IviFragment](com.tomtom.ivi.api.framework.frontend.IviFragment), is mostly
-a container for glue code to connect the ViewModel to the XML layout, represented by
+The fragment, based off [IviFragment](com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment),
+is mostly a container for glue code to connect the ViewModel to the XML layout, represented by
 `RadioFragmentBinding`; additionally, it links the [SourceClient](com.tomtom.ivi.api.common.media.SourceClient)
 used in the panel to the necessary Android [Context](https://developer.android.com/reference/kotlin/android/content/Context).
 
 ```kotlin
 import android.content.Context
-import com.tomtom.ivi.api.framework.frontend.IviFragment
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.example.radio.databinding.RadioFragmentBinding
 
 class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioViewModel::class) {

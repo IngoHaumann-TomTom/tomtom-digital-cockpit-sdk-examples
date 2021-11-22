@@ -11,10 +11,9 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy
 
-import com.tomtom.ivi.api.framework.frontend.Frontend
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.panels.Panel
 import com.tomtom.ivi.example.frontend.hierarchy.root.HierarchyRootPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class HierarchyFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 

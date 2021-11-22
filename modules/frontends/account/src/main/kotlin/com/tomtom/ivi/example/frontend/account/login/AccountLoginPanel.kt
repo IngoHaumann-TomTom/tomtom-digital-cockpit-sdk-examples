@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.frontend.account.login
 
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 
 // TODO(IVI-5437): Remove dependency on Mode.SIDE_BAR.
 @Suppress("DEPRECATION")

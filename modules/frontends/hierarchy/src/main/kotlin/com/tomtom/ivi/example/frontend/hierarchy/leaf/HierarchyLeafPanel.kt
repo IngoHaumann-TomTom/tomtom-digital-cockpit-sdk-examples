@@ -13,18 +13,18 @@ package com.tomtom.ivi.example.frontend.hierarchy.leaf
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
 import com.tomtom.ivi.example.frontend.hierarchy.Node
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolver
 import com.tomtom.tools.android.api.resourceresolution.string.StringResolver
 
 /**
  * Displays a [node] that is at the leaf of the tree, meaning it has no children.
  */
-class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node)
-    : TaskPanel(frontendContext) {
+class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node) :
+    TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
         MutableLiveData(StaticStringResolver(node.name))

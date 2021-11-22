@@ -13,14 +13,14 @@ package com.tomtom.ivi.example.frontend.hierarchy.root
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.IviFragment
-import com.tomtom.ivi.api.framework.frontend.panels.Panel
-import com.tomtom.ivi.api.framework.frontend.panels.TaskPanel
 import com.tomtom.ivi.example.frontend.hierarchy.Node
 import com.tomtom.ivi.example.frontend.hierarchy.R
 import com.tomtom.ivi.example.frontend.hierarchy.child.HierarchyChildPanel
 import com.tomtom.ivi.example.frontend.hierarchy.leaf.HierarchyLeafPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.Panel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 import com.tomtom.tools.android.api.resourceresolution.drawable.DrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.drawable.ResourceDrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringResolver
@@ -31,8 +31,8 @@ typealias AddPanel = (panel: Panel) -> Unit
 /**
  * The panel at the root of the hierarchy.
  */
-class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel)
-    : TaskPanel(frontendContext) {
+class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel) :
+    TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
         MutableLiveData(ResourceStringResolver(R.string.frontend_hierarchy_root_panel))

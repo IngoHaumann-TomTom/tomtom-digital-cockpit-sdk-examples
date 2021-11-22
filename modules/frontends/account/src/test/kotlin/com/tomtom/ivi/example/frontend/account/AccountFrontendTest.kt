@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.frontend.account
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel

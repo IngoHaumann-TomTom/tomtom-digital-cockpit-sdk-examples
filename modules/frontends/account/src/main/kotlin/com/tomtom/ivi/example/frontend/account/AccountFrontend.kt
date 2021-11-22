@@ -11,13 +11,13 @@
 
 package com.tomtom.ivi.example.frontend.account
 
-import com.tomtom.ivi.api.framework.frontend.Frontend
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
-import com.tomtom.ivi.api.framework.frontend.panels.filterPanels
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.tools.android.api.livedata.combine
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 

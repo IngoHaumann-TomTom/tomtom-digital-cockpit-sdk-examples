@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.frontend.account
 
-import com.tomtom.ivi.api.framework.frontend.FrontendBuilder
-import com.tomtom.ivi.api.framework.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class AccountFrontendBuilder : FrontendBuilder() {
 
