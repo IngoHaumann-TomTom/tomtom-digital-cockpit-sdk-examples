@@ -25,6 +25,6 @@ ivi {
 dependencies {
     implementation(Libraries.Android.ACTIVITY)
     implementation(Libraries.TomTom.Indigo.API_COMMON_DEBUGTAB)
-    implementation(Libraries.TomTom.Indigo.CORE_COMMON_UICONTROLS)
     implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UIEMBEDDING)
+    implementation(Libraries.TomTom.Tools.API_UICONTROLS)
 }

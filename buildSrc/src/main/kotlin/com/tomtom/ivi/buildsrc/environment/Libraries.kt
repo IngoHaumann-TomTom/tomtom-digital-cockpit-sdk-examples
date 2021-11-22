@@ -32,7 +32,6 @@ object Libraries {
             const val API_COMMON_DEBUGTAB = "$PLATFORM_GROUP:api_common_debugtab:${Versions.INDIGO_PLATFORM}"
             const val API_SERVICES_SETTINGSMANAGEMENT = "$PLATFORM_GROUP:api_services_settingsmanagement:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
-            const val CORE_COMMON_UICONTROLS = "$PLATFORM_GROUP:core_common_uicontrols:${Versions.INDIGO_PLATFORM}"
             const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_LIFECYCLE = "$PLATFORM_GROUP:platform_framework_api_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_UID = "$PLATFORM_GROUP:platform_framework_api_common_uid:${Versions.INDIGO_PLATFORM}"
@@ -61,6 +60,7 @@ object Libraries {
 
         object Tools {
             const val API_LIVEDATA = "com.tomtom.tools.android:api_livedata:${Versions.TOMTOM_ANDROID_TOOLS}"
+            const val API_UICONTROLS = "com.tomtom.tools.android:api_uicontrols:${Versions.TOMTOM_ANDROID_TOOLS}"
         }
 
         object CommunicationsSdk {
