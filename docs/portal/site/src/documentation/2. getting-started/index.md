@@ -3,32 +3,41 @@ title: Getting Started
 layout: default
 ---
 
-This is a step-by-step guide on how to compile and run the IndiGO example application.
+<button
+  onclick="location.href='https://developer.tomtom.com/indigo/request-access'"
+  style="background-color:#df1b12; color:white; border:none; padding:10pt; margin:10pt; float:right; font-weight:bold">
+  REGISTER FOR<br/>EARLY ACCESS
+</button>
 
-The IndiGO SDK requires a working Android development environment, including an OpenJDK 11
-installation. You also need access to our SDK binaries, and for navigation related features to work,
-an API key for NavKit2. Then you will be able to compile and run your first IndiGO application.
+Before you can dive into IndiGO, you need to be able to access all the resources that are required
+to build an IndiGO product. Click this button to request _early access_. If granted, you'll be sent
+an Evaluation Agreement (EA).
 
-An overview of this guide's content:
+### Access the IndiGO SDK
 
-- [Installing OpenJDK 11](/indigo/documentation/getting-started/installing-openjdk-11)
-    - [OpenJDK for Ubuntu](/indigo/documentation/getting-started/installing-openjdk-11#openjdk-for-ubuntu)
-    - [OpenJDK for Mac](/indigo/documentation/getting-started/installing-openjdk-11#openjdk-for-mac)
-    - [OpenJDK for Windows](/indigo/documentation/getting-started/installing-openjdk-11#openjdk-for-windows)
-- [Installing IndiGO SDK](/indigo/documentation/getting-started/installing-indigo-sdk)
-- [Getting the NavKit2 API key](/indigo/documentation/getting-started/getting-the-navkit2-api-key)
-    - [Register as a TomTom Developer](/indigo/documentation/getting-started/getting-the-navkit2-api-key#registering-as-a-tomtom-developer)
-    - [Installing the API key](/indigo/documentation/getting-started/getting-the-navkit2-api-key#installing-the-api-key)
-    - [Evaluation agreement](/indigo/documentation/getting-started/getting-the-navkit2-api-key#evaluation-agreement)
-- [Accessing the Artifact repository](/indigo/documentation/getting-started/accessing-the-artifact-repository)
-    - [Specifying credentials from the commandline](/indigo/documentation/getting-started/accessing-the-artifact-repository#specifying-credentials-from-the-command-line)
-    - [Storing credentials globally](/indigo/documentation/getting-started/accessing-the-artifact-repository#storing-credentials-globally)
-- [Configuring Android Studio](/indigo/documentation/getting-started/configuring-android-studio)
-    - [Gradle plugin for Android Studio](/indigo/documentation/getting-started/configuring-android-studio#gradle-plugin-for-android-studio)
-    - [Building with Android Studio](/indigo/documentation/getting-started/configuring-android-studio#building-with-android-studio)
-- [The IndiGO emulator](/indigo/documentation/getting-started/the-indigo-emulator)
-    - [The IndiGO emulator image](/indigo/documentation/getting-started/the-indigo-emulator#the-indigo-emulator-image)
-    - [The IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-indigo-emulator-device)
-- [Frequently Asked Questions (FAQ)](/indigo/documentation/getting-started/frequently-asked-questions-faq)
+Accessing IndiGO involves these credentials:
+
+- A Developer Portal account, which you've used to access this page.
+- Repository credentials, to download the IndiGO SDK and its dependencies.
+- A TomTom API key, to enable TomTom's map and navigation features.
+
+After you've provided a signed EA, you'll receive the repository credentials that you can use to
+download the IndiGO SDK. This will allow you to build and run IndiGO.
+
+You'll also be given access to TomTom's maps and navigation features for your IndiGO product. This
+capability will be added to your [API key](https://developer.tomtom.com/user/me/apps) on the
+Developer Portal.
+
+__Note:__ Only a single Developer Portal account per customer is required to obtain that extra
+capability. Using that single TomTom API key in all your source code will allow you to have maps and
+navigation available in your products.
+
+## Minimal Requirements
+
+The IndiGO SDK has the following minimal requirements:
+
+- OpenJDK 11. (AdoptOpenJDK 11 for Windows.)
+- Android Studio Arctic Fox 2020.3.1 or more recent.
+- __Windows:__ WinRAR, to support compressed archives with long paths.
 
 Get started: [Installing OpenJDK 11](/indigo/documentation/getting-started/installing-openjdk-11).
