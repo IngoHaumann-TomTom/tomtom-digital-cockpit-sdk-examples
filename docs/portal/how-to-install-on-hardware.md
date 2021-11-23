@@ -104,15 +104,14 @@ Text-to-Speech application.
 ### Multimedia sources
 
 IndiGO supports any Android Automotive media source that can also be found in the Android
-Automotive Play Store; additionally, any media app which supports Android Auto can be used.
+Automotive Play Store.
 
-It is not yet possible to log in to multimedia apps (such as IHeartRadio or Spotify) from within
-IndiGO.
+By default IndiGO does not support advanced functionality, such as custom actions. These add
+capabilities unique for a single source, such as liking a song. Support for them can be added via
+an IndiGO plugin.
 
-On Automotive Android, it is possible to log in to the source by tapping on it in the app launcher.
-
-From plain Android it is only possible to do so via a media controller app, like the one from
-Google (https://github.com/googlesamples/android-media-controller)
+If a multimedia app requires a sign in, a modal panel allowing you to do so will open when
+selecting the app.
 
 If the hardware and AOSP build both support Radio (FM/AM/DAB), the radio multimedia source in
 IndiGO should also work (albeit with a confusing user interface, as no specialization work for
