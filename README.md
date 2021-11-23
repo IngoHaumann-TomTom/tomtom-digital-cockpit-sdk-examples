@@ -8,10 +8,6 @@ This repository contains the source code of example application built on IndiGO 
 
 Code used by the Gradle to sync the Gradle modules and build the app.
 
-### `docs/`
-
-The folder containing documentation, examples, and guides to create IndiGO components.
-
 ### `gradle/`
 
 The Gradle wrapper used to sync the Gradle modules and build the app.
@@ -62,7 +58,7 @@ And then build with:
 ## Setting up the development environment
 
 For the entire setup process, please consult the following page:
-[docs/portal/getting-started.md](docs/portal/getting-started.md)
+[Getting Started](https://developer.tomtom.com/indigo/documentation/getting-started)
 
 ## Copyright
 

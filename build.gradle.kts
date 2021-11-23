@@ -268,22 +268,8 @@ subprojects {
     }
 }
 
-// TODO(IVI-4959): Remove the old 'docs' task.
-tasks.register<Exec>("docs") {
-    val portalDirectory = "${project.projectDir}/docs/portal"
-    val outputDirectory = portalDirectory + "/html"
-    description = "Generate html documentation in '$outputDirectory'"
-    group = "Documentation"
-
-    workingDir(portalDirectory)
-    commandLine(portalDirectory + "/convert.sh")
-    args(outputDirectory)
-}
-
-// TODO(IVI-4959): Rename this task to 'docs'.
 /**
- * This task requires you to have Python3 and Ruby packages installed on your system.
- * For installing the Ruby packages, consult the README.md under docs/portal/site.
+ * TomTom internal tooling, see docs/portal/site/README.md.
  */
 tasks.register<Exec>("portal_export") {
     val portalDirectory = "${project.projectDir}/docs/portal/site"
@@ -295,6 +281,9 @@ tasks.register<Exec>("portal_export") {
     args("-B", "scripts/portal_generator.py", "export")
 }
 
+/**
+ * TomTom internal tooling, see docs/portal/site/README.md.
+ */
 tasks.register<Exec>("portal_check") {
     val portalDirectory = "${project.projectDir}/docs/portal/site"
     description = "Validates Developer Portal content."

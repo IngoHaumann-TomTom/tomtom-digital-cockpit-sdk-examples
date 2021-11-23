@@ -42,7 +42,6 @@ def url_validator(target_dir):
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
             for match in re.findall(REGEX_URL, content):
-                print(f"Checking URL {match} in {path}")
                 try:
                     status = requests.head(match).status_code
                 except:

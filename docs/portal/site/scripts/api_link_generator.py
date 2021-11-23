@@ -67,7 +67,6 @@ def get_json_map(json_url):
     map
         A map of 'api_element' and 'url' key-value pairs.
     '''
-    print(f"Retrieving JSON data from {json_url}")
     raw_json = json.loads(urlopen(json_url).read())
     if not raw_json:
         raise ConnectionError(f"JSON cannot be retrieved from {json_url}.")
@@ -113,7 +112,6 @@ def url_lookup(api_reference_map, regex_match, path):
     url = api_reference_map.get(api_element)
     if not url:
         raise KeyError(f"API element '{api_element}' in file {path} cannot be found in the API Reference map.")
-    print(f"Generating URL for {api_element} in file {path}")
 
     return url
 

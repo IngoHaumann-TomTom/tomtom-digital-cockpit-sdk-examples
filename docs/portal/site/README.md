@@ -1,75 +1,31 @@
 
-We use [Jekyll](https://jekyllrb.com/), which is a 
-[Ruby Gem](https://en.wikipedia.org/wiki/RubyGems), to generate static HTML files from Markdown 
-files to populate the developer portal with. 
-
 ## Introduction
 
-The documentation in the `/src` folder covers 3 sections on the developer portal:
-- Documentation
-- API Reference
-- Releases
+This directory contains the source files for the Developer Portal.
 
-These sections are updated on the developer portal by uploading the generated HTML files for each 
-section separately. 
+The documentation in the `/src` folder covers the following 3 sections on the Portal:
+- [Documentation](https://developer-staging.tomtom.com/indigo/documentation)
+- [API Reference](https://developer-staging.tomtom.com/indigo/api-reference)
+- [Releases](https://developer-staging.tomtom.com/indigo/releases)
 
-The order of menu items and navigation bars on the developer portal are 
-automatically generated from the file names and directory structure of the uploaded files:
-
-- The digits in file and folder names determine their order in the navigation (sub)menu.
-- The directory structure directly reflects how the levels of pages are organized. Nested files will 
-  be nested pages.
-  
 ## Getting started
 
-To use Jekyll, you first need to have Ruby packages installed on your system. After installing
-the Ruby essentials, you can install Jekyll with the `gem` command, which is Ruby's package 
-manager. As a final step you will have to update dependencies with 
-[Bundler](https://medium.com/never-hop-on-the-bandwagon/gemfile-and-gemfile-lock-in-ruby-65adc918b856).
+If you want to add new documentation or need to edit the existing source files, please follow these
+guidelines:
+[Writing Documentation for the Developer Portal](https://confluence.tomtomgroup.com/display/SSAUTO/Writing+Documentation+for+the+Developer+Portal).
 
-First install the Ruby packages:
+Follow these instructions if you wish to upload your changes to the Developer Portal staging
+environment: 
+[How to upload to the Developer Portal](https://confluence.tomtomgroup.com/display/SSAUTO/How+to+upload+to+the+Developer+Portal)
 
-```bash
-sudo apt-get install ruby-full
-```
+## Tools
 
-Then install Jekyll and Bundler:
-
-```bash
-sudo gem install jekyll bundler
-```
-
-Now run Bundler to update the environment and dependencies:
+There is some tooling to automatically generate API links and check for broken links.
+See the 
+[Writing Documentation](https://confluence.tomtomgroup.com/display/SSAUTO/Writing+Documentation+for+the+Developer+Portal) 
+guide for more info on adding API links.
+You can verify whether the API links and URLs are (still) correct with the following task:
 
 ```bash
-bundler install
+./gradlew portal_check
 ```
-
-__Note:__ Bundler may require you to run this command as `sudo`.
-
-If all dependencies are met, you will get the following confirmation:
-
-```bash
-Bundle complete! 2 Gemfile dependencies, 28 gems now installed.
-Use `bundle info [gemname]` to see where a bundled gem is installed.
-```
-
-You are now ready to use Jekyll. For more information on install options and operating systems, 
-consult [the Jekyll installation documentation](https://jekyllrb.com/docs/installation/).
-
-## Commands
-
-To generate the HTML files:
-
-```bash
-./gradlew portal
-```
-
-The HTML files are generated in the `build/html` directory, under their respective 
-section folders. A few notes on the generated files:
-
-- The generated files will have no styling, so they will be rendered as plain HTML when previewed. 
-  The styling will get added automatically to the pages when uploaded to the developer portal.
-- The generated HTML pages lack any form of navigation when previewed, as there is no index page 
-  that lists the site's content. This also will be added by the developer portal.
-  

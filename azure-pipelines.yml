@@ -78,7 +78,6 @@ stages:
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/build.yml
-    - template: .azure-templates/docs.yml
     - template: .azure-templates/portal_check.yml
     - template: build/build-cleanup.yml@devops-templates
 
