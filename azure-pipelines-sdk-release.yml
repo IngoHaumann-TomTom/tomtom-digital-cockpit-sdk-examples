@@ -17,6 +17,8 @@ variables:
   - template: .azure-templates/variables.yml
   # Variable groups used below are defined in the project's Pipelines Library.
   - group: 'AzureStorage'
+  # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
+  - group: bdtools-access-secrets
   - group: 'AmazonWebServices'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
@@ -30,6 +32,10 @@ resources:
   - container: docker_indigo_build
     image: 'indigo/build:$(dockerImageVersion)'
     endpoint: 'IVI-Docker'
+  - container: docker_indigo_scanner
+    image: 'indigo/scanner:$(dockerImageVersion)'
+    endpoint: 'IVI-Docker'
+    options: $(dockerImageTestingOptions)
   repositories:
   - repository: indigoqa
     type: git
@@ -73,17 +79,23 @@ stages:
               set -e
 
               cd $(Build.SourcesDirectory)/ivi-example-app
-              INDIGO_PLATFORM=$(find . -name Versions.kt |xargs cat $1 |grep -E "INDIGO_PLATFORM" |grep -Eo "[0-9].[0-9].[0-9]+")
-
+              versionsFilePath=$(find . -name Versions.kt)
+              INDIGO_PLATFORM=$(cat $versionsFilePath |grep "INDIGO_PLATFORM = " |grep -Eo "[0-9].[0-9].[0-9]+")
+              NAVTESTCORE_VERSION=$(cat $versionsFilePath |grep "NAVTEST_PLUGIN = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              NAVEMULATOR_VERSION=$(cat $versionsFilePath |grep "NAVUI_EMULATORS_PLUGIN = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
               cd $(Build.SourcesDirectory)/indigo
               git checkout tags/$INDIGO_PLATFORM
               tomlFilePath=$(find . -name libraries.versions.toml)
               tomtomAndroidTools=$(cat $tomlFilePath |grep "tomtomAndroidTools = " |grep -Eo "[0-9].[0-9].[0-9]+")
               iviCommunicationsSdk=$(cat $tomlFilePath |grep "iviCommunicationsSdk = " |grep -Eo "[0-9].[0-9].[0-9]+")
+              navKit2CoreBom=$(cat $tomlFilePath |grep "navKit2CoreBom = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
               echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
+              echo "##vso[task.setvariable variable=NAVTESTCORE_VERSION;isOutput=true]$NAVTESTCORE_VERSION"
+              echo "##vso[task.setvariable variable=NAVEMULATOR_VERSION;isOutput=true]$NAVEMULATOR_VERSION"
               echo "##vso[task.setvariable variable=tomtomAndroidTools;isOutput=true]$tomtomAndroidTools"
               echo "##vso[task.setvariable variable=iviCommunicationsSdk;isOutput=true]$iviCommunicationsSdk"
+              echo "##vso[task.setvariable variable=navKit2CoreBomVersion;isOutput=true]$navKit2CoreBom"
             name: Version
             displayName: 'Expose versions to Azure'
           - template: build/build-cleanup.yml@devops-templates
@@ -238,6 +250,30 @@ stages:
         steps:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
+
+  - stage: OSSCompliance
+    displayName: OSS compliance scan
+    dependsOn: Versions
+    variables:
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.iviCommunicationsSdk'] ]
+      VERSION_NAVKIT2: $[ stageDependencies.Versions.GetVersions.outputs['Version.navKit2CoreBomVersion'] ]
+      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
+      VERSION_NAVTESTCORE: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVTESTCORE_VERSION'] ]
+      VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVEMULATOR_VERSION'] ]
+    jobs:
+      - job: OSSComplianceScan
+        displayName: OSS compliance scan
+        container: docker_indigo_scanner
+        steps:
+          - template: .azure-templates/oss-groupedreport.yml
+            parameters:
+              conf_file_path: .azure-templates/bdtools-sdk.yml
+              product: ivi-indigo-sdk
+              product_version: $(VERSION_EXAMPLES)
+              report_filename: "oss-compliance_tomtom-indigo-sdk"
+              artifactory_location: indigo_sdk_ossreport
+              bdtools_environment: prod
 
   - stage: Verification
     dependsOn: [ Publishing, Documentation ]

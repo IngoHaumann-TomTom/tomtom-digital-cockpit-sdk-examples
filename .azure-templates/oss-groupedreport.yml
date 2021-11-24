@@ -1,0 +1,124 @@
+# Copyright (c) 2020 - 2021 TomTom N.V. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+# to use this Software in accordance with the terms of your license agreement. If you are
+# not the licensee then you are not authorised to use this software in any manner and should
+# immediately return it to TomTom N.V.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  # conf_file_path : location of the static configuration file used by BlackDuck for scanning.
+  conf_file_path: ''
+  # product : name of the product to be scanned.
+  product: ''
+  # product_version : semantic version of the project to be scanned.
+  product_version: ''
+  # report_filename: the name of the report.
+  report_filename: ''
+  # root_folder: where the scan starts (relative path to the root of the project).
+  root_folder: ''
+  # artifactory_location : the location in Artifactory where to publish the report.
+  artifactory_location: ''
+  bdtools_environment: 'preprod'
+
+steps:
+  - bash: |
+      set -e
+      patch_version="$(echo '$(VERSION_EXAMPLES)' | cut -d'.' -f3)"
+      echo "##vso[task.setvariable variable=PATCH_VERSION]${patch_version}"
+    displayName: create patch version variable
+
+  - script: |
+      echo "Create locked configuration"
+
+      bdtool-config --repo-type=GIT \
+                    --repository=. \
+                    --version=${{parameters.product}}:${{parameters.product_version}} \
+                    --git-tag-limit=500 \
+                    --auto-inherit=${{parameters.product}}:GIT_TAG \
+                    --log-level=DEBUG \
+                    --static-configuration=${{parameters.conf_file_path}} \
+                    --dependency='${{parameters.product}}->ivi-indigo:$(VERSION_PLATFORM)' \
+                    --dependency='${{parameters.product}}->ivi-indigo-docs:$(VERSION_EXAMPLES)' \
+                    --dependency='${{parameters.product}}->ivi-indigo-companion-app-communication:$(VERSION_COMMUNICATIONS_SDK)' \
+                    --dependency='${{parameters.product}}->nav-nk2-bom-android:$(VERSION_NAVKIT2)' \
+                    --dependency='${{parameters.product}}->nav-tomtom-android-tools:$(VERSION_TOMTOM_ANDROID_TOOLS)' \
+                    --dependency='${{parameters.product}}->nav-navtest-core:$(VERSION_NAVTESTCORE)' \
+                    --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)'
+
+      export AZURE_CLIENT_ID=$(azure-client-id)
+      export AZURE_CLIENT_SECRET=$(azure-client-secret)
+      export AZURE_TENANT_ID=$(azure-tenant-id)
+
+      # For production, use "prod"
+      export BDTOOLS_ENVIRONMENT="${{parameters.bdtools_environment}}"
+      bdtool-scanner  --repo-type=LOCAL \
+                      --repository=./${{parameters.root_folder}} \
+                      --host-type=LOCAL \
+                      --log-level=DEBUG \
+                      --log-folder $(Agent.TempDirectory)/bdtoolslogs \
+                      --cache $(Agent.TempDirectory)/bdtoolscache \
+                      --lock-configuration ./bdtools.lock.yml
+    displayName: Perform configuration and scan
+    continueOnError: true
+    timeoutInMinutes: 20
+  - task: ArchiveFiles@2
+    displayName: Archive BlackDuck lock file ${{parameters.root_folder}}
+    inputs:
+      rootFolderOrFile: 'bdtools.lock.yml'
+      includeRootFolder: false
+      archiveType: 'tar'
+      tarCompression: 'gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
+      replaceExistingArchive: true
+  - task: PublishPipelineArtifact@1
+    displayName: Publish lock file in pipeline artifacts ${{parameters.root_folder}}
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
+      artifactName: scanning-${{parameters.root_folder}}-lockfile
+  - task: ArchiveFiles@2
+    displayName: Archive BlackDuck logs ${{parameters.root_folder}}
+    inputs:
+      rootFolderOrFile: '$(Agent.TempDirectory)/bdtoolslogs/'
+      includeRootFolder: false
+      archiveType: 'tar'
+      tarCompression: 'gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
+      replaceExistingArchive: true
+  - task: PublishPipelineArtifact@1
+    displayName: Publish logs in pipeline artifacts ${{parameters.root_folder}}
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
+      artifactName: scanning-${{parameters.root_folder}}-logs
+  - script: |
+      export AZURE_CLIENT_ID=$(azure-client-id)
+      export AZURE_CLIENT_SECRET=$(azure-client-secret)
+      export AZURE_TENANT_ID=$(azure-tenant-id)
+
+      export BDTOOLS_ENVIRONMENT="${{parameters.bdtools_environment}}"
+
+      # Will generete a JSON report to a file on the current working directory
+      # called "license_compliance_report.json" based on the BOM of the project specified.
+      bdtool-reporter report  --project ${{parameters.product}} \
+                              --version ${{parameters.product_version}} \
+                              --output "$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json" \
+                              --timeout 1000 \
+                              --no-await -t 0 \
+                              --draft
+    displayName: Generate report ${{parameters.root_folder}}
+  - task: PublishPipelineArtifact@1
+    displayName: Publish output in pipeline artifacts ${{parameters.root_folder}}
+    inputs:
+      targetPath: '$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
+      artifactName: scanning-${{parameters.root_folder}}-output
+  - template: publish/push-to-artifactory.yml@devops-templates
+    parameters:
+      currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
+      workingDirectory: "$(Agent.TempDirectory)"
+      artifactId: "${{parameters.artifactory_location}}"
+      folderOrFileName: "${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
+      condition: eq(variables['Agent.JobStatus'], 'Succeeded')
