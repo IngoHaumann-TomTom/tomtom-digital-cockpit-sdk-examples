@@ -3,7 +3,7 @@ title: Platform Overview
 layout: default
 ---
 
-## What is IndIGO?
+## What is IndiGO?
 
 IndiGO is a framework to develop Android-based digital cockpits. It includes an application
 platform to support the development of highly integrated applications on top of Android Automotive. It
