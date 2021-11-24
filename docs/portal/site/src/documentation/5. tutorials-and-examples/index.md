@@ -15,7 +15,7 @@ it on an emulator. The application also contains several examples on how to add 
 your product.
 
 Check out the functionality of the IndiGO platform in the 
-[walk-through](/indigo/documentation/introduction/example-app) of the example application, or get 
+[walk-through](/indigo/documentation/platform-overview/example-app) of the example application, or get 
 it yourself by following our [getting started](/indigo/documentation/getting-started) guide.
 
 Additional functionality is described in the tutorials and how-to guides below.

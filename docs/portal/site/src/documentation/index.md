@@ -3,15 +3,17 @@ title: Documentation
 layout: default
 ---
 
-Creating an IndiGO product requires two parts: development and vehicle integration. We provide
-information on both parts here on this developer portal. You can use the site map on the left to
-skip ahead, or search for specific content by using the search bar above; just click the magnifying
-glass and enter your query.
+Creating an IndiGO product requires two distinct activities: development of the software using the 
+IndiGO SDK, and integrating that software in the vehicle. Development for IndiGO is an independent 
+activity, and can be achieved using emulators and mobile devices. We provide information on both 
+parts here on this developer portal. You can use the site map on the left to skip ahead, or search 
+for specific content by using the search bar above; just click the magnifying glass and enter your 
+query.
 
-## Introducing IndiGO
+## Introducing the IndiGO platform
 
-A good start is the [introduction](/indigo/introduction) section to find out more about IndiGO, 
-the concepts and the building blocks that make up the platform.
+A good start is the [IndiGO platform overview](/indigo/platform-overview) section to find out more 
+about IndiGO, the concepts and the building blocks that make up the platform.
 
 ## Building for IndiGO
 
@@ -72,8 +74,8 @@ it on an emulator. The example application also contains several examples on how
 functionality to your product.
 
 Check out the functionality of the IndiGO platform in the 
-[walk-through](/indigo/documentation/introduction/example-app) of the example application, or get 
-it yourself by following our [getting started](/indigo/documentation/getting-started) guide.
+[walk-through](/indigo/documentation/platform-overview/example-app) of the example application, 
+or get it yourself by following our [getting started](/indigo/documentation/getting-started) guide.
 
 Additional functionality is described in the [tutorials](#tutorials) section.
 
@@ -98,9 +100,7 @@ up to more advanced topics like
 ## Integrating IndiGO
 
 Read more about [integrating IndiGO](/indigo/documentation/integrating-indigo) in a vehicle or on 
-other hardware and the 
-[hardware requirements](/indigo/documentation/integrating-indigo/hardware-requirements) 
-for the IndiGO platform.
+other hardware.
 
 ## API reference
 

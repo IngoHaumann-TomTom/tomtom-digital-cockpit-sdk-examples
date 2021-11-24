@@ -1,11 +1,11 @@
 ---
-title: Introduction
+title: Platform Overview
 layout: default
 ---
 
 ## What is IndIGO?
 
-IndiGO is a framework to deliver Android-based digital cockpits. It includes an application
+IndiGO is a framework to develop Android-based digital cockpits. It includes an application
 platform to support the development of highly integrated applications on top of Android Automotive. It
 also offers a complete set of industrial strength end-user applications, that can be customized to 
 the needs of a car maker.
@@ -40,13 +40,13 @@ information to the cluster display.
 
 ![IndiGO architecture](images/indigo-architecture.png)
 
-The IndiGO SDK includes an “IVI Example App” that integrates the platform
-with all of the stock applications for IndiGO. The example is a fully working IVI system,
-including phone calling, contacts handling, messaging, notifications, multimedia, navigation and
-much more, all production-level code. All of the applications included in that example
-application are shown at the top of the diagram, in the section “IndiGO Application Suite”. The 
-[Getting Started Guide](/indigo/documentation/getting-started) explains
-step-by-step how to set up your development environment to build that example application.
+The IndiGO SDK includes an “IVI Example App” that integrates the platform with all of the stock 
+applications for IndiGO. The example app is a fully working In-Vehicle Infotainment system (IVI), 
+including phone calling, contacts handling, messaging, notifications, multimedia, navigation and 
+much more, all production-level code. All of the applications included in that example application 
+are shown at the top of the diagram, in the section “IndiGO Application Suite”. The 
+[Getting Started Guide](/indigo/documentation/getting-started) explains step-by-step how to set up 
+your development environment to build that example application.
 
 ## Using stock components to assemble your product
 
