@@ -3,15 +3,15 @@ title: Getting Started
 layout: default
 ---
 
-<button
-  onclick="location.href='https://developer.tomtom.com/indigo/request-access'"
-  style="background-color:#df1b12; color:white; border:none; padding:10pt; margin:10pt; float:right; font-weight:bold">
-  REGISTER FOR<br/>EARLY ACCESS
-</button>
-
 Before you can dive into IndiGO, you need to be able to access all the resources that are required
-to build an IndiGO product. Click this button to request _early access_. If granted, you'll be sent
-an Evaluation Agreement (EA).
+to build an IndiGO product. Click the button below to request _early access_. If granted, you'll be 
+sent an Evaluation Agreement (EA).
+
+<button
+onclick="location.href='https://developer.tomtom.com/indigo/request-access'"
+style="background-color:#df1b12; color:white; border:none; padding:10pt; width:30%; font-weight:bold">
+REGISTER FOR EARLY ACCESS
+</button>
 
 ### Access the IndiGO SDK
 
