@@ -55,3 +55,10 @@ steps:
     git push origin "$(product_version)"
   displayName: Tag commit
   condition: succeeded()
+
+- bash: |
+    # Do not use "set -eux" here, otherwise tag definition below will contain an extra quote at the end
+    set -eu
+    echo "##vso[build.addbuildtag]$(product_version)"
+  displayName: Add version tag to pipeline run
+  condition: succeeded()
