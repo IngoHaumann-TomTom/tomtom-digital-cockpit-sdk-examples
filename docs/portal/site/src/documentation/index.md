@@ -12,8 +12,8 @@ query.
 
 ## Introducing the IndiGO platform
 
-A good start is the [IndiGO platform overview](/indigo/platform-overview) section to find out more 
-about IndiGO, the concepts and the building blocks that make up the platform.
+A good start is the [IndiGO platform overview](/indigo/documentation/platform-overview) section to 
+find out more about IndiGO, the concepts and the building blocks that make up the platform.
 
 ## Building for IndiGO
 
@@ -30,8 +30,8 @@ When you've completed the [getting started](#getting-started) guide, you can hav
 
 Before you can start development with the IndiGO platform, you'll have to make sure your system is
 set up correctly. The 
-[getting started guide](/indigo/documentation/getting-started/getting-started-guide) will help you
-set up an environment in which IndiGO development is possible.
+[getting started guide](/indigo/documentation/getting-started) will help you set up an environment 
+in which IndiGO development is possible.
 
 In separate steps it will tell you which JDK is required, how to obtain a TomTom NavKit2 API key to
 be able to use maps and navigation features, how to set up an Android emulator, and configure your
@@ -43,7 +43,7 @@ When you've set up your development environment, you are ready to start developi
 application.
 
 Make sure you've familiarized yourself with the 
-[architecture and design of IndiGO](/indigo/documentation/development/). 
+[architecture and design of IndiGO](/indigo/documentation/development). 
 Understanding this will make it easier to grasp the IndiGO concepts of plugins, UI components, and 
 more.
 
