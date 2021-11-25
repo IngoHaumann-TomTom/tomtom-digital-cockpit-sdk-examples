@@ -93,7 +93,6 @@ def populate_file(path, versions, base_url):
     '''
     latest = "- [{}]({})".format(versions[0], get_index_url(base_url, versions[0]))
     versions.pop(0)
-    print(f"Populating {path} with API Reference versions.")
 
     # TODO(IVI-5672): Include older versions of the API References.
 #     older = []
