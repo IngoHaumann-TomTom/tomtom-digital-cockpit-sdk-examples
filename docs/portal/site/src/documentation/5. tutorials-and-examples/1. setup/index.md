@@ -12,3 +12,7 @@ layout: default
   This guide explains how to configure your IndiGO project to work with the NavKit2 API key you have
   received from TomTom.
 
+- [Configure an App Store](/indigo/documentation/tutorials-and-examples/setup/configure-an-app-store)
+
+  This guide explains how to configure your IndiGO project to use a third party Android app store.
+
