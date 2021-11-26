@@ -104,7 +104,7 @@ val hierarchyMenuItem by extra {
 val debugFrontend by extra {
     FrontendConfig(
         frontendBuilderName = "DebugFrontendBuilder",
-        implementationModule = IviPlatformModuleReference("stock_frontends_debug")
+        implementationModule = IviPlatformModuleReference("platform_debug_plugin_frontend_debug")
     )
 }
 

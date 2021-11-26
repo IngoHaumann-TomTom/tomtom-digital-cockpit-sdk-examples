@@ -29,9 +29,9 @@ object Libraries {
     object TomTom {
         object Indigo {
             const val PLATFORM_GROUP = "com.tomtom.ivi.platform"
-            const val API_COMMON_DEBUGTAB = "$PLATFORM_GROUP:api_common_debugtab:${Versions.INDIGO_PLATFORM}"
             const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
+            const val DEBUG_API_FRONTENDEXTENSION_DEBUGTAB = "$PLATFORM_GROUP:platform_debug_api_frontendextension_debugtab:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_LIFECYCLE = "$PLATFORM_GROUP:platform_framework_api_common_lifecycle:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_UID = "$PLATFORM_GROUP:platform_framework_api_common_uid:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_UIEMBEDDING = "$PLATFORM_GROUP:platform_framework_api_common_uiembedding:${Versions.INDIGO_PLATFORM}"

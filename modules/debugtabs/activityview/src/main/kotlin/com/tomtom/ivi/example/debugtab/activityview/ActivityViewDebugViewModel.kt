@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.debugtab.activityview
 
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.common.debugtab.TabbedDebugPanel
+import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.TabbedDebugPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.Panel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel

@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.example.debugtab.activityview
 
-import com.tomtom.ivi.api.common.debugtab.DebugTabFrontendExtension
+import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFrontendExtension
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
 

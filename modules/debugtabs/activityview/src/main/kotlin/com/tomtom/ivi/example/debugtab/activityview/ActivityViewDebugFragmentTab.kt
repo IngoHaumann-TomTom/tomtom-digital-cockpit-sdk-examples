@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.debugtab.activityview
 
-import com.tomtom.ivi.api.common.debugtab.DebugFragmentTab
-import com.tomtom.ivi.api.common.debugtab.TabbedDebugPanel
 import com.tomtom.ivi.example.debugtab.activityview.databinding.DebugActivityviewFragmentBinding
+import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugFragmentTab
+import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.TabbedDebugPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
 
 /**
