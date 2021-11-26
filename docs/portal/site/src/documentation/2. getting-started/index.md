@@ -4,7 +4,7 @@ layout: default
 ---
 
 Before you can dive into IndiGO, you need to be able to access all the resources that are required
-to build an IndiGO product. Click the button below to request _early access_. If granted, you'll be 
+to build an IndiGO product. Click the button below to request _early access_. If granted, you'll be
 sent an Evaluation Agreement (EA).
 
 <button
@@ -13,22 +13,14 @@ style="background-color:#df1b12; color:white; border:none; padding:10pt; width:3
 REGISTER FOR EARLY ACCESS
 </button>
 
-### Access the IndiGO SDK
+After you have provided a signed EA, you will receive the TomTom repository credentials that allow
+you to download the IndiGO SDK. Now you can build and run IndiGO.
 
-Accessing IndiGO involves these credentials:
-
-- A Developer Portal account, which you've used to access this page.
-- Repository credentials, to download the IndiGO SDK and its dependencies.
-- A TomTom API key, to enable TomTom's map and navigation features.
-
-After you've provided a signed EA, you'll receive the repository credentials that you can use to
-download the IndiGO SDK. This will allow you to build and run IndiGO.
-
-You'll also be given access to TomTom's maps and navigation features for your IndiGO product. This
-capability will be added to your [API key](https://developer.tomtom.com/user/me/apps) on the
+You will also be given access to TomTom's maps and navigation features for your IndiGO product. We
+will add this capability to your [API key](https://developer.tomtom.com/user/me/apps) on the
 Developer Portal.
 
-__Note:__ Only a single Developer Portal account per customer is required to obtain that extra
+__Note:__ Only a single TomTom Developer account per customer is required to obtain that extra
 capability. Using that single TomTom API key in all your source code will allow you to have maps and
 navigation available in your products.
 
