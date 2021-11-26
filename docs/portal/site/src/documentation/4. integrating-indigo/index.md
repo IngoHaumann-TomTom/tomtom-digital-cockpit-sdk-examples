@@ -26,3 +26,9 @@ we also provide a reference image for this, based on LineageOS, which in turn is
 Automotive. Read how to obtain this image and flash the hardware in the 
 [Flashing the Reference Hardware](/indigo/documentation/integrating-indigo/flashing-the-reference-hardware) 
 section.
+
+IndiGO also comes with support for a companion application to extend the IndiGO platform 
+experience with functionality from the user's mobile phone. Read more about the 
+[Companion Application](indigo/documentation/integrating-indigo/companion-application) and how to 
+connect to the IndiGO product.
+
