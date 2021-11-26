@@ -112,3 +112,6 @@ and functions, and insights into the relation between all modules and packages.
 ## IndiGO releases
 
 All IndiGO releases are listed [here](/indigo/releases).
+
+__Get started:__ [Getting Started](/indigo/documentation/getting-started)
+

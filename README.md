@@ -16,19 +16,19 @@ The Gradle wrapper used to sync the Gradle modules and build the app.
 
 The root directory for modules. All Gradle modules inside are within two levels of subdirectories.
 
-* `modules/common/`
+- `modules/common/`
   Modules with shared code used by applications, frontends, and services.
 
-* `modules/frontends/`
+- `modules/frontends/`
   Modules for IndiGO frontend plugins.
 
-* `modules/products/`
+- `modules/products/`
   Modules for applications based on IndiGO Platform.
 
-* `modules/serviceapis`
+- `modules/serviceapis`
   Modules with API definitions of IVI services.
 
-* `modules/services`
+- `modules/services`
   Modules with implementations of IVI services.
 
 ## Building and running
@@ -42,6 +42,9 @@ be provided to access this repository. This can be done in different ways:
 nexusUsername=<username>
 nexusPassword=<password>
 ```
+
+__Note:__ On some operating systems, a hash character `#` in the username or password must be
+escaped as `\#` to be properly recognized.
 
 And then build with:
 

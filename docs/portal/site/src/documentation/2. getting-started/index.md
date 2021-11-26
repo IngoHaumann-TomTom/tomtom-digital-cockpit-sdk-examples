@@ -32,4 +32,5 @@ The IndiGO SDK has the following minimal requirements:
 - Android Studio Arctic Fox 2020.3.1 or more recent.
 - __Windows:__ WinRAR, to support compressed archives with long paths.
 
-Get started: [Installing OpenJDK 11](/indigo/documentation/getting-started/installing-openjdk-11).
+__Get started:__
+[Installing OpenJDK 11](/indigo/documentation/getting-started/installing-openjdk-11).
