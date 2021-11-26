@@ -46,6 +46,7 @@ steps:
                     --dependency='${{parameters.product}}->ivi-indigo-docs:$(VERSION_EXAMPLES)' \
                     --dependency='${{parameters.product}}->ivi-indigo-companion-app-communication:$(VERSION_COMMUNICATIONS_SDK)' \
                     --dependency='${{parameters.product}}->nav-nk2-bom-android:$(VERSION_NAVKIT2)' \
+                    --dependency='${{parameters.product}}->nk2ui-main:$(VERSION_NAVKIT2UI)' \
                     --dependency='${{parameters.product}}->nav-tomtom-android-tools:$(VERSION_TOMTOM_ANDROID_TOOLS)' \
                     --dependency='${{parameters.product}}->nav-navtest-core:$(VERSION_NAVTESTCORE)' \
                     --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)'

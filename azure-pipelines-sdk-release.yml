@@ -89,6 +89,7 @@ stages:
               tomtomAndroidTools=$(cat $tomlFilePath |grep "tomtomAndroidTools = " |grep -Eo "[0-9].[0-9].[0-9]+")
               iviCommunicationsSdk=$(cat $tomlFilePath |grep "iviCommunicationsSdk = " |grep -Eo "[0-9].[0-9].[0-9]+")
               navKit2CoreBom=$(cat $tomlFilePath |grep "navKit2CoreBom = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              navKit2UiMain=$(cat $tomlFilePath |grep "navKit2Ui = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
               echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
               echo "##vso[task.setvariable variable=NAVTESTCORE_VERSION;isOutput=true]$NAVTESTCORE_VERSION"
@@ -96,6 +97,7 @@ stages:
               echo "##vso[task.setvariable variable=tomtomAndroidTools;isOutput=true]$tomtomAndroidTools"
               echo "##vso[task.setvariable variable=iviCommunicationsSdk;isOutput=true]$iviCommunicationsSdk"
               echo "##vso[task.setvariable variable=navKit2CoreBomVersion;isOutput=true]$navKit2CoreBom"
+              echo "##vso[task.setvariable variable=navKit2UiMainVersion;isOutput=true]$navKit2UiMain"
             name: Version
             displayName: 'Expose versions to Azure'
           - template: build/build-cleanup.yml@devops-templates
@@ -261,6 +263,7 @@ stages:
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.tomtomAndroidTools'] ]
       VERSION_NAVTESTCORE: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVTESTCORE_VERSION'] ]
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVEMULATOR_VERSION'] ]
+      VERSION_NAVKIT2UI: $[ stageDependencies.Versions.GetVersions.outputs['Version.navKit2UiMainVersion'] ]
     jobs:
       - job: OSSComplianceScan
         displayName: OSS compliance scan
