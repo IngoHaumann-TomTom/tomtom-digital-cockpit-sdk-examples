@@ -64,7 +64,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
+            android:layout_height="?attr/ttivi_divider_height_horizontal"
             android:background="?attr/tt_surface_content_color_subdued"
             tools:layout_height="2dp" />
 
@@ -89,7 +89,7 @@
         <EditText
             android:id="@+id/frontend_account_login_screen_login_username_edit"
             android:layout_width="match_parent"
-            android:layout_height="?attr/tt_size_default_button_height"
+            android:layout_height="?attr/tt_button_height"
             android:autofillHints="textPersonName"
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
@@ -121,7 +121,7 @@
         <EditText
             android:id="@+id/frontend_account_login_screen_login_password_edit"
             android:layout_width="match_parent"
-            android:layout_height="?attr/tt_size_default_button_height"
+            android:layout_height="?attr/tt_button_height"
             android:autofillHints="textPassword"
             android:background="@drawable/frontend_account_round_corners"
             android:importantForAutofill="yes"
@@ -139,7 +139,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_size_horizontal_layout_divider_height"
+            android:layout_height="?attr/ttivi_divider_height_horizontal"
             android:background="?attr/tt_surface_content_color_subdued"
             tools:layout_height="2dp" />
 
