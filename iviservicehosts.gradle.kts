@@ -114,7 +114,7 @@ val customRecentCallsServiceHost by extra {
         interfaces = listOf(
             IviServiceInterfaceConfig(
                 serviceName = "RecentCallsService",
-                serviceApiModule = IviPlatformModuleReference("core_serviceapis_recentcalls")
+                serviceApiModule = IviPlatformModuleReference("platform_recentcalls_api_service_recentcalls")
             )
         )
     )

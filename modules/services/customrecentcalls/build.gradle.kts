@@ -23,6 +23,6 @@ ivi {
 }
 
 dependencies {
-    implementation(Libraries.TomTom.Indigo.ServiceApis.CORE_SERVICEAPIS_RECENTCALLS)
+    implementation(Libraries.TomTom.Indigo.ServiceApis.PLATFORM_RECENTCALLS_API_SERVICE_RECENTCALLS)
     testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
 }
