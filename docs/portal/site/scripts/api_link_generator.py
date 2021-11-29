@@ -79,7 +79,7 @@ def get_json_map(json_url):
         map[item["name"]] = item["location"]
     return map
 
-def url_lookup(api_reference_map, regex_match, path):
+def url_lookup(api_reference_map, regex_match, path, errors):
     '''
     Returns the URL postfix for a matched API placeholder.
     Retrieves an 'api_element' from 'regex_match' and uses that as a lookup to find the
@@ -94,6 +94,8 @@ def url_lookup(api_reference_map, regex_match, path):
         A string containing the full Markdown link, including the API element and placeholder.
     path : str
         A string containing the path of the file in which the link was found. For logging purposes.
+    errors : list
+        A list containing error messages for logging purposes. Any new error(s) will be appended to this list.
 
     Returns
     -----------
@@ -115,7 +117,8 @@ def url_lookup(api_reference_map, regex_match, path):
 
     url = api_reference_map.get(api_element)
     if not url:
-        raise KeyError(f"API element '{api_element}' in file {path} cannot be found in the API Reference map.")
+        errors.append(f"API element '{api_element}' in {path} cannot be found in the API Reference map.")
+        return ""
 
     return url
 
@@ -155,6 +158,7 @@ def api_link_generator(target_dir):
     indigo_comms_map = get_json_map(os.path.join(INDIGO_COMMS_BASE_URL, JSON_POSTFIX_URL))
     android_tools_map = get_json_map(os.path.join(ANDROID_TOOLS_BASE_URL, JSON_POSTFIX_URL))
 
+    errors = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
             content = file.read()
@@ -162,16 +166,20 @@ def api_link_generator(target_dir):
             # Replace TTIVI_ placeholders.
             for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
                 content = content.replace(INDIGO_PLACEHOLDER, \
-                    os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path)), 1)
+                    os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path, errors)), 1)
             for match in re.findall(REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER, content):
                 content = content.replace(INDIGO_GRADLEPLUGINS_PLACEHOLDER, \
-                    os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, url_lookup(indigo_gradleplugins_map, match, path)), 1)
+                    os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, url_lookup(indigo_gradleplugins_map, match, path, errors)), 1)
             for match in re.findall(REGEX_INDIGO_COMMS_PLACEHOLDER, content):
                 content = content.replace(INDIGO_COMMS_PLACEHOLDER, \
-                    os.path.join(INDIGO_COMMS_BASE_URL, url_lookup(indigo_comms_map, match, path)), 1)
+                    os.path.join(INDIGO_COMMS_BASE_URL, url_lookup(indigo_comms_map, match, path, errors)), 1)
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
                 content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
-                    os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path)), 1)
+                    os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path, errors)), 1)
             file.seek(0)
             file.write(content)
             file.truncate()
+
+    if len(errors):
+        print("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))
+        raise KeyError("API link(s) could not be generated. Make sure you use the correct API Reference versions in api_link_generator.py")
