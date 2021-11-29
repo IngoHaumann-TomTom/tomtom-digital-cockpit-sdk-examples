@@ -47,8 +47,8 @@ Make sure you've familiarized yourself with the
 Understanding this will make it easier to grasp the IndiGO concepts of plugins, UI components, and 
 more.
 
-IndiGO has a [plugin](/indigo/documentation/development/plugins) architecture so you can easily add
-your functionality, or remove what you don't need. 
+IndiGO has a plugin architecture so you can easily add your functionality, or remove what you don't 
+need. 
 [Services](/indigo/documentation/development/ivi-services/) provide data to 
 [frontends](/indigo/documentation/development/frontend-plugins), both of which are also plugins. 
 The [system UI](/indigo/documentation/development/system-ui) and 

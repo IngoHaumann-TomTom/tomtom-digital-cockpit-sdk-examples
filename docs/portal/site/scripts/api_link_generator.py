@@ -17,11 +17,15 @@ from urllib.request import urlopen
 
 TARGET_FILETYPE = "*.md"
 
-# TODO(IVI-5408): Replace latest by SDK Release versions.
-INDIGO_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest"
-INDIGO_GRADLEPLUGINS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api/latest"
-INDIGO_COMMS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-comms-api/latest"
-ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/android-tools-api/latest"
+INDIGO_VERSION = "1.0.2816"
+INDIGO_GRADLEPLUGINS_VERSION = INDIGO_VERSION
+INDIGO_COMMS_VERSION = "0.1.86"
+ANDROID_TOOLS_VERSION = "0.0.264"
+
+INDIGO_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/indigo-api/{INDIGO_VERSION}"
+INDIGO_GRADLEPLUGINS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api/{INDIGO_GRADLEPLUGINS_VERSION}"
+INDIGO_COMMS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/indigo-comms-api/{INDIGO_COMMS_VERSION}"
+ANDROID_TOOLS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/android-tools-api/{ANDROID_TOOLS_VERSION}"
 JSON_POSTFIX_URL = "scripts/navigation-pane.json"
 
 # The placeholders in the Markdown files that will be replaced by an API Reference URL.

@@ -7,7 +7,7 @@ layout: default
 
   This guide explains how to add IndiGO to a new or already existing Gradle project.
 
-- [Configure the NavKit2 API key](/indigo/documentation/tutorials-and-examples/setup/configure-the-navkit2-api-key)
+- [Configure the NavKit2 API key](/indigo/documentation/tutorials-and-examples/setup/configure-the-tomtom-api-key)
 
   This guide explains how to configure your IndiGO project to work with the NavKit2 API key you have
   received from TomTom.
