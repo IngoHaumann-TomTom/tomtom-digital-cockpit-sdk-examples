@@ -14,7 +14,7 @@ REGISTER FOR EARLY ACCESS
 </button>
 
 After you have provided a signed EA, you will receive the TomTom repository credentials that allow
-you to download the IndiGO SDK. Now you can build and run IndiGO.
+you to access the IndiGO SDK. Now you can build and run IndiGO.
 
 You will also be given access to TomTom's maps and navigation features for your IndiGO product. We
 will add this capability to your [API key](https://developer.tomtom.com/user/me/apps) on the
