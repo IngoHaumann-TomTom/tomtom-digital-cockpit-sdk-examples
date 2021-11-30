@@ -21,8 +21,8 @@ import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceApi
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.frontend.api.testing.frontend.FrontendTestCase
 import com.tomtom.ivi.tools.servicemockextensions.menuservice.injectMenuItemClicked
-import com.tomtom.ivi.tools.testing.frontend.FrontendTestCase
 import com.tomtom.ivi.tools.testing.functional.util.waitForLiveData
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference

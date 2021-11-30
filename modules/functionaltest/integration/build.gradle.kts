@@ -61,5 +61,5 @@ dependencies {
     androidTestImplementation(project(":serviceapis_account"))
     androidTestImplementation(project(":serviceapis_accountsettings"))
     androidTestImplementation(project(":services_customconnection"))
-    androidTestImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_FRONTEND)
+    androidTestImplementation(Libraries.TomTom.Indigo.FRONTEND_API_TESTING_FRONTEND)
 }
