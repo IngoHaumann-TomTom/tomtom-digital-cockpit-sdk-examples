@@ -20,4 +20,4 @@ steps:
         -PiviVersion=$(product_version)
         -PuseInternalNavkit2ApiKey=true
       displayName: 'Validate Developer Portal content'
-      continueOnError: true
+      continueOnError: false

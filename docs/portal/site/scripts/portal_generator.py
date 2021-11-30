@@ -47,6 +47,7 @@ from versions_generator import populate_versions
 SOURCE_DIR = "src"
 TARGET_DIR = "build/intermediate"
 API_REFERENCE_DIR = "api-reference"
+DOCUMENTATION_DIR = "documentation"
 INPUT_CHECK_FILE = "documentation/3. development/index.md"
 
 def verify_working_directory():
@@ -83,7 +84,7 @@ create_intermediate_files()
 api_link_generator(TARGET_DIR)
 if is_export():
     populate_versions(os.path.join(TARGET_DIR, API_REFERENCE_DIR))
-url_validator(TARGET_DIR)
+url_validator(os.path.join(TARGET_DIR, DOCUMENTATION_DIR))
 if is_export():
     build_jekyll()
 
