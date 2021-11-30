@@ -17,9 +17,8 @@
         android:name=".ExampleApplication"
         android:allowBackup="false"
         android:extractNativeLibs="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ttivi_ic_product_main"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TtiviApplicationTheme"
         tools:ignore="Instantiatable">
