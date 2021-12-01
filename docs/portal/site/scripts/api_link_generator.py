@@ -20,10 +20,10 @@ TARGET_FILETYPE = "*.md"
 # The API Reference versions used by the API link generating script. These are not coupled to the
 # versions used in the Example App (Versions.kt). This grants us more control over when to update
 # the documentation and helps us avoid breaking changes, which disables us from making exports.
-INDIGO_VERSION = "1.0.2826"
+INDIGO_VERSION = "1.0.2846"
 INDIGO_GRADLEPLUGINS_VERSION = INDIGO_VERSION
 INDIGO_COMMS_VERSION = "0.1.86"
-ANDROID_TOOLS_VERSION = "0.0.268"
+ANDROID_TOOLS_VERSION = "0.0.271"
 
 INDIGO_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/indigo-api/{INDIGO_VERSION}"
 INDIGO_GRADLEPLUGINS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api/{INDIGO_GRADLEPLUGINS_VERSION}"
