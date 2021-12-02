@@ -15,7 +15,8 @@
   * Artifactory repositories.
   * To compile the Example app as an external developer, you should use the SDK that is published
   * on TomTom's Nexus server. Replace this file with repositories.gradle.sdk.kts and follow the
-  * instructions in docs/portal/getting-started.md.
+  * instructions in the
+  * [Getting Started guide](https://developer.tomtom.com/indigo/documentation/getting-started).
   */
 
 repositories {

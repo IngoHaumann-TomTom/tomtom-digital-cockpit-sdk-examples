@@ -269,10 +269,10 @@ subprojects {
 }
 
 /**
- * TomTom internal tooling, see docs/portal/site/README.md.
+ * TomTom internal tooling, see docs/portal/README.md.
  */
 tasks.register<Exec>("portal_export") {
-    val portalDirectory = "${project.projectDir}/docs/portal/site"
+    val portalDirectory = "${project.projectDir}/docs/portal"
     description = "Generates Developer Portal content for export."
     group = "Documentation"
 
@@ -282,10 +282,10 @@ tasks.register<Exec>("portal_export") {
 }
 
 /**
- * TomTom internal tooling, see docs/portal/site/README.md.
+ * TomTom internal tooling, see docs/portal/README.md.
  */
 tasks.register<Exec>("portal_check") {
-    val portalDirectory = "${project.projectDir}/docs/portal/site"
+    val portalDirectory = "${project.projectDir}/docs/portal"
     description = "Validates Developer Portal content."
     group = "Documentation"
 
