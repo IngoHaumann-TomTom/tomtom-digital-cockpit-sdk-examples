@@ -29,7 +29,6 @@ object Libraries {
     object TomTom {
         object Indigo {
             const val PLATFORM_GROUP = "com.tomtom.ivi.platform"
-            const val CORE_COMMON_THEME = "$PLATFORM_GROUP:core_common_theme:${Versions.INDIGO_PLATFORM}"
             const val CORE_CONFIG_NAVKIT2 = "$PLATFORM_GROUP:core_config_navkit2:${Versions.INDIGO_PLATFORM}"
             const val DEBUG_API_FRONTENDEXTENSION_DEBUGTAB = "$PLATFORM_GROUP:platform_debug_api_frontendextension_debugtab:${Versions.INDIGO_PLATFORM}"
             const val FRAMEWORK_API_COMMON_LIFECYCLE = "$PLATFORM_GROUP:platform_framework_api_common_lifecycle:${Versions.INDIGO_PLATFORM}"
@@ -41,6 +40,7 @@ object Libraries {
             const val FRONTEND_API_COMMON_FRONTEND = "$PLATFORM_GROUP:platform_frontend_api_common_frontend:${Versions.INDIGO_PLATFORM}"
             const val FRONTEND_API_TESTING_FRONTEND = "$PLATFORM_GROUP:platform_frontend_api_testing_frontend:${Versions.INDIGO_PLATFORM}"
             const val SETTINGS_API_SERVICES_SETTINGSMANAGEMENT = "$PLATFORM_GROUP:platform_settings_api_service_settingsmanagement:${Versions.INDIGO_PLATFORM}"
+            const val THEMING_API_COMMON_ATTRIBUTES = "$PLATFORM_GROUP:platform_theming_api_common_attributes:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_FUNCTIONAL = "$PLATFORM_GROUP:tools_testing_functional:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_MAINMENUFRONTEND = "$PLATFORM_GROUP:tools_testing_mainmenufrontend:${Versions.INDIGO_PLATFORM}"
             const val TOOLS_TESTING_NAVIGATIONFUNCTIONAL = "$PLATFORM_GROUP:tools_testing_navigationfunctional:${Versions.INDIGO_PLATFORM}"

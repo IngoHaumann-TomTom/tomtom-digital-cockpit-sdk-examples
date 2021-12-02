@@ -18,7 +18,7 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.FRONTEND_API_COMMON_FRONTEND)
+    implementation(Libraries.TomTom.Indigo.THEMING_API_COMMON_ATTRIBUTES)
     implementation(Libraries.TomTom.Tools.API_UICONTROLS)
 }

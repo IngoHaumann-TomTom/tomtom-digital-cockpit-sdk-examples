@@ -123,9 +123,9 @@ dependencies {
     implementation(project(":debugtabs_activityview"))
     implementation(project(":frontends_account"))
     implementation(Libraries.TomTom.Automotive.ANDROID_CAR)
-    implementation(Libraries.TomTom.Indigo.CORE_COMMON_THEME)
     implementation(Libraries.TomTom.Indigo.CORE_CONFIG_NAVKIT2)
     implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEBUGPERMISSIONS)
     implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEFAULTACTIVITY)
     implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEFAULTAPPLICATION)
+    implementation(Libraries.TomTom.Indigo.THEMING_API_COMMON_ATTRIBUTES)
 }
