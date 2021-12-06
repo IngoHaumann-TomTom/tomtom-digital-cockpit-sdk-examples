@@ -51,7 +51,7 @@ application further.
 ## Examples documentation
 
 Documentation related to the example source can be found in the 
-[Tutorials and Examples](indigo/documentation/tutorials-and-examples) section.
+[Tutorials and Examples](/indigo/documentation/tutorials-and-examples) section.
 
 To get started with extending the IndiGO platform, please read:
 
