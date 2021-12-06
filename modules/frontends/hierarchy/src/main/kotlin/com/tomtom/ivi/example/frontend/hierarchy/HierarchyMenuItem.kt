@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy
 
-import com.tomtom.ivi.api.common.menu.MenuItem
+import com.tomtom.ivi.platform.mainmenu.api.common.menu.MenuItem
 
 val hierarchyMenuItem =
     MenuItem(

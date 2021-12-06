@@ -15,22 +15,22 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import com.tomtom.ivi.core.serviceapi.menu.MenuServiceMock
 import com.tomtom.ivi.example.frontend.account.accountMenuItem
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceApi
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.testing.frontend.FrontendTestCase
-import com.tomtom.ivi.tools.servicemockextensions.menuservice.injectMenuItemClicked
+import com.tomtom.ivi.platform.mainmenu.api.service.menu.MenuServiceMock
+import com.tomtom.ivi.platform.mainmenu.api.testing.mockextension.injectMenuItemClicked
 import com.tomtom.ivi.tools.testing.functional.util.waitForLiveData
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference
+import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertTrue
 
 class AccountFrontendTest : FrontendTestCase() {
     // An API wrapper cannot be created before test environment is fully configured, hence create
