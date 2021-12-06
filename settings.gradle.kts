@@ -9,15 +9,20 @@
  * immediately return or destroy it.
  */
 
+rootProject.name = "IVI_Example"
+
+apply(from = "build-logic/repositories.gradle.kts")
+apply(from = "build-logic/libraries.versioncatalog.gradle.kts")
+
 val modulesDir: File = file("${rootProject.projectDir}/modules/")
 fileTree(modulesDir)
     .matching { include("*/*/build.gradle.kts") }
     .forEach { file ->
-        val parentDir = file.parentFile
-        val projectName = ":" + modulesDir.toPath().relativize(parentDir.toPath()).joinToString("_")
-
+        val projectName = ":" + file.toProjectName(modulesDir)
         include(projectName)
-        project(projectName).projectDir = parentDir
+        project(projectName).projectDir = file.parentFile
     }
 
-rootProject.name = "IVI Example"
+fun File.toProjectName(modulesDir: File): String = modulesDir.toPath()
+    .relativize(parentFile.toPath())
+    .joinToString("_")

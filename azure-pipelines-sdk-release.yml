@@ -79,17 +79,18 @@ stages:
               set -e
 
               cd $(Build.SourcesDirectory)/ivi-example-app
-              versionsFilePath=$(find . -name Versions.kt)
-              INDIGO_PLATFORM=$(cat $versionsFilePath |grep "INDIGO_PLATFORM = " |grep -Eo "[0-9].[0-9].[0-9]+")
-              NAVTESTCORE_VERSION=$(cat $versionsFilePath |grep "NAVTEST_PLUGIN = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-              NAVEMULATOR_VERSION=$(cat $versionsFilePath |grep "NAVUI_EMULATORS_PLUGIN = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              examplesTomlFilePath=build-logic/libraries.versions.toml
+              INDIGO_PLATFORM=$(cat $examplesTomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
+              NAVTESTCORE_VERSION=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              NAVEMULATOR_VERSION=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+
               cd $(Build.SourcesDirectory)/indigo
               git checkout tags/$INDIGO_PLATFORM
-              tomlFilePath=$(find . -name libraries.versions.toml)
-              tomtomAndroidTools=$(cat $tomlFilePath |grep "tomtomAndroidTools = " |grep -Eo "[0-9].[0-9].[0-9]+")
-              iviCommunicationsSdk=$(cat $tomlFilePath |grep "iviCommunicationsSdk = " |grep -Eo "[0-9].[0-9].[0-9]+")
-              navKit2CoreBom=$(cat $tomlFilePath |grep "navKit2CoreBom = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-              navKit2UiMain=$(cat $tomlFilePath |grep "navKit2Ui = " |grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              indigoTomlFilePath=build-logic/libraries.versions.toml
+              tomtomAndroidTools=$(cat $indigoTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
+              iviCommunicationsSdk=$(cat $indigoTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
+              navKit2CoreBom=$(cat $indigoTomlFilePath | grep "navKit2CoreBom = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+              navKit2UiMain=$(cat $indigoTomlFilePath | grep "navKit2Ui = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
               echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
               echo "##vso[task.setvariable variable=NAVTESTCORE_VERSION;isOutput=true]$NAVTESTCORE_VERSION"

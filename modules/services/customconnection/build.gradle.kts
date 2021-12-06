@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 ivi {
@@ -23,8 +22,8 @@ ivi {
 }
 
 dependencies {
-    implementation(Libraries.TomTom.Indigo.ServiceApis.CORE_SERVICEAPIS_TELECOM)
-    implementation(Libraries.Android.LIFECYCLE_SERVICE)
+    implementation(libraries.indigoCoreServiceApisTelecom)
+    implementation(libraries.androidxLifecycleService)
 
-    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
+    testImplementation(libraries.indigoToolsTestingUnit)
 }

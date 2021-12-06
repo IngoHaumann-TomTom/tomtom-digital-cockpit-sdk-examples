@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 android {
@@ -23,8 +22,8 @@ ivi {
 }
 
 dependencies {
-    implementation(Libraries.Android.ACTIVITY)
-    implementation(Libraries.TomTom.Indigo.DEBUG_API_FRONTENDEXTENSION_DEBUGTAB)
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UIEMBEDDING)
-    implementation(Libraries.TomTom.Tools.API_UICONTROLS)
+    implementation(libraries.androidxActivity)
+    implementation(libraries.indigoDebugApiFrontendExtensionDebugTab)
+    implementation(libraries.indigoFrameworkApiCommonUiEmbedding)
+    implementation(libraries.tomtomToolsApiUicontrols)
 }

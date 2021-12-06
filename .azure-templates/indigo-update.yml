@@ -38,24 +38,24 @@ steps:
 
   - bash: |
       set -eux
-      if [ ! -f "Versions.kt" ]
+      if [ ! -f "libraries.versions.toml" ]
       then
         echo "No IndiGO library update was found."
         exit 1
       fi
-      REPO_VERSION_FILE="buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/environment/Versions.kt"
-      if ! grep -qs INDIGO_PLATFORM ${REPO_VERSION_FILE}
+      REPO_VERSION_FILE="build-logic/libraries.versions.toml"
+      if ! grep -qs indigoPlatform ${REPO_VERSION_FILE}
       then
         echo "${REPO_VERSION_FILE} does not exist or does not contain the IndiGO platform version."
         exit 1
       fi
-      INDIGO_VERSION="$(grep INDIGO_PLATFORM Versions.kt | awk '{split($0,a," "); print a[5]}')"
+      INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_FILE} | awk '{split($0,a," "); print a[3]}')"
       git config --global user.email "ivi_dev@groups.tomtom.com"
       git config --global user.name "Azure DevOps"
       git branch -D ${{parameters.branch}} || true
       git checkout -b ${{parameters.branch}}
       echo "##vso[task.setvariable variable=branchCreated]True"
-      mv Versions.kt ${REPO_VERSION_FILE}
+      mv libraries.versions.toml ${REPO_VERSION_FILE}
       git diff > $(Build.ArtifactStagingDirectory)/indigo-update.patch
       git commit -a -m "Last integrated version of IndiGO platform: ${INDIGO_VERSION}"
     displayName: 'Commit updated IndiGO lib to ${{parameters.branch}} branch'

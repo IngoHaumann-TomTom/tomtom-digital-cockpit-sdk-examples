@@ -10,15 +10,13 @@
  */
 
 import com.android.builder.core.BuilderConstants
-import com.tomtom.ivi.buildsrc.environment.Libraries
-import com.tomtom.ivi.buildsrc.environment.Versions
 import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviDependencySource
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
-import com.tomtom.ivi.platform.gradle.api.tools.version.iviAndroidVersionCode
 import com.tomtom.ivi.platform.gradle.api.tools.emulators.iviEmulators
+import com.tomtom.ivi.platform.gradle.api.tools.version.iviAndroidVersionCode
 import com.tomtom.ivi.platform.gradle.api.tools.version.iviVersion
 import com.tomtom.navtest.android.android
 import com.tomtom.navtest.android.androidRoot
@@ -27,11 +25,6 @@ import com.tomtom.navtest.extensions.navTestRoot
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-
-apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
-apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
-apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
-apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 
 plugins {
     `kotlin-dsl`
@@ -46,13 +39,20 @@ plugins {
     id("com.tomtom.navui.emulators-plugin") apply false
 }
 
+apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
+
+val jvmVersion = JavaVersion.toVersion(libraries.versions.jvm.get())
+
 // Make a single directory where to store all test results.
 val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
 val testRootDir: File by extra(File(rootProject.projectDir, "IviTest"))
 val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().format(formatter)))
 
 ivi {
-    dependencySource = IviDependencySource.ArtifactRepository(Versions.INDIGO_PLATFORM)
+    dependencySource =
+        IviDependencySource.ArtifactRepository(libraries.versions.indigoPlatform.get())
 }
 
 iviEmulators {
@@ -68,9 +68,9 @@ iviEmulators {
     findProperty("emulatorImage")?.let {
         emulatorImage = it.toString()
     }
-    minApiLevel = Versions.MIN_SDK
+    minApiLevel = libraries.versions.minSdk.get().toInt()
     outputDirectory = testOutputDirectory
-    targetApiLevel = Versions.COMPILE_SDK
+    targetApiLevel = libraries.versions.compileSdk.get().toInt()
 }
 
 // Set up global test options
@@ -117,6 +117,9 @@ subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
     val isAndroidTestProject by extra(getGradleProperty("isAndroidTestProject", false))
 
+    val libraries = rootProject.libraries
+    val versions = rootProject.libraries.versions
+
     when {
         isApplicationProject -> apply(plugin = "com.android.application")
         isAndroidTestProject -> apply(plugin = "com.android.test")
@@ -126,7 +129,6 @@ subprojects {
     apply(plugin = "kotlin-android")
     apply(plugin = "kotlin-parcelize")
 
-    apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
     apply(from = rootProject.file("buildSrc/tasks/publish.gradle.kts"))
 
     dependencies {
@@ -136,20 +138,31 @@ subprojects {
         constraints {
             // kotlin-reflect dependency is not constrained up by kotlin-bom, so we need to
             // constrain it explicitly.
-            implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.KOTLIN}")
+            implementation(libraries.kotlinReflect)
         }
 
-        implementation(Libraries.Android.ANNOTATION)
-        implementation(Libraries.Android.KTX)
+        implementation(libraries.androidxAnnotation)
+        implementation(libraries.androidxCoreKtx)
+    }
+
+    // Override some conflicting transitive dependencies which duplicate classes.
+    configurations.all {
+        exclude(group = "org.bouncycastle", module = "bcprov-jdk15to18")
+        exclude(group = "org.bouncycastle", module = "bcutil-jdk15to18")
+
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("org.hamcrest:hamcrest-core:1.3"))
+                .using(module("org.hamcrest:hamcrest:2.2"))
+        }
     }
 
     android {
-        compileSdkVersion(Versions.COMPILE_SDK)
-        buildToolsVersion = Versions.BUILD_TOOLS
+        compileSdkVersion(versions.compileSdk.get().toInt())
+        buildToolsVersion = versions.buildTools.get()
 
         defaultConfig {
-            minSdk = Versions.MIN_SDK
-            targetSdk = Versions.TARGET_SDK
+            minSdk = versions.minSdk.get().toInt()
+            targetSdk = versions.targetSdk.get().toInt()
             if (isApplicationProject) {
                 versionCode = iviAndroidVersionCode
                 versionName = iviVersion
@@ -158,13 +171,13 @@ subprojects {
         }
 
         compileOptions {
-            sourceCompatibility = Versions.JAVA_COMPATIBILITY
-            targetCompatibility = Versions.JAVA_COMPATIBILITY
+            sourceCompatibility = jvmVersion
+            targetCompatibility = jvmVersion
         }
 
         kotlinOptions {
             @Suppress("UnstableApiUsage")
-            jvmTarget = Versions.JVM
+            jvmTarget = versions.jvm.get()
         }
 
         lintOptions {

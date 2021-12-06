@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -29,7 +28,7 @@ ivi {
 dependencies {
     implementation(project(":serviceapis_account"))
 
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_LIFECYCLE)
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UID)
-    implementation(Libraries.TomTom.Tools.API_LIVEDATA)
+    implementation(libraries.indigoFrameworkApiCommonLifecycle)
+    implementation(libraries.indigoFrameworkApiCommonUid)
+    implementation(libraries.tomtomToolsApiLivedata)
 }

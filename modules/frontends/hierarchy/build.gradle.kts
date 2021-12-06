@@ -9,8 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
-
 android {
     buildFeatures {
         dataBinding = true
@@ -18,7 +16,7 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.TomTom.Indigo.FRONTEND_API_COMMON_FRONTEND)
-    implementation(Libraries.TomTom.Indigo.THEMING_API_COMMON_ATTRIBUTES)
-    implementation(Libraries.TomTom.Tools.API_UICONTROLS)
+    implementation(libraries.indigoThemingApiCommonAttributes)
+    implementation(libraries.indigoFrontendApiCommonFrontend)
+    implementation(libraries.tomtomToolsApiUicontrols)
 }

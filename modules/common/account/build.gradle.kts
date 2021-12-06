@@ -9,8 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
-
 dependencies {
-    api(Libraries.TomTom.Indigo.FRAMEWORK_API_COMMON_UID)
+    api(libraries.indigoFrameworkApiCommonUid)
 }

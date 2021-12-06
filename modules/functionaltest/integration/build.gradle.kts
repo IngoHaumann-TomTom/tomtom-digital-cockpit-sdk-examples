@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
@@ -61,5 +60,5 @@ dependencies {
     androidTestImplementation(project(":serviceapis_account"))
     androidTestImplementation(project(":serviceapis_accountsettings"))
     androidTestImplementation(project(":services_customconnection"))
-    androidTestImplementation(Libraries.TomTom.Indigo.FRONTEND_API_TESTING_FRONTEND)
+    androidTestImplementation(libraries.indigoFrontendApiTestingFrontend)
 }

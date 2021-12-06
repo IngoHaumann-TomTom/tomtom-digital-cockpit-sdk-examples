@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.buildsrc.extensions.androidTest
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -42,8 +41,8 @@ android {
 
 dependencies {
     implementation(project(":frontends_account"))
-    implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_FUNCTIONAL)
-    implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_MAINMENUFRONTEND)
-    implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_NAVIGATIONFUNCTIONAL)
-    implementation(Libraries.TomTom.Indigo.TOOLS_TESTING_SYSTEMUI)
+    implementation(libraries.indigoToolsTestingFunctional)
+    implementation(libraries.indigoToolsTestingMainMenuFrontend)
+    implementation(libraries.indigoToolsTestingNavigationFunctional)
+    implementation(libraries.indigoToolsTestingSystemUi)
 }

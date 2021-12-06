@@ -70,7 +70,7 @@ stages:
     timeoutInMinutes: '15'
     container: 'docker_indigo_build'
     steps:
-    - template: .azure-templates/build.yml
+    - template: .azure-templates/build-steps.yml
       parameters:
         branch: $(indigoBranchName)
     - template: build/build-cleanup.yml@devops-templates

@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
@@ -122,10 +121,10 @@ android {
 dependencies {
     implementation(project(":debugtabs_activityview"))
     implementation(project(":frontends_account"))
-    implementation(Libraries.TomTom.Automotive.ANDROID_CAR)
-    implementation(Libraries.TomTom.Indigo.CORE_CONFIG_NAVKIT2)
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEBUGPERMISSIONS)
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEFAULTACTIVITY)
-    implementation(Libraries.TomTom.Indigo.FRAMEWORK_API_PRODUCT_DEFAULTAPPLICATION)
-    implementation(Libraries.TomTom.Indigo.THEMING_API_COMMON_ATTRIBUTES)
+    implementation(libraries.tomtomAutomotiveAndroidCar)
+    implementation(libraries.indigoThemingApiCommonAttributes)
+    implementation(libraries.indigoCoreConfigNavkit2)
+    implementation(libraries.indigoFrameworkApiProductDebugPermissions)
+    implementation(libraries.indigoFrameworkApiProductDefaultActivity)
+    implementation(libraries.indigoFrameworkApiProductDefaultApplication)
 }

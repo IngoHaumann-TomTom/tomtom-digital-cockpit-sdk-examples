@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 TomTom NV. All rights reserved.
+ * Copyright © 2021 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -9,13 +9,5 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
-
-ivi {
-    serviceApi = true
-}
-
-dependencies {
-    api(project(":common_account"))
-    implementation(libraries.indigoFrameworkApiCommonUid)
-}
+apply(from = "../build-logic/repositories.gradle.kts")
+apply(from = "../build-logic/libraries.versioncatalog.gradle.kts")

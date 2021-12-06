@@ -11,37 +11,35 @@
 
 package com.tomtom.ivi.buildsrc.environment
 
-import com.tomtom.ivi.buildsrc.environment.Libraries.TomTom.Indigo.PLATFORM_GROUP
 import org.gradle.api.Project
 import java.io.File
 
 /**
- * This class retrieves the last available IndiGO product version available in Artifactory and
- * provides a method to replace the current INDIGO_PLATFORM version value in the 'Versions.kt' file.
+ * Generates a versions file based on existing versions file and IndiGO version provided as a
+ * Gradle parameter.
+ *
+ * The new version number must be given as `-PlatestIndigoVersion=x.y.z` command line argument to
+ * Gradle.
+ * A new TOML version file will be generated with whatever old version number replaced by the new
+ * one.
  */
-class IndigoUpdateHelper(private val project: Project) {
+class IndigoUpdateHelper(project: Project) {
 
-    private val latestIndigoVersion = project.property("latestIndigoVersion") as String
+    private val latestVersion = project.property("latestIndigoVersion") as String
 
-    /*
-     * Generates a new Versions.kt file with the up-to-date IndiGO platform version.
-     */
     fun generateNewVersionFile(oldFile: File, newFile: File) {
-        val versionTag = "INDIGO_PLATFORM"
+        val versionTag = "indigoPlatform = "
         val versionValue = Regex("""(\d+.\d+.\d+)""")
         oldFile.useLines { lines ->
             newFile.bufferedWriter().use { outFile ->
                 lines.forEach { oldLine ->
                     val newLine = when {
-                        oldLine.contains(versionTag) -> oldLine.replace(
-                            versionValue,
-                            latestIndigoVersion
-                        )
+                        oldLine.contains(versionTag) -> {
+                            val currentVersion: String? = versionValue.find(oldLine)?.value
+                            println("Replacing $currentVersion IndiGO version with $latestVersion")
+                            oldLine.replace(versionValue, latestVersion)
+                        }
                         else -> oldLine
-                    }
-                    if (oldLine.contains(versionTag)) {
-                        val currentIndigoVersion: String? = versionValue.find(oldLine)?.value
-                        println("Replacing $currentIndigoVersion IndiGO version with $latestIndigoVersion")
                     }
                     @Suppress("DEPRECATION")
                     outFile.appendln(newLine)

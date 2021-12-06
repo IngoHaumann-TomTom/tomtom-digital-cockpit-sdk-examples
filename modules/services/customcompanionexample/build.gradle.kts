@@ -9,12 +9,9 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
-
 dependencies {
     implementation(project(":serviceapis_companionexample"))
-    implementation(Libraries.TomTom.CommunicationsSdk.CLIENT)
-    implementation(Libraries.TomTom.CommunicationsSdk.COMMON)
-    implementation(Libraries.TomTom.CommunicationsSdk.EXAMPLESERVICE)
-    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
+    implementation(libraries.tomtomCommunicationsSdkClient)
+    implementation(libraries.tomtomCommunicationsSdkCommon)
+    implementation(libraries.tomtomCommunicationsSdkExampleService)
 }

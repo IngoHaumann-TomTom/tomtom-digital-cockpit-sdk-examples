@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 ivi {
@@ -23,6 +22,6 @@ ivi {
 }
 
 dependencies {
-    implementation(Libraries.TomTom.Indigo.ServiceApis.PLATFORM_RECENTCALLS_API_SERVICE_RECENTCALLS)
-    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
+    implementation(libraries.indigoRecentCallsServiceApi)
+    testImplementation(libraries.indigoToolsTestingUnit)
 }

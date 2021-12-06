@@ -11,14 +11,15 @@
 
 import com.tomtom.ivi.buildsrc.environment.IndigoUpdateHelper
 
-tasks.register("generateIndigoLibrariesVersionFile") {
+tasks.register<DefaultTask>("generateIndigoLibrariesVersionFile") {
     group = "Help"
-    description = "Checks for IndiGO library updates and generates a new Versions.kt file if any update is found."
-    doLast {
-        val indigoUpdateHelper = IndigoUpdateHelper(rootProject)
-        val newVersionFile = File(projectDir, "Versions.kt")
-        fileTree(projectDir).find { it.name == "Versions.kt" }?.let {
-            indigoUpdateHelper.generateNewVersionFile(it, newVersionFile)
-        }
-    }
+    description = "Takes a `-PlatestIndigoVersion=x.y.z` Gradle input argument and, if " +
+        "different from the version currently in use, creates a new version file."
+
+    val versionLibraryFile = "libraries.versions.toml"
+    val indigoUpdateHelper = IndigoUpdateHelper(rootProject)
+    val currentVersionFile = File(rootProject.projectDir, "build-logic/$versionLibraryFile")
+    val newVersionFile = File(rootProject.projectDir, versionLibraryFile)
+
+    indigoUpdateHelper.generateNewVersionFile(currentVersionFile, newVersionFile)
 }

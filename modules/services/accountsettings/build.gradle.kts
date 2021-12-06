@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.Libraries
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -25,9 +24,9 @@ ivi {
 
 dependencies {
     implementation(project(":serviceapis_accountsettings"))
-    implementation(Libraries.Kotlin.SERIALIZATION)
-    implementation(Libraries.TomTom.Indigo.SETTINGS_API_SERVICES_SETTINGSMANAGEMENT)
-    implementation(Libraries.TomTom.Tools.API_LIVEDATA)
+    implementation(libraries.kotlinxSerializationJson)
+    implementation(libraries.indigoSettingsApiServicesSettingsManagement)
+    implementation(libraries.tomtomToolsApiLivedata)
 
-    testImplementation(Libraries.TomTom.Indigo.TOOLS_TESTING_UNIT)
+    testImplementation(libraries.indigoToolsTestingUnit)
 }

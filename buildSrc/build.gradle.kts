@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 TomTom NV. All rights reserved.
+ * Copyright © 2021 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -9,37 +9,28 @@
  * immediately return or destroy it.
  */
 
-buildscript {
-    apply("repositories.gradle.kts")
-}
-apply("repositories.gradle.kts")
-apply("versionsMap.gradle.kts")
-
 plugins {
     `kotlin-dsl`
 }
 
 dependencies {
-    val versions: Map<String, String> by rootProject.extra
-
-    implementation(kotlin("gradle-plugin", versions["KOTLIN"]))
-    // Enforces the same version for Kotlin libraries.
+    // Enforce the same version for all Kotlin libraries.
     implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation(kotlin("android-extensions", versions["KOTLIN"]))
-    implementation(kotlin("serialization", versions["KOTLIN"]))
-    implementation("com.android.tools.build:gradle:${versions["ANDROID_PLUGIN"]}")
-    implementation("com.android.tools:sdklib:${versions["ANDROID_SDK_COMMON"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_defaults_navkit2:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_framework_config:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_framework_frontend:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_tools_navkit2test:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_tools_signingconfig:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_tools_emulators:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.ivi.platform.gradle:api_tools_version:${versions["INDIGO_PLATFORM"]}")
-    implementation("com.tomtom.navtest:navtest-android:${versions["NAVTEST_PLUGIN"]}")
-    implementation("com.tomtom.navtest:navtest-common:${versions["NAVTEST_PLUGIN"]}")
-    implementation("com.tomtom.navtest:navtest-core:${versions["NAVTEST_PLUGIN"]}")
-    implementation("com.tomtom.navui:emulators-plugin:${versions["NAVUI_EMULATORS_PLUGIN"]}")
-    implementation("org.jfrog.buildinfo:build-info-extractor-gradle:${versions["ARTIFACTORY_PLUGIN"]}")
+    implementation(kotlin("android-extensions", libraries.versions.kotlin.get()))
+    implementation(libraries.gradlePluginKotlin)
+    implementation(libraries.gradlePluginKotlinSerialization)
+    implementation(libraries.gradleAndroidToolsBuildGradle)
+    implementation(libraries.gradleAndroidToolsSdklib)
+    implementation(libraries.gradlePluginApiDefaultsCore)
+    implementation(libraries.gradlePluginApiDefaultsNavkit2)
+    implementation(libraries.gradlePluginApiFrameworksConfig)
+    implementation(libraries.gradlePluginApiFrameworksFrontend)
+    implementation(libraries.gradlePluginApiToolsNavkit2Test)
+    implementation(libraries.gradlePluginApiToolsSigningConfig)
+    implementation(libraries.gradlePluginApiToolsEmulators)
+    implementation(libraries.gradlePluginApiToolsVersionIvi)
+    implementation(libraries.gradlePluginArtifactory)
+    implementation(libraries.gradlePluginNavtestAndroid)
+    implementation(libraries.gradlePluginNavtestCore)
+    implementation(libraries.gradlePluginNavuiEmulators)
 }

@@ -9,13 +9,13 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+enableFeaturePreview("VERSION_CATALOGS")
 
-ivi {
-    serviceApi = true
-}
-
-dependencies {
-    api(project(":common_account"))
-    implementation(libraries.indigoFrameworkApiCommonUid)
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    versionCatalogs {
+        create("libraries") {
+            from(files("libraries.versions.toml"))
+        }
+    }
 }

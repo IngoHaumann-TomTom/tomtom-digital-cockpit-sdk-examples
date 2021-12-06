@@ -24,6 +24,9 @@ plugins.apply("maven-publish")
 
 val isApplicationProject: Boolean by extra
 
+// TODO(IVI-4701): Remove Artifactory reference.
+val artifactoryRepoBaseUrl = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
+
 group = "com.tomtom.ivi"
 
 // Register publications
@@ -79,7 +82,7 @@ fun Project.artifactory(configure: ArtifactoryPluginConvention.() -> Unit): Unit
     configure(project.convention.getPluginByName("artifactory"))
 
 artifactory {
-    setContextUrl(rootProject.extra.get("artifactoryRepo") as String)
+    setContextUrl(artifactoryRepoBaseUrl)
 
     publish(delegateClosureOf<PublisherConfig> {
         repository(delegateClosureOf<GroovyObject> {
