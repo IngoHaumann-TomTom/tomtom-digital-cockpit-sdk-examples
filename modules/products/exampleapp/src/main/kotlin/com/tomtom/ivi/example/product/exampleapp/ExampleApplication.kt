@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.product.exampleapp
 
 import com.tomtom.ivi.platform.framework.api.product.defaultapplication.DefaultApplication
-import com.tomtom.ivi.core.config.navkit2.Navkit2ApiKeyStaticConfigurationProvider
+import com.tomtom.ivi.platform.navkit2.api.common.configuration.Navkit2ApiKeyStaticConfigurationProvider
 
 @Suppress("unused")
 class ExampleApplication : DefaultApplication() {

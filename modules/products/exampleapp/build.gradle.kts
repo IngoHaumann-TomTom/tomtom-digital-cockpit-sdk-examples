@@ -122,9 +122,9 @@ dependencies {
     implementation(project(":debugtabs_activityview"))
     implementation(project(":frontends_account"))
     implementation(libraries.tomtomAutomotiveAndroidCar)
-    implementation(libraries.indigoThemingApiCommonAttributes)
-    implementation(libraries.indigoCoreConfigNavkit2)
     implementation(libraries.indigoFrameworkApiProductDebugPermissions)
     implementation(libraries.indigoFrameworkApiProductDefaultActivity)
     implementation(libraries.indigoFrameworkApiProductDefaultApplication)
+    implementation(libraries.indigoNavkit2ApiCommonConfiguration)
+    implementation(libraries.indigoThemingApiCommonAttributes)
 }
