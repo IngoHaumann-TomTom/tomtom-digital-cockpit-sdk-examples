@@ -17,6 +17,8 @@ steps:
 
   - bash: |
       set -eux
+      # This ensures no context is kept from previous runs on the same agent.
+      rm -rf $(Build.SourcesDirectory)/downloads
       mkdir $(Build.SourcesDirectory)/downloads
     displayName: Create download directory
 

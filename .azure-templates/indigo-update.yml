@@ -38,26 +38,36 @@ steps:
 
   - bash: |
       set -eux
-      if [ ! -f "libraries.versions.toml" ]
+      REPO_VERSION_OLD_FILE="./build-logic/libraries.versions.toml"
+      REPO_VERSION_NEW_FILE="./libraries.versions.toml"
+      if [ ! -f $REPO_VERSION_NEW_FILE ]
       then
-        echo "No IndiGO library update was found."
+        echo "No IndiGO library update file was found."
         exit 1
       fi
-      REPO_VERSION_FILE="build-logic/libraries.versions.toml"
-      if ! grep -qs indigoPlatform ${REPO_VERSION_FILE}
+      if ! grep -qs indigoPlatform ${REPO_VERSION_NEW_FILE}
       then
-        echo "${REPO_VERSION_FILE} does not exist or does not contain the IndiGO platform version."
+        echo "${REPO_VERSION_NEW_FILE} does not contain an IndiGO platform version."
         exit 1
       fi
-      INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_FILE} | awk '{split($0,a," "); print a[3]}')"
+
+      OLD_INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_OLD_FILE} | awk '{split($0,a," "); print a[3]}')"
+      NEW_INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_NEW_FILE} | awk '{split($0,a," "); print a[3]}')"
+
+      if [ "${OLD_INDIGO_VERSION}" = "${NEW_INDIGO_VERSION}" ]
+      then
+        echo "No IndiGO update was found."
+        exit 1
+      fi
+
       git config --global user.email "ivi_dev@groups.tomtom.com"
       git config --global user.name "Azure DevOps"
       git branch -D ${{parameters.branch}} || true
       git checkout -b ${{parameters.branch}}
       echo "##vso[task.setvariable variable=branchCreated]True"
-      mv libraries.versions.toml ${REPO_VERSION_FILE}
+      mv ${REPO_VERSION_NEW_FILE} ${REPO_VERSION_OLD_FILE}
       git diff > $(Build.ArtifactStagingDirectory)/indigo-update.patch
-      git commit -a -m "Last integrated version of IndiGO platform: ${INDIGO_VERSION}"
+      git commit -a -m "Last integrated version of IndiGO platform: ${NEW_INDIGO_VERSION}"
     displayName: 'Commit updated IndiGO lib to ${{parameters.branch}} branch'
 
 
