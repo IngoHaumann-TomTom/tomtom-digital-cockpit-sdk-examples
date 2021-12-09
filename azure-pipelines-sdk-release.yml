@@ -177,7 +177,7 @@ stages:
         dependsOn: GenerateTomTomAndroidToolsApiDocs
         steps:
           - checkout: none
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: tomtom-android-tools-api-docs
               apiSubFolder: android-tools-api
@@ -190,7 +190,7 @@ stages:
         dependsOn: GenerateGradlepluginsApiDocs
         steps:
           - checkout: none
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-gradleplugins-api-docs
               apiSubFolder: indigo-gradleplugins-api
@@ -203,7 +203,7 @@ stages:
         dependsOn: GenerateCommunicationSdkApiDocs
         steps:
           - checkout: none
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-communications-sdk-api-docs
               apiSubFolder: indigo-comms-api
@@ -236,11 +236,42 @@ stages:
         dependsOn: GenerateIndigoApiDocs
         steps:
           - checkout: none
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-api-docs
               apiSubFolder: indigo-api
               version: $(VERSION_PLATFORM)
+      - job: DeleteIndigoApiDocsFromS3
+        displayName: 'Delete Indigo api docs'
+        container: docker_indigo_delivery
+        dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
+        condition: in(dependencies.IndigoApiDocsToS3.result, 'Failed')
+        steps:
+          - checkout: none
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
+            parameters:
+              artifactName: indigo-api-docs
+              apiSubFolder: indigo-api
+              version: $(VERSION_PLATFORM)
+              deleteDocs: true
+      - job: DeleteIndigogradlepluginsApiDocsFromS3
+        displayName: 'Delete Indigogradleplugins api docs'
+        container: docker_indigo_delivery
+        dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
+        condition: |
+          and
+          (
+            in(dependencies.IndigoGradlepluginsApiDocsToS3.result, 'Failed', 'Succeeded'),
+            in(dependencies.IndigoApiDocsToS3.result, 'Failed', 'Skipped')
+          )
+        steps:
+        - checkout: none
+        - template: .azure-templates/aws-S3-upload-or-delete.yml
+          parameters:
+            artifactName: indigo-gradleplugins-api-docs
+            apiSubFolder: indigo-gradleplugins-api
+            version: $(VERSION_PLATFORM)
+            deleteDocs: true
 
   - stage: Publishing
     dependsOn: []
@@ -317,25 +348,25 @@ stages:
         container: docker_indigo_delivery
         steps:
           - checkout: none
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               apiSubFolder: android-tools-api
               artifactName: tomtom-android-tools-api-docs
               version: $(VERSION_TOMTOM_ANDROID_TOOLS)
               syncLatest: true
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               apiSubFolder: indigo-gradleplugins-api
               artifactName: indigo-gradleplugins-api-docs
               version: $(VERSION_PLATFORM)
               syncLatest: true
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               apiSubFolder: indigo-comms-api
               artifactName: indigo-communications-sdk-api-docs
               version: $(VERSION_COMMUNICATIONS_SDK)
               syncLatest: true
-          - template: .azure-templates/aws-S3-upload.yml
+          - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               apiSubFolder: indigo-api
               artifactName: indigo-api-docs
