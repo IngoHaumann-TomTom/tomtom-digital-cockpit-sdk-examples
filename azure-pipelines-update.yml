@@ -71,6 +71,7 @@ stages:
 
   - job: PrepareIndigoDocsBranch
     dependsOn: Libraries
+    condition: in(dependencies.Libraries.result, 'Succeeded', 'Skipped')
     displayName: 'Preparing IndiGO Docs branch'
     container: 'docker_indigo_build'
     steps:
