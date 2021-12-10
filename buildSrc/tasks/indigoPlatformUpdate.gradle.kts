@@ -16,10 +16,12 @@ tasks.register<DefaultTask>("generateIndigoLibrariesVersionFile") {
     description = "Takes a `-PlatestIndigoVersion=x.y.z` Gradle input argument and, if " +
         "different from the version currently in use, creates a new version file."
 
-    val versionLibraryFile = "libraries.versions.toml"
-    val indigoUpdateHelper = IndigoUpdateHelper(rootProject)
-    val currentVersionFile = File(rootProject.projectDir, "build-logic/$versionLibraryFile")
-    val newVersionFile = File(rootProject.projectDir, versionLibraryFile)
+    doLast {
+        val versionLibraryFile = "libraries.versions.toml"
+        val indigoUpdateHelper = IndigoUpdateHelper(rootProject)
+        val currentVersionFile = File(rootProject.projectDir, "build-logic/$versionLibraryFile")
+        val newVersionFile = File(rootProject.projectDir, versionLibraryFile)
 
-    indigoUpdateHelper.generateNewVersionFile(currentVersionFile, newVersionFile)
+        indigoUpdateHelper.generateNewVersionFile(currentVersionFile, newVersionFile)
+    }
 }
