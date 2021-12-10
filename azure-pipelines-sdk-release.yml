@@ -311,7 +311,7 @@ stages:
               bdtools_environment: prod
 
   - stage: Verification
-    dependsOn: [ Publishing, Documentation ]
+    dependsOn: [ Publishing, Documentation, Versions ]
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
@@ -322,6 +322,9 @@ stages:
         container: docker_indigo_build
         steps:
           - template: .azure-templates/downloading-nexus.yml
+            parameters:
+              sdkArtifactVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+              versionLineageOs: '$(VERSION_LINEAGEOS)'
           - template: gradle/gradle.yml@devops-templates
             parameters:
               cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources

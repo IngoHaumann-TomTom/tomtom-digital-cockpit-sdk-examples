@@ -14,11 +14,14 @@ parameters:
   nexusUrl: https://repo.tomtom.com/repository/ivi
   iviGroup: com/tomtom/ivi
   indigoGroup: com/tomtom/indigo
+  sdkArtifactVersion: ''
+  versionLineageOs: ''
+
 
 steps:
 - template: download/download-and-verify.yml@devops-templates
   parameters:
-    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.iviGroup}}/lineageos-gts4lvwifi/$(VERSION_LINEAGEOS)/lineageos-gts4lvwifi-$(VERSION_LINEAGEOS)-ota.zip
+    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.iviGroup}}/lineageos-gts4lvwifi/${{parameters.versionLineageOs}}/lineageos-gts4lvwifi-${{parameters.versionLineageOs}}-ota.zip
     displayName: Download and verify AAOS system image for tablet
     userName: $(NEXUS_USERNAME)
     password: $(NEXUS_PASSWORD)
@@ -82,7 +85,7 @@ steps:
 
 - template: download/download-and-verify.yml@devops-templates
   parameters:
-    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.indigoGroup}}/tomtom-indigo-sdk/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz
+    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.indigoGroup}}/tomtom-indigo-sdk/${{parameters.sdkArtifactVersion}}/tomtom-indigo-sdk-${{parameters.sdkArtifactVersion}}.tar.gz
     displayName: Download and verify SDK archive
     userName: $(NEXUS_USERNAME)
     password: $(NEXUS_PASSWORD)
@@ -93,4 +96,4 @@ steps:
     destinationFolder: '$(Build.SourcesDirectory)/downloads/sdk'
     cleanDestinationFolder: false
     overwriteExistingFiles: false
-  displayName: Extract tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz
+  displayName: Extract tomtom-indigo-sdk-${{parameters.sdkArtifactVersion}}.tar.gz
