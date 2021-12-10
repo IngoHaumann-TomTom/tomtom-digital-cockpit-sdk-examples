@@ -6,7 +6,7 @@ This repository contains the source code of example application built on IndiGO 
 
 ### `buildSrc/`
 
-Code used by the Gradle to sync the Gradle modules and build the app.
+Code used by Gradle to sync the Gradle modules and build the app.
 
 ### `gradle/`
 
