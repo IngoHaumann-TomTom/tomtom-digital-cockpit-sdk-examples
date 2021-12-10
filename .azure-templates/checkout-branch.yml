@@ -21,3 +21,4 @@ steps:
     set -eux
     git checkout origin/${{parameters.branch}}
   condition: and(succeeded(), ne('${{ parameters.branch }}', ''))
+  displayName: 'Checkout remote branch'

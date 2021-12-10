@@ -21,7 +21,7 @@ parameters:
   nrOfEmulators: 1
 
 steps:
-  - template: build-prepare.yml
+  - template: checkout-branch.yml
     parameters:
       branch: ${{parameters.branch}}
 

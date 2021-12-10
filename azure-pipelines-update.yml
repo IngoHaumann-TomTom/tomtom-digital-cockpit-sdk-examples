@@ -16,6 +16,7 @@ variables:
   - name: indigoBranchName
     value: indigo-platform-canary
   - group: 'ProductVersion'
+  - group: 'IviArtifactoryCredentials'
 
 trigger: none
 
@@ -26,9 +27,9 @@ resources:
     source: IndiGO
     trigger:
       branches:
-       include:
-         - master
-         - releases/*
+        include:
+          - master
+          - releases/*
   containers:
   # Docker containers with run options for private cloud agents and shared Gradle caches.
   - container: docker_indigo_build
@@ -48,78 +49,105 @@ resources:
 pool: 'IVI 2.0'
 
 stages:
-
-- stage: PrepareIndigoBranch
-  displayName: IndiGO branch preparation
+- stage: ProductVersion
+  displayName: Product version
   jobs:
-  - job: PrepareIndigoBranch
-    displayName: Preparing IndiGO branch
+  - template: .azure-templates/product-get-version.yml
+
+- stage: PrepareIndigoDocsBranch
+  displayName: 'IndiGO Docs canary branch'
+  dependsOn: ProductVersion
+  variables:
+    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+  jobs:
+  - job: Libraries
+    displayName: 'Publish IndiGO libraries to ivi-test'
+    condition: eq(variables['Build.Reason'], 'PullRequest')
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/publish-indigo-libraries.yml
+      parameters:
+        iviVersion: '$(platform_version)'
+
+  - job: PrepareIndigoDocsBranch
+    dependsOn: Libraries
+    displayName: 'Preparing IndiGO Docs branch'
     container: 'docker_indigo_build'
     steps:
     - bash: echo "Resetting trigger"
     - template: .azure-templates/indigo-update.yml
       parameters:
-        branch: $(indigoBranchName)
+        branch: '$(indigoBranchName)-$(platform_version)'
+        newIndigoVersion: '$(platform_version)'
 
 - stage: Build
   displayName: 'Build pipeline'
-  dependsOn: PrepareIndigoBranch
+  dependsOn: [ PrepareIndigoDocsBranch, ProductVersion ]
+  variables:
+    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
   jobs:
   - job: Build
-    displayName: Lint & Build
+    displayName: 'Lint & Build'
     timeoutInMinutes: '15'
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/build-steps.yml
       parameters:
-        branch: $(indigoBranchName)
+        branch: '$(indigoBranchName)-$(platform_version)'
     - template: build/build-cleanup.yml@devops-templates
 
   - job: UnitTests
-    displayName: Unit tests
+    displayName: 'Unit tests'
     container: 'docker_indigo_test'
     timeoutInMinutes: 15
     steps:
     - template: .azure-templates/test-unit.yml
       parameters:
-        branch: $(indigoBranchName)
+        branch: '$(indigoBranchName)-$(platform_version)'
     - template: build/build-cleanup.yml@devops-templates
 
   - job: IntegrationTests
-    displayName: Integration & E2E tests
+    displayName: 'Integration & E2E tests'
     container: 'docker_indigo_test'
     timeoutInMinutes: 15
     steps:
     - template: .azure-templates/test-instrumented.yml
       parameters:
         artifactName: integration-test
+        branch: '$(indigoBranchName)-$(platform_version)'
         testTasks: >-
           runDebugAndroidTests
     - template: build/build-cleanup.yml@devops-templates
 
-- stage: MergeIndigoBranch
-  displayName: IndiGO branch merge
-  dependsOn: Build
+- stage: MergeIndigoDocsBranch
+  displayName: 'IndiGO Docs branch merge'
+  dependsOn: [ Build, ProductVersion ]
+  variables:
+    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   jobs:
-  - job: MergeIndigoBranch
-    displayName: Merge IndiGO canary branch
+  - job: MergeIndigoDocsBranch
+    displayName: 'Merge IndiGO Docs canary branch'
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/merge-feature-branch.yml
       parameters:
-        branch: $(indigoBranchName)
+        branch: '$(indigoBranchName)-$(platform_version)'
 
 - stage: Clean
-  displayName: Clean
-  dependsOn: MergeIndigoBranch
+  displayName: 'Clean'
+  dependsOn: [ MergeIndigoDocsBranch, ProductVersion ]
+  variables:
+    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
   condition: always()
   jobs:
   - job: RemoveBranch
-    displayName: Remove IndiGO branch
+    displayName: 'Remove IndiGO Docs canary branch'
     container: 'docker_indigo_build'
     steps:
     - checkout: self
       persistCredentials: true
     - bash: |
         set -eux
-        git push --delete origin $(indigoBranchName) || true
+        git push --delete origin $(indigoBranchName)-$(platform_version) || true

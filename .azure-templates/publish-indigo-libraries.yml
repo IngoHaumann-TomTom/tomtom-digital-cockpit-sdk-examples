@@ -1,0 +1,49 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  iviVersion: ''
+
+steps:
+  - bash: |
+      set -ux
+
+      rm -rf $(Pipeline.Workspace)/s/* $(Pipeline.Workspace)/s/.*
+      sourceRepository=$(basename $(System.PullRequest.SourceRepositoryURI))
+      sourceBranch=$(basename $(System.PullRequest.SourceBranch))
+      baseUrl=$(echo $(System.CollectionUri) |sed "s@//@//$PAT\@@g")
+      git clone -b $sourceBranch --single-branch ${baseUrl}IVI-Developers/_git/$sourceRepository $(Pipeline.Workspace)/s
+    env:
+      PAT: $(System.AccessToken)
+    displayName: 'Checkout $(System.PullRequest.SourceRepositoryURI)@$(System.PullRequest.SourceBranch)'
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        publishLibrariesPublicationToIntermediateLocalRepository
+      projectOptions: >-
+        -PiviVersion=${{parameters.iviVersion}}
+      displayName: 'Publish libraries to intermediate local repository'
+
+  - bash: mv $(Build.SourcesDirectory)/build/libraries-repo/ ../libraries-repo
+    displayName: 'Move libraries-repo folder'
+
+  - template: gradle/gradle.yml@devops-templates
+    parameters:
+      tasks: >-
+        publishLibrariesUploadPublicationToArtifactoryRepository
+      projectOptions: >-
+        -PpublishUsername=$(ARTIFACTORY_USERNAME)
+        -PpublishPassword=$(ARTIFACTORY_PASSWORD)
+        -PartifactoryRepo=ivi-test
+        -PiviVersion=${{parameters.iviVersion}}
+      displayName: 'Publish libraries to ivi-test Artifactory'

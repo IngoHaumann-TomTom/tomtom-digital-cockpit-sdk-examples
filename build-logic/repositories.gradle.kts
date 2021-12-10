@@ -40,6 +40,7 @@ dependencyResolutionManagement {
 
         // PU IVI repo for internal dependencies.
         maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
+        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-test")
 
         // Repo for shared Android Tools like, UI Controls, resource resolutions,
         // viewcomparison test setup, animations...

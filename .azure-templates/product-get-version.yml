@@ -23,6 +23,14 @@ jobs:
 
           echo "Product version: \"$version_semver\""
 
+          if [ $(Build.Reason) == 'PullRequest' ]
+          then
+            sourceBranch=$(echo $(System.PullRequest.SourceBranch) |sed 's@/@_@g')
+            echo "##vso[task.setvariable variable=platform_version;isOutput=true]$sourceBranch-$(System.PullRequest.sourceCommitId)"
+          else
+            echo "##vso[task.setvariable variable=platform_version;isOutput=true]$(PRODUCT_VERSION)"
+          fi
+
           # Remove the shell flag -x to prevent a DevOps bug:
           # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
           set +x

@@ -12,6 +12,7 @@
 
 parameters:
   branch: 'indigo-platform-canary'
+  newIndigoVersion: ''
 
 steps:
   - bash: |
@@ -32,7 +33,7 @@ steps:
       tasks: >-
         generateIndigoLibrariesVersionFile
       projectOptions: >-
-        -PlatestIndigoVersion=$(PRODUCT_VERSION)
+        -PlatestIndigoVersion=${{parameters.newIndigoVersion}}
         -PuseInternalNavkit2ApiKey=true
       displayName: 'Check for new IndiGO library versions'
 
@@ -70,7 +71,6 @@ steps:
       git commit -a -m "Last integrated version of IndiGO platform: ${NEW_INDIGO_VERSION}"
     displayName: 'Commit updated IndiGO lib to ${{parameters.branch}} branch'
 
-
   - bash: |
       set -eux
       git push -f origin ${{parameters.branch}}
@@ -86,7 +86,7 @@ steps:
 
   - bash: |
       set -eux
-      git checkout $(Build.SourceBranchName)
+      git checkout master
       git branch -D ${{parameters.branch}}
     displayName: 'Clean up local branches'
     condition: eq(variables['branchCreated'], 'True')
