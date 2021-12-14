@@ -21,7 +21,7 @@
 # Gradle task 'portal_export' calls the script as 'python3 -B <script-name> export'.
 # The script generates API Reference URLs from placeholders and it validates URLs in the content.
 # It connects to the S3 server to retrieve all available API Reference versions and adds those to
-# the API Reference pages. It then converts the generated Markdown files to HTML, using Jekyll.
+# the API Reference pages.
 #
 # Gradle task 'portal_check' calls the script as 'python3 -B <script-name>'.
 # The script generates API Reference URLs from placeholders and it validates URLs in the content.
@@ -30,7 +30,6 @@
 #   - New Markdown files are created in TARGET_DIR from the Markdown files in the SOURCE_DIR directory.
 #   - API Reference placeholders get replaced by API Reference URLs in the TARGET_DIR files.
 #   - The TARGET_DIR Markdown files get checked for broken links.
-#   - Optional: the TARGET_DIR Markdown files get converted to HTML, using Jekyll.
 #
 # An example of replacing an API Reference placeholder by an API Reference URL:
 #   [OverlayPanel](TTIVI_INDIGO_API)
@@ -45,10 +44,11 @@ from url_validator import url_validator
 from versions_generator import populate_versions
 
 SOURCE_DIR = "src"
-TARGET_DIR = "build/intermediate"
+TARGET_DIR = "build/export"
+TARGET_FILETYPE = "*.md"
 API_REFERENCE_DIR = "api-reference"
 DOCUMENTATION_DIR = "documentation"
-INPUT_CHECK_FILE = "documentation/3. development/index.md"
+INPUT_CHECK_FILE = "documentation/development/frontend-plugins.md"
 
 def verify_working_directory():
     '''Verifies whether script is run from correct working directory.'''
@@ -63,20 +63,12 @@ def is_export():
 
 def clean_old_files():
     '''Clean old build files.'''
-    if is_export():
-        os.system("jekyll clean")
     if os.path.exists(TARGET_DIR):
         shutil.rmtree(TARGET_DIR)
 
 def create_intermediate_files():
     '''Create intermediate files.'''
     shutil.copytree(SOURCE_DIR, TARGET_DIR)
-
-def build_jekyll():
-    '''Convert Developer Portal files.'''
-    ret = os.system("jekyll build")
-    if not ret == 0:
-        raise RuntimeError("Jekyll build failed.")
 
 verify_working_directory()
 clean_old_files()
@@ -85,8 +77,7 @@ api_link_generator(TARGET_DIR)
 if is_export():
     populate_versions(os.path.join(TARGET_DIR, API_REFERENCE_DIR))
 url_validator(os.path.join(TARGET_DIR, DOCUMENTATION_DIR))
-if is_export():
-    build_jekyll()
+    
 
 
 

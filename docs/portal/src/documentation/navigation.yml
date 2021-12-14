@@ -1,0 +1,131 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+group: indigo
+isPrivate: false
+productName: IndiGO
+menuTitle: Documentation
+isMenuOpened: true
+hasRequestAccess: true
+hasRequestAccessButton: false
+menu:
+  - title: Introduction
+    items:
+      - fileId: /introduction
+        title: Documentation
+  - title: Platform Overview
+    items:
+      - fileId: /platform-overview/introduction
+        title: Introduction
+      - fileId: /platform-overview/example-app
+        title: Example App
+  - title: Getting Started
+    items:
+      - fileId: /getting-started/introduction
+        title: Introduction
+      - fileId: /getting-started/installing-openjdk-11
+        title: Installing OpenJDK 11
+      - fileId: /getting-started/installing-indigo-sdk
+        title: Installing IndiGO SDK
+      - fileId: /getting-started/accessing-the-artifact-repository
+        title: Accessing the Artifact Repository
+      - fileId: /getting-started/getting-the-tomtom-api-key
+        title: Getting the TomTom API Key
+      - fileId: /getting-started/configuring-android-studio
+        title: Configuring Android Studio
+      - fileId: /getting-started/the-indigo-emulator
+        title: The IndiGO Emulator
+      - fileId: /getting-started/frequently-asked-questions-faq
+        title: Frequently Asked Questions (FAQ)
+  - title: Development
+    items:
+      - fileId: /development/introduction
+        title: Introduction
+      - fileId: /development/frontend-plugins
+        title: Frontend Plugins
+      - fileId: /development/system-ui
+        title: System UI
+      - fileId: /development/ui-components
+        title: UI Components
+      - fileId: /development/ivi-services
+        title: IVI Services
+      - fileId: /development/theming-and-customization
+        title: Theming and Customization
+      - title: Platform Domains
+        items:
+          - fileId: /development/platform-domains/introduction
+            title: Introduction
+          - fileId: /development/platform-domains/navigation
+            title: Navigation
+          - fileId: /development/platform-domains/media
+            title: Media
+          - fileId: /development/platform-domains/vehicle-functions
+            title: Vehicle Functions
+          - fileId: /development/platform-domains/communications
+            title: Communications
+          - fileId: /development/platform-domains/voice-personal-assistant-vpa
+            title: Voice Personal Assistant (VPA)
+          - fileId: /development/platform-domains/configuration-framework
+            title: Configuration Framework
+          - fileId: /development/platform-domains/settings-framework
+            title: Settings Framework
+  - title: Integrating IndiGO
+    items:
+      - fileId: /integrating-indigo/introduction
+        title: Introduction
+      - fileId: /integrating-indigo/integrating-in-vehicle
+        title: Integrating in Vehicle
+      - fileId: /integrating-indigo/installing-indigo-on-hardware
+        title: Installing IndiGO on Hardware
+      - fileId: /integrating-indigo/flashing-reference-hardware
+        title: Flashing the Reference Hardware
+      - fileId: /integrating-indigo/companion-application
+        title: Companion Application
+  - title: Tutorials and Examples
+    items:
+      - fileId: /tutorials-and-examples/introduction
+        title: Introduction
+      - title: Setup
+        items:
+          - fileId: /tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project
+            title: Integrate IndiGO into a Gradle Project
+          - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key
+            title: Configure a TomTom API Key
+          - fileId: /tutorials-and-examples/setup/configure-an-app-store
+            title: Configure an App Store
+      - title: Basics
+        items:
+          - fileId: /tutorials-and-examples/basics/create-a-frontend-plugin
+            title: Create a Frontend Plugin
+          - fileId: /tutorials-and-examples/basics/create-an-ivi-service
+            title: Create an IVI Service
+          - fileId: /tutorials-and-examples/basics/configure-debug-tabs
+            title: Configure Debug Tabs
+      - title: Media
+        items:
+          - fileId: /tutorials-and-examples/media/create-a-new-media-user-interface
+            title: Create a New Media User Interface
+          - fileId: /tutorials-and-examples/media/customize-a-media-source
+            title: Customize a Media Source
+      - title: Communications
+        items:
+          - fileId: /tutorials-and-examples/communications/create-a-custom-connection-service
+            title: Create a Custom Connection Service
+          - fileId: /tutorials-and-examples/communications/create-a-custom-contacts-service
+            title: Create a Custom Contacts Service
+          - fileId: /tutorials-and-examples/communications/create-a-custom-recentcalls-service
+            title: Create a Custom Recent Calls Service
+      - title: Customization
+        items:
+          - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
+            title: Use the Configuration Framework
+      - title: Deployment
+        items:
+          - fileId: /tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system
+            title: Configure the Runtime Deployment of the IVI System

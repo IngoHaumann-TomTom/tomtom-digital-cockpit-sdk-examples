@@ -33,10 +33,10 @@ INDIGO_COMMS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/in
 ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/android-tools-api"
 
 # Markdown files that will get populated with the available API Reference versions.
-INDIGO_FILE = "1. indigo-api-reference.md"
-INDIGO_GRADLEPLUGINS_FILE = "2. indigo-gradle-plugins-api-reference.md"
-INDIGO_COMMS_FILE = "3. indigo-comms-api-reference.md"
-ANDROID_TOOLS_FILE = "4. tomtom-android-tools-api-reference.md"
+INDIGO_FILE = "indigo-api-reference.md"
+INDIGO_GRADLEPLUGINS_FILE = "indigo-gradle-plugins-api-reference.md"
+INDIGO_COMMS_FILE = "indigo-comms-api-reference.md"
+ANDROID_TOOLS_FILE = "tomtom-android-tools-api-reference.md"
 
 REGEX_VERSION = "[0-9].[0-9].[0-9]{2,4}"
 

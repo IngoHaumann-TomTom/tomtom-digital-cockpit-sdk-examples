@@ -1,0 +1,217 @@
+---
+title: Configure the Runtime Deployment of the IVI System
+---
+
+Android allows the running of Android services in processes separate from the main
+application/activity process(es). The IndiGO platform uses Android services for IVI service hosts
+and therefore it is possible to isolate the IVI service host instances too. The main advantage of
+process isolation is that when a process unexpectedly crashes (and restarts), this only affects the
+service host instances running in that process and not all other services and does not affect the
+UI.
+
+It is also possible to run multiple IVI service hosts in one process to limit the impact of the
+Binder IPC and reduce the (limited) overhead of each process.
+
+The default IVI application configuration deploys each service host implementations in separate
+processes.
+
+An IVI service host can be deployed to multiple runtime deployments. This allows multiple
+instances of the service host to run in separate processes.
+
+## How to extend the default runtime deployment
+
+In the main application build script, you can override the default runtime deployment. For example:
+
+```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
+apply(from = rootProject.file("iviservicehosts.gradle.kts"))
+
+val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+
+ivi {
+    application {
+        enabled = true
+        ...
+        runtime {
+            globalDeployments {
+                // Create the "Global" runtime deployment.
+                create(RuntimeDeploymentIdentifier.globalRuntime) {
+                    // Apply the default runtime deployments. This deploys all IVI service hosts
+                    // implementations in separate processes.
+                    useDefaults()
+                    // Deploy the `accountServiceHosts` in the same process.
+                    deployServiceHosts(inList(accountServiceHosts))
+                        .withProcessName("account")
+                }
+            }
+        }
+    }
+}
+```
+
+The above example uses the default deployment configuration and configures the
+`accountServiceHosts` to run in the same process.
+
+## How to add an IVI instance
+
+A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI instance.
+
+To add an IVI instance, it needs to be created in the main application build script, and needs to
+be mapped to a runtime deployment. The following example defines two IVI instances, the
+"CenterStack" instance and the "Passenger" instance, and maps each IVI instance to its own runtime
+deployment.
+
+```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.defaults.config.mainMenuFrontend
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
+val centerStackIviInstance = IviInstanceIdentifier("CenterStack")
+val passengerIviInstance = IviInstanceIdentifier("Passenger")
+
+ivi {
+    application {
+        enabled = true
+        iviInstances {
+            // Create the "CenterStack" IVI instance with the default frontends and menu items.
+            create(centerStackIviInstance) {
+                useDefaults()
+            }
+            // Create the "Passenger" IVI instance. In this example only the `mainMenuFrontend` is
+            // added.
+            create(passengerIviInstance) {
+                frontends {
+                    add(mainMenuFrontend, ...)
+                }
+            }
+        }
+        runtime {
+            globalDeployments {
+                // Create "Global" runtime deployment to deploy all global IVI service hosts.
+                create(RuntimeDeploymentIdentifier.globalRuntime) {
+                    deployServiceHosts(all())
+                }
+            }
+            multipleInstanceDeployments {
+                // Create "CenterStack" runtime deployment to deploy all service hosts for the
+                // "CenterStack" IVI instances.
+                create(RuntimeDeploymentIdentifier("CenterStackRuntime")) {
+                    iviInstances = listOf(centerStackIviInstance)
+                    deployServiceHosts(all())
+                }
+                // Create "Passenger" runtime deployment to deploy all service hosts for the
+                // "Passenger" IVI instances.
+                create(RuntimeDeploymentIdentifier("PassengerRuntime")) {
+                    iviInstances = listOf(passengerIviInstance)
+                    deployServiceHosts(all())
+                }
+            }
+        }
+    }
+}
+```
+
+The above configuration results in running all IVI service host instances in their own process.
+
+**Note** It is also possible to map multiple IVI instances to the same runtime deployment. In this
+case the IVI service host instances of these IVI instances will run in the same process. Another
+option is to selectively deploy services across deployments.
+
+To use an IVI instance, an Android Activity needs to be bound to an IVI instance. The Android
+manifest entry for the activity must define a metadata entry with the name
+`com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE` and the value of the name of
+IVI instance. The activity must subclass the [`IviActivity`](TTIVI_INDIGO_API) class. To use the 
+default system UI use [`DefaultActivity`](TTIVI_INDIGO_API) as the base class.
+
+```xml
+<activity
+    android:name=".PassengerActivity"
+    android:label="@string/ttivi_passenger_activity_label"
+    android:launchMode="singleTask"
+    android:windowSoftInputMode="adjustPan">
+
+    <intent-filter>
+        <action android:name="com.tomtom.ivi.integration.product.indigo.PASSENGER" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+
+    <meta-data
+        android:name="com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE"
+        android:value="Passenger" />
+</activity>
+```
+
+The above example defines a `PassengerActivity` that is associate to the `Passenger` IVI Instance.
+
+## How to run an Android service in the same process as an IVI service host
+
+Standard Android services (not IVI service hosts) are not managed by the IVI platform in any way.
+The IVI build config only allows an Android service to be deployed in a configurable process name.
+For instance, it is possible to deploy an Android service in the same process as an IVI service
+host without the need to hardcode the process name of the Android service in an
+`AndroidManifest.xml` file.
+
+```kotlin
+val androidService = AndroidServiceConfig("com....Service")
+val someServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        services {
+            addHost(someServiceHost)
+        }
+        globalRuntime {
+             create(RuntimeDeploymentIdentifier.global) {
+                 useDefaults()
+                 deployServiceHost(someServiceHost)
+                 deployAndroidService(androidService).inSameProcessAs(someServiceHost)
+             }
+        }
+    }
+}
+```
+
+The above example deploys `com....Service` in the same process as `someServiceHost`.
+
+__Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
+Android service into the build.
+
+## How to run a broadcast receiver in the same process as an IVI service host
+
+Android broadcast receivers are not managed by the IVI platform in any way. The IVI build config
+only allows a broadcast receiver to be deployed in a configurable process name. For instance, it
+is possible to deploy a broadcast receiver in the same process as an IVI service host without the
+need to hardcode the process name of the broadcast receiver in an `AndroidManifest.xml` file.
+
+```kotlin
+val broadcastReceiver = BroadcastReceiverConfig("com....BroadcastReceiver")
+val someServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        services {
+            addHost(someServiceHost)
+        }
+        globalRuntime {
+             create(RuntimeDeploymentIdentifier.global) {
+                 useDefaults()
+                 deployServiceHost(someServiceHost)
+                 deployBroadcastReceiver(broadcastReceiver).inSameProcessAs(someServiceHost)
+             }
+        }
+    }
+}
+```
+
+The above example deploys `com....BroadcastReceiver` in the same process as `someServiceHost`.
+
+__Note:__ The IVI build config does not manage the Gradle dependencies to include the referenced
+broadcast receiver into the build.
+

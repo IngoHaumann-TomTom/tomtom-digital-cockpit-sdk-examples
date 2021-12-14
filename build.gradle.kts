@@ -42,6 +42,7 @@ plugins {
 apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/developerPortal.gradle.kts"))
 
 val jvmVersion = JavaVersion.toVersion(libraries.versions.jvm.get())
 
@@ -279,30 +280,4 @@ subprojects {
             }
         }
     }
-}
-
-/**
- * TomTom internal tooling, see docs/portal/README.md.
- */
-tasks.register<Exec>("portal_export") {
-    val portalDirectory = "${project.projectDir}/docs/portal"
-    description = "Generates Developer Portal content for export."
-    group = "Documentation"
-
-    workingDir(portalDirectory)
-    commandLine("python3")
-    args("-B", "scripts/portal_generator.py", "export")
-}
-
-/**
- * TomTom internal tooling, see docs/portal/README.md.
- */
-tasks.register<Exec>("portal_check") {
-    val portalDirectory = "${project.projectDir}/docs/portal"
-    description = "Validates Developer Portal content."
-    group = "Documentation"
-
-    workingDir(portalDirectory)
-    commandLine("python3")
-    args("-B", "scripts/portal_generator.py")
 }
