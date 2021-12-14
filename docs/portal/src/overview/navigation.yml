@@ -10,12 +10,12 @@
 group: indigo
 isPrivate: false
 productName: IndiGO
-menuTitle: Home
+menuTitle: Overview
 isMenuOpened: true
 hasRequestAccess: true
 hasRequestAccessButton: false
 menu:
-  - title: Home
+  - title: Overview
     items:
-      - fileId: /introduction
-        title: Home
+      - fileId: /overview
+        title: Overview

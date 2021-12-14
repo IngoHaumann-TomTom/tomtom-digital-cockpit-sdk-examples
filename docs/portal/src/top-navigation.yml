@@ -10,8 +10,8 @@
 menuTopTitle: IndiGO
 menu:
   - items:
-      - url: /indigo/home/introduction
-        title: Home
+      - url: /indigo/overview/overview
+        title: Overview
       - url: /indigo/documentation/introduction
         title: Documentation
       - url: /indigo/api-reference/introduction
