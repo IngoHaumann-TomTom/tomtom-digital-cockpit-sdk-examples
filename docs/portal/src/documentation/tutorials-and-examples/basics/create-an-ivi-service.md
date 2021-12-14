@@ -40,7 +40,7 @@ service implementation, and the service's clients.
 To define the service interface, first create a new module at `modules/serviceapis/account` and add
 a build script.
 
-**build.gradle.kts**
+Create `build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.api.gradle.plugin.extensions.ivi
@@ -60,7 +60,7 @@ project, set `settingsServiceApi` to true instead of `serviceApi`.
 The IVI service interface project is an Android project, so it must have an `AndroidManifest.xml`
 file.
 
-**src/main/AndroidManifest.xml**
+Create `src/main/AndroidManifest.xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -74,7 +74,7 @@ When the project is configured, create a Kotlin `interface` class, annotated wit
 [`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which 
 specifies the unique identifier that is used by client connections.
 
-**src/main/kotlin/com/tomtom/ivi/example/serviceapi/account/AccountService.kt**
+Create `src/main/kotlin/com/tomtom/ivi/example/serviceapi/account/AccountService.kt`:
 
 ```kotlin
 // The annotation for an IVI service interface.
@@ -152,7 +152,7 @@ An IVI service implementation should be defined in a different package than the 
 To implement the service interface, create a new module at `modules/services/account` and add a
 build script.
 
-**build.gradle.kts**
+Create `build.gradle.kts`:
 
 ```kotlin
 dependencies {
@@ -164,7 +164,7 @@ dependencies {
 The IVI service implementation project is an Android project, so it must have
 an `AndroidManifest.xml`file.
 
-**src/main/AndroidManifest.xml**
+Create `src/main/AndroidManifest.xml:`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -179,7 +179,7 @@ API. The generated name is of the format `<ServiceInterface>Base`, in our
 example `AccountServiceBase`. The service implementation must derive the class and implement the
 methods defined in the service interface.
 
-**src/main/kotlin/com/tomtom/ivi/example/service/account/StockAccountService.kt**
+Create `src/main/kotlin/com/tomtom/ivi/example/service/account/StockAccountService.kt`:
 
 ```kotlin
 package com.tomtom.ivi.example.service.account
@@ -276,7 +276,7 @@ declared.
 The builder class must follow a specific naming convention. It must have a "ServiceHostBuilder"
 suffix and must start with an upper case character.
 
-**src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHostBuilder.kt**
+Create `src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHostBuilder.kt`:
 
 ```kotlin
 package com.tomtom.ivi.example.service.account
@@ -304,7 +304,7 @@ class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 Define an IVI service host implementation in the top-level `iviservicehosts.gradle.kts`
 file so it can be used in all projects, including tests.
 
-**<rootDir>/iviservicehosts.gradle.kts**
+Create `<rootDir>/iviservicehosts.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -341,7 +341,7 @@ for details.
 
 Register the service host build configuration in the main application's build script.
 
-**modules/products/exampleapp/build.gradle.kts**
+Create `modules/products/exampleapp/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
@@ -377,7 +377,7 @@ running, and the latter is an optional connection.
 To use the service API, create an instance with `createApi` in the view-model of the account login
 page of the account frontend.
 
-**src/main/kotlin/com/tomtom/ivi/example/frontend/account/login/AccountLoginViewModel.kt**
+Create `src/main/kotlin/com/tomtom/ivi/example/frontend/account/login/AccountLoginViewModel.kt`:
 
 ```kotlin
 package com.tomtom.ivi.example.frontend.account.login
@@ -440,7 +440,7 @@ async call `logInAsync(...)`.
 The `accountServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the service
 implementation.
 
-**src/main/kotlin/com/tomtom/ivi/example/frontend/account/info/AccountInfoViewModel.kt**
+Create `src/main/kotlin/com/tomtom/ivi/example/frontend/account/info/AccountInfoViewModel.kt`:
 
 ```kotlin
 package com.tomtom.ivi.example.frontend.account.info

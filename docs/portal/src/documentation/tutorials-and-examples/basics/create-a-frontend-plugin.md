@@ -167,7 +167,7 @@ register the frontend and the menu item to the framework at build time.
 Define a frontend implementation and a menu item implementation in the top-level
 `frontends-and-menuitems.gradle.kts` file so it can be used in all projects, including tests.
 
-**<rootDir>/frontends-and-menuitems.gradle.kts**
+Create `<rootDir>/frontends-and-menuitems.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -206,7 +206,7 @@ for details.
 The last step is to register the frontend and the menu item to build configurations in the main
 application's build script.
 
-**modules/products/exampleapp/build.gradle.kts**
+Create `modules/products/exampleapp/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
@@ -261,7 +261,7 @@ for more details about IVI instance configurations.
 The final step is to let the new frontend replace IndiGO's user profile frontend. For this
 we have to use 'replace' instead of `add`. The same applies for the user profile menu item.
 
-**modules/products/exampleapp/build.gradle.kts**
+Create `modules/products/exampleapp/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
