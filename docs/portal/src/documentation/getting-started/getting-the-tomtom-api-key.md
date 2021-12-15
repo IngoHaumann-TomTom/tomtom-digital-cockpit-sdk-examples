@@ -15,7 +15,7 @@ route. Locate the Gradle properties file, as explained in the [Installing the AP
 key](#installing-the-api-key) section, and add the following line. You can then skip the rest of
 this page.
 
-```cmd
+```bash
 disableNavkit2ApiKeyBuildTimeCheck=true
 ```
 
@@ -45,7 +45,7 @@ top-level `local.properties` file or your `gradle.properties` file.
 
 Add a line to have the Gradle property match your TomTom API key:
 
-```cmd
+```bash
 navkit2ApiKey=<your-tomtom-api-key>
 ```
 

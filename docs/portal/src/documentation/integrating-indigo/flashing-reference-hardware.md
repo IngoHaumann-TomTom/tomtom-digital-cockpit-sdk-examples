@@ -180,7 +180,7 @@ The instructions are based on the official
 If the tablet has already been flashed with the LineageOS image, it can be upgraded with any
 machine that has `adb` installed, using the following command:
 
-```cmd
+```bash
 adb root
 adb push lineageos-gts4lvwifi-<version>-ota.zip /data/lineageos-gts4lvwifi-ota.zip && adb shell "echo --update_package=/data/lineageos-gts4lvwifi-ota.zip > /cache/recovery/command" && adb reboot recovery
 ```

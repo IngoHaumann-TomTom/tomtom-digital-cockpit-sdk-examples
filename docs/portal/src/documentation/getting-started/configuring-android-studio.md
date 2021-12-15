@@ -86,7 +86,7 @@ __Note:__ Building the application may report an error like below. When this hap
 Manager via `Tools` > `SDK Manager`, then in tab `SDK Tools` tick `Show Package Details` and
 install the required package and/or accept its license terms.
 
-```cmd
+```bash
 License for package Android SDK Build-Tools 30.0.2 not accepted.
 ```
 

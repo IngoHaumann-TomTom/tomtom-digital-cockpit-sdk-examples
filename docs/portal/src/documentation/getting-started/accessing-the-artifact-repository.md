@@ -23,7 +23,7 @@ __Windows:__ Use the `gradle.properties` file in the `%UserProfile%\.gradle` fol
 
 In your `gradle.properties` file, add the following:
 
-```cmd
+```bash
 nexusUsername=<your-username>
 nexusPassword=<your-password>
 ```
@@ -36,12 +36,12 @@ escaped as `\#` to be properly recognized.
 You can also add credentials with the following command:
 
 __Linux or Mac:__
-```cmd
+```bash
 ./gradlew -PnexusUsername=<username> -PnexusPassword=<password> build
 ```
 
 __Windows:__
-```cmd
+```bash
 .\gradlew.bat -PnexusUsername=<username> -PnexusPassword=<password> build
 ```
 

@@ -57,7 +57,7 @@ and rebuild.
   `/system/etc/permissions` on the device.
 - Install the IndiGO APK to `/system/priv-app` on the device.
 
-```cmd
+```bash
 $ adb remount
 $ adb push privapp-permissions-tomtom.xml /system/etc/permissions/
 $ adb shell mkdir /system/priv-app/TomTomIndigo
@@ -75,7 +75,7 @@ limitations (note that you should still follow the two other steps):
 To work around the first problem, enable media notification access. This fixes access to all media
 sources except Spotify.
 
-```cmd
+```bash
 $ adb root
 $ adb shell cmd notification allow_listener com.tomtom.ivi.integration.product.indigo/com.tomtom.ivi.stock.service.media.MediaNotificationListener
 ```
