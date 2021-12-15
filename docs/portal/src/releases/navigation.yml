@@ -14,6 +14,7 @@ menuTitle: Releases
 isMenuOpened: true
 hasRequestAccess: true
 hasRequestAccessButton: false
+requestAccessType: request-access-indigo
 menu:
   - title: Releases
     items:
