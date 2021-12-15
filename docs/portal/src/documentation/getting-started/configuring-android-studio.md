@@ -27,8 +27,9 @@ hard-coded version of this plugin.
 
 ## Building with Android Studio
 
-This section explains how to configure Android Studio for building the IndiGO example app, and how
-to build.
+This section explains how to configure Android Studio for building the
+[IndiGO example app](/indigo/documentation/platform-overview/example-app),
+and how to build this application.
 
 Install Android 11 (R) SDK:
 

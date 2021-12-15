@@ -19,6 +19,12 @@ this page.
 disableNavkit2ApiKeyBuildTimeCheck=true
 ```
 
+## NavKit2
+
+TomTom NavKit2 is the core technology that powers our complete navigation offering, including maps,
+connected services and user interface (UI). For more information on NavKit2, see the
+[NavKit2 product pages](https://www.tomtom.com/products/navkit).
+
 ## Registering as a TomTom Developer
 
 - Navigate to [developer.tomtom.com](https://developer.tomtom.com/), click `Register`, and fill out
