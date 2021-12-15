@@ -18,6 +18,34 @@ product, is configured at build time. You can, for example, select which standar
 IndiGO applications should be part of your product, and which should be replaced with your own 
 _applications_, or merely add new functionality.
 
+The following diagram shows everything that’s included in IndiGO, all stock components (purple 
+colored) and how these relate to other software in a vehicle.
+
+![IndiGO architecture](images/indigo-architecture.png)
+
+## The benefits of using stock components
+
+As you can see from the number of puzzle pieces in the diagram, IndiGO is extremely modular: almost
+anything that is provided out-of-the-box can be customized or replaced. But many of the 
+applications can also be customized without any code changes, by applying a different theme to 
+them, or by modifying their static configuration files.
+
+Besides the benefit of kick starting your development with our stock puzzle pieces, the modular
+architecture provide another great benefit: we, at TomTom, keep updating IndiGO and provide new
+versions of applications and services over time. By pulling these components from our Nexus, your
+system can easily benefit from software updates that we provide for the IndiGO platform and its
+applications. This includes security updates as well as functional improvements.
+
+## Building your own services and applications
+
+Next to the components, or puzzle pieces, there are green boxes in the diagram. These depict the
+APIs that IndiGO offers on top of Android Automotive. These APIs are complementary to Android APIs;
+they do not try to mimic or reimplement any Android behavior, but rather extend the Android APIs
+with a lot of useful APIs for IVI software development. The description of these APIs can be found
+in the API reference section of this site.
+
+## IndiGO Fundamentals
+
 The User Interface (UI) part of an IndiGO _application_ is built using 
 [frontend plugins](/indigo/documentation/development/frontend-plugins). These are created using 
 standard Android layouts and fragments, together with _panels_, which are Android views made to 
