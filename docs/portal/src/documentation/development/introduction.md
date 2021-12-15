@@ -44,5 +44,5 @@ based on Android's
 additional functionality to support different themes and swapping them at runtime.
 
 The IndiGO platform is divided into different functional 
-[platform domains](/indigo/documentation/development/platform-domains/introduction), 
+[platform domains](/indigo/documentation/development/platform-domains/overview), 
 which are described separately.

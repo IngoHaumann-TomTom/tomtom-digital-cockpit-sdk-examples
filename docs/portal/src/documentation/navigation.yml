@@ -21,8 +21,8 @@ menu:
         title: Documentation
   - title: Platform Overview
     items:
-      - fileId: /platform-overview/introduction
-        title: Introduction
+      - fileId: /platform-overview/what-is-indigo
+        title: What is IndiGO?
       - fileId: /platform-overview/example-app
         title: Example App
   - title: Getting Started
@@ -59,8 +59,8 @@ menu:
         title: Theming and Customization
       - title: Platform Domains
         items:
-          - fileId: /development/platform-domains/introduction
-            title: Introduction
+          - fileId: /development/platform-domains/overview
+            title: Overview
           - fileId: /development/platform-domains/navigation
             title: Navigation
           - fileId: /development/platform-domains/media
@@ -89,8 +89,8 @@ menu:
         title: Companion Application
   - title: Tutorials and Examples
     items:
-      - fileId: /tutorials-and-examples/introduction
-        title: Introduction
+      - fileId: /tutorials-and-examples/overview
+        title: Overview
       - title: Setup
         items:
           - fileId: /tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project

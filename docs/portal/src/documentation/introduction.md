@@ -12,8 +12,8 @@ query.
 ## Introducing the IndiGO platform
 
 A good start is the
-[IndiGO platform overview](/indigo/documentation/platform-overview/introduction) section to 
-find out more about IndiGO, the concepts and the building blocks that make up the platform.
+[IndiGO platform overview](/indigo/documentation/platform-overview/what-is-indigo) section to find
+out more about IndiGO, the concepts and the building blocks that make up the platform.
 
 ## Building for IndiGO
 
@@ -87,7 +87,7 @@ single functionality.
 
 When you're familiar with the IndiGO architecture and the way it names and uses plugins and
 components, you can start following one of the
-[tutorials](/indigo/documentation/tutorials-and-examples/introduction). 
+[tutorials](/indigo/documentation/tutorials-and-examples/overview). 
 A tutorial will lead you step by step through the process of adding functionality to your product.
 
 There are tutorials on basics like adding a

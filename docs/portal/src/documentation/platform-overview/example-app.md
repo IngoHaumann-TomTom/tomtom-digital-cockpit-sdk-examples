@@ -110,7 +110,7 @@ Picture showing the placeholder for an app store:
 
 The example application also contains code that shows how to implement and integrate specific 
 functionality in the IndiGO platform. Each example is explained and documented in the 
-[tutorials](/indigo/documentation/tutorials-and-examples/introduction) section. 
+[Tutorials and Examples](/indigo/documentation/tutorials-and-examples/overview) section. 
 
 For example, to get you started making your own IndiGO “application”, there are two examples that 
 explain how to 
