@@ -51,9 +51,9 @@ resources:
   - repository: indigo
     type: git
     name: IVI/indigo
-  - repository: indigo-ca-communication
+  - repository: indigo-ca-android-communication
     type: git
-    name: IVI/indigo-ca-communication
+    name: IVI/indigo-ca-android-communication
   - repository: tomtom-android-tools
     type: github
     endpoint: tomtom-internal_bilkes_personal
@@ -156,7 +156,7 @@ stages:
         timeoutInMinutes: 10
         container: docker_indigo_build
         steps:
-          - checkout: indigo-ca-communication
+          - checkout: indigo-ca-android-communication
           - bash: |
               cd $(Build.SourcesDirectory)
               git checkout tags/$(VERSION_COMMUNICATIONS_SDK)
