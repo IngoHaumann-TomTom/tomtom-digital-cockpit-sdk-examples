@@ -18,8 +18,8 @@ The latest source can be found in
 You need to expand a version and select the `tomtom-indigo-sdk-<version>.tar.gz` file and select 
 "Path" in the right side frame, to start the download.
 
-For example, the latest version, as of 29/11/2021, can be found here: 
-[tomtom-indigo-sdk-1.0.2826-724.tar.gz](https://repo.tomtom.com/repository/ivi/com/tomtom/indigo/tomtom-indigo-sdk/1.0.2826-724/tomtom-indigo-sdk-1.0.2826-724.tar.gz).
+For example, the latest version, as of 17/12/2021, can be found here: 
+[tomtom-indigo-sdk-1.0.2927-823.tar.gz](https://repo.tomtom.com/repository/ivi/com/tomtom/indigo/tomtom-indigo-sdk/1.0.2927-823/tomtom-indigo-sdk-1.0.2927-823.tar.gz).
 
 The Example Application contains the code needed to get started developing for the IndiGO 
 platform, and contains Gradle files pointing to the binary artifacts of the release.

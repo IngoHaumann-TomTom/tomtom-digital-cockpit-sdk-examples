@@ -42,8 +42,7 @@ REGEX_VERSION = "[0-9].[0-9].[0-9]{2,4}"
 
 # Placeholders that will be replaced by API Reference links.
 VERSIONS_LATEST_PLACEHOLDER = "TTIVI_API_LATEST"
-# TODO(IVI-5672): Include older versions of the API References.
-# VERSIONS_OLDER_PLACEHOLDER = "TTIVI_API_OLDER"
+VERSIONS_OLDER_PLACEHOLDER = "TTIVI_API_OLDER"
 
 def get_index_url(base_url, version):
     '''
@@ -71,8 +70,8 @@ def get_versions(s3_uri):
     versions = []
     for match in re.findall(REGEX_VERSION, result.stdout):
         versions.append(match)
-    # TODO(IVI-5700): Improve sorting algorithm when including older versions.
-    #   Text based sorting will cause sorting errors when 1.0.10000 follows 1.0.9999.
+
+    # TODO(IVI-6112): Replace text-based sort with number-based sort.
     versions.sort(reverse=True)
 
     return versions
@@ -94,17 +93,15 @@ def populate_file(path, versions, base_url):
     latest = "- [{}]({})".format(versions[0], get_index_url(base_url, versions[0]))
     versions.pop(0)
 
-    # TODO(IVI-5672): Include older versions of the API References.
-#     older = []
-#     while versions:
-#         older.append("- [{}]({})".format(versions[0], get_index_url(base_url, versions[0])))
-#         versions.pop(0)
+    older = []
+    while versions:
+        older.append("- [{}]({})".format(versions[0], get_index_url(base_url, versions[0])))
+        versions.pop(0)
 
     with open(path, 'r+', encoding="utf-8") as file:
         content = file.read()
         content = content.replace(VERSIONS_LATEST_PLACEHOLDER, latest)
-        # TODO(IVI-5672): Include older versions of the API References.
-        # content = content.replace(VERSIONS_OLDER_PLACEHOLDER, "\n".join(older))
+        content = content.replace(VERSIONS_OLDER_PLACEHOLDER, "\n".join(older))
         file.seek(0)
         file.write(content)
         file.truncate()
