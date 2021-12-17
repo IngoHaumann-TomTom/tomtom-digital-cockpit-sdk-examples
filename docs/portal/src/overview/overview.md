@@ -42,11 +42,11 @@ hideSubmenu: true
         It includes an application platform to support the development of highly integrated applications on top of Android Automotive. 
         It also offers a complete set of industrial strength end-user applications, that can be customized to the needs of a car maker.</p>
         <p>Take the in-car experience to new places and get started with our comprehensive SDK that includes APIs, supporting documentation and code examples.</p>
-        <button
-            onclick="location.href='/indigo/documentation/platform-overview'"
-            style="background-color:#df1b12; color:white; border:none; padding:10pt; width:30%; font-weight:bold">
-            PLATFORM OVERVIEW
-        </button>
+        <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
+            <a class="button__link" 
+                href="/indigo/documentation/platform-overview/what-is-indigo" 
+                tabindex="0">PLATFORM OVERVIEW</a>
+        </div>
     </div>
 </div>
 
@@ -69,13 +69,13 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-    <h2>IndiGO Example App</h2>
-    <p>The example app showcases IndiGO&#39;s stock experiences, and provides a good starting point for IndiGO development.</p>
-    <button 
-        onclick="location.href='/indigo/documentation/platform-overview/example-app'"
-        style="background-color:#df1b12; color:white; border:none; padding:10pt; width:50%; font-weight:bold">
-        EXPLORE
-    </button>
+        <h2>IndiGO Example App</h2>
+        <p>The example app showcases IndiGO&#39;s stock experiences, and provides a good starting point for IndiGO development.</p>
+        <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
+            <a class="button__link" 
+                href="/indigo/documentation/platform-overview/example-app" 
+                tabindex="0">EXPLORE</a>
+        </div>
     </div>
 </div>
 
@@ -99,13 +99,13 @@ hideSubmenu: true
                 direction: ltr;
                 padding: 3rem;
                 gap: 1.3rem;">
-    <h2>Developing with IndiGO</h2>
-    <p>Get your development environment ready and create your first custom experience.</p>
-    <button 
-        onclick="location.href='/indigo/documentation/getting-started/introduction'"
-        style="background-color:#df1b12; color:white; border:none; padding:10pt; width:50%; font-weight:bold">
-        GET STARTED
-    </button>
+        <h2>Developing with IndiGO</h2>
+        <p>Get your development environment ready and create your first custom experience.</p>
+        <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
+            <a class="button__link" 
+                href="/indigo/documentation/getting-started/introduction" 
+                tabindex="0">GET STARTED</a>
+        </div>
     </div>
 </div>
 
@@ -128,13 +128,13 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-    <h2>How to extend</h2>
-    <p>Learn how IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
-    <button 
-        onclick="location.href='/indigo/documentation/development/frontend-plugins'"
-        style="background-color:#df1b12; color:white; border:none; padding:10pt; width:50%; font-weight:bold">
-        CREATE PLUGIN
-    </button>
+        <h2>How to extend</h2>
+        <p>Learn how IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
+        <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
+            <a class="button__link" 
+                href="/indigo/documentation/development/frontend-plugins" 
+                tabindex="0">CREATE PLUGIN</a>
+        </div>
     </div>
 </div>
 

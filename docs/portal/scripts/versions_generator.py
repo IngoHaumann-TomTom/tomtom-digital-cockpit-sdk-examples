@@ -132,5 +132,3 @@ def populate_versions(target_dir):
     populate_file(os.path.join(target_dir, ANDROID_TOOLS_FILE),
         get_versions(ANDROID_TOOLS_S3_URI), ANDROID_TOOLS_BASE_URL
     )
-
-

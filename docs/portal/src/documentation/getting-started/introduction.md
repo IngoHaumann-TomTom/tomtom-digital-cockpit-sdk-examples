@@ -6,11 +6,11 @@ Before you can dive into IndiGO, you need to be able to access all the resources
 to build an IndiGO product. Click the button below to request _early access_. If granted, you'll be
 sent an Evaluation Agreement (EA).
 
-<button
-onclick="location.href='https://developer.tomtom.com/indigo/request-access'"
-style="background-color:#df1b12; color:white; border:none; padding:10pt; width:30%; font-weight:bold">
-REGISTER FOR EARLY ACCESS
-</button>
+<div class="button button--bg-brand-red button--bg-hoverable button--size-large">
+    <a class="button__link" 
+        href="https://developer.tomtom.com/indigo/request-access" 
+        tabindex="0">REGISTER FOR EARLY ACCESS</a>
+</div>
 
 After you have provided a signed EA, you will receive the TomTom repository credentials that allow
 you to access the IndiGO SDK. Now you can build and run IndiGO.
