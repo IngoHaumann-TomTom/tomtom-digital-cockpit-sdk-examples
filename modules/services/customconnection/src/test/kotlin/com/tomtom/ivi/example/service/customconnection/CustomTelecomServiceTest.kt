@@ -18,13 +18,13 @@ import android.telecom.Connection.STATE_RINGING
 import android.telecom.ConnectionRequest
 import android.telecom.PhoneAccountHandle
 import com.tomtom.ivi.core.common.telecom.toPhoneUri
-import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import io.mockk.mockkObject
 import io.mockk.verify
+import kotlin.test.assertEquals
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class CustomConnectionServiceTest : IviTestCase() {
 

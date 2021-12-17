@@ -15,17 +15,17 @@ import androidx.lifecycle.MutableLiveData
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
-import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
-import org.junit.Test
 import java.time.Instant
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
+import org.junit.Before
+import org.junit.Test
 
 class StockAccountServiceTest : IviTestCase() {
 

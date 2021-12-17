@@ -12,18 +12,18 @@
 package com.tomtom.ivi.example.frontend.account
 
 import androidx.lifecycle.MutableLiveData
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.frontend.account.info.AccountInfoPanel
 import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
-import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
+import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import org.junit.Test
 
 class AccountFrontendTest : IviTestCase() {
     private val mutableAccount = MutableLiveData<Account?>(null).also {

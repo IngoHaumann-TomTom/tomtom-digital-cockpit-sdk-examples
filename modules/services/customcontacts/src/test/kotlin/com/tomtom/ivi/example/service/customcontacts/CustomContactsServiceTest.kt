@@ -13,15 +13,15 @@ package com.tomtom.ivi.example.service.customcontacts
 
 import com.tomtom.ivi.core.common.contacts.ContactId
 import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
-import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
 
 class CustomContactsServiceTest : IviTestCase() {
 

@@ -19,7 +19,7 @@ import com.tomtom.ivi.platform.settings.api.service.settingsmanagement.SettingsM
 import com.tomtom.ivi.platform.settings.api.service.settingsmanagement.SettingsManagementSessionToken
 import com.tomtom.ivi.platform.settings.api.service.settingsmanagement.StringSettingKey
 import com.tomtom.ivi.platform.settings.api.service.settingsmanagement.createApi
-import com.tomtom.ivi.tools.testing.unit.IviTestCase
+import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
