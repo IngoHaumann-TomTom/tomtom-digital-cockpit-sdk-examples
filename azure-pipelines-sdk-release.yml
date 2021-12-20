@@ -211,7 +211,8 @@ stages:
           - template: build/build-cleanup.yml@devops-templates
       - job: GenerateIndigoApiDocs
         displayName: 'Generate IndiGO API docs'
-        timeoutInMinutes: 30
+        # TODO(IVI-3769): Reduce timeout after improving performance
+        timeoutInMinutes: 60
         container: 'docker_indigo_build'
         dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
         steps:
