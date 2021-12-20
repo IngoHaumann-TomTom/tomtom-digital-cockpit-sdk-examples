@@ -2,11 +2,11 @@
 title: Create a Custom Connection Service
 ---
 
-The IndiGO platform allows end-users to make phone calls using a Bluetooth-connected phone using the
-Bluetooth Hands Free Profile. IndiGO can be extended to support other communications services such
-as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of an online conference calling
-or messaging service and make and receive calls using the existing communications framework for
-these new services.
+The TomTom IndiGO platform allows end-users to make phone calls using a Bluetooth-connected phone 
+using the Bluetooth Hands Free Profile. TomTom IndiGO can be extended to support other 
+communications services such as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of 
+an online conference calling or messaging service and make and receive calls using the existing 
+communications framework for these new services.
 
 A [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService) 
 is a service used by Android to implement calling functionality, like phone calling or any VOIP
@@ -274,6 +274,6 @@ The instance of the `CustomConnectionService` is null.
 
 ## External links
 
-- IndiGO [`TelecomService`](TTIVI_INDIGO_API).
+- TomTom IndiGO [`TelecomService`](TTIVI_INDIGO_API).
 - Android [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService).
 

@@ -1,7 +1,7 @@
 ---
 title: Create a Frontend Plugin
 ---
-For an introduction to frontend plugins in the IndiGO platform, see 
+For an introduction to frontend plugins in the TomTom IndiGO platform, see 
 ([Frontend Plugins](/indigo/documentation/development/frontend-plugins))
 
 ## Introduction
@@ -9,7 +9,7 @@ In this example, we will create a new frontend for managing an account on the de
 provide a login screen where you can enter a username and a password to login, and if the user is
 logged in, you have the option to logout again. We will also add a menu item to the main menu that 
 will be associated to the new frontend. The final step will be to let the new frontend replace 
-IndiGO's user profile frontend.
+TomTom IndiGO's user profile frontend.
 
 Creating a frontend and the menu item consists of a number of steps:
 
@@ -23,7 +23,7 @@ Creating a frontend and the menu item consists of a number of steps:
 For more information on all the classes and APIs, 
 [see the API reference documentation](/indigo/api-reference/indigo-api-reference).
 
-All the code snippets in this guide can also be found in the IndiGO example application.
+All the code snippets in this guide can also be found in the TomTom IndiGO example application.
 
 ### Creating the frontend class
 
@@ -119,7 +119,7 @@ class AccountLoginViewModel(panel: AccountLoginPanel) :
 
 Finally create a `Fragment` class, derived from [`IviFragment`](TTIVI_INDIGO_API) and using the 
 newly created `Panel` and `ViewModel` classes, overriding the `viewFactory` property. The 
-IndiGO platform is designed to work well with the MVVM pattern, and this is used in the 
+TomTom IndiGO platform is designed to work well with the MVVM pattern, and this is used in the 
 `onCreateView` callback as a convenience to inflate a data binding layout and using that in the 
 fragment. If an `onCreateView` custom implementation still is preferred, the `viewFactory` property 
 can be left as null instead.
@@ -198,7 +198,7 @@ val accountMenuItem by extra {
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
 the full-qualified package. It is defined once and used for all configurations. See
-[Integrate IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
 for details.
 
 ### Registering the frontend and menu item build config
@@ -258,7 +258,7 @@ instance. See
 [Configure the Runtime Deployment of the IVI System](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for more details about IVI instance configurations.
 
-The final step is to let the new frontend replace IndiGO's user profile frontend. For this
+The final step is to let the new frontend replace TomTom IndiGO's user profile frontend. For this
 we have to use 'replace' instead of `add`. The same applies for the user profile menu item.
 
 Create `modules/products/exampleapp/build.gradle.kts`:
@@ -294,11 +294,11 @@ ivi {
                 // `com.tomtom.ivi.platform.defaults.core` plugin.
                 useDefaults()
                 frontends {
-                    // Replace the IndiGO's user profile frontend with the `accountFrontend`.
+                    // Replace the TomTom IndiGO's user profile frontend with the `accountFrontend`.
                     replace(userProfileFrontend, accountFrontend)
                 }
                 menuItems {
-                    // Replace the IndiGO's user profile menu item with the `accountMenuItem`
+                    // Replace the TomTom IndiGO's user profile menu item with the `accountMenuItem`
                     // and associate it with the `accountFrontend`.
                     replace(userProfileMenuItem, accountMenuItem to accountFrontend)
                 }

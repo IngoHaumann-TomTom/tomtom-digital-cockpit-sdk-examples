@@ -3,8 +3,9 @@ title: Settings Framework
 layout: default
 ---
 
-The settings framework allows cross-application settings to be shared between IndiGO services and
-frontends in IndiGO. IndiGO components can store them persistently and change their values.
+The settings framework allows cross-application settings to be shared between TomTom IndiGO 
+services and frontends in TomTom IndiGO. TomTom IndiGO components can store them persistently and 
+change their values.
 
 Modules access settings via setting services that offer type-safe and domain-specific interfaces to
 the generic settings management service.

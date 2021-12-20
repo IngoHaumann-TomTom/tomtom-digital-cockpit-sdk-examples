@@ -2,24 +2,24 @@
 title: IVI Services
 ---
 
-IndiGO services provide a mechanism to encapsulate longer running tasks and business logic for 
-some distinct functionality in the platform. They don't contain a User Interface (UI) of their own 
-and can run in the background for a long time, matching the platform lifetime if required.
+TomTom IndiGO services provide a mechanism to encapsulate longer running tasks and business logic 
+for some distinct functionality in the platform. They don't contain a User Interface (UI) of their 
+own and can run in the background for a long time, matching the platform lifetime if required.
 
-## IndiGO system
+## TomTom IndiGO system
 
-An IndiGO based IVI system is deployed as a single Android application that includes all the 
-functionality of the product. The User Interface (UI) of the application is built using IndiGO 
-[frontend plugins](/indigo/documentation/development/plugins), and are created to display something 
-on the screen. They are subsequently destroyed when content disappears from the screen. Frontend 
-plugins UI interaction must run on a single thread (_the UI thread_), as dictated by the Android 
-platform. Whereas service hosts should contain functionality that does not need to (or should) run 
-on the UI thread, as they run in an entirely different process. IVI service hosts can implement 
-multiple IVI service interfaces.
+A TomTom IndiGO based IVI system is deployed as a single Android application that includes all the 
+functionality of the product. The User Interface (UI) of the application is built using TomTom 
+IndiGO [frontend plugins](/indigo/documentation/development/plugins), and are created to display 
+something on the screen. They are subsequently destroyed when content disappears from the screen. 
+Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated by the 
+Android platform. Whereas service hosts should contain functionality that does not need to 
+(or should) run on the UI thread, as they run in an entirely different process. IVI service hosts 
+can implement multiple IVI service interfaces.
 
 ### Discoverable services
 
-In a deployed IndiGO product, a _discoverable service_ can have any number of implementations 
+In a deployed TomTom IndiGO product, a _discoverable service_ can have any number of implementations 
 (whereas a non _discoverable service_ can only have one implementation of each service interface). 
 Clients of a discoverable service interface can discover all the implementations. This allows the 
 adding of many implementations of a defined interface. An example of this is a 
@@ -28,15 +28,15 @@ messaging technology.
 
 ### Android Services
 
-IndiGO services hosts are built on 
+TomTom IndiGO services hosts are built on 
 [Android Services](https://developer.android.com/guide/components/services), and use the same 
 mechanisms, but hide some of the details of the Android service implementation. For example, you 
 define the interface to a service directly in Kotlin, and to communicate with it there is no need 
 to provide an `IBinder`, use a `Messenger`, or define an AIDL interface. In addition, the binding 
 is done automatically, and the service is ready to use when the `serviceReady` flag has been set.
 
-By default, Android services run in the main thread in the main process, whereas an IndiGO service 
-by default starts and runs in a different process.
+By default, Android services run in the main thread in the main process, whereas an TomTom IndiGO 
+service by default starts and runs in a different process.
 
 As service hosts are using the Android Binder framework to transfer data, they have the same 
 limitations as an Android bound service, therefore the data types used in a service's interface 
@@ -58,7 +58,7 @@ that is, as long as any of the `lifecyleOwner` passed to `createApi` is active.
 
 ## How does it work?
 
-The Indigo build system generates multiple classes and methods from the service interface 
+The TomTom Indigo build system generates multiple classes and methods from the service interface 
 definition based on the annotated interfaces. They all get generated in the same package as the 
 service interface, these classes include an abstract base class for the service host 
 implementation, client's API, and the service IPC logic.
@@ -143,7 +143,7 @@ method is using [coroutines](https://kotlinlang.org/docs/async-programming.html#
 are prepended with `co`, the asynchronous method is appended with `Async`.
 
 Once the service has set itself ready to be used, the client can directly call the APIs. The following 
-example is using an IndiGO utility method to call the API once the service is available.
+example is using a TomTom IndiGO utility method to call the API once the service is available.
 
 ```kotlin
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.queueOrRun

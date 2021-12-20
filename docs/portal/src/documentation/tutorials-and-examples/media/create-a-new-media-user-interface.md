@@ -2,12 +2,12 @@
 title: Create a New Media User Interface
 ---
 
-The IndiGO Application Suite provides a default user interface (UI). This user interface might not
-be suitable for a media app (also called "media source"), when it does not conform to the typical
-organization of content, or when their offered content can not be liberally browsed or played or
-controlled.
+The TomTom IndiGO Application Suite provides a default user interface (UI). This user interface 
+might not be suitable for a media app (also called "media source"), when it does not conform to the 
+typical organization of content, or when their offered content can not be liberally browsed or 
+played or controlled.
 Such sources would look disappointing or completely unusable in the default user interface from the
-IndiGO Application Suite.
+TomTom IndiGO Application Suite.
 
 A few examples of media apps which are not suitable for the default user interface:
 - A controller/player for an AM/FM/DAB+ radio tuner installed in the system:
@@ -24,10 +24,10 @@ the content from a media app is displayed to the user, or to add an icon to perf
 specific to that app, using the default media user interface should be preferred and
 [appropriately customized](/indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
 
-For this guide, knowledge of the IndiGO [`api_common_media`](TTIVI_INDIGO_API) and
+For this guide, knowledge of the TomTom IndiGO [`api_common_media`](TTIVI_INDIGO_API) and
 [`api_common_mediasources`](TTIVI_INDIGO_API) modules will greatly help. In the
 [media overview](/indigo/documentation/development/platform-domains/media), more details can be
-found over the Android Automotive Media framework and how IndiGO uses it.
+found over the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 ## Concepts
 

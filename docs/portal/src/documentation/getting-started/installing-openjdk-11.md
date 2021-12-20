@@ -2,14 +2,14 @@
 title: Installing OpenJDK 11
 ---
 
-IndiGO is written in [Kotlin](https://en.wikipedia.org/wiki/Kotlin_%28programming_language%29),
-which is designed to fully interoperate with the
-[Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine),
-by compiling to [Java bytecode](https://en.wikipedia.org/wiki/Java_bytecode).
-IndiGO requires
-[OpenJDK 11 (Open Java Development Kit)](https://en.wikipedia.org/wiki/OpenJDK),
-which is a free and open-source implementation of the Java Platform. Other OpenJDK versions may
-work, but have not been tested and will not be supported by TomTom.
+TomTom IndiGO is written in 
+[Kotlin](https://en.wikipedia.org/wiki/Kotlin_%28programming_language%29), which is designed to 
+fully interoperate with the 
+[Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine), by compiling to 
+[Java bytecode](https://en.wikipedia.org/wiki/Java_bytecode). TomTom IndiGO requires
+[OpenJDK 11 (Open Java Development Kit)](https://en.wikipedia.org/wiki/OpenJDK), which is a free 
+and open-source implementation of the Java Platform. Other OpenJDK versions may work, but have not 
+been tested and will not be supported by TomTom.
 
 ## OpenJDK for Ubuntu
 
@@ -94,4 +94,5 @@ Open the downloaded `.msi` file, to install the JDK:
     OpenJDK 64-Bit Server VM Temurin-11.0.13+8 (build 11.0.13+8, mixed mode)
 ```
 
-__Next step:__ [Installing IndiGO SDK](/indigo/documentation/getting-started/installing-indigo-sdk).
+__Next step:__ 
+[Installing TomTom IndiGO SDK](/indigo/documentation/getting-started/installing-indigo-sdk).

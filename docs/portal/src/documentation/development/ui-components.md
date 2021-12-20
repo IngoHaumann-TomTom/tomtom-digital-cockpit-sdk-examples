@@ -2,7 +2,7 @@
 title: UI Components
 ---
 
-In IndiGO, the
+In TomTom IndiGO, the
 [System UI](/indigo/documentation/development/system-ui)
 is made up of a number of panels, such as the main menu, notifications, etc.
 Each panel visually represents a frontend through a fragment made up of different UI elements like
@@ -39,7 +39,7 @@ The most commonly used custom controls are:
 - [ScrollView](#scrollview)
 - [ProgressBar](#progressbar)
 
-Other controls that are available in IndiGO are:
+Other controls that are available in TomTom IndiGO are:
 
 - [InformationControl](#informationcontrol)
 - [NavigationBar](#navigationbar)
@@ -217,8 +217,8 @@ You can configure the [`TtScrollBar`](TTIVI_ANDROID_TOOLS_API) for either scroll
 scroll-to-top, but not both.
 
 Here is an example demonstrating a combined usage of [`TtScrollBar`](TTIVI_ANDROID_TOOLS_API) and
-[`TtListRecyclerView`](TTIVI_ANDROID_TOOLS_API). From the image, you can see the star icon as the `up`
-button on the top of the bar. Also, the scroll bar indicator shows `D` for the current scroll
+[`TtListRecyclerView`](TTIVI_ANDROID_TOOLS_API). From the image, you can see the star icon as the 
+`up` button on the top of the bar. Also, the scroll bar indicator shows `D` for the current scroll
 position.
 
 ![A TtScrollBar integrating a TtListRecyclerView](images/ui-components-scrollbar.png)

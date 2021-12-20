@@ -7,7 +7,7 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-menuTopTitle: IndiGO
+menuTopTitle: TomTom IndiGO
 menu:
   - items:
       - url: /indigo/overview/overview

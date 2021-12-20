@@ -4,17 +4,18 @@ layout: default
 ---
 
 This is a list of tutorials and how-to guides on topics that you may come across while developing 
-for the IndiGO platform. Each how-to guide explains step-by-step how you can extend IndiGO.
+for the TomTom IndiGO platform. Each how-to guide explains step-by-step how you can extend 
+TomTom IndiGO.
 
 
 ## Example application
 
 The example application is provided as a sample implementation. The application allows you to 
-verify your build environment by making sure Gradle can build this IndiGO example APK and install 
-it on an emulator. The application also contains several examples on how to add functionality to 
-your product.
+verify your build environment by making sure Gradle can build this TomTom IndiGO example APK and 
+install it on an emulator. The application also contains several examples on how to add 
+functionality to your product.
 
-Check out the functionality of the IndiGO platform in the 
+Check out the functionality of the TomTom IndiGO platform in the 
 [walk-through](/indigo/documentation/platform-overview/example-app) of the example application, or get 
 it yourself by following our [getting started](/indigo/documentation/getting-started/introduction)
 guide.
@@ -23,14 +24,14 @@ Additional functionality is described in the tutorials and how-to guides below.
 
 ## Setup
 
-- [Integrate IndiGO into a Gradle project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project)
+- [Integrate TomTom IndiGO into a Gradle project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project)
 
-  This guide explains how to add IndiGO to a new or already existing Gradle project.
+  This guide explains how to add TomTom IndiGO to a new or already existing Gradle project.
 
 - [Configure a TomTom API key](/indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key)
 
-  This guide explains how to enable IndiGO's map and navigation-related features, using your TomTom
-  API key.
+  This guide explains how to enable TomTom IndiGO's map and navigation-related features, using your 
+  TomTom API key.
 
 ## Basics
 
@@ -64,18 +65,18 @@ Additional functionality is described in the tutorials and how-to guides below.
 
 - [Create a custom connections service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-connections-service)
 
-  This guide explains how to add a new connection service to make phone calls via IndiGO, like Voice
-  Over IP (VOIP).
+  This guide explains how to add a new connection service to make phone calls via TomTom IndiGO, 
+  like Voice Over IP (VOIP).
 
 - [Create a custom contacts service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-contacts-service)
 
-  This guide explains how to add a contacts service that provides information that IndiGO can
+  This guide explains how to add a contacts service that provides information that TomTom IndiGO can
   display in the contacts panel.
 
 - [Create a custom recent calls service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-recentcalls-service)
 
-  This guide explains how to add a recent calls service that provides information that IndiGO can
-  display in the recent calls panel.
+  This guide explains how to add a recent calls service that provides information that TomTom 
+  IndiGO can display in the recent calls panel.
 
 ## Customization
 
@@ -88,6 +89,6 @@ Additional functionality is described in the tutorials and how-to guides below.
 
 - [Configure the runtime deployment of the IVI System](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 
-  This guide explains how to run services in a separate process, configure multiple IndiGO
+  This guide explains how to run services in a separate process, configure multiple TomTom IndiGO
   instances, and how to deploy Android services in the same process as an IVI service.
 

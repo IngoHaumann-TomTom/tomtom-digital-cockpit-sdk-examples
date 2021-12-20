@@ -4,7 +4,7 @@ title: Configuring Android Studio
 
 To install the Android Studio IDE, follow the instructions from the
 [official Android guide](https://developer.android.com/studio/install).
-For IndiGO you will need Android Studio version Arctic Fox 2020.3.1 or newer.
+For TomTom IndiGO you will need Android Studio version Arctic Fox 2020.3.1 or newer.
 
 If you already have this Android Studio version installed, you can proceed to section
 [Building with Android Studio](#building-with-android-studio).
@@ -21,14 +21,14 @@ plugin:
 
 ![Upgrade Gradle Plugin](images/android_studio_upgrade_gradle_plugin.png)
 
-__Ignore this upgrade!__ The IndiGO build files specify the exact version of the plugin that is
-needed. The upgrade by Android Studio would change the IndiGO build files to use a wrong and
+__Ignore this upgrade!__ The TomTom IndiGO build files specify the exact version of the plugin that is
+needed. The upgrade by Android Studio would change the TomTom IndiGO build files to use a wrong and
 hard-coded version of this plugin.
 
 ## Building with Android Studio
 
 This section explains how to configure Android Studio for building the
-[IndiGO example app](/indigo/documentation/platform-overview/example-app),
+[TomTom IndiGO example app](/indigo/documentation/platform-overview/example-app),
 and how to build this application.
 
 Install Android 11 (R) SDK:
@@ -42,7 +42,7 @@ Install Android 11 (R) SDK:
 
 ![Android Studio SDK Manager Android 11](images/android_studio_sdk_manager_android_11.png)
 
-Now open the IndiGO example app project:
+Now open the TomTom IndiGO example app project:
 
 - In the `Welcome to Android Studio` dialog, select `Open`.
 
@@ -92,4 +92,4 @@ License for package Android SDK Build-Tools 30.0.2 not accepted.
 ```
 
 
-__Next step:__ [The IndiGO emulator](/indigo/documentation/getting-started/the-indigo-emulator).
+__Next step:__ [The TomTom IndiGO emulator](/indigo/documentation/getting-started/the-indigo-emulator).

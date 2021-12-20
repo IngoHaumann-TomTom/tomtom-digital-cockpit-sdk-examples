@@ -4,12 +4,12 @@ title: Theming and Customization
 
 ## Theming
 
-The look of IndiGO is determined by the theme. A theme consists of a number of styles, each of which
-focus on a different category of themeable attributes, like colors or spacing. You can change the
-styles used in the theme to adapt the look to match your brand. This page explains the details of
-theming and how to customize it.
+The look of TomTom IndiGO is determined by the theme. A theme consists of a number of styles, each 
+of which focus on a different category of themeable attributes, like colors or spacing. You can 
+change the styles used in the theme to adapt the look to match your brand. This page explains the 
+details of theming and how to customize it.
 
-IndiGO's theming mechanism is heavily based on
+TomTom IndiGO's theming mechanism is heavily based on
 [Android's theming approach](https://developer.android.com/guide/topics/ui/look-and-feel/themes), 
 while additionally providing a means to switch themes at runtime through a service. The Android
 styles within the theme are applied to the context of the system UI. All the fragments hosted in the
@@ -34,8 +34,8 @@ available attributes are defined within the
 
 The `core_theme` is a _TomTomAndroidTools_ module which defines common theme attributes that can be
 used in various projects. The [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) module,
-which extends `core_theme`, also defines extra theme attributes for IndiGO. You can customize the
-visual appearance of your product by providing the desired values of these attributes.
+which extends `core_theme`, also defines extra theme attributes for TomTom IndiGO. You can customize 
+the visual appearance of your product by providing the desired values of these attributes.
 
 ![Theming high-level diagram](images/theming-high-level-diagram.svg)
 
@@ -53,8 +53,8 @@ of the `platform_theming_api_stock_theme` to suit your look, or replace the
 The naming convention of theming attributes follows the `prefix_what_where_which_quality_quantity`
 format. Taking color attributes as an example, the attribute names consist of:
 
-- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for IndiGO specific
-  component attributes, which are defined in
+- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO 
+  specific component attributes, which are defined in
   [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) is `ttivi`.
 - `what` determines the _background color_.
 - `where`_)*_ determines the _place_ where it is used.
@@ -64,8 +64,8 @@ format. Taking color attributes as an example, the attribute names consist of:
 
 _)*_ `where`, `quality` and `quantity` are optional.
 
-In the [Color System](#color-system) section we'll explain how IndiGO classifies _background colors_
-and _emphasis_, among other things, to achieve a coherent UI design.
+In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies 
+_background colors_ and _emphasis_, among other things, to achieve a coherent UI design.
 
 Some examples for color attributes are:
 
@@ -129,8 +129,8 @@ The color system helps you to apply colors to your UI, including your brand colo
 hierarchy of information, give the correct meaning to UI elements, and meet legibility and contrast
 standards.
 
-The IndiGO color system is designed with a focus on: hierarchy, background colors, content colors,
-and emphasis.
+The TomTom IndiGO color system is designed with a focus on: hierarchy, background colors, 
+content colors, and emphasis.
 
 #### Hierarchy
 
@@ -155,8 +155,8 @@ The background colors are classified into:
   decision of the user.
 - _Overlay color_ that is used for components that come on top of the surfaces such as overlays,
   pop-overs, etc.
-- _Main menu colors_ that are used for the active app icon, inactive icons, labels, and the background of
-  the main menu.
+- _Main menu colors_ that are used for the active app icon, inactive icons, labels, and the 
+  background of the main menu.
 - _Control center colors_ that are used for elements in the control bar, and the background and
   system icons on top of it.
 
@@ -238,9 +238,9 @@ responsibility to check this.
 First you need to define styleable attributes for a category. Next you can define a style for it,
 which will be used by an [`IviThemeComponent`](TTIVI_INDIGO_API) later.
 
-Let's use an example to demonstrate the creation of a custom theme. IndiGO extends color attributes
-like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It is defined like
-this:
+Let's use an example to demonstrate the creation of a custom theme. TomTom IndiGO extends color 
+attributes like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It 
+is defined like this:
 
 ```xml
 <resources>
@@ -260,8 +260,8 @@ And there is a default value for that color attribute in `stock_theme` as well:
 </resources>
 ```
 
-The IndiGO style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and there you
-can define the value you want for your theme:
+The TomTom IndiGO style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and 
+there you can define the value you want for your theme:
 
 ```xml
 <resources>

@@ -3,11 +3,11 @@ title: Configuration Framework
 layout: default
 ---
 
-IndiGO supports customization on many levels, from configuration of functional features 
+TomTom IndiGO supports customization on many levels, from configuration of functional features 
 to theming of the user interface. One form of customization is achieved through the use of the 
-IndiGO configuration framework which can be used to specify, for example, API keys or configuration 
-feature flags to toggle features on or off and other values that a component in the IVI system can 
-use to configure itself at runtime.
+TomTom IndiGO configuration framework which can be used to specify, for example, API keys or 
+configuration feature flags to toggle features on or off and other values that a component in the 
+IVI system can use to configure itself at runtime.
 
 A component such as an IVI service can use the configuration framework to define a configuration.
 A configuration may be either static or dynamic.
@@ -111,8 +111,8 @@ See the API reference documentation of
 
 ## Configuration providers setup
 
-The default IndiGO application uses [`ResourceStaticConfigurationProvider`](TTIVI_INDIGO_API) for 
-static configurations and [`JsonDynamicConfigurationProvider`](TTIVI_INDIGO_API) for dynamic 
+The default TomTom IndiGO application uses [`ResourceStaticConfigurationProvider`](TTIVI_INDIGO_API) 
+for static configurations and [`JsonDynamicConfigurationProvider`](TTIVI_INDIGO_API) for dynamic 
 configurations. This behavior is defined in [`IviApplication`](TTIVI_INDIGO_API) and can be changed 
 by overriding the `IviApplication.createStaticConfigurationProviders` and
 `IviApplication.createDynamicConfigurationProviders` methods.

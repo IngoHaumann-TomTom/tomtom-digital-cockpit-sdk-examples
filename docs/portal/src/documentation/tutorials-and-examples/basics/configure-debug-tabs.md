@@ -2,9 +2,9 @@
 title: Configure Debug Tabs
 ---
 
-The stock distribution of IndiGO contains a non-user-facing feature useful for development: a debug
-menu. By default, it can be opened by long-pressing the `volume down` button, via the backtick
-("\`") key, or via ADB with `adb shell input keyevent --longpress KEYCODE_GRAVE`.
+The stock distribution of TomTom IndiGO contains a non-user-facing feature useful for development: 
+a debug menu. By default, it can be opened by long-pressing the `volume down` button, via the 
+backtick ("\`") key, or via ADB with `adb shell input keyevent --longpress KEYCODE_GRAVE`.
 
 ## Adding a debug tab
 

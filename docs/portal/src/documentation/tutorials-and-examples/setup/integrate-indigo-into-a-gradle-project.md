@@ -1,16 +1,17 @@
 ---
-title: Integrate IndiGO into a Gradle Project
+title: Integrate TomTom IndiGO into a Gradle Project
 ---
 
-This pages contains the steps required to integrate the IndiGO platform into an existing Android
-Gradle project. If you are new to IndiGO, our recommendation is to use the examples as a starting
-point as these examples already cover the steps described on this page. Use the steps in this page
-as a reference to integrate the IndiGO platform into an existing / newly created Android Gradle
-project. These steps assume a basic level of experience with setting up Gradle build files.
+This pages contains the steps required to integrate the TomTom IndiGO platform into an existing 
+Android Gradle project. If you are new to TomTom IndiGO, our recommendation is to use the examples 
+as a starting point as these examples already cover the steps described on this page. Use the steps 
+in this page as a reference to integrate the TomTom IndiGO platform into an existing / newly 
+created Android Gradle project. These steps assume a basic level of experience with setting up 
+Gradle build files.
 
 ## Maven repositories
 
-Gradle will need to be able to download IndiGO platform dependencies from Maven repositories.
+Gradle will need to be able to download TomTom IndiGO platform dependencies from Maven repositories.
 
 This requires the following Gradle configuration:
 
@@ -59,9 +60,10 @@ subprojects {
 
 ## BuildSrc dependencies
 
-The IndiGO platform provides Gradle plugins for the build-time configuration of the Indigo platform.
-To allow the Gradle plugins to be used in the Gradle projects it is required to add the gradle
-plugins as `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
+The TomTom IndiGO platform provides Gradle plugins for the build-time configuration of the TomTom 
+Indigo platform.To allow the Gradle plugins to be used in the Gradle projects it is required to add 
+the gradle plugins as `implementation` dependencies to the `buildSrc`. The following adds these 
+dependencies:
 
 **buildSrc/build.gradle.kts**
 
@@ -95,7 +97,7 @@ plugins {
 }
 ```
 
-In the same file, configure the IndiGO platform dependency source:
+In the same file, configure the TomTom IndiGO platform dependency source:
 
 ```kotlin
 ivi {
@@ -103,14 +105,14 @@ ivi {
 }
 ```
 
-## Integrating IndiGO platform into the APK
+## Integrating TomTom IndiGO platform into the APK
 
-To integrate the IndiGO platform into an APK, you can add the following to the `build.gradle.kts`
-of the project that builds the APK:
+To integrate the TomTom IndiGO platform into an APK, you can add the following to the 
+`build.gradle.kts` of the project that builds the APK:
 
 ```kotlin
 plugins {
-    // Optional: To use defaults from the default IndiGO IVI application.
+    // Optional: To use defaults from the default TomTom IndiGO IVI application.
     id("com.tomtom.ivi.platform.defaults.core")
 
     // Optional: To configure the NavKit2 API key at build-time.

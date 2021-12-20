@@ -173,6 +173,6 @@ override fun onDestroy() {
 
 ## External links
 
-- IndiGO [`RecentCallsService`](TTIVI_INDIGO_API).
+- TomTom IndiGO [`RecentCallsService`](TTIVI_INDIGO_API).
 - Android [`CallLog provider`](https://developer.android.com/reference/android/provider/CallLog).
 

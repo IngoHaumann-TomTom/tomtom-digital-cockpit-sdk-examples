@@ -4,8 +4,8 @@ layout: default
 ---
 
 Media plays an important part in users’ digital life and is the most used function of infotainment
-systems. This encompasses radio, music, podcasts, and audio books. IndiGO provides a way to browse
-and stream content from any audio source.
+systems. This encompasses radio, music, podcasts, and audio books. TomTom IndiGO provides a way to 
+browse and stream content from any audio source.
 
 Media sources (or sources) are apps that provide media content. Sources provide content in a
 hierarchy. For example, an album contains tracks, and an artist overview may contain all albums.
@@ -27,11 +27,11 @@ This document explains the structure of the media domain through the following m
 
 ## High-level overview
 
-The IndiGO Application Suite provides flexible architecture components to allow a wide range of
-media sources to be integrated, and to provide the end-user with a consistent user interface
+The TomTom IndiGO Application Suite provides flexible architecture components to allow a wide range 
+of media sources to be integrated, and to provide the end-user with a consistent user interface
 through which they can browse and play media.
 
-The following diagram shows a high-level overview of the architecture of media in IndiGO. It
+The following diagram shows a high-level overview of the architecture of media in TomTom IndiGO. It
 displays the following components:
 - The media application frontend. This is the user interface.
 - The media service interface. This interface defines how a frontend (or potentially another
@@ -44,10 +44,10 @@ displays the following components:
 
 ### Android Automotive media ecosystem
 
-IndiGO hooks into the existing Android Automotive media ecosystem. All developers developing a
-media app can develop their app in this standardized way. Many media apps on the market today, made
-for Android Automotive OS, already conform to this standard. Because of
-that, basic support for these apps is present in IndiGO. Advanced support can be added by
+TomTom IndiGO hooks into the existing Android Automotive media ecosystem. All developers developing 
+a media app can develop their app in this standardized way. Many media apps on the market today, 
+made for Android Automotive OS, already conform to this standard. Because of
+that, basic support for these apps is present in TomTom IndiGO. Advanced support can be added by
 [configuring the media application frontend](#configuring-the-media-application-frontend).
 
 The Android Automotive media standard is well documented. To familiarize with this topic, the
@@ -81,7 +81,7 @@ start and control media playback.
 
 ### Available stock components
 
-By default, the IndiGO platform offers a delightful user interface that provides a browsable
+By default, the TomTom IndiGO platform offers a delightful user interface that provides a browsable
 hierarchy of media content which can be played and/or browsed from installed media sources.
 
 This user interface can be customized, expanded upon, and even replaced, to accommodate different

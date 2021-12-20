@@ -38,7 +38,7 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-        <p><a href="https://www.tomtom.com/products/indigo/">IndiGO</a> is a framework to deliver Android-based digital cockpits. 
+        <p><a href="https://www.tomtom.com/products/indigo/">TomTom IndiGO</a> is a framework to deliver Android-based digital cockpits. 
         It includes an application platform to support the development of highly integrated applications on top of Android Automotive. 
         It also offers a complete set of industrial strength end-user applications, that can be customized to the needs of a car maker.</p>
         <p>Take the in-car experience to new places and get started with our comprehensive SDK that includes APIs, supporting documentation and code examples.</p>
@@ -69,8 +69,8 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-        <h2>IndiGO Example App</h2>
-        <p>The example app showcases IndiGO&#39;s stock experiences, and provides a good starting point for IndiGO development.</p>
+        <h2>TomTom IndiGO Example App</h2>
+        <p>The example app showcases TomTom IndiGO&#39;s stock experiences, and provides a good starting point for TomTom IndiGO development.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
                 href="/indigo/documentation/platform-overview/example-app" 
@@ -99,7 +99,7 @@ hideSubmenu: true
                 direction: ltr;
                 padding: 3rem;
                 gap: 1.3rem;">
-        <h2>Developing with IndiGO</h2>
+        <h2>Developing with TomTom IndiGO</h2>
         <p>Get your development environment ready and create your first custom experience.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
@@ -129,7 +129,7 @@ hideSubmenu: true
                 padding: 3rem;
                 gap: 1.3rem;">
         <h2>How to extend</h2>
-        <p>Learn how IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
+        <p>Learn how TomTom IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
                 href="/indigo/documentation/development/frontend-plugins" 

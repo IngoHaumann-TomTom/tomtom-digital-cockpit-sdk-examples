@@ -1,5 +1,5 @@
 ---
-title: IndiGO API Reference
+title: TomTom IndiGO API Reference
 ---
 
 ## Latest version

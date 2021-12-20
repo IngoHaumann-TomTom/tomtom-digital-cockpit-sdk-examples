@@ -13,7 +13,7 @@ frontends. Such services may suit as a model for a frontend.
 
 ## Overview of the example application
 
-The example application replaces IndiGO's user profile frontend with the account frontend.
+The example application replaces TomTom IndiGO's user profile frontend with the account frontend.
 The account frontend adds new panels to show account information or a login page, which can be
 invoked by a menu item. Account status is managed by the account service. The source code for the
 frontend and service can be found in the `modules` directory.
@@ -233,8 +233,8 @@ super method. The `init` block can be still used to initialize private propertie
 implementation that are not defined in the service interface and do not depend on the service's
 lifecycle.
 
-In the given example, the nullable property `activeAccount` is set to `null` by default, and there is no
-need to initialize it in `onCreate`. Although it is good for readability to initialize all the
+In the given example, the nullable property `activeAccount` is set to `null` by default, and there 
+is no need to initialize it in `onCreate`. Although it is good for readability to initialize all the
 properties explicitly.
 
 __Note:__ After the service is created, it is not yet available for clients until it declares its
@@ -336,7 +336,7 @@ val accountServiceHost by extra {
 
 The service host build configuration uses the `ExampleModuleReference` class to resolve a module
 name into the fully-qualified package. It is defined once and used for all configurations. See
-[Integrate IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
 for details.
 
 Register the service host build configuration in the main application's build script.

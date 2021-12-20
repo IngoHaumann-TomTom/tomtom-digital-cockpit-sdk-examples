@@ -2,10 +2,10 @@
 title: Frontend Plugins
 ---
 
-Frontend plugins are the User Interface (UI) modules of the IndiGO platform. Each frontend is an 
-independent module encapsulating the UI of some distinct functionality in the platform. The IndiGO 
-platform provides a number of default, or _stock_, frontend plugins, like the media player, or the 
-phone, etc.
+Frontend plugins are the User Interface (UI) modules of the TomTom IndiGO platform. Each frontend 
+is an independent module encapsulating the UI of some distinct functionality in the platform. The 
+TomTom IndiGO platform provides a number of default, or _stock_, frontend plugins, like the media 
+player, or the phone, etc.
 
 Each frontend is developed against a common set of stable platform APIs. These APIs can be used to 
 create new frontends for the platform, or replace a stock plugin with your own customized 
@@ -13,20 +13,20 @@ version.
 
 ![Frontend plugin overview](images/frontend-plugin-overview.svg)
 
-The configuration and inclusion of the frontend plugins in the IndiGO product are done at build 
-time, thus only the applicable frontend plugins are included in the deployed product.
+The configuration and inclusion of the frontend plugins in the TomTom IndiGO product are done at 
+build time, thus only the applicable frontend plugins are included in the deployed product.
 
-The IndiGO product is built and deployed as one Android 
+The TomTom IndiGO product is built and deployed as one Android 
 [APK](https://developer.android.com/guide/components/fundamentals). 
 Therefore, the plugins cannot be replaced, or updated individually after the product has been 
 installed on a device. This requires a new build to be re-installed.
 
 ## Stock frontend plugins
 
-There are a number of stock plugins in the IndiGO platform. The following picture shows the default 
-view when you launch the example application that comes with IndiGO. Highlighted in red it shows 
-the HVAC frontend along the bottom and the main menu frontend on the left side with menu items 
-that launch other frontends.
+There are a number of stock plugins in the TomTom IndiGO platform. The following picture shows the 
+default view when you launch the example application that comes with TomTom IndiGO. Highlighted in 
+red it shows the HVAC frontend along the bottom and the main menu frontend on the left side with 
+menu items that launch other frontends.
 
 ![IndiGO frontends](images/frontend-example-indigo.png)
 
@@ -45,12 +45,12 @@ the frontend's main task panel and can also be used to create the frontend on de
 
 ![Frontend panel relation](images/frontend-panel-relation.svg)
 
-IndiGO frontends are designed around using the 
+TomTom IndiGO frontends are designed around using the 
 [MVVM pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) 
 and [Android's Data Binding Library](https://developer.android.com/topic/libraries/data-binding). 
-IndiGO has many convenience classes to simplify using these. The 
-[`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API) module contains the classes needed to create your own 
-frontend, panel, and fragment using a viewmodel for the data-binding.
+TomTom IndiGO has many convenience classes to simplify using these. The 
+[`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API) module contains the classes needed to 
+create your own frontend, panel, and fragment using a viewmodel for the data-binding.
 
 - Frontend - To create your own frontend, derive the [`Frontend`](TTIVI_INDIGO_API) class.
 - Panel - To create your own panel for the frontend, you can derive from any of the panel classes 

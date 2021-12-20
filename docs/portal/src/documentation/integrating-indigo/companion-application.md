@@ -2,15 +2,15 @@
 title: Companion Application
 ---
 
-A companion application runs on the user's phone to extend the IndiGO platform experience with 
-functionality that is available on that phone; for example, to capture message notifications, 
+A companion application runs on the user's phone to extend the TomTom IndiGO platform experience 
+with functionality that is available on that phone; for example, to capture message notifications, 
 calendar events, or other data on the phone, and pass them to the IVI system. Or sharing locations 
 on the phone, as a navigation destination for the IVI system.
 
 ## Overview
 
-The IndiGO platform provides a framework which allows data communication with companion apps via
-services which can be extended for different kind of purposes. 
+The TomTom IndiGO platform provides a framework which allows data communication with companion apps
+via services which can be extended for different kind of purposes. 
 
 A Bluetooth Low Energy (BLE) connection is used to connect companion apps with the IVI system. On 
 top of which we provide a high-level service oriented framework that can be easily extended with 

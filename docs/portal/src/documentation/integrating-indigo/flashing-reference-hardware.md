@@ -10,8 +10,9 @@ This tablet is available in 2 variants:
 - 4GB RAM and 64GB internal storage
 - 6GB RAM and 128GB internal storage
 
-Both variants will work with our OTA image but preference should be given to the 128GB (with 6GB RAM)
-variant, which allows to run IndiGO / Cluster app on multiple screens without memory issues.
+Both variants will work with our OTA image but preference should be given to the 128GB 
+(with 6GB RAM) variant, which allows to run TomTom IndiGO / Cluster app on multiple screens without 
+memory issues.
 
 __Note:__
 The Galaxy Tab S5e __LTE__ (SM-T725) is not supported by our OTA image!
@@ -22,13 +23,13 @@ The image we flash on the Samsung Galaxy S5E tablet is based on version 18.1 of 
 in turn is based on Android 11.
 The image is customized for our own use cases, main modifications are as follows:
 
-- Added an IndiGO placeholder system app, to give developers' builds access to system-only
+- Added an TomTom IndiGO placeholder system app, to give developers' builds access to system-only
 permissions:
   - multimedia browsing
   - virtual display
   - call management
-- Replaced the platform key with the IndiGO key, so that IndiGO is recognized as a system app and
-is granted system permissions.
+- Replaced the platform key with the TomTom IndiGO key, so that TomTom IndiGO is recognized as a
+system app and is granted system permissions.
 - Modified the LineageOS updater app to download and install OTA updates from TomTom's Artifactory
 server (this modification is for internal use only, as it requires VPN access to the TomTom 
 internal network)
@@ -40,8 +41,8 @@ internal network)
   - android.car.* APIs
   - media browsing
 
-This guide explains how to install and use the customized IndiGO image on a new Samsung Galaxy Tab
-S5e tablet.
+This guide explains how to install and use the customized TomTom IndiGO image on a new Samsung 
+Galaxy Tab S5e tablet.
 
 ## Prerequisites
 

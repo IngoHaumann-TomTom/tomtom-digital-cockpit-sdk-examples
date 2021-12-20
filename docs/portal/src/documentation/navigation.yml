@@ -9,7 +9,7 @@
 
 group: indigo
 isPrivate: false
-productName: IndiGO
+productName: TomTom IndiGO
 menuTitle: Documentation
 isMenuOpened: true
 hasRequestAccess: true
@@ -23,7 +23,7 @@ menu:
   - title: Platform Overview
     items:
       - fileId: /platform-overview/what-is-indigo
-        title: What is IndiGO?
+        title: What is TomTom IndiGO?
       - fileId: /platform-overview/example-app
         title: Example App
   - title: Getting Started
@@ -33,7 +33,7 @@ menu:
       - fileId: /getting-started/installing-openjdk-11
         title: Installing OpenJDK 11
       - fileId: /getting-started/installing-indigo-sdk
-        title: Installing IndiGO SDK
+        title: Installing TomTom IndiGO SDK
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
       - fileId: /getting-started/getting-the-tomtom-api-key
@@ -41,7 +41,7 @@ menu:
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
       - fileId: /getting-started/the-indigo-emulator
-        title: The IndiGO Emulator
+        title: The TomTom IndiGO Emulator
       - fileId: /getting-started/frequently-asked-questions-faq
         title: Frequently Asked Questions (FAQ)
   - title: Development
@@ -76,14 +76,14 @@ menu:
             title: Configuration Framework
           - fileId: /development/platform-domains/settings-framework
             title: Settings Framework
-  - title: Integrating IndiGO
+  - title: Integrating TomTom IndiGO
     items:
       - fileId: /integrating-indigo/introduction
         title: Introduction
       - fileId: /integrating-indigo/integrating-in-vehicle
         title: Integrating in Vehicle
       - fileId: /integrating-indigo/installing-indigo-on-hardware
-        title: Installing IndiGO on Hardware
+        title: Installing TomTom IndiGO on Hardware
       - fileId: /integrating-indigo/flashing-reference-hardware
         title: Flashing the Reference Hardware
       - fileId: /integrating-indigo/companion-application
@@ -95,7 +95,7 @@ menu:
       - title: Setup
         items:
           - fileId: /tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project
-            title: Integrate IndiGO into a Gradle Project
+            title: Integrate TomTom IndiGO into a Gradle Project
           - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key
             title: Configure a TomTom API Key
           - fileId: /tutorials-and-examples/setup/configure-an-app-store

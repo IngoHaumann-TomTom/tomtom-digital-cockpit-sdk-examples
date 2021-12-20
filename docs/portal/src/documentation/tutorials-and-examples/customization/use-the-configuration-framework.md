@@ -2,11 +2,11 @@
 title: Use the Configuration Framework
 ---
 
-IndiGO supports customization on many levels, from configuration of functional features 
+TomTom IndiGO supports customization on many levels, from configuration of functional features 
 to theming of the user interface. One form of customization is achieved through the use of the 
-IndiGO configuration framework which can be used to specify, for example, API keys or configuration 
-feature flags to toggle features on or off and other values that a component in the IVI system can 
-use to configure itself at runtime. 
+TomTom IndiGO configuration framework which can be used to specify, for example, API keys or 
+configuration feature flags to toggle features on or off and other values that a component in the 
+IVI system can use to configure itself at runtime. 
 
 A component such as an IVI service can use the configuration framework to define a configuration.
 A configuration may be either static or dynamic.
@@ -30,11 +30,11 @@ generator and how to use these configurations in the application.
 
 ## Overview of the example application
 
-The example application adds the account frontend to the default IndiGO application. The account
-frontend adds new panels to show account information or login page, which can be invoked by a menu
-item. The account status is managed by the account service. When the user is authenticated, the user
-name is stored in persistent storage by the account settings service, so the user does not need to
-log in again after a restart of the application.
+The example application adds the account frontend to the default TomTom IndiGO application. The 
+account frontend adds new panels to show account information or login page, which can be invoked by 
+a menu item. The account status is managed by the account service. When the user is authenticated, 
+the user name is stored in persistent storage by the account settings service, so the user does not 
+need to log in again after a restart of the application.
 The source code for the frontend and service can be found in the `modules` directory.
 See also
 [Create an IVI service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)

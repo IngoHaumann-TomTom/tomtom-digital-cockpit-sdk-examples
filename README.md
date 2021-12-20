@@ -1,8 +1,8 @@
-# IndiGO Platform Example Application
+# TomTom IndiGO Platform Example Application
 
 ## Introduction
 
-This repository contains the source code of example application built on IndiGO platform.
+This repository contains the source code of example application built on TomTom IndiGO platform.
 
 ### `buildSrc/`
 
@@ -20,10 +20,10 @@ The root directory for modules. All Gradle modules inside are within two levels 
   Modules with shared code used by applications, frontends, and services.
 
 - `modules/frontends/`
-  Modules for IndiGO frontend plugins.
+  Modules for TomTom IndiGO frontend plugins.
 
 - `modules/products/`
-  Modules for applications based on IndiGO Platform.
+  Modules for applications based on TomTom IndiGO Platform.
 
 - `modules/serviceapis`
   Modules with API definitions of IVI services.
@@ -61,7 +61,7 @@ And then build with:
 ## Setting up the development environment
 
 For the entire setup process, please consult the following page:
-[Getting Started](https://developer.tomtom.com/indigo/documentation/getting-started)
+[Getting Started](https://developer.tomtom.com/indigo/documentation/getting-started/introduction)
 
 ## Copyright
 

@@ -3,18 +3,19 @@ title: Vehicle Functions
 layout: default
 ---
 
-The vehicle functions domain APIs and modules enable IndiGO to interact with the vehicle, like
-opening a window, setting the Air Conditioning temperature, or being informed about the current
+The vehicle functions domain APIs and modules enable TomTom IndiGO to interact with the vehicle, 
+like opening a window, setting the Air Conditioning temperature, or being informed about the current
 speed.
 
 ## Introduction
 
-An IndiGO-based system consists of multiple parts: the vehicle platform, Android services, and
-IndiGO. The _vehicle platform_ is the part that Android Car uses to communicate with the vehicle.
+A TomTom IndiGO-based system consists of multiple parts: the vehicle platform, Android services, 
+and TomTom IndiGO. The _vehicle platform_ is the part that Android Car uses to communicate with the 
+vehicle.
 
 Because vehicle platforms differ from brand to brand, and sometimes even from model to model,
-IndiGO provides an abstraction of that vehicle platform. By adding an `IviService` layer on top of
-Android Car, IndiGO can communicate with each vehicle using the same interface.
+TomTom IndiGO provides an abstraction of that vehicle platform. By adding an `IviService` layer on 
+top of Android Car, TomTom IndiGO can communicate with each vehicle using the same interface.
 
 This interface uses its own definitions of the properties a vehicle platform may expose and
 enables property observers to obtain the values of these properties, as well as a means of changing
@@ -22,9 +23,9 @@ their value.
 
 ![Vehicle functions decomposition](images/vehicle_functions_domain-vehicle-function-diagram.svg)
 
-As shown in the diagram, IndiGO has a single interface for all types of vehicle platforms. In the
-[`platform_vehiclefunctions_api_common_vehiclefunctions`](TTIVI_INDIGO_API) module we define the
-different types of vehicle properties and how we communicate with them.
+As shown in the diagram, TomTom IndiGO has a single interface for all types of vehicle platforms. 
+In the [`platform_vehiclefunctions_api_common_vehiclefunctions`](TTIVI_INDIGO_API) module we define 
+the different types of vehicle properties and how we communicate with them.
 
 The vehicle function services are built on top of Android Car, which in turn uses the Vehicle
 Hardware Abstraction Layer (VHAL). Working our way up we describe how to write or use a vehicle
@@ -34,7 +35,7 @@ All communication is asynchronous. This means that you can make vehicle property
 and the current thread will not be blocked. Any effects of your request will come in the shape of
 vehicle property value changes, or in the shape of an error callback. In the background, the
 vehicle platform decides what should happen, changes the vehicle's state, and updates the vehicle's
-properties, sending any changed values back to IndiGO.
+properties, sending any changed values back to TomTom IndiGO.
 
 ## Android VHAL interface
 
@@ -81,9 +82,9 @@ following:
 - Methods may take multiple seconds to complete.
 - Exceptions are thrown in case of errors.
 
-## IndiGO interface
+## TomTom IndiGO interface
 
-The following list of restrictions drove the design of the IndiGO Vehicle Functions:
+The following list of restrictions drove the design of the TomTom IndiGO Vehicle Functions:
 
 - A vehicle function service supports an API to discover vehicle capabilities.
 - A vehicle function service exposes error states provided by the VHAL.
@@ -129,7 +130,7 @@ when (property?.value) {
 ## Implementing a vehicle functions service
 
 A vehicle functions service interface should have the [`@IviService`](TTIVI_INDIGO_API) annotation 
-so IndiGO can discover it:
+so TomTom IndiGO can discover it:
 
 ```kotlin
 \@IviService ( serviceId = "com.tomtom.ivi.service.example" )

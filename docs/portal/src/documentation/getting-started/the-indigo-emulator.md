@@ -1,20 +1,20 @@
 ---
-title: The IndiGO Emulator
+title: The TomTom IndiGO Emulator
 ---
 
-IndiGO can run on Android emulators (Android Virtual Devices, AVDs) in addition to the reference or
-demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has been created
-for running IndiGO. This configuration contains a number of customizations to the emulator hardware
-and the Android platform on which it runs. This emulator can be used for development on top of
-IndiGO and runs x86\_64 AOSP with Android 11 Automotive.
+TomTom IndiGO can run on Android emulators (Android Virtual Devices, AVDs) in addition to the 
+reference or demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has 
+been created for running TomTom IndiGO. This configuration contains a number of customizations to 
+the emulator hardware and the Android platform on which it runs. This emulator can be used for 
+development on top of TomTom IndiGO and runs x86\_64 AOSP with Android 11 Automotive.
 
-__Note:__ The IndiGO platform also runs on a standard Android device, with an IndiGO-supported CPU
-architecture. However, some features may not work as IndiGO is implemented for the Android
-Automotive variant.
+__Note:__ The TomTom IndiGO platform also runs on a standard Android device, with a TomTom 
+IndiGO-supported CPU architecture. However, some features may not work as TomTom IndiGO is 
+implemented for the Android Automotive variant.
 
-## The IndiGO emulator image
+## The TomTom IndiGO emulator image
 
-Follow these steps to install the IndiGO emulator image in Android Studio:
+Follow these steps to install the TomTom IndiGO emulator image in Android Studio:
 
 - Copy the file `docs/resources/devices.xml` (from the `examples` source), to your `~/.android/`
   folder.
@@ -34,7 +34,7 @@ Follow these steps to install the IndiGO emulator image in Android Studio:
     - Name: `TomTom IndiGO - Artifact Repository`
     - URL: `https://repo.tomtom.com/`
     - Tick `Use Authentication`, enter your TomTom
-      [repository credentials](/indigo/documentation/getting-started#access-the-indigo-sdk)
+      [repository credentials](/indigo/documentation/getting-started/introduction)
       and click `OK`.
 
 - __Note__ the `s` in `https://`, because Android Studio proposes a default URL as `http://`.
@@ -77,8 +77,8 @@ Virtual Device (AVD) with it:
     - __Note:__ The entries displayed differ only in the last part of their `Target` field.
 
 - __Mac _with_ an M1 processor:__ Go to tab `Other Images` and select `Android S` for `arm64-v8a` as
-  the System Image. This is a standard Android image, without IndiGO-specific customizations or
-  Android Automotive features!
+  the System Image. This is a standard Android image, without TomTom IndiGO-specific customizations 
+  or Android Automotive features!
 
 ![Android Studio - System Image](images/android_studio_android_r.png)
 
@@ -93,14 +93,14 @@ Virtual Device (AVD) with it:
 
 - Click `Finish`.
 
-- You now see a new IndiGO emulator device listed in the AVD Manager:
+- You now see a new TomTom IndiGO emulator device listed in the AVD Manager:
 
-![Android Studio - IndiGO Emulator Device](images/android_studio_indigo_emulator_device.png)
+![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_indigo_emulator_device.png)
 
 - Click the triangular `play` icon on the right to start the emulator.
 - When the emulator has started, it shows as:
 
-![Android Studio - IndiGO Emulator Window](images/android_studio_indigo_emulator_window.png)
+![Android Studio - TomTom IndiGO Emulator Window](images/android_studio_indigo_emulator_window.png)
 
 - Enable wifi, to ensure that map data can be downloaded:
     - Click the Home button (circle) in the sidebar next to the emulator screen.
@@ -126,13 +126,13 @@ Virtual Device (AVD) with it:
     - On the right-hand side of each configured AVD there is a down-arrow that opens a context menu.
       Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-![Android Studio IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
+![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
 
 - Close the AVD Manager and wait for the emulator to start up.
 
 - In Android Studio, build and run the application by clicking on the green `play` icon. Select the
-  IndiGO automotive emulator that was created earlier in this tutorial, as the device that the
-  application will run on:
+  TomTom IndiGO automotive emulator that was created earlier in this tutorial, as the device that 
+  the application will run on:
 
 ![Android Studio - Build and run](images/android_studio_build_and_run.png)
 
@@ -140,10 +140,10 @@ Virtual Device (AVD) with it:
 
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
-- You will now see the IndiGO home screen. Note that the map data is shown only when you have
+- You will now see the TomTom IndiGO home screen. Note that the map data is shown only when you have
   [configured a valid TomTom API key](/indigo/documentation/getting-started/getting-the-tomtom-api-key).
 
-![IndiGO Home Screen](images/indigo_home_screen.png)
+![TomTom IndiGO Home Screen](images/indigo_home_screen.png)
 
 If you encounter any issues, please consult our
 [Frequently Asked Questions](/indigo/documentation/getting-started/frequently-asked-questions-faq).

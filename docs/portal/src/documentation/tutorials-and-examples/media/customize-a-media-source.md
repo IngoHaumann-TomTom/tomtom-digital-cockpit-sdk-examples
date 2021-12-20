@@ -4,8 +4,8 @@ title: Customize a Media Source
 
 Most media apps offer content which can be browsed and played liberally, letting the user more or
 less in control of the playback. Potentially, these apps require logging in before allowing access.
-This kind of media app is easier to customize, as the IndiGO Application Suite already provides a
-delightful user interface for media.
+This kind of media app is easier to customize, as the TomTom IndiGO Application Suite already 
+provides a delightful user interface for media.
 
 These customization capabilities are currently offered:
 - Modify how content provided by the media app is displayed to the user.
@@ -16,7 +16,7 @@ These customization capabilities are currently offered:
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
   See the
-  [MediaItemComparisonPolicy](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_common_mediasources/com.tomtom.ivi.api.common.mediasources.policies/index.html#1911054816%2FClasslikes%2F497736962)
+  [`MediaItemComparisonPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_common_mediasources/com.tomtom.ivi.api.common.mediasources.policies/index.html#1911054816%2FClasslikes%2F497736962)
   documentation for more information.
 
 These customizations are possible through the use of policies, which are applied based on the
@@ -28,21 +28,21 @@ More venues for customization are planned for the future, but if it is necessary
 experience in a more radical fashion, then it is possible to 
 [create a new user interface](/indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
 
-Throughout this customization guide, a practical example will be built to integrate IndiGO with an
-internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
+Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO 
+with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
 
-For this guide, knowledge of the IndiGO media APIs [`api_common_media`](TTIVI_INDIGO_API) 
+For this guide, knowledge of the TomTom IndiGO media APIs [`api_common_media`](TTIVI_INDIGO_API) 
 and [`api_common_mediasources`](TTIVI_INDIGO_API)
 will be of great help. In the 
 [media overview](/indigo/documentation/development/platform-domains/media) documentation, more 
-details can be found about the Android Automotive Media framework and how IndiGO uses it.
+details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 ## Modify content display
 
 A media source might provide poor quality of its input data, due to a sub-par implementation of the
 Android Automotive Media API, causing the default user interface to display it incorrectly.
 
-When browsing through content from the `ExampleInternetRadio` app, normally the IndiGO user
+When browsing through content from the `ExampleInternetRadio` app, normally the TomTom IndiGO user
 interface would display the [`IviMediaItem`](TTIVI_INDIGO_API)`.title` field of a playable media 
 item in a more visually-prominent fashion (in bold and with a bigger font size) and the
 [`IviMediaItem`](TTIVI_INDIGO_API)`.subtitle` field, when present, in a less-prominent fashion

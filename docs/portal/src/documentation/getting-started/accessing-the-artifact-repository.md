@@ -3,8 +3,9 @@ title: Accessing the Artifact Repository
 ---
 
 The [TomTom repository credentials](/indigo/documentation/getting-started/introduction) that you
-used in step [Installing IndiGO SDK](/indigo/documentation/getting-started/installing-indigo-sdk)
-are also needed by the build process, to retrieve IndiGO platform dependencies from the IVI
+used in step 
+[Installing TomTom IndiGO SDK](/indigo/documentation/getting-started/installing-indigo-sdk)
+are also needed by the build process, to retrieve TomTom IndiGO platform dependencies from the IVI
 [Nexus](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-sdk)
 repository, a binary repository hosted by TomTom.
 

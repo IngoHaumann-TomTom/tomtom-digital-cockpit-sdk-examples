@@ -76,7 +76,7 @@ network.
 
 On the emulator, open the `Settings` and enable `Wi-Fi`. Then cold boot the emulator.  See detailed
 instructions in
-[The IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-indigo-emulator-device)
+[The TomTom IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
 under `Enable wifi` and `Now restart the emulator`.
 
 For a real device, make sure that it has a working Internet connection.
@@ -93,8 +93,8 @@ For more details see
 
 ## How to open/close the Debug Menu?
 
-IndiGO provides a debug menu giving access to functionality that is not normally available to the
-end-user. For example, starting a route demo.
+TomTom IndiGO provides a debug menu giving access to functionality that is not normally available 
+to the end-user. For example, starting a route demo.
 
 Opening the debug menu:
 
@@ -161,8 +161,8 @@ Your CPU does not support VT-x. Unfortunately, your computer does not support ha
 
 The Apple M1 processor is not an Intel-based chip and the hardware-accelerated virtualization
 package does not work on this processor architecture. Special setup is required to get even the
-default Android emulator working, so this is not just an IndiGO-specific problem. Official Android
-support for this chip is still in progress.
+default Android emulator working, so this is not just a TomTom IndiGO-specific problem. Official 
+Android support for this chip is still in progress.
 
 The previous instructions on how to configure an Android Virtual Device, specify exceptions for
 computers with the M1 processor. Please verify that you have followed those exceptions.
@@ -175,7 +175,7 @@ You may encounter an `Insufficient storage` message when installing the APK on t
 that the emulator AVD has sufficient disk storage configured:
 
 - In Android Studio open the AVD Manager via `Tools` > `AVD Manager`.
-- Edit the IndiGO AVD by clicking its pencil icon in the `Actions` column.
+- Edit the TomTom IndiGO AVD by clicking its pencil icon in the `Actions` column.
 - Click `Show Advanced Settings` and scroll down to the `Memory and Storage` section. Ensure these
   fields have at least the following values:
     - `RAM` : `3072 MB`
@@ -196,10 +196,10 @@ Cold boot the emulator, as explained in the
 The emulator may be slow at starting up on some configurations, especially the first time and
 especially on an Apple Mac.
 
-Locate the `config.ini` file for the AVD you are using for running IndiGO in the emulator. If you
-have followed the instructions in
-[The IndiGO Emulator](/indigo/documentation/getting-started/the-indigo-emulator), it should be at
-the following location:
+Locate the `config.ini` file for the AVD you are using for running TomTom IndiGO in the emulator. 
+If you have followed the instructions in
+[The TomTom IndiGO Emulator](/indigo/documentation/getting-started/the-indigo-emulator), it should 
+be at the following location:
 
 __Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
 
@@ -235,7 +235,7 @@ To cold boot the emulator, follow these steps:
 - On the right-hand side of each configured AVD there is a down-arrow that launches a context menu.
   Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-- ![Android Studio IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
+- ![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
 
 Now wait for the emulator to start up.
 
@@ -259,7 +259,7 @@ com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLT
 ```
 
 To fix this, set the emulator's OpenGL ES API level to 3.1 and restart the emulator, as explained in
-[The IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-indigo-emulator-device)
+[The IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
 under `Set the Emulator's OpenGL` and `Now restart the emulator`.
 
 ---
@@ -281,14 +281,14 @@ Configuration `Run IVI Example` as delivered with the SDK has these settings pre
 
 ## Installing on a custom device
 
-Some features of the IndiGO example application require system permissions. For instance, you won't
-be able to play music using Spotify nor use HVAC features. If you want to install the example app on
-a different emulator or device, you need to make sure that it is signed with the corresponding
-platform key.
+Some features of the TomTom IndiGO example application require system permissions. For instance, 
+you won't be able to play music using Spotify nor use HVAC features. If you want to install the 
+example app on a different emulator or device, you need to make sure that it is signed with the 
+corresponding platform key.
 
-The Indigo platform debug key and password files, used for the pre-created tablet and emulator
-images, are in the `keystore` directory in the example source. Drop in your own platform keys,
-replacing the existing ones in that directory, then rebuild and deploy.
+The TomTom Indigo platform debug key and password files, used for the pre-created tablet and 
+emulator images, are in the `keystore` directory in the example source. Drop in your own platform 
+keys, replacing the existing ones in that directory, then rebuild and deploy.
 
 
 

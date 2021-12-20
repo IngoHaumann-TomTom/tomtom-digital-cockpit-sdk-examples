@@ -1,5 +1,5 @@
 ---
-title: IndiGO Gradle Plugins API Reference
+title: TomTom IndiGO Gradle Plugins API Reference
 ---
 
 ## Latest version
