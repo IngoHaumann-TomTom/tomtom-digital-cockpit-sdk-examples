@@ -15,7 +15,7 @@ import org.gradle.api.Project
 import java.io.File
 
 /**
- * Generates a versions file based on existing versions file and IndiGO version provided as a
+ * Generates a versions file based on existing versions file and TomTom IndiGO version provided as a
  * Gradle parameter.
  *
  * The new version number must be given as `-PlatestIndigoVersion=x.y.z` command line argument to

@@ -28,7 +28,7 @@ default view when you launch the example application that comes with TomTom Indi
 red it shows the HVAC frontend along the bottom and the main menu frontend on the left side with 
 menu items that launch other frontends.
 
-![IndiGO frontends](images/frontend-example-indigo.png)
+![TomTom IndiGO frontends](images/frontend-example-indigo.png)
 
 Here is an example of one of the stock launched frontends, containing the UI for the contacts 
 functionality. The Frontend and the associated menu item are highlighted in red. 

@@ -100,12 +100,12 @@ up to more advanced topics like
 
 ## Integrating TomTom IndiGO
 
-Read more about [integrating IndiGO](/indigo/documentation/integrating-indigo/introduction) in a
+Read more about [integrating TomTom IndiGO](/indigo/documentation/integrating-indigo/introduction) in a
 vehicle or on other hardware.
 
 ## API reference
 
-Developing for IndiGO requires a set of Application Programming Interfaces (API): the main 
+Developing for TomTom IndiGO requires a set of Application Programming Interfaces (API): the main 
 TomTom IndiGO API and the TomTom Android Tools API. The reference documentation for both can be 
 found on the[API reference documentation page](/indigo/api-reference/introduction). It provides the 
 details of all classes and functions, and insights into the relation between all modules and 

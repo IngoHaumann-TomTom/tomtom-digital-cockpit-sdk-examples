@@ -54,10 +54,10 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
 
 - When the download completes, click `Finish` and close the SDK Manager.
 
-## The IndiGO emulator device
+## The TomTom IndiGO emulator device
 
-After having downloaded the [emulator image](#the-indigo-emulator-image), you can create an Android
-Virtual Device (AVD) with it:
+After having downloaded the [emulator image](#the-tomtom-indigo-emulator-image), you can create an
+Android Virtual Device (AVD) with it:
 
 - Open the AVD Manager via `Tools` > `AVD Manager`:
 

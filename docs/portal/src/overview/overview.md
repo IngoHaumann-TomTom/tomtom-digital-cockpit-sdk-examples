@@ -90,7 +90,7 @@ hideSubmenu: true
             align-content: center;
             gap: 2rem;">
     <div style="max-width:800px">
-    <img src="images/developing-with-indigo.png" alt="Developing with IndiGO" style="max-width:800px"/>
+    <img src="images/developing-with-indigo.png" alt="Developing with TomTom IndiGO" style="max-width:800px"/>
     </div>
     <div style="display: flex;
                 flex-direction: column;

@@ -259,7 +259,7 @@ com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLT
 ```
 
 To fix this, set the emulator's OpenGL ES API level to 3.1 and restart the emulator, as explained in
-[The IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
+[The TomTom IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
 under `Set the Emulator's OpenGL` and `Now restart the emulator`.
 
 ---
@@ -289,6 +289,3 @@ corresponding platform key.
 The TomTom Indigo platform debug key and password files, used for the pre-created tablet and 
 emulator images, are in the `keystore` directory in the example source. Drop in your own platform 
 keys, replacing the existing ones in that directory, then rebuild and deploy.
-
-
-

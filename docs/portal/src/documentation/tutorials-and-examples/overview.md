@@ -91,4 +91,3 @@ Additional functionality is described in the tutorials and how-to guides below.
 
   This guide explains how to run services in a separate process, configure multiple TomTom IndiGO
   instances, and how to deploy Android services in the same process as an IVI service.
-

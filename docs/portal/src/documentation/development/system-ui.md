@@ -93,8 +93,8 @@ their contents. This low coupling allows both the system UI and the other plugin
 differently per product.
 
 It is important however, that the system UI and the frontends integrate neatly. To achieve this, the
-IndiGO framework provides a set of contracts in the form of interfaces and classes, that allow a
-basic level of interaction between the system UI and frontends.
+TomTom IndiGO framework provides a set of contracts in the form of interfaces and classes, that
+allow a basic level of interaction between the system UI and frontends.
 
 The majority of these contracts are defined in 
 [`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API). Apart from the core classes 
@@ -125,10 +125,10 @@ added to create custom panel types for frontends to use.
 
 #### Home panel
 
-The home panel is the main element shown on the screen when starting TomTom IndiGO. TomTom IndiGO's 
-default home panel contains a map that allows the user to plan a trip somewhere and navigate to it. 
-A frontend can provide an home panel by adding a panel that extends [`HomePanel`](TTIVI_INDIGO_API) 
-to its panels.
+The home panel is the main element shown on the screen when starting TomTom IndiGO. The default home
+panel contains a map that allows the user to plan a trip somewhere and navigate to it.  A frontend
+can provide an home panel by adding a panel that extends [`HomePanel`](TTIVI_INDIGO_API) to its
+panels.
 
 #### Main menu panel
 

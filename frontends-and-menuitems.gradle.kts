@@ -98,7 +98,7 @@ val hierarchyMenuItem by extra {
 }
 
 /**
- * This [project] [extra] refers to a frontend that comes from the IndiGO platform.
+ * This [project] [extra] refers to a frontend that comes from the TomTom IndiGO platform.
  * The debug frontend displays on request a non-user-facing development panel.
  */
 val debugFrontend by extra {

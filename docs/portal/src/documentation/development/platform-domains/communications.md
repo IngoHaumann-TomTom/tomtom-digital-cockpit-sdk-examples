@@ -90,18 +90,17 @@ It shows the following components:
 - __Companion app messaging service__: Messaging provider that adds messaging support through the
   companion app.
 - __Communications messaging service__: This is the messaging service definition used for
-  communications between IndiGO and the companion app.
+  communications between TomTom IndiGO and the companion app.
 
 ### Extending TomTom IndiGO with a new messaging service
 
-IndiGO can be directly extended with support for a new messaging service by implementing a new
-discoverable
+TomTom IndiGO can be directly extended with support for a new messaging service by implementing a
+new discoverable
 [`MessagingProviderService`](TTIVI_INDIGO_API).
 
 ### Extending messaging using a companion app
 
-IndiGO comes together with a framework that supports running remote services on a companion app.
+TomTom IndiGO comes together with a framework that supports running remote services on a companion app.
 This framework also contains the communications
-[`MessagingService`](TTIVI_INDIGO_API)
-, which can directly be used to extend TomTom IndiGO messaging.
-
+[`MessagingService`](TTIVI_INDIGO_API),
+which can directly be used to extend TomTom IndiGO messaging.
