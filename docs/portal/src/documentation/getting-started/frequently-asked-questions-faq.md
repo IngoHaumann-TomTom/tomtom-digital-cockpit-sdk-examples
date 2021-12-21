@@ -29,7 +29,7 @@ Table of content:
 For example, when you get the following compilation errors, then your Nexus credentials may be
 stored incorrectly or are missing.
 
-```bash
+```cmd
 Execution failed for task ':buildSrc:compileKotlin'.
 > Could not resolve all files for configuration ':buildSrc:compileClasspath'.
    > Could not find com.tomtom.ivi.platform.gradle:api_framework_config:1.0.2264.
@@ -60,7 +60,7 @@ find the credentials, but the server rejects them. So the credentials are incorr
 
 For example:
 
-```bash
+```cmd
 > Could not GET 'https://repo.tomtom.com/repository/ivi/com/tomtom/ivi/gradle/api_plugins_platform/1.0.1859/api_plugins_platform-1.0.1859.pom'. Received status code 401 from server: Unauthorized
 ```
 
@@ -149,13 +149,13 @@ Start a Route Demo:
 
 Attempting to start the Android emulator results in:
 
-```bash
+```cmd
 The emulator process for AVD IndiGO_Emulator was killed.
 ```
 
 and installing the emulator accelerator package from the Android Update Site results in:
 
-```bash
+```cmd
 Your CPU does not support VT-x. Unfortunately, your computer does not support hardware accelerated virtualization.
 ```
 
@@ -211,14 +211,14 @@ When you have found the `config.ini` file, you can try a few things:
 
 - Try disabling sound, as it may cause the emulator to generate a high CPU load:
 
-```bash
+```cmd
 hw.audioInput=no
 hw.audioOutput=no
 ```
 
 - Check that you have sufficient RAM:
 
-```bash
+```cmd
 hw.ramSize=3072
 ```
 
@@ -247,7 +247,7 @@ When you launch the application on emulator, it crashes and restarts in a never-
 in the logcat and if you get the following error, you need to set the emulator's OpenGL ES API
 level to 3.1:
 
-```bash
+```cmd
 com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLThread 667
     Process: com.tomtom.ivi.example.product.exampleapp, PID: 5705
     java.lang.RuntimeException: Required support for OpenGL standard derivatives is missing.

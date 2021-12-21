@@ -172,7 +172,7 @@ ivi {
 
 Then run Gradle task `generateConfigurations`:
 
-```bash
+```cmd
 # Either for all projects.
 ./gradlew generateConfigurations
 

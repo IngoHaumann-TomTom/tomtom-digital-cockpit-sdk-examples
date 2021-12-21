@@ -15,38 +15,38 @@ been tested and will not be supported by TomTom.
 
 To install it, run the following command in a terminal:
 
-```bash
+```cmd
 sudo apt install openjdk-11-jdk
 ```
 
 You might already have other versions of JDK installed. Verify this by running:
 
-```bash
+```cmd
 sudo update-java-alternatives -l
 ```
 
 If you see the following output, then you only have OpenJDK and you are all set:
 
-```bash
+```cmd
 java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64
 ```
 
 If you see multiple Java versions in the output, you need to make sure you have the correct one set
 as the default:
 
-```bash
+```cmd
 sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
 ```
 
 Then you can verify that the correct Java version is in use by running:
 
-```bash
+```cmd
 java --version
 ```
 
 You should see output similar to this:
 
-```bash
+```cmd
 openjdk 11.0.11 2021-04-20
 OpenJDK Runtime Environment (build 11.0.11+9-Ubuntu-0ubuntu2.20.04)
 OpenJDK 64-Bit Server VM (build 11.0.11+9-Ubuntu-0ubuntu2.20.04, mixed mode, sharing)
@@ -57,7 +57,7 @@ OpenJDK 64-Bit Server VM (build 11.0.11+9-Ubuntu-0ubuntu2.20.04, mixed mode, sha
 [Adoptium Temurin JDK](https://adoptium.net/?variant=openjdk11) Java version 11 can easily be
 installed on Mac using [Homebrew](https://brew.sh/):
 
-```bash
+```cmd
 brew tap AdoptOpenJDK/openjdk
 brew install --cask adoptopenjdk11
 ```
@@ -82,13 +82,13 @@ Open the downloaded `.msi` file, to install the JDK:
 
 - When finished installing, open the command prompt to make sure you are now using `OpenJDK 11`:
 
-```bash
+```cmd
     java -version
 ```
 
 - You should see output similar to this:
 
-```bash
+```cmd
     openjdk version "11.0.13" 2021-10-19
     OpenJDK Runtime Environment Temurin-11.0.13+8 (build 11.0.13+8)
     OpenJDK 64-Bit Server VM Temurin-11.0.13+8 (build 11.0.13+8, mixed mode)

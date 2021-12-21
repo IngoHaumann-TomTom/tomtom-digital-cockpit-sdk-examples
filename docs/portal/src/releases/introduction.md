@@ -33,7 +33,7 @@ Example Application uses. The second part `-ppp` is the version of the example a
 
 Once extracted, you will find these directories:
 
-```bash
+```cmd
 examples/*.apk
 examples/products_indigo_examples-<version>-sources
 ```

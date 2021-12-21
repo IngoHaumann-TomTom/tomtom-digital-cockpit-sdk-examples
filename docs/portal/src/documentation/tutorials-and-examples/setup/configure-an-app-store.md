@@ -53,7 +53,7 @@ part of the hardware platform system image.
 When you have chosen your app store and downloaded the required APK(s) to a machine with `adb`
 installed, you can install the app store using the following command:
 
-```bash
+```cmd
 adb install <your-app-store-APK-filename>
 ```
 

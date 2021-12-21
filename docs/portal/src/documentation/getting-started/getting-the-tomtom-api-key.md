@@ -15,7 +15,7 @@ calculate a route. Locate the Gradle properties file, as explained in the [Insta
 key](#installing-the-api-key) section, and add the following line. You can then skip the rest of
 this page.
 
-```bash
+```cmd
 disableNavkit2ApiKeyBuildTimeCheck=true
 ```
 
@@ -52,7 +52,7 @@ either the top-level `local.properties` file or your `gradle.properties` file.
 
 Add a line to have the Gradle property match your TomTom API key:
 
-```bash
+```cmd
 navkit2ApiKey=<your-tomtom-api-key>
 ```
 
