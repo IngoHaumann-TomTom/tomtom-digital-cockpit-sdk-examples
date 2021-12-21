@@ -15,7 +15,7 @@ easily.
 The `com.tomtom.tools.android.core.theme` module declares the view element attributes that these
 controls need, to define their appearance. When using these controls, it is mandatory to define
 these attribute values. For further information, check the
-[Theming](/indigo/documentation/development/theming-and-customization.html)
+[Theming](/indigo/documentation/development/theming-and-customization)
 documentation.
 
 For more details of these controls, see:

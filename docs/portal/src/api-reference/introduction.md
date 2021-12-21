@@ -5,7 +5,7 @@ title: API Reference
 In this section, you can find the API references of the TomTom IndiGO platform and auxiliary 
 libraries. Combined, these provide a full-featured toolkit for creating IVI applications.
 
-## The TomTom IndiGO platform
+## TomTom IndiGO platform
 
 The TomTom IndiGO API Reference provides in-depth documentation about the essential building blocks 
 of the TomTom IndiGO platform. The modules provided by the TomTom IndiGO platform are the primary 

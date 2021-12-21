@@ -23,7 +23,7 @@ conference calling service by implementing a
 it.
 
 How to do this is described in:
-[How to create a custom connection service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-connections-service)
+[How to create a custom connection service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-connection-service)
 
 ### High level overview
 

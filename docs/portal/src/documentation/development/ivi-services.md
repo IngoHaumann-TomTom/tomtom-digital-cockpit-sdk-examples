@@ -10,10 +10,10 @@ own and can run in the background for a long time, matching the platform lifetim
 
 A TomTom IndiGO based IVI system is deployed as a single Android application that includes all the 
 functionality of the product. The User Interface (UI) of the application is built using TomTom 
-IndiGO [frontend plugins](/indigo/documentation/development/plugins), and are created to display 
-something on the screen. They are subsequently destroyed when content disappears from the screen. 
-Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated by the 
-Android platform. Whereas service hosts should contain functionality that does not need to 
+IndiGO [frontend plugins](/indigo/documentation/development/frontend-plugins), and are created to 
+display something on the screen. They are subsequently destroyed when content disappears from the 
+screen. Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated 
+by the Android platform. Whereas service hosts should contain functionality that does not need to 
 (or should) run on the UI thread, as they run in an entirely different process. IVI service hosts 
 can implement multiple IVI service interfaces.
 
