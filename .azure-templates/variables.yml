@@ -13,4 +13,4 @@
 variables:
   # Version of the Docker images from the `indigo-docker` repo.
   - name: dockerImageVersion
-    value: '3.1.21'
+    value: '3.1.23'
