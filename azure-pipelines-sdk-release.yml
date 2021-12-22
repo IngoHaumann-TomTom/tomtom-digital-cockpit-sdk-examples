@@ -212,7 +212,7 @@ stages:
       - job: GenerateIndigoApiDocs
         displayName: 'Generate IndiGO API docs'
         # TODO(IVI-3769): Reduce timeout after improving performance
-        timeoutInMinutes: 60
+        timeoutInMinutes: 30
         container: 'docker_indigo_build'
         dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
         steps:
@@ -221,11 +221,23 @@ stages:
               cd $(Build.SourcesDirectory)
               git checkout tags/$(VERSION_PLATFORM)
             displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
-          - template: gradle/gradle.yml@devops-templates
-            parameters:
-              tasks: >-
-                docs
-              displayName: 'Generate IndiGO API docs'
+          # TODO(IVI-3769): Work-around for memory leak in Dokka Gradle plugin.
+          #   Stop the Gradle daemon when it uses an excessive amount of memory.
+          #   Restart the 'docs' task, because it fails when we kill the Gradle daemon.
+          - bash:
+              while true; do ./gradlew --status | grep STOPREQUESTED && ./gradlew --stop; sleep 10; done &
+              set -eux;
+              while ! ./gradlew docs -PiviVersion=$(VERSION_PLATFORM); do echo "Retry docs task."; done
+            workingDirectory: $(Build.SourcesDirectory)
+            displayName: 'Generate IndiGO API docs'
+          #- template: gradle/gradle.yml@devops-templates
+          #  parameters:
+          #    tasks: >-
+          #      docs
+          #    projectOptions:
+          #      -PiviVersion=$(VERSION_PLATFORM)
+          #    displayName: 'Generate IndiGO API docs'
+          # End of TODO.
           - publish: $(System.DefaultWorkingDirectory)/build/docs
             artifact: indigo-api-docs
             displayName: 'Publish IndiGO API docs as a pipeline artifact'
