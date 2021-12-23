@@ -50,15 +50,15 @@ UI components, and more.
 
 TomTom IndiGO has a plugin architecture so you can easily add your functionality, or remove what 
 you don't need. 
-[Services](/indigo/documentation/development/ivi-services/) provide data to 
+[Services](/indigo/documentation/development/ivi-services) provide data to 
 [frontends](/indigo/documentation/development/frontend-plugins), both of which are also plugins. 
 The [system UI](/indigo/documentation/development/system-ui) and 
 [UI components](/indigo/documentation/development/ui-components) are defined in such a way that 
 they can be [themed](/indigo/documentation/development/theming-and-customization) easily.
 
 To better understand the relation between the various plugins within a functional domain, we 
-provide some [high level overviews](/indigo/documentation/development/platform-domains/) of these 
-areas. This includes: 
+provide some [high level overviews](/indigo/documentation/development/platform-domains/overview) 
+of these areas. This includes: 
 [navigation](/indigo/documentation/development/platform-domains/navigation), 
 [media](/indigo/documentation/development/platform-domains/media), 
 [vehicle functions](/indigo/documentation/development/platform-domains/vehicle-functions), 
@@ -100,8 +100,8 @@ up to more advanced topics like
 
 ## Integrating TomTom IndiGO
 
-Read more about [integrating TomTom IndiGO](/indigo/documentation/integrating-indigo/introduction) in a
-vehicle or on other hardware.
+Read more about [integrating TomTom IndiGO](/indigo/documentation/integrating-indigo/introduction) 
+in a vehicle or on other hardware.
 
 ## API reference
 

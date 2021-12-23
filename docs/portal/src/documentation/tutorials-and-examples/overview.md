@@ -63,7 +63,7 @@ Additional functionality is described in the tutorials and how-to guides below.
 
 ## Communications
 
-- [Create a custom connections service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-connections-service)
+- [Create a custom connection service](/indigo/documentation/tutorials-and-examples/communications/create-a-custom-connection-service)
 
   This guide explains how to add a new connection service to make phone calls via TomTom IndiGO, 
   like Voice Over IP (VOIP).
