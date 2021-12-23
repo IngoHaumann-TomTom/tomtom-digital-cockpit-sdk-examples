@@ -23,8 +23,8 @@ import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
 import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuButtonIsDisplayed
 import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule
 import com.tomtom.ivi.tools.testing.navigationfunctional.createWebserviceMockRuleConfig
-import com.tomtom.ivi.tools.testing.systemui.SystemUiIdlingResourceRule
-import com.tomtom.ivi.tools.testing.systemui.assertCoreContentsAreDisplayed
+import com.tomtom.ivi.platform.systemui.api.testing.tools.SystemUiIdlingResourceRule
+import com.tomtom.ivi.platform.systemui.api.testing.tools.assertCoreContentsAreDisplayed
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.RuleChain

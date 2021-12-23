@@ -39,7 +39,7 @@ androidxCoreKtx = "1.3.2"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.2942"
+indigoPlatform = "1.0.2962"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.291"
 iviCommunicationsSdk = "0.1.94"
@@ -92,7 +92,7 @@ indigoThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_
 indigoToolsTestingFunctional = { module = "com.tomtom.ivi.platform:tools_testing_functional", version.ref = "indigoPlatform" }
 indigoToolsTestingMainMenuFrontend = { module = "com.tomtom.ivi.platform:tools_testing_mainmenufrontend", version.ref = "indigoPlatform" }
 indigoToolsTestingNavigationFunctional = { module = "com.tomtom.ivi.platform:tools_testing_navigationfunctional", version.ref = "indigoPlatform" }
-indigoToolsTestingSystemUi = { module = "com.tomtom.ivi.platform:tools_testing_systemui", version.ref = "indigoPlatform" }
+indigoToolsTestingSystemUi = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }
 indigoToolsTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform service APIs.
