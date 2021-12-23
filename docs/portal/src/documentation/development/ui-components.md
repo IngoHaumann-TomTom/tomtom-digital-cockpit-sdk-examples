@@ -3,19 +3,19 @@ title: UI Components
 ---
 
 In TomTom IndiGO, the
-[System UI](/indigo/documentation/development/system-ui)
+[System UI](/tomtom-indigo/documentation/development/system-ui)
 is made up of a number of panels, such as the main menu, notifications, etc.
 Each panel visually represents a frontend through a fragment made up of different UI elements like
 text, images, buttons, etc. To ensure a consistent UI style and to minimize implementation effort,
 these elements are implemented as reusable UI controls in the
-[TomTomAndroidTools](/indigo/api-reference/tomtom-android-tools-api-reference)
+[TomTomAndroidTools](/tomtom-indigo/api-reference/tomtom-android-tools-api-reference)
 library. They support various forms of user interaction and their appearance can be customized
 easily.
 
 The `com.tomtom.tools.android.core.theme` module declares the view element attributes that these
 controls need, to define their appearance. When using these controls, it is mandatory to define
 these attribute values. For further information, check the
-[Theming](/indigo/documentation/development/theming-and-customization)
+[Theming](/tomtom-indigo/documentation/development/theming-and-customization)
 documentation.
 
 For more details of these controls, see:

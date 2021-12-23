@@ -37,7 +37,7 @@ the user name is stored in persistent storage by the account settings service, s
 need to log in again after a restart of the application.
 The source code for the frontend and service can be found in the `modules` directory.
 See also
-[Create an IVI service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+[Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and the [`@IviService`](TTIVI_INDIGO_API) annotation.
 
 To demonstrate usage of different configurations, the account service will use a static

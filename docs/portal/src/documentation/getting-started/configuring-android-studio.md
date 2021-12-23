@@ -28,7 +28,7 @@ hard-coded version of this plugin.
 ## Building with Android Studio
 
 This section explains how to configure Android Studio for building the
-[TomTom IndiGO example app](/indigo/documentation/platform-overview/example-app),
+[TomTom IndiGO example app](/tomtom-indigo/documentation/platform-overview/example-app),
 and how to build this application.
 
 Install Android 11 (R) SDK:
@@ -92,4 +92,4 @@ License for package Android SDK Build-Tools 30.0.2 not accepted.
 ```
 
 
-__Next step:__ [The TomTom IndiGO emulator](/indigo/documentation/getting-started/the-indigo-emulator).
+__Next step:__ [The TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator).

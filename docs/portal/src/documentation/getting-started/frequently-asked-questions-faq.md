@@ -76,7 +76,7 @@ network.
 
 On the emulator, open the `Settings` and enable `Wi-Fi`. Then cold boot the emulator.  See detailed
 instructions in
-[The TomTom IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
+[The TomTom IndiGO emulator device](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#the-tomtom-indigo-emulator-device)
 under `Enable wifi` and `Now restart the emulator`.
 
 For a real device, make sure that it has a working Internet connection.
@@ -87,7 +87,7 @@ Another reason for this behavior may be that you have not configured a TomTom AP
 using an API key with limited authorizations.
 
 For more details see
-[Getting the TomTom API key](/indigo/documentation/getting-started/getting-the-tomtom-api-key).
+[Getting the TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
 
 ---
 
@@ -198,7 +198,7 @@ especially on an Apple Mac.
 
 Locate the `config.ini` file for the AVD you are using for running TomTom IndiGO in the emulator. 
 If you have followed the instructions in
-[The TomTom IndiGO Emulator](/indigo/documentation/getting-started/the-indigo-emulator), it should 
+[The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator), it should 
 be at the following location:
 
 __Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
@@ -235,7 +235,7 @@ To cold boot the emulator, follow these steps:
 - On the right-hand side of each configured AVD there is a down-arrow that launches a context menu.
   Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-- ![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
+- ![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_tomtom-indigo_emulator_cold_boot.png)
 
 Now wait for the emulator to start up.
 
@@ -259,7 +259,7 @@ com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLT
 ```
 
 To fix this, set the emulator's OpenGL ES API level to 3.1 and restart the emulator, as explained in
-[The TomTom IndiGO emulator device](/indigo/documentation/getting-started/the-indigo-emulator#the-tomtom-indigo-emulator-device)
+[The TomTom IndiGO emulator device](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#the-tomtom-indigo-emulator-device)
 under `Set the Emulator's OpenGL` and `Now restart the emulator`.
 
 ---

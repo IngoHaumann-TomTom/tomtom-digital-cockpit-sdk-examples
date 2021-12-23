@@ -7,7 +7,7 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-group: indigo
+group: tomtom-indigo
 isPrivate: false
 productName: TomTom IndiGO
 menuTitle: Documentation
@@ -22,7 +22,7 @@ menu:
         title: Documentation
   - title: Platform Overview
     items:
-      - fileId: /platform-overview/what-is-indigo
+      - fileId: /platform-overview/what-is-tomtom-indigo
         title: What is TomTom IndiGO?
       - fileId: /platform-overview/example-app
         title: Example App
@@ -32,7 +32,7 @@ menu:
         title: Introduction
       - fileId: /getting-started/installing-openjdk-11
         title: Installing OpenJDK 11
-      - fileId: /getting-started/installing-indigo-sdk
+      - fileId: /getting-started/installing-tomtom-indigo-sdk
         title: Installing TomTom IndiGO SDK
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
@@ -40,7 +40,7 @@ menu:
         title: Getting the TomTom API Key
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
-      - fileId: /getting-started/the-indigo-emulator
+      - fileId: /getting-started/the-tomtom-indigo-emulator
         title: The TomTom IndiGO Emulator
       - fileId: /getting-started/frequently-asked-questions-faq
         title: Frequently Asked Questions (FAQ)
@@ -78,15 +78,15 @@ menu:
             title: Settings Framework
   - title: Integrating TomTom IndiGO
     items:
-      - fileId: /integrating-indigo/introduction
+      - fileId: /integrating-tomtom-indigo/introduction
         title: Introduction
-      - fileId: /integrating-indigo/integrating-in-vehicle
+      - fileId: /integrating-tomtom-indigo/integrating-in-vehicle
         title: Integrating in Vehicle
-      - fileId: /integrating-indigo/installing-indigo-on-hardware
+      - fileId: /integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware
         title: Installing TomTom IndiGO on Hardware
-      - fileId: /integrating-indigo/flashing-reference-hardware
+      - fileId: /integrating-tomtom-indigo/flashing-reference-hardware
         title: Flashing the Reference Hardware
-      - fileId: /integrating-indigo/companion-application
+      - fileId: /integrating-tomtom-indigo/companion-application
         title: Companion Application
   - title: Tutorials and Examples
     items:
@@ -94,7 +94,7 @@ menu:
         title: Overview
       - title: Setup
         items:
-          - fileId: /tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project
+          - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project
             title: Integrate TomTom IndiGO into a Gradle Project
           - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key
             title: Configure a TomTom API Key

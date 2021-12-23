@@ -10,7 +10,7 @@ own and can run in the background for a long time, matching the platform lifetim
 
 A TomTom IndiGO based IVI system is deployed as a single Android application that includes all the 
 functionality of the product. The User Interface (UI) of the application is built using TomTom 
-IndiGO [frontend plugins](/indigo/documentation/development/frontend-plugins), and are created to 
+IndiGO [frontend plugins](/tomtom-indigo/documentation/development/frontend-plugins), and are created to 
 display something on the screen. They are subsequently destroyed when content disappears from the 
 screen. Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated 
 by the Android platform. Whereas service hosts should contain functionality that does not need to 
@@ -163,10 +163,10 @@ services for this interface.
 ## More information
 
 For more details on how to create a IVI service, see the 
-[How to create an IVI Service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
+[How to create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
 page, and for more details on how to create a frontend, see the 
-[How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
 page.
-[How to Configure the Runtime Deployment of the IVI System](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+[How to Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
 for information about how to deploy IVI services.
 

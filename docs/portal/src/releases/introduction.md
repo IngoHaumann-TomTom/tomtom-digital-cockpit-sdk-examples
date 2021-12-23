@@ -10,7 +10,7 @@ Release notes for the TomTom IndiGO platform early-access release.
 
 The latest Example Application can be downloaded from the TomTom IndiGO external binary repository, 
 using the credentials you received after signing the Evaluation Agreement (EA). To request access, 
-please go to the [Getting Started](/indigo/documentation/getting-started/introduction) guide, and 
+please go to the [Getting Started](/tomtom-indigo/documentation/getting-started/introduction) guide, and 
 "Register for early access".
 
 The latest source can be found in 
@@ -26,7 +26,7 @@ platform, and contains Gradle files pointing to the binary artifacts of the rele
 
 The credentials are also used to access the binary repository when compiling the TomTom IndiGO 
 application. More details can be found in the 
-[Getting Started](/indigo/documentation/getting-started/introduction) guide.
+[Getting Started](/tomtom-indigo/documentation/getting-started/introduction) guide.
 
 The first part of the version number `x.y.zzzz` refers to the TomTom IndiGO platform version the 
 Example Application uses. The second part `-ppp` is the version of the example application release.
@@ -45,21 +45,21 @@ The README in the sources folder contains information related to the structure o
 
 ## Getting started
 
-The [Getting Started](/indigo/documentation/getting-started/introduction) guide, contains
+The [Getting Started](/tomtom-indigo/documentation/getting-started/introduction) guide, contains
 instructions on how to setup your development environment, how to run TomTom IndiGO on the emulator, 
 and how to develop the application further.
 
 ## Examples documentation
 
 Documentation related to the example source can be found in the 
-[Tutorials and Examples](/indigo/documentation/tutorials-and-examples/overview) section.
+[Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
 
 To get started with extending the TomTom IndiGO platform, please read:
 
-- [Create a Frontend Plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
-- [Create an IVI Service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+- [Create a Frontend Plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+- [Create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 
 ## API Reference documentation
 
 The latest API reference documentation for the TomTom IndiGO platform, can be found 
-[here](/indigo/api-reference/introduction).
+[here](/tomtom-indigo/api-reference/introduction).

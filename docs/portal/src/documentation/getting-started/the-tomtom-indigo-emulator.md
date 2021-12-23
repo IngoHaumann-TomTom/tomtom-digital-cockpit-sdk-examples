@@ -34,7 +34,7 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
     - Name: `TomTom IndiGO - Artifact Repository`
     - URL: `https://repo.tomtom.com/`
     - Tick `Use Authentication`, enter your TomTom
-      [repository credentials](/indigo/documentation/getting-started/introduction)
+      [repository credentials](/tomtom-indigo/documentation/getting-started/introduction)
       and click `OK`.
 
 - __Note__ the `s` in `https://`, because Android Studio proposes a default URL as `http://`.
@@ -95,12 +95,12 @@ Android Virtual Device (AVD) with it:
 
 - You now see a new TomTom IndiGO emulator device listed in the AVD Manager:
 
-![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_indigo_emulator_device.png)
+![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_tomtom-indigo_emulator_device.png)
 
 - Click the triangular `play` icon on the right to start the emulator.
 - When the emulator has started, it shows as:
 
-![Android Studio - TomTom IndiGO Emulator Window](images/android_studio_indigo_emulator_window.png)
+![Android Studio - TomTom IndiGO Emulator Window](images/android_studio_tomtom-indigo_emulator_window.png)
 
 - Enable wifi, to ensure that map data can be downloaded:
     - Click the Home button (circle) in the sidebar next to the emulator screen.
@@ -126,7 +126,7 @@ Android Virtual Device (AVD) with it:
     - On the right-hand side of each configured AVD there is a down-arrow that opens a context menu.
       Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_indigo_emulator_cold_boot.png)
+![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_tomtom-indigo_emulator_cold_boot.png)
 
 - Close the AVD Manager and wait for the emulator to start up.
 
@@ -141,9 +141,9 @@ Android Virtual Device (AVD) with it:
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
 - You will now see the TomTom IndiGO home screen. Note that the map data is shown only when you have
-  [configured a valid TomTom API key](/indigo/documentation/getting-started/getting-the-tomtom-api-key).
+  [configured a valid TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
 
-![TomTom IndiGO Home Screen](images/indigo_home_screen.png)
+![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
 If you encounter any issues, please consult our
-[Frequently Asked Questions](/indigo/documentation/getting-started/frequently-asked-questions-faq).
+[Frequently Asked Questions](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq).

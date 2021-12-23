@@ -7,7 +7,7 @@ Download the latest version of the TomTom IndiGO SDK from
 
 - When you get an error `Path "browse/browse"  not found`, then click `Sign in` at the upper-right
   of the screen and supply the
-  [repository credentials](/indigo/documentation/getting-started/introduction)
+  [repository credentials](/tomtom-indigo/documentation/getting-started/introduction)
   that you received from TomTom.
 
 After logging in to Nexus you can find the SDK versions under `com/tomtom/indigo/tomtom-indigo-sdk`:
@@ -31,4 +31,4 @@ __Windows Notes:__
   if you wish to use longer path names.
 
 __Next step:__
-[Accessing the Artifact repository](/indigo/documentation/getting-started/accessing-the-artifact-repository).
+[Accessing the Artifact repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository).

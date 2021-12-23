@@ -3,7 +3,7 @@ title: System UI
 ---
 
 Like everything in TomTom IndiGO, its UI also consists of plugins:
-[_frontend_ plugins](/indigo/documentation/development/frontend-plugins). They expose _panels_ which
+[_frontend_ plugins](/tomtom-indigo/documentation/development/frontend-plugins). They expose _panels_ which
 contain a visual user interface for the functionality within the frontend's domain. These panels can
 be seen as pieces of the complete user interface. To enable a high degree of flexibility within the
 TomTom IndiGO framework, there is no direct coupling between different frontends or their panels, 
@@ -17,7 +17,7 @@ Different system UIs can be used per display, hosted in multiple or a single `Ac
 
 ## The Model-View-ViewModel pattern (MVVM) used in the system UI
 
-Similarly to how [frontends](/indigo/documentation/development/frontend-plugins) follow the
+Similarly to how [frontends](/tomtom-indigo/documentation/development/frontend-plugins) follow the
 [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern, so does the
 system UI. In this pattern:
 
@@ -30,7 +30,7 @@ system UI. In this pattern:
 The model contains the information that the system UI presents in the view. It consists of the
 complete set of panels exposed by the set of frontends. Each system UI instance can have a different
 set of frontends, depending on the _IVI instance_ that it represents; see
-[runtime deployment](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[runtime deployment](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for more information on multiple IVI instances. Frontends decide internally when to expose a certain
 panel and when to close it. Common situations where a frontend opens a panel include:
 
@@ -339,4 +339,4 @@ side where the map is still visible.
 
 ## See also
 
-All of TomTom IndiGO's [UI components](/indigo/documentation/development/ui-components).
+All of TomTom IndiGO's [UI components](/tomtom-indigo/documentation/development/ui-components).

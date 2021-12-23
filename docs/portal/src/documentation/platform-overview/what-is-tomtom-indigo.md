@@ -36,7 +36,7 @@ positioned directly in front of the driver.
 This diagram shows how TomTom IndiGO fits in a digital cockpit system and how it relates to other 
 software in a vehicle. It shows some of the stock components in the application suite and platform.
 
-![TomTom IndiGO architecture overview](images/indigo-architecture-overview.png)
+![TomTom IndiGO architecture overview](images/tomtom-indigo-architecture-overview.png)
 
 The TomTom IndiGO SDK includes an “IVI Example App” that integrates the platform with all of the 
 stock applications for TomTom IndiGO. The example app is a fully working In-Vehicle Infotainment 
@@ -44,7 +44,7 @@ system (IVI), including phone calling, contacts handling, messaging, notificatio
 navigation and much more, all production-level code. All of the applications included in that 
 example application belong to the top of the diagram, in the section 
 “TomTom IndiGO Application Suite”. The 
-[Getting Started Guide](/indigo/documentation/getting-started/introduction) explains step-by-step 
+[Getting Started Guide](/tomtom-indigo/documentation/getting-started/introduction) explains step-by-step 
 how to set up your development environment to build that example application.
 
 ## Using stock components to assemble your product
@@ -88,4 +88,4 @@ the automatic updates for those. That is a powerful way of completely customizin
 of applications, with limited effort.
 
 For a more detailed view of the TomTom IndiGO platform, please see the 
-[Development](/indigo/documentation/development/introduction) section.
+[Development](/tomtom-indigo/documentation/development/introduction) section.

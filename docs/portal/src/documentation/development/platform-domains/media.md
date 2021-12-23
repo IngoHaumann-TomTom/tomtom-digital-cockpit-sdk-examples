@@ -97,7 +97,7 @@ If that is not sufficient, it is possible to completely replace the stock fronte
 with custom implementations. Similar to configuring the stock media frontend, outright replacement
 of the stock media frontend is done via a [`FrontendExtension`](TTIVI_INDIGO_API).
 Check out the
-[How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 page and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) for more details on
 how to replace a stock frontend.
 
@@ -122,7 +122,7 @@ This diagram shows the most relevant components:
   different user interface for a source.
 
 All configurations need to be activated via a Gradle configuration. The
-[How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 guide explains this procedure.
 
 ### Media library

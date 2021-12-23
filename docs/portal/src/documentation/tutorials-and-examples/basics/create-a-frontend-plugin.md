@@ -2,7 +2,7 @@
 title: Create a Frontend Plugin
 ---
 For an introduction to frontend plugins in the TomTom IndiGO platform, see 
-([Frontend Plugins](/indigo/documentation/development/frontend-plugins))
+([Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins))
 
 ## Introduction
 In this example, we will create a new frontend for managing an account on the device. It will
@@ -21,7 +21,7 @@ Creating a frontend and the menu item consists of a number of steps:
 - [Registering the frontend and menu item build config.](#registering-the-frontend-and-menu-item-build-config)
 
 For more information on all the classes and APIs, 
-[see the API reference documentation](/indigo/api-reference/indigo-api-reference).
+[see the API reference documentation](/tomtom-indigo/api-reference/tomtom-indigo-api-reference).
 
 All the code snippets in this guide can also be found in the TomTom IndiGO example application.
 
@@ -198,7 +198,7 @@ val accountMenuItem by extra {
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
 the full-qualified package. It is defined once and used for all configurations. See
-[Integrate TomTom IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom IndiGO into a Gradle Project](/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project#module-references)
 for details.
 
 ### Registering the frontend and menu item build config
@@ -255,7 +255,7 @@ ivi {
 The above example adds the `accountFrontend` and the `accountMenuItem` to the default IVI
 instance. A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI
 instance. See 
-[Configure the Runtime Deployment of the IVI System](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for more details about IVI instance configurations.
 
 The final step is to let the new frontend replace TomTom IndiGO's user profile frontend. For this

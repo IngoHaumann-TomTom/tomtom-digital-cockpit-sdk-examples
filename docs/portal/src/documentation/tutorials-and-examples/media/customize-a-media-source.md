@@ -26,7 +26,7 @@ apply them to the build.
 
 More venues for customization are planned for the future, but if it is necessary to change the user
 experience in a more radical fashion, then it is possible to 
-[create a new user interface](/indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
+[create a new user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
 
 Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO 
 with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
@@ -34,7 +34,7 @@ with an internet radio media app. This fictitious app will be called `ExampleInt
 For this guide, knowledge of the TomTom IndiGO media APIs [`api_common_media`](TTIVI_INDIGO_API) 
 and [`api_common_mediasources`](TTIVI_INDIGO_API)
 will be of great help. In the 
-[media overview](/indigo/documentation/development/platform-domains/media) documentation, more 
+[media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more 
 details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 ## Modify content display
@@ -291,6 +291,6 @@ val exampleInternetRadioPolicyProvider = PolicyProvider(
 
 Activating the new `exampleInternetRadioFrontendExtension` is done via a Gradle configuration.
 The guide on
-[How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) are available for more details.
 

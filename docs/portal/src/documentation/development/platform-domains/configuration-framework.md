@@ -21,7 +21,7 @@ and their values can change while the system is running. For example, they can s
 which the user can set to a different value while using the system. Dynamic configurations keep 
 hold of the full history of default values. This allows an existing setting value to be updated from 
 any previous version to the latest suitable value in a compatible way. See also 
-[Settings framework](/indigo/documentation/development/platform-domains/settings-framework).
+[Settings framework](/tomtom-indigo/documentation/development/platform-domains/settings-framework).
 
 Every module may use static configurations directly via a static configuration provider,
 or access settings via settings services. Dynamic configurations can be used by settings services

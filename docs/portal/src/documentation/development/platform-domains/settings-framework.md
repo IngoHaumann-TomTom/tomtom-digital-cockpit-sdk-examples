@@ -95,14 +95,14 @@ update the stored settings to the current scheme.
 A settings service gets the default values and update strategies, required to create or update
 settings, from the dynamic configuration provider `dynamicConfigurationProvider` of the
 [`IviSettingsServiceBase`](TTIVI_INDIGO_API) class. See also the 
-[Configuration framework](/indigo/documentation/development/platform-domains/configuration-framework).
+[Configuration framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework).
 
 __Note:__ A settings service may also use the static configuration provider
 `staticConfigurationProvider`.
 
 ### Settings service declaration
 
-Like [any IVI service](/indigo/documentation/development/ivi-services), a settings service
+Like [any IVI service](/tomtom-indigo/documentation/development/ivi-services), a settings service
 implements an IVI service interface; see [`IviService`](TTIVI_INDIGO_API). The difference is that 
 the interface only contains properties annotated with the [`@IviSetting`](TTIVI_INDIGO_API) 
 annotation. Clients may access the service using the service API instance, created with
@@ -245,5 +245,5 @@ To reduce IPC load, a settings service and the IVI service that uses it can be d
 the same process.
 
 See the documentation for
-[IVI service deployment](/indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[IVI service deployment](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for details.

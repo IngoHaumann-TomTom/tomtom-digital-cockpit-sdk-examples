@@ -21,7 +21,7 @@ should be replaced with your own _applications_, or merely add new functionality
 The following diagram shows everything that’s included in TomTom IndiGO, all stock components 
 (purple colored) and how these relate to other software in a vehicle.
 
-![TomTom IndiGO architecture](images/indigo-architecture.png)
+![TomTom IndiGO architecture](images/tomtom-indigo-architecture.png)
 
 ## The benefits of using stock components
 
@@ -47,30 +47,30 @@ can be found in the API reference section of this site.
 ## TomTom IndiGO Fundamentals
 
 The User Interface (UI) part of an TomTom IndiGO _application_ is built using 
-[frontend plugins](/indigo/documentation/development/frontend-plugins). These are created using 
+[frontend plugins](/tomtom-indigo/documentation/development/frontend-plugins). These are created using 
 standard Android layouts and fragments, together with _panels_, which are Android views made to 
 fit in with the TomTom IndiGO UI framework, each with its own specialized functionality. TomTom 
 IndiGO also comes with a set of UI components, that are based on the standard Android components, 
 but tailored for the TomTom IndiGO platform and its look and feel. You can read more about this in 
-the [UI components](/indigo/documentation/development/ui-components)
+the [UI components](/tomtom-indigo/documentation/development/ui-components)
 section.
 
-The [System UI](/indigo/documentation/development/system-ui) section explains how _panels_ are 
+The [System UI](/tomtom-indigo/documentation/development/system-ui) section explains how _panels_ are 
 arranged, managed and presented to the user on the screen.
 
 Non UI related logic can be wrapped in an 
-[IVI service](/indigo/documentation/development/ivi-services), which provides a mechanism to 
+[IVI service](/tomtom-indigo/documentation/development/ivi-services), which provides a mechanism to 
 encapsulate longer-running tasks and business logic for some distinct functionality in the 
 platform. These are based on Android 
 [services](https://developer.android.com/guide/components/services), and use the same mechanisms, 
 but hide some of the details of the Android service implementation. 
 
 The look and feel of the TomTom IndiGO product can be changed through 
-[Theming and Customization](/indigo/documentation/development/theming-and-customization), which is 
+[Theming and Customization](/tomtom-indigo/documentation/development/theming-and-customization), which is 
 based on Android's 
 [styles and themes](https://developer.android.com/guide/topics/ui/look-and-feel/themes), with 
 additional functionality to support different themes and swapping them at runtime.
 
 The TomTom IndiGO platform is divided into different functional 
-[platform domains](/indigo/documentation/development/platform-domains/overview), 
+[platform domains](/tomtom-indigo/documentation/development/platform-domains/overview), 
 which are described separately.

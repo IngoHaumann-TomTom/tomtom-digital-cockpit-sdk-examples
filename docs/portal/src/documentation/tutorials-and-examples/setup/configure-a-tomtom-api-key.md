@@ -55,6 +55,6 @@ This option is preferred if you want to obtain and configure the key at runtime.
 
 See:
 
-- [How to create an IVI service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
-- [How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+- [How to create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+- [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 

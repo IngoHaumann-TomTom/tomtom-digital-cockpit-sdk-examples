@@ -44,7 +44,7 @@ hideSubmenu: true
         <p>Take the in-car experience to new places and get started with our comprehensive SDK that includes APIs, supporting documentation and code examples.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
-                href="/indigo/documentation/platform-overview/what-is-indigo" 
+                href="/tomtom-indigo/documentation/platform-overview/what-is-tomtom-indigo" 
                 tabindex="0">PLATFORM OVERVIEW</a>
         </div>
     </div>
@@ -73,7 +73,7 @@ hideSubmenu: true
         <p>The example app showcases TomTom IndiGO&#39;s stock experiences, and provides a good starting point for TomTom IndiGO development.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
-                href="/indigo/documentation/platform-overview/example-app" 
+                href="/tomtom-indigo/documentation/platform-overview/example-app" 
                 tabindex="0">EXPLORE</a>
         </div>
     </div>
@@ -90,7 +90,7 @@ hideSubmenu: true
             align-content: center;
             gap: 2rem;">
     <div style="max-width:800px">
-    <img src="images/developing-with-indigo.png" alt="Developing with TomTom IndiGO" style="max-width:800px"/>
+    <img src="images/developing-with-tomtom-indigo.png" alt="Developing with TomTom IndiGO" style="max-width:800px"/>
     </div>
     <div style="display: flex;
                 flex-direction: column;
@@ -103,7 +103,7 @@ hideSubmenu: true
         <p>Get your development environment ready and create your first custom experience.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
-                href="/indigo/documentation/getting-started/introduction" 
+                href="/tomtom-indigo/documentation/getting-started/introduction" 
                 tabindex="0">GET STARTED</a>
         </div>
     </div>
@@ -132,7 +132,7 @@ hideSubmenu: true
         <p>Learn how TomTom IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
             <a class="button__link" 
-                href="/indigo/documentation/development/frontend-plugins" 
+                href="/tomtom-indigo/documentation/development/frontend-plugins" 
                 tabindex="0">CREATE PLUGIN</a>
         </div>
     </div>

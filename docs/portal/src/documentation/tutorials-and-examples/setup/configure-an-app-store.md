@@ -85,9 +85,9 @@ project (substituting with values for your choice of app store):
 ### Overriding app store configuration with a static configuration provider
 
 If you need to configure the app store at runtime, then create a
-[static configuration provider](/indigo/documentation/development/platform-domains/configuration-framework#static-configuration-providers)
+[static configuration provider](/tomtom-indigo/documentation/development/platform-domains/configuration-framework#static-configuration-providers)
 and configure it in your Application class (for example, `ExampleApplication` if you are using the
-[example application](/indigo/documentation/platform-overview/example-app) project).
+[example application](/tomtom-indigo/documentation/platform-overview/example-app) project).
 
 Add the following dependency to the `build.gradle.kts` file of the module where your new static
 configuration provider will reside:

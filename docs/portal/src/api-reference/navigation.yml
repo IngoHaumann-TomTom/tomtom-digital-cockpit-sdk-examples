@@ -7,7 +7,7 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-group: indigo
+group: tomtom-indigo
 isPrivate: false
 productName: TomTom IndiGO
 menuTitle: API Reference
@@ -20,11 +20,11 @@ menu:
     items:
       - fileId: /introduction
         title: Introduction
-      - fileId: /indigo-api-reference
+      - fileId: /tomtom-indigo-api-reference
         title: TomTom IndiGO
-      - fileId: /indigo-gradle-plugins-api-reference
+      - fileId: /tomtom-indigo-gradle-plugins-api-reference
         title: TomTom IndiGO Gradle Plugins
-      - fileId: /indigo-comms-sdk-api-reference
+      - fileId: /tomtom-indigo-comms-sdk-api-reference
         title: TomTom IndiGO Comms SDK
       - fileId: /android-tools-api-reference
         title: TomTom Android Tools

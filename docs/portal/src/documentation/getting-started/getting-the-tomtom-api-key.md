@@ -45,7 +45,7 @@ either the top-level `local.properties` file or your `gradle.properties` file.
 - The `local.properties` file can be created in the top-level folder of your local TomTom IndiGO SDK.
 - The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
   environment variable, usually `~/.gradle/`. See
-  [Configure a TomTom API Key](/indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key)
+  [Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key)
   for details and alternative ways to configure the key.
     - __Windows:__ Use the `%UserProfile%\.gradle` folder to find or create the 
     `gradle.properties` file.
@@ -60,10 +60,10 @@ navkit2ApiKey=<your-tomtom-api-key>
 
 The initial API key has restrictions on the functionality and the amount of requests you can do.
 To enjoy the full functionality,
-[apply for an evaluation agreement](/indigo/documentation/getting-started/introduction) with TomTom.
+[apply for an evaluation agreement](/tomtom-indigo/documentation/getting-started/introduction) with TomTom.
 
 __Note:__ You will not get a new API key, but TomTom will grant access to the navigation services
 for your API key.
 
 __Next step:__
-[Configuring Android Studio](/indigo/documentation/getting-started/configuring-android-studio).
+[Configuring Android Studio](/tomtom-indigo/documentation/getting-started/configuring-android-studio).

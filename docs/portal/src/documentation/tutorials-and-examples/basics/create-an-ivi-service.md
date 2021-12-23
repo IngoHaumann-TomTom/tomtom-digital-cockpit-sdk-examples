@@ -336,7 +336,7 @@ val accountServiceHost by extra {
 
 The service host build configuration uses the `ExampleModuleReference` class to resolve a module
 name into the fully-qualified package. It is defined once and used for all configurations. See
-[Integrate TomTom IndiGO into a Gradle Project](/indigo/documentation/tutorials-and-examples/setup/integrate-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom IndiGO into a Gradle Project](/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project#module-references)
 for details.
 
 Register the service host build configuration in the main application's build script.

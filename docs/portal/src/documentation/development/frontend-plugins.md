@@ -28,7 +28,7 @@ default view when you launch the example application that comes with TomTom Indi
 red it shows the HVAC frontend along the bottom and the main menu frontend on the left side with 
 menu items that launch other frontends.
 
-![TomTom IndiGO frontends](images/frontend-example-indigo.png)
+![TomTom IndiGO frontends](images/frontend-example-tomtom-indigo.png)
 
 Here is an example of one of the stock launched frontends, containing the UI for the contacts 
 functionality. The Frontend and the associated menu item are highlighted in red. 
@@ -79,7 +79,7 @@ be replacing an existing stock frontend.
 ## More information
 
 For more details on how to create a [`Frontend`](TTIVI_INDIGO_API), see the 
-[How to create a frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
 page.
 
 

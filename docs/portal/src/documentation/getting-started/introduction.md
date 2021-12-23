@@ -8,7 +8,7 @@ granted, you'll be sent an Evaluation Agreement (EA).
 
 <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
     <a class="button__link" 
-        href="https://developer.tomtom.com/indigo/request-access" 
+        href="https://developer.tomtom.com/tomtom-indigo/request-access" 
         tabindex="0">REGISTER FOR EARLY ACCESS</a>
 </div>
 
@@ -32,4 +32,4 @@ The TomTom IndiGO SDK has the following minimal requirements:
 - __Windows:__ WinRAR, to support compressed archives with long paths.
 
 __Get started:__
-[Installing OpenJDK 11](/indigo/documentation/getting-started/installing-openjdk-11).
+[Installing OpenJDK 11](/tomtom-indigo/documentation/getting-started/installing-openjdk-11).

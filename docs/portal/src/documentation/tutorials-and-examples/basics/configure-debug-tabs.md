@@ -55,7 +55,7 @@ ivi {
 ```
 
 For more information about panels, fragments, view models, and adding frontend extensions, see the
-[frontend plugin](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 how-to guide.
 
 ## Replacing debug tabs

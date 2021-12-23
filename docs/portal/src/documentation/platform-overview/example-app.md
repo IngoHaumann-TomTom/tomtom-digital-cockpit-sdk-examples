@@ -15,7 +15,7 @@ center, phone calling, messaging and much more.
 The default view, when starting the example application, looks like this. The map view will be 
 different depending on your current location. 
 
-![start view](images/indigo_amsterdam_map.png)
+![start view](images/tomtom-indigo_amsterdam_map.png)
 
 The screen of the TomTom IndiGO system is divided into a few different areas. The background 
 contains the map, which provides navigation functionality, with search, route guidance, traffic 
@@ -100,7 +100,7 @@ placeholder for an app store, which can be configured to display the app store o
 tab also contains any other application that is installed outside of the system image.
 
 You can read more about how to configure an app store of your choice in 
-[this section](/indigo/documentation/tutorials-and-examples/setup/configure-an-app-store).
+[this section](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-an-app-store).
 
 Picture showing the placeholder for an app store:
 
@@ -110,13 +110,13 @@ Picture showing the placeholder for an app store:
 
 The example application also contains code that shows how to implement and integrate specific 
 functionality in the TomTom IndiGO platform. Each example is explained and documented in the 
-[Tutorials and Examples](/indigo/documentation/tutorials-and-examples/overview) section. 
+[Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section. 
 
 For example, to get you started making your own TomTom IndiGO “application”, there are two examples 
 that explain how to 
-[create a new frontend](/indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+[create a new frontend](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
 for the UI, along with an 
-[IVI service](/indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
+[IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
 to implement the logic. 
 These two components together implement an example for displaying account details. The example is 
 then replacing the default TomTom IndiGO user profile frontend, with the new functionality. 
