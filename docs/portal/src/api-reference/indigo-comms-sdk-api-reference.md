@@ -1,5 +1,5 @@
 ---
-title: TomTom IndiGO Comms API Reference
+title: TomTom IndiGO Comms SDK API Reference
 ---
 
 ## Latest version

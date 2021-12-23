@@ -21,10 +21,10 @@ menu:
       - fileId: /introduction
         title: Introduction
       - fileId: /indigo-api-reference
-        title: TomTom IndiGO API Reference
+        title: TomTom IndiGO
       - fileId: /indigo-gradle-plugins-api-reference
-        title: TomTom IndiGO Gradle Plugins API Reference
-      - fileId: /indigo-comms-api-reference
-        title: TomTom IndiGO Comms API Reference
-      - fileId: /tomtom-android-tools-api-reference
-        title: TomTom Android Tools API Reference
+        title: TomTom IndiGO Gradle Plugins
+      - fileId: /indigo-comms-sdk-api-reference
+        title: TomTom IndiGO Comms SDK
+      - fileId: /android-tools-api-reference
+        title: TomTom Android Tools

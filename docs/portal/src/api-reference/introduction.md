@@ -22,7 +22,7 @@ for a closer look on how to use these plugins.
 
 [TomTom IndiGO Gradle Plugins - API Reference](/indigo/api-reference/indigo-gradle-plugins-api-reference)
 
-## TomTom IndiGO Comms
+## TomTom IndiGO Comms SDK
 
 The TomTom IndiGO Comms SDK provides a framework that allows the TomTom IndiGO platform to set up 
 data communication with 
@@ -30,7 +30,7 @@ data communication with
 through a Bluetooth Low Energy (BLE) connection. This high-level framework can easily be extended 
 with custom services.
 
-[TomTom IndiGO Comms - API Reference](/indigo/api-reference/indigo-comms-api-reference)
+[TomTom IndiGO Comms SDK - API Reference](/indigo/api-reference/indigo-comms-sdk-api-reference)
 
 ## TomTom Android Tools
 

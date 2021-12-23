@@ -21,21 +21,21 @@ from subprocess import PIPE, run
 TARGET_FILETYPE = "*.md"
 
 # API Reference URIs for the S3 server.
-INDIGO_S3_URI = "s3://devportal-bucket/downloads/indigo/indigo-api/"
-INDIGO_GRADLEPLUGINS_S3_URI = "s3://devportal-bucket/downloads/indigo/indigo-gradleplugins-api/"
-INDIGO_COMMS_S3_URI = "s3://devportal-bucket/downloads/indigo/indigo-comms-api/"
-ANDROID_TOOLS_S3_URI = "s3://devportal-bucket/downloads/indigo/android-tools-api/"
+INDIGO_S3_URI = "s3://devportal-bucket/downloads/tomtom-indigo/tomtom-indigo-api/"
+INDIGO_GRADLEPLUGINS_S3_URI = "s3://devportal-bucket/downloads/tomtom-indigo/tomtom-indigo-gradleplugins-api/"
+INDIGO_COMMS_S3_URI = "s3://devportal-bucket/downloads/tomtom-indigo/tomtom-indigo-comms-sdk-api/"
+ANDROID_TOOLS_S3_URI = "s3://devportal-bucket/downloads/tomtom-indigo/tomtom-android-tools-api/"
 
 # Base urls for the API References hosted on S3.
-INDIGO_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-api"
-INDIGO_GRADLEPLUGINS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-gradleplugins-api"
-INDIGO_COMMS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/indigo-comms-api"
-ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/indigo/android-tools-api"
+INDIGO_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-api"
+INDIGO_GRADLEPLUGINS_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-gradleplugins-api"
+INDIGO_COMMS_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-comms-sdk-api"
+ANDROID_TOOLS_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-android-tools-api"
 
 # Markdown files that will get populated with the available API Reference versions.
 INDIGO_FILE = "indigo-api-reference.md"
 INDIGO_GRADLEPLUGINS_FILE = "indigo-gradle-plugins-api-reference.md"
-INDIGO_COMMS_FILE = "indigo-comms-api-reference.md"
+INDIGO_COMMS_FILE = "indigo-comms-sdk-api-reference.md"
 ANDROID_TOOLS_FILE = "tomtom-android-tools-api-reference.md"
 
 REGEX_VERSION = "[0-9].[0-9].[0-9]{2,4}"

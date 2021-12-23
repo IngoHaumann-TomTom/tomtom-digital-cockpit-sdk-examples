@@ -180,7 +180,7 @@ stages:
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: tomtom-android-tools-api-docs
-              apiSubFolder: android-tools-api
+              apiSubFolder: tomtom-android-tools-api
               version: $(VERSION_TOMTOM_ANDROID_TOOLS)
           - template: build/build-cleanup.yml@devops-templates
       - job: IndigoGradlepluginsApiDocsToS3
@@ -193,7 +193,7 @@ stages:
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-gradleplugins-api-docs
-              apiSubFolder: indigo-gradleplugins-api
+              apiSubFolder: tomtom-indigo-gradleplugins-api
               version: $(VERSION_PLATFORM)
           - template: build/build-cleanup.yml@devops-templates
       - job: IndigoCommunicationSdkApiDocsToS3
@@ -206,7 +206,7 @@ stages:
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-communications-sdk-api-docs
-              apiSubFolder: indigo-comms-api
+              apiSubFolder: tomtom-indigo-comms-sdk-api
               version: $(VERSION_COMMUNICATIONS_SDK)
           - template: build/build-cleanup.yml@devops-templates
       - job: GenerateIndigoApiDocs
@@ -252,7 +252,7 @@ stages:
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-api-docs
-              apiSubFolder: indigo-api
+              apiSubFolder: tomtom-indigo-api
               version: $(VERSION_PLATFORM)
       - job: DeleteIndigoApiDocsFromS3
         displayName: 'Delete Indigo api docs'
@@ -264,7 +264,7 @@ stages:
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
               artifactName: indigo-api-docs
-              apiSubFolder: indigo-api
+              apiSubFolder: tomtom-indigo-api
               version: $(VERSION_PLATFORM)
               deleteDocs: true
       - job: DeleteIndigogradlepluginsApiDocsFromS3
@@ -282,7 +282,7 @@ stages:
         - template: .azure-templates/aws-S3-upload-or-delete.yml
           parameters:
             artifactName: indigo-gradleplugins-api-docs
-            apiSubFolder: indigo-gradleplugins-api
+            apiSubFolder: tomtom-indigo-gradleplugins-api
             version: $(VERSION_PLATFORM)
             deleteDocs: true
 
@@ -366,25 +366,25 @@ stages:
           - checkout: none
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
-              apiSubFolder: android-tools-api
+              apiSubFolder: tomtom-android-tools-api
               artifactName: tomtom-android-tools-api-docs
               version: $(VERSION_TOMTOM_ANDROID_TOOLS)
               syncLatest: true
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
-              apiSubFolder: indigo-gradleplugins-api
+              apiSubFolder: tomtom-indigo-gradleplugins-api
               artifactName: indigo-gradleplugins-api-docs
               version: $(VERSION_PLATFORM)
               syncLatest: true
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
-              apiSubFolder: indigo-comms-api
+              apiSubFolder: tomtom-indigo-comms-sdk-api
               artifactName: indigo-communications-sdk-api-docs
               version: $(VERSION_COMMUNICATIONS_SDK)
               syncLatest: true
           - template: .azure-templates/aws-S3-upload-or-delete.yml
             parameters:
-              apiSubFolder: indigo-api
+              apiSubFolder: tomtom-indigo-api
               artifactName: indigo-api-docs
               version: $(VERSION_PLATFORM)
               syncLatest: true

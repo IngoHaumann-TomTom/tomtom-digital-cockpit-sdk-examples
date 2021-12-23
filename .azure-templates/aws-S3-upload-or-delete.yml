@@ -16,7 +16,7 @@ parameters:
   artifactName: ''
   apiSubFolder: ''
   version: ''
-  s3BaseUrl: 's3://devportal-bucket/downloads/indigo'
+  s3BaseUrl: 's3://devportal-bucket/downloads/tomtom-indigo'
   syncLatest: false
   deleteDocs: false
 
