@@ -10,11 +10,11 @@
 menuTopTitle: TomTom IndiGO
 menu:
   - items:
-      - url: /indigo/overview/overview
+      - url: /tomtom-indigo/overview/overview
         title: Overview
-      - url: /indigo/documentation/introduction
+      - url: /tomtom-indigo/documentation/introduction
         title: Documentation
-      - url: /indigo/api-reference/introduction
+      - url: /tomtom-indigo/api-reference/introduction
         title: API Reference
-      - url: /indigo/releases/introduction
+      - url: /tomtom-indigo/releases/introduction
         title: Releases

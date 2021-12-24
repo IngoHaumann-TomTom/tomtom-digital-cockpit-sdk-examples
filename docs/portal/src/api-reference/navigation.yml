@@ -26,5 +26,5 @@ menu:
         title: TomTom IndiGO Gradle Plugins
       - fileId: /tomtom-indigo-comms-sdk-api-reference
         title: TomTom IndiGO Comms SDK
-      - fileId: /android-tools-api-reference
+      - fileId: /tomtom-android-tools-api-reference
         title: TomTom Android Tools

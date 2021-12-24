@@ -107,7 +107,7 @@ in a vehicle or on other hardware.
 
 Developing for TomTom IndiGO requires a set of Application Programming Interfaces (API): the main 
 TomTom IndiGO API and the TomTom Android Tools API. The reference documentation for both can be 
-found on the[API reference documentation page](/tomtom-indigo/api-reference/introduction). It provides the 
+found on the [API reference documentation page](/tomtom-indigo/api-reference/introduction). It provides the 
 details of all classes and functions, and insights into the relation between all modules and 
 packages.
 

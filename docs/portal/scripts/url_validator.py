@@ -28,7 +28,7 @@ PORTAL_BASE_URL = "https://developer.tomtom.com"
 
 # Regex pattern to retrieve URLs.
 REGEX_EXTERNAL_URL = "(?<=\()http[^)]+(?=\))"
-REGEX_INTERNAL_URL = "(?<=\()/indigo/.*?(?=\))"
+REGEX_INTERNAL_URL = "(?<=\()/tomtom-indigo/.*?(?=\))"
 
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"

@@ -84,7 +84,7 @@ menu:
         title: Integrating in Vehicle
       - fileId: /integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware
         title: Installing TomTom IndiGO on Hardware
-      - fileId: /integrating-tomtom-indigo/flashing-reference-hardware
+      - fileId: /integrating-tomtom-indigo/flashing-the-reference-hardware
         title: Flashing the Reference Hardware
       - fileId: /integrating-tomtom-indigo/companion-application
         title: Companion Application
