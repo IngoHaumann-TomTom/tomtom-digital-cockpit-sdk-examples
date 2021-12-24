@@ -51,12 +51,6 @@ steps:
                     --dependency='${{parameters.product}}->nav-navtest-core:$(VERSION_NAVTESTCORE)' \
                     --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)'
 
-      export AZURE_CLIENT_ID=$(azure-client-id)
-      export AZURE_CLIENT_SECRET=$(azure-client-secret)
-      export AZURE_TENANT_ID=$(azure-tenant-id)
-
-      # For production, use "prod"
-      export BDTOOLS_ENVIRONMENT="${{parameters.bdtools_environment}}"
       bdtool-scanner  --repo-type=LOCAL \
                       --repository=./${{parameters.root_folder}} \
                       --host-type=LOCAL \
@@ -64,7 +58,13 @@ steps:
                       --log-folder $(Agent.TempDirectory)/bdtoolslogs \
                       --cache $(Agent.TempDirectory)/bdtoolscache \
                       --lock-configuration ./bdtools.lock.yml
-    displayName: Perform configuration and scan
+    env:
+      AZURE_CLIENT_ID: $(azure-client-id)
+      AZURE_CLIENT_SECRET: $(azure-client-secret)
+      AZURE_TENANT_ID: $(azure-tenant-id)
+      BDTOOLS_ENVIRONMENT: ${{parameters.bdtools_environment}}
+    displayName: Perform configuration and link project scans
+    retryCountOnTaskFailure: 3
     continueOnError: true
     timeoutInMinutes: 20
   - task: ArchiveFiles@2
@@ -80,7 +80,7 @@ steps:
     displayName: Publish lock file in pipeline artifacts ${{parameters.root_folder}}
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
-      artifactName: scanning-${{parameters.root_folder}}-lockfile
+      artifactName: scanning-${{parameters.root_folder}}-lockfile-$(System.JobAttempt)
   - task: ArchiveFiles@2
     displayName: Archive BlackDuck logs ${{parameters.root_folder}}
     inputs:
@@ -94,14 +94,8 @@ steps:
     displayName: Publish logs in pipeline artifacts ${{parameters.root_folder}}
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
-      artifactName: scanning-${{parameters.root_folder}}-logs
+      artifactName: scanning-${{parameters.root_folder}}-logs-$(System.JobAttempt)
   - script: |
-      export AZURE_CLIENT_ID=$(azure-client-id)
-      export AZURE_CLIENT_SECRET=$(azure-client-secret)
-      export AZURE_TENANT_ID=$(azure-tenant-id)
-
-      export BDTOOLS_ENVIRONMENT="${{parameters.bdtools_environment}}"
-
       # Will generete a JSON report to a file on the current working directory
       # called "license_compliance_report.json" based on the BOM of the project specified.
       bdtool-reporter report  --project ${{parameters.product}} \
@@ -110,12 +104,18 @@ steps:
                               --timeout 1000 \
                               --no-await -t 0 \
                               --draft
+    env:
+      AZURE_CLIENT_ID: $(azure-client-id)
+      AZURE_CLIENT_SECRET: $(azure-client-secret)
+      AZURE_TENANT_ID: $(azure-tenant-id)
+      BDTOOLS_ENVIRONMENT: ${{parameters.bdtools_environment}}
     displayName: Generate report ${{parameters.root_folder}}
+    retryCountOnTaskFailure: 3
   - task: PublishPipelineArtifact@1
     displayName: Publish output in pipeline artifacts ${{parameters.root_folder}}
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
-      artifactName: scanning-${{parameters.root_folder}}-output
+      artifactName: scanning-${{parameters.root_folder}}-output-$(System.JobAttempt)
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
