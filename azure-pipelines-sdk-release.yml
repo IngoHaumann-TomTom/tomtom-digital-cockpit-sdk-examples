@@ -146,6 +146,7 @@ stages:
                 docs
               projectOptions: >-
                 -p gradleplugins/
+                -PiviVersion=$(VERSION_PLATFORM)
               displayName: 'Generate IndiGO gradleplugins API docs'
           - publish: $(Build.SourcesDirectory)/gradleplugins/build/docs/
             artifact: indigo-gradleplugins-api-docs
