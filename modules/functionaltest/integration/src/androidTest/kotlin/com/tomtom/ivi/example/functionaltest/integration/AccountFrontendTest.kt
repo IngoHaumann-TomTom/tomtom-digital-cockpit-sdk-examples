@@ -23,7 +23,7 @@ import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.testing.frontend.FrontendTestCase
 import com.tomtom.ivi.platform.mainmenu.api.service.menu.MenuServiceMock
 import com.tomtom.ivi.platform.mainmenu.api.testing.mockextension.injectMenuItemClicked
-import com.tomtom.ivi.tools.testing.functional.util.waitForLiveData
+import com.tomtom.ivi.platform.tools.api.testing.functional.util.waitForLiveData
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference
 import kotlin.test.assertTrue

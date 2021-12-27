@@ -14,11 +14,11 @@ package com.tomtom.ivi.example.functionaltest.e2e
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
-import com.tomtom.ivi.tools.testing.functional.CreateApiCallback
-import com.tomtom.ivi.tools.testing.functional.GetServiceIdsCallback
-import com.tomtom.ivi.tools.testing.functional.IviActivityTestCase
-import com.tomtom.ivi.tools.testing.functional.IviE2eTestCase
-import com.tomtom.ivi.tools.testing.functional.WebserviceMockRuleConfig
+import com.tomtom.ivi.platform.tools.api.testing.functional.CreateApiCallback
+import com.tomtom.ivi.platform.tools.api.testing.functional.GetServiceIdsCallback
+import com.tomtom.ivi.platform.tools.api.testing.functional.IviActivityTestCase
+import com.tomtom.ivi.platform.tools.api.testing.functional.IviE2eTestCase
+import com.tomtom.ivi.platform.tools.api.testing.functional.WebserviceMockRuleConfig
 import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
 import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuButtonIsDisplayed
 import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule

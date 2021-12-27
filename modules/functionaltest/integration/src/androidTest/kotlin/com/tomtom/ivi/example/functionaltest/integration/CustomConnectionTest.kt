@@ -18,7 +18,7 @@ import android.app.Instrumentation
 import android.telecom.TelecomManager
 import androidx.test.platform.app.InstrumentationRegistry
 import com.tomtom.ivi.example.service.customconnection.CustomConnectionFacade
-import com.tomtom.ivi.tools.testing.functional.util.waitForNonUi
+import com.tomtom.ivi.platform.tools.api.testing.functional.util.waitForNonUi
 import com.tomtom.tools.android.testing.functional.TtFunctionalTestCase
 import com.tomtom.tools.android.testing.functional.util.withIdleMainThread
 import com.tomtom.tools.android.testing.functional.util.withMainThread
