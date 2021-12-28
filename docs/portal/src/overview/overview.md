@@ -38,7 +38,7 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-        <p><a href="https://www.tomtom.com/products/indigo/">TomTom IndiGO</a> is a framework to deliver Android-based digital cockpits. 
+        <p><a href="https://www.tomtom.com/products/tomtom-indigo/">TomTom IndiGO</a> is a framework to deliver Android-based digital cockpits. 
         It includes an application platform to support the development of highly integrated applications on top of Android Automotive. 
         It also offers a complete set of industrial strength end-user applications, that can be customized to the needs of a car maker.</p>
         <p>Take the in-car experience to new places and get started with our comprehensive SDK that includes APIs, supporting documentation and code examples.</p>

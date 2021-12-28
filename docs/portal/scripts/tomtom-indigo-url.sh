@@ -18,6 +18,7 @@ do
     sed -i 's#(/indigo/#(/tomtom-indigo/#' "$file"
     sed -i 's#://developer.tomtom.com/indigo/#://developer.tomtom.com/tomtom-indigo/#' "$file"
     sed -i 's#href="/indigo/#href="/tomtom-indigo/#' "$file"
+    # Untested: sed -i 's#tomtom.com/products/indigo#/tomtom.com/products/tomtom-indigo#' "$file"
 done
 git add . && git commit -m "Patching main URL to 'tomtom-indigo'."
 
