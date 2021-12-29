@@ -17,6 +17,7 @@ import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.tools.android.api.livedata.combine
 import com.tomtom.tools.android.api.livedata.valueUpToDate
@@ -61,12 +62,12 @@ class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendConte
     }
 
     private fun goToInfoPanel() {
-        closeAllTaskPanels()
+        removePanels<TaskPanel>()
         addPanel(AccountInfoPanel(frontendContext))
     }
 
     private fun goToLoginPanel() {
-        closeAllTaskPanels()
+        removePanels<TaskPanel>()
         addPanel(AccountLoginPanel(frontendContext))
     }
 }
