@@ -6,7 +6,7 @@ package "Application frontend"<<Rectangle>> {
 }
 
 package "IndiGO application suite"<<Rectangle>> {
-    package "core_serviceapis_media" {
+    package "appsuite_media_api_service_core" {
         interface MediaService<<Service>>
         class MediaServiceApi<<Service>>
 

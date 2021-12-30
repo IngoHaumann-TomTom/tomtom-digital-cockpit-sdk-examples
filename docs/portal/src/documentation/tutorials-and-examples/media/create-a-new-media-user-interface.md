@@ -79,8 +79,8 @@ import com.tomtom.ivi.api.common.media.SourceId
 import com.tomtom.ivi.api.common.media.actions.standard.PlayMediaIdFromSourceAction
 import com.tomtom.ivi.api.common.mediasources.MediaTaskPanel
 import com.tomtom.ivi.api.common.mediasources.MediaFrontendContext
-import com.tomtom.ivi.core.serviceapi.media.MediaService
-import com.tomtom.ivi.core.serviceapi.media.createApi
+import com.tomtom.ivi.appsuite.media.api.service.core.MediaService
+import com.tomtom.ivi.appsuite.media.api.service.core.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 // This is an example source ID, matching the default Android Automotive car radio service.

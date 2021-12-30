@@ -77,7 +77,7 @@ sources except Spotify.
 
 ```cmd
 $ adb root
-$ adb shell cmd notification allow_listener com.tomtom.ivi.integration.product.indigo/com.tomtom.ivi.stock.service.media.MediaNotificationListener
+$ adb shell cmd notification allow_listener com.tomtom.ivi.integration.product.indigo/com.tomtom.ivi.appsuite.media.plugin.service.media.MediaNotificationListener
 ```
 
 Spotify only communicates with system apps signed with the platform signature, so if your APK is
