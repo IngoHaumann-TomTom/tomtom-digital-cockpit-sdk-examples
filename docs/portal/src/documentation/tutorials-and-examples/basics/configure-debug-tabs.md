@@ -12,7 +12,7 @@ To add a new debug tab, an example is provided in the example app with
 `com.tomtom.ivi.example.debugtab.activityview.activityViewDebugTabFrontendExtension`.
 
 The debug tab's fragment is made with
-[`DebugFragmentTab`](TTIVI_INDIGO_API) and the view model with a
+[`DebugTabFragment`](TTIVI_INDIGO_API) and the view model with a
 normal [`FrontendViewModel`](TTIVI_INDIGO_API),
 templated with the [`TabbedDebugPanel`](TTIVI_INDIGO_API) type.
 

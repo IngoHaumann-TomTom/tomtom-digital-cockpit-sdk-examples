@@ -24,6 +24,6 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
  */
 val activityViewDebugTabFrontendExtension: FrontendExtension =
     DebugTabFrontendExtension(
-        tabClass = ActivityViewDebugFragmentTab::class,
+        tabClass = ActivityViewDebugTabFragment::class,
         titleResourceId = R.string.ttivi_debug_activityview_title
     )
