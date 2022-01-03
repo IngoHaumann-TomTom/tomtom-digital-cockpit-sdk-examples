@@ -16,6 +16,6 @@ import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringReso
 data class Node(val name: String, val children: List<Node> = emptyList()) {
 
     val buttonStringResolver =
-        ResourceStringResolver(R.string.frontend_hierarchy_button_text, name)
+        ResourceStringResolver(R.string.ttivi_hierarchy_buttontext, name)
 
 }

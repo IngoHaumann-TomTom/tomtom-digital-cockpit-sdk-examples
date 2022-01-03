@@ -11,5 +11,5 @@
   -->
 
 <resources>
-    <string name="app_name">IVI Example integration test</string>
+    <string name="ttivi_integration_appname">IVI Example integration test</string>
 </resources>

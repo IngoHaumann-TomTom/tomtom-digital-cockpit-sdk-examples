@@ -11,14 +11,14 @@
   -->
 
 <resources>
-    <string name="frontend_account_menu_item_name">Account</string>
-    <string name="frontend_account_login_screen">Account Login Screen</string>
-    <string name="frontend_account_login_title">Log in</string>
-    <string name="frontend_account_login_message">Hello, please log in to start your session.</string>
-    <string name="frontend_account_login_username">Username</string>
-    <string name="frontend_account_login_password">Password</string>
-    <string name="frontend_account_login_button_text">Log in</string>
-    <string name="frontend_account_info_avatar_description">Avatar Photo</string>
-    <string name="frontend_account_info_welcome_message">Welcome, %1$s</string>
-    <string name="frontend_account_logout_button_text">Logout</string>
+    <string name="ttivi_account_menuitem_name">Account</string>
+    <string name="ttivi_account_login_screen">Account Login Screen</string>
+    <string name="ttivi_account_login_title">Log in</string>
+    <string name="ttivi_account_login_message">Hello, please log in to start your session.</string>
+    <string name="ttivi_account_login_username">Username</string>
+    <string name="ttivi_account_login_password">Password</string>
+    <string name="ttivi_account_login_loginbutton">Log in</string>
+    <string name="ttivi_account_info_avatar_description">Avatar Photo</string>
+    <string name="ttivi_account_info_welcomemessage">Welcome, %1$s</string>
+    <string name="ttivi_account_info_logoutbutton">Logout</string>
 </resources>

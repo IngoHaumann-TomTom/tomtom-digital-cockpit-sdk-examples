@@ -34,12 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="@string/frontend_account_login_title"
+            android:text="@string/ttivi_account_login_title"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h3"
             auto:ttTextWeight="bold"
-            tools:text="@string/frontend_account_login_title" />
+            tools:text="@string/ttivi_account_login_title" />
 
         <Space
             android:layout_width="match_parent"
@@ -50,12 +50,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="@string/frontend_account_login_message"
+            android:text="@string/ttivi_account_login_message"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_surface_content_color_emphasis_medium"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
-            tools:text="@string/frontend_account_login_message" />
+            tools:text="@string/ttivi_account_login_message" />
 
         <Space
             android:layout_width="match_parent"
@@ -79,19 +79,19 @@
             android:layout_marginBottom="?attr/tt_spacing_xxs"
             android:gravity="start"
             android:labelFor="@id/frontend_account_login_screen_login_username_edit"
-            android:text="@string/frontend_account_login_username"
+            android:text="@string/ttivi_account_login_username"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
-            tools:text="@string/frontend_account_login_username" />
+            tools:text="@string/ttivi_account_login_username" />
 
         <EditText
             android:id="@+id/frontend_account_login_screen_login_username_edit"
             android:layout_width="match_parent"
             android:layout_height="?attr/tt_button_height"
             android:autofillHints="textPersonName"
-            android:background="@drawable/frontend_account_round_corners"
+            android:background="@drawable/ttivi_account_login_edittext_background_roundedcorners"
             android:importantForAutofill="yes"
             android:inputType="textPersonName|textAutoComplete"
             android:paddingHorizontal="?attr/tt_spacing_l"
@@ -111,19 +111,19 @@
             android:layout_marginBottom="?attr/tt_spacing_xxs"
             android:gravity="start"
             android:labelFor="@id/frontend_account_login_screen_login_password_edit"
-            android:text="@string/frontend_account_login_password"
+            android:text="@string/ttivi_account_login_password"
             android:textAlignment="textStart"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:ttTextAppearance="h4"
             auto:ttTextWeight="medium"
-            tools:text="@string/frontend_account_login_password" />
+            tools:text="@string/ttivi_account_login_password" />
 
         <EditText
             android:id="@+id/frontend_account_login_screen_login_password_edit"
             android:layout_width="match_parent"
             android:layout_height="?attr/tt_button_height"
             android:autofillHints="textPassword"
-            android:background="@drawable/frontend_account_round_corners"
+            android:background="@drawable/ttivi_account_login_edittext_background_roundedcorners"
             android:importantForAutofill="yes"
             android:inputType="textNoSuggestions|text|textPassword|textAutoComplete"
             android:paddingHorizontal="?attr/tt_spacing_l"
@@ -152,7 +152,7 @@
             android:layout_width="match_parent"
             android:enabled="@{viewModel.isLoginEnabled}"
             android:onClick="@{() -> viewModel.onLoginClick()}"
-            android:text="@string/frontend_account_login_button_text"
+            android:text="@string/ttivi_account_login_loginbutton"
             auto:ttActionType="primary" />
     </LinearLayout>
 

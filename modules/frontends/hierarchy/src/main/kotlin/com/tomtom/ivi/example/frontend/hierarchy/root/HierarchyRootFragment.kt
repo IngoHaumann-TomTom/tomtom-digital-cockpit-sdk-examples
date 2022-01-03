@@ -11,11 +11,11 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy.root
 
-import com.tomtom.ivi.example.frontend.hierarchy.databinding.FrontendHierarchyRootFragmentBinding
+import com.tomtom.ivi.example.frontend.hierarchy.databinding.TtiviHierarchyRootfragmentBinding
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 class HierarchyRootFragment :
     IviFragment<HierarchyRootPanel, HierarchyRootViewModel>(HierarchyRootViewModel::class) {
 
-    override val viewFactory = ViewFactory(FrontendHierarchyRootFragmentBinding::inflate)
+    override val viewFactory = ViewFactory(TtiviHierarchyRootfragmentBinding::inflate)
 }

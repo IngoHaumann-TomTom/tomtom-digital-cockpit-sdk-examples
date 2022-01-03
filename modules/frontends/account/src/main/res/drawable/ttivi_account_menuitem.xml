@@ -11,7 +11,7 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/frontend_hierarchy_menu_item_icon_selected"
+    <item android:drawable="@drawable/ttivi_account_menuitem_icon_selected"
         android:state_selected="true" />
-    <item android:drawable="@drawable/frontend_hierarchy_menu_item_icon_enabled" />
+    <item android:drawable="@drawable/ttivi_account_menuitem_icon_enabled" />
 </selector>

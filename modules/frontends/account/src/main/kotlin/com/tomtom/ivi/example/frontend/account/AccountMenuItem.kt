@@ -16,6 +16,6 @@ import com.tomtom.ivi.platform.mainmenu.api.common.menu.MenuItem
 val accountMenuItem =
     MenuItem(
         AccountFrontend::class.qualifiedName!!,
-        R.drawable.frontend_account_menu_item_icon,
-        R.string.frontend_account_menu_item_name
+        R.drawable.ttivi_account_menuitem,
+        R.string.ttivi_account_menuitem_name
     )

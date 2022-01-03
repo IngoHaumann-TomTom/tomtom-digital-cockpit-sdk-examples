@@ -13,7 +13,7 @@ package com.tomtom.ivi.example.debugtab.activityview
 
 import android.app.PendingIntent
 import android.content.Intent
-import com.tomtom.ivi.example.debugtab.activityview.databinding.ModalActivityFragmentBinding
+import com.tomtom.ivi.example.debugtab.activityview.databinding.TtiviActivityviewModalFragmentBinding
 import com.tomtom.ivi.platform.framework.api.common.uiembedding.TtiviActivityView
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
@@ -27,7 +27,7 @@ internal class ModalActivityFragment :
     IviFragment<ModalActivityPanel, ModalActivityViewModel>(ModalActivityViewModel::class) {
 
     override val viewFactory =
-        ViewFactory(ModalActivityFragmentBinding::inflate) { binding ->
+        ViewFactory(TtiviActivityviewModalFragmentBinding::inflate) { binding ->
             viewModel.pendingIntent.value =
                 PendingIntent.getActivity(
                     context,

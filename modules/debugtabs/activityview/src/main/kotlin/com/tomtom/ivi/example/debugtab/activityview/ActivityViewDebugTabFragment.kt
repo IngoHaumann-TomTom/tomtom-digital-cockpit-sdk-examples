@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.example.debugtab.activityview
 
-import com.tomtom.ivi.example.debugtab.activityview.databinding.DebugActivityviewFragmentBinding
+import com.tomtom.ivi.example.debugtab.activityview.databinding.TtiviActivityviewDebugtabFragmentBinding
 import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFragment
 import com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.TabbedDebugPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
@@ -24,5 +24,5 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
 class ActivityViewDebugTabFragment :
     DebugTabFragment<ActivityViewDebugViewModel>(ActivityViewDebugViewModel::class) {
 
-    override val viewFactory = ViewFactory(DebugActivityviewFragmentBinding::inflate)
+    override val viewFactory = ViewFactory(TtiviActivityviewDebugtabFragmentBinding::inflate)
 }

@@ -17,11 +17,12 @@
         android:name=".ExampleApplication"
         android:allowBackup="false"
         android:extractNativeLibs="false"
-        android:icon="@drawable/ttivi_ic_product_main"
-        android:label="@string/app_name"
+        android:icon="@drawable/ttivi_product_icon_main"
+        android:label="@string/ttivi_exampleapp_appname"
         android:supportsRtl="true"
         android:theme="@style/TtiviApplicationTheme"
-        tools:ignore="Instantiatable">
+        tools:ignore="Instantiatable"
+        tools:replace="android:label">
 
         <activity
             android:name="com.tomtom.ivi.platform.framework.api.product.debugpermissions.SetupActivity"
@@ -31,7 +32,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <meta-data
                 android:name="com.tomtom.ivi.platform.debugpermissions.META_DATA_KEY_APPLICATION_NAME_RES_ID"
-                android:resource="@string/app_name" />
+                android:resource="@string/ttivi_exampleapp_appname" />
             <meta-data
                 android:name="com.tomtom.ivi.platform.debugpermissions.META_DATA_KEY_MAIN_ACTIVITY_CLASS_NAME"
                 android:value="com.tomtom.ivi.example.product.exampleapp.ExampleActivity" />

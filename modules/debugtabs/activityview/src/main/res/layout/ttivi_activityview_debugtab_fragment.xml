@@ -28,7 +28,7 @@
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ttivi_debug_activityview_info" />
+            android:text="@string/ttivi_activityview_debugtab_info" />
 
         <com.tomtom.tools.android.api.uicontrols.button.TtButton
             android:id="@+id/debug_activity_panel_button"
@@ -38,7 +38,7 @@
             android:layout_marginTop="?attr/tt_spacing_m"
             android:enabled="@{viewModel.isButtonEnabled}"
             android:onClick="@{() -> viewModel.onButtonClicked()}"
-            android:text="@string/ttivi_debug_activityview_button"
+            android:text="@string/ttivi_activityview_debugtab_button"
             auto:ttActionType="secondary" />
     </LinearLayout>
 </layout>

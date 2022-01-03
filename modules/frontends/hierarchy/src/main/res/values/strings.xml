@@ -11,9 +11,9 @@
   -->
 
 <resources>
-    <string name="frontend_hierarchy_menu_item_name">Hierarchy</string>
-    <string name="frontend_hierarchy_header">Hierarchy</string>
-    <string name="frontend_hierarchy_button_text">Child %1s</string>
-    <string name="frontend_hierarchy_root_panel">Root</string>
-    <string name="frontend_hierarchy_leaf_fragment">A text in the leaf fragment.</string>
+    <string name="ttivi_hierarchy_menuitem_name">Hierarchy</string>
+    <string name="ttivi_hierarchy_header">Hierarchy</string>
+    <string name="ttivi_hierarchy_buttontext">Child %1s</string>
+    <string name="ttivi_hierarchy_rootpanel">Root</string>
+    <string name="ttivi_hierarchy_leaffragment_text">A text in the leaf fragment.</string>
 </resources>

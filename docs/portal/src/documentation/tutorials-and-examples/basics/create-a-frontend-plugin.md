@@ -128,13 +128,13 @@ can be left as null instead.
 class AccountLoginFragment :
     IviFragment<AccountLoginPanel, AccountLoginViewModel>(AccountLoginViewModel::class) {
 
-    override val viewFactory = ViewFactory(FrontendAccountLoginFragmentBinding::inflate)
+    override val viewFactory = ViewFactory(TtiviAccountLoginFragmentBinding::inflate)
 }
 ```
 
 See [this page](https://developer.android.com/topic/libraries/data-binding/expressions), for more
 information on how data-binding works in Android and how the `ViewModel` class binds to the XML
-layout. It also explains how the `FrontendAccountLoginFragmentBinding` class that you pass in to the
+layout. It also explains how the `TtiviAccountLoginFragmentBinding` class that you pass in to the
 ViewFactory, is auto generated.
 
 ### Creating a menu item
@@ -150,8 +150,8 @@ convention. It must have a "MenuItem" suffix and must start with a lower case ch
 ```kotlin
 val accountMenuItem = MenuItem(
     AccountFrontend::class.qualifiedName!!,
-    R.drawable.frontend_account_menu_item_icon,
-    R.string.frontend_account_menu_item_name
+    R.drawable.ttivi_account_menuitem,
+    R.string.ttivi_account_menuitem_name
 )
 ```
 

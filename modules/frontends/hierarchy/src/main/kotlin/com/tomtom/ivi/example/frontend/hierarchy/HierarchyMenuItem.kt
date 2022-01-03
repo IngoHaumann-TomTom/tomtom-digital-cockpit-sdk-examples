@@ -16,6 +16,6 @@ import com.tomtom.ivi.platform.mainmenu.api.common.menu.MenuItem
 val hierarchyMenuItem =
     MenuItem(
         HierarchyFrontend::class.qualifiedName!!,
-        R.drawable.frontend_hierarchy_menu_item_icon,
-        R.string.frontend_hierarchy_menu_item_name
+        R.drawable.ttivi_hierarchy_menuitem,
+        R.string.ttivi_hierarchy_menuitem_name
     )

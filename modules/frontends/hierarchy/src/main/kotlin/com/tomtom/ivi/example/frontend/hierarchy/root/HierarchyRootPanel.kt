@@ -35,10 +35,10 @@ class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel:
     TaskPanel(frontendContext) {
 
     override val label: LiveData<StringResolver> =
-        MutableLiveData(ResourceStringResolver(R.string.frontend_hierarchy_root_panel))
+        MutableLiveData(ResourceStringResolver(R.string.ttivi_hierarchy_rootpanel))
 
     override val icon: LiveData<DrawableResolver?> = MutableLiveData(
-        ResourceDrawableResolver(R.drawable.frontend_hierarchy_root_panel_icon)
+        ResourceDrawableResolver(R.drawable.ttivi_hierarchy_rootpanel_icon)
     )
 
     override fun createInitialFragmentInitializer() =
