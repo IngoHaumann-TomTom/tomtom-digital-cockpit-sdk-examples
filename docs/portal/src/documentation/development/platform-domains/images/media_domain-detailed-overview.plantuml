@@ -12,11 +12,11 @@ package "IndiGO application suite"<<Rectangle>> {
 
         MediaServiceApi .> MediaService: is generated based on
     }
-    package "api_common_media" {
+    package "appsuite_media_api_common_core" {
         class SourceClient<<Api>>
     }
 
-    package "api_common_mediasources" {
+    package "appsuite_media_api_common_frontend" {
         class PolicyProvider<<Api>>
         interface MediaTaskPanelPolicy<<Api>>
     }

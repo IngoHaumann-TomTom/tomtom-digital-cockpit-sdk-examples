@@ -16,7 +16,7 @@ These customization capabilities are currently offered:
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
   See the
-  [`MediaItemComparisonPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_common_mediasources/com.tomtom.ivi.api.common.mediasources.policies/index.html#1911054816%2FClasslikes%2F497736962)
+  [`MediaItemComparisonPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1911054816%2FClasslikes%2F497736962)
   documentation for more information.
 
 These customizations are possible through the use of policies, which are applied based on the
@@ -31,8 +31,8 @@ experience in a more radical fashion, then it is possible to
 Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO 
 with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
 
-For this guide, knowledge of the TomTom IndiGO media APIs [`api_common_media`](TTIVI_INDIGO_API) 
-and [`api_common_mediasources`](TTIVI_INDIGO_API)
+For this guide, knowledge of the TomTom IndiGO media APIs [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) 
+and [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
 will be of great help. In the 
 [media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more 
 details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
@@ -62,15 +62,15 @@ is displayed more prominently, and the radio station's name is shown in a less p
 The first step to achieve this result is to create a new module made to contain all code related to
 `ExampleInternetRadio`.
 In this new module, a new
-[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_common_mediasources/com.tomtom.ivi.api.common.mediasources.policies/index.html#1540310200%2FClasslikes%2F497736962)
+[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1540310200%2FClasslikes%2F497736962)
 should be created:
 
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.media.IviMediaItem
-import com.tomtom.ivi.api.common.mediasources.MediaItemData
-import com.tomtom.ivi.api.common.mediasources.policies.MediaItemDataExtractionPolicy
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
+import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaItemData
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaItemDataExtractionPolicy
 
 class ExampleInternetRadioMediaItemDataExtractionPolicy : MediaItemDataExtractionPolicy {
     override fun invoke(item: IviMediaItem): MediaItemData {
@@ -87,7 +87,7 @@ class ExampleInternetRadioMediaItemDataExtractionPolicy : MediaItemDataExtractio
 ```
 
 A
-[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/api_common_mediasources/com.tomtom.ivi.api.common.mediasources.policies/index.html#1540310200%2FClasslikes%2F497736962)
+[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1540310200%2FClasslikes%2F497736962)
 customizes how the user interface will display media item data, and can be as
 complex as necessary: it might be useful to examine whether an item is playable or browsable (or
 both) before making a decision on how to fill the [`MediaItemData`](TTIVI_INDIGO_API)
@@ -145,8 +145,8 @@ better:
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.media.actions.Action
-import com.tomtom.ivi.api.common.mediasources.controls.ToggleActionMediaControl
+import com.tomtom.ivi.appsuite.media.api.common.core.actions.Action
+import com.tomtom.ivi.appsuite.media.api.common.frontend.controls.ToggleActionMediaControl
 
 class HeartActionMediaControl(context: MediaControlContext) :
     ToggleActionMediaControl(context) {
@@ -176,7 +176,7 @@ The new `HeartActionMediaControl` should then be specified in a
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.mediasources.policies.MediaControlPolicy
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaControlPolicy
 
 // Note that this class also exposes `replacedStandardControls`, an `override`-able map of
 // `StandardMediaControls` used to replace standard media controls such as play/pause.
@@ -210,10 +210,10 @@ determine what to display based on the metadata contained in the current media i
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.media.IviMediaItem
-import com.tomtom.ivi.api.common.media.SourceInfo
-import com.tomtom.ivi.api.common.mediasources.policies.MediaSourceAttributionPolicy
-import com.tomtom.ivi.api.common.mediasources.policies.SourceAttributionFormat
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
+import com.tomtom.ivi.appsuite.media.api.common.core.SourceInfo
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaSourceAttributionPolicy
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.SourceAttributionFormat
 import com.tomtom.tools.android.api.resourceresolution.drawable.DrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.drawable.ResourceDrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringResolver
@@ -260,7 +260,7 @@ experience:
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.mediasources.MediaPolicyFrontendExtension
+import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaPolicyFrontendExtension
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
 
 // This needs to match the Android MediaBrowserService package and class name of the media app.
@@ -280,7 +280,7 @@ customizations described in the other sections.
 ```kotlin
 package com.example.exampleinternetradio
 
-import com.tomtom.ivi.api.common.mediasources.policies.PolicyProvider
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 
 val exampleInternetRadioPolicyProvider = PolicyProvider(
     extractItemDataPolicy = ExampleInternetRadioMediaItemDataExtractionPolicy(),

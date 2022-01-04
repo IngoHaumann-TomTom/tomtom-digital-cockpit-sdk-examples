@@ -24,8 +24,8 @@ the content from a media app is displayed to the user, or to add an icon to perf
 specific to that app, using the default media user interface should be preferred and
 [appropriately customized](/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
 
-For this guide, knowledge of the TomTom IndiGO [`api_common_media`](TTIVI_INDIGO_API) and
-[`api_common_mediasources`](TTIVI_INDIGO_API) modules will greatly help. In the
+For this guide, knowledge of the TomTom IndiGO [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) and
+[`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) modules will greatly help. In the
 [media overview](/tomtom-indigo/documentation/development/platform-domains/media), more details can be
 found over the Android Automotive Media framework and how TomTom IndiGO uses it.
 
@@ -72,13 +72,13 @@ radio.
 ```kotlin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.common.media.IviMediaItem
-import com.tomtom.ivi.api.common.media.Options
-import com.tomtom.ivi.api.common.media.RootSourceClient
-import com.tomtom.ivi.api.common.media.SourceId
-import com.tomtom.ivi.api.common.media.actions.standard.PlayMediaIdFromSourceAction
-import com.tomtom.ivi.api.common.mediasources.MediaTaskPanel
-import com.tomtom.ivi.api.common.mediasources.MediaFrontendContext
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
+import com.tomtom.ivi.appsuite.media.api.common.core.Options
+import com.tomtom.ivi.appsuite.media.api.common.core.RootSourceClient
+import com.tomtom.ivi.appsuite.media.api.common.core.SourceId
+import com.tomtom.ivi.appsuite.media.api.common.core.actions.standard.PlayMediaIdFromSourceAction
+import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaTaskPanel
+import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaFrontendContext
 import com.tomtom.ivi.appsuite.media.api.service.core.MediaService
 import com.tomtom.ivi.appsuite.media.api.service.core.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
@@ -143,9 +143,9 @@ recognized by the tuner.
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.tomtom.ivi.api.common.media.mediaArtUriOrNull
-import com.tomtom.ivi.api.common.media.mediaUriStringOrNull
-import com.tomtom.ivi.api.common.media.titleOrNull
+import com.tomtom.ivi.appsuite.media.api.common.core.mediaArtUriOrNull
+import com.tomtom.ivi.appsuite.media.api.common.core.mediaUriStringOrNull
+import com.tomtom.ivi.appsuite.media.api.common.core.titleOrNull
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 

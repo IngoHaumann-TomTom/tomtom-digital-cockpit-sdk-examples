@@ -127,12 +127,12 @@ guide explains this procedure.
 
 ### Media library
 
-The [`api_common_media`](TTIVI_INDIGO_API) library can be used to retrieve media content for a 
+The [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) library can be used to retrieve media content for a 
 custom implementation.
 
 ### Media sources library
 
-The [`api_common_mediasources`](TTIVI_INDIGO_API) library contains the building blocks for a more
+The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains the building blocks for a more
 thorough customization of media frontends.
 
 #### Panels
@@ -143,7 +143,7 @@ frontend.
 
 To ensure the most straightforward development of support for such alternative sources, a number
 of facilities are provided to immediately start building suitable user interfaces.
-The [`api_common_mediasources`](TTIVI_INDIGO_API) library contains these facilities.
+The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains these facilities.
 
 #### Media controls
 
@@ -157,7 +157,7 @@ media-related command. They appear in the following locations:
 - The mini player. This is the process bar from the stock media frontend that appears when the
   frontend is closed.
 
-Further information is available in the [`api_common_mediasources`](TTIVI_INDIGO_API) library, and
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library, and
 more specifically, in the [`MediaControl`](TTIVI_INDIGO_API) page.
 
 #### Policies
@@ -172,7 +172,7 @@ stock Media user interface can display it in the best way; for example by modify
 when they're given as a single "artist - track name" string, or by changing how a specific type of
 media is displayed.
 
-Further information is available in the [`api_common_mediasources`](TTIVI_INDIGO_API) library, and
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library, and
 more specifically in the
 [`PolicyProvider`](TTIVI_INDIGO_API) page.
 
