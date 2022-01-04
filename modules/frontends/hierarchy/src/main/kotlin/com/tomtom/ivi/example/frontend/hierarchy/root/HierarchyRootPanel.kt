@@ -12,21 +12,22 @@
 package com.tomtom.ivi.example.frontend.hierarchy.root
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.tomtom.ivi.example.frontend.hierarchy.Node
 import com.tomtom.ivi.example.frontend.hierarchy.R
 import com.tomtom.ivi.example.frontend.hierarchy.child.HierarchyChildPanel
 import com.tomtom.ivi.example.frontend.hierarchy.leaf.HierarchyLeafPanel
+import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.Panel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.AnyPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelDescriptor
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
-import com.tomtom.tools.android.api.resourceresolution.drawable.DrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.drawable.ResourceDrawableResolver
 import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringResolver
-import com.tomtom.tools.android.api.resourceresolution.string.StringResolver
 
-typealias AddPanel = (panel: Panel) -> Unit
+@OptIn(IviExperimental::class)
+typealias AddPanel = (panel: AnyPanel) -> Unit
 
 /**
  * The panel at the root of the hierarchy.
@@ -34,12 +35,14 @@ typealias AddPanel = (panel: Panel) -> Unit
 class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel) :
     TaskPanel(frontendContext) {
 
-    override val label: LiveData<StringResolver> =
-        MutableLiveData(ResourceStringResolver(R.string.ttivi_hierarchy_rootpanel))
-
-    override val icon: LiveData<DrawableResolver?> = MutableLiveData(
-        ResourceDrawableResolver(R.drawable.ttivi_hierarchy_rootpanel_icon)
-    )
+    @OptIn(IviExperimental::class)
+    override val descriptor: LiveData<PanelDescriptor>
+        get() = super.descriptor.map {
+            it.copy(
+                label = ResourceStringResolver(R.string.ttivi_hierarchy_rootpanel),
+                icon = ResourceDrawableResolver(R.drawable.ttivi_hierarchy_rootpanel_icon)
+            )
+        }
 
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(HierarchyRootFragment(), this)

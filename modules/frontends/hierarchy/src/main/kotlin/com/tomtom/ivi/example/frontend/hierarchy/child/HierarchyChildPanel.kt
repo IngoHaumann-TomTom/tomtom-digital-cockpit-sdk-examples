@@ -12,15 +12,16 @@
 package com.tomtom.ivi.example.frontend.hierarchy.child
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.tomtom.ivi.example.frontend.hierarchy.Node
 import com.tomtom.ivi.example.frontend.hierarchy.leaf.HierarchyLeafPanel
 import com.tomtom.ivi.example.frontend.hierarchy.root.AddPanel
+import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelDescriptor
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolver
-import com.tomtom.tools.android.api.resourceresolution.string.StringResolver
 
 /**
  * Displays [node], which is not at the root of the tree, but has at least one child.
@@ -31,8 +32,9 @@ class HierarchyChildPanel(
     private val addPanel: AddPanel
 ) : TaskPanel(frontendContext) {
 
-    override val label: LiveData<StringResolver> =
-        MutableLiveData(StaticStringResolver(node.name))
+    @OptIn(IviExperimental::class)
+    override val descriptor: LiveData<PanelDescriptor>
+        get() = super.descriptor.map { it.copy(label = StaticStringResolver(node.name)) }
 
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(HierarchyChildFragment(), this)
