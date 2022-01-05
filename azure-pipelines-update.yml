@@ -61,6 +61,8 @@ stages:
     platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
   jobs:
   - job: Libraries
+    workspace:
+      clean: all
     displayName: 'Publish IndiGO libraries to ivi-test'
     condition: eq(variables['Build.Reason'], 'PullRequest')
     container: 'docker_indigo_build'
