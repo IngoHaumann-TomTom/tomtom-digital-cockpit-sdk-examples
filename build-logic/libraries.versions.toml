@@ -39,7 +39,7 @@ androidxCoreKtx = "1.3.2"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.3016"
+indigoPlatform = "1.0.3021"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.291"
 iviCommunicationsSdk = "0.1.94"
@@ -87,10 +87,10 @@ indigoFrameworkApiProductDefaultApplication = { module = "com.tomtom.ivi.platfor
 indigoFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_frontend", version.ref = "indigoPlatform" }
 indigoFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
+indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
 indigoThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "indigoPlatform" }
 indigoToolsTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "indigoPlatform" }
-indigoToolsTestingMainMenuFrontend = { module = "com.tomtom.ivi.platform:tools_testing_mainmenufrontend", version.ref = "indigoPlatform" }
 indigoToolsTestingNavigationFunctional = { module = "com.tomtom.ivi.platform:tools_testing_navigationfunctional", version.ref = "indigoPlatform" }
 indigoToolsTestingSystemUi = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }
 indigoToolsTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }

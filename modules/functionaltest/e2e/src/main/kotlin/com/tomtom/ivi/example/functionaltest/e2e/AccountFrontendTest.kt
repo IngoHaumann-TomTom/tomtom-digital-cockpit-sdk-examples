@@ -14,8 +14,8 @@ package com.tomtom.ivi.example.functionaltest.e2e
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
-import com.tomtom.ivi.tools.testing.mainmenufrontend.onMainMenuView
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.MainMenuButton
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.onMainMenuView
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference
 import org.junit.Ignore

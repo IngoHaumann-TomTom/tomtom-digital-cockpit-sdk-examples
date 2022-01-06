@@ -19,8 +19,8 @@ import com.tomtom.ivi.platform.tools.api.testing.functional.GetServiceIdsCallbac
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviActivityTestCase
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviE2eTestCase
 import com.tomtom.ivi.platform.tools.api.testing.functional.WebserviceMockRuleConfig
-import com.tomtom.ivi.tools.testing.mainmenufrontend.MainMenuButton
-import com.tomtom.ivi.tools.testing.mainmenufrontend.waitForMainMenuButtonIsDisplayed
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.MainMenuButton
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.waitForMainMenuButtonIsDisplayed
 import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule
 import com.tomtom.ivi.tools.testing.navigationfunctional.createWebserviceMockRuleConfig
 import com.tomtom.ivi.platform.systemui.api.testing.tools.SystemUiIdlingResourceRule
