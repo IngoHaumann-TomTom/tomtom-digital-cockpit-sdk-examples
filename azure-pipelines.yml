@@ -56,7 +56,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.0.4
+    ref: refs/tags/2.0.6
 
 pool: 'IVI 2.0'
 
@@ -124,6 +124,7 @@ stages:
         report_filename: products_indigo_examples
         artifactory_location: products_indigo_examples
         bdtools_environment: prod
+        run_compliancecheck: true
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
