@@ -23,7 +23,7 @@ ivi {
 
 dependencies {
     implementation(libraries.androidxActivity)
-    implementation(libraries.indigoDebugApiFrontendExtensionDebugTab)
-    implementation(libraries.indigoFrameworkApiCommonUiEmbedding)
+    implementation(libraries.indigoPlatformDebugApiFrontendExtensionDebugTab)
+    implementation(libraries.indigoPlatformFrameworkApiCommonUiEmbedding)
     implementation(libraries.tomtomToolsApiUicontrols)
 }

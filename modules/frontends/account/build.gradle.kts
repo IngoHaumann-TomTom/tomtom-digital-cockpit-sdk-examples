@@ -28,7 +28,7 @@ ivi {
 dependencies {
     implementation(project(":serviceapis_account"))
 
-    implementation(libraries.indigoFrameworkApiCommonLifecycle)
-    implementation(libraries.indigoFrameworkApiCommonUid)
+    implementation(libraries.indigoPlatformFrameworkApiCommonLifecycle)
+    implementation(libraries.indigoPlatformFrameworkApiCommonUid)
     implementation(libraries.tomtomToolsApiLivedata)
 }

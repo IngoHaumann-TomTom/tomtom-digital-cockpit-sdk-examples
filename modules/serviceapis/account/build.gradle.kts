@@ -17,5 +17,5 @@ ivi {
 
 dependencies {
     api(project(":common_account"))
-    implementation(libraries.indigoFrameworkApiCommonUid)
+    implementation(libraries.indigoPlatformFrameworkApiCommonUid)
 }

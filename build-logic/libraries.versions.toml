@@ -77,26 +77,27 @@ androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCo
 androidxLifecycleService = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidxLifecycle" }
 
 # TomTom IndiGO platform components.
-indigoDebugApiFrontendExtensionDebugTab = { module = "com.tomtom.ivi.platform:platform_debug_api_frontendextension_debugtab", version.ref = "indigoPlatform" }
-indigoFrameworkApiCommonLifecycle = { module = "com.tomtom.ivi.platform:platform_framework_api_common_lifecycle", version.ref = "indigoPlatform" }
-indigoFrameworkApiCommonUid = { module = "com.tomtom.ivi.platform:platform_framework_api_common_uid", version.ref = "indigoPlatform" }
-indigoFrameworkApiCommonUiEmbedding = { module = "com.tomtom.ivi.platform:platform_framework_api_common_uiembedding", version.ref = "indigoPlatform" }
-indigoFrameworkApiProductDebugPermissions = { module = "com.tomtom.ivi.platform:platform_framework_api_product_debugpermissions", version.ref = "indigoPlatform" }
-indigoFrameworkApiProductDefaultActivity = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultactivity", version.ref = "indigoPlatform" }
-indigoFrameworkApiProductDefaultApplication = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultapplication", version.ref = "indigoPlatform" }
-indigoFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_frontend", version.ref = "indigoPlatform" }
-indigoFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
-indigoNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
+indigoPlatformDebugApiFrontendExtensionDebugTab = { module = "com.tomtom.ivi.platform:platform_debug_api_frontendextension_debugtab", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiCommonLifecycle = { module = "com.tomtom.ivi.platform:platform_framework_api_common_lifecycle", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiCommonUid = { module = "com.tomtom.ivi.platform:platform_framework_api_common_uid", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiCommonUiEmbedding = { module = "com.tomtom.ivi.platform:platform_framework_api_common_uiembedding", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiProductDebugPermissions = { module = "com.tomtom.ivi.platform:platform_framework_api_product_debugpermissions", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiProductDefaultActivity = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultactivity", version.ref = "indigoPlatform" }
+indigoPlatformFrameworkApiProductDefaultApplication = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultapplication", version.ref = "indigoPlatform" }
+indigoPlatformFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_frontend", version.ref = "indigoPlatform" }
+indigoPlatformFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
+indigoPlatformNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
 indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }
-indigoSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
-indigoThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "indigoPlatform" }
-indigoToolsTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "indigoPlatform" }
+indigoPlatformSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
+indigoPlatformSystemuiApiTestingTools = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }
+indigoPlatformThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "indigoPlatform" }
+indigoPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "indigoPlatform" }
+indigoPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
+indigoToolsTestingMainMenuFrontend = { module = "com.tomtom.ivi.platform:tools_testing_mainmenufrontend", version.ref = "indigoPlatform" }
 indigoToolsTestingNavigationFunctional = { module = "com.tomtom.ivi.platform:tools_testing_navigationfunctional", version.ref = "indigoPlatform" }
-indigoToolsTestingSystemUi = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }
-indigoToolsTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform service APIs.
-indigoRecentCallsServiceApi = { module = "com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls", version.ref = "indigoPlatform" }
+indigoPlatformRecentcallsApiServiceRecentcalls = { module = "com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls", version.ref = "indigoPlatform" }
 indigoCoreServiceApisContacts = { module = "com.tomtom.ivi.platform:core_serviceapis_contacts", version.ref = "indigoPlatform" }
 indigoCoreServiceApisTelecom = { module = "com.tomtom.ivi.platform:core_serviceapis_telecom", version.ref = "indigoPlatform" }
 

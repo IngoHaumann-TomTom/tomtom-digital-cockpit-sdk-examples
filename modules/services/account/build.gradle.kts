@@ -21,8 +21,8 @@ ivi {
 dependencies {
     implementation(project(":serviceapis_account"))
     implementation(project(":serviceapis_accountsettings"))
-    implementation(libraries.indigoFrameworkApiCommonUid)
+    implementation(libraries.indigoPlatformFrameworkApiCommonUid)
     implementation(libraries.tomtomToolsApiLivedata)
 
-    testImplementation(libraries.indigoToolsTestingUnit)
+    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

@@ -25,5 +25,5 @@ dependencies {
     implementation(libraries.indigoCoreServiceApisTelecom)
     implementation(libraries.androidxLifecycleService)
 
-    testImplementation(libraries.indigoToolsTestingUnit)
+    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

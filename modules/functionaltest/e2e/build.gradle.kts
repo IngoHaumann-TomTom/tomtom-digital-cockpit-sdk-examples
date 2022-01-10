@@ -42,7 +42,7 @@ android {
 dependencies {
     implementation(project(":frontends_account"))
     implementation(libraries.indigoPlatformMainmenuApiTestingFrontend)
-    implementation(libraries.indigoToolsTestingFunctional)
+    implementation(libraries.indigoPlatformSystemuiApiTestingTools)
+    implementation(libraries.indigoPlatformToolsApiTestingFunctional)
     implementation(libraries.indigoToolsTestingNavigationFunctional)
-    implementation(libraries.indigoToolsTestingSystemUi)
 }

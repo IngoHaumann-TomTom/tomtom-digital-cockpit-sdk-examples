@@ -25,8 +25,8 @@ ivi {
 dependencies {
     implementation(project(":serviceapis_accountsettings"))
     implementation(libraries.kotlinxSerializationJson)
-    implementation(libraries.indigoSettingsApiServicesSettingsManagement)
+    implementation(libraries.indigoPlatformSettingsApiServicesSettingsManagement)
     implementation(libraries.tomtomToolsApiLivedata)
 
-    testImplementation(libraries.indigoToolsTestingUnit)
+    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

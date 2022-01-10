@@ -16,7 +16,7 @@ android {
 }
 
 dependencies {
-    implementation(libraries.indigoThemingApiCommonAttributes)
-    implementation(libraries.indigoFrontendApiCommonFrontend)
+    implementation(libraries.indigoPlatformFrontendApiCommonFrontend)
+    implementation(libraries.indigoPlatformThemingApiCommonAttributes)
     implementation(libraries.tomtomToolsApiUicontrols)
 }

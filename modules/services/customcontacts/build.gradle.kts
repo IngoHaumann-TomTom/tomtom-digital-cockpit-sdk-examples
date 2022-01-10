@@ -24,5 +24,5 @@ ivi {
 dependencies {
     implementation(libraries.indigoCoreServiceApisContacts)
 
-    testImplementation(libraries.indigoToolsTestingUnit)
+    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

@@ -22,6 +22,6 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoRecentCallsServiceApi)
-    testImplementation(libraries.indigoToolsTestingUnit)
+    implementation(libraries.indigoPlatformRecentcallsApiServiceRecentcalls)
+    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }
