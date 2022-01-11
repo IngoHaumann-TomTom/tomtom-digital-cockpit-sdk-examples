@@ -2,14 +2,14 @@
 title: The TomTom IndiGO Emulator
 ---
 
-TomTom IndiGO can run on Android emulators (Android Virtual Devices, AVDs) in addition to the 
-reference or demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has 
-been created for running TomTom IndiGO. This configuration contains a number of customizations to 
-the emulator hardware and the Android platform on which it runs. This emulator can be used for 
+TomTom IndiGO can run on Android emulators (Android Virtual Devices, AVDs) in addition to the
+reference or demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration has
+been created for running TomTom IndiGO. This configuration contains a number of customizations to
+the emulator hardware and the Android platform on which it runs. This emulator can be used for
 development on top of TomTom IndiGO and runs x86\_64 AOSP with Android 11 Automotive.
 
-__Note:__ The TomTom IndiGO platform also runs on a standard Android device, with a TomTom 
-IndiGO-supported CPU architecture. However, some features may not work as TomTom IndiGO is 
+__Note:__ The TomTom IndiGO platform also runs on a standard Android device, with a TomTom
+IndiGO-supported CPU architecture. However, some features may not work as TomTom IndiGO is
 implemented for the Android Automotive variant.
 
 ## The TomTom IndiGO emulator image
@@ -77,7 +77,7 @@ Android Virtual Device (AVD) with it:
     - __Note:__ The entries displayed differ only in the last part of their `Target` field.
 
 - __Mac _with_ an M1 processor:__ Go to tab `Other Images` and select `Android S` for `arm64-v8a` as
-  the System Image. This is a standard Android image, without TomTom IndiGO-specific customizations 
+  the System Image. This is a standard Android image, without TomTom IndiGO-specific customizations
   or Android Automotive features!
 
 ![Android Studio - System Image](images/android_studio_android_r.png)
@@ -87,7 +87,7 @@ Android Virtual Device (AVD) with it:
   values:
     - `RAM` : `3072 MB`
     - `VM heap` : `192 MB`
-    - `Internal Storage` : `2048 MB`
+    - `Internal Storage` : `4096 MB`
 
 ![Android Studio - Emulator Configuration](images/android_studio_emulator_configuration.png)
 
@@ -131,7 +131,7 @@ Android Virtual Device (AVD) with it:
 - Close the AVD Manager and wait for the emulator to start up.
 
 - In Android Studio, build and run the application by clicking on the green `play` icon. Select the
-  TomTom IndiGO automotive emulator that was created earlier in this tutorial, as the device that 
+  TomTom IndiGO automotive emulator that was created earlier in this tutorial, as the device that
   the application will run on:
 
 ![Android Studio - Build and run](images/android_studio_build_and_run.png)

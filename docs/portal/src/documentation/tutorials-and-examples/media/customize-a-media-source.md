@@ -4,7 +4,7 @@ title: Customize a Media Source
 
 Most media apps offer content which can be browsed and played liberally, letting the user more or
 less in control of the playback. Potentially, these apps require logging in before allowing access.
-This kind of media app is easier to customize, as the TomTom IndiGO Application Suite already 
+This kind of media app is easier to customize, as the TomTom IndiGO Application Suite already
 provides a delightful user interface for media.
 
 These customization capabilities are currently offered:
@@ -25,16 +25,16 @@ customizations, the [policy installation](#install-customization-policies) secti
 apply them to the build.
 
 More venues for customization are planned for the future, but if it is necessary to change the user
-experience in a more radical fashion, then it is possible to 
+experience in a more radical fashion, then it is possible to
 [create a new user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
 
-Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO 
+Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO
 with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
 
-For this guide, knowledge of the TomTom IndiGO media APIs [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) 
+For this guide, knowledge of the TomTom IndiGO media APIs [`appsuite_media_api_common_core`](TTIVI_INDIGO_API)
 and [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
-will be of great help. In the 
-[media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more 
+will be of great help. In the
+[media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more
 details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 ## Modify content display
@@ -43,7 +43,7 @@ A media source might provide poor quality of its input data, due to a sub-par im
 Android Automotive Media API, causing the default user interface to display it incorrectly.
 
 When browsing through content from the `ExampleInternetRadio` app, normally the TomTom IndiGO user
-interface would display the [`IviMediaItem`](TTIVI_INDIGO_API)`.title` field of a playable media 
+interface would display the [`IviMediaItem`](TTIVI_INDIGO_API)`.title` field of a playable media
 item in a more visually-prominent fashion (in bold and with a bigger font size) and the
 [`IviMediaItem`](TTIVI_INDIGO_API)`.subtitle` field, when present, in a less-prominent fashion
 (not in bold, and with a smaller font size).
@@ -55,7 +55,7 @@ When browsing stations from `ExampleInternetRadio`, a playable radio station med
 empty.
 
 With such data, the track name will always be shown smaller, and only the radio station's name will
-always be at the center of the driver's attention. 
+always be at the center of the driver's attention.
 The wish in this example is to invert the `title` and the `subtitle` so that the current track name
 is displayed more prominently, and the radio station's name is shown in a less prominent way.
 
@@ -114,15 +114,14 @@ playing a station, it is always possible to remove it from the quick access list
 heart icon again.
 
 During playback, a media source will constantly advertise which custom actions are currently
-available for the user to perform. The [`MediaService`](TTIVI_INDIGO_API) service API contains an 
+available for the user to perform. The [`MediaService`](TTIVI_INDIGO_API) service API contains an
 `availableActions` field, which is always updated with a list of whatever actions the
-media source provides for the media that is currently being played, 
+media source provides for the media that is currently being played,
 `activeMediaItem`.
 
-Such list of [`Action`](TTIVI_INDIGO_API)s will have to be examined to find out what `Actions` are 
-available. When `ExampleInternetRadio` is playing a track, the device's logcat will show events from 
-the stock [`MediaService`](TTIVI_INDIGO_API) called `onAvailableActionsChanged`,
-such as this one:
+Such list of [`Action`](TTIVI_INDIGO_API)s will have to be examined to find out what `Actions` are
+available. When `ExampleInternetRadio` is playing a track, the device's logcat will show events from
+the stock [`MediaService`](TTIVI_INDIGO_API) called `onAvailableActionsChanged`, such as this one:
 
 ```
 MediaServiceBase: event=onAvailableActionsChanged([PauseAction(id=ivi_media:pause), SkipMediaItemForwardAction(id=ivi_media:skip_media_item_forward), Action(id=heart_this_station)])
@@ -139,7 +138,7 @@ The ID `un-heart_this_station` from the last `Action(id=un-heart_this_station)` 
 remove the favorite state from the current station.
 
 A new [`ActionMediaControl`](TTIVI_INDIGO_API) is needed. Since this seems to be a simple toggle
-behavior, the [`ToggleActionMediaControl`](TTIVI_INDIGO_API) specialization fits the use case 
+behavior, the [`ToggleActionMediaControl`](TTIVI_INDIGO_API) specialization fits the use case
 better:
 
 ```kotlin
@@ -293,4 +292,3 @@ Activating the new `exampleInternetRadioFrontendExtension` is done via a Gradle 
 The guide on
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) are available for more details.
-

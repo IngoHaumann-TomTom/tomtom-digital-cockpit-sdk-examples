@@ -4,7 +4,7 @@ layout: default
 ---
 
 Media plays an important part in users’ digital life and is the most used function of infotainment
-systems. This encompasses radio, music, podcasts, and audio books. TomTom IndiGO provides a way to 
+systems. This encompasses radio, music, podcasts, and audio books. TomTom IndiGO provides a way to
 browse and stream content from any audio source.
 
 Media sources (or sources) are apps that provide media content. Sources provide content in a
@@ -16,7 +16,7 @@ This document explains the structure of the media domain through the following m
 - [High-level overview](#high-level-overview)
     - [Android Automotive media ecosystem](#android-automotive-media-ecosystem)
     - [Division of responsibility](#division-of-responsibility)
-    - [Available stock components](#available-stock-components)
+    - [Available off-the-shelf (or stock) components](#available-off-the-shelf-or-stock-components)
 - [Detailed overview](#detailed-overview)
     - [Configuring the media application frontend](#configuring-the-media-application-frontend)
     - [Media library](#media-library)
@@ -27,7 +27,7 @@ This document explains the structure of the media domain through the following m
 
 ## High-level overview
 
-The TomTom IndiGO Application Suite provides flexible architecture components to allow a wide range 
+The TomTom IndiGO Application Suite provides flexible architecture components to allow a wide range
 of media sources to be integrated, and to provide the end-user with a consistent user interface
 through which they can browse and play media.
 
@@ -44,14 +44,14 @@ displays the following components:
 
 ### Android Automotive media ecosystem
 
-TomTom IndiGO hooks into the existing Android Automotive media ecosystem. All developers developing 
-a media app can develop their app in this standardized way. Many media apps on the market today, 
+TomTom IndiGO hooks into the existing Android Automotive media ecosystem. All developers developing
+a media app can develop their app in this standardized way. Many media apps on the market today,
 made for Android Automotive OS, already conform to this standard. Because of
 that, basic support for these apps is present in TomTom IndiGO. Advanced support can be added by
 [configuring the media application frontend](#configuring-the-media-application-frontend).
 
 The Android Automotive media standard is well documented. To familiarize with this topic, the
-[Build media apps for cars](https://developer.android.com/training/cars/media) and 
+[Build media apps for cars](https://developer.android.com/training/cars/media) and
 [Add Android Automotive OS support to your media app](https://developer.android.com/training/cars/media/automotive-os)
 docs from Android are available.
 
@@ -79,7 +79,7 @@ the browsing of media content for all installed media sources. It offers a list 
 sources, and when one is selected, allows the user to browse through its content hierarchy, and to
 start and control media playback.
 
-### Available stock components
+### Available off-the-shelf (or stock) components
 
 By default, the TomTom IndiGO platform offers a delightful user interface that provides a browsable
 hierarchy of media content which can be played and/or browsed from installed media sources.
@@ -88,18 +88,17 @@ This user interface can be customized, expanded upon, and even replaced, to acco
 types of media sources (for example: radio, video playing) while ensuring that the visual style
 holds up to the highest standards for user experience simplicity and distraction-free usage.
 
-The stock application frontend can be configured using
-[`MediaPolicyFrontendExtension`](TTIVI_INDIGO_API)s to activate a 
+The off-the-shelf application frontend, the stock frontend, can be configured using
+[`MediaPolicyFrontendExtension`](TTIVI_INDIGO_API)s to activate a
 [`PolicyProvider`](TTIVI_INDIGO_API) which configures a specific source. See
 [configuring media frontend](#configuring-the-media-application-frontend) for more details.
 
 If that is not sufficient, it is possible to completely replace the stock frontend and/or service
 with custom implementations. Similar to configuring the stock media frontend, outright replacement
-of the stock media frontend is done via a [`FrontendExtension`](TTIVI_INDIGO_API).
-Check out the
+of the stock media frontend is done via a [`FrontendExtension`](TTIVI_INDIGO_API). Check out the
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
-page and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) for more details on
-how to replace a stock frontend.
+page and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) for more details on how to
+replace a stock frontend.
 
 ## Detailed overview
 
@@ -127,13 +126,13 @@ guide explains this procedure.
 
 ### Media library
 
-The [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) library can be used to retrieve media content for a 
-custom implementation.
+The [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) library can be used to retrieve media
+content for a custom implementation.
 
 ### Media sources library
 
-The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains the building blocks for a more
-thorough customization of media frontends.
+The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains the building blocks
+for a more thorough customization of media frontends.
 
 #### Panels
 
@@ -157,8 +156,8 @@ media-related command. They appear in the following locations:
 - The mini player. This is the process bar from the stock media frontend that appears when the
   frontend is closed.
 
-Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library, and
-more specifically, in the [`MediaControl`](TTIVI_INDIGO_API) page.
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
+library, and more specifically, in the [`MediaControl`](TTIVI_INDIGO_API) page.
 
 #### Policies
 
@@ -172,8 +171,5 @@ stock Media user interface can display it in the best way; for example by modify
 when they're given as a single "artist - track name" string, or by changing how a specific type of
 media is displayed.
 
-Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library, and
-more specifically in the
-[`PolicyProvider`](TTIVI_INDIGO_API) page.
-
-
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
+library, and more specifically in the [`PolicyProvider`](TTIVI_INDIGO_API) page.

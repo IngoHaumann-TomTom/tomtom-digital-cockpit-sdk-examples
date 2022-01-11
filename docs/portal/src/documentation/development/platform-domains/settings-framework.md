@@ -3,8 +3,8 @@ title: Settings Framework
 layout: default
 ---
 
-The settings framework allows cross-application settings to be shared between TomTom IndiGO 
-services and frontends in TomTom IndiGO. TomTom IndiGO components can store them persistently and 
+The settings framework allows cross-application settings to be shared between TomTom IndiGO
+services and frontends in TomTom IndiGO. TomTom IndiGO components can store them persistently and
 change their values.
 
 Modules access settings via setting services that offer type-safe and domain-specific interfaces to
@@ -17,7 +17,9 @@ that provides a [`SettingsManagementService`](TTIVI_INDIGO_API) API to store set
 persistent key-value storage. It provides [settings services](#settings-service) that offer a
 type-safe and domain-specific interface to a settings management service.
 
-The stock IVI frontends and IVI services use settings services to manage their settings.
+The
+[_off-the-shelf_, or _stock_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+IVI frontends and IVI services use settings services to manage their settings.
 
 ![Settings framework high-level overview image](images/settings_framework-high-level-overview.svg)
 
@@ -94,7 +96,7 @@ update the stored settings to the current scheme.
 
 A settings service gets the default values and update strategies, required to create or update
 settings, from the dynamic configuration provider `dynamicConfigurationProvider` of the
-[`IviSettingsServiceBase`](TTIVI_INDIGO_API) class. See also the 
+[`IviSettingsServiceBase`](TTIVI_INDIGO_API) class. See also the
 [Configuration framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework).
 
 __Note:__ A settings service may also use the static configuration provider
@@ -103,8 +105,8 @@ __Note:__ A settings service may also use the static configuration provider
 ### Settings service declaration
 
 Like [any IVI service](/tomtom-indigo/documentation/development/ivi-services), a settings service
-implements an IVI service interface; see [`IviService`](TTIVI_INDIGO_API). The difference is that 
-the interface only contains properties annotated with the [`@IviSetting`](TTIVI_INDIGO_API) 
+implements an IVI service interface; see [`IviService`](TTIVI_INDIGO_API). The difference is that
+the interface only contains properties annotated with the [`@IviSetting`](TTIVI_INDIGO_API)
 annotation. Clients may access the service using the service API instance, created with
 `<interface>.createApi()`.
 

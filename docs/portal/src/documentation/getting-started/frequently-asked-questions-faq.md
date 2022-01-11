@@ -171,8 +171,8 @@ computers with the M1 processor. Please verify that you have followed those exce
 
 ## Insufficient storage when installing the APK
 
-You may encounter an `Insufficient storage` message when installing the APK on the emulator. Ensure
-that the emulator AVD has sufficient disk storage configured:
+You may encounter an `INSTALL_FAILED_INSUFFICIENT_STORAGE` error when installing the APK on the
+emulator. Ensure that the emulator AVD has sufficient disk storage configured:
 
 - In Android Studio open the AVD Manager via `Tools` > `AVD Manager`.
 - Edit the TomTom IndiGO AVD by clicking its pencil icon in the `Actions` column.

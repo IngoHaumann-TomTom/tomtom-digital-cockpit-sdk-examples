@@ -14,11 +14,11 @@ hideSubmenu: true
             padding: 1.3rem;">
 
 <div style="padding:56.25% 0 0 0;position:relative; width: 100%; margin-bottom: 3rem;">
-    <iframe 
-        src="https://player.vimeo.com/video/649985038?h=5a2fa675b4&title=0&portrait=0&color=44ABE0" 
-        style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-        frameborder="0" 
-        allow="autoplay; fullscreen; picture-in-picture" 
+    <iframe
+        src="https://player.vimeo.com/video/649985038?h=5a2fa675b4&title=0&portrait=0&color=44ABE0"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
         allowfullscreen>
     </iframe>
 </div><script src="https://player.vimeo.com/api/player.js"></script>
@@ -38,13 +38,13 @@ hideSubmenu: true
                 align-items: flex-start;
                 padding: 3rem;
                 gap: 1.3rem;">
-        <p><a href="https://www.tomtom.com/products/tomtom-indigo/">TomTom IndiGO</a> is a framework to deliver Android-based digital cockpits. 
-        It includes an application platform to support the development of highly integrated applications on top of Android Automotive. 
+        <p><a href="https://www.tomtom.com/products/tomtom-indigo/">TomTom IndiGO</a> is a framework to deliver Android-based digital cockpits.
+        It includes an application platform to support the development of highly integrated applications on top of Android Automotive.
         It also offers a complete set of industrial strength end-user applications, that can be customized to the needs of a car maker.</p>
         <p>Take the in-car experience to new places and get started with our comprehensive SDK that includes APIs, supporting documentation and code examples.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
-            <a class="button__link" 
-                href="/tomtom-indigo/documentation/platform-overview/what-is-tomtom-indigo" 
+            <a class="button__link"
+                href="/tomtom-indigo/documentation/platform-overview/what-is-tomtom-indigo"
                 tabindex="0">PLATFORM OVERVIEW</a>
         </div>
     </div>
@@ -70,10 +70,11 @@ hideSubmenu: true
                 padding: 3rem;
                 gap: 1.3rem;">
         <h2>TomTom IndiGO Example App</h2>
-        <p>The example app showcases TomTom IndiGO&#39;s stock experiences, and provides a good starting point for TomTom IndiGO development.</p>
+        <p>The example app showcases TomTom IndiGO&#39;s off-the-shelf experiences, from stock
+        components, and provides a good starting point for TomTom IndiGO development.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
-            <a class="button__link" 
-                href="/tomtom-indigo/documentation/platform-overview/example-app" 
+            <a class="button__link"
+                href="/tomtom-indigo/documentation/platform-overview/example-app"
                 tabindex="0">EXPLORE</a>
         </div>
     </div>
@@ -102,8 +103,8 @@ hideSubmenu: true
         <h2>Developing with TomTom IndiGO</h2>
         <p>Get your development environment ready and create your first custom experience.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
-            <a class="button__link" 
-                href="/tomtom-indigo/documentation/getting-started/introduction" 
+            <a class="button__link"
+                href="/tomtom-indigo/documentation/getting-started/introduction"
                 tabindex="0">GET STARTED</a>
         </div>
     </div>
@@ -131,8 +132,8 @@ hideSubmenu: true
         <h2>How to extend</h2>
         <p>Learn how TomTom IndiGO can be extended and how to integrate deeply into the ecosystem.</p>
         <div class="button button--bg-brand-red button--bg-hoverable button--size-large">
-            <a class="button__link" 
-                href="/tomtom-indigo/documentation/development/frontend-plugins" 
+            <a class="button__link"
+                href="/tomtom-indigo/documentation/development/frontend-plugins"
                 tabindex="0">CREATE PLUGIN</a>
         </div>
     </div>
