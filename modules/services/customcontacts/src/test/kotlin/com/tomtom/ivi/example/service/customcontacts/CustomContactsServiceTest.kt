@@ -11,8 +11,8 @@
 
 package com.tomtom.ivi.example.service.customcontacts
 
-import com.tomtom.ivi.core.common.contacts.ContactId
-import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
+import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
+import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import kotlin.test.assertEquals

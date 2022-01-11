@@ -101,7 +101,7 @@ val customContactsServiceHost by extra {
         interfaces = listOf(
             IviServiceInterfaceConfig(
                 serviceName = "ContactsService",
-                serviceApiModule = IviPlatformModuleReference("core_serviceapis_contacts")
+                serviceApiModule = IviPlatformModuleReference("platform_contacts_api_service_contacts")
             )
         )
     )

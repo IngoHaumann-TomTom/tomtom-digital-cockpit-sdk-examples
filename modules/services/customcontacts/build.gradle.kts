@@ -22,7 +22,7 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoCoreServiceApisContacts)
+    implementation(libraries.indigoPlatformContactsApiServiceContacts)
 
     testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

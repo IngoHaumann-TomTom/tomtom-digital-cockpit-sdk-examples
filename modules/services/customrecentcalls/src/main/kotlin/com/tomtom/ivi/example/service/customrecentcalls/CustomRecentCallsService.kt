@@ -11,9 +11,9 @@
 
 package com.tomtom.ivi.example.service.customrecentcalls
 
-import com.tomtom.ivi.core.common.contacts.PhoneNumber
-import com.tomtom.ivi.core.common.contacts.PhoneNumberType
-import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
+import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumber
+import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumberType
+import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsService
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsServiceBase
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsService.RecentCall

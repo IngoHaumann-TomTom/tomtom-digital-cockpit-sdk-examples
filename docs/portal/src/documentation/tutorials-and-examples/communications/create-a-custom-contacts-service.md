@@ -28,7 +28,7 @@ Your Gradle file should contain:
 
 ```kotlin
 dependencies {
-    implementation("com.tomtom.ivi.platform:core_serviceapis_contacts:1.0.1793")
+    implementation("com.tomtom.ivi.platform:platform_contacts_api_service_contacts")
 }
 ```
 
@@ -46,14 +46,14 @@ val customContactsServiceHost = IviServiceHostConfig(
     interfaces = listOf(
         IviServiceInterfaceConfig(
             serviceName = "ContactsService",
-            serviceApiModule = IviPlatformModuleReference("core_serviceapis_contacts")
+            serviceApiModule = IviPlatformModuleReference("platform_contacts_api_service_contacts")
         )
     )
 )
 ```
 
 In this configuration, the `services_customcontacts` module defines the implementation for
-the `core_serviceapis_contacts` interface.
+the `platform_contacts_api_service_contacts` interface.
 
 In order to create the service host configuration named `CustomContactsServiceHost`, the IVI
 platform needs a service host builder class with the specific

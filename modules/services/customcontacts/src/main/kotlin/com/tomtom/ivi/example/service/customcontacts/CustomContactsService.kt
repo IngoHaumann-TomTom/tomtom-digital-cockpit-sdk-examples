@@ -13,14 +13,14 @@ package com.tomtom.ivi.example.service.customcontacts
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import com.tomtom.ivi.core.common.contacts.Address
-import com.tomtom.ivi.core.common.contacts.AddressType
-import com.tomtom.ivi.core.common.contacts.Contact
-import com.tomtom.ivi.core.common.contacts.ContactId
-import com.tomtom.ivi.core.common.contacts.PhoneNumber
-import com.tomtom.ivi.core.common.contacts.PhoneNumberType
-import com.tomtom.ivi.core.common.contacts.SynchronizationStatus
-import com.tomtom.ivi.core.serviceapi.contacts.ContactsServiceBase
+import com.tomtom.ivi.platform.contacts.api.common.model.Address
+import com.tomtom.ivi.platform.contacts.api.common.model.AddressType
+import com.tomtom.ivi.platform.contacts.api.common.model.Contact
+import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
+import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumber
+import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumberType
+import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
 
