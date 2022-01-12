@@ -11,10 +11,12 @@
 
 package com.tomtom.ivi.example.frontend.hierarchy
 
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class HierarchyFrontendBuilder : FrontendBuilder() {
 
-    override fun build(frontendContext: FrontendContext) = HierarchyFrontend(frontendContext)
+    override fun build(frontendContext: FrontendContext): Frontend =
+        HierarchyFrontend(frontendContext)
 }

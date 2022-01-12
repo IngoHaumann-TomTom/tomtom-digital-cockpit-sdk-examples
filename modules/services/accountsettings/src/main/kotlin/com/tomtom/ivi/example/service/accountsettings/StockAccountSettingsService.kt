@@ -24,7 +24,7 @@ import com.tomtom.ivi.platform.settings.api.service.settingsmanagement.StringSet
 import java.time.Instant
 import kotlinx.serialization.json.Json
 
-class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :
+internal class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :
     AccountSettingsServiceBase(iviServiceHostContext) {
 
     override val settingsKeyPrefix: String = settingKeyPrefix

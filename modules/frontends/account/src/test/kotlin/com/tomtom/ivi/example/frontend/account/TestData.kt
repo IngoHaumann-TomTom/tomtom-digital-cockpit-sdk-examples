@@ -13,7 +13,7 @@ package com.tomtom.ivi.example.frontend.account
 
 import com.tomtom.ivi.example.common.account.Account
 
-object TestData {
+internal object TestData {
     const val USERNAME = "Username"
     const val PASSWORD = "Password"
 

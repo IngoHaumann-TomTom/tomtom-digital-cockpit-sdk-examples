@@ -62,7 +62,9 @@ name `CustomContactsServiceHostBuilder`.
 ```kotlin
 class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+    override fun createIviServices(
+        iviServiceHostContext: IviServiceHostContext
+    ): Collection<AnyIviServiceBase> =
         listOf(CustomContactsService(iviServiceHostContext))
 
     companion object
@@ -93,7 +95,7 @@ In order to create a custom contacts service implementation you need to create a
 from the `ContactsServiceBase` class.
 
 ```kotlin
-class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
+internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     ContactsServiceBase(iviServiceHostContext) {
     // A mutable list of contacts that can be updated with the contactsSource changes.
     private val mutableContacts = MutableMirrorableMap<ContactId, Contact>()

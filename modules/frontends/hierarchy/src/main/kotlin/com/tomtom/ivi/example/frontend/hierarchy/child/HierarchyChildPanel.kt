@@ -26,7 +26,7 @@ import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolv
 /**
  * Displays [node], which is not at the root of the tree, but has at least one child.
  */
-class HierarchyChildPanel(
+internal class HierarchyChildPanel(
     frontendContext: FrontendContext,
     val node: Node,
     private val addPanel: AddPanel

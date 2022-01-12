@@ -16,7 +16,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 
-class HierarchyFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
+internal class HierarchyFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 
     override fun openTaskPanels() {
         removePanels<TaskPanel>()

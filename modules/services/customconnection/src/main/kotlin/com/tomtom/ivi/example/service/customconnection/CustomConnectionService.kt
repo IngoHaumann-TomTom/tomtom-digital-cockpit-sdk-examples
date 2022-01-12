@@ -41,7 +41,7 @@ import com.tomtom.kotlin.traceevents.Tracer
  * A custom connection service for communication (outgoing and incoming calls). This service
  * behaves like a standard [ConnectionService].
  */
-class CustomConnectionService : ConnectionService(), LifecycleOwner {
+internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
     /**
      * Needed dispatcher as it is not possible to inherit from [LifecycleService] directly.
      */
@@ -190,7 +190,7 @@ class CustomConnectionService : ConnectionService(), LifecycleOwner {
     ) : Connection() {
 
         protected var activated = false
-        val id = ++connectionCounter
+        private val id = ++connectionCounter
 
         init {
             setAddress(request?.address, TelecomManager.PRESENTATION_ALLOWED)
@@ -282,7 +282,6 @@ class CustomConnectionService : ConnectionService(), LifecycleOwner {
 
     companion object {
         private var connectionCounter = 0L
-        private const val UNKNOWN_PHONE_NUMBER = "Unknown"
         private val tracer = Tracer.Factory.create<CustomConnectionServiceEvents>(this)
         private val connectionTracer = Tracer.Factory.create<CustomConnectionEvents>(this)
 

@@ -11,6 +11,7 @@
 
 package com.tomtom.ivi.example.service.customcontacts
 
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.AnyIviServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
 
@@ -19,7 +20,9 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHost
  */
 class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+    override fun createIviServices(
+        iviServiceHostContext: IviServiceHostContext
+    ): Collection<AnyIviServiceBase> =
         listOf(CustomContactsService(iviServiceHostContext))
 
     companion object

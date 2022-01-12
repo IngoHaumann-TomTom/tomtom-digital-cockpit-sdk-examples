@@ -189,7 +189,7 @@ import com.tomtom.ivi.example.serviceapi.account.AccountId
 import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServerContext
 
-class StockAccountService(iviServerContext: IviServerContext) :
+internal class StockAccountService(iviServerContext: IviServerContext) :
     AccountServiceBase(iviServerContext) {
 
     override fun onCreate() {
@@ -281,6 +281,7 @@ Create `src/main/kotlin/com/tomtom/ivi/example/service/account/AccountServiceHos
 ```kotlin
 package com.tomtom.ivi.example.service.account
 
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.AnyIviServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 // The simple implementation of a service host builder.
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
@@ -288,7 +289,9 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHost
 // `ServiceHostBuilder` suffix is mandatory.
 class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+    override fun createIviServices(
+        iviServiceHostContext: IviServiceHostContext
+    ): Collection<AnyIviServiceBase> =
         // Return the service interface implementation to run in the host.
         listOf(StockAccountService(iviServiceHostContext))
 
@@ -390,7 +393,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendV
 import com.tomtom.tools.android.api.livedata.allTrue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 
-class AccountLoginViewModel(panel: AccountLoginPanel) :
+internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
     // Create an instance of service's client API.
@@ -451,7 +454,8 @@ import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import java.util.Locale
 
-class AccountInfoViewModel(panel: AccountInfoPanel) : FrontendViewModel<AccountInfoPanel>(panel) {
+internal class AccountInfoViewModel(panel: AccountInfoPanel) :
+    FrontendViewModel<AccountInfoPanel>(panel) {
 
     private val accountServiceApi =
         AccountService.createApi(this, frontendContext.iviServiceProvider)

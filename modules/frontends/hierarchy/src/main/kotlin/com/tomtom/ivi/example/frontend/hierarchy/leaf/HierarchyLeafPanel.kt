@@ -24,7 +24,7 @@ import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolv
 /**
  * Displays a [node] that is at the leaf of the tree, meaning it has no children.
  */
-class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node) :
+internal class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node) :
     TaskPanel(frontendContext) {
 
     @OptIn(IviExperimental::class)

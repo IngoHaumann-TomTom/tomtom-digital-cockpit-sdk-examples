@@ -11,12 +11,16 @@
 
 package com.tomtom.ivi.example.service.accountsettings
 
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.AnyIviServiceBase
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
 
 class AccountSettingsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
-    override fun createIviServices(iviServiceHostContext: IviServiceHostContext) =
+    override fun createIviServices(
+        iviServiceHostContext: IviServiceHostContext
+    ): Collection<AnyIviServiceBase> =
         listOf(StockAccountSettingsService(iviServiceHostContext))
 
     companion object

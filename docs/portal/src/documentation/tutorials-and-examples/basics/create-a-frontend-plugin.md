@@ -33,7 +33,7 @@ Create a new frontend by deriving the `Frontend` framework class.
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
-class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
+internal class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
     // ...
 }
 ```
@@ -62,11 +62,13 @@ Add an `AccountFrontendBuilder` class, derived from [`FrontendBuilder`](TTIVI_IN
 Override the `build()` method in the class and return a new instance of the `AccountFrontend` class.
 
 ```kotlin
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class AccountFrontendBuilder: FrontendBuilder() {
 
-    override fun build(frontendContext: FrontendContext) =
+    override fun build(frontendContext: FrontendContext): Frontend =
         AccountFrontend(frontendContext)
 }
 ```
@@ -91,7 +93,7 @@ Derive from the [`TaskPanel`](TTIVI_INDIGO_API) class, and override the
 [`IviFragment`](TTIVI_INDIGO_API) class (described further down).
 
 ```kotlin
-class AccountLoginPanel(frontendContext: FrontendContext) :
+internal class AccountLoginPanel(frontendContext: FrontendContext) :
     TaskPanel(frontendContext) {
 
     override fun createInitialFragmentInitializer() =
@@ -104,7 +106,7 @@ The `ViewModel` is the ViewModel in the Model-View-ViewModel (MVVM) pattern, who
 expose streams of data relevant to the view and streams of events to the model.
 
 ```kotlin
-class AccountLoginViewModel(panel: AccountLoginPanel) :
+internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
     val username = MutableLiveData("")
@@ -125,7 +127,7 @@ fragment. If an `onCreateView` custom implementation still is preferred, the `vi
 can be left as null instead.
 
 ```kotlin
-class AccountLoginFragment :
+internal class AccountLoginFragment :
     IviFragment<AccountLoginPanel, AccountLoginViewModel>(AccountLoginViewModel::class) {
 
     override val viewFactory = ViewFactory(TtiviAccountLoginFragmentBinding::inflate)

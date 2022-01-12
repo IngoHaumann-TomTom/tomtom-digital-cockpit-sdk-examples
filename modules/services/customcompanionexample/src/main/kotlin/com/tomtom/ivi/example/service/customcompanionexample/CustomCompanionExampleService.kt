@@ -22,13 +22,12 @@ import com.tomtom.ivi.sdk.communications.exampleservice.ExampleId
 import com.tomtom.ivi.sdk.communications.exampleservice.ExampleMessageRequest
 import com.tomtom.ivi.sdk.communications.exampleservice.ExampleService
 import com.tomtom.ivi.sdk.communications.serviceframework.CommunicationsServiceBase
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  * A custom companion service that illustrates how to proxy the communications sdk ExampleService
  * over an Ivi service.
  */
-class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext) :
+internal class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext) :
     CompanionExampleServiceBase(iviServiceHostContext) {
 
     /**
@@ -54,10 +53,10 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
          * Each service provided by a companion app has a unique service provider ID.
          */
         override fun onServiceConnected(
-            serviceProviderUuid: ServiceProviderId,
+            serviceProviderId: ServiceProviderId,
             client: CommunicationsServiceBase
         ) {
-            companionAppProxies[serviceProviderUuid] = client as ExampleService
+            companionAppProxies[serviceProviderId] = client as ExampleService
             client.testLiveDataProperty.observe(this@CustomCompanionExampleService) {
                 testProperty = it?.stuff ?: ""
             }
@@ -70,8 +69,8 @@ class CustomCompanionExampleService(iviServiceHostContext: IviServiceHostContext
         /**
          * This is called when a connection is lost to a previously connected service.
          */
-        override fun onServiceDisconnected(serviceProviderUuid: ServiceProviderId) {
-            companionAppProxies.remove(serviceProviderUuid)
+        override fun onServiceDisconnected(serviceProviderId: ServiceProviderId) {
+            companionAppProxies.remove(serviceProviderId)
         }
     }
 

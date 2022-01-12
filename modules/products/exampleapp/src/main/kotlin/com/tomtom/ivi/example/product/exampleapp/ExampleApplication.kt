@@ -15,7 +15,7 @@ import com.tomtom.ivi.platform.framework.api.product.defaultapplication.DefaultA
 import com.tomtom.ivi.platform.navkit2.api.common.configuration.Navkit2ApiKeyStaticConfigurationProvider
 
 @Suppress("unused")
-class ExampleApplication : DefaultApplication() {
+internal class ExampleApplication : DefaultApplication() {
 
     /**
      * The following [createStaticConfigurationProviders] implementation serves as an example for

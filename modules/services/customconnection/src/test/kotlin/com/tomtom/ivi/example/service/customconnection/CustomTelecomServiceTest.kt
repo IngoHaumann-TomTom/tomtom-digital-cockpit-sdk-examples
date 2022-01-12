@@ -26,7 +26,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-class CustomConnectionServiceTest : IviTestCase() {
+internal class CustomConnectionServiceTest : IviTestCase() {
 
     private val sut by lazy { CustomConnectionService() }
 

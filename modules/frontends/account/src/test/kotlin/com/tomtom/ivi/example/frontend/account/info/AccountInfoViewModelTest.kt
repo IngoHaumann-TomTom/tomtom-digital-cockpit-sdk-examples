@@ -22,7 +22,7 @@ import io.mockk.verify
 import kotlin.test.assertEquals
 import org.junit.Test
 
-class AccountInfoViewModelTest : IviTestCase() {
+internal class AccountInfoViewModelTest : IviTestCase() {
     // Service mock must be configured before a view model is created.
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns MutableLiveData(true)

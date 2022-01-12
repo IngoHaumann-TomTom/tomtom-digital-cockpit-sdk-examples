@@ -99,7 +99,7 @@ In order to create a recent calls service implementation you need to create a cl
 inherits from the `RecentCallsServiceBase` base class.
 
 ```kotlin
-class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
+internal class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
     RecentCallsServiceBase(iviServiceHostContext) {
 }
 ```

@@ -32,7 +32,7 @@ import java.io.InputStreamReader
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class CustomConnectionTest : TtFunctionalTestCase() {
+internal class CustomConnectionTest : TtFunctionalTestCase() {
 
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
 

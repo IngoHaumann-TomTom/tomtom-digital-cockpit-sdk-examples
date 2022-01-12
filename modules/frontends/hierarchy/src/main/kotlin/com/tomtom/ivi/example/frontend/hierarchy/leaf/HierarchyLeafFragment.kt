@@ -14,7 +14,7 @@ package com.tomtom.ivi.example.frontend.hierarchy.leaf
 import com.tomtom.ivi.example.frontend.hierarchy.databinding.TtiviHierarchyLeaffragmentBinding
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
-class HierarchyLeafFragment :
+internal class HierarchyLeafFragment :
     IviFragment<HierarchyLeafPanel, HierarchyLeafViewModel>(HierarchyLeafViewModel::class) {
 
     override val viewFactory = ViewFactory(TtiviHierarchyLeaffragmentBinding::inflate)

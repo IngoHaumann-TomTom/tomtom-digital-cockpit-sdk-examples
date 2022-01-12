@@ -32,7 +32,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-class AccountFrontendTest : FrontendTestCase() {
+internal class AccountFrontendTest : FrontendTestCase() {
     // An API wrapper cannot be created before test environment is fully configured, hence create
     // it later with @Before method.
     private lateinit var accountServiceApi: AccountServiceApi

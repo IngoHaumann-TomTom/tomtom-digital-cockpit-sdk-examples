@@ -24,7 +24,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import org.junit.Test
 
-class AccountLoginViewModelTest : IviTestCase() {
+internal class AccountLoginViewModelTest : IviTestCase() {
 
     // Service mock must be configured before a view model is created.
     private val mutableServiceAvailable = MutableLiveData(true)

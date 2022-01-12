@@ -23,7 +23,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
 
-class CustomContactsServiceTest : IviTestCase() {
+internal class CustomContactsServiceTest : IviTestCase() {
 
     private val sut = CustomContactsService(niceMockk())
 

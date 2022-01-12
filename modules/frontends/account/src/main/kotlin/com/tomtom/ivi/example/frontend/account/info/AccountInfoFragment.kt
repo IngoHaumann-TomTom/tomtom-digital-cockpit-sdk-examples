@@ -14,7 +14,7 @@ package com.tomtom.ivi.example.frontend.account.info
 import com.tomtom.ivi.example.frontend.account.databinding.TtiviAccountInfoFragmentBinding
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
-class AccountInfoFragment :
+internal class AccountInfoFragment :
     IviFragment<AccountInfoPanel, AccountInfoViewModel>(AccountInfoViewModel::class) {
 
     override val viewFactory = ViewFactory(TtiviAccountInfoFragmentBinding::inflate)

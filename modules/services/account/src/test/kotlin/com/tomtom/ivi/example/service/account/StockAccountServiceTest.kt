@@ -27,7 +27,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class StockAccountServiceTest : IviTestCase() {
+internal class StockAccountServiceTest : IviTestCase() {
 
     private val sut = run {
         // An account settings service mock must be configured before the account service is

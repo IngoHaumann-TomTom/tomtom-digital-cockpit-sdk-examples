@@ -11,11 +11,12 @@
 
 package com.tomtom.ivi.example.frontend.account
 
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class AccountFrontendBuilder : FrontendBuilder() {
 
-    override fun build(frontendContext: FrontendContext) =
+    override fun build(frontendContext: FrontendContext): Frontend =
         AccountFrontend(frontendContext)
 }

@@ -23,7 +23,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendV
  * The [panel] variable allows access to [TabbedDebugPanel.panelManager], which contains
  * facilities to open and close arbitrary [Panel]s.
  */
-class ActivityViewDebugViewModel(panel: TabbedDebugPanel) :
+internal class ActivityViewDebugViewModel(panel: TabbedDebugPanel) :
     FrontendViewModel<TabbedDebugPanel>(panel) {
 
     val isButtonEnabled = panel.panelManager.frontendPanels.map { panels ->

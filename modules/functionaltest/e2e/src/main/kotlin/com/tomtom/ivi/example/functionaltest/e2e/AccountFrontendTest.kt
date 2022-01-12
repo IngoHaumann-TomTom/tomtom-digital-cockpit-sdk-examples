@@ -21,7 +21,7 @@ import com.tomtom.tools.android.testing.functional.withIdReference
 import org.junit.Ignore
 import org.junit.Test
 
-class AccountFrontendTest : E2ETestCase() {
+internal class AccountFrontendTest : E2ETestCase() {
     @Test
     fun openAccountFrontendFromMainMenu() {
         onMainMenuView(MainMenuButton("Account"))

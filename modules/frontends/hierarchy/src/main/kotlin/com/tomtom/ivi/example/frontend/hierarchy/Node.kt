@@ -13,7 +13,7 @@ package com.tomtom.ivi.example.frontend.hierarchy
 
 import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringResolver
 
-data class Node(val name: String, val children: List<Node> = emptyList()) {
+internal data class Node(val name: String, val children: List<Node> = emptyList()) {
 
     val buttonStringResolver =
         ResourceStringResolver(R.string.ttivi_hierarchy_buttontext, name)

@@ -24,7 +24,7 @@ import java.time.Instant
 /**
  * A custom recent calls service that contains two recent calls.
  */
-class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
+internal class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
     RecentCallsServiceBase(iviServiceHostContext) {
 
     // The source of recent calls.

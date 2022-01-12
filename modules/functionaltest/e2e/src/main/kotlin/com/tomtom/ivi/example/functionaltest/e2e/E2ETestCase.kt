@@ -33,7 +33,7 @@ import org.junit.rules.RuleChain
  * A base class for E2E tests of the example product that provides common functionality,
  * such as accessing frequently used containers or opening the debug panel.
  */
-abstract class E2ETestCase :
+internal abstract class E2ETestCase :
     IviActivityTestCase(IviIntent("com.tomtom.ivi.example.product.exampleapp.MAIN")),
     IviE2eTestCase {
 

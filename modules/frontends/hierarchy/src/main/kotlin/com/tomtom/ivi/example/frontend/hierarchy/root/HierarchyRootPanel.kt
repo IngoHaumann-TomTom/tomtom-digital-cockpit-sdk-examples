@@ -27,12 +27,12 @@ import com.tomtom.tools.android.api.resourceresolution.drawable.ResourceDrawable
 import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringResolver
 
 @OptIn(IviExperimental::class)
-typealias AddPanel = (panel: AnyPanel) -> Unit
+internal typealias AddPanel = (panel: AnyPanel) -> Unit
 
 /**
  * The panel at the root of the hierarchy.
  */
-class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel) :
+internal class HierarchyRootPanel(frontendContext: FrontendContext, private val addPanel: AddPanel) :
     TaskPanel(frontendContext) {
 
     @OptIn(IviExperimental::class)

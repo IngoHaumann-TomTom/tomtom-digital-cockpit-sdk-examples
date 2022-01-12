@@ -32,7 +32,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.junit.Test
 
-class StockAccountSettingsServiceTest : IviTestCase() {
+internal class StockAccountSettingsServiceTest : IviTestCase() {
     private val mockSettingsManagementService =
         mockkService(SettingsManagementService.Companion::createApi) {
             every { serviceAvailable } returns MutableLiveData(true)

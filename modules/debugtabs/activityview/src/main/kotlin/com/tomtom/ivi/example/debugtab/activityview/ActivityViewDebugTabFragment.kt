@@ -21,7 +21,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
  *
  * [DebugTabFragment]s are shown by the [TabbedDebugPanel] in the development debug panel.
  */
-class ActivityViewDebugTabFragment :
+internal class ActivityViewDebugTabFragment :
     DebugTabFragment<ActivityViewDebugViewModel>(ActivityViewDebugViewModel::class) {
 
     override val viewFactory = ViewFactory(TtiviActivityviewDebugtabFragmentBinding::inflate)

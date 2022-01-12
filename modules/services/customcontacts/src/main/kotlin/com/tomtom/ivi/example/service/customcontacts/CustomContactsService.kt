@@ -28,7 +28,7 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMir
  * A custom contacts service that contains two contacts. Only the contact with the id `1` has an
  * image.
  */
-class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
+internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     ContactsServiceBase(iviServiceHostContext) {
 
     // A mutable list of contacts that can be updated with the contactsSource changes.

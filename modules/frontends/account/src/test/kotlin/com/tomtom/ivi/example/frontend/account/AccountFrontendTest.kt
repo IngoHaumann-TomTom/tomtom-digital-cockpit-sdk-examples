@@ -25,7 +25,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import org.junit.Test
 
-class AccountFrontendTest : IviTestCase() {
+internal class AccountFrontendTest : IviTestCase() {
     private val mutableAccount = MutableLiveData<Account?>(null).also {
         // Service mock must be configured before a frontend is created.
         mockkService(AccountService.Companion::createApi) {

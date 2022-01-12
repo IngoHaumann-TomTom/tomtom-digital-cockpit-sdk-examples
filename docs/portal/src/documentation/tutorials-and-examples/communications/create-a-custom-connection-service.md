@@ -115,7 +115,7 @@ and `onCreateIncomingConnectionFailed`. It should also implement `getLifecycle` 
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService).
 
 ```kotlin
-class CustomConnectionService : ConnectionService(), LifecycleOwner {
+internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
     //...
 
     override fun onCreateOutgoingConnection(

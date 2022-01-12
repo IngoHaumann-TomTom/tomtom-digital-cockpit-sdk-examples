@@ -20,7 +20,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendV
 import com.tomtom.tools.android.api.livedata.allTrue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 
-class AccountLoginViewModel(panel: AccountLoginPanel) :
+internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
     private val accountServiceApi =

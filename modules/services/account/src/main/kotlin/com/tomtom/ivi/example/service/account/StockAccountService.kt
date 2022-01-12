@@ -27,7 +27,7 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 
-class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
+internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
 
     private val onlineAccountEndpoint =

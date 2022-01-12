@@ -16,11 +16,12 @@ import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 
-class AccountInfoViewModel(panel: AccountInfoPanel) :
+internal class AccountInfoViewModel(panel: AccountInfoPanel) :
     FrontendViewModel<AccountInfoPanel>(panel) {
 
     private val accountServiceApi =
         AccountService.createApi(this, frontendContext.iviServiceProvider)
+
 
     val displayName = accountServiceApi.activeAccount.map {
         it?.username?.replaceFirstChar(Char::uppercaseChar)

@@ -15,6 +15,9 @@ import android.os.Parcelable
 import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 import kotlinx.parcelize.Parcelize
 
+/**
+ * Contains all data of a user account.
+ */
 @Parcelize
 data class Account(
     /**

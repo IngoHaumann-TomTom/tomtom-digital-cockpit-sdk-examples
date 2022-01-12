@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class AccountSerializerTest {
+internal class AccountSerializerTest {
     @Test
     fun `serialize and deserialize an account`() {
         val account = Account("username")
