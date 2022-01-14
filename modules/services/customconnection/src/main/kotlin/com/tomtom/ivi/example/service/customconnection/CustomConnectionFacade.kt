@@ -22,8 +22,8 @@ import android.telecom.DisconnectCause
 import android.telecom.PhoneAccount
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
-import com.tomtom.ivi.core.common.telecom.CallState
-import com.tomtom.ivi.core.common.telecom.toPhoneUri
+import com.tomtom.ivi.platform.telecom.api.common.model.CallState
+import com.tomtom.ivi.platform.telecom.api.common.model.toPhoneUri
 import com.tomtom.kotlin.traceevents.TraceEventListener
 import com.tomtom.kotlin.traceevents.TraceLog
 import com.tomtom.kotlin.traceevents.TraceLogLevel

@@ -52,7 +52,7 @@ in your Gradle file:
 
 ```kotlin
 dependencies {
-    implementation("com.tomtom.ivi.platform:core_serviceapis_telecom:1.0.1886")
+    implementation("com.tomtom.ivi.platform:platform_telecom_api_service_telecom")
     implementation("androidx.lifecycle:lifecycle-service:2.3.1")
 }
 ```
