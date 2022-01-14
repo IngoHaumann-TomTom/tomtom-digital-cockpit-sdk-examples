@@ -15,9 +15,9 @@ These customization capabilities are currently offered:
 - Select which app name and icon are displayed to the user in different contexts.
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
-  See the
-  [`MediaItemComparisonPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1911054816%2FClasslikes%2F497736962)
-  documentation for more information.
+  See the documentation of type `MediaItemComparisonPolicy` in package
+  [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)
+  for more information.
 
 These customizations are possible through the use of policies, which are applied based on the
 media source that is currently being browsed. After creating a new policy with any number of
@@ -60,10 +60,9 @@ The wish in this example is to invert the `title` and the `subtitle` so that the
 is displayed more prominently, and the radio station's name is shown in a less prominent way.
 
 The first step to achieve this result is to create a new module made to contain all code related to
-`ExampleInternetRadio`.
-In this new module, a new
-[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1540310200%2FClasslikes%2F497736962)
-should be created:
+`ExampleInternetRadio`. In this new module, a new `MediaItemDataExtractionPolicy` object (see
+package [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)), should be
+created:
 
 ```kotlin
 package com.example.exampleinternetradio
@@ -86,15 +85,13 @@ class ExampleInternetRadioMediaItemDataExtractionPolicy : MediaItemDataExtractio
 }
 ```
 
-A
-[`MediaItemDataExtractionPolicy`](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/appsuite_media_api_common_frontend/com.tomtom.ivi.appsuite.media.api.common.frontend.policies/index.html#1540310200%2FClasslikes%2F497736962)
-customizes how the user interface will display media item data, and can be as
-complex as necessary: it might be useful to examine whether an item is playable or browsable (or
-both) before making a decision on how to fill the [`MediaItemData`](TTIVI_INDIGO_API)
-fields; or maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find
-out what type of content is being played. It all depends on how the media source presents its
-information. Also note that this data might change over time, posing integration issues when new
-versions are released potentially with changes in media item data provisioning.
+A `MediaItemDataExtractionPolicy` customizes how the user interface will display media item data,
+and can be as complex as necessary: it might be useful to examine whether an item is playable or
+browsable (or both) before making a decision on how to fill the [`MediaItemData`](TTIVI_INDIGO_API)
+fields; or maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type
+of content is being played. It all depends on how the media source presents its information. Also
+note that this data might change over time, posing integration issues when new versions are released
+potentially with changes in media item data provisioning.
 
 The new `ExampleInternetRadioMediaItemDataExtractionPolicy` data extraction policy class needs to be
 specified in a [`PolicyProvider`](TTIVI_INDIGO_API), which will only be used  when browsing

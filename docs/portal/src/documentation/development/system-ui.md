@@ -6,13 +6,13 @@ Like everything in TomTom IndiGO, its UI also consists of plugins:
 [_frontend_ plugins](/tomtom-indigo/documentation/development/frontend-plugins). They expose _panels_ which
 contain a visual user interface for the functionality within the frontend's domain. These panels can
 be seen as pieces of the complete user interface. To enable a high degree of flexibility within the
-TomTom IndiGO framework, there is no direct coupling between different frontends or their panels, 
+TomTom IndiGO framework, there is no direct coupling between different frontends or their panels,
 allowing plugins to be independently added, removed or replaced.
 
-Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a 
-cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the 
-container to place the panels in. In common usage, each `Activity` uses a single system UI instance 
-in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_INDIGO_API) that does just that. 
+Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a
+cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the
+container to place the panels in. In common usage, each `Activity` uses a single system UI instance
+in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_INDIGO_API) that does just that.
 Different system UIs can be used per display, hosted in multiple or a single `Activity`.
 
 ## The Model-View-ViewModel pattern (MVVM) used in the system UI
@@ -96,18 +96,20 @@ It is important however, that the system UI and the frontends integrate neatly. 
 TomTom IndiGO framework provides a set of contracts in the form of interfaces and classes, that
 allow a basic level of interaction between the system UI and frontends.
 
-The majority of these contracts are defined in 
-[`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API). Apart from the core classes 
-[`Frontend`](TTIVI_INDIGO_API) and [`Panel`](TTIVI_INDIGO_API), the various predefined extensions 
-of [`Panel`](TTIVI_INDIGO_API) allow the system UI to recognize how to present that type of panel. 
-For example, by having a frontend panel extend [`NotificationPanel`](TTIVI_INDIGO_API), the system 
-UI knows to treat that panel as a notification, and can judge whether or not to show it based on 
-the priority specified in the [`NotificationPanel`](TTIVI_INDIGO_API) properties.
+The majority of these contracts are defined in
+[`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API). Apart from the core classes
+[`Frontend`](TTIVI_INDIGO_API) and `Panel`
+(see package [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API)),
+the various predefined extensions of `Panel` allow the system UI to recognize how to present that
+type of panel. For example, by having a frontend panel extend
+[`NotificationPanel`](TTIVI_INDIGO_API), the system UI knows to treat that panel as a notification,
+and can judge whether or not to show it based on the priority specified in the
+[`NotificationPanel`](TTIVI_INDIGO_API) properties.
 
 In addition to the system UI getting information from frontends and panels, the contract also
 contains methods that allow the system UI to pass information back. For example, when a panel is
-attached to the system UI, `Panel.onAttached` will be called with a 
-[`PanelContext`](TTIVI_INDIGO_API) parameter, that allows the panel to use a limited set of 
+attached to the system UI, `Panel.onAttached` will be called with a
+[`PanelContext`](TTIVI_INDIGO_API) parameter, that allows the panel to use a limited set of
 information from the system UI for its contents.
 
 ## Frontends
@@ -150,7 +152,7 @@ phone calls will be shown instead of the one for media.
 
 #### Task panels
 
-Tapping on a menu item in TomTom IndiGO's main menu commonly leads to a panel sliding open. This 
+Tapping on a menu item in TomTom IndiGO's main menu commonly leads to a panel sliding open. This
 panel is called a _task panel_, and it can be created by adding a panel that extends
 [`TaskPanel`](TTIVI_INDIGO_API) to the frontend's panels. It allows the user to perform a certain
 task, after which the panel typically is closed again. Task panels can be thought of as an "app"
@@ -173,9 +175,11 @@ stack. This allows the task panel itself to remain decoupled from all other task
 not need to know about the content of the stack. The metadata in the task panel interface, such as
 the label, can be used to provide the information shown in the navigation bar.
 
-Task panels derive from [`DismissablePanel`](TTIVI_INDIGO_API) and may be dismissed by the user
-through system UI functionality, like swiping it away. Such an action can trigger the system UI to
-dismiss the whole task panel stack, rather than just a single one.
+Task panels derive from class `DismissablePanel` in package
+[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
+and may be dismissed by the user through system UI functionality, like swiping it away. Such an
+action can trigger the system UI to dismiss the whole task panel stack, rather than just a single
+one.
 
 #### Task process bar panel
 
@@ -183,14 +187,14 @@ A task process bar panel allows a frontend to visualize an ongoing processe in a
 panels. Unlike the process bar, a task process bar panel is part of the task panel and as such does
 not overlap the task panel itself.
 
-TomTom IndiGO's system UI may hide the process bar when a task panel is opened. However, if the 
-process is relevant to that task panel, it likely wants to continue presenting that process to the 
-user, for example, to show a mini player for the currently playing music. In these cases, the 
-frontend can add a panel extending [`TaskProcessBarPanel`](TTIVI_INDIGO_API), which the system UI 
-will show next to the task panel itself within the task panel's container. The task process bar 
-panel will persist for the whole task panel stack. When task panels get added and removed from the 
-stack, the same task process bar panel will continue to be visible. A frontend's task process bar 
-panel will only be shown if it also has an active task panel, and will not be shown for task panels 
+TomTom IndiGO's system UI may hide the process bar when a task panel is opened. However, if the
+process is relevant to that task panel, it likely wants to continue presenting that process to the
+user, for example, to show a mini player for the currently playing music. In these cases, the
+frontend can add a panel extending [`TaskProcessBarPanel`](TTIVI_INDIGO_API), which the system UI
+will show next to the task panel itself within the task panel's container. The task process bar
+panel will persist for the whole task panel stack. When task panels get added and removed from the
+stack, the same task process bar panel will continue to be visible. A frontend's task process bar
+panel will only be shown if it also has an active task panel, and will not be shown for task panels
 of other frontends.
 
 #### Notification panels
@@ -201,8 +205,9 @@ such as the priority can be passed to the system UI. The system UI uses this met
 when and how to show the notification. For example, it may choose to suppress a low priority
 notification while a higher priority notification is active to avoid distracting the driver.
 
-Notification panels derive from [`DismissablePanel`](TTIVI_INDIGO_API) and may be dismissed by the
-user through system UI functionality, like swiping it away.
+Notification panels derive from class `DismissablePanel` in package
+[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
+and may be dismissed by the user through system UI functionality, like swiping it away.
 
 #### Modal panels
 
@@ -238,18 +243,20 @@ stack. This allows the modal panel itself to remain decoupled from other modal p
 have to know about the stack's contents. The metadata in the modal panel interface, such as the
 label, can be used to provide the information shown in the navigation bar.
 
-Modal panels derive from [`DismissablePanel`](TTIVI_INDIGO_API) and may be dismissed by the user
-through system UI functionality, like clicking a close button. Such an action can trigger the system
-UI to dismiss the whole modal panels stack, rather than just a single one.
+Modal panels derive from class `DismissablePanel` in package
+[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
+and may be dismissed by the user through system UI functionality, like clicking a close button. Such
+an action can trigger the system UI to dismiss the whole modal panels stack, rather than just a
+single one.
 
 #### Control center panels
 
-TomTom IndiGO's control center is an isolated area of the system UI that provides persistent 
-indicators and controls, that are accessible to the user at all times. For example, a clock or 
-temperature controls. It is populated with various panels extending 
-[`ControlCenterPanel`](TTIVI_INDIGO_API). The metadata set in the panel's interface lets the 
-system UI determine where to show the panel. For example, a panel with its `type` property set 
-to `SYSTEM_STATUS_DRIVER` will be shown somewhere easily accessible by the driver and may be 
+TomTom IndiGO's control center is an isolated area of the system UI that provides persistent
+indicators and controls, that are accessible to the user at all times. For example, a clock or
+temperature controls. It is populated with various panels extending
+[`ControlCenterPanel`](TTIVI_INDIGO_API). The metadata set in the panel's interface lets the
+system UI determine where to show the panel. For example, a panel with its `type` property set
+to `SYSTEM_STATUS_DRIVER` will be shown somewhere easily accessible by the driver and may be
 positioned differently depending on the location of the steering wheel.
 
 #### Search panel
@@ -265,7 +272,7 @@ songs within a media frontend.
 #### Guidance panel
 
 The guidance panel displays guidance information for the active trip. A frontend can provide that
-guidance information by adding a panel that extends [`GuidancePanel`](TTIVI_INDIGO_API) to its 
+guidance information by adding a panel that extends [`GuidancePanel`](TTIVI_INDIGO_API) to its
 panels.
 
 #### Overlay panels
@@ -279,8 +286,8 @@ instructions.
 ## Panel templates
 
 Some panels in various plugins have a very similar layout. For example, most notifications have an
-icon, text and buttons arranged in the same way. These panel-specific layouts are offered by 
-TomTom IndiGO in the shape of _templates_ that request a view model and put the information that 
+icon, text and buttons arranged in the same way. These panel-specific layouts are offered by
+TomTom IndiGO in the shape of _templates_ that request a view model and put the information that
 it contains in the right place.
 
 These templates are implemented in the form of a base fragment class. In order to use a template,

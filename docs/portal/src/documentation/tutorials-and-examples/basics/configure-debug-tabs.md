@@ -64,4 +64,3 @@ Similarly to adding debug tabs, the same sort of `ivi` configuration must be use
 However, the `debugFrontend` configuration must be changed by adding the `extensions` parameter,
 which takes a list of debug tab
 [`DebugTabFrontendExtension`](TTIVI_INDIGO_API)s.
-
