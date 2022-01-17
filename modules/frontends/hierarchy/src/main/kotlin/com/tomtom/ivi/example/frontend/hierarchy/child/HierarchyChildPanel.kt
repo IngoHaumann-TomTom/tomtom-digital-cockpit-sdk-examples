@@ -16,7 +16,6 @@ import androidx.lifecycle.map
 import com.tomtom.ivi.example.frontend.hierarchy.Node
 import com.tomtom.ivi.example.frontend.hierarchy.leaf.HierarchyLeafPanel
 import com.tomtom.ivi.example.frontend.hierarchy.root.AddPanel
-import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelDescriptor
@@ -32,7 +31,6 @@ internal class HierarchyChildPanel(
     private val addPanel: AddPanel
 ) : TaskPanel(frontendContext) {
 
-    @OptIn(IviExperimental::class)
     override val descriptor: LiveData<PanelDescriptor>
         get() = super.descriptor.map { it.copy(label = StaticStringResolver(node.name)) }
 

@@ -14,7 +14,6 @@ package com.tomtom.ivi.example.frontend.hierarchy.leaf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.tomtom.ivi.example.frontend.hierarchy.Node
-import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelDescriptor
@@ -27,7 +26,6 @@ import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolv
 internal class HierarchyLeafPanel(frontendContext: FrontendContext, val node: Node) :
     TaskPanel(frontendContext) {
 
-    @OptIn(IviExperimental::class)
     override val descriptor: LiveData<PanelDescriptor>
         get() = super.descriptor.map { it.copy(label = StaticStringResolver(node.name)) }
 

@@ -164,16 +164,24 @@ shown.
 
 A header with a consistent look and feel across other task panels can be added by placing the
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) control in the panel's layout. This is typically placed
-in the top-left of the panel, but may be placed anywhere. Task panels can set a number of attributes
-related to presentation on the navigation bar, but they do not have to specify its contents. The
-system UI is aware that task panels may contain navigation bars and will populate them using the
-information from the task panel stack.
+in the top-left of the panel, but may be placed anywhere.
 
+System UI provides task panels with data to populate the navigation bar. System UI calls the task
+panels's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_INDIGO_API) data. When a
+task panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) interface,
+a fully populated [`NavigationBarViewModel`](TTIVI_INDIGO_API) is available in the task panel's view
+model in [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` based on this data.
+When your task panel's view model extends from [`FrontendViewModel`](TTIVI_INDIGO_API), implementing
+[`NavigatablePanelViewModel`](TTIVI_INDIGO_API) is as easy as inheriting from it; no implementation
+is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the task panel's
+layout by assigning [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` to 
+[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
+
+Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
 For example, the system UI may hide the back button in the navigation bar if there's only one task
 panel in the stack. It may also fill in the breadcrumbs for quick access to other task panels in the
-stack. This allows the task panel itself to remain decoupled from all other task panels, and it does
-not need to know about the content of the stack. The metadata in the task panel interface, such as
-the label, can be used to provide the information shown in the navigation bar.
+stack. The metadata in the task panel interface, such as the label, can be used to provide the
+information shown in the navigation bar.
 
 Task panels derive from class `DismissablePanel` in package
 [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
@@ -230,18 +238,27 @@ Modal panels can be stacked to create a user flow through various screens. The t
 will be shown to the user. When that panel is dismissed, the next modal panel on the stack will be
 shown.
 
-A header with a consistent look and feel across other modal panels can be added by placing a
-[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) in the panel's layout. This is typically placed in the
-top-left of the panel, but may be placed anywhere. Modal panels can set a number of attributes
-related to presentation on the navigation bar, but do not have to specify its contents. The system
-UI is aware that modal panels may contain navigation bars and will populate them using the
-information from the modal panel stack.
+A header with a consistent look and feel across other modal panels can be added by placing the
+[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) control in the panel's layout. This is typically placed
+in the top-left of the panel, but may be placed anywhere.
 
+System UI provides modal panels with data to populate the navigation bar. System UI calls the modal
+panels's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_INDIGO_API) data. When a
+modal panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) interface,
+a fully populated [`NavigationBarViewModel`](TTIVI_INDIGO_API) is available in the modal panel's
+view model in [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` based on this
+data. When your modal panel's view model extends from [`FrontendViewModel`](TTIVI_INDIGO_API),
+implementing [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) is as easy as inheriting from
+it; no implementation is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated
+in the modal panel's layout by assigning
+[`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` to
+[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
+
+Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
 For example, the system UI may hide the back button in the navigation bar if there's only one modal
-panel in the stack. Or it may fill in breadcrumbs for quick access to other modal panels in the
-stack. This allows the modal panel itself to remain decoupled from other modal panels, and does not
-have to know about the stack's contents. The metadata in the modal panel interface, such as the
-label, can be used to provide the information shown in the navigation bar.
+panel in the stack. It may also fill in the breadcrumbs for quick access to other modal panels in
+the stack. The metadata in the modal panel interface, such as the label, can be used to provide the
+information shown in the navigation bar.
 
 Modal panels derive from class `DismissablePanel` in package
 [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
