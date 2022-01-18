@@ -14,6 +14,27 @@ rootProject.name = "IVI_Example"
 apply(from = "build-logic/repositories.gradle.kts")
 apply(from = "build-logic/libraries.versioncatalog.gradle.kts")
 
+val isCiBuild = System.getenv("BUILD_BUILDNUMBER") != null
+
+// We want Gradle to publish task execution analysis to gradle enterprise server.
+// This can further be utilised to improve build and test lifecycle
+// https://docs.gradle.com/enterprise/gradle-plugin
+plugins {
+    id("com.gradle.enterprise") version("3.7.2")
+}
+
+gradleEnterprise {
+    server = "https://gradle-poc.tomtomgroup.com"
+    buildScan {
+        publishAlways()
+        tag(if (isCiBuild) "CI" else "LOCAL")
+        capture {
+            isTaskInputFiles = true
+        }
+        isUploadInBackground = ! isCiBuild
+    }
+}
+
 val modulesDir: File = file("${rootProject.projectDir}/modules/")
 fileTree(modulesDir)
     .matching { include("*/*/build.gradle.kts") }
