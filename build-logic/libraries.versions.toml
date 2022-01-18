@@ -93,7 +93,6 @@ indigoPlatformSystemuiApiTestingTools = { module = "com.tomtom.ivi.platform:plat
 indigoPlatformThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "indigoPlatform" }
 indigoPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "indigoPlatform" }
 indigoPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
-indigoToolsTestingMainMenuFrontend = { module = "com.tomtom.ivi.platform:tools_testing_mainmenufrontend", version.ref = "indigoPlatform" }
 indigoToolsTestingNavigationFunctional = { module = "com.tomtom.ivi.platform:tools_testing_navigationfunctional", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform service APIs.
