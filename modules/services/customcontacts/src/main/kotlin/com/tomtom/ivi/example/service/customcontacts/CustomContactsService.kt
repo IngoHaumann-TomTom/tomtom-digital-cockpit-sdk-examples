@@ -19,7 +19,7 @@ import com.tomtom.ivi.platform.contacts.api.common.model.Contact
 import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
 import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumber
 import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumberType
-import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
+import com.tomtom.ivi.platform.telecom.api.common.model.PhoneBookSynchronizationStatus
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
@@ -76,13 +76,13 @@ internal class CustomContactsService(iviServiceHostContext: IviServiceHostContex
     override fun onCreate() {
         super.onCreate()
         // Initialize the synchronization status.
-        synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
+        phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.NO_CONNECTED_DEVICES
         // Bind the contacts property to an empty mutable map.
         contacts = mutableContacts
         // Set the service to ready. Now clients can call the service's APIs.
         serviceReady = true
         // The source of contacts is ready and synchronization starts.
-        synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
+        phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
         // Updating the contacts property with some contacts from the source
         mutableContacts.putAll(contactsSource.map { it.contactId to it }.toMap())
     }

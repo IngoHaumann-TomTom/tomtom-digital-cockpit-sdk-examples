@@ -17,7 +17,7 @@ import android.telecom.Connection.STATE_DIALING
 import android.telecom.Connection.STATE_RINGING
 import android.telecom.ConnectionRequest
 import android.telecom.PhoneAccountHandle
-import com.tomtom.ivi.platform.telecom.api.common.model.toPhoneUri
+import com.tomtom.ivi.platform.telecom.api.common.utils.toPhoneUri
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import io.mockk.mockkObject
 import io.mockk.verify

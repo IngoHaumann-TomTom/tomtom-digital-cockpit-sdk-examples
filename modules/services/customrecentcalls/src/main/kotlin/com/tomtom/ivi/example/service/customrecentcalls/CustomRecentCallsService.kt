@@ -13,7 +13,7 @@ package com.tomtom.ivi.example.service.customrecentcalls
 
 import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumber
 import com.tomtom.ivi.platform.contacts.api.common.model.PhoneNumberType
-import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
+import com.tomtom.ivi.platform.telecom.api.common.model.PhoneBookSynchronizationStatus
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsService
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsServiceBase
 import com.tomtom.ivi.platform.recentcalls.api.service.recentcalls.RecentCallsService.RecentCall
@@ -48,13 +48,13 @@ internal class CustomRecentCallsService(iviServiceHostContext: IviServiceHostCon
     override fun onCreate() {
         super.onCreate()
         // Initialize the synchronization status.
-        synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
+        phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.NO_CONNECTED_DEVICES
         // Initialize the recentCallsDescending property with an empty list.
         recentCallsDescending = listOf()
         // Set the service to ready. Now clients can call the service's APIs.
         serviceReady = true
         // The source of recent calls is ready and synchronization starts.
-        synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
+        phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
         // Update recentCallsDescending with the list of recent calls from the source.
         // Make sure that the list is in descending chronological order.
         // If a client (typically a view model) requires the list in a different order,

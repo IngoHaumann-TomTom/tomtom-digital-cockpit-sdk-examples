@@ -33,7 +33,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.ServiceLifecycleDispatcher
 import com.tomtom.ivi.platform.telecom.api.common.model.CallState
-import com.tomtom.ivi.platform.telecom.api.common.model.toPhoneUri
+import com.tomtom.ivi.platform.telecom.api.common.utils.toPhoneUri
 import com.tomtom.kotlin.traceevents.TraceEventListener
 import com.tomtom.kotlin.traceevents.Tracer
 

@@ -12,7 +12,7 @@
 package com.tomtom.ivi.example.service.customcontacts
 
 import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
-import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
+import com.tomtom.ivi.platform.telecom.api.common.model.PhoneBookSynchronizationStatus
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import kotlin.test.assertEquals
@@ -38,7 +38,7 @@ internal class CustomContactsServiceTest : IviTestCase() {
         assertEquals(2, sut.contacts.size)
         assertEquals("John Smith", sut.contacts[ContactId("1")]?.displayName)
         assertEquals("Kelly Goodwin", sut.contacts[ContactId("2")]?.displayName)
-        assertEquals(SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.synchronizationStatus)
+        assertEquals(PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.phoneBookSynchronizationStatus)
     }
 
     @ExperimentalCoroutinesApi

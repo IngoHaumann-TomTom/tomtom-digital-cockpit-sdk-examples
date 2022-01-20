@@ -163,21 +163,21 @@ When the service is created:
 override fun onCreate() {
     super.onCreate()
     // Initialize the synchronization status.
-    synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
+    phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.NO_CONNECTED_DEVICES
     // Bind the contacts property to an empty mutable map.
     contacts = mutableContacts
     // Set the service ready and clients can call any Api of the service.
     serviceReady = true
 
     // The source of contacts is ready and synchronization starts.
-    synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
+    phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
     // Updating the contacts property with some contacts from the source
     mutableContacts.putAll(contactsSource.map { it.contactId to it }.toMap())
 }
 ```
 
 The [`ContactsService`](TTIVI_INDIGO_API)`.contacts` and 
-[`ContactsService`](TTIVI_INDIGO_API)`.synchronizationStatus` properties have been initialized.
+[`ContactsService`](TTIVI_INDIGO_API)`.phoneBookSynchronizationStatus` properties have been initialized.
 
 When the service is destroyed:
 

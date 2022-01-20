@@ -144,13 +144,13 @@ When the service is created:
 override fun onCreate() {
     super.onCreate()
     // Initialize the synchronization status.
-    synchronizationStatus = SynchronizationStatus.NO_CONNECTED_DEVICES
+    phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.NO_CONNECTED_DEVICES
     // Initialize the recentCallsDescending property with an empty list.
     recentCallsDescending = emptyList()
     // Set the service ready and clients can call any Api of the service.
     serviceReady = true
     // The source of recent calls is ready and synchronization starts.
-    synchronizationStatus = SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
+    phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
     // Update recentCallsDescending with the list of recent calls from the source.
     // Make sure that the list is in descending chronological order.
     // If a client (typically a view model) requires the list in a different order,
@@ -160,7 +160,7 @@ override fun onCreate() {
 ```
 
 then the [`RecentCallsService`](TTIVI_INDIGO_API) properties `recentCallsDescending` and
-`synchronizationStatus` have been initialized.
+`phoneBookSynchronizationStatus` have been initialized.
 
 When the service is destroyed:
 

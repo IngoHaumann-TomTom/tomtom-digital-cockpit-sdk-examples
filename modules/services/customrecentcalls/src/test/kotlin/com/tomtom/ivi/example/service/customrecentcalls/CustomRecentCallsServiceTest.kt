@@ -11,7 +11,7 @@
 
 package com.tomtom.ivi.example.service.customrecentcalls
 
-import com.tomtom.ivi.platform.contacts.api.common.model.SynchronizationStatus
+import com.tomtom.ivi.platform.telecom.api.common.model.PhoneBookSynchronizationStatus
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import kotlin.test.assertEquals
@@ -33,6 +33,6 @@ class CustomRecentCallsServiceTest : IviTestCase() {
         assertEquals(2, sut.recentCallsDescending.size)
         assertEquals("John Smith", sut.recentCallsDescending[0].displayName)
         assertEquals("Kelly Goodwin", sut.recentCallsDescending[1].displayName)
-        assertEquals(SynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.synchronizationStatus)
+        assertEquals(PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.phoneBookSynchronizationStatus)
     }
 }

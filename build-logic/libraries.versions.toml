@@ -39,9 +39,9 @@ androidxCoreKtx = "1.3.2"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.3112"
+indigoPlatform = "1.0.3114"
 # Other TomTom dependencies.
-tomtomAndroidTools = "0.0.312"
+tomtomAndroidTools = "0.0.315"
 iviCommunicationsSdk = "0.1.94"
 androidCar = "0.0.12"
 
@@ -98,6 +98,8 @@ indigoToolsTestingNavigationFunctional = { module = "com.tomtom.ivi.platform:too
 # TomTom IndiGO platform service APIs.
 indigoPlatformRecentcallsApiServiceRecentcalls = { module = "com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls", version.ref = "indigoPlatform" }
 indigoPlatformContactsApiServiceContacts = { module = "com.tomtom.ivi.platform:platform_contacts_api_service_contacts", version.ref = "indigoPlatform" }
+indigoPlatformTelecomApiCommonModel = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_model", version.ref = "indigoPlatform" }
+indigoPlatformTelecomApiCommonUtils = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_utils", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiServiceTelecom = { module = "com.tomtom.ivi.platform:platform_telecom_api_service_telecom", version.ref = "indigoPlatform" }
 
 # TomTom Automotive.
