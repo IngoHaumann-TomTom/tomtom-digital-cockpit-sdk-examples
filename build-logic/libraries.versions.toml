@@ -85,6 +85,7 @@ indigoPlatformFrameworkApiProductDebugPermissions = { module = "com.tomtom.ivi.p
 indigoPlatformFrameworkApiProductDefaultActivity = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultactivity", version.ref = "indigoPlatform" }
 indigoPlatformFrameworkApiProductDefaultApplication = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultapplication", version.ref = "indigoPlatform" }
 indigoPlatformFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_frontend", version.ref = "indigoPlatform" }
+indigoPlatformFrontendApiCommonUicontrols = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_uicontrols", version.ref = "indigoPlatform" }
 indigoPlatformFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoPlatformNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
 indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }

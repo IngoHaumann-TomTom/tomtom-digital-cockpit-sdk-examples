@@ -33,7 +33,8 @@
             android:id="@id/tt_navigationbar"
             style="?attr/tt_navigationbar_style"
             auto:layout_constraintStart_toStartOf="parent"
-            auto:layout_constraintTop_toTopOf="parent" />
+            auto:layout_constraintTop_toTopOf="parent"
+            auto:ttViewModel="@{viewModel.navigationBarViewModel}" />
 
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
