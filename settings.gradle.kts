@@ -20,7 +20,7 @@ val isCiBuild = System.getenv("BUILD_BUILDNUMBER") != null
 // This can further be utilised to improve build and test lifecycle
 // https://docs.gradle.com/enterprise/gradle-plugin
 plugins {
-    id("com.gradle.enterprise") version("3.7.2")
+    id("com.gradle.enterprise") version("3.8.1")
 }
 
 gradleEnterprise {
