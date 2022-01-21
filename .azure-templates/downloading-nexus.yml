@@ -83,12 +83,11 @@ steps:
     userName: $(NEXUS_USERNAME)
     password: $(NEXUS_PASSWORD)
 
-- template: download/download-and-verify.yml@devops-templates
-  parameters:
-    downloadUrl: ${{parameters.nexusUrl}}/${{parameters.indigoGroup}}/tomtom-indigo-sdk/${{parameters.sdkArtifactVersion}}/tomtom-indigo-sdk-${{parameters.sdkArtifactVersion}}.tar.gz
-    displayName: Download and verify SDK archive
-    userName: $(NEXUS_USERNAME)
-    password: $(NEXUS_PASSWORD)
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifact: tomtom-indigo-sdk
+    path: $(Build.SourcesDirectory)/downloads
+  displayName: Download the tomtom-indigo-sdk pipeline artifact
 
 - task: ExtractFiles@1
   inputs:

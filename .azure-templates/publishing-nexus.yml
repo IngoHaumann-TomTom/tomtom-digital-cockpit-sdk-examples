@@ -44,4 +44,8 @@ steps:
   # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
   - publish: $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
     artifact: repo-sys-img
-    displayName: Publish the repo-sys-img.xml file as pipeline artifact
+    displayName: Publish the repo-sys-img.xml file as a pipeline artifact
+
+  - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.indigoPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
+    artifact: tomtom-indigo-sdk
+    displayName: Publish tomtom-indigo-sdk as a pipeline artifact

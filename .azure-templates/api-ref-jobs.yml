@@ -1,0 +1,185 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+jobs:
+  - job: GenerateTomTomAndroidToolsApiDocs
+    displayName: 'Generate TomTom Android Tools API docs'
+    timeoutInMinutes: 15
+    container: docker_indigo_build
+    steps:
+      - checkout: tomtom-android-tools
+      - bash: |
+          cd $(Build.SourcesDirectory)
+          git checkout tags/$(VERSION_TOMTOM_ANDROID_TOOLS)
+        displayName: 'Checkout TomTom Android Tools v$(VERSION_TOMTOM_ANDROID_TOOLS)'
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          tasks: >-
+            docs
+          displayName: 'Generate TomTom Android Tools API docs'
+      - publish: $(Build.SourcesDirectory)/build/docs/
+        artifact: tomtom-android-tools-api-docs
+        displayName: 'Publish TomTom Android Tools API docs as a pipeline artifact'
+      - template: build/build-cleanup.yml@devops-templates
+  - job: GenerateGradlepluginsApiDocs
+    displayName: 'Generate IndiGO gradleplugins API docs'
+    timeoutInMinutes: 10
+    container: docker_indigo_build
+    steps:
+      - checkout: indigo
+      - bash: |
+          cd $(Build.SourcesDirectory)
+          git checkout tags/$(VERSION_PLATFORM)
+        displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          tasks: >-
+            docs
+          projectOptions: >-
+            -p gradleplugins/
+            -PiviVersion=$(VERSION_PLATFORM)
+          displayName: 'Generate IndiGO gradleplugins API docs'
+      - publish: $(Build.SourcesDirectory)/gradleplugins/build/docs/
+        artifact: indigo-gradleplugins-api-docs
+        displayName: 'Publish IndiGO gradleplugins API docs as a pipeline artifact'
+      - template: build/build-cleanup.yml@devops-templates
+  - job: GenerateCommunicationSdkApiDocs
+    displayName: 'Generate IndiGO communications SDK API docs'
+    timeoutInMinutes: 10
+    container: docker_indigo_build
+    steps:
+      - checkout: indigo-ca-android-communication
+      - bash: |
+          cd $(Build.SourcesDirectory)
+          git checkout tags/$(VERSION_COMMUNICATIONS_SDK)
+        displayName: 'Checkout IndiGO communications SDK v$(VERSION_COMMUNICATIONS_SDK)'
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          tasks: >-
+            docs
+          displayName: 'Generate IndiGO communications SDK API docs'
+      - publish: $(Build.SourcesDirectory)/build/docs/
+        artifact: indigo-communications-sdk-api-docs
+        displayName: 'Publish IndiGO communications SDK API docs as a pipeline artifact'
+      - template: build/build-cleanup.yml@devops-templates
+  - job: TomtomAndroidToolsApiDocsToS3
+    displayName: 'Upload TomTom Android Tools API docs to S3'
+    timeoutInMinutes: 10
+    container: docker_indigo_delivery
+    dependsOn: GenerateTomTomAndroidToolsApiDocs
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: tomtom-android-tools-api-docs
+          apiSubFolder: tomtom-android-tools-api
+          version: $(VERSION_TOMTOM_ANDROID_TOOLS)
+      - template: build/build-cleanup.yml@devops-templates
+  - job: IndigoGradlepluginsApiDocsToS3
+    displayName: 'Upload IndiGO gradleplugins API docs to S3'
+    timeoutInMinutes: 10
+    container: docker_indigo_delivery
+    dependsOn: GenerateGradlepluginsApiDocs
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: indigo-gradleplugins-api-docs
+          apiSubFolder: tomtom-indigo-gradleplugins-api
+          version: $(VERSION_PLATFORM)
+      - template: build/build-cleanup.yml@devops-templates
+  - job: IndigoCommunicationSdkApiDocsToS3
+    displayName: 'Upload IndiGO communications SDK API docs to S3'
+    timeoutInMinutes: 10
+    container: docker_indigo_delivery
+    dependsOn: GenerateCommunicationSdkApiDocs
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: indigo-communications-sdk-api-docs
+          apiSubFolder: tomtom-indigo-comms-sdk-api
+          version: $(VERSION_COMMUNICATIONS_SDK)
+      - template: build/build-cleanup.yml@devops-templates
+  - job: GenerateIndigoApiDocs
+    displayName: 'Generate IndiGO API docs'
+    # TODO(IVI-3769): Reduce timeout after improving performance
+    timeoutInMinutes: 30
+    container: 'docker_indigo_build'
+    dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
+    steps:
+      - checkout: indigo
+      - bash: |
+          cd $(Build.SourcesDirectory)
+          git checkout tags/$(VERSION_PLATFORM)
+        displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
+      # TODO(IVI-3769): Work-around for memory leak in Dokka Gradle plugin.
+      #   Stop the Gradle daemon when it uses an excessive amount of memory.
+      #   Restart the 'docs' task, because it fails when we kill the Gradle daemon.
+      - bash:
+          while true; do ./gradlew --status | grep STOPREQUESTED && ./gradlew --stop; sleep 10; done &
+          set -eux;
+          while ! ./gradlew docs -PiviVersion=$(VERSION_PLATFORM); do echo "Retry docs task."; done
+        workingDirectory: $(Build.SourcesDirectory)
+        displayName: 'Generate IndiGO API docs'
+      #- template: gradle/gradle.yml@devops-templates
+      #  parameters:
+      #    tasks: >-
+      #      docs
+      #    projectOptions:
+      #      -PiviVersion=$(VERSION_PLATFORM)
+      #    displayName: 'Generate IndiGO API docs'
+      # End of TODO.
+      - publish: $(System.DefaultWorkingDirectory)/build/docs
+        artifact: indigo-api-docs
+        displayName: 'Publish IndiGO API docs as a pipeline artifact'
+      - template: build/build-cleanup.yml@devops-templates
+  - job: IndigoApiDocsToS3
+    displayName: 'Upload IndiGO API docs to S3'
+    timeoutInMinutes: 10
+    container: docker_indigo_delivery
+    dependsOn: GenerateIndigoApiDocs
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: indigo-api-docs
+          apiSubFolder: tomtom-indigo-api
+          version: $(VERSION_PLATFORM)
+  - job: DeleteIndigoApiDocsFromS3
+    displayName: 'Delete Indigo api docs'
+    container: docker_indigo_delivery
+    dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
+    condition: in(dependencies.IndigoApiDocsToS3.result, 'Failed')
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: indigo-api-docs
+          apiSubFolder: tomtom-indigo-api
+          version: $(VERSION_PLATFORM)
+          deleteDocs: true
+  - job: DeleteIndigogradlepluginsApiDocsFromS3
+    displayName: 'Delete Indigogradleplugins api docs'
+    container: docker_indigo_delivery
+    dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
+    condition: |
+      and
+      (
+        in(dependencies.IndigoGradlepluginsApiDocsToS3.result, 'Failed', 'Succeeded'),
+        in(dependencies.IndigoApiDocsToS3.result, 'Failed', 'Skipped')
+      )
+    steps:
+      - checkout: none
+      - template: aws-S3-upload-or-delete.yml
+        parameters:
+          artifactName: indigo-gradleplugins-api-docs
+          apiSubFolder: tomtom-indigo-gradleplugins-api
+          version: $(VERSION_PLATFORM)
+          deleteDocs: true
