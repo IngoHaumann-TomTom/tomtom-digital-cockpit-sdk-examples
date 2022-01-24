@@ -76,6 +76,12 @@ menu:
             title: Configuration Framework
           - fileId: /development/platform-domains/settings-framework
             title: Settings Framework
+      - title: Platform Features
+        items:
+          - fileId: /development/platform-features/overview
+            title: Overview
+          - fileId: /development/platform-features/safety-lock
+            title: Safety Lock
   - title: Integrating TomTom IndiGO
     items:
       - fileId: /integrating-tomtom-indigo/introduction
