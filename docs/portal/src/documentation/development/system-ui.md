@@ -341,7 +341,7 @@ The default template for [`ProcessBarPanel`](TTIVI_INDIGO_API)s can be used by e
 ### Modal template
 
 The default template for [`ModalPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`ModalPanelFragment`](TTIVI_INDIGO_API) and [`ModalPanelViewModel`](TTIVI_INDIGO_API) from
+[`ModalFragment`](TTIVI_INDIGO_API) and [`ModalViewModel`](TTIVI_INDIGO_API) from
 [`platform_frontend_api_fragment_modal`](TTIVI_INDIGO_API).
 
 [TODO(IVI-5617)]: # (Add UX design of model template)
