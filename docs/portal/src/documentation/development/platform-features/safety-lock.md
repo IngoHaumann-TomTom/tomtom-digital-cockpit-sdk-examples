@@ -98,8 +98,8 @@ include the vehicle's speed based or the gear stick position.
 The stock implementation monitors the vehicle's speed through
 [`VehicleDrivingStateService`](TTIVI_INDIGO_API) and enables safety lock depending on the
 `drivingState`. The stock implementation of that service in turn considers the state to be
-[`DrivingState.DRIVING`](TTIVI_INDIGO_API) when the speed reported by NavKit 2 exceeds 5 kilometers
-an hour.
+[`DrivingState`](TTIVI_INDIGO_API)`.DRIVING` when the speed reported by NavKit 2 exceeds 5
+kilometers an hour.
 
 To change the stock behaviour, the service plugin `safetyLockServiceHost` can be replaced with a
 custom one, implemented as seen fit. The pages
