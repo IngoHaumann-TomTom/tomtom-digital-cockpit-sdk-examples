@@ -42,7 +42,7 @@ androidxLifecycle = "2.3.1"
 indigoPlatform = "1.0.3134"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.315"
-iviCommunicationsSdk = "0.1.94"
+iviCommunicationsSdk = "0.1.109"
 androidCar = "0.0.12"
 
 [libraries]
