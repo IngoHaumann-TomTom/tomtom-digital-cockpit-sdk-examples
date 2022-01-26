@@ -13,18 +13,18 @@ package com.tomtom.ivi.example.functionaltest.e2e
 
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.tomtom.ivi.appsuite.navkit2.api.testing.functional.NavkitConfigurationMockRule
+import com.tomtom.ivi.appsuite.navkit2.api.testing.functional.createWebserviceMockRuleConfig
 import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.MainMenuButton
+import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.waitForMainMenuButtonIsDisplayed
+import com.tomtom.ivi.platform.systemui.api.testing.tools.SystemUiIdlingResourceRule
+import com.tomtom.ivi.platform.systemui.api.testing.tools.assertCoreContentsAreDisplayed
 import com.tomtom.ivi.platform.tools.api.testing.functional.CreateApiCallback
 import com.tomtom.ivi.platform.tools.api.testing.functional.GetServiceIdsCallback
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviActivityTestCase
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviE2eTestCase
 import com.tomtom.ivi.platform.tools.api.testing.functional.WebserviceMockRuleConfig
-import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.MainMenuButton
-import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.waitForMainMenuButtonIsDisplayed
-import com.tomtom.ivi.tools.testing.navigationfunctional.NavkitConfigurationMockRule
-import com.tomtom.ivi.tools.testing.navigationfunctional.createWebserviceMockRuleConfig
-import com.tomtom.ivi.platform.systemui.api.testing.tools.SystemUiIdlingResourceRule
-import com.tomtom.ivi.platform.systemui.api.testing.tools.assertCoreContentsAreDisplayed
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.RuleChain

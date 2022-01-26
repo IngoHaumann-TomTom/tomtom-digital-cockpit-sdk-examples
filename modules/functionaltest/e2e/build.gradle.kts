@@ -41,8 +41,8 @@ android {
 
 dependencies {
     implementation(project(":frontends_account"))
+    implementation(libraries.indigoAppsuiteNavkit2ApiTestingFunctional)
     implementation(libraries.indigoPlatformMainmenuApiTestingFrontend)
     implementation(libraries.indigoPlatformSystemuiApiTestingTools)
     implementation(libraries.indigoPlatformToolsApiTestingFunctional)
-    implementation(libraries.indigoToolsTestingNavigationFunctional)
 }
