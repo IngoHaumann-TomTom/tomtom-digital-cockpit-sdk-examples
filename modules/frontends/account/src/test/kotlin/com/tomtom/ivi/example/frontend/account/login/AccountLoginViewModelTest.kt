@@ -12,31 +12,74 @@
 package com.tomtom.ivi.example.frontend.account.login
 
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.ItemSnapshotList
+import com.tomtom.ivi.example.frontend.account.AccountTestPagingDataAdapter
 import com.tomtom.ivi.example.frontend.account.TestData
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.framework.api.testing.ipc.iviservice.datasource.SimpleTestIviDataSource
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
+import com.tomtom.tools.android.testing.assertion.assertLiveDataEquals
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class AccountLoginViewModelTest : IviTestCase() {
 
     // Service mock must be configured before a view model is created.
     private val mutableServiceAvailable = MutableLiveData(true)
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
+        every { accounts } returns MutableLiveData(
+            SimpleTestIviDataSource(TestData.accountsDataSourceData)
+        )
         every { activeAccount } returns MutableLiveData(TestData.testAccount)
-        every { loggedInAccounts } returns MutableLiveData(TestData.accountsMap)
     }
 
     private val mockPanel = niceMockk<AccountLoginPanel>()
 
     private val sut = AccountLoginViewModel(mockPanel)
+
+    private val testCoroutineScope = coroutinesTestRule.mockMainScope()
+
+    @Test
+    fun `lastLogin contains simulated data`() {
+        assertLiveDataEquals(TestData.lastLoginAccount, sut.lastLogin)
+        testCoroutineScope.advanceUntilIdle()
+    }
+
+    @Test
+    fun `allAccountsPagingDataFlow contains simulated data`() = runBlockingTest {
+        // GIVEN
+        val adapter = AccountTestPagingDataAdapter()
+
+        // WHEN
+        val job = launch {
+            sut.allAccountsPagingDataFlow.collectLatest { adapter.submitData(it) }
+        }
+        val snapshot = adapter.snapshot()
+        job.cancel()
+
+        // THEN
+        assertEquals(
+            ItemSnapshotList(
+                placeholdersBefore = 0,
+                placeholdersAfter = 0,
+                items = TestData.allAccounts
+            ),
+            snapshot
+        )
+    }
 
     @Test
     fun `login button is disabled if username and password field are empty`() {

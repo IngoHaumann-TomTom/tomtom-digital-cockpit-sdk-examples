@@ -61,7 +61,7 @@ internal class StockAccountSettingsServiceTest : IviTestCase() {
     @Test
     fun `with stored active account`() {
         // GIVEN The stored active account.
-        val account = Account("username")
+        val account = Account(username = "username")
 
         coEvery { mockSettingsManagementService.coGetSetting(any<StringSettingKey>()) } returns
                 Json.encodeToString(AccountSerializer, account)
@@ -76,7 +76,7 @@ internal class StockAccountSettingsServiceTest : IviTestCase() {
     @Test
     fun `on updating active account with a value`() {
         // GIVEN The account settings service has no active account.
-        val account = Account("username")
+        val account = Account(username = "username")
         val sut = createSut()
 
         // WHEN An active account is set.
@@ -97,7 +97,7 @@ internal class StockAccountSettingsServiceTest : IviTestCase() {
     @Test
     fun `on updating active account with null`() {
         // GIVEN The account settings service has an active account.
-        val account = Account("username")
+        val account = Account(username = "username")
         val sut = createSut()
 
         runBlocking {

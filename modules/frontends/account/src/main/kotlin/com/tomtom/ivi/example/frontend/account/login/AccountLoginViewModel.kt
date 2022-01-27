@@ -11,14 +11,25 @@
 
 package com.tomtom.ivi.example.frontend.account.login
 
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.first
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.mapQuery
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceandroidpaging.mapPagingData
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.allTrue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
+import kotlinx.coroutines.flow.Flow
 
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
@@ -35,11 +46,45 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
         password.map { it.isNotBlank() }
     )
 
+    /**
+     * Converts an [IviDataSource] [LiveData] to an [Account] [LiveData], the value of which is set
+     * to the first item of the query result set.
+     */
+    @Suppress("unused")
+    val lastLogin: LiveData<Account> =
+        accountServiceApi.accounts.mapQuery(lastLoginQuery).first()
+
+    /**
+     * Converts an [IviDataSource] [LiveData] to an [Flow] of [PagingData]. This
+     * flow can be bound to an `RecyclerView`. See Android Paging library for details.
+     */
+    @Suppress("unused")
+    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountServiceApi.accounts
+        .mapPagingData(pagingConfig, allAccountsQuery, this)
+
     fun onLoginClick() {
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
             val username = username.value ?: return
             val password = password.value ?: return
             accountServiceApi.logInAsync(username, SensitiveString(password))
         }
+    }
+
+    companion object {
+        @VisibleForTesting
+        internal val lastLoginQuery = AccountsDataSourceQuery(
+            selection = AccountsDataSourceQuery.Selection.LOGGED_IN_AT_LEAST_ONCE,
+            orderBy = AccountsDataSourceQuery.Order.LAST_LOG_IN_TIME_DESCENDING
+        )
+
+        @VisibleForTesting
+        internal val allAccountsQuery = AccountsDataSourceQuery(
+            selection = AccountsDataSourceQuery.Selection.ALL,
+            orderBy = AccountsDataSourceQuery.Order.USERNAME
+        )
+
+        private val pagingConfig = PagingConfig(
+            pageSize = 10
+        )
     }
 }

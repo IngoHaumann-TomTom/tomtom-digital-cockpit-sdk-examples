@@ -30,5 +30,8 @@ dependencies {
 
     implementation(libraries.indigoPlatformFrameworkApiCommonLifecycle)
     implementation(libraries.indigoPlatformFrameworkApiCommonUid)
+    implementation(libraries.indigoPlatformFrameworkApiIpcIviserviceandroidpaging)
     implementation(libraries.tomtomToolsApiLivedata)
+
+    testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
 }

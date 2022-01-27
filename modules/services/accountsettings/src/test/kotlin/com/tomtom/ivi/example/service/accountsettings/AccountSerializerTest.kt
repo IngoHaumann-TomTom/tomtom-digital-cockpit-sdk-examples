@@ -12,14 +12,25 @@
 package com.tomtom.ivi.example.service.accountsettings
 
 import com.tomtom.ivi.example.common.account.Account
+import java.time.Instant
 import kotlinx.serialization.json.Json
 import org.junit.Test
 import kotlin.test.assertEquals
 
 internal class AccountSerializerTest {
     @Test
-    fun `serialize and deserialize an account`() {
-        val account = Account("username")
+    fun `serialize and deserialize an account with login`() {
+        val account = Account(username = "username", loggedIn = true, lastLogIn = Instant.now())
+
+        val serialized = Json.encodeToString(AccountSerializer, account)
+        val deserialized = Json.decodeFromString(AccountSerializer, serialized)
+
+        assertEquals(account, deserialized)
+    }
+
+    @Test
+    fun `serialize and deserialize an account without login`() {
+        val account = Account(username = "username", loggedIn = false, lastLogIn = null)
 
         val serialized = Json.encodeToString(AccountSerializer, account)
         val deserialized = Json.decodeFromString(AccountSerializer, serialized)

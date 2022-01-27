@@ -12,15 +12,18 @@
 package com.tomtom.ivi.example.service.account
 
 import androidx.lifecycle.MutableLiveData
+import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
+import com.tomtom.ivi.platform.framework.api.testing.ipc.iviservice.datasource.assertIviDataSourceEquals
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import java.time.Instant
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
@@ -48,46 +51,51 @@ internal class StockAccountServiceTest : IviTestCase() {
     @Test
     fun `no user is logged in by default`() {
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.loggedInAccounts.size)
+        assertIviDataSourceEquals(emptyList(), sut.accounts, LOGGED_IN_AT_LEAST_ONCE_QUERY)
     }
 
     @Test
     fun `login failed if activeAccount or password are incorrect`() = runBlocking {
         assertFalse(sut.logIn(USERNAME, SensitiveString("")))
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.loggedInAccounts.size)
+        assertIviDataSourceEquals(emptyList(), sut.accounts, LOGGED_IN_AT_LEAST_ONCE_QUERY)
 
         assertFalse(sut.logIn("", PASSWORD))
         assertNull(sut.activeAccount)
-        assertEquals(0, sut.loggedInAccounts.size)
+        assertIviDataSourceEquals(emptyList(), sut.accounts, LOGGED_IN_AT_LEAST_ONCE_QUERY)
     }
 
     @Test
     fun `activeAccount is set if user has logged in`() = runBlocking {
         assertTrue(sut.logIn(USERNAME, PASSWORD))
         assertEquals(USERNAME, sut.activeAccount?.username)
-        assertEquals(1, sut.loggedInAccounts.size)
+        assertIviDataSourceEquals(
+            listOfNotNull(sut.activeAccount),
+            sut.accounts,
+            LOGGED_IN_AT_LEAST_ONCE_QUERY
+        )
     }
 
     @Test
     fun `activeAccount is reset if user has logged out`() = runBlocking {
         // GIVEN
         sut.logIn(USERNAME, PASSWORD)
-
-        // THEN
-        assertEquals(1, sut.loggedInAccounts.size)
+        assertIviDataSourceEquals(
+            listOfNotNull(sut.activeAccount),
+            sut.accounts,
+            LOGGED_IN_AT_LEAST_ONCE_QUERY
+        )
 
         // WHEN
         sut.logOut()
 
         // THEN
         assertNull(sut.activeAccount)
-        assertTrue(sut.loggedInAccounts.isEmpty())
+        assertIviDataSourceEquals(emptyList(), sut.accounts, LOGGED_IN_AT_LEAST_ONCE_QUERY)
     }
 
     @Test
     fun `logging out with no user logged in is no-op`() = runBlocking {
-        // GIVEN
         // WHEN
         sut.logOut()
 
@@ -99,7 +107,7 @@ internal class StockAccountServiceTest : IviTestCase() {
     fun `logging in with the user logged in updates the activeAccount`() = runBlocking {
         // GIVEN
         sut.logIn(USERNAME, PASSWORD)
-
+        val firstAccount = assertNotNull(sut.activeAccount)
         val anotherTestUser = "anotherTestUser"
 
         // WHEN
@@ -107,12 +115,23 @@ internal class StockAccountServiceTest : IviTestCase() {
 
         // THEN
         assertTrue(result)
-        assertEquals(anotherTestUser, sut.activeAccount?.username)
-        assertEquals(2, sut.loggedInAccounts.size)
+        val secondAccount = assertNotNull(sut.activeAccount)
+        assertEquals(anotherTestUser, secondAccount.username)
+
+        assertIviDataSourceEquals(
+            listOf(secondAccount, firstAccount),
+            sut.accounts,
+            LOGGED_IN_AT_LEAST_ONCE_QUERY
+        )
     }
 
     companion object {
         private const val USERNAME = "testUser"
         private val PASSWORD = SensitiveString("testPassword")
+
+        private val LOGGED_IN_AT_LEAST_ONCE_QUERY = AccountsDataSourceQuery(
+            AccountsDataSourceQuery.Selection.LOGGED_IN_AT_LEAST_ONCE,
+            AccountsDataSourceQuery.Order.LAST_LOG_IN_TIME_DESCENDING
+        )
     }
 }

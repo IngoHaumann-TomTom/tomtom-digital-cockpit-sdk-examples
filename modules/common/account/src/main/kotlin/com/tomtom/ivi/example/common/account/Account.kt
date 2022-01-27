@@ -13,6 +13,7 @@ package com.tomtom.ivi.example.common.account
 
 import android.os.Parcelable
 import com.tomtom.ivi.platform.framework.api.common.uid.Uid
+import java.time.Instant
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -23,12 +24,20 @@ data class Account(
     /**
      * Unique ID for the account.
      */
-    val accountUid: Uid<Account>,
+    val accountUid: Uid<Account> = Uid.new(),
 
     /**
      * A string representing the name of the account.
      */
-    val username: String
-) : Parcelable {
-    constructor(username: String) : this(Uid.new(), username)
-}
+    val username: String,
+
+    /**
+     * `true` if the user is logged in.
+     */
+    val loggedIn: Boolean = false,
+
+    /**
+     * Date time when this user logged in for the last time.
+     */
+    val lastLogIn: Instant? = null
+) : Parcelable

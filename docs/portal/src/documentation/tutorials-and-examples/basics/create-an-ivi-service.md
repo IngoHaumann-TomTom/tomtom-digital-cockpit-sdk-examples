@@ -126,8 +126,8 @@ annotate a class with `@Parcelize`, a `Parcelable` implementation is automatical
 
 While the service interface may use properties of `Map<K,V>` it is not recommended because it is
 inefficient. Any change of such property will require the transfer of a full map object to clients.
-Instead, use `MirrorableMap` which is optimized for updates over Binder transactions. It becomes a
-regular `Map` on the client side.
+Instead, use [`MirrorableMap`](TTIVI_INDIGO_API) which is optimized for updates over Binder
+transactions. It becomes a regular `Map` on the client side.
 
 ```kotlin
 @IviService(serviceId = "service.example")
@@ -135,6 +135,40 @@ interface ExampleService {
     val mapProp: MirrorableMap<Int, String>
 }
 ```
+
+#### Data sources
+
+The values of IVI service properties are pushed to all clients. When a pull model is desired, for
+instance for large data sets, it is possible to instead use a property of type
+[`IviDataSource`](TTIVI_INDIGO_API). An `IviDataSource` can be used to expose a data set
+to clients without requiring the full data set to be loaded into memory. It also allows querying and
+sorting of the data on the service side and allows clients to process the data while it is also
+loading it from the service.
+
+To load data from an `IviDataSource` you need to create one or more
+[`IviPagingSource`](TTIVI_INDIGO_API)s. The `IviPagingSource`s can be used to load data pages from
+the data source. Each `IviPagingSource` is bound to a query.
+
+The `IviPagingSource` class is designed to seamlessly integrate with the
+[Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview).
+This makes it possible to represent elements in a
+[`RecyclerView`](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView).
+The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_INDIGO_API) module contains
+extension functions for the integration.
+
+```kotlin
+@IviService(serviceId = "service.example")
+interface AccountService {
+    @IviExperimental
+    val accounts: IviDataSource<Account, AccountsDataSourceQuery>
+}
+```
+
+If you want to use an IVI data source, follow the
+[use an IVI data source](/tomtom-indigo/documentation/tutorials-and-examples/basics/use-an-ivi-data-source)
+tutorial.
+
+__Note:__ `IviDataSource` is an experimental API.
 
 ## The IVI service implementation
 
@@ -468,3 +502,6 @@ internal class AccountInfoViewModel(panel: AccountInfoPanel) :
 }
 ```
 
+## Sharing data between service and clients
+
+All properties of an IVI service are mirrored.

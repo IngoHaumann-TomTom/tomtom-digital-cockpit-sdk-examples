@@ -31,7 +31,6 @@ internal class AccountFrontendTest : IviTestCase() {
         mockkService(AccountService.Companion::createApi) {
             every { serviceAvailable } returns MutableLiveData(true)
             every { activeAccount } returns it
-            every { loggedInAccounts } returns MutableLiveData(TestData.accountsMap)
         }
     }
 

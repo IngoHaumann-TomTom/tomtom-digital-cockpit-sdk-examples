@@ -12,8 +12,8 @@
 package com.tomtom.ivi.example.serviceapi.account
 
 import com.tomtom.ivi.example.common.account.Account
-import com.tomtom.ivi.platform.framework.api.common.uid.Uid
-import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MirrorableMap
+import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviService
 import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviServiceFun
 
@@ -31,9 +31,10 @@ interface AccountService {
     val activeAccount: Account?
 
     /**
-     * The collection of accounts that have logged in at least once since application started.
+     * Data set of accounts. The accounts can be queried and sorted.
      */
-    val loggedInAccounts: MirrorableMap<Uid<Account>, Account>
+    @IviExperimental
+    val accounts: IviDataSource<Account, AccountsDataSourceQuery>
 
     /**
      * Tries to log an user in under [username] with [password].

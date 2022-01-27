@@ -12,6 +12,9 @@
 package com.tomtom.ivi.example.frontend.account
 
 import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.example.frontend.account.login.AccountLoginViewModel.Companion.allAccountsQuery
+import com.tomtom.ivi.example.frontend.account.login.AccountLoginViewModel.Companion.lastLoginQuery
+import java.time.Instant
 
 internal object TestData {
     const val USERNAME = "Username"
@@ -19,8 +22,18 @@ internal object TestData {
 
     private const val ANOTHER_USERNAME = "AnotherUsername"
 
-    val testAccount = Account(USERNAME)
-    val anotherTestAccount = Account(ANOTHER_USERNAME)
+    val testAccount = Account(username = USERNAME)
+    val anotherTestAccount = Account(
+        username = ANOTHER_USERNAME,
+        loggedIn = true,
+        lastLogIn = Instant.now()
+    )
 
-    val accountsMap = listOf(testAccount, anotherTestAccount).associateBy { it.accountUid }.toMap()
+    val allAccounts = listOf(testAccount, anotherTestAccount)
+    val lastLoginAccount = anotherTestAccount
+
+    val accountsDataSourceData = mapOf(
+        allAccountsQuery to allAccounts,
+        lastLoginQuery to listOf(lastLoginAccount)
+    )
 }

@@ -13,6 +13,7 @@ package com.tomtom.ivi.example.service.accountsettings
 
 import com.tomtom.ivi.example.common.account.Account
 import com.tomtom.ivi.platform.framework.api.common.uid.Uid
+import java.time.Instant
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -22,7 +23,12 @@ import kotlinx.serialization.encoding.Encoder
 
 @Serializable
 @SerialName("UserProfile")
-private class AccountSurrogate(val accountUid: String, val username: String)
+private class AccountSurrogate(
+    val accountUid: String,
+    val username: String,
+    val loggedIn: Boolean?,
+    val lastLogIn: String?
+)
 
 internal object AccountSerializer : KSerializer<Account> {
     override val descriptor: SerialDescriptor = AccountSurrogate.serializer().descriptor
@@ -31,12 +37,21 @@ internal object AccountSerializer : KSerializer<Account> {
         decoder
             .decodeSerializableValue(AccountSurrogate.serializer())
             .let { surrogate ->
-                Account(Uid.fromString(surrogate.accountUid), surrogate.username)
+                Account(
+                    accountUid = Uid.fromString(surrogate.accountUid),
+                    username = surrogate.username,
+                    loggedIn = surrogate.loggedIn == true,
+                    lastLogIn = surrogate.lastLogIn?.let { Instant.parse(it) }
+                )
             }
 
     override fun serialize(encoder: Encoder, value: Account) =
-        AccountSurrogate(value.accountUid.toString(), value.username)
-            .let { surrogate ->
-                encoder.encodeSerializableValue(AccountSurrogate.serializer(), surrogate)
-            }
+        AccountSurrogate(
+            accountUid = value.accountUid.toString(),
+            username = value.username,
+            loggedIn = value.loggedIn,
+            lastLogIn = value.lastLogIn?.toString()
+        ).let { surrogate ->
+            encoder.encodeSerializableValue(AccountSurrogate.serializer(), surrogate)
+        }
 }

@@ -1,0 +1,392 @@
+---
+title: Use an IVI Data Source
+---
+
+## Introduction to IVI Data Sources
+
+Properties of an [IVI service interface](/tomtom-indigo/documentation/development/ivi-services) are
+mirrored to all clients of the service. A property of type [`IviDataSource`](TTIVI_INDIGO_API) can
+be used in an IVI service interface to expose a data set to clients without requiring the full data
+set to be loaded into memory. It also allows querying and sorting of the data on the service side
+and allows clients to process the data while it is also loading it from the service.
+
+To load data from an `IviDataSource` you need to create one or more
+[`IviPagingSource`](TTIVI_INDIGO_API)s. The `IviPagingSource`s can be used to load data pages from
+the data source. Each `IviPagingSource` is bound to a query.
+
+The `IviPagingSource` class is designed to seamlessly integrate with the
+[Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview).
+This makes it possible to represent elements in a
+[`RecyclerView`](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView)
+and only load the data that is required to show the visible elements.
+
+__Note:__ `IviDataSource` is an experimental API.
+
+## Overview of the example application
+
+The example application contains an `AccountService` which exposes all available accounts to its
+clients. It uses an `IviDataSource` for this. The example demonstrates how to implement an
+`IviDataSource` on the service side and how to use it in the account frontend.
+
+## The Plan
+
+To implement and use an `IviDataSource` we will:
+
+1. [Define the IVI service interface](#the-ivi-service-interface).
+2. [Implement the data source](#the-data-source-implementation).
+3. [Use the data source](#use-the-data-source).
+
+Before you start, we highly recommend making yourself familiar with the
+[Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+architecture. We also recommend following the
+[Android Paging Codelab](https://developer.android.com/codelabs/android-paging) in advance of
+following this tutorial. The concepts explained in the above references will make it much easier to
+understand the concepts introduced in this tutorial, even if you do not intend to use a
+`RecyclerView`.
+
+Also make yourself familiar with how to create an IVI service interface as explained
+[here](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) before
+following this tutorial.
+
+## The IVI service interface
+
+The `IviDataSource` interface is parameterized by two types. By an element type ('E') and a query
+type (`Q`). To use an `IviDataSource` in the IVI service interface we need to define these two types
+first.
+
+Both the element type and the query type must be a type that is supported in an IVI service
+interface. So for custom types, the type needs to implement the
+[`Parcelable` interface](https://developer.android.com/reference/android/os/Parcelable).
+
+The element type is the type of data exposed by the `IviDataSource`. In this tutorial we are going
+to expose accounts. As such we have to define an `Account` class, like:
+
+```kotlin
+import android.os.Parcelable
+import com.tomtom.ivi.platform.framework.api.common.uid.Uid
+import java.time.Instant
+import kotlinx.parcelize.Parcelize
+
+/**
+ * Contains all data of a user account.
+ */
+@Parcelize
+data class Account(
+    /**
+     * Unique ID for the account.
+     */
+    val accountUid: Uid<Account> = Uid.new(),
+
+    /**
+     * A string representing the name of the account.
+     */
+    val username: String,
+
+    /**
+     * `true` if the user is logged in.
+     */
+    val loggedIn: Boolean = false,
+
+    /**
+     * Date time when this user logged in for the last time.
+     */
+    val lastLogIn: Instant? = null
+) : Parcelable
+```
+
+Next, we need to define the query type. The query type allows clients to specify which data they
+want to obtain from the data source. This can also, for instance, define the order in which the data
+needs to be provided. In this example we allow the client to select all available accounts or only
+select the accounts that are currently logged in. We also allow clients to sort the accounts on the
+username or on the last login date time. An example definition of the query type follows:
+
+```kotlin
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class AccountsDataSourceQuery(
+    val selection: Selection,
+    val orderBy: Order
+) : Parcelable {
+
+    enum class Selection {
+        ALL,
+        LOGGED_IN_AT_LEAST_ONCE
+    }
+
+    enum class Order {
+        USERNAME,
+        LAST_LOG_IN_TIME_DESCENDING
+    }
+}
+```
+
+Now that the element type and query types are defined, we can add the data source to an IVI
+service interface:
+
+```kotlin
+import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviService
+
+@IviService(
+    serviceId = "com.tomtom.ivi.example.service.account"
+)
+interface AccountService {
+    /**
+     * Indicates which account is currently active.
+     * `null` if no account is logged in.
+     */
+    val activeAccount: Account?
+
+    /**
+     * Data set of accounts. The accounts can be queried and sorted.
+     */
+    @IviExperimental
+    val accounts: IviDataSource<Account, AccountsDataSourceQuery>
+
+    // ...
+}
+```
+
+## The data source implementation
+
+To implement the data source on the client side we need a class that extends
+[`MutableIviDataSource`](TTIVI_INDIGO_API). To construct this class we need to indicate whether
+our implementation will support jumping. If jumping is not supported, only sequential pages are
+loaded. If jumping is supported, it is possible that pages are skipped. A typical use case of this
+is when a user performs a jump scroll though a list shown by means of a `RecyclerView`. If a data
+source implements reading elements, for instance, by keeping a database cursor open, the
+implementation will need to detect the jump and move the cursor forwards or backwards before reading
+new records from the cursor. Jumps can be detected based on the requested data index when
+`IviPagingSource.load` is called.
+
+The `MutableIviDataSource` requires us to implement one method: `createIviPagingSource`. This
+method is called every time a client requests a new set of pages for a given query. It has to
+return a class that extends [`MutableIviPagingSource`](TTIVI_INDIGO_API).
+
+To implement `MutableIviPagingSource`, we have to implement the `loadSizeLimit` property and the
+`loadWithLoadSizeLimited` method. The `loadWithLoadSizeLimited` method is given an
+`IviPagingSource.LoadParam` instance. This instance defines which page to load and the number of
+elements in the page (`loadSize`) as requested by the client. If the client requests a page size
+larger then the `loadSizeLimit` property value, the given `loadSize` is limited to the value of the
+`loadSizeLimit` property.
+
+There are three types of loads that can be requested by the `IviPagingSource.LoadParam` type:
+- Refresh. First page is loaded or after a jump when jumping is supported.
+- Append. Data after the previous page is loaded. For instance: The user is scrolling down.
+- Prepend. Data before the previous page is loaded. For instance: The user is scrolling up.
+
+The above, and in fact the whole `IviPagingSource` API is based on Android's
+[`PagingSource`](https://developer.android.com/reference/kotlin/androidx/paging/PagingSource)
+class. So, if you are familiar with `PagingSource` concepts, it will help you to implement
+your `MutableIviPagingSource`.
+
+The `loadWithLoadSizeLimited` method is a suspend method. The implementation should suspend
+when loading data utilises IO. This is to prevent blocking of the calling thread.
+
+In our example, `MutableAccountsDataSource` class implements the data source. Note that this
+example code is not very representative as the implementation is not loading any data from
+a remote data source.
+
+If your `MutableIviPagingSource` implementation keeps resources open, ensure that an invalidate
+callback is registered by calling `registerInvalidatedCallback`. And close the resources in the
+callback.
+
+```kotlin
+import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviPagingSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.MutableIviDataSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.MutableIviPagingSource
+
+internal class MutableAccountsDataSource : MutableIviDataSource<Account, AccountsDataSourceQuery>(
+    jumpingSupported = true
+) {
+    override fun createPagingSource(
+        query: AccountsDataSourceQuery
+    ): MutableIviPagingSource<Account> =
+        MutableAccountsPagingSource(query)
+
+    private class MutableAccountsPagingSource(
+        val query: AccountsDataSourceQuery
+    ) : MutableIviPagingSource<Account>() {
+        override val loadSizeLimit = DATA_SOURCE_MAX_PAGE_SIZE
+
+        init {
+            registerInvalidatedCallback {
+                // Close resources if applicable.
+            }
+        }
+
+        override suspend fun loadWithLoadSizeLimited(
+            loadParams: IviPagingSource.LoadParams
+        ): IviPagingSource.LoadResult<Account> {
+            // ...
+        }
+    }
+
+    companion object {
+        const val DATA_SOURCE_MAX_PAGE_SIZE: Int = 100
+    }
+}
+```
+
+Next initialize a `MutableAccountsDataSource` instance in the `StockAccountService`.
+
+```kotlin
+import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
+
+internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
+    AccountServiceBase(iviServiceHostContext) {
+
+    private val mutableAccountsDataSource = MutableAccountsDataSource()
+
+    override fun onCreate() {
+        super.onCreate()
+
+        accounts = mutableAccountsDataSource
+
+        // ...
+
+        serviceReady = true
+    }
+}
+```
+
+Don't forget to invalidate all active `IviPagingSource`s when the data set is modified:
+
+```kotlin
+mutableAccountsDataSource.invalidateAllPagingSources()
+```
+
+## Use the data source
+
+Now with the data source defined in the `AccountService` interface and implemented in the
+`StockAccountService` we can start using the data source. In this tutorial we will use the data
+source in the `AccountLoginViewModel` in two different ways:
+1. [By using `LiveData`](#using-livedata)
+2. [By using a `Flow` of `PagingData`](#using-flow-of-pagingdata)
+
+The latter variant allows the data source to be represented in a `RecyclerView`. When your aim is
+to use the data source outside of a `RecyclerView`, use the former variant.
+
+### Using `LiveData`
+
+The following example maps the `accounts` data source to a
+[`LiveData`](https://developer.android.com/reference/androidx/lifecycle/LiveData) instance which
+value is set to the account info of the the last logged in user:
+
+```kotlin
+import androidx.lifecycle.LiveData
+import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
+import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.first
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.mapQuery
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
+import kotlinx.coroutines.flow.Flow
+
+internal class AccountLoginViewModel(panel: AccountLoginPanel) :
+    FrontendViewModel<AccountLoginPanel>(panel) {
+
+    private val accountServiceApi =
+        AccountService.createApi(this, frontendContext.iviServiceProvider)
+
+    /**
+     * Converts an [IviDataSource] [LiveData] to an [Account] [LiveData], the value of which is set
+     * to the first item of the query result set.
+     */
+    val lastLogin: LiveData<Account> =
+        accountServiceApi.accounts.mapQuery(lastLoginQuery).first()
+
+    companion object {
+        private val lastLoginQuery = AccountsDataSourceQuery(
+            selection = AccountsDataSourceQuery.Selection.LOGGED_IN_AT_LEAST_ONCE,
+            orderBy = AccountsDataSourceQuery.Order.LAST_LOG_IN_TIME_DESCENDING
+        )
+    }
+}
+```
+
+In the above example, the `IviDataSource` `LiveData` is transformed to an `IviPagingSource`
+`LiveData` for the given `lastLoginQuery` by the `mapQuery` function. The `mapQuery` will create
+a new `IviPagingSource` each time the previous paging source is invalidated. The `IviPagingSource`
+`LiveData` instance is transformed to the first `Account` of the paging source by the `first`
+function.
+
+It is also possible to use other transformations. A `mapQuery` extension exists which takes a
+transformation lambda as an argument. The lambda is provided with a
+[PageProvider](TTIVI_INDIGO_API)` instance to load pages for the created `IviPagingSource`.
+
+See [this page](https://developer.android.com/topic/libraries/data-binding/expressions) for binding
+the `Account` `LiveData` to a view.
+
+### Using `Flow` of `PagingData`
+
+To expose a data source in an `RecyclerView`, you typically need to construct a
+[`Pager`](https://developer.android.com/reference/kotlin/androidx/paging/Pager) instance to
+create pairs of
+[`PagingData`](https://developer.android.com/reference/kotlin/androidx/paging/PagingData) and
+`PagingSource` instances. To construct the `Pager` instance you need to provide it with a
+[`PagingConfig`](https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig)
+instance. The `Pager` provides a [`Flow`](https://kotlinlang.org/docs/flow.html) of `PagingData`.
+
+The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_INDIGO_API) module provides
+extension functions to convert an `IviDataSource` or an `IviDataSource` `LiveData` to a `Flow` of
+`PagingData`. This creates the `Pager` instance under the hood. To use these extensions you need to
+provide the `PagingConfig` instance too.
+
+The following example maps all `Accounts` from the `accounts` data source to a `Flow` of
+`PagingData`.
+
+```kotlin
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.tomtom.ivi.example.common.account.Account
+import com.tomtom.ivi.example.serviceapi.account.AccountService
+import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
+import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
+import com.tomtom.ivi.platform.framework.api.ipc.iviserviceandroidpaging.mapPagingData
+import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
+import kotlinx.coroutines.flow.Flow
+
+internal class AccountLoginViewModel(panel: AccountLoginPanel) :
+    FrontendViewModel<AccountLoginPanel>(panel) {
+
+    private val accountServiceApi =
+        AccountService.createApi(this, frontendContext.iviServiceProvider)
+
+    /**
+     * Converts an [IviDataSource] [LiveData] to an [Flow] of [PagingData]. This
+     * flow can be bound to an `RecyclerView`. See Android Paging library for details.
+     */
+    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountServiceApi.accounts
+        .mapPagingData(pagingConfig, allAccountsQuery, this)
+
+    companion object {
+        private val allAccountsQuery = AccountsDataSourceQuery(
+            selection = AccountsDataSourceQuery.Selection.ALL,
+            orderBy = AccountsDataSourceQuery.Order.USERNAME
+        )
+
+        private val pagingConfig = PagingConfig(
+            pageSize = 10
+        )
+    }
+}
+```
+
+In the above example `mapPagingData` is given the `PagingConfig` instance, the `allAccountsQuery`
+instance and a lifecycle owner (`this`).
+
+You can bind the `Flow` of `PagingData` to a `RecyclerView` as explained in the
+[Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+and [Android Paging Codelab](https://developer.android.com/codelabs/android-paging) documentation.

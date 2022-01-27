@@ -17,15 +17,12 @@ import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
 import com.tomtom.ivi.example.serviceapi.account.SensitiveString
 import com.tomtom.ivi.example.serviceapi.accountsettings.AccountSettingsService
 import com.tomtom.ivi.example.serviceapi.accountsettings.createApi
-import com.tomtom.ivi.platform.framework.api.common.uid.Uid
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
-import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMirrorableMap
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.queueOrRun
 import com.tomtom.tools.android.api.livedata.requireValue
 import com.tomtom.tools.android.api.livedata.valueUpToDate
 import java.time.Instant
 import java.time.temporal.ChronoUnit
-
 
 internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
@@ -35,12 +32,12 @@ internal class StockAccountService(iviServiceHostContext: IviServiceHostContext)
 
     private val settingsServiceApi = AccountSettingsService.createApi(this, iviServiceProvider)
 
-    private val mutableLoggedInAccounts = MutableMirrorableMap<Uid<Account>, Account>()
+    private val mutableAccountsDataSource = MutableAccountsDataSource()
 
     override fun onCreate() {
         super.onCreate()
 
-        loggedInAccounts = mutableLoggedInAccounts
+        accounts = mutableAccountsDataSource
 
         // Executes an action once when the service becomes available.
         settingsServiceApi.queueOrRun { service ->
@@ -52,7 +49,7 @@ internal class StockAccountService(iviServiceHostContext: IviServiceHostContext)
                 service.updateActiveAccountAsync(null)
             } else {
                 service.activeAccount.valueUpToDate?.let { account ->
-                    mutableLoggedInAccounts[account.accountUid] = account
+                    mutableAccountsDataSource.addOrUpdateAccount(account)
                     activeAccount = account
                 }
             }
@@ -65,12 +62,12 @@ internal class StockAccountService(iviServiceHostContext: IviServiceHostContext)
     }
 
     override suspend fun logIn(username: String, password: SensitiveString): Boolean {
-        val account = mutableLoggedInAccounts.values.find { it.username == username }
-            ?: logInOnline(username, password)?.also {
-                mutableLoggedInAccounts[it.accountUid] = it
-            }
+        val account = (mutableAccountsDataSource.accounts.values.find { it.username == username }
+            ?: logInOnline(username, password))
+                ?.copy(loggedIn = true, lastLogIn = Instant.now())
 
         account?.let {
+            mutableAccountsDataSource.addOrUpdateAccount(it)
             activeAccount = it
             settingsServiceApi.coUpdateActiveAccount(activeAccount)
         }
@@ -79,8 +76,8 @@ internal class StockAccountService(iviServiceHostContext: IviServiceHostContext)
     }
 
     override suspend fun logOut() {
-        activeAccount?.let {
-            mutableLoggedInAccounts.remove(it.accountUid)
+        activeAccount?.copy(loggedIn = false)?.let {
+            mutableAccountsDataSource.addOrUpdateAccount(it)
             activeAccount = null
             settingsServiceApi.coUpdateActiveAccount(null)
         }
@@ -90,7 +87,7 @@ internal class StockAccountService(iviServiceHostContext: IviServiceHostContext)
         takeIf { isValidUsername(username) && isValidPassword(password.value) }?.run {
             // Simulate making an online request.
             onlineAccountEndpoint
-            Account(username)
+            Account(username = username)
         }
 
     companion object {

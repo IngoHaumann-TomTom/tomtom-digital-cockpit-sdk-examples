@@ -24,5 +24,6 @@ dependencies {
     implementation(libraries.indigoPlatformFrameworkApiCommonUid)
     implementation(libraries.tomtomToolsApiLivedata)
 
+    testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
     testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }

@@ -27,7 +27,6 @@ internal class AccountInfoViewModelTest : IviTestCase() {
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns MutableLiveData(true)
         every { activeAccount } returns MutableLiveData(TestData.testAccount)
-        every { loggedInAccounts } returns MutableLiveData(TestData.accountsMap)
     }
 
     private val mockPanel = niceMockk<AccountInfoPanel>()

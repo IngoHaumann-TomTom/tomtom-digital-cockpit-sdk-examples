@@ -112,6 +112,8 @@ menu:
             title: Create a Frontend Plugin
           - fileId: /tutorials-and-examples/basics/create-an-ivi-service
             title: Create an IVI Service
+          - fileId: /tutorials-and-examples/basics/use-an-ivi-data-source
+            title: Use an IVI Data Source
           - fileId: /tutorials-and-examples/basics/configure-debug-tabs
             title: Configure Debug Tabs
       - title: Media
