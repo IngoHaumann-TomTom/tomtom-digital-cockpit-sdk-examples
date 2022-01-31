@@ -19,6 +19,7 @@ import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
+import com.tomtom.tools.android.api.livedata.ImmutableLiveData
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import kotlin.test.assertEquals
@@ -26,22 +27,26 @@ import kotlin.test.assertTrue
 import org.junit.Test
 
 internal class AccountFrontendTest : IviTestCase() {
-    private val mutableAccount = MutableLiveData<Account?>(null).also {
-        // Service mock must be configured before a frontend is created.
-        mockkService(AccountService.Companion::createApi) {
-            every { serviceAvailable } returns MutableLiveData(true)
-            every { activeAccount } returns it
-        }
-    }
 
-    private val sut = AccountFrontend(niceMockk()).apply { onCreate() }
+    private val mutableAccount = MutableLiveData<Account?>(null)
+
+    // Service mock must be configured before a frontend is created.
+    @Suppress("unused")
+    private val mockAccountService =
+        mockkService(AccountService.Companion::createApi) {
+            every { serviceAvailable } returns ImmutableLiveData(true)
+            every { activeAccount } returns mutableAccount
+        }
+
+    private val sut = AccountFrontend(frontendContext = niceMockk())
+        .apply { onCreate() }
 
     @Test
     fun `frontend does not open a panel after an user has logged in`() {
-        // GIVEN no user is logged in.
+        // GIVEN no user is logged in
         mutableAccount.value = null
 
-        // WHEN an user has logged in.
+        // WHEN an user has logged in
         mutableAccount.value = TestData.testAccount
 
         // THEN the frontend does not open a panel.
@@ -50,7 +55,7 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend does not open a panel after an user has logged out`() {
-        // GIVEN an user is logged in.
+        // GIVEN an user is logged in
         mutableAccount.value = TestData.testAccount
 
         // WHEN the user has logged out
@@ -62,10 +67,10 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend opens a login panel if no user is logged in`() {
-        // GIVEN no user is logged in.
+        // GIVEN no user is logged in
         mutableAccount.value = null
 
-        // WHEN the frontend opens a task panel.
+        // WHEN the frontend opens a task panel
         sut.openTaskPanels()
 
         // THEN the frontend opens a login panel.
@@ -75,10 +80,10 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend opens an info panel if the user is logged in`() {
-        // GIVEN the user is logged in.
+        // GIVEN the user is logged in
         mutableAccount.value = TestData.testAccount
 
-        // WHEN the frontend opens a task panel.
+        // WHEN the frontend opens a task panel
         sut.openTaskPanels()
 
         // THEN the frontend opens an info panel.
@@ -88,12 +93,13 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend goes from login panel to info panel after login`() {
-        // GIVEN no user is logged in.
-        // AND the frontend opens a login panel.
+        // GIVEN no user is logged in
         mutableAccount.value = null
+
+        // AND the frontend opens a login panel
         sut.openTaskPanels()
 
-        // WHEN the user is logged in.
+        // WHEN the user is logged in
         mutableAccount.value = TestData.testAccount
 
         // THEN the frontend opens an info panel.
@@ -103,9 +109,10 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend goes from info panel to login panel after logout`() {
-        // GIVEN the user is logged in.
-        // AND the frontend opens an info panel.
+        // GIVEN the user is logged in
         mutableAccount.value = TestData.testAccount
+
+        // AND the frontend opens an info panel
         sut.openTaskPanels()
 
         // WHEN the user is logged out
@@ -118,12 +125,13 @@ internal class AccountFrontendTest : IviTestCase() {
 
     @Test
     fun `frontend does not re-open info panel if an user has changed`() {
-        // GIVEN the user is logged in.
-        // AND the frontend has an info panel opened.
+        // GIVEN the user is logged in
         mutableAccount.value = TestData.testAccount
+
+        // AND the frontend has an info panel opened
         sut.openTaskPanels()
 
-        // WHEN another user is logged in.
+        // WHEN another user is logged in
         mutableAccount.value = TestData.anotherTestAccount
 
         // THEN the frontend still has an info panel opened.

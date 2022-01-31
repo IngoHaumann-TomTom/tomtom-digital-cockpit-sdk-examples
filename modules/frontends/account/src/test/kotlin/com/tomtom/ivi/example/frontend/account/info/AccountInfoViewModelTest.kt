@@ -16,13 +16,14 @@ import com.tomtom.ivi.example.frontend.account.TestData
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
+import com.tomtom.tools.android.testing.assertion.assertLiveDataEquals
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
-import kotlin.test.assertEquals
 import org.junit.Test
 
 internal class AccountInfoViewModelTest : IviTestCase() {
+
     // Service mock must be configured before a view model is created.
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns MutableLiveData(true)
@@ -35,13 +36,15 @@ internal class AccountInfoViewModelTest : IviTestCase() {
 
     @Test
     fun `username is prepared for display`() {
-        assertEquals(TestData.testAccount.username, sut.displayName.getOrAwaitValue())
+        assertLiveDataEquals(TestData.testAccount.username, sut.displayName)
     }
 
     @Test
     fun `logout button click calls service`() {
+        // GIVEN-WHEN the logout button is clicked
         sut.onLogoutClick()
 
+        // THEN logout is called on the account service.
         verify {
             mockAccountService.logOutAsync(any())
         }

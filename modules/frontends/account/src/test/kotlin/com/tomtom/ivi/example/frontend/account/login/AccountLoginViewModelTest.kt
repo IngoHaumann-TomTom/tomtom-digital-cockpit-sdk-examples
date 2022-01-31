@@ -21,6 +21,8 @@ import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.framework.api.testing.ipc.iviservice.datasource.SimpleTestIviDataSource
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.assertion.assertLiveDataEquals
+import com.tomtom.tools.android.testing.assertion.assertLiveDataFalse
+import com.tomtom.tools.android.testing.assertion.assertLiveDataTrue
 import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
@@ -36,8 +38,9 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class AccountLoginViewModelTest : IviTestCase() {
 
-    // Service mock must be configured before a view model is created.
     private val mutableServiceAvailable = MutableLiveData(true)
+
+    // Service mock must be configured before a view model is created.
     private val mockAccountService = mockkService(AccountService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
         every { accounts } returns MutableLiveData(
@@ -83,44 +86,60 @@ internal class AccountLoginViewModelTest : IviTestCase() {
 
     @Test
     fun `login button is disabled if username and password field are empty`() {
-        assertFalse(sut.isLoginEnabled.getOrAwaitValue())
+        assertLiveDataFalse(sut.isLoginEnabled)
     }
 
     @Test
     fun `login button is disabled if password field is empty`() {
+        // GIVEN-WHEN
         sut.username.value = TestData.USERNAME
-        assertFalse(sut.isLoginEnabled.getOrAwaitValue())
+
+        // THEN
+        assertLiveDataFalse(sut.isLoginEnabled)
     }
 
     @Test
     fun `login button is disabled if username field is empty`() {
+        // GIVEN
         sut.password.value = TestData.PASSWORD
-        assertFalse(sut.isLoginEnabled.getOrAwaitValue())
+
+        // WHEN-THEN
+        assertLiveDataFalse(sut.isLoginEnabled)
     }
 
     @Test
     fun `login button is enabled if username and password are correct`() {
+        // GIVEN
         sut.username.value = TestData.USERNAME
         sut.password.value = TestData.PASSWORD
-        assertTrue(sut.isLoginEnabled.getOrAwaitValue())
+
+        // WHEN-THEN
+        assertLiveDataTrue(sut.isLoginEnabled)
     }
 
     @Test
     fun `login button is disabled if service is not available`() {
+        // GIVEN
         sut.username.value = TestData.USERNAME
         sut.password.value = TestData.PASSWORD
+
+        // WHEN
         mutableServiceAvailable.value = false
 
-        assertFalse(sut.isLoginEnabled.getOrAwaitValue())
+        // THEN
+        assertLiveDataFalse(sut.isLoginEnabled)
     }
 
     @Test
     fun `login button click calls service`() {
+        // GIVEN
         sut.username.value = TestData.USERNAME
         sut.password.value = TestData.PASSWORD
 
+        // WHEN
         sut.onLoginClick()
 
+        // THEN
         verify {
             mockAccountService.logInAsync(TestData.USERNAME, SensitiveString(TestData.PASSWORD), any())
         }
