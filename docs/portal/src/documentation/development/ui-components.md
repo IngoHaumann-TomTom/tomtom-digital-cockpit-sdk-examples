@@ -18,10 +18,7 @@ these attribute values. For further information, check the
 [Theming](/tomtom-indigo/documentation/development/theming-and-customization)
 documentation.
 
-For more details of these controls, see:
-
-- The [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
-- The [`core_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
+For more details of these controls, see the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
 
 The most commonly used custom controls are:
 
