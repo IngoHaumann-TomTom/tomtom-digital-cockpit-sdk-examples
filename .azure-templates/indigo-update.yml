@@ -61,6 +61,10 @@ steps:
         exit 1
       fi
 
+      # Work-around for Azure bug: Disable the shell flag '-x' now , to prevent single-quote appended to values.
+      # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
+      set +x
+
       git config --global user.email "ivi_dev@groups.tomtom.com"
       git config --global user.name "Azure DevOps"
       git branch -D ${{parameters.branch}} || true
