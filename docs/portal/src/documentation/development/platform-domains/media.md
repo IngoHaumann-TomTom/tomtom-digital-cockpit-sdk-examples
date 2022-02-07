@@ -120,8 +120,19 @@ This diagram shows the most relevant components:
 - For more complex use cases, it is possible to create [custom panels](#panels) to show an entirely
   different user interface for a source.
 
-All configurations need to be activated via a Gradle configuration. The
+These configurations are activated via a frontend plugin using Gradle configuration. The
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+guide explains this procedure.
+
+Some customization of the frontend can be achieved using the [media plugins configuration](#media-plugins-configuration), 
+based on the [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
+
+### Media plugins configuration
+
+The media plugin default configuration can be changed by adding a custom configuration resource file
+in your application, such as `<module>/res/value/ttivi-media-configuration.xml`. The custom 
+configuration overrides the default values. The 
+[How to configure the media plugin](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins)
 guide explains this procedure.
 
 ### Media library

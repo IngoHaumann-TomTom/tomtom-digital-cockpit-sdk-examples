@@ -122,6 +122,8 @@ menu:
             title: Create a New Media User Interface
           - fileId: /tutorials-and-examples/media/customize-a-media-source
             title: Customize a Media Source
+          - fileId: /tutorials-and-examples/media/configure-the-media-plugins
+            title: Configure the Media Plugins
       - title: Communications
         items:
           - fileId: /tutorials-and-examples/communications/create-a-custom-connection-service

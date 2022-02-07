@@ -37,6 +37,9 @@ will be of great help. In the
 [media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more
 details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
 
+If you want to configure the media plugins with a more global configuration, you can follow
+this guide: [how to configure the media plugins](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins).
+
 ## Modify content display
 
 A media source might provide poor quality of its input data, due to a sub-par implementation of the
