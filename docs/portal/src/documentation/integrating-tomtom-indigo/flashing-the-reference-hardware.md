@@ -62,9 +62,9 @@ The instructions are based on the official
 1. Download these files:
 
    - [Odin (Samsung flashing tool)](https://androidfilehost.com/?fid=4349826312261712202)
-   - [TWRP (recovery tool)](https://eu.dl.twrp.me/gts4lv/)
+   - [TWRP (recovery tool)](https://eu.dl.twrp.me/gts4lvwifi/) (download the latest `img.tar` file)
    - [Samsung USB drivers](https://developer.samsung.com/mobile/file/4d05badf-eaea-4095-af16-3aabfad74760)
-   - [vbmeta.tar](https://eu.dl.twrp.me/gts4lv/)
+   - [vbmeta.tar](https://eu.dl.twrp.me/gts4lvwifi/vbmeta.tar)
 
 2. Download the latest release of the OTA image (file ending with -`ota.zip)` from
    [here](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Flineageos-gts4lvwifi).
