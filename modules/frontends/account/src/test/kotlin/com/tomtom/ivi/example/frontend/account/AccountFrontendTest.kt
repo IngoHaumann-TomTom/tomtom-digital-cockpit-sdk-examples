@@ -18,6 +18,7 @@ import com.tomtom.ivi.example.frontend.account.login.AccountLoginPanel
 import com.tomtom.ivi.example.serviceapi.account.AccountService
 import com.tomtom.ivi.example.serviceapi.account.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
+import com.tomtom.ivi.platform.frontend.api.testing.unit.mockkFrontendContext
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.api.livedata.ImmutableLiveData
 import com.tomtom.tools.android.testing.mock.niceMockk
@@ -38,7 +39,7 @@ internal class AccountFrontendTest : IviTestCase() {
             every { activeAccount } returns mutableAccount
         }
 
-    private val sut = AccountFrontend(frontendContext = niceMockk())
+    private val sut = AccountFrontend(mockkFrontendContext())
         .apply { onCreate() }
 
     @Test
