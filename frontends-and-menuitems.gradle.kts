@@ -39,7 +39,8 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendE
  * val accountMenuItem: MenuItemConfig by project.extra
  *
  * plugins {
- *     // Apply the plugin to use to default frontends and menu items.
+ *     // Apply the plugin to use the default frontends and services from the TomTom IndiGO platform
+ *     // and app suite.
  *     id("com.tomtom.ivi.platform.defaults.core")
  * }
  *

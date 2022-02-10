@@ -226,8 +226,9 @@ val accountFrontend: FrontendConfig by project.extra
 val accountMenuItem: MenuItemConfig by project.extra
 
 plugins {
-    // Apply the plugin to use to default frontends and menu items.
-    id("com.tomtom.ivi.platform.defaults.core")
+    // Apply the plugin to use default frontends and services from TomTom IndiGO Platform
+    // and from all TomTom IndiGO Applications (from appsuite).
+    id("com.tomtom.ivi.product.defaults.core")
 }
 
 ivi {
@@ -235,8 +236,8 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                // Use the default frontends and menu items as defined by the
-                // `com.tomtom.ivi.platform.defaults.core` plugin.
+                // Use the default frontends and menu items as defined by the plugin applied above:
+                // `com.tomtom.ivi.product.defaults.core`.
                 useDefaults()
                 frontends {
                     // Register the `accountFrontend`.
@@ -283,8 +284,9 @@ val accountFrontend: FrontendConfig by project.extra
 val accountMenuItem: MenuItemConfig by project.extra
 
 plugins {
-    // Apply the plugin to use to default frontends and menu items.
-    id("com.tomtom.ivi.platform.defaults.core")
+    // Apply the plugin to use the default frontends and services from the TomTom IndiGO platform
+    // and app suite.
+    id("com.tomtom.ivi.product.defaults.core")
 }
 
 ivi {
@@ -292,8 +294,8 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                // Use the default frontends and menu items as defined by the
-                // `com.tomtom.ivi.platform.defaults.core` plugin.
+                // Use the default frontends and menu items as defined by the plugin applied above:
+                // `com.tomtom.ivi.product.defaults.core`.
                 useDefaults()
                 frontends {
                     // Replace the TomTom IndiGO's user profile frontend with the `accountFrontend`.

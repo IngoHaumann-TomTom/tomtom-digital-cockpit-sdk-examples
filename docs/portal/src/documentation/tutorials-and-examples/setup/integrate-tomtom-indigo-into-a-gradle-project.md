@@ -112,11 +112,12 @@ To integrate the TomTom IndiGO platform into an APK, you can add the following t
 
 ```kotlin
 plugins {
-    // Optional: To use defaults from the default TomTom IndiGO IVI application.
-    id("com.tomtom.ivi.platform.defaults.core")
+    // Optional: To use the default frontends and services from the TomTom IndiGO platform and app
+    // suite.
+    id("com.tomtom.ivi.product.defaults.core")
 
     // Optional: To configure the NavKit2 API key at build-time.
-    id("com.tomtom.ivi.platform.defaults.navkit2")
+    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
 ivi {

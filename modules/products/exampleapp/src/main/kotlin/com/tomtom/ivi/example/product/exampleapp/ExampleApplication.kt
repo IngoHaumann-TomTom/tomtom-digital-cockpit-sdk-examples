@@ -54,7 +54,8 @@ internal class ExampleApplication : DefaultApplication() {
          *
          * - Implement the [NAVKIT2_API_KEY] property below.
          * - Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` as a Gradle
-         *   property or do not apply the `com.tomtom.ivi.platform.defaults.navkit2` Gradle plugin.
+         *   property or do not apply the `com.tomtom.ivi.appsuite.navkit2.defaults.config` Gradle
+         *   plugin.
          */
         private const val CONFIGURE_NAVKIT2_API_KEY_STATIC_CONFIGURATION_PROVIDER = false
 

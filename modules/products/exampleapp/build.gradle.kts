@@ -9,6 +9,8 @@
  * immediately return or destroy it.
  */
 
+import com.tomtom.ivi.appsuite.gradle.userprofiles.api.appsuitedefaults.userprofiles.userProfileFrontend
+import com.tomtom.ivi.appsuite.gradle.userprofiles.api.appsuitedefaults.userprofiles.userProfileMenuItem
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
@@ -17,13 +19,11 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemC
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.defaults.config.contactsServiceHost
 import com.tomtom.ivi.platform.gradle.api.defaults.config.recentCallsServiceHost
-import com.tomtom.ivi.platform.gradle.api.defaults.config.userProfileFrontend
-import com.tomtom.ivi.platform.gradle.api.defaults.config.userProfileMenuItem
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
-    id("com.tomtom.ivi.platform.defaults.core")
-    id("com.tomtom.ivi.platform.defaults.navkit2")
+    id("com.tomtom.ivi.product.defaults.core")
+    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))

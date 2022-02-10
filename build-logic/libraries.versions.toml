@@ -39,7 +39,7 @@ androidxCoreKtx = "1.3.2"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.3236"
+indigoPlatform = "1.0.3237"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.315"
 iviCommunicationsSdk = "0.1.109"
@@ -56,11 +56,12 @@ gradlePluginNavtestAndroid = { module = "com.tomtom.navtest:navtest-android", ve
 gradlePluginNavtestCore = { module = "com.tomtom.navtest:navtest-core", version.ref = "navtest" }
 gradlePluginNavuiEmulators = { module = "com.tomtom.navui:emulators-plugin", version.ref = "navuiEmulators" }
 
-# Gradle plugins from the TomTom IndiGO platform.
-gradlePluginApiDefaultsCore = { module = "com.tomtom.ivi.platform.gradle:api_defaults_core", version.ref = "indigoPlatform" }
-gradlePluginApiDefaultsNavkit2 = { module = "com.tomtom.ivi.platform.gradle:api_defaults_navkit2", version.ref = "indigoPlatform" }
+# Gradle plugins from the TomTom IndiGO platform & appsuite.
+gradlePluginApiAppsuiteDefaultsNavkit2 = { module = "com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2", version.ref = "indigoPlatform" }
+gradlePluginApiAppsuiteDefaultsUserprofiles = { module = "com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksConfig = { module = "com.tomtom.ivi.platform.gradle:api_framework_config", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksFrontend = { module = "com.tomtom.ivi.platform.gradle:api_framework_frontend", version.ref = "indigoPlatform" }
+gradlePluginApiProductDefaultsCore = { module = "com.tomtom.ivi.product.gradle:api_productdefaults_core", version.ref = "indigoPlatform" }
 gradlePluginApiToolsNavkit2Test = { module = "com.tomtom.ivi.platform.gradle:api_tools_navkit2test", version.ref = "indigoPlatform" }
 gradlePluginApiToolsSigningConfig = { module = "com.tomtom.ivi.platform.gradle:api_tools_signingconfig", version.ref = "indigoPlatform" }
 gradlePluginApiToolsEmulators = { module = "com.tomtom.ivi.platform.gradle:api_tools_emulators", version.ref = "indigoPlatform" }
