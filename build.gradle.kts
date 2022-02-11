@@ -114,6 +114,19 @@ navTestRoot {
     }
 }
 
+tasks.register<DefaultTask>("showAllDependencies") { }
+
+allprojects {
+    val project = this
+    rootProject.tasks.named("showAllDependencies") {
+        if (project.name == rootProject.name) {
+            dependsOn("dependencies")
+        } else {
+            dependsOn(":${project.name}:dependencies")
+        }
+    }
+}
+
 subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
     val isAndroidTestProject by extra(getGradleProperty("isAndroidTestProject", false))
