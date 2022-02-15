@@ -18,7 +18,7 @@ persistent key-value storage. It provides [settings services](#settings-service)
 type-safe and domain-specific interface to a settings management service.
 
 The
-[_off-the-shelf_, or _stock_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+[_off-the-shelf_, or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 IVI frontends and IVI services use settings services to manage their settings.
 
 ![Settings framework high-level overview image](images/settings_framework-high-level-overview.svg)

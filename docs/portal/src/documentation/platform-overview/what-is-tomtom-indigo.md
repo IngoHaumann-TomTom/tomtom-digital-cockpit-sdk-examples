@@ -17,7 +17,7 @@ from one app to another.
 
 TomTom IndiGO comes standard with a comprehensive set of automotive grade services and
 applications, ready to be used for commercial purposes. We call these the
-[_off-the-shelf components_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components).
+[_off-the-shelf components_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components).
 
 Off-the-shelf applications can be used “plug-and-play” or they can be customized to the
 car maker’s needs. Performing customization is not limited to visual changes, but may also include

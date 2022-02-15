@@ -3,14 +3,14 @@ title: Example App
 ---
 
 The TomTom IndiGO SDK comes with an example application that provides all the
-[_off-the-shelf_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+[_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 functionality of the TomTom IndiGO platform. It also contains the source code that goes with the
 tutorials, to get you started with developing for TomTom IndiGO.
 
 ## Off-the-shelf functionality
 
 The TomTom IndiGO example application integrates all the
-[_off-the-shelf_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+[_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 functionality implemented for the TomTom IndiGO platform. It is a fully working infotainment system,
 including navigation, a media center, phone calling, messaging and much more. In the source code the
 _off-the-shelf functionality_ is often referred to as _stock functionality_.

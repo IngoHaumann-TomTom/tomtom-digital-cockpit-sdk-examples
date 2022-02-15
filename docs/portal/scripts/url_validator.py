@@ -29,6 +29,7 @@ PORTAL_BASE_URL = "https://developer.tomtom.com"
 # Regex pattern to retrieve URLs.
 REGEX_EXTERNAL_URL = "(?<=\()http[^)]+(?=\))"
 REGEX_INTERNAL_URL = "(?<=\()/tomtom-indigo/.*?(?=\))"
+REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
 
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
@@ -92,6 +93,7 @@ def check_internal_url(content, warnings, path):
     path : str
         The path of the file being checked. For logging purposes.
     '''
+
     for match in re.findall(REGEX_INTERNAL_URL, content):
         internal_url = os.path.join(PORTAL_BASE_URL, match[1:])
         status = is_url_available(internal_url)
@@ -99,6 +101,31 @@ def check_internal_url(content, warnings, path):
         # Check for client and server error responses.
         if status > 200:
             warnings.append(f"{internal_url} in {path}")
+
+def validate_internal_url_syntax(target_dir):
+    '''
+    Checks whether a forward slash is included in internal URLs. Throws an Exception with a list of
+    URLs with omitted forward slashes.
+
+    Parameters
+    -----------
+    target_dir : str
+        The files within this directory will be checked for URL syntax.
+
+    '''   
+    errors = []
+    for path in Path(target_dir).rglob(TARGET_FILETYPE):
+        with open(path, 'r+', encoding="utf-8") as file:
+            content = file.read()
+
+            # Exclude code blocks from checked URLs.
+            content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
+            
+            for match in re.findall(REGEX_INTERNAL_URL_NO_SLASH, content):
+                errors.append(f"{match} in file {path}")
+            
+    if len(errors):
+        raise SyntaxError("Encountered {} syntax error(s) in internal URLs:\n{}".format(len(errors), '\n'.join(errors)))
 
 def url_validator(target_dir):
     '''
@@ -111,6 +138,8 @@ def url_validator(target_dir):
         The files within this directory will be checked for URL validity.
 
     '''
+    validate_internal_url_syntax(target_dir)
+
     errors = []
     warnings = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):

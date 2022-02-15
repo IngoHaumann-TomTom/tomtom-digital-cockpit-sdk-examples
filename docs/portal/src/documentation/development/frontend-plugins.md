@@ -5,7 +5,7 @@ title: Frontend Plugins
 Frontend plugins are the User Interface (UI) modules of the TomTom IndiGO platform. Each frontend
 is an independent module encapsulating the UI of some distinct functionality in the platform. The
 TomTom IndiGO platform provides a number of default, or
-[_off-the-shelf_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components),
+[_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components),
 frontend plugins, like the media player, or the phone, etc.
 
 Each frontend is developed against a common set of stable platform APIs. These APIs can be used to

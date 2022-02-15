@@ -20,7 +20,7 @@ TARGET_FILETYPE = "*.md"
 # The API Reference versions used by the API link generating script. These are not coupled to the
 # versions used in the Example App (Versions.kt). This grants us more control over when to update
 # the documentation and helps us avoid breaking changes, which disables us from making exports.
-INDIGO_VERSION = "1.0.3148"
+INDIGO_VERSION = "1.0.3168"
 INDIGO_GRADLEPLUGINS_VERSION = INDIGO_VERSION
 INDIGO_COMMS_VERSION = "0.1.109"
 ANDROID_TOOLS_VERSION = "0.0.317"

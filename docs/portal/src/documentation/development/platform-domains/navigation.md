@@ -8,7 +8,7 @@ up-to-date map content. It is built on top of TomTom's navigation SDK:
 NavKit2 and makes use of common UI components, made available through the NavKit2UI SDK.
 
 TomTom IndiGO provides a set of generic core services as well as
-[_off-the-shelf_, or _stock_](tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+[_off-the-shelf_, or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 implementations. They are built on top of NavKit2 and NavKit2UI SDK and provide the customer with
 an out of the box navigation experience. Alternatively the customer can replace the off-the-shelf
 frontend and services with their own implementations.
