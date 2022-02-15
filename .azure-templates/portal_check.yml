@@ -21,3 +21,5 @@ steps:
         -PuseInternalNavkit2ApiKey=true
       displayName: 'Validate Developer Portal content'
       continueOnError: true
+      # TODO(IVI-6613) Decision on portal validation pipeline conditions
+

@@ -32,8 +32,8 @@ instructions.
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.platform.gradle.api.defaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) Gradle 
-plugin.
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+Gradle plugin.
 
 This option is preferred if you want to simplify the project setup. However it requires the key to
 be added to your SCM.
@@ -46,8 +46,8 @@ The `ExampleApplication` class contains an example explaining how to configure i
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.platform.gradle.api.defaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) Gradle 
-plugin.
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+Gradle plugin.
 
 This option is preferred if you want to obtain and configure the key at runtime.
 

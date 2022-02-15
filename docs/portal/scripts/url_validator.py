@@ -26,10 +26,15 @@ TARGET_FILETYPE = "*.md"
 # Developer Portal base URL.
 PORTAL_BASE_URL = "https://developer.tomtom.com"
 
-# Regex pattern to retrieve URLs.
+# Regex pattern to retrieve external URLs.
 REGEX_EXTERNAL_URL = "(?<=\()http[^)]+(?=\))"
+
+# Regex pattern to retrieve internal Developer Portal URLs.
 REGEX_INTERNAL_URL = "(?<=\()/tomtom-indigo/.*?(?=\))"
 REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
+
+# Regex pattern to retrieve API Reference URLs hosted on S3.
+REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
@@ -58,7 +63,7 @@ def is_url_available(url):
         status = HTTP_ERROR
     return status
 
-def check_external_url(content, errors, path):
+def check_external_url(content, errors, path, is_export):
     '''
     Checks the external URLs found in the Markdown file in 'path' by sending HTTP requests
     and checking the HTTP status code returned.
@@ -71,8 +76,15 @@ def check_external_url(content, errors, path):
         A list containing error messages for logging purposes. Any new error(s) will be appended to this list.
     path : str
         The path of the file being checked. For logging purposes.
+    is_export : boolean
+        Indicates whether the script is run with the optional argument "export".
     '''
     for external_url in re.findall(REGEX_EXTERNAL_URL, content):
+
+        # Skip validation of S3 URLs when script is not run as export.
+        if not is_export and re.fullmatch(REGEX_S3_URL, external_url) != None:
+            continue
+
         status = is_url_available(external_url)
 
         # Check for client and server error responses.
@@ -127,7 +139,7 @@ def validate_internal_url_syntax(target_dir):
     if len(errors):
         raise SyntaxError("Encountered {} syntax error(s) in internal URLs:\n{}".format(len(errors), '\n'.join(errors)))
 
-def url_validator(target_dir):
+def url_validator(target_dir, is_export):
     '''
     Validates the URLs found in Markdown files within a target directory by sending HTTP requests
     and checking the HTTP status code returned.
@@ -136,6 +148,8 @@ def url_validator(target_dir):
     -----------
     target_dir : str
         The files within this directory will be checked for URL validity.
+    is_export : boolean
+        Indicates whether the script is run with the optional argument "export".
 
     '''
     validate_internal_url_syntax(target_dir)
@@ -149,7 +163,7 @@ def url_validator(target_dir):
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
             
-            check_external_url(content, errors, path)
+            check_external_url(content, errors, path, is_export)
             check_internal_url(content, warnings, path)
 
     if len(warnings):

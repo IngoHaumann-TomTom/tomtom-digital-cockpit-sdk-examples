@@ -11,25 +11,15 @@
 
 import re
 import os
-import json
+import tarfile
+import shutil
 from pathlib import Path
-from urllib.request import urlopen
+import requests
 
 TARGET_FILETYPE = "*.md"
-
-# The API Reference versions used by the API link generating script. These are not coupled to the
-# versions used in the Example App (Versions.kt). This grants us more control over when to update
-# the documentation and helps us avoid breaking changes, which disables us from making exports.
-INDIGO_VERSION = "1.0.3168"
-INDIGO_GRADLEPLUGINS_VERSION = INDIGO_VERSION
-INDIGO_COMMS_VERSION = "0.1.109"
-ANDROID_TOOLS_VERSION = "0.0.317"
-
-INDIGO_BASE_URL = f"https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-api/{INDIGO_VERSION}"
-INDIGO_GRADLEPLUGINS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-gradleplugins-api/{INDIGO_GRADLEPLUGINS_VERSION}"
-INDIGO_COMMS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-comms-sdk-api/{INDIGO_COMMS_VERSION}"
-ANDROID_TOOLS_BASE_URL = f"https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-android-tools-api/{ANDROID_TOOLS_VERSION}"
 JSON_POSTFIX_URL = "scripts/navigation-pane.json"
+DOWNLOAD_DIR = "build/downloads"
+IGNORE = ["scripts",  "images", "styles", "package-list"]
 
 # The placeholders in the Markdown files that will be replaced by an API Reference URL.
 INDIGO_PLACEHOLDER = "TTIVI_INDIGO_API"
@@ -43,6 +33,9 @@ REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({INDIGO_GRADLEPLUGINS_PLACEH
 REGEX_INDIGO_COMMS_PLACEHOLDER = f"\[.*?\]\({INDIGO_COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
+INDIGO_S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo"
+ARTIFACTORY_BASE_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
+
 # Regex pattern to retrieve the API element without brackets.
 REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
 
@@ -52,35 +45,46 @@ REGEX_GENERIC_PLACEHOLDER = "(?<=\]\()TTIVI_.*?(?=\))"
 def is_valid_placeholder(match):
     '''
     Checks whether 'match' has correct placeholder syntax. Returns a boolean.
+
+    Parameters
+    -----------
+    match : str
+        The match to validate.
+
+    Returns
+    -----------
+    bool
+        True if valid placeholder syntax.
+    
     '''
     return match == INDIGO_PLACEHOLDER or \
         match == INDIGO_GRADLEPLUGINS_PLACEHOLDER or \
         match == INDIGO_COMMS_PLACEHOLDER or \
         match == ANDROID_TOOLS_PLACEHOLDER
 
-def get_json_map(json_url):
+def download_api_ref(artifactory_url, target_dir):
     '''
-    Retrieves a JSON object that contains all pages of an API Reference.
-    Maps the 'name' and 'location' fields of the JSON object to 'api_element' and 'url' key-value
-    pairs and returns the map.
+    Downloads API Reference from Artifactory to specified target_dir.
 
     Parameters
     -----------
-    json_url : str
-        The URL to the JSON file to retrieve.
-
-    Returns
-    -----------
-    map
-        A map of 'api_element' and 'url' key-value pairs.
+    artifactory_url : str
+        The URL to the API Reference tarball on Artifactory which contains the JSON file.
+    target_dir : str
+        The directory to download the API Reference tarball to.
     '''
-    raw_json = json.loads(urlopen(json_url).read())
-    if not raw_json:
-        raise ConnectionError(f"JSON cannot be retrieved from {json_url}.")
-    map = {}
-    for item in raw_json:
-        map[item["name"]] = item["location"]
-    return map
+    download_target = os.path.join(target_dir, "api-reference.tar.gz")
+    os.makedirs(target_dir)
+
+    # Download and extract API Reference from Artifactory.
+    try:
+        response = requests.get(artifactory_url)
+    except:
+        raise ConnectionError(f"API Reference cannot be retrieved from {artifactory_url}.")
+    with open(download_target, "wb") as file:
+        file.write(response.content)
+    with tarfile.open(download_target, 'r') as archive:
+        archive.extractall(target_dir)
 
 def url_lookup(api_reference_map, regex_match, path, errors):
     '''
@@ -105,9 +109,9 @@ def url_lookup(api_reference_map, regex_match, path, errors):
     str
         The URL postfix of the matched API element.
     '''
-    api_element = (re.search(REGEX_API_ELEMENT, regex_match)).group(0)
 
-    if api_element == None:
+    api_element = (re.search(REGEX_API_ELEMENT, regex_match)).group(0)
+    if not api_element:
         raise SyntaxError(f"API element cannot be captured from regex match {regex_match} in {path}.")
 
     # Trim api_element when surrounded by backticks.
@@ -142,10 +146,97 @@ def validate_placeholders(target_dir):
             for match in re.findall(REGEX_GENERIC_PLACEHOLDER, content):
                 if not is_valid_placeholder(match):
                     errors.append(f"{match} in file {path}")
-    if len(errors):
-        raise SyntaxError("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))
 
-def api_link_generator(target_dir):
+    if len(errors):
+        raise SyntaxError("Encountered {} syntax error(s):\n{}".format(len(errors), '\n'.join(errors)))
+
+def mutate_name(property_name):
+    '''
+    Transforms property names to PascalCase, removing dashes.
+
+    Parameters
+    -----------
+    property_name : str
+        Property name to transform
+
+    Returns
+    -----------
+    str
+        Property name in PascalCase without dashes.
+    '''
+    capitalized = [word.capitalize() for word in property_name.split("-")]
+    return "".join(capitalized)
+
+def get_subdirectories(target_dir):
+    '''
+    Returns all the subdirectories of target_dir and ignores directories specified by 'IGNORE'.
+
+    Parameters
+    -----------
+    target_dir : str
+        Target directory to return the subdirectories from.
+
+    Returns
+    -----------
+    list
+        List of subdirectories in 'target_dir'
+    '''
+    sub_dirs = os.listdir(target_dir)
+    sub_dirs = [dir for dir in sub_dirs \
+        if dir not in IGNORE \
+        if os.path.isdir(os.path.join(target_dir, dir))]
+    return sub_dirs
+
+def make_index_file(*args):
+    '''
+    Creates URLs to index files.
+
+    Parameters
+    -----------
+    *args : str
+        Variable number of paths.
+
+    Returns
+    -----------
+    str
+        Concatenated string of paths + "index.html"
+    '''
+    return os.path.join(*args, "index.html")
+
+def create_index(target_dir):
+    '''
+    Indexes an API Reference and returns a map of API elements and URLs.
+
+    Parameters
+    -----------
+    target_dir : str
+        The path to a downloaded API Reference.
+
+    Returns
+    -----------
+    map
+        A map of API elements and URL key-value pairs.
+    '''
+    map = {}
+
+    modules = get_subdirectories(target_dir)
+    for module in modules:
+        map[module] = make_index_file(module)
+
+        module_path = os.path.join(target_dir, module)
+        packages = get_subdirectories(module_path)
+        for package in packages:
+            map[package] = make_index_file(module, package)
+
+            package_path = os.path.join(module_path, package)
+            properties = get_subdirectories(package_path)
+            for property in properties:
+                map[mutate_name(property)] = make_index_file(module, package, property)
+                # TODO(IVI-5714): Add support class functions
+
+    return map
+
+def api_link_generator(target_dir, versions):
     '''
     Replaces all API placeholders with the corresponding API Reference URLs.
 
@@ -153,42 +244,82 @@ def api_link_generator(target_dir):
     -----------
     target_dir : str
         The files within this directory will be altered, replacing the placeholders with URLs.
+    versions : list
+        [0] IndiGO version.
+        [1] IndiGO Comms SDK version.
+        [2] TomTom Android Tools version.
     '''
+
+    assert (len(versions) == 3), "Invalid number of versions."
+    indigo_version = versions[0]
+    indigo_gradleplugins_version = indigo_version
+    indigo_comms_version = versions[1]
+    android_tools_version = versions[2]
+
+    print("Using API reference versions:")
+    print(f"    IndiGO Platform version {indigo_version}")
+    print(f"    IndiGO Gradle Plugins version {indigo_gradleplugins_version}")
+    print(f"    IndiGO Comms SDK version {indigo_comms_version}")
+    print(f"    TomTom Android Tools version {android_tools_version}")
+    
+    # The base URLs of the hosted API References on the S3 bucket.
+    indigo_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-api/{indigo_version}"
+    indigo_gradleplugins_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-gradleplugins-api/{indigo_gradleplugins_version}"
+    indigo_comms_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-comms-sdk-api/{indigo_comms_version}"
+    android_tools_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-android-tools-api/{android_tools_version}"
+
+    # The URLs of the API Reference on Artifactory.
+    indigo_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/api-reference-docs/{indigo_version}/api-reference-docs-{indigo_version}.tar.gz"
+    indigo_gradleplugins_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/{indigo_gradleplugins_version}/api-reference-docs-{indigo_gradleplugins_version}.tar.gz"
+    indigo_comms_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/{indigo_comms_version}/api-reference-docs-{indigo_comms_version}.tar.gz"
+    android_tools_artifactory_url = f"{ARTIFACTORY_BASE_URL}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/{android_tools_version}/api-reference-docs-{android_tools_version}.tar.gz"
+
+    # The directories where the downloaded API References will be saved.
+    indigo_download_dir = f"{DOWNLOAD_DIR}/indigo_{indigo_version}"
+    indigo_gradleplugins_download_dir = f"{DOWNLOAD_DIR}/indigo_gradleplugins_{indigo_gradleplugins_version}"
+    indigo_comms_download_dir = f"{DOWNLOAD_DIR}/indigo_comms_{indigo_comms_version}"
+    android_tools_download_dir = f"{DOWNLOAD_DIR}/android_tools_{android_tools_version}"
+
     validate_placeholders(target_dir)
 
-    print("Using on-line API reference versions:")
-    print("    TomTom IndiGO {}".format(INDIGO_VERSION))
-    print("    TomTom IndiGO Gradle Plugins {}".format(INDIGO_GRADLEPLUGINS_VERSION))
-    print("    TomTom IndiGO Comms SDK {}".format(INDIGO_COMMS_VERSION))
-    print("    TomTom Android Tools {}".format(ANDROID_TOOLS_VERSION))
+    # Clean previous API Reference downloads.
+    if os.path.exists(DOWNLOAD_DIR):
+        shutil.rmtree(DOWNLOAD_DIR)
 
-    indigo_map = get_json_map(os.path.join(INDIGO_BASE_URL, JSON_POSTFIX_URL))
-    indigo_gradleplugins_map = get_json_map(os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, JSON_POSTFIX_URL))
-    indigo_comms_map = get_json_map(os.path.join(INDIGO_COMMS_BASE_URL, JSON_POSTFIX_URL))
-    android_tools_map = get_json_map(os.path.join(ANDROID_TOOLS_BASE_URL, JSON_POSTFIX_URL))
+    # Download API References stored on Artifactory.
+    download_api_ref(indigo_artifactory_url, indigo_download_dir)
+    download_api_ref(indigo_gradleplugins_artifactory_url, indigo_gradleplugins_download_dir)
+    download_api_ref(indigo_comms_artifactory_url, indigo_comms_download_dir)
+    download_api_ref(android_tools_artifactory_url, android_tools_download_dir)
+
+    # Create look-up maps by indexing API References.
+    indigo_map = create_index(indigo_download_dir)
+    indigo_gradleplugins_map = create_index(indigo_gradleplugins_download_dir)
+    indigo_comms_map = create_index(indigo_comms_download_dir)
+    android_tools_map = create_index(android_tools_download_dir)
 
     errors = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
             content = file.read()
 
-            # Replace TTIVI_ placeholders.
+            # Replace TTIVI_ placeholders in documentation.
             for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
                 content = content.replace(INDIGO_PLACEHOLDER, \
-                    os.path.join(INDIGO_BASE_URL, url_lookup(indigo_map, match, path, errors)), 1)
+                    os.path.join(indigo_base_url, url_lookup(indigo_map, match, path, errors)), 1)
             for match in re.findall(REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER, content):
                 content = content.replace(INDIGO_GRADLEPLUGINS_PLACEHOLDER, \
-                    os.path.join(INDIGO_GRADLEPLUGINS_BASE_URL, url_lookup(indigo_gradleplugins_map, match, path, errors)), 1)
+                    os.path.join(indigo_gradleplugins_base_url, url_lookup(indigo_gradleplugins_map, match, path, errors)), 1)
             for match in re.findall(REGEX_INDIGO_COMMS_PLACEHOLDER, content):
                 content = content.replace(INDIGO_COMMS_PLACEHOLDER, \
-                    os.path.join(INDIGO_COMMS_BASE_URL, url_lookup(indigo_comms_map, match, path, errors)), 1)
+                    os.path.join(indigo_comms_base_url, url_lookup(indigo_comms_map, match, path, errors)), 1)
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
                 content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
-                    os.path.join(ANDROID_TOOLS_BASE_URL, url_lookup(android_tools_map, match, path, errors)), 1)
+                    os.path.join(android_tools_base_url, url_lookup(android_tools_map, match, path, errors)), 1)
             file.seek(0)
             file.write(content)
             file.truncate()
 
     if len(errors):
         print("Encountered {} error(s):\n{}".format(len(errors), '\n'.join(errors)))
-        raise KeyError("API link(s) could not be generated. Make sure you use the correct API Reference versions in api_link_generator.py")
+        raise KeyError("API link(s) could not be generated. Make sure the API symbols match the API Reference versions specified in libraries.versions.toml")

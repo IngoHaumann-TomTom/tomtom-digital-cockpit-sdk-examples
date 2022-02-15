@@ -18,24 +18,27 @@
 #
 # This script is intended to be called from Gradle tasks, not as a separate tool.
 #
-# Gradle task 'portal_export' calls the script as 'python3 -B <script-name> <target-dir> export'.
+# Gradle task 'portal_export' calls the script as 'python3 -B <script-name> <indigo-version> 
+# <indigo-comms-version> <android-tools-version> <target-dir> export'.
 # The script generates API Reference URLs from placeholders and it validates URLs in the content.
 # It connects to the S3 server to retrieve all available API Reference versions and adds those to
 # the API Reference pages.
 #
-# Gradle task 'portal_check' calls the script as 'python3 -B <script-name> <target-dir>'.
+# Gradle task 'portal_check' calls the script as 'python3 -B <script-name> <indigo-version> 
+# <indigo-comms-version> <android-tools-version> <target-dir>'.
 # The script generates API Reference URLs from placeholders and it validates URLs in the content.
 #
 # There are multiple steps to this script:
 #   - New Markdown files are created in <target-dir> from the Markdown files in the SOURCE_DIR
 #     directory.
-#   - API Reference placeholders get replaced by API Reference URLs in the TARGET_DIR files.
-#   - The TARGET_DIR Markdown files get checked for broken links.
+#   - API Reference placeholders get replaced by API Reference URLs in the <target_dir> files.
+#   - The <target_dir> Markdown files get checked for broken links.
 #
 # An example of replacing an API Reference placeholder by an API Reference URL:
 #   [OverlayPanel](TTIVI_INDIGO_API)
 # becomes
-#   [OverlayPanel](https://developer.tomtom.com/assets/downloads/indigo/indigo-api/latest/platform_frontend_api_common_frontend/com.tomtom.ivi.platform.frontend.api.common.frontend.panels/-overlay-panel/index.html)
+#   [OverlayPanel](https://developer.tomtom.com/assets/downloads/tomtom-indigo/tomtom-indigo-api/x.y.z/platform_frontend_api_common_frontend/com.tomtom.ivi.platform.frontend.api.common.frontend.panels/-overlay-panel/index.html)
+
 
 import shutil
 import os
@@ -56,22 +59,32 @@ def parse_parameters():
 
     Returns
     -------
+    versions : list
+        [0] IndiGO version.
+        [1] IndiGO Comms SDK version.
+        [2] TomTom Android Tools version.
     target_dir : string
         The directory where the portal files must be generated.
     is_export : boolean
         Indicates whether the script is run with the optional argument "export"
     '''
     argc = len(sys.argv)
-    assert (1 <= argc and argc <= 3), "Illegal number of parameters."
+    assert (argc >= 5 and argc <= 6), "Invalid number of parameters."
 
-    target_dir = sys.argv[1]
+    versions = []
+    versions.append(sys.argv[1])
+    versions.append(sys.argv[2])
+    versions.append(sys.argv[3])
+
+    target_dir = sys.argv[4]
 
     is_export = False
-    if argc >= 3:
-        assert (sys.argv[2] == "export"), "Unexpected 2nd parameter."
+    if argc == 6:
+        assert (sys.argv[5] == "export"), "Unexpected 5th parameter."
         is_export = True
-    
-    return target_dir, is_export
+
+    # TODO(IVI-6612) Create PortalConfig object
+    return versions, target_dir, is_export
 
 def verify_working_directory():
     '''Verifies whether script is run from correct working directory.'''
@@ -102,13 +115,19 @@ def create_intermediate_files(target_dir):
     shutil.copytree(SOURCE_DIR, target_dir)
 
 # Input validation and other preparation.
-target_dir, is_export = parse_parameters()
+# TODO(IVI-6612) Create PortalConfig object
+versions, target_dir, is_export = parse_parameters()
 verify_working_directory()
 clean_old_files(target_dir)
 
 # Generate and verify the portal content.
 create_intermediate_files(target_dir)
-api_link_generator(target_dir)
+api_link_generator(target_dir, versions)
+
+# TODO(IVI-6068): New integrated API Reference section
 if is_export:
     populate_versions(os.path.join(target_dir, API_REFERENCE_DIR))
-url_validator(os.path.join(target_dir, DOCUMENTATION_DIR))
+
+url_validator(os.path.join(target_dir, DOCUMENTATION_DIR), is_export)
+
+# TODO(IVI-6067): Generate release notes
