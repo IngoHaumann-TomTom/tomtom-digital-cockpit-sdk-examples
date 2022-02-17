@@ -62,9 +62,9 @@ The instructions are based on the official
 1. Download these files:
 
    - [Odin (Samsung flashing tool)](https://androidfilehost.com/?fid=4349826312261712202)
-   - [TWRP (recovery tool)](https://eu.dl.twrp.me/gts4lvwifi/) (download the latest `img.tar` file)
+   - [TWRP (recovery tool)](https://dl.twrp.me/gts4lvwifi/) (download the latest `img.tar` file)
    - [Samsung USB drivers](https://developer.samsung.com/mobile/file/4d05badf-eaea-4095-af16-3aabfad74760)
-   - [vbmeta.tar](https://eu.dl.twrp.me/gts4lvwifi/vbmeta.tar)
+   - [vbmeta.tar](https://dl.twrp.me/gts4lvwifi/vbmeta.tar)
 
 2. Download the latest release of the OTA image (file ending with -`ota.zip)` from
    [here](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Flineageos-gts4lvwifi).
@@ -128,7 +128,7 @@ The instructions are based on the official
 17. Check the box next to the button labeled __`AP`__, and then click the __`AP`__ button.
 
 18. A pop-up dialog will ask you to select a file. Select the previously downloaded
-    [vbmeta.tar](https://eu.dl.twrp.me/gts4lv/) file and press the __Start__ button.
+    [vbmeta.tar](https://dl.twrp.me/gts4lvwifi/vbmeta.tar) file and press the __Start__ button.
     A blue transfer bar will appear on the device showing the __`vbmeta`__ image being flashed.
     After that, the device will reboot.
 
