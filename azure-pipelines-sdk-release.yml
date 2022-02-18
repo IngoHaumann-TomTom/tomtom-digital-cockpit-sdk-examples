@@ -122,7 +122,8 @@ stages:
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
     jobs:
       - template: .azure-templates/api-ref-jobs.yml
-      - template: .azure-templates/portal_export.yml
+      # - template: .azure-templates/portal_export.yml
+      # TODO(IVI-6383): Add DevPortal export to SDK Release Pipeline
 
   - stage: Publishing
     dependsOn: []
