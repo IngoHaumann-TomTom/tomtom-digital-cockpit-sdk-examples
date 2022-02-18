@@ -113,7 +113,7 @@ stages:
           - template: build/build-cleanup.yml@devops-templates
 
   - stage: Documentation
-    displayName: 'Generate API docs'
+    displayName: 'Generate and publish API References and Developer Portal'
     dependsOn: Versions
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
@@ -122,6 +122,7 @@ stages:
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
     jobs:
       - template: .azure-templates/api-ref-jobs.yml
+      - template: .azure-templates/portal_export.yml
 
   - stage: Publishing
     dependsOn: []
