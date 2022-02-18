@@ -129,7 +129,7 @@ added to create custom panel types for frontends to use.
 
 The home panel is the main element shown on the screen when starting TomTom IndiGO. The default home
 panel contains a map that allows the user to plan a trip somewhere and navigate to it.  A frontend
-can provide an home panel by adding a panel that extends [`HomePanel`](TTIVI_INDIGO_API) to its
+can provide a home panel by adding a panel that extends [`HomePanel`](TTIVI_INDIGO_API) to its
 panels.
 
 #### Main menu panel

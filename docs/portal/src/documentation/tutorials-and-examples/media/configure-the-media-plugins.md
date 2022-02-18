@@ -8,7 +8,7 @@ is based on the [configuration-framework](/tomtom-indigo/documentation/tutorials
 and can be changed if necessary. This guide explains this procedure.
 
 - The media plugin default configuration [Default media plugin configuration](media-plugin-default-configuration)
-- Change the media plugin configuration [Change the media plugin configuration](change-media-plugin-configuration)
+- Change the media plugin configuration [Change the media plugin configuration](change-the-media-plugin-configuration)
 
 If you want to configure the media frontend plugin for specific media sources, you can follow
 this guide: [how to customize a media course](/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
@@ -25,7 +25,7 @@ keys and their values. The following keys and values are defined in the media pl
 </resources>
 ```
 
-## Change media plugin configuration
+## Change the media plugin configuration
 
 The media plugin default configuration can be changed by adding a custom configuration resource file
 in your application, such as `<module>/res/value/ttivi-media-configuration.xml`. 

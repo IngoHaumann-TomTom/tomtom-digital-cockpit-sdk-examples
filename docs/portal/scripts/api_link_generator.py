@@ -17,7 +17,6 @@ from pathlib import Path
 import requests
 
 TARGET_FILETYPE = "*.md"
-JSON_POSTFIX_URL = "scripts/navigation-pane.json"
 DOWNLOAD_DIR = "build/downloads"
 IGNORE = ["scripts",  "images", "styles", "package-list"]
 

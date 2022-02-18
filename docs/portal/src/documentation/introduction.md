@@ -24,11 +24,11 @@ submenu: # Additional submenu items for example - blog posts which will be displ
     allowfullscreen>
 </iframe>
 
-TomTom IndiGO is a framework to deliver Android-based digital cockpits. It includes an application
-platform to support the development of highly integrated applications on top of Android Automotive.
-It also offers a complete set of industrial strength end-user applications, that can be customized
-to the needs of a car maker. Take the in-car experience to new places and get started with our
-comprehensive SDK that includes APIs, supporting documentation and code examples.
+TomTom IndiGO is a framework that delivers Android-based digital cockpits. It includes an 
+application platform to support the development of highly integrated applications on top of Android 
+Automotive. It also offers a complete set of industrial strength end-user applications that can be 
+customized to the needs of a car maker. Take the in-car experience to new places and get started 
+with our comprehensive SDK that includes APIs, supporting documentation, and code examples.
 
 Creating a TomTom IndiGO product requires two distinct activities: development of the software using
 the TomTom IndiGO SDK, and integrating that software in the vehicle. Development for TomTom IndiGO
@@ -57,7 +57,7 @@ glass and enter your query.
       {
         title: "Example App",
         body: `Check out the functionality of the TomTom IndiGO platform in the walk-through of
-        the example application, or get it yourself by following our getting started guide.`,
+        the example application, or get it yourself by following our Getting Started guide.`,
         button: {
           label: "Product walk-through",
           href: "/tomtom-indigo/documentation/platform-overview/example-app"
@@ -97,7 +97,7 @@ glass and enter your query.
         title: "Tutorials",
         body: `When you're familiar with the TomTom IndiGO architecture and the way it names and
         uses plugins and components, you can start following one of the tutorials. A tutorial will
-        lead you step by step through the process of adding functionality to your product.`,
+        lead you step-by-step through the process of adding functionality to your product.`,
         button: {
           label: "Tutorials",
           href: "/tomtom-indigo/documentation/tutorials-and-examples/overview"

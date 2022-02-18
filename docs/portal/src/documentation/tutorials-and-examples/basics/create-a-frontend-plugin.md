@@ -157,7 +157,7 @@ val accountMenuItem = MenuItem(
 )
 ```
 
-The [`MenuItem`](TTIVI_INDIGO_API) constructor takes a unique ID, a `DrawableResolver` and a
+The [`MenuItem`](TTIVI_INDIGO_API) constructor takes a unique ID, a `DrawableResolver`, and a
 `StringResolver`. The latter two resolve the icon and the name of the menu item. In the above
 example the resolvers are defined as Android resources.
 

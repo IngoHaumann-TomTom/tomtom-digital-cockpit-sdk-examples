@@ -32,7 +32,7 @@ cannot make assumptions on whether the [`SafetyLockService`](TTIVI_INDIGO_API) i
 them. [`SafetyLockService`](TTIVI_INDIGO_API) should therefore be accessed through `createApiOrNull`
 instead of `createApi`, allowing the plugin to gracefully handle the scenario where the
 [`SafetyLockService`](TTIVI_INDIGO_API) is not available with a `null`-check. This can be done as
-following:
+shown in the following Kotlin example:
 
 ```kotlin
 val isSafetyLockEnabled: LiveData<Boolean> =

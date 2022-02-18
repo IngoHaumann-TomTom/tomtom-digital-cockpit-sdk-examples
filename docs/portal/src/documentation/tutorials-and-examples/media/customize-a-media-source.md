@@ -15,7 +15,7 @@ These customization capabilities are currently offered:
 - Select which app name and icon are displayed to the user in different contexts.
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
-  See the documentation of type `MediaItemComparisonPolicy` in package
+  See the documentation of type `MediaItemComparisonPolicy` in the package
   [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)
   for more information.
 

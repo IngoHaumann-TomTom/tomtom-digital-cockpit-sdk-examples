@@ -125,7 +125,7 @@ These configurations are activated via a frontend plugin using Gradle configurat
 guide explains this procedure.
 
 Some customization of the frontend can be achieved using the [media plugins configuration](#media-plugins-configuration), 
-based on the [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
+based on the [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
 
 ### Media plugins configuration
 

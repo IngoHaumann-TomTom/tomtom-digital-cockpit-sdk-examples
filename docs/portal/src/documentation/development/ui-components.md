@@ -285,7 +285,7 @@ The navigation bar can be configured to look as:
 ### SearchView
 
 The [`TtSearchView`](TTIVI_ANDROID_TOOLS_API) class consists of an icon on the left, an input field in
-the middle, a _clear icon_ and a _searching indicator_ on the right.
+the middle, a _clear icon_, and a _searching indicator_ on the right.
 
 The [`TtSearchView`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
 [`SearchView`](https://developer.android.com/reference/android/widget/SearchView)
@@ -302,7 +302,7 @@ _searching indicator_ animating:
 
 ### SeekBar
 
-The [`TtSmoothSeekBar`](TTIVI_ANDROID_TOOLS_API) classis used to indicate the progress of an operation
+The [`TtSmoothSeekBar`](TTIVI_ANDROID_TOOLS_API) class is used to indicate the progress of an operation
 with a draggable thumb. The user can touch the thumb and drag left or right to set the current
 progress.
 
