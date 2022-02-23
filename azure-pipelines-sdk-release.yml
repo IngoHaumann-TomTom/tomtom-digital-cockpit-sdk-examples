@@ -10,7 +10,30 @@
 # Azure pipelines documentation is available at
 # https://aka.ms/yaml
 
-# IndiGO sdk release pipeline
+# The IndiGO sdk release pipeline
+
+# This defines the "Run pipeline" menu.
+parameters:
+  - name: versionExamples
+    displayName: 'Version examples (ivi-example-app)'
+    type: string
+    default: ''
+  - name: shouldPublishLibraries
+    displayName: 'Publish libraries to Nexus'
+    type: boolean
+    default: true
+  - name: shouldPublishLineageOsImage
+    displayName: 'Publish the LineageOS system image to Nexus'
+    type: boolean
+    default: false
+  - name: versionLineageOs
+    displayName: 'Version LineageOS system image (tablet)'
+    type: string
+    default: '18.1.18'
+  - name: shouldPublishEmulatorImages
+    displayName: 'Publish the latest available emulator system images to Nexus'
+    type: boolean
+    default: false
 
 variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
@@ -28,6 +51,19 @@ variables:
       eq(variables['Build.SourceBranch'], 'refs/heads/master'),
       eq(variables['System.DefinitionId'], 4785)
       ) ]
+  - name: versionExamples
+    value: ${{ parameters.versionExamples }}
+  - name: publishLibraries
+    ${{ if eq(parameters['shouldPublishLibraries'], true) }}:
+      value: '--publish_libs'
+  - name: publishLineageOsImage
+    ${{ if eq(parameters['shouldPublishLineageOsImage'], true) }}:
+      value: '--publish_lineageos'
+  - name: versionLineageOs
+    value: ${{ parameters.versionLineageOs }}
+  - name: publishEmulatorImages
+    ${{ if eq(parameters['shouldPublishEmulatorImages'], true) }}:
+      value: '--publish_emulators'
 
 resources:
   containers:
@@ -52,7 +88,7 @@ resources:
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
-    ref: refs/tags/$(VERSION_EXAMPLES)
+    ref: refs/tags/$(versionExamples)
   - repository: indigo
     type: git
     name: IVI/indigo

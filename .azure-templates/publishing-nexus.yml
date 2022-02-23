@@ -36,16 +36,21 @@ steps:
         --nexus_pass $(NEXUS_PASSWORD)
         --artifactory_user $(ARTIFACTORY_USERNAME)
         --artifactory_pass $(ARTIFACTORY_PASSWORD)
-        --version_examples $(VERSION_EXAMPLES)
-        --version_lineageos $(VERSION_LINEAGEOS)
+        --version_examples $(versionExamples)
+        --version_lineageos $(versionLineageOs)
         --download_base_path $(System.DefaultWorkingDirectory)/downloads
         --indigo_sources_path $(Build.SourcesDirectory)/indigo
+        $(publishLibraries)
+        $(publishLineageOsImage)
+        $(publishEmulatorImages)
 
   # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
   - publish: $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
     artifact: repo-sys-img
     displayName: Publish the repo-sys-img.xml file as a pipeline artifact
+    condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
 
   - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.indigoPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
     artifact: tomtom-indigo-sdk
     displayName: Publish tomtom-indigo-sdk as a pipeline artifact
+    condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
