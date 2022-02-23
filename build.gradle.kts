@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    `kotlin-dsl`
+    `kotlin-dsl` version "2.2.0"
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.android.test") apply false

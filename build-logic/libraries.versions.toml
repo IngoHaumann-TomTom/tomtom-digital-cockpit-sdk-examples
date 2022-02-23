@@ -14,13 +14,13 @@
 [versions]
 # Android project.
 buildTools = "30.0.3"
-compileSdk = "30"
+compileSdk = "31"
 minSdk = "27"
 targetSdk = "27"
 
 # Java, Kotlin.
 jvm = "1.8"
-kotlin = "1.5.31"
+kotlin = "1.6.10"
 
 # Gradle plugins (AGP and others).
 androidGradlePlugin = "7.1.0"
@@ -31,18 +31,18 @@ navuiEmulators = "3.0.0"
 
 # Kotlinx.
 kotlinxCoroutines = "1.5.2"
-kotlinxSerialization = "1.3.0"
+kotlinxSerialization = "1.3.1"
 
 # Androidx dependencies.
 androidxActivity = "1.3.1"
-androidxAnnotation = "1.1.0"
-androidxCoreKtx = "1.3.2"
+androidxAnnotation = "1.3.0"
+androidxCoreKtx = "1.6.0"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.3309"
+indigoPlatform = "1.0.3318"
 # Other TomTom dependencies.
-tomtomAndroidTools = "0.0.334"
+tomtomAndroidTools = "0.0.342"
 iviCommunicationsSdk = "0.1.112"
 androidCar = "0.0.12"
 
