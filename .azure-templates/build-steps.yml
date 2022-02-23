@@ -53,8 +53,8 @@ steps:
 - template: publish/publish-pipeline-artifact.yml@devops-templates
   parameters:
     contents: |
-      $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk
-      $(System.DefaultWorkingDirectory)/examples/**/build/outputs/apk
+      $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk/**/*.apk
+      $(System.DefaultWorkingDirectory)/examples/**/build/outputs/apk/**/*.apk
     displayName: 'Publish Example App APKs as pipeline artifact'
     artifact: builds
 
