@@ -27,6 +27,12 @@ val isApplicationProject: Boolean by extra
 // TODO(IVI-4701): Remove Artifactory reference.
 val artifactoryRepoBaseUrl = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
 
+fun convertModuleNameToApkBuildpath(moduleName: String): String {
+    val hierarchy = moduleName.split("_")
+    val module = hierarchy.joinToString("/")
+    return "../builds/$module/build/outputs/apk/"
+}
+
 group = "com.tomtom.ivi"
 
 // Register publications
@@ -53,7 +59,7 @@ extensions.getByType(PublishingExtension::class.java).apply {
                 ProjectAbis.enabledAbis.forEach { abi ->
                     val output = File(
                         rootProject.file(
-                            "../builds/${variantName}"
+                            convertModuleNameToApkBuildpath("${project.name}") + "${variantName}"
                         ),
                         "${project.name}-${abi}-${variantName}.apk"
                     )
@@ -83,10 +89,11 @@ fun Project.artifactory(configure: ArtifactoryPluginConvention.() -> Unit): Unit
 
 artifactory {
     setContextUrl(artifactoryRepoBaseUrl)
+    val artifactoryRepo = findProperty("artifactoryRepo") as String? ?: "ivi-maven"
 
     publish(delegateClosureOf<PublisherConfig> {
         repository(delegateClosureOf<GroovyObject> {
-            setProperty("repoKey", "ivi-maven")
+            setProperty("repoKey", artifactoryRepo)
             if (project.hasProperty("publishUsername")) {
                 setProperty("username", properties["publishUsername"].toString())
                 setProperty("password", properties["publishPassword"].toString())
