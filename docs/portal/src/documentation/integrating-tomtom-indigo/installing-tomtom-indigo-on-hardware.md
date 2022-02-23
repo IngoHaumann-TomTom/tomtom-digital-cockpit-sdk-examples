@@ -53,13 +53,13 @@ and rebuild.
 ### Then push the APK to the system partition
 
 - Remount the system partition to be writeable.
-- Copy the `privapp-permissions-tomtom.xml` (found in the `permissions/` folder) file to
+- Copy the `privapp-permissions-tomtom-indigo.xml` (found in the `permissions/` folder) file to
   `/system/etc/permissions` on the device.
 - Install the TomTom IndiGO APK to `/system/priv-app` on the device.
 
 ```cmd
 $ adb remount
-$ adb push privapp-permissions-tomtom.xml /system/etc/permissions/
+$ adb push privapp-permissions-tomtom-indigo.xml /system/etc/permissions/
 $ adb shell mkdir /system/priv-app/TomTomIndigo
 $ adb push integration_products_indigo.apk /system/priv-app/TomTomIndigo/
 ```

@@ -8,16 +8,20 @@ for the TomTom IndiGO platform. Each how-to guide explains step-by-step how you 
 TomTom IndiGO.
 
 
-## Example application
+## Example applications
 
-The example application is provided as a sample implementation. The application allows you to 
+The example applications are provided as sample implementations. The applications allow you to 
 verify your build environment by making sure Gradle can build this TomTom IndiGO example APK and 
-install it on an emulator. The application also contains several examples on how to add 
-functionality to your product.
+install it on an emulator. The applications also contain several examples on how to add 
+functionality to your product. All the examples can be found under the `examples/` folder. Under 
+the `template/` folder you can find an empty example application. This only contains the default 
+IndiGO platform functionality, without any additional example source, which can be used as a base 
+for your own product.
 
 Check out the functionality of the TomTom IndiGO platform in the 
-[walk-through](/tomtom-indigo/documentation/platform-overview/example-app) of the example application, or get 
-it yourself by following our [getting started](/tomtom-indigo/documentation/getting-started/introduction)
+[walk-through](/tomtom-indigo/documentation/platform-overview/example-apps) of an example 
+application, or get it yourself by following our 
+[getting started](/tomtom-indigo/documentation/getting-started/introduction)
 guide.
 
 Additional functionality is described in the tutorials and how-to guides below.

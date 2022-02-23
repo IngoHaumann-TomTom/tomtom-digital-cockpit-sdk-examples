@@ -27,8 +27,7 @@ Gradle user home directory. The latter option makes the key available in any Gra
 ## By overriding the static configuration values in Android resources
 
 You can override static configuration values in Android resources. See
-`./modules/products/exampleapp/src/main/res/values/navkit2apikeys.xml` for a template and additional
-instructions.
+`template/app/src/main/res/values/navkit2apikeys.xml` for a template and additional instructions.
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
@@ -42,7 +41,7 @@ be added to your SCM.
 
 Last but not least is to configure a static configuration provider in the Android Application class
 that provides the key. For this you can use a `Navkit2ApiKeyStaticConfigurationProvider` instance.
-The `ExampleApplication` class contains an example explaining how to configure it.
+The `TemplateApplication` class contains an example explaining how to configure it.
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the

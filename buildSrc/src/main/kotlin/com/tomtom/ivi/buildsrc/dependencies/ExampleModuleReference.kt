@@ -19,8 +19,8 @@ import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
  * Used in this project to reference modules in the build config. It converts the module names to
  * package names.
  *
- * For example, the module `services_account` is converted into the package
- * `com.tomtom.ivi.example.service.account`.
+ * For example, the module `examples_my_module` is converted into the package
+ * `com.example.ivi.example.service.my_module`.
  */
 class ExampleModuleReference(moduleName: String) : ModuleReference(
     groupName = GROUP_NAME,
@@ -29,23 +29,12 @@ class ExampleModuleReference(moduleName: String) : ModuleReference(
 ) {
     companion object {
         private fun convertModuleNameToPackageName(moduleName: String): String {
-            val hierarchy = moduleName.split("_", limit = 2)
-
-            val category = hierarchy[0].let {
-                when (it) {
-                    "debugtabs" -> "debugtab"
-                    "frontends" -> "frontend"
-                    "products" -> "product"
-                    "services" -> "service"
-                    "serviceapis" -> "serviceapi"
-                    else -> it
-                }
-            }
-            val module = hierarchy[1]
-            return "$GROUP_NAME.$ROOT_NAME.$category.$module"
+            val hierarchy = moduleName.split("_")
+            val module = hierarchy.drop(1).joinToString(".")
+            return "$GROUP_NAME.$ROOT_NAME.$module"
         }
 
         private const val ROOT_NAME = "example"
-        private const val GROUP_NAME = "com.tomtom.ivi"
+        private const val GROUP_NAME = "com.example.ivi"
     }
 }

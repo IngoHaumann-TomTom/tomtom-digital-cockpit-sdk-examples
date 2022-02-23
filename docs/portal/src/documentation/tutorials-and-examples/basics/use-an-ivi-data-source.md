@@ -126,13 +126,13 @@ Now that the element type and query types are defined, we can add the data sourc
 service interface:
 
 ```kotlin
-import com.tomtom.ivi.example.common.account.Account
+import com.example.ivi.example.plugin.common.Account
 import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviService
 
 @IviService(
-    serviceId = "com.tomtom.ivi.example.service.account"
+    serviceId = "com.example.ivi.example.plugin.service"
 )
 interface AccountService {
     /**
@@ -196,8 +196,8 @@ callback is registered by calling `registerInvalidatedCallback`. And close the r
 callback.
 
 ```kotlin
-import com.tomtom.ivi.example.common.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
+import com.example.ivi.example.plugin.common.Account
+import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviPagingSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.MutableIviDataSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.MutableIviPagingSource
@@ -237,8 +237,8 @@ internal class MutableAccountsDataSource : MutableIviDataSource<Account, Account
 Next initialize a `MutableAccountsDataSource` instance in the `StockAccountService`.
 
 ```kotlin
-import com.tomtom.ivi.example.common.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountServiceBase
+import com.example.ivi.example.plugin.common.Account
+import com.example.ivi.example.plugin.serviceapi.AccountServiceBase
 
 internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
@@ -282,10 +282,10 @@ value is set to the account info of the the last logged in user:
 
 ```kotlin
 import androidx.lifecycle.LiveData
-import com.tomtom.ivi.example.common.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountService
-import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
-import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.example.ivi.example.plugin.common.Account
+import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
+import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.first
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.mapQuery
@@ -322,7 +322,7 @@ function.
 
 It is also possible to use other transformations. A `mapQuery` extension exists which takes a
 transformation lambda as an argument. The lambda is provided with a
-[PageProvider](TTIVI_INDIGO_API)` instance to load pages for the created `IviPagingSource`.
+[PageProvider](TTIVI_INDIGO_API) instance to load pages for the created `IviPagingSource`.
 
 See [this page](https://developer.android.com/topic/libraries/data-binding/expressions) for binding
 the `Account` `LiveData` to a view.
@@ -349,10 +349,10 @@ The following example maps all `Accounts` from the `accounts` data source to a `
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.tomtom.ivi.example.common.account.Account
-import com.tomtom.ivi.example.serviceapi.account.AccountService
-import com.tomtom.ivi.example.serviceapi.account.AccountsDataSourceQuery
-import com.tomtom.ivi.example.serviceapi.account.createApi
+import com.example.ivi.example.plugin.common.Account
+import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
+import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviserviceandroidpaging.mapPagingData
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel

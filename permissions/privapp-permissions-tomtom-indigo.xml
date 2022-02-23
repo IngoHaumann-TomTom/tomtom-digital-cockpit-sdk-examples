@@ -11,7 +11,7 @@
 -->
 
 <permissions>
-    <privapp-permissions package="com.tomtom.ivi.example.product.exampleapp">
+    <privapp-permissions package="com.example.ivi.template.app">
         <permission name="android.permission.ACTIVITY_EMBEDDING"/>
         <permission name="android.permission.BLUETOOTH_PRIVILEGED"/>
         <permission name="android.permission.CAPTURE_AUDIO_OUTPUT"/>

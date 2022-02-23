@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2021 TomTom NV. All rights reserved.
+  ~
+  ~ This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+  ~ used for internal evaluation purposes or commercial use strictly subject to separate
+  ~ license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+  ~ to use this software in accordance with the terms of your license agreement. If you are
+  ~ not the licensee, you are not authorized to use this software in any manner and should
+  ~ immediately return or destroy it.
+  -->
+
+<!--
+This file contain _empty_ values for the NavKit2 API keys. By default,
+these values are not used. To use them:
+
+- Configure the NavKit2 API key values in this file.
+- Set the `disableNavkit2ApiKeyBuildTimeCheck` property to `true` in your `local.properties` file
+  located in the root project directory or as a Gradle property.
+- Make sure the Android Application class does _not_ add a
+  `Navkit2ApiKeyStaticConfigurationProvider` instance as a static configuration provider.
+  (This is not the case in this example by default.)
+
+It is also possible to configure the NavKit2 API key without any code changes. You can do this by
+setting the `navkit2ApiKey` property to your NavKit2 API key in the top-level `local.properties`
+file or as a Gradle property.
+
+The `navkit2DefaultApiKeyConfigKey` configuration value is used as a fallback for key configuration
+values that are left empty.
+-->
+<resources>
+    <!--Default NavKit2 API key, used for services where the specific key is empty-->
+    <string name="navkit2DefaultApiKeyConfigKey"/>
+    <!--API key for TomTom NavKit2 map display service-->
+    <string name="navkit2MapDisplayApiKeyConfigKey"/>
+    <!--API key for TomTom NavKit2 navigation service-->
+    <string name="navkit2NavigationApiKeyConfigKey"/>
+    <!--The base URI for TomTom NavKit2 routing service-->
+    <string name="navkit2RoutingApiKeyConfigKey"/>
+    <!--The base URI for TomTom NavKit2 search service-->
+    <string name="navkit2SearchApiKeyConfigKey"/>
+    <!--The base URI for TomTom NavKit2 traffic flow service-->
+    <string name="navkit2TrafficFlowApiKeyConfigKey"/>
+    <!--The base URI for TomTom NavKit2 traffic free-flow service-->
+    <string name="navkit2TrafficFreeFlowApiKeyConfigKey"/>
+    <!--The base URI for TomTom NavKit2 traffic incident service-->
+    <string name="navkit2TrafficIncidentApiKeyConfigKey"/>
+</resources>

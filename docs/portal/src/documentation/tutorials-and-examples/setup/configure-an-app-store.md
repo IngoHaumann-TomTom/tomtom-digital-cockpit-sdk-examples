@@ -86,8 +86,8 @@ project (substituting with values for your choice of app store):
 
 If you need to configure the app store at runtime, then create a
 [static configuration provider](/tomtom-indigo/documentation/development/platform-domains/configuration-framework#static-configuration-providers)
-and configure it in your Application class (for example, `ExampleApplication` if you are using the
-[example application](/tomtom-indigo/documentation/platform-overview/example-app) project).
+and configure it in your Application class (for example, `TemplateApplication` if you are using the
+[example application](/tomtom-indigo/documentation/platform-overview/example-apps) project).
 
 Add the following dependency to the `build.gradle.kts` file of the module where your new static
 configuration provider will reside:
@@ -113,10 +113,11 @@ class MyAppStoreConfigurationProvider(
 ```
 
 To configure the example application, the static configuration provider needs to be added to the
-existing list of providers returned by `ExampleApplication.createStaticConfigurationProviders()`. In
-order for it to override any default values it must be added ahead of the default providers list:
+existing list of providers returned by `TemplateApplication.createStaticConfigurationProviders()`. 
+In order for it to override any default values it must be added ahead of the default providers 
+list:
 
-**modules/products/exampleapp/src/main/kotlin/com/tomtom/ivi/example/product/exampleapp/ExampleApplication.kt**
+**template/app/src/main/kotlin/com/example/ivi/template/app/TemplateApplication.kt**
 
 ```kotlin
     override fun createStaticConfigurationProviders() =

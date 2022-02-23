@@ -92,6 +92,7 @@ indigoPlatformFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:pl
 indigoPlatformFrontendApiCommonUicontrols = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_uicontrols", version.ref = "indigoPlatform" }
 indigoPlatformFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoPlatformNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
+indigoPlatformNavkit2ApiCommonService = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_service", version.ref = "indigoPlatform" }
 indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoPlatformSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
 indigoPlatformSystemuiApiTestingTools = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }

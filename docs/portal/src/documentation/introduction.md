@@ -4,8 +4,8 @@ submenu: # Additional submenu items for example - blog posts which will be displ
     - title: Links
     - title: "Platform overview"
       url: "/tomtom-indigo/documentation/platform-overview/what-is-tomtom-indigo"
-    - title: "Example app"
-      url: "/tomtom-indigo/documentation/platform-overview/example-app"
+    - title: "Example apps"
+      url: "/tomtom-indigo/documentation/platform-overview/example-apps"
     - title: "Getting Started"
       url: "/tomtom-indigo/documentation/getting-started/introduction"
     - title: "Development guide"
@@ -60,7 +60,7 @@ glass and enter your query.
         the example application, or get it yourself by following our Getting Started guide.`,
         button: {
           label: "Product walk-through",
-          href: "/tomtom-indigo/documentation/platform-overview/example-app"
+          href: "/tomtom-indigo/documentation/platform-overview/example-apps"
         }
       },
       {

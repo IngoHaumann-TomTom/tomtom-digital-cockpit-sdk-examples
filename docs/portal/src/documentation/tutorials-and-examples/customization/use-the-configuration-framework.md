@@ -35,7 +35,7 @@ account frontend adds new panels to show account information or login page, whic
 a menu item. The account status is managed by the account service. When the user is authenticated, 
 the user name is stored in persistent storage by the account settings service, so the user does not 
 need to log in again after a restart of the application.
-The source code for the frontend and service can be found in the `modules` directory.
+The source code for the frontend and service can be found in the `examples` directory.
 See also
 [Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and the [`@IviService`](TTIVI_INDIGO_API) annotation.
@@ -61,12 +61,14 @@ The JSON file schema is fully documented in the API reference documentation of
 
 ### Static configuration file
 
-To create a static configuration for the account service, create a JSON file
-`modules/services/account/src/main/configurations/static/com.tomtom.ivi.example.account.json`.
+To create a static configuration for the account service, create a JSON file in the 
+`configurations/static` folder:
+`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`
+
 
 ```json
 {
-  "packageName": "com.tomtom.ivi.example.account",
+  "packageName": "com.example.ivi.example.plugin.service",
   "keys": [
     {
       "name": "onlineAccountEndpointConfigKey",
@@ -79,7 +81,7 @@ To create a static configuration for the account service, create a JSON file
 ```
 
 This file defines a __string__ configuration item with a key `"onlineAccountEndpointConfigKey"` that
-belongs to the package `com.tomtom.ivi.example.service.account`.
+belongs to the package `com.example.ivi.example.plugin.service`.
 The configuration contains the URL of the online API endpoint, as specified by the `"value"` field.
 
 __Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as
@@ -90,13 +92,14 @@ configuration keys.
 
 ### Dynamic configuration file
 
-To create a dynamic configuration for the account settings service, create a JSON file
-`modules/services/accountsettings/src/main/configurations/dynamic/com.tomtom.ivi.example.account.json`.
+To create a dynamic configuration for the account settings service, create a JSON file in the 
+`configurations/static` folder:
+`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`
 
 ```json
 {
   "version": 2,
-  "packageName": "com.tomtom.ivi.example.account",
+  "packageName": "com.example.ivi.example.plugin.service",
   "keys": [
     {
       "name": "onlineLoginValidPeriodInDaysConfigKey",
@@ -121,7 +124,7 @@ To create a dynamic configuration for the account settings service, create a JSO
 
 This file defines a __long number__ configuration with an
 `"onlineLoginValidPeriodInDaysConfigKey"` key that belongs to the package
-`com.tomtom.ivi.example.service.account`.
+`com.example.ivi.example.plugin.service`.
 
 __Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as
 a [Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
@@ -130,9 +133,10 @@ The `"version"` field specifies the revision number of the configuration file th
 increased with any change to the configuration. The configuration keeps values for previous
 versions. They are used for updating old values in the persistent storage on the device to the
 current version.
-The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field defines
-how old values are updated. In the example, it defines that old values are overridden with the new
-values. See the API reference documentation for [`ConfigurationUpdateStrategy`](TTIVI_INDIGO_API).
+The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field 
+defines how old values are updated. In the example, it defines that old values are overridden with 
+the new values. See the API reference documentation for 
+[`ConfigurationUpdateStrategy`](TTIVI_INDIGO_API).
 The latest configuration version will be stored on the device, and will remain unchanged until the
 configuration file with a newer version is loaded.
 
@@ -155,10 +159,10 @@ The configuration generator looks for JSON files and processes them into:
 
 To enable the configuration generator, add following Gradle configuration into Gradle build
 configurations of modules that contains the configuration.
-For the given example, these are the account service module
-(__modules/services/account/build.gradle.kts__),
-and the account settings service module
-(__modules/services/accountsettings/build.gradle.kts__).
+For the given example, these are the account service module 
+`examples/plugin/service/build.gradle.kts` 
+and the account settings service module 
+`examples/plugin/settingsservice/build.gradle.kts`
 
 ```kotlin
 ivi {
@@ -177,7 +181,7 @@ Then run Gradle task `generateConfigurations`:
 ./gradlew generateConfigurations
 
 # Or for services projects only.
-./gradlew services_accountsettings:generateConfigurations services_account:generateConfigurations
+./gradlew examples_plugin_settingsservice:generateConfigurations examples_plugin_service:generateConfigurations
 ```
 
 __Note__: The task is a dependency for `preDebugBuild` and `preReleaseBuild` tasks, so it is
@@ -191,13 +195,13 @@ Static configurations are provided by the static configuration provider that is 
 IVI service [`IviServiceHostContext`](TTIVI_INDIGO_API)`.staticConfigurationProvider`.
 
 To get the configuration value in the `StockAccountService`, use the
-`com.tomtom.ivi.example.service.account.StaticConfiguration.onlineAccountEndpointConfigKey`
+`com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey`
 variable.
 
-__modules/services/account/src/main/kotlin/com/tomtom/ivi/example/service/account/StockAccountService.kt__
+`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountService.kt`
 
 ```kotlin
-import com.tomtom.ivi.example.account.StaticConfiguration.onlineAccountEndpointConfigKey
+import com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey
 
 class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
     AccountServiceBase(iviServiceHostContext) {
@@ -211,7 +215,7 @@ The `onlineAccountEndpoint` is a string with the configuration value that is use
 in. The `logIn` method calls `logInOnline()` to authenticate the user. The latter does not make a
 real network query but only does simple validation.
 
-__modules/services/account/src/main/kotlin/com/tomtom/ivi/example/service/account/StockAccountService.kt__
+`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountService.kt`
 
 ```kotlin
 private fun logInOnline(username: String, password: SensitiveString): Account? =
@@ -228,7 +232,7 @@ Dynamic configurations are used by settings services to initialize settings.
 First, add a new setting `onlineLoginValidPeriodInDays` to the account settings service that holds
 the number of days the user may stay logged in.
 
-__modules/serviceapis/accountsettings/src/main/kotlin/com/tomtom/ivi/example/serviceapi/accountsettings/AccountSettingsService.kts__
+`examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`
 
 ```kotlin
 interface AccountSettingsService {
@@ -241,12 +245,12 @@ By default, the settings service initializes properties with values from dynamic
 The service implementation only needs to set the configuration key and the setting key.
 The latter can be easily made from the former.
 
-__modules/services/accountsettings/src/main/kotlin/com/tomtom/ivi/example/service/accountsettings/StockAccountSettingsService.kt__
+`examples/plugin/settingsservice/src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt`
 
 ```kotlin
 // Both variables are generated by the configuration generator.
-import com.tomtom.ivi.example.account.DynamicConfiguration.settingKeyPrefix
-import com.tomtom.ivi.example.account.DynamicConfiguration.onlineLoginValidPeriodInDaysConfigKey
+import com.example.ivi.example.plugin.service.DynamicConfiguration.settingKeyPrefix
+import com.example.ivi.example.plugin.service.DynamicConfiguration.onlineLoginValidPeriodInDaysConfigKey
 
 class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :
     AccountSettingsServiceBase(iviServiceHostContext) {

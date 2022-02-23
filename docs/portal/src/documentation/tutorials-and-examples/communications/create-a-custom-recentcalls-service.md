@@ -24,7 +24,7 @@ Your `AndroidManifest.xml` should contain:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.tomtom.ivi.example.service.customrecentcalls"/>
+<manifest package="com.example.ivi.example.telephony.customrecentcalls" />
 ```
 
 Your Gradle file should contain:

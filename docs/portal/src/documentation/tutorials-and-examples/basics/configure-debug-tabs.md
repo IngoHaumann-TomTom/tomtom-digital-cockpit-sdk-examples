@@ -9,7 +9,7 @@ via the backtick ("\`") key, or via ADB with `adb shell input keyevent --longpre
 ## Adding a debug tab
 
 To add a new debug tab, an example is provided in the example app with
-`com.tomtom.ivi.example.debugtab.activityview.activityViewDebugTabFrontendExtension`.
+`com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFrontendExtension`.
 
 The debug tab's fragment is made with
 [`DebugTabFragment`](TTIVI_INDIGO_API) and the view model with a
@@ -23,19 +23,21 @@ The product's `build.gradle.kts` file should then be changed to include, in the 
 a customization of the debug frontend:
 
 ```kotlin
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
-import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileFrontend
-import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileMenuItem
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.defaults.config.debugFrontend
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-val debugFrontend by extra {
-    FrontendConfig(
-        frontendBuilderName = "DebugFrontendBuilder",
-        implementationModule = IviPlatformModuleReference("platform_debug_plugin_frontend_debug")
+val debugTabFrontendExtension = FrontendExtensionConfig(
+    frontendExtensionName = "debugTabFrontendExtension",
+    implementationModule = ModuleReference(
+        "com.example.ivi",
+        "examples_debugtab",
+        "com.example.ivi.example.debugtab"
     )
-}
+)
 
 ivi {
     application {
@@ -44,8 +46,8 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 useDefaults()
                 frontends {
-                    configureIfPresent(debugFrontend) {
-                        addExtension(activityViewDebugTabFrontendExtension)
+                    configure(debugFrontend) {
+                        addExtension(debugTabFrontendExtension)
                     }
                 }
             }

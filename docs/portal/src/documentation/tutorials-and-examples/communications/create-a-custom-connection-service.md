@@ -26,7 +26,7 @@ also contain the package name together with some permissions:
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.tomtom.ivi.example.service.customconnection">
+package="com.example.ivi.example.telephony.customconnection">
 
 <!-- This is needed to place and receive calls using Android's TelecomManager. -->
 <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />

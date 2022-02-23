@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-rootProject.name = "IVI_Example"
+rootProject.name = "IVI_Examples"
 
 apply(from = "build-logic/repositories.gradle.kts")
 apply(from = "build-logic/libraries.versioncatalog.gradle.kts")
@@ -19,20 +19,31 @@ apply(from = "build-logic/libraries.versioncatalog.gradle.kts")
  * This plugin configuration file is intended for TomTom internal use and not relevant
  * to an external developer so it can be removed
  */
-val enterprisePluginConfig: File = file("${rootProject.projectDir}/build-logic/gradle.enterprise.gradle.kts")
+val enterprisePluginConfig: File = file("build-logic/gradle.enterprise.gradle.kts")
 if (enterprisePluginConfig.exists()) {
     apply(from = enterprisePluginConfig.path)
 }
 
-val modulesDir: File = file("${rootProject.projectDir}/modules/")
-fileTree(modulesDir)
-    .matching { include("*/*/build.gradle.kts") }
+val templateAppDir = File(rootProject.projectDir, "template")
+fileTree(templateAppDir)
+    .matching { include("**/build.gradle.kts") }
     .forEach { file ->
-        val projectName = ":" + file.toProjectName(modulesDir)
+        val projectName = ":" + file.toProjectName(templateAppDir.parentFile)
         include(projectName)
         project(projectName).projectDir = file.parentFile
     }
 
-fun File.toProjectName(modulesDir: File): String = modulesDir.toPath()
+val examplesDir = File(rootProject.projectDir, "examples")
+if (examplesDir.exists()) {
+    fileTree(examplesDir)
+        .matching { include("**/build.gradle.kts") }
+        .forEach { file ->
+            val projectName = ":" + file.toProjectName(examplesDir.parentFile)
+            include(projectName)
+            project(projectName).projectDir = file.parentFile
+        }
+}
+
+fun File.toProjectName(dir: File): String = dir.toPath()
     .relativize(parentFile.toPath())
     .joinToString("_")

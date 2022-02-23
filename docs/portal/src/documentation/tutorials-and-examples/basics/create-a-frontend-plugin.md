@@ -11,6 +11,10 @@ logged in, you have the option to logout again. We will also add a menu item to 
 will be associated to the new frontend. The final step will be to let the new frontend replace
 TomTom IndiGO's user profile frontend.
 
+The source for this example can be found in the following folders in the examples source:
+- `examples/plugin/app/`
+- `examples/plugin/frontend/`
+
 Creating a frontend and the menu item consists of a number of steps:
 
 - [Creating the `Frontend` class, deriving the abstract `Frontend` class.](#creating-the-frontend-class)
@@ -166,10 +170,11 @@ example the resolvers are defined as Android resources.
 Create the frontend and menu item build configurations. These configurations will be used to
 register the frontend and the menu item to the framework at build time.
 
-Define a frontend implementation and a menu item implementation in the top-level
-`frontends-and-menuitems.gradle.kts` file so it can be used in all projects, including tests.
+Define a frontend implementation and a menu item implementation. These can also be defined in a 
+top-level Gradle file (e.g. `frontends-and-menuitems.gradle.kts`) so it can be used in a 
+multi-project build, including the tests.
 
-Create `<rootDir>/frontends-and-menuitems.gradle.kts`:
+Create `examples/plugin/app/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -179,23 +184,19 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendC
 /**
  * Defines the implementation and the configuration of the account frontend.
  */
-val accountFrontend by extra {
-    FrontendConfig(
-        // Needs to match with the name of the builder class.
-        frontendBuilderName = "AccountFrontendBuilder",
-        // The module containing the frontend implementation.
-        implementationModule = ExampleModuleReference("frontends_account"),
-        // Create the frontend on demand. It will be created when the menu item is selected.
-        creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
-    )
-}
+val accountFrontend = FrontendConfig(
+    // Needs to match with the name of the builder class.
+    frontendBuilderName = "AccountFrontendBuilder",
+    // The module containing the frontend implementation.
+    implementationModule = ExampleModuleReference("examples_plugin_frontend"),
+    // Create the frontend on demand. It will be created when the menu item is selected.
+    creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+)
 
-val accountMenuItem by extra {
-    // We can use `FrontendConfig.toMenuItem()` as the menu item is defined in the same module as
-    // the frontend implementation. The argument given needs to match with the property that
-    // was created earlier in the tutorial.
-    accountFrontend.toMenuItem("accountMenuItem")
-}
+// We can use `FrontendConfig.toMenuItem()` as the menu item is defined in the same module as
+// the frontend implementation. The argument given needs to match with the property that
+// was created earlier in the tutorial.
+val accountMenuItem = accountFrontend.toMenuItem("accountMenuItem")
 ```
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
@@ -208,28 +209,36 @@ for details.
 The last step is to register the frontend and the menu item to build configurations in the main
 application's build script.
 
-Create `modules/products/exampleapp/build.gradle.kts`:
+Modify `examples/plugin/app/build.gradle.kts`:
 
 ```kotlin
+import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
-
-// Define the frontends and menu items as defined in the top-level
-// `frontends-and-menuitems.gradle.kts` file.
-apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
-
-// Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
-// defined in the top-level `frontends-and-menuitems.gradle.kts` file.
-val accountFrontend: FrontendConfig by project.extra
-val accountMenuItem: MenuItemConfig by project.extra
 
 plugins {
     // Apply the plugin to use default frontends and services from TomTom IndiGO Platform
     // and from all TomTom IndiGO Applications (from appsuite).
     id("com.tomtom.ivi.product.defaults.core")
 }
+
+// Create `accountFrontend` and `accountMenuItem`
+val accountFrontend = FrontendConfig(
+    // Needs to match with the name of the builder class.
+    frontendBuilderName = "AccountFrontendBuilder",
+    // The module containing the frontend implementation.
+    implementationModule = ExampleModuleReference("examples_plugin_frontend"),
+    // Create the frontend on demand. It will be created when the menu item is selected.
+    creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+)
+
+// We can use `FrontendConfig.toMenuItem()` as the menu item is defined in the same module as
+// the frontend implementation. The argument given needs to match with the property that
+// was created earlier in the tutorial.
+val accountMenuItem = accountFrontend.toMenuItem("accountMenuItem")
 
 ivi {
     application {
@@ -264,7 +273,7 @@ for more details about IVI instance configurations.
 The final step is to let the new frontend replace TomTom IndiGO's user profile frontend. For this
 we have to use 'replace' instead of `add`. The same applies for the user profile menu item.
 
-Create `modules/products/exampleapp/build.gradle.kts`:
+Modify `examples/plugin/app/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
@@ -274,20 +283,19 @@ import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileFro
 import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileMenuItem
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-// Define the frontends and menu items as defined in top-level `frontends-and-menuitems.gradle.kts`
-// file.
-apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
-
-// Use Gradle's extra extensions to obtain the `accountFrontend` and `accountMenuItem` configs as
-// defined in the top-level `frontends-and-menuitems.gradle.kts` file.
-val accountFrontend: FrontendConfig by project.extra
-val accountMenuItem: MenuItemConfig by project.extra
-
 plugins {
-    // Apply the plugin to use the default frontends and services from the TomTom IndiGO platform
-    // and app suite.
+    // Apply the plugin to use default frontends and services from TomTom IndiGO Platform
+    // and from all TomTom IndiGO Applications (from appsuite).
     id("com.tomtom.ivi.product.defaults.core")
 }
+
+// Create `accountFrontend` and `accountMenuItem`
+val accountFrontend = FrontendConfig(
+    frontendBuilderName = "AccountFrontendBuilder",
+    implementationModule = ExampleModuleReference("examples_plugin_frontend"),
+    creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+)
+val accountMenuItem = accountFrontend.toMenuItem("accountMenuItem")
 
 ivi {
     application {

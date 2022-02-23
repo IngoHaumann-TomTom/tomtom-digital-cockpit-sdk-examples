@@ -8,28 +8,68 @@ This repository contains the source code of example application built on TomTom 
 
 Code used by Gradle to sync the Gradle modules and build the app.
 
+### `build-logic/`
+
+Code listing the different repositories and module versions needed for building.
+
 ### `gradle/`
 
 The Gradle wrapper used to sync the Gradle modules and build the app.
 
-### `modules/`
+### `examples/`
 
-The root directory for modules. All Gradle modules inside are within two levels of subdirectories.
+The root directory for all the examples. This folder can be removed if only the template 
+application (in the `template/` folder) is needed, see below.
 
-- `modules/common/`
-  Modules with shared code used by applications, frontends, and services.
+- `examples/common/`
+ This folder contains an `Activity` and `Application` class that are used by all the examples that 
+ are `Application` projects.
 
-- `modules/frontends/`
-  Modules for TomTom IndiGO frontend plugins.
+- `examples/activityview/`
+ Example showing an activityview.
 
-- `modules/products/`
-  Modules for applications based on TomTom IndiGO Platform.
+- `examples/companionapp/`
+ Examples for the companion application.
 
-- `modules/serviceapis`
-  Modules with API definitions of IVI services.
+- `examples/debugtab/`
+ Example to show how to add a debugtab.
 
-- `modules/services`
-  Modules with implementations of IVI services.
+- `examples/e2etest/`
+ Examples demonstrating e2e tests.
+
+- `examples/integrationtest/`
+ Examples demonstrating integration tests.
+
+- `examples/panelhierarchy/`
+ Example showing a hierarchy of panels, with breadcrumbs.
+
+- `examples/plugin/`
+ Examples demonstrating how to write plugins, both frontends and services, for the TomTom IndiGO 
+ platform.
+
+- `examples/telephony/`
+ Examples relating to telephony.
+
+
+### `template/`
+
+This is a template application to create your own IVI application, it contains the minimum needed 
+to create a TomTom IndiGO application with all the default functionality from the platform.
+
+### `keystore/`
+
+The keys needed to sign the application with the same keys as the TomTom Indigo reference hardware 
+build (see 
+[Flashing the reference hardware](tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware)
+) for more details on the reference hardware).
+
+### `permissions/`
+
+Platform permissions needed on hardware for some of the functionality (related to media) to work. 
+This file will work with the template app, if another example app is used, please update the 
+package name at the top of the file. See 
+[Installing TomTom IndiGO on Hardware](tomtom-indigo/documentation/integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware) 
+for more information about the permissions.
 
 ## Building and running
 
@@ -61,7 +101,7 @@ And then build with:
 ## Setting up the development environment
 
 For the entire setup process, please consult the following page:
-[Getting Started](https://developer.tomtom.com/indigo/documentation/getting-started/introduction)
+[Getting Started](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/introduction)
 
 ## Copyright
 

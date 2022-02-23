@@ -49,7 +49,12 @@ steps:
     displayName: 'Assemble APKs'
     condition: succeeded()
 
-- publish: $(System.DefaultWorkingDirectory)/modules/products/exampleapp/build/outputs/apk
-  artifact: builds
-  displayName: 'Publish APKs as pipeline artifact'
-  condition: succeeded()
+# TODO(IVI-6638) - Make APK inclusion dynamic, instead of a fixed list
+- template: publish/publish-pipeline-artifact.yml@devops-templates
+  parameters:
+    contents: |
+      $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk
+      $(System.DefaultWorkingDirectory)/examples/**/build/outputs/apk
+    displayName: 'Publish Example App APKs as pipeline artifact'
+    artifact: builds
+

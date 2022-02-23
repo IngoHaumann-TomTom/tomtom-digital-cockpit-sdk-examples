@@ -18,6 +18,10 @@
     <XML>
       <option name="XML_KEEP_LINE_BREAKS" value="true" />
     </XML>
+    <codeStyleSettings language="Markdown">
+      <option name="WRAP_ON_TYPING" value="0" />
+      <option name="SOFT_MARGINS" value="100" />
+    </codeStyleSettings>
     <codeStyleSettings language="XML">
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />

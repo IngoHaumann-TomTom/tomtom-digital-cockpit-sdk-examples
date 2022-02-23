@@ -24,7 +24,7 @@ menu:
     items:
       - fileId: /platform-overview/what-is-tomtom-indigo
         title: What is TomTom IndiGO?
-      - fileId: /platform-overview/example-app
+      - fileId: /platform-overview/example-apps
         title: Example App
   - title: Getting Started
     items:

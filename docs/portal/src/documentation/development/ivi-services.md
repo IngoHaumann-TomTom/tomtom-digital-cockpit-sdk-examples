@@ -72,7 +72,7 @@ Define a service with an interface like this:
 
 ```kotlin
 @IviService(
-    serviceId = "com.tomtom.ivi.example.service.exampleservice"
+    serviceId = "com.example.ivi.example.service.exampleservice"
 )
 interface ExampleService {
 
