@@ -164,9 +164,27 @@ subprojects {
         exclude(group = "org.bouncycastle", module = "bcprov-jdk15to18")
         exclude(group = "org.bouncycastle", module = "bcutil-jdk15to18")
 
-        resolutionStrategy.dependencySubstitution {
-            substitute(module("org.hamcrest:hamcrest-core:1.3"))
-                .using(module("org.hamcrest:hamcrest:2.2"))
+        resolutionStrategy {
+            eachDependency {
+                when (requested.group) {
+                    "org.jetbrains.kotlin" ->
+                        useVersion(rootProject.libraries.versions.kotlin.get())
+                    "org.jetbrains.kotlinx" -> {
+                        when (requested.name) {
+                            "kotlinx-coroutines-core",
+                            "kotlinx-coroutines-android",
+                            "kotlinx-coroutines-test" ->
+                                useVersion(libraries.versions.kotlinxCoroutines.get())
+                            "kotlinx-serialization-json" ->
+                                useVersion(libraries.versions.kotlinxSerialization.get())
+                        }
+                    }
+                }
+            }
+            dependencySubstitution {
+                substitute(module("org.hamcrest:hamcrest-core:1.3"))
+                    .using(module("org.hamcrest:hamcrest:2.2"))
+            }
         }
     }
 

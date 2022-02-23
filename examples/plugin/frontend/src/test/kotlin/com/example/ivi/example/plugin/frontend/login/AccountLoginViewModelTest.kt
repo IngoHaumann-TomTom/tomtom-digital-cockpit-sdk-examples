@@ -27,8 +27,6 @@ import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import io.mockk.verify
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
