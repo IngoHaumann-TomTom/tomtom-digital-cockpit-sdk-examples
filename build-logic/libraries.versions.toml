@@ -40,7 +40,7 @@ androidxCoreKtx = "1.6.0"
 androidxLifecycle = "2.3.1"
 
 # TomTom IndiGO platform.
-indigoPlatform = "1.0.3318"
+indigoPlatform = "1.0.3321"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.342"
 iviCommunicationsSdk = "0.1.112"
