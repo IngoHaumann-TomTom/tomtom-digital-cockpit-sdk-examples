@@ -79,28 +79,32 @@ import com.tomtom.ivi.appsuite.media.api.common.core.SourceId
 import com.tomtom.ivi.appsuite.media.api.common.core.actions.standard.PlayMediaIdFromSourceAction
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaTaskPanel
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaFrontendContext
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 import com.tomtom.ivi.appsuite.media.api.service.core.MediaService
 import com.tomtom.ivi.appsuite.media.api.service.core.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 // This is an example source ID, matching the default Android Automotive car radio service.
-object RadioSourceId :
+internal object RadioSourceId :
     SourceId("com.android.car.radio", "com.android.car.radio.service.RadioAppService")
 
-class RadioPanel(mediaContext: MediaFrontendContext) :
+internal class RadioPanel(mediaContext: MediaFrontendContext) :
     MediaTaskPanel(mediaContext, RadioSourceId, null) {
+
+    val policyProvider: PolicyProvider =
+        mediaFrontendContext.mediaConfiguration.getPolicyProvider(RadioSourceId)
+
+    val sourceClient = RootSourceClient(RadioSourceId)
+    private val mediaService = MediaService.createApi(this, frontendContext.iviServiceProvider)
+
+    val stationsMediaItem =
+        sourceClient.categories.mapToFolderType(EXTRA_RADIO_FOLDER_TYPE_VALUE_STATIONS)
+    val bandsMediaItems = sourceClient.categories.map {
+        it.filter { item -> EXTRA_RADIO_FOLDER_TYPE_VALUE_BANDS == item.folderTypeOrNull() }
+    }
 
     init {
         Options.isItemDumpingEnabled = true
-    }
-
-    internal val sourceClient = RootSourceClient(RadioSourceId)
-    private val mediaService = MediaService.createApi(this, frontendContext.iviServiceProvider)
-
-    internal val stationsMediaItem =
-        sourceClient.categories.mapToFolderType(EXTRA_RADIO_FOLDER_TYPE_VALUE_STATIONS)
-    internal val bandsMediaItems = sourceClient.categories.map {
-        it.filter { item -> EXTRA_RADIO_FOLDER_TYPE_VALUE_BANDS == item.folderTypeOrNull() }
     }
 
     internal fun selectType(type: IviMediaItem) = sourceClient.browseTo(type)
@@ -121,7 +125,7 @@ class RadioPanel(mediaContext: MediaFrontendContext) :
             map { it.single { item -> type == item.folderTypeOrNull() } }
 
         private fun IviMediaItem.folderTypeOrNull(): Long? =
-            metadata?.extras?.getLong(EXTRA_RADIO_FOLDER_TYPE)
+            getLong(EXTRA_RADIO_FOLDER_TYPE)
     }
 }
 ```
@@ -143,28 +147,28 @@ recognized by the tuner.
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.tomtom.ivi.appsuite.media.api.common.core.mediaArtUriOrNull
-import com.tomtom.ivi.appsuite.media.api.common.core.mediaUriStringOrNull
-import com.tomtom.ivi.appsuite.media.api.common.core.titleOrNull
+import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaEntryGroupItem
+import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.RadioPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.valueUpToDate
+import com.tomtom.tools.android.api.uicontrols.recyclerview.group.ListGroupItem
 
-class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
+internal class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
 
     val isLoading = panel.sourceClient.isLoading
 
-    val contents: LiveData<List<MediaGroupItem>> = panel.sourceClient.contents.map { list ->
+    val contents: LiveData<List<ListGroupItem>> = panel.sourceClient.contents.map { list ->
         list.map { item ->
             MediaEntryGroupItem(
-                itemData = panel.policyProvider.extractItemData(item),
+                itemData = panel.policyProvider.extractItemDataPolicy(item),
                 itemState = MutableLiveData(MediaEntryGroupItem.ItemState.IDLE),
-                type = TtGroupItem.ItemType.LIST_ITEM,
-                clickAction = { item.mediaUriStringOrNull()?.let { panel.startRadio(it) } }
+                type = ListGroupItem.ItemType.LIST_ITEM,
+                clickAction = { item.mediaUri?.toString()?.let { panel.startRadio(it) } }
             )
         }
     }
 
-    val availableBands = panel.bandsMediaItems.map { bands -> bands.map { it.titleOrNull() } }
+    val availableBands = panel.bandsMediaItems.map { bands -> bands.map { it.title } }
     val selectedBandIndex = MutableLiveData(-1)
         .also {
             it.observe(this) { index ->
@@ -194,7 +198,7 @@ import android.content.Context
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.example.radio.databinding.RadioFragmentBinding
 
-class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioViewModel::class) {
+internal class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioViewModel::class) {
     override val viewFactory =
         ViewFactory(RadioFragmentBinding::inflate) { binding ->
             binding.viewModel = viewModel
