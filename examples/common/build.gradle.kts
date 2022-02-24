@@ -9,6 +9,7 @@
  * immediately return or destroy it.
  */
 
+import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -35,7 +36,7 @@ android {
     splits.abi {
         isEnable = true
         reset()
-        include(*com.tomtom.ivi.buildsrc.environment.ProjectAbis.enabledAbis)
+        include(*ProjectAbis.enabledAbis)
     }
 }
 

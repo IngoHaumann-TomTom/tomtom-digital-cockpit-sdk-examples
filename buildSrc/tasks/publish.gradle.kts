@@ -43,7 +43,11 @@ extensions.getByType(PublishingExtension::class.java).apply {
                 val variantName = name
                 val versionName = (this as VersionedVariant).versionName
 
-                if (variantName !in listOf("release", "debug")) {
+                if (variantName != "debug" || project.name != "template_app") {
+                    // We only want to publish the debug version of the template app, 
+                    // the published binaries are provided in the SDK as a possibility to try 
+                    // the example app out, without the need to setup an environment and build 
+                    // from source.
                     return@configureEach
                 }
 

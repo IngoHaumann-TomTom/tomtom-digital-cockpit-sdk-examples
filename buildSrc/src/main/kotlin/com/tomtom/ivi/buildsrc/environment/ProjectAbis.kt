@@ -31,7 +31,6 @@ object ProjectAbis {
     val enabledAbis =
         listOf(
             Abi.ARM64_V8A,
-            Abi.ARMEABI_V7A,
             Abi.X86_64
         )
             .also { require(supportedAbis.containsAll(it)) }

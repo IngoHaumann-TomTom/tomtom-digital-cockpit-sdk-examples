@@ -10,6 +10,7 @@
  */
 
 import com.android.builder.core.BuilderConstants
+import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.buildsrc.extensions.android
 import com.tomtom.ivi.buildsrc.extensions.getGradleProperty
 import com.tomtom.ivi.buildsrc.extensions.kotlinOptions
@@ -260,11 +261,8 @@ subprojects {
         splits.abi {
             @Suppress("UnstableApiUsage")
             isEnable = true
-            include(
-                com.android.sdklib.devices.Abi.ARM64_V8A.toString(),
-                com.android.sdklib.devices.Abi.ARMEABI_V7A.toString(),
-                com.android.sdklib.devices.Abi.X86_64.toString()
-            )
+            reset()
+            include(*ProjectAbis.enabledAbis)
         }
 
         val projectSourceSets by extra(mutableSetOf<String>())

@@ -49,12 +49,11 @@ steps:
     displayName: 'Assemble APKs'
     condition: succeeded()
 
-# TODO(IVI-6638) - Make APK inclusion dynamic, instead of a fixed list
+# We only publish the debug version of the template app.
 - template: publish/publish-pipeline-artifact.yml@devops-templates
   parameters:
     contents: |
-      $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk/**/*.apk
-      $(System.DefaultWorkingDirectory)/examples/**/build/outputs/apk/**/*.apk
+      $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk/debug/*.apk
     displayName: 'Publish Example App APKs as pipeline artifact'
     artifact: builds
 
