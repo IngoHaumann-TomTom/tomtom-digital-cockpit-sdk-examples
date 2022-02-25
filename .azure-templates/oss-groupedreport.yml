@@ -28,7 +28,7 @@ parameters:
 steps:
   - bash: |
       set -e
-      patch_version="$(echo '$(VERSION_EXAMPLES)' | cut -d'.' -f3)"
+      patch_version="$(echo '$(versionExamples)' | cut -d'.' -f3)"
       echo "##vso[task.setvariable variable=PATCH_VERSION]${patch_version}"
     displayName: create patch version variable
 
@@ -43,7 +43,7 @@ steps:
                     --log-level=DEBUG \
                     --static-configuration=${{parameters.conf_file_path}} \
                     --dependency='${{parameters.product}}->ivi-indigo:$(VERSION_PLATFORM)' \
-                    --dependency='${{parameters.product}}->ivi-indigo-docs:$(VERSION_EXAMPLES)' \
+                    --dependency='${{parameters.product}}->ivi-indigo-docs:$(versionExamples)' \
                     --dependency='${{parameters.product}}->ivi-indigo-companion-app-android-communication:$(VERSION_COMMUNICATIONS_SDK)' \
                     --dependency='${{parameters.product}}->nav-nk2-bom-android:$(VERSION_NAVKIT2)' \
                     --dependency='${{parameters.product}}->nk2ui-main:$(VERSION_NAVKIT2UI)' \

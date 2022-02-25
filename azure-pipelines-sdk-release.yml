@@ -194,7 +194,7 @@ stages:
             parameters:
               conf_file_path: .azure-templates/bdtools-sdk.yml
               product: ivi-indigo-sdk
-              product_version: $(VERSION_EXAMPLES)
+              product_version: $(versionExamples)
               report_filename: "oss-compliance_tomtom-indigo-sdk"
               artifactory_location: indigo_sdk_ossreport
               bdtools_environment: prod
@@ -216,7 +216,7 @@ stages:
               versionLineageOs: '$(VERSION_LINEAGEOS)'
           - template: gradle/gradle.yml@devops-templates
             parameters:
-              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(versionExamples)-sources
               tasks: >-
                 assemble
               projectOptions: >-
