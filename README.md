@@ -40,6 +40,10 @@ application (in the `template/` folder) is needed, see below.
 - `examples/integrationtest/`
  Examples demonstrating integration tests.
 
+- `examples/media/`
+ Examples demonstrating how to customize the media app, create new user experiences for a specific
+ media source, and create new media sources.
+
 - `examples/panelhierarchy/`
  Example showing a hierarchy of panels, with breadcrumbs.
 

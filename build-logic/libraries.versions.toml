@@ -36,13 +36,16 @@ kotlinxSerialization = "1.3.1"
 # Androidx dependencies.
 androidxActivity = "1.3.1"
 androidxAnnotation = "1.3.0"
+androidxAppcompat = "1.2.0"
 androidxCoreKtx = "1.6.0"
 androidxLifecycle = "2.3.1"
+androidxMedia = "1.5.0"
 
 # TomTom IndiGO platform.
 indigoPlatform = "1.0.3321"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.342"
+tomtomKotlinTools = "1.6.2"
 iviCommunicationsSdk = "0.1.112"
 androidCar = "0.0.12"
 
@@ -75,8 +78,10 @@ kotlinxSerializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serializati
 # Androidx dependencies.
 androidxActivity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
 androidxAnnotation = { module = "androidx.annotation:annotation", version.ref = "androidxAnnotation" }
+androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
 androidxLifecycleService = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidxLifecycle" }
+androidxMedia = { module = "androidx.media:media", version.ref = "androidxMedia" }
 
 # TomTom IndiGO platform components.
 indigoAppsuiteNavkit2ApiTestingFunctional = { module = "com.tomtom.ivi.appsuite:appsuite_navkit2_api_testing_functional", version.ref = "indigoPlatform" }
@@ -119,3 +124,6 @@ tomtomToolsApiUicontrols = { module = "com.tomtom.tools.android:api_uicontrols",
 tomtomCommunicationsSdkClient = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_client", version.ref = "iviCommunicationsSdk" }
 tomtomCommunicationsSdkCommon = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_common", version.ref = "iviCommunicationsSdk" }
 tomtomCommunicationsSdkExampleService = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_exampleservice", version.ref = "iviCommunicationsSdk" }
+
+# TomTom Kotlin tools.
+utilTraceEvents = { module = "com.tomtom.kotlin:traceevents", version.ref = "tomtomKotlinTools" }
