@@ -124,8 +124,6 @@ jobs:
             docs
           projectOptions:
             -PiviVersion=$(VERSION_PLATFORM)
-            # TODO(IVI-6804): IndiGO Release SDK fails on checking external api references.
-            # Temporarily disable the check.
             -PenforceExternalApiRef=false
           displayName: 'Generate IndiGO API docs'
       - publish: $(System.DefaultWorkingDirectory)/build/docs
