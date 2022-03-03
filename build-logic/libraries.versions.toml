@@ -46,7 +46,7 @@ indigoPlatform = "1.0.3340"
 # Other TomTom dependencies.
 tomtomAndroidTools = "0.0.342"
 tomtomKotlinTools = "1.6.2"
-iviCommunicationsSdk = "0.1.112"
+iviCommunicationsSdk = "0.1.114"
 androidCar = "0.0.12"
 
 [libraries]
