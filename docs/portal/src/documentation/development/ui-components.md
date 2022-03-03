@@ -57,11 +57,7 @@ is consistent with the rest of the UI of the IVI system.
 
 In contrast to the Android class
 [`AppCompatTextView`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatTextView),
-this control also provides predefined options for:
-
-- Text appearance.
-- Font weight.
-- Vertical alignment.
+this control also provides predefined option for; Vertical alignment.
 
 Examples of [`TtTextView`](TTIVI_ANDROID_TOOLS_API)s configured in various ways:
 

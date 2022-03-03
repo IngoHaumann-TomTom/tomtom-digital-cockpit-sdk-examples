@@ -43,9 +43,8 @@
             android:gravity="start"
             android:text="@{viewModel.selectedItem}"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h3"
-            auto:ttTextWeight="bold" />
+            android:textAppearance="?attr/tt_headline_text_style_m"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
 
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
@@ -54,8 +53,8 @@
             android:gravity="start"
             android:text="@string/ttivi_hierarchy_leaffragment_text"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h3" />
+            android:textAppearance="?attr/tt_title_text_style_l"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
 
     </LinearLayout>
 

@@ -34,12 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="@string/ttivi_account_login_title"
+            android:text="@string/ttivi_account_login_headline"
             android:textAlignment="textStart"
+            android:textAppearance="?attr/tt_headline_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h3"
-            auto:ttTextWeight="bold"
-            tools:text="@string/ttivi_account_login_title" />
+            tools:text="@string/ttivi_account_login_headline" />
 
         <Space
             android:layout_width="match_parent"
@@ -52,9 +51,8 @@
             android:gravity="start"
             android:text="@string/ttivi_account_login_message"
             android:textAlignment="textStart"
+            android:textAppearance="?attr/tt_title_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_medium"
-            auto:ttTextAppearance="h4"
-            auto:ttTextWeight="medium"
             tools:text="@string/ttivi_account_login_message" />
 
         <Space
@@ -81,9 +79,8 @@
             android:labelFor="@id/frontend_account_login_screen_login_username_edit"
             android:text="@string/ttivi_account_login_username"
             android:textAlignment="textStart"
+            android:textAppearance="?attr/tt_title_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h4"
-            auto:ttTextWeight="medium"
             tools:text="@string/ttivi_account_login_username" />
 
         <EditText
@@ -113,9 +110,8 @@
             android:labelFor="@id/frontend_account_login_screen_login_password_edit"
             android:text="@string/ttivi_account_login_password"
             android:textAlignment="textStart"
+            android:textAppearance="?attr/tt_title_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h4"
-            auto:ttTextWeight="medium"
             tools:text="@string/ttivi_account_login_password" />
 
         <EditText

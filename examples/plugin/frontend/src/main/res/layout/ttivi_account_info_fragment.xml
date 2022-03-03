@@ -45,9 +45,8 @@
             android:gravity="start"
             android:text="@{@string/ttivi_account_info_welcomemessage(viewModel.displayName)}"
             android:textAlignment="textStart"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            auto:ttTextAppearance="h3"
-            auto:ttTextWeight="bold" />
+            android:textAppearance="?attr/tt_headline_text_style_m"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
 
         <Space
             android:layout_width="match_parent"
