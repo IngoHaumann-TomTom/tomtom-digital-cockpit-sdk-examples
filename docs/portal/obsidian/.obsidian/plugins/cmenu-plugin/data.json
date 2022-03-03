@@ -1,0 +1,58 @@
+{
+  "aestheticStyle": "default",
+  "menuCommands": [
+    {
+      "id": "editor:set-heading",
+      "name": "Toggle heading",
+      "icon": "heading-glyph"
+    },
+    {
+      "id": "cmenu-plugin:editor:toggle-bold",
+      "name": "cMenu: Toggle bold",
+      "icon": "bold-glyph"
+    },
+    {
+      "id": "cmenu-plugin:subscript",
+      "name": "cMenu: Toggle subscript",
+      "icon": "subscript-glyph"
+    },
+    {
+      "id": "cmenu-plugin:superscript",
+      "name": "cMenu: Toggle superscript",
+      "icon": "superscript-glyph"
+    },
+    {
+      "id": "cmenu-plugin:editor:toggle-code",
+      "name": "cMenu: Toggle code",
+      "icon": "code-glyph"
+    },
+    {
+      "id": "cmenu-plugin:codeblock",
+      "name": "cMenu: Toggle codeblock",
+      "icon": "codeblock-glyph"
+    },
+    {
+      "id": "editor:attach-file",
+      "name": "Insert attachment",
+      "icon": "image-glyph"
+    },
+    {
+      "id": "templater-obsidian:insert-templater",
+      "name": "Templater: Open Insert Template modal",
+      "hotkeys": [
+        {
+          "modifiers": [
+            "Alt"
+          ],
+          "key": "e"
+        }
+      ],
+      "icon": "blocks"
+    }
+  ],
+  "appendMethod": "workspace",
+  "shouldShowMenuOnSelect": false,
+  "cMenuVisibility": true,
+  "cMenuBottomValue": 2.75,
+  "cMenuNumRows": 9
+}

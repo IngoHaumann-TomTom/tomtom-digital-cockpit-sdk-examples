@@ -1,0 +1,12 @@
+{
+  "legacyEditor": true,
+  "attachmentFolderPath": "./images",
+  "showFrontmatter": true,
+  "readableLineLength": false,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "absolute",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "newFileLocation": "current",
+  "livePreview": false
+}

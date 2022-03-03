@@ -37,3 +37,6 @@ IviTest
 .idea/uiDesigner.xml
 .idea/runConfigurations.xml
 .idea/.gitignore
+
+# MacOS
+.DS_Store
