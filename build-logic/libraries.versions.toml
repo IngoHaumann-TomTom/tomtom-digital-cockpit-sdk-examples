@@ -85,6 +85,7 @@ androidxMedia = { module = "androidx.media:media", version.ref = "androidxMedia"
 
 # TomTom IndiGO platform components.
 indigoAppsuiteNavkit2ApiTestingFunctional = { module = "com.tomtom.ivi.appsuite:appsuite_navkit2_api_testing_functional", version.ref = "indigoPlatform" }
+indigoAppsuiteMediaApiCommonFrontend = { module = "com.tomtom.ivi.appsuite:appsuite_media_api_common_frontend", version.ref = "indigoPlatform" }
 indigoPlatformDebugApiFrontendExtensionDebugTab = { module = "com.tomtom.ivi.platform:platform_debug_api_frontendextension_debugtab", version.ref = "indigoPlatform" }
 indigoPlatformFrameworkApiCommonLifecycle = { module = "com.tomtom.ivi.platform:platform_framework_api_common_lifecycle", version.ref = "indigoPlatform" }
 indigoPlatformFrameworkApiCommonUid = { module = "com.tomtom.ivi.platform:platform_framework_api_common_uid", version.ref = "indigoPlatform" }
