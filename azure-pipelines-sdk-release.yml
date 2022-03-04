@@ -84,7 +84,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.0.9
+    ref: refs/tags/2.0.10
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
@@ -146,6 +146,7 @@ stages:
               echo "##vso[task.setvariable variable=navKit2UiMainVersion;isOutput=true]$navKit2UiMain"
             name: Version
             displayName: 'Expose versions to Azure'
+          - template: .azure-templates/releases-data.yml
           - template: build/build-cleanup.yml@devops-templates
 
   - stage: Documentation
