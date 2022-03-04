@@ -125,7 +125,7 @@ jobs:
             docs
           projectOptions:
             -PiviVersion=$(VERSION_PLATFORM)
-            -PenforceExternalApiRef=false
+            -PandroidToolsExternalApiRefVersion=$(VERSION_TOMTOM_ANDROID_TOOLS)
           displayName: 'Generate IndiGO API docs'
       - publish: $(System.DefaultWorkingDirectory)/build/docs
         artifact: indigo-api-docs
