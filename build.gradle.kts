@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    `kotlin-dsl` version "2.2.0"
+    `kotlin-dsl`
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.android.test") apply false
@@ -147,8 +147,7 @@ subprojects {
     apply(from = rootProject.file("buildSrc/tasks/publish.gradle.kts"))
 
     dependencies {
-        // Enforces the same version for Kotlin libraries.
-        implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
+        implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
         constraints {
             // kotlin-reflect dependency is not constrained up by kotlin-bom, so we need to

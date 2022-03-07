@@ -90,7 +90,7 @@ Apply the following plugins in the top-level `build.gradle.kts` file to the root
 
 ```kotlin
 plugins {
-    `kotlin-dsl` version "2.2.0"
+    `kotlin-dsl`
     ...
     // Mandatory: For configure the IVI application at build-time.
     id("com.tomtom.ivi.platform.framework.config")

@@ -10,12 +10,11 @@
  */
 
 plugins {
-    `kotlin-dsl` version "2.2.0"
+    `kotlin-dsl`
 }
 
 dependencies {
-    // Enforce the same version for all Kotlin libraries.
-    implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(kotlin("android-extensions", libraries.versions.kotlin.get()))
     implementation(libraries.gradlePluginKotlin)
     implementation(libraries.gradlePluginKotlinSerialization)
