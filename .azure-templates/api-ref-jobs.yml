@@ -109,8 +109,8 @@ jobs:
       - template: build/build-cleanup.yml@devops-templates
   - job: GenerateIndigoApiDocs
     displayName: 'Generate IndiGO API docs'
-    # TODO(IVI-6824): Investigate Android package-list timeout
-    timeoutInMinutes: 45
+    # TODO(IVI-6824): Investigate package-list errors
+    timeoutInMinutes: 60
     container: 'docker_indigo_build'
     dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
     steps:
