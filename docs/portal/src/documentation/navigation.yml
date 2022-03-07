@@ -42,6 +42,8 @@ menu:
         title: Configuring Android Studio
       - fileId: /getting-started/the-tomtom-indigo-emulator
         title: The TomTom IndiGO Emulator
+      - fileId: /getting-started/additional-resources
+        title: Additional Resources
       - fileId: /getting-started/frequently-asked-questions-faq
         title: Frequently Asked Questions (FAQ)
   - title: Development
