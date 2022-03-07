@@ -51,12 +51,9 @@ internal class AccountLoginViewModelTest : IviTestCase() {
 
     private val sut = AccountLoginViewModel(mockPanel)
 
-    private val testCoroutineScope = coroutinesTestRule.mockMainScope()
-
     @Test
     fun `lastLogin contains simulated data`() {
         assertLiveDataEquals(TestData.lastLoginAccount, sut.lastLogin)
-        testCoroutineScope.advanceUntilIdle()
     }
 
     @Test
