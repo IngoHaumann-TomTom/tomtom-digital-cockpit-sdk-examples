@@ -237,18 +237,6 @@ the displayed content can be shown as a list, while another can be laid out in a
 can logically separate different groups of contents. Both the list and the grid items display
 the artwork, title, and sub-title for media items in a predictable way.
 
-### Panel creation classes
-
-A media-oriented set of classes is available to ease implementation of new panels:
-[`MediaSourcePanel`](TTIVI_INDIGO_API),
-[`MediaSourceViewModel`](TTIVI_INDIGO_API) and
-[`MediaSourceFragment`](TTIVI_INDIGO_API).
-
-These classes are meant to be used together to create new user experiences while still adhering to
-the Android guidelines. These provide a full framework to integrate with
-[`SourceClient`](TTIVI_INDIGO_API)s.
-
-
 ### Media view model components
 
 You can easily create views that display playback information and/or contain media controls by using
