@@ -92,7 +92,7 @@ stages:
   jobs:
   - job: Build
     displayName: 'Lint & Build'
-    timeoutInMinutes: '15'
+    timeoutInMinutes: '20'
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/build-steps.yml
