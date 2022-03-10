@@ -68,8 +68,8 @@ android {
 
 dependencies {
     implementation(project(":examples_common"))
+    implementation(indigoDependencies.tomtomToolsApiUicontrols)
     implementation(libraries.indigoPlatformFrontendApiCommonFrontend)
     implementation(libraries.indigoPlatformFrontendApiCommonUicontrols)
     implementation(libraries.indigoPlatformThemingApiCommonAttributes)
-    implementation(libraries.tomtomToolsApiUicontrols)
 }

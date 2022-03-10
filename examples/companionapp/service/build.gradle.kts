@@ -11,7 +11,7 @@
 
 dependencies {
     implementation(project(":examples_companionapp_serviceapi"))
-    implementation(libraries.tomtomCommunicationsSdkClient)
-    implementation(libraries.tomtomCommunicationsSdkCommon)
-    implementation(libraries.tomtomCommunicationsSdkExampleService)
+    implementation(indigoDependencies.tomtomCommunicationsSdkClient)
+    implementation(indigoDependencies.tomtomCommunicationsSdkCommon)
+    implementation(indigoDependencies.tomtomCommunicationsSdkExampleService)
 }

@@ -30,8 +30,8 @@ steps:
       arguments:
         --version_platform $(Version.INDIGO_PLATFORM)
         --version_examples $(versionExamples)
-        --version_tomtom_android_tools $(Version.API_TOMTOM_ANDROID_TOOLS)
-        --version_indigo_comms_sdk $(Version.API_INDIGO_COMMS_SDK)
+        --version_tomtom_android_tools $(Version.TOMTOM_ANDROID_TOOLS)
+        --version_indigo_comms_sdk $(Version.INDIGO_COMMS_SDK)
       script: |
         import argparse
         from datetime import datetime

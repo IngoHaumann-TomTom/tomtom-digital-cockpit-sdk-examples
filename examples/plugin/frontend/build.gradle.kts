@@ -22,10 +22,10 @@ ivi {
 dependencies {
     implementation(project(":examples_plugin_serviceapi"))
 
+    implementation(indigoDependencies.tomtomToolsApiLivedata)
     implementation(libraries.indigoPlatformFrameworkApiCommonLifecycle)
     implementation(libraries.indigoPlatformFrameworkApiCommonUid)
     implementation(libraries.indigoPlatformFrameworkApiIpcIviserviceandroidpaging)
-    implementation(libraries.tomtomToolsApiLivedata)
 
     testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
 }

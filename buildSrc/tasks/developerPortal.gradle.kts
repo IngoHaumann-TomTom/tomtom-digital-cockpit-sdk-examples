@@ -12,8 +12,8 @@
 val portalDirectory = "${project.projectDir}/docs/portal"
 val targetDir = "${portalDirectory}/build/export"
 val indigoVersion = libraries.versions.indigoPlatform.get()
-val commsVersion = libraries.versions.iviCommunicationsSdk.get()
-val androidToolsVersion = libraries.versions.tomtomAndroidTools.get()
+val commsVersion = indigoDependencies.versions.iviCommunicationsSdk.get()
+val androidToolsVersion = indigoDependencies.versions.tomtomAndroidTools.get()
 
 /**
  * TomTom internal tooling, see docs/portal/README.md if you are a TomTom developer.

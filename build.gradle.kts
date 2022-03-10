@@ -45,7 +45,7 @@ apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/developerPortal.gradle.kts"))
 
-val jvmVersion = JavaVersion.toVersion(libraries.versions.jvm.get())
+val jvmVersion = JavaVersion.toVersion(indigoDependencies.versions.jvm.get())
 
 // Make a single directory where to store all test results.
 val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
@@ -70,9 +70,9 @@ iviEmulators {
     findProperty("emulatorImage")?.let {
         emulatorImage = it.toString()
     }
-    minApiLevel = libraries.versions.minSdk.get().toInt()
+    minApiLevel = indigoDependencies.versions.minSdk.get().toInt()
     outputDirectory = testOutputDirectory
-    targetApiLevel = libraries.versions.compileSdk.get().toInt()
+    targetApiLevel = indigoDependencies.versions.compileSdk.get().toInt()
 }
 
 // Set up global test options
@@ -132,8 +132,8 @@ subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
     val isAndroidTestProject by extra(getGradleProperty("isAndroidTestProject", false))
 
-    val libraries = rootProject.libraries
-    val versions = rootProject.libraries.versions
+    val indigoDependencies = rootProject.indigoDependencies
+    val versions = rootProject.indigoDependencies.versions
 
     when {
         isApplicationProject -> apply(plugin = "com.android.application")
@@ -152,11 +152,11 @@ subprojects {
         constraints {
             // kotlin-reflect dependency is not constrained up by kotlin-bom, so we need to
             // constrain it explicitly.
-            implementation(libraries.kotlinReflect)
+            implementation(indigoDependencies.kotlinReflect)
         }
 
-        implementation(libraries.androidxAnnotation)
-        implementation(libraries.androidxCoreKtx)
+        implementation(indigoDependencies.androidxAnnotation)
+        implementation(indigoDependencies.androidxCoreKtx)
     }
 
     // Override some conflicting transitive dependencies which duplicate classes.
@@ -168,15 +168,15 @@ subprojects {
             eachDependency {
                 when (requested.group) {
                     "org.jetbrains.kotlin" ->
-                        useVersion(rootProject.libraries.versions.kotlin.get())
+                        useVersion(versions.kotlin.get())
                     "org.jetbrains.kotlinx" -> {
                         when (requested.name) {
                             "kotlinx-coroutines-core",
                             "kotlinx-coroutines-android",
                             "kotlinx-coroutines-test" ->
-                                useVersion(libraries.versions.kotlinxCoroutines.get())
+                                useVersion(versions.kotlinxCoroutines.get())
                             "kotlinx-serialization-json" ->
-                                useVersion(libraries.versions.kotlinxSerialization.get())
+                                useVersion(versions.kotlinxSerialization.get())
                         }
                     }
                 }

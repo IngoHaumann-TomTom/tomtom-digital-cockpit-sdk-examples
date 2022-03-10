@@ -12,54 +12,11 @@
 # https://docs.gradle.org/7.2/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-# Android project.
-buildTools = "30.0.3"
-compileSdk = "31"
-minSdk = "27"
-targetSdk = "27"
-
-# Java, Kotlin.
-jvm = "1.8"
-kotlin = "1.6.10"
-
-# Gradle plugins (AGP and others).
-androidGradlePlugin = "7.1.0"
-androidSdkCommon = "30.1.0"
-artifactory = "4.24.4"
-navtest = "13.0.0"
-navuiEmulators = "3.0.0"
-
-# Kotlinx.
-kotlinxCoroutines = "1.5.2"
-kotlinxSerialization = "1.3.1"
-
-# Androidx dependencies.
-androidxActivity = "1.3.1"
-androidxAnnotation = "1.3.0"
-androidxAppcompat = "1.2.0"
-androidxCoreKtx = "1.6.0"
-androidxLifecycle = "2.3.1"
-androidxMedia = "1.5.0"
-
 # TomTom IndiGO platform.
+# This line is being parsed using a regex. And should not be altered carelessly.
 indigoPlatform = "1.0.3377"
-# Other TomTom dependencies.
-tomtomAndroidTools = "0.0.347"
-tomtomKotlinTools = "1.6.2"
-iviCommunicationsSdk = "0.1.114"
-androidCar = "0.0.12"
 
 [libraries]
-# Gradle plugins.
-gradleAndroidToolsBuildGradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
-gradleAndroidToolsSdklib = { module = "com.android.tools:sdklib", version.ref = "androidSdkCommon" }
-gradlePluginArtifactory = { module = "org.jfrog.buildinfo:build-info-extractor-gradle", version.ref = "artifactory" }
-gradlePluginKotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-gradlePluginKotlinSerialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
-gradlePluginNavtestAndroid = { module = "com.tomtom.navtest:navtest-android", version.ref = "navtest" }
-gradlePluginNavtestCore = { module = "com.tomtom.navtest:navtest-core", version.ref = "navtest" }
-gradlePluginNavuiEmulators = { module = "com.tomtom.navui:emulators-plugin", version.ref = "navuiEmulators" }
-
 # Gradle plugins from the TomTom IndiGO platform & appsuite.
 gradlePluginApiAppsuiteDefaultsNavkit2 = { module = "com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2", version.ref = "indigoPlatform" }
 gradlePluginApiAppsuiteDefaultsUserprofiles = { module = "com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles", version.ref = "indigoPlatform" }
@@ -70,18 +27,6 @@ gradlePluginApiToolsNavkit2Test = { module = "com.tomtom.ivi.platform.gradle:api
 gradlePluginApiToolsSigningConfig = { module = "com.tomtom.ivi.platform.gradle:api_tools_signingconfig", version.ref = "indigoPlatform" }
 gradlePluginApiToolsEmulators = { module = "com.tomtom.ivi.platform.gradle:api_tools_emulators", version.ref = "indigoPlatform" }
 gradlePluginApiToolsVersionIvi = { module = "com.tomtom.ivi.platform.gradle:api_tools_version", version.ref = "indigoPlatform" }
-
-# Kotlin.
-kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
-kotlinxSerializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
-
-# Androidx dependencies.
-androidxActivity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
-androidxAnnotation = { module = "androidx.annotation:annotation", version.ref = "androidxAnnotation" }
-androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
-androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
-androidxLifecycleService = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidxLifecycle" }
-androidxMedia = { module = "androidx.media:media", version.ref = "androidxMedia" }
 
 # TomTom IndiGO platform components.
 indigoAppsuiteNavkit2ApiTestingFunctional = { module = "com.tomtom.ivi.appsuite:appsuite_navkit2_api_testing_functional", version.ref = "indigoPlatform" }
@@ -113,18 +58,3 @@ indigoPlatformContactsApiServiceContacts = { module = "com.tomtom.ivi.platform:p
 indigoPlatformTelecomApiCommonModel = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_model", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiCommonUtils = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_utils", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiServiceTelecom = { module = "com.tomtom.ivi.platform:platform_telecom_api_service_telecom", version.ref = "indigoPlatform" }
-
-# TomTom Automotive.
-tomtomAutomotiveAndroidCar = { module = "com.tomtom.ivi.ivi-automotive-sdk:android_car_lib", version.ref = "androidCar" }
-
-# TomTom Android Tools.
-tomtomToolsApiLivedata = { module = "com.tomtom.tools.android:api_livedata", version.ref = "tomtomAndroidTools" }
-tomtomToolsApiUicontrols = { module = "com.tomtom.tools.android:api_uicontrols", version.ref = "tomtomAndroidTools" }
-
-# TomTom Communications Sdk.
-tomtomCommunicationsSdkClient = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_client", version.ref = "iviCommunicationsSdk" }
-tomtomCommunicationsSdkCommon = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_common", version.ref = "iviCommunicationsSdk" }
-tomtomCommunicationsSdkExampleService = { module = "com.tomtom.ivi.sdk.communications:sdk_communications_exampleservice", version.ref = "iviCommunicationsSdk" }
-
-# TomTom Kotlin tools.
-utilTraceEvents = { module = "com.tomtom.kotlin:traceevents", version.ref = "tomtomKotlinTools" }

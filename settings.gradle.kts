@@ -13,6 +13,7 @@ rootProject.name = "IVI_Examples"
 
 apply(from = "build-logic/repositories.gradle.kts")
 apply(from = "build-logic/libraries.versioncatalog.gradle.kts")
+apply(from = "build-logic/indigodependencies.versioncatalog.gradle.kts")
 
 /**
  * Note:

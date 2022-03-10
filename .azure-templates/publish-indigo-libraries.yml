@@ -41,9 +41,11 @@ steps:
     parameters:
       tasks: >-
         publishLibrariesUploadPublicationToArtifactoryRepository
+        artifactoryPublish
       projectOptions: >-
         -PpublishUsername=$(ARTIFACTORY_USERNAME)
         -PpublishPassword=$(ARTIFACTORY_PASSWORD)
         -PartifactoryRepo=ivi-test
         -PiviVersion=${{parameters.iviVersion}}
+        -PdependenciesCatalogOnly
       displayName: 'Publish libraries to ivi-test Artifactory'

@@ -23,8 +23,8 @@ dependencies {
     implementation(project(":examples_plugin_serviceapi"))
     implementation(project(":examples_plugin_settingsserviceapi"))
 
+    implementation(indigoDependencies.tomtomToolsApiLivedata)
     implementation(libraries.indigoPlatformFrameworkApiCommonUid)
-    implementation(libraries.tomtomToolsApiLivedata)
 
     testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
     testImplementation(libraries.indigoPlatformToolsApiTestingUnit)

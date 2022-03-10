@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    implementation(libraries.tomtomAutomotiveAndroidCar)
+    implementation(indigoDependencies.tomtomAutomotiveAndroidCar)
     implementation(libraries.indigoPlatformThemingApiCommonAttributes)
     implementation(libraries.indigoPlatformNavkit2ApiCommonConfiguration)
     implementation(libraries.indigoPlatformFrameworkApiProductDebugPermissions)
