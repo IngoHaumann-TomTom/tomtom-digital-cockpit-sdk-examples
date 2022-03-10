@@ -29,7 +29,7 @@ jobs:
       - template: build/build-cleanup.yml@devops-templates
   - job: GenerateGradlepluginsApiDocs
     displayName: 'Generate IndiGO gradleplugins API docs'
-    timeoutInMinutes: 5
+    timeoutInMinutes: 10
     container: docker_indigo_build
     steps:
       - checkout: indigo
