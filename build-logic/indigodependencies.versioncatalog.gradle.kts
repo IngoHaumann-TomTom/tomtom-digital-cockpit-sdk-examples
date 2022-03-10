@@ -21,10 +21,9 @@ val versionLibraryFile = "libraries.versions.toml"
  */
 fun getIndigoPlatformVersionFromTomlFile() : String {
     val localLibrariesTomlFile = File(files(versionLibraryFile).asPath)
-    val versionTag = "indigoPlatform = "
-    val versionValue = Regex("""(\d+\.\d+\.\d+)""")
+    val versionRegex = Regex("""indigoPlatform = "([^"]*)"""")
     localLibrariesTomlFile.useLines { lines ->
-        return lines.first { it.contains(versionTag) }.let { versionValue.find(it)!!.value }
+        return lines.mapNotNull { versionRegex.matchEntire(it) }.first().groupValues[1]
     }
 }
 
