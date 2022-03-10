@@ -40,7 +40,8 @@ the visual appearance of your product by providing the desired values of these a
 ![Theming high-level diagram](images/theming-high-level-diagram.svg)
 
 If you want a look based on the TomTom UX design specification, you can use the
-`platform_theming_api_stock_theme`. This theme supports a light and a dark mode.
+`platform_theming_api_stock_theme`. This theme supports a light and a dark mode. The dark mode is
+the default one for TomTom IndiGO.
 
 If you want a customized theme, you must add your own
 [`ThemeComponentProviderService`](TTIVI_INDIGO_API) to provide the extra styles for the
