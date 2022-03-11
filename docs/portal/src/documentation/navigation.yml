@@ -138,6 +138,10 @@ menu:
             title: Create a Custom Contacts Service
           - fileId: /tutorials-and-examples/communications/create-a-custom-recentcalls-service
             title: Create a Custom Recent Calls Service
+      - title: App Launcher
+        items:
+          - fileId: /tutorials-and-examples/app-launcher/create-custom-app-launcher-services
+            title: Create Custom App Launcher Services
       - title: Customization
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
