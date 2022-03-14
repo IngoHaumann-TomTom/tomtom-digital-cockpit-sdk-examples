@@ -94,8 +94,8 @@
             android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.username}"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            android:textSize="?attr/tt_text_size_h2" />
+            android:textAppearance="?attr/tt_label_text_style_l"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
 
         <Space
             android:layout_width="match_parent"
@@ -125,8 +125,8 @@
             android:paddingHorizontal="?attr/tt_spacing_l"
             android:singleLine="true"
             android:text="@={viewModel.password}"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            android:textSize="?attr/tt_text_size_h2" />
+            android:textAppearance="?attr/tt_label_text_style_l"
+            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
 
         <Space
             android:layout_width="match_parent"
