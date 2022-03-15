@@ -163,7 +163,7 @@ stages:
     displayName: 'Publish artifacts to Nexus'
     jobs:
       - job: PublishToNexus
-        timeoutInMinutes: 60
+        timeoutInMinutes: 90
         displayName: Publish artifacts to Nexus
         container: docker_indigo_delivery
         steps:
