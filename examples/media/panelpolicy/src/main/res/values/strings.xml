@@ -10,12 +10,9 @@
   ~ immediately return or destroy it.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ivi.example.media.custompolicies">
-
-    <application
-        android:label="@string/example_media_custompolicies_title"
-        tools:ignore="MissingApplicationIcon"
-        tools:replace="android:label" />
-</manifest>
+<resources>
+    <string name="example_media_panelpolicy_title">IVI Example: Media Panel Policy</string>
+    <string name="example_media_panelpolicy_empty">No content available.</string>
+    <string name="example_media_panelpolicy_loading">Loading.</string>
+    <string name="example_media_panelpolicy_back">Back</string>
+</resources>

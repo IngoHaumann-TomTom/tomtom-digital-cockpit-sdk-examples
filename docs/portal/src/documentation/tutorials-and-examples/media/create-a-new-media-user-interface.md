@@ -221,7 +221,6 @@ internal class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioView
 To create more complex user interfaces, additional facilities are provided:
 
 * [Media visualization components](#media-visualization-components)
-* [Panel creation classes](#panel-creation-classes)
 * [Media view model components](#media-view-model-components)
 
 ### Media visualization components

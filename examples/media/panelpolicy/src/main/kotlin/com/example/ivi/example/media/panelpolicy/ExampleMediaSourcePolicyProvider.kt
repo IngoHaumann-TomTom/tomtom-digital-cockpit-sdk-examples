@@ -9,22 +9,20 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.custompolicies
+package com.example.ivi.example.media.panelpolicy
 
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaTaskPanelPolicy
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 
 /**
- * The [PolicyProvider] selects which behavior to customize.
- * There are more policies available than those in this example. If a policy is not provided here
+ * The [PolicyProvider] selects which behavior to customize. In this case we customize the
+ * [MediaTaskPanelPolicy].
+ *
+ * There are more policies available than the one in this example. If a policy is not provided here
  * the frontend uses a default one.
  *
- * Not specifying a policy provider will make the stock media player UI use a default policy
- * provider for this media source, which provides all default policies.
+ * This [PolicyProvider] is used in the [exampleMediaSourceFrontendExtension].
  */
 internal val exampleMediaSourcePolicyProvider = PolicyProvider(
-    isPlaylistItemPolicy = ExampleMediaSourceIsPlaylistItemPolicy(),
-    compareItemsPolicy = ExampleMediaSourceItemComparisonPolicy(),
-    extractItemDataPolicy = ExampleMediaSourceItemDataExtractionPolicy(),
-    sourceAttributionPolicy = ExampleMediaSourceSourceAttributionPolicy(),
-    mediaControlPolicy = ExampleMediaSourceMediaControlPolicy()
+    panelFactoryPolicy = ExampleMediaSourceTaskPanelPolicy()
 )

@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.custompolicies
+package com.example.ivi.example.media.panelpolicy
 
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaPolicyFrontendExtension
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension

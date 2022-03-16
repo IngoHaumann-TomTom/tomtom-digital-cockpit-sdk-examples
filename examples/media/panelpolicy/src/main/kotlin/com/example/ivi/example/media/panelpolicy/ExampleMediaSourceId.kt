@@ -9,15 +9,14 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.fallbackpolicy
+package com.example.ivi.example.media.panelpolicy
 
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
+import com.tomtom.ivi.appsuite.media.api.common.core.SourceId
 
 /**
- * The [PolicyProvider] selects which behavior to customize.
- * There are more policies available than those in this example. If a policy is not provided here
- * the frontend uses a default one.
+ * Reusable [SourceId] to identify the example media source.
  */
-internal val exampleFallbackPolicyProvider = PolicyProvider(
-    sourceAttributionPolicy = ExampleFallbackSourceAttributionPolicy()
+internal object ExampleMediaSourceId : SourceId(
+    "com.example.ivi.example.media.source",
+    "com.example.ivi.example.media.source.ExampleMediaSourceService"
 )
