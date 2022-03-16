@@ -31,7 +31,7 @@ dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     versionCatalogs {
         create("indigoDependencies") {
-            val group = "com.tomtom.ivi.indigo.platform"
+            val group = "com.tomtom.ivi.platform"
             val artifact = "dependencies-catalog"
             val version = getIndigoPlatformVersionFromTomlFile()
             from("${group}:${artifact}:${version}")
