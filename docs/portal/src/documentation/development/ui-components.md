@@ -291,7 +291,7 @@ the following features:
 - The appearance, like visibility of the _searching indicator_, is affected by the search status:
   focused, searching, etc.
 
-This is how the control looks while a search is in progress, with the _clear icon_ hidden and the
+This is how the control looks while a search is in progress, with the _clear icon_ visible and the
 _searching indicator_ animating:
 
 ![A TtSearchView while search in progress](images/ui-components-searchview.png)
