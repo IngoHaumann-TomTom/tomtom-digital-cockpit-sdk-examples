@@ -1,5 +1,5 @@
 ---
-title: Replace the stock Android app support
+title: Replace the Stock Android App Support
 ---
 
 The TomTom IndiGO app launcher provides stock implementations for providing the list of Android apps

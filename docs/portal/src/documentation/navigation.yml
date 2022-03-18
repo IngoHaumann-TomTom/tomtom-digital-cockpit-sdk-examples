@@ -140,8 +140,12 @@ menu:
             title: Create a Custom Recent Calls Service
       - title: App Launcher
         items:
-          - fileId: /tutorials-and-examples/app-launcher/create-custom-app-launcher-services
-            title: Create Custom App Launcher Services
+          - fileId: /tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service
+            title: Create a Custom App Launcher Service
+          - fileId: /tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type
+            title: Add Support for a Custom Non-Android App Type
+          - fileId: /tutorials-and-examples/app-launcher/replace-the-stock-android-app-support
+            title: Replace the Stock Android App Support
       - title: Customization
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework

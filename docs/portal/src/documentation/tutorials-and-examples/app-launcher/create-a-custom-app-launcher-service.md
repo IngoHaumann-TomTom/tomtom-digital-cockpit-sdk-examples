@@ -26,8 +26,8 @@ services:
   types.
 
 The following sections show how to perform these tasks:
-- [Replace the stock Android app support](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/android-apps/replace-the-stock-android-app-support)
-- [Add support for a custom non-Android app type](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/custom-apps/add-support-for-a-custom-non-android-app-type)
+- [Replace the stock Android app support](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/replace-the-stock-android-app-support)
+- [Add support for a custom non-Android app type](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)
 
 
 

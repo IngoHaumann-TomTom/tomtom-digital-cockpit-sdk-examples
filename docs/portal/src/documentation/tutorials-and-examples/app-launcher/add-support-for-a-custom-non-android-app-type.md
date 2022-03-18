@@ -1,5 +1,5 @@
 ---
-title: Add support for a custom non-Android app type
+title: Add Support for a Custom Non-Android App Type
 ---
 
 For a custom, non-Android, app type, a means to access the list of available apps to display in the
