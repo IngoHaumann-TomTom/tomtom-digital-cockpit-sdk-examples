@@ -1,0 +1,40 @@
+# Copyright © 2022 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+steps:
+  - checkout: ivi-example-app
+  - checkout: indigo
+
+  - bash: |
+      # Do not use "set -eux" here, otherwise vso commands below will contain an extra quote at the end
+      set -e
+
+      cd $(Build.SourcesDirectory)/ivi-example-app
+      examplesTomlFilePath=build-logic/libraries.versions.toml
+      INDIGO_PLATFORM=$(cat $examplesTomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
+
+      cd $(Build.SourcesDirectory)/indigo
+      git checkout tags/$INDIGO_PLATFORM
+      indigoTomlFilePath=build-logic/libraries.versions.toml
+      NAVKIT2_CORE_BOM=$(cat $indigoTomlFilePath | grep "navKit2CoreBom = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      NAVKIT2_UI=$(cat $indigoTomlFilePath | grep "navKit2Ui = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      TOMTOM_ANDROID_TOOLS=$(cat $examplesTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      INDIGO_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+
+      echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
+      echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
+      echo "##vso[task.setvariable variable=INDIGO_COMMS_SDK;isOutput=true]$INDIGO_COMMS_SDK"
+      echo "##vso[task.setvariable variable=NAVTEST;isOutput=true]$NAVTEST"
+      echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]NAVUI_EMULATORS"
+      echo "##vso[task.setvariable variable=NAVKIT2_CORE_BOM;isOutput=true]$NAVKIT2_CORE_BOM"
+      echo "##vso[task.setvariable variable=NAVKIT2_UI;isOutput=true]$NAVKIT2_UI"
+    name: Version
+    displayName: 'Expose versions to Azure'

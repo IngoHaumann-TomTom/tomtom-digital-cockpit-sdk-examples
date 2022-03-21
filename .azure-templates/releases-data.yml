@@ -1,4 +1,4 @@
-# Copyright © 2020 TomTom NV. All rights reserved.
+# Copyright © 2022 TomTom NV. All rights reserved.
 #
 # This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
 # used for internal evaluation purposes or commercial use strictly subject to separate
@@ -12,53 +12,36 @@ parameters:
   urlReleasesJsonFile: 'https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json'
 
 steps:
+  - checkout: indigo
+  - checkout: indigoqa
+
   - template: download/download-and-verify.yml@devops-templates
     parameters:
       downloadUrl: ${{parameters.urlReleasesJsonFile}}
       displayName: 'Download releases json file from Artifactory'
       userName: $(ARTIFACTORY_USERNAME)
       password: $(ARTIFACTORY_PASSWORD)
-      downloadDirectory: $(Build.SourcesDirectory)
+      downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
       checksumType: 'sha256'
 
-  # TODO(IVI-6139): Generate release notes in the SDK release pipeline
   - task: PythonScript@0
+    name: Releases
     displayName: 'Update releases data'
     inputs:
-      scriptSource: 'inline'
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/update_releases_data.py
       pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
       arguments:
-        --version_platform $(Version.INDIGO_PLATFORM)
-        --version_examples $(versionExamples)
-        --version_tomtom_android_tools $(Version.TOMTOM_ANDROID_TOOLS)
-        --version_indigo_comms_sdk $(Version.INDIGO_COMMS_SDK)
-      script: |
-        import argparse
-        from datetime import datetime
-        import json
-
-        parser = argparse.ArgumentParser(description='Script to update releases data.')
-        parser.add_argument("--version_platform", dest="version_platform")
-        parser.add_argument("--version_examples", dest="version_examples")
-        parser.add_argument("--version_tomtom_android_tools", dest="version_tomtom_android_tools")
-        parser.add_argument("--version_indigo_comms_sdk", dest="version_indigo_comms_sdk")
-        args = parser.parse_args()
-
-        sdk_version = f"{args.version_platform}-{args.version_examples.split('.')[-1]}"
-        with open('releases.json', 'r+') as json_file:
-            data = json.load(json_file)
-            data.append({
-              sdk_version: {
-                  "indigoPlatform": args.version_platform,
-                  "exampleApp": args.version_examples,
-                  "tomtomAndroidTools": args.version_tomtom_android_tools,
-                  "iviCommunicationsSdk": args.version_indigo_comms_sdk,
-                  "releaseNotes": [],
-                  "date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-              }
-            })
-            json_file.seek(0)
-            json.dump(data, json_file, indent=4)
+        --jira_user $(JIRA_USERNAME)
+        --jira_pass $(JIRA_PASSWORD)
+        --repo $(Build.SourcesDirectory)/indigo
+        --previous_platform_version $(PREVIOUS_PRODUCT_VERSION)
+        --platform_version $(VERSION_PLATFORM)
+        --examples_version $(versionExamples)
+        --tomtom_android_tools_version $(VERSION_TOMTOM_ANDROID_TOOLS)
+        --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
+    condition: and(eq(variables.isMainlineBuild, true), succeeded())
 
   - bash: |
       set -eux
@@ -66,4 +49,6 @@ steps:
         -T releases.json\
         ${{parameters.urlReleasesJsonFile}}
       rm releases.json
+    workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
     displayName: 'Publish releases json file to Artifactory'
+    condition: and(eq(variables.isMainlineBuild, true), succeeded())

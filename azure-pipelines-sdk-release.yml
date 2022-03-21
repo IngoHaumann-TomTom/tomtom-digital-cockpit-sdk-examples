@@ -14,14 +14,14 @@
 
 # This defines the "Run pipeline" menu.
 parameters:
-  - name: versionExamples
-    displayName: 'Version examples (ivi-example-app)'
-    type: string
-    default: ''
   - name: shouldPublishLibraries
     displayName: 'Publish libraries to Nexus'
     type: boolean
     default: true
+  - name: versionExamples
+    displayName: 'Version examples (ivi-example-app)'
+    type: string
+    default: ' '
   - name: shouldPublishLineageOsImage
     displayName: 'Publish the LineageOS system image to Nexus'
     type: boolean
@@ -40,12 +40,15 @@ variables:
   - template: .azure-templates/variables.yml
   # Variable groups used below are defined in the project's Pipelines Library.
   - group: 'AzureStorage'
+  - group: 'AZToken'
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
   - group: 'AmazonWebServices'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
+  - group: 'JiraCredentials'
   - group: 'NavKit2ApiKey'
+  - group: 'ProductVersion'
   - name: isMainlineBuild
     value: $[ and(
       eq(variables['Build.SourceBranch'], 'refs/heads/master'),
@@ -113,50 +116,8 @@ stages:
         displayName: 'Get versions'
         container: docker_indigo_delivery
         steps:
-          - checkout: ivi-example-app
-          - checkout: indigo
-          - bash: |
-              # Do not use "set -eux" here, otherwise vso commands below will contain an extra quote at the end
-              set -e
-
-              cd $(Build.SourcesDirectory)/ivi-example-app
-              examplesTomlFilePath=build-logic/libraries.versions.toml
-              INDIGO_PLATFORM=$(cat $examplesTomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
-
-              cd $(Build.SourcesDirectory)/indigo
-              git checkout tags/$INDIGO_PLATFORM
-              indigoTomlFilePath=build-logic/libraries.versions.toml
-              NAVKIT2_CORE_BOM=$(cat $indigoTomlFilePath | grep "navKit2CoreBom = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-              NAVKIT2_UI=$(cat $indigoTomlFilePath | grep "navKit2Ui = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-              TOMTOM_ANDROID_TOOLS=$(cat $examplesTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
-              INDIGO_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
-              NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-              NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-
-              echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
-              echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
-              echo "##vso[task.setvariable variable=INDIGO_COMMS_SDK;isOutput=true]$INDIGO_COMMS_SDK"
-              echo "##vso[task.setvariable variable=NAVTEST;isOutput=true]$NAVTEST"
-              echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]NAVUI_EMULATORS"
-              echo "##vso[task.setvariable variable=NAVKIT2_CORE_BOM;isOutput=true]$NAVKIT2_CORE_BOM"
-              echo "##vso[task.setvariable variable=NAVKIT2_UI;isOutput=true]$NAVKIT2_UI"
-            name: Version
-            displayName: 'Expose versions to Azure'
-          - template: .azure-templates/releases-data.yml
+          - template: .azure-templates/expose-versions.yml
           - template: build/build-cleanup.yml@devops-templates
-
-  - stage: Documentation
-    displayName: 'Generate and publish API References and Developer Portal'
-    dependsOn: Versions
-    variables:
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
-      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
-      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
-    jobs:
-      - template: .azure-templates/api-ref-jobs.yml
-      # - template: .azure-templates/portal_export.yml
-      # TODO(IVI-6383): Add DevPortal export to SDK Release Pipeline
 
   - stage: Publishing
     dependsOn: []
@@ -197,7 +158,7 @@ stages:
               bdtools_environment: prod
 
   - stage: Verification
-    dependsOn: [ Publishing, Documentation, Versions ]
+    dependsOn: [ Publishing, Versions ]
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
@@ -223,8 +184,26 @@ stages:
               displayName: 'Assemble APKs using dependencies from Nexus'
           - template: build/build-cleanup.yml@devops-templates
 
+  - stage: Documentation
+    displayName: 'Generate and publish API References and Developer Portal'
+    dependsOn: [ Versions, Verification]
+    variables:
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
+    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+    jobs:
+      - job: ReleasesData
+        displayName: 'Releases data'
+        container: docker_indigo_delivery
+        steps:
+          - template: .azure-templates/releases-data.yml
+      - template: .azure-templates/api-ref-jobs.yml
+      # - template: .azure-templates/portal_export.yml
+      # TODO(IVI-6383): Add DevPortal export to SDK Release Pipeline
+
   - stage: Publication
-    dependsOn: [ Verification, Publishing, Versions ]
+    dependsOn: [ Documentation, Verification, Publishing, Versions ]
     variables:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
@@ -253,6 +232,13 @@ stages:
                 -F "maven2.asset1=@$(Build.SourcesDirectory)/downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz"\
                 -F "maven2.asset1.extension=tar.gz"\
                 "https://repo.tomtom.com/service/rest/v1/components?repository=ivi"
+          - template: azure/updatevariablegroup.yml@devops-templates
+            parameters:
+              endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
+              groupName: 'ProductVersion'
+              variableName: 'PREVIOUS_PRODUCT_VERSION'
+              variableValue: $(VERSION_PLATFORM)
+              condition: and(eq(variables.isMainlineBuild, true), succeeded())
       - job: SyncLatestApiDocumentation
         displayName: 'Sync latest API documentation'
         timeoutInMinutes: 10
