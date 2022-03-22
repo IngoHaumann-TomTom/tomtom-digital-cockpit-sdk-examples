@@ -14,12 +14,12 @@ package com.example.ivi.example.media.miniplayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import com.tomtom.ivi.appsuite.media.api.common.frontend.controls.asMediaControlContext
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.SourceAttributionFormat
 import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.MediaButtonsConfiguration
 import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.MediaButtonsViewModel
 import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.MediaPlaybackViewModel
-import com.tomtom.ivi.appsuite.media.plugin.frontend.media.asMediaControlContext
-import com.tomtom.ivi.appsuite.media.plugin.frontend.media.asMediaPlaybackParameters
+import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.asMediaPlaybackParameters
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.resourceresolution.string.DurationStringResolver
 import kotlin.time.DurationUnit
