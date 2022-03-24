@@ -32,6 +32,7 @@ plugins {
     id("com.android.application") apply false
     id("com.android.library") apply false
     id("com.android.test") apply false
+    id("com.google.devtools.ksp") apply false
     id("com.tomtom.ivi.platform.framework.config") apply true
     id("com.tomtom.ivi.platform.tools.emulators") apply true
     id("com.tomtom.ivi.platform.tools.version") apply true
