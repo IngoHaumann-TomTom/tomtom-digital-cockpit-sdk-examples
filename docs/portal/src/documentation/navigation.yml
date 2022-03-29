@@ -78,6 +78,8 @@ menu:
             title: Configuration Framework
           - fileId: /development/platform-domains/settings-framework
             title: Settings Framework
+          - fileId: /development/platform-domains/user-profiles
+            title: User Profiles
       - title: Platform Features
         items:
           - fileId: /development/platform-features/overview

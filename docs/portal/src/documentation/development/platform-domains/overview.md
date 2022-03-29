@@ -59,3 +59,10 @@ continuity when relaunching an app, and a consistent state between road trips. T
 facilitates that by providing a settings service where you can store and retrieve your setting
 values in a type-safe manner.
 [Settings Framework](/tomtom-indigo/documentation/development/platform-domains/settings-framework)
+
+## User Profiles
+
+Customization plays an important role in an infotainment system. Users expect the ability to 
+customize their experience by setting up their environment based on their preferences. TomTom IndiGO 
+provides user profile management functionalities which make all this possible.
+[User Profiles](/tomtom-indigo/documentation/development/platform-domains/user-profiles)

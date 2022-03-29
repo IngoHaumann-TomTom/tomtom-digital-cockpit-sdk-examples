@@ -55,8 +55,10 @@ of a setting value. Available setting key subtypes are:
 - [`EnumSettingKey`](TTIVI_INDIGO_API) for an __enum__ setting value.
 
 A setting key consists of a setting scope [`SettingScope`](TTIVI_INDIGO_API) and a setting identifier.
-The setting scope defines whether a setting has a value per user profile, or is relevant to the
-entire application, regardless of the active user profile.
+The setting scope defines whether a setting has a value per user profile, see
+[User Profiles](/tomtom-indigo/documentation/development/platform-domains/user-profiles) for details
+regarding user profiles, or is relevant to the entire application, regardless of the active user 
+profile, for more details regarding user profiles.
 
 __Note:__ If the settings management service restarts, then all settings must be created again by
 the settings service that owns them. The restart may be detected by observing the availability of
