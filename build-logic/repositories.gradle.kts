@@ -54,5 +54,8 @@ dependencyResolutionManagement {
 
         // PU LNS repo for the Connectivity Agent.
         maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
+
+        // Analytics repo (used by NavApp components)
+        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/dataunit-maven-release")
     }
 }
