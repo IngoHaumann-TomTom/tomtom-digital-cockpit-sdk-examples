@@ -40,8 +40,8 @@ The steps below show how to install and configure your choice of app store:
 
 - [Install your app store APK.](#install-your-app-store-apk)
 - [Configure TomTom IndiGO to launch your app store](#configure-tomtom-indigo-to-launch-your-app-store)
-    - [Overriding app store configuration in Android resources](#overriding-app-store-configuration-in-android-resources).
-    - [Overriding app store configuration with a static configuration provider](#overriding-app-store-configuration-with-a-static-configuration-provider).
+- [Overriding app store configuration in Android resources](#overriding-app-store-configuration-in-android-resources).
+- [Overriding app store configuration with a static configuration provider](#overriding-app-store-configuration-with-a-static-configuration-provider).
 
 ## Install your app store APK
 
@@ -93,7 +93,7 @@ Add the following dependency to the `build.gradle.kts` file of the module where 
 configuration provider will reside:
 
 ```kotlin
-implementation("com.tomtom.ivi.platform:core_config_appstore:${Versions.INDIGO_PLATFORM}")
+implementation("com.tomtom.ivi.appsuite:appsuite_appstore_api_common_config:${Versions.INDIGO_PLATFORM}")
 ```
 
 Create the static configuration provider:
