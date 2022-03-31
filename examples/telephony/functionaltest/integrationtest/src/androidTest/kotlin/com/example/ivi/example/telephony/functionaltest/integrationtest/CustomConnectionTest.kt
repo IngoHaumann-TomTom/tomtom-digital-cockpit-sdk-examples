@@ -77,7 +77,10 @@ internal class CustomConnectionTest : TtFunctionalTestCase() {
         waitForConnectionServiceToBeReady()
 
         // THEN there is an ongoing call
-        assertTrue(customConnectionFacade.isInCall())
+        assertTrue(
+            waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
+                customConnectionFacade.isInCall()
+            })
     }
 
     @Test
@@ -94,7 +97,11 @@ internal class CustomConnectionTest : TtFunctionalTestCase() {
         waitForConnectionServiceToBeReady()
 
         // THEN there is an ongoing call
-        assertTrue(customConnectionFacade.isInCall())
+        assertTrue(
+            waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
+                customConnectionFacade.isInCall()
+            }
+        )
     }
 
     private fun setDefaultDialerForAutomationTesting(
