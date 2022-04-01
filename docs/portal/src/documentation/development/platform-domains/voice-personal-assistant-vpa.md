@@ -33,20 +33,27 @@ The diagram shows the most relevant components in this architecture:
   __Note:__ Alexa Auto is available as part of TomTom IndiGO upon approval by TomTom and
   Amazon. To request TomTom IndiGO's implementation for Alexa Auto please contact your local sales
   representative.
-- _VPA mediator service_: this is an application service whose role is to ensure that each VPA does
-  not interfere with another and that commands to and from a VPA go to the right UI / VPA
-  adaptation. For example, it tells the UI to show that the
-  [voice chrome](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/glossary.html#v) should
-  indicate that Alexa is speaking or that one VPA would like to show the user a disambiguation list
-  and what is in that list.
+
+- _[`VpaMediatorService`](TTIVI_INDIGO_API)_: this is a platform service whose role is to ensure
+  that multiple VPAs do not interfere with each other and that commands to and from a VPA go to the
+  right UI / VPA adaptation. For example:
+  - It informs the UI when Alexa is speaking, so that the
+    [voice chrome](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/glossary.html#v) can be
+    shown to the user.
+  - It indicates that one VPA would like to show the user a disambiguation list and what is in that
+    list.
 
   This service can also send requests to VPA adaptations, for example, to inform them that the
   user would like to login to their service, if that is needed.
 
-  VPA frontends only need to communicate with this service to interact with a VPA.
+  VPA frontends must communicate through this service to interact with a VPA.
+
+- _[`VpaMediatorSettingsService`](TTIVI_INDIGO_API)_: this is a platform service providing access to
+  all the VPA-related settings. It can be used to update settings like the language used by a VPA or
+  whether the VPA can be invoked with a wake word.
 
 - _VPA frontends_: the application frontends for the VPAs. More information on the typical features
-  provided by a VPA frontend can be found in the section below,
+  provided by a VPA frontend can be found in section
   [Implementing a custom VPA frontend](#implementing-a-custom-vpa-frontend).
 
   Currently, TomTom IndiGO offers an off-the-shelf implementation of a frontend, the _Alexa
@@ -56,7 +63,7 @@ The diagram shows the most relevant components in this architecture:
     [voice chrome](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/glossary.html#v).
   - Playing the Alexa [earcon](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/glossary.html#e)
     sounds.
-  - Rendering the UI that presents visual information from Alexa which complements the voice
+  - Rendering the UI that presents visual information from Alexa that complements the voice
     output. Examples include the weather forecast, POI search results, or the user's shopping list.
 
 ## Implementing a custom VPA frontend
