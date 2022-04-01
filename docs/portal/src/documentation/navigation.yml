@@ -32,7 +32,7 @@ menu:
         title: Introduction
       - fileId: /getting-started/installing-openjdk-11
         title: Installing OpenJDK 11
-      - fileId: /getting-started/installing-tomtom-indigo-sdk
+      - fileId: /getting-started/accessing-tomtom-indigo-sdk-example-sources
         title: Installing TomTom IndiGO SDK
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository

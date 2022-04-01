@@ -1,0 +1,64 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  # Folder for the internal example source (should have been prepared for release before this).
+  internalExampleSourceFolder: ''
+  sdkVersion: ''
+
+steps:
+  - checkout: indigoqa
+
+  - bash: |
+      set -eux
+      # This ensures no context is kept from previous runs on the same agent.
+      rm -rf $(Build.SourcesDirectory)/downloads
+      mkdir $(Build.SourcesDirectory)/downloads
+    displayName: Create download directory
+
+  # TODO(IVI-7077): Add the installation to the Docker image instead. 
+  - script: |
+      apk update
+      apk upgrade
+      apk add "ruby>3.0"
+      rm -rf /var/cache/apk/*
+    displayName: 'Install Ruby'
+
+  # TODO(IVI-7077): Add the installation to the Docker image instead. 
+  # Faraday (this version) is required to create a Github App installation token correctly
+  - script: |
+      gem install octokit
+      gem install jwt
+      gem install dotenv
+      gem install git
+      gem install faraday -v 1.10.0
+    displayName: 'Install gems'
+
+  - task: DownloadSecureFile@1
+    name: caCertificate
+    displayName: 'Download CA certificate'
+    inputs:
+      secureFile: 'publishindigodocs.private-key.pem'
+
+  - script: |
+      ruby $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/indigo_platform_publishing_app.rb \
+        --publish \
+        --download_base_path=$(System.DefaultWorkingDirectory)/downloads \
+        --internal_source_folder=${{parameters.internalExampleSourceFolder}} \
+        --external_repo_name="tomtom-internal/tomtom-indigo-sdk-examples" \
+        --github_app_identifier=$(GITHUB_APP_IDENTIFIER) \
+        --github_app_installation_identifier=$(GITHUB_APP_INSTALLATION_IDENTIFIER) \
+        --github_app_private_key_path=$(caCertificate.secureFilePath) \
+        --version_examples=$(versionExamples) \
+        --sdk_version=${{parameters.sdkVersion}}
+    name: GithubPublish
+    displayName: 'Publish example sources to github'

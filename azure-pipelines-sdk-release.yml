@@ -46,7 +46,8 @@ variables:
   - group: 'AmazonWebServices'
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
-  - group: 'JiraCredentials'
+  - group: 'IviGithubCredentials'
+  - group: 'JiraCredentials'  
   - group: 'NavKit2ApiKey'
   - group: 'ProductVersion'
   - name: isMainlineBuild
@@ -232,6 +233,16 @@ stages:
                 -F "maven2.asset1=@$(Build.SourcesDirectory)/downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz"\
                 -F "maven2.asset1.extension=tar.gz"\
                 "https://repo.tomtom.com/service/rest/v1/components?repository=ivi"
+          - task: ExtractFiles@1
+            displayName: Extracting SDK artifact
+            inputs:
+              archiveFilePatterns: 'downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz'
+              destinationFolder: $(Build.SourcesDirectory)/artifactsource
+              cleanDestinationFolder: true
+          - template: .azure-templates/publishing-github.yml
+            parameters:
+              internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(versionExamples)-sources/
+              sdkVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
           - template: azure/updatevariablegroup.yml@devops-templates
             parameters:
               endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
