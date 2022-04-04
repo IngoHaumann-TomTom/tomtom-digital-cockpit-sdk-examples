@@ -135,7 +135,7 @@ Create `src/main/AndroidManifest.xml`:
 
 The app source provider service can be implemented by defining a class (for example,
 `WebAppSourceProviderService`) that inherits from the abstract `AppSourceProviderServiceBase` base
-class, and implements the methods defined in the [`AppSourceProviderService]`(TTIVI_INDIGO_API)
+class, and implements the methods defined in the [`AppSourceProviderService`](TTIVI_INDIGO_API)
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
@@ -164,7 +164,7 @@ class WebAppSourceProviderService(
         super.onCreate()
 
         appStore = null
-        
+
          // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass] 
          // must be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(WebApp::class.java)
