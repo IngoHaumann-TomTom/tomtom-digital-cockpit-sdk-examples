@@ -49,7 +49,8 @@ steps:
                     --dependency='${{parameters.product}}->nk2ui-main:$(VERSION_NAVKIT2UI)' \
                     --dependency='${{parameters.product}}->nav-tomtom-android-tools:$(VERSION_TOMTOM_ANDROID_TOOLS)' \
                     --dependency='${{parameters.product}}->nav-navtest-core:$(VERSION_NAVTESTCORE)' \
-                    --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)'
+                    --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)' \
+                    --dependency='${{parameters.product}}->ivi-indigo-alexa-auto-sdk:$(VERSION_ALEXAAUTOSDK)'
 
       bdtool-scanner  --repo-type=LOCAL \
                       --repository=./${{parameters.root_folder}} \

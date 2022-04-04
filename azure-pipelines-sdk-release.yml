@@ -143,6 +143,7 @@ stages:
       VERSION_NAVTESTCORE: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVTEST'] ]
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
       VERSION_NAVKIT2UI: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVKIT2_UI'] ]
+      VERSION_ALEXAAUTOSDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.ALEXA_AUTO_SDK'] ]
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
     jobs:
       - job: OSSComplianceScan

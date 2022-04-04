@@ -28,6 +28,7 @@ steps:
       INDIGO_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
       NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
       NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      ALEXA_AUTO_SDK=$(cat $examplesTomlFilePath | grep "amazonAlexaAutoSdk = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
       echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
       echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
@@ -36,5 +37,6 @@ steps:
       echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]NAVUI_EMULATORS"
       echo "##vso[task.setvariable variable=NAVKIT2_CORE_BOM;isOutput=true]$NAVKIT2_CORE_BOM"
       echo "##vso[task.setvariable variable=NAVKIT2_UI;isOutput=true]$NAVKIT2_UI"
+      echo "##vso[task.setvariable variable=ALEXA_AUTO_SDK;isOutput=true]$ALEXA_AUTO_SDK"
     name: Version
     displayName: 'Expose versions to Azure'
