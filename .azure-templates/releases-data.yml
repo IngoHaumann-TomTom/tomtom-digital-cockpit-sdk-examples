@@ -15,13 +15,20 @@ steps:
   - checkout: indigo
   - checkout: indigoqa
 
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: jira-tickets
+      path: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+    displayName: 'Download the jira-tickets artifact'
+    condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
+
   - template: download/download-and-verify.yml@devops-templates
     parameters:
       downloadUrl: ${{parameters.urlReleasesJsonFile}}
       displayName: 'Download releases json file from Artifactory'
       userName: $(ARTIFACTORY_USERNAME)
       password: $(ARTIFACTORY_PASSWORD)
-      downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
+      downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
       checksumType: 'sha256'
 
   - task: PythonScript@0
@@ -31,17 +38,20 @@ steps:
       scriptSource: 'filePath'
       scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/update_releases_data.py
       pythonInterpreter: /usr/bin/python3
-      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
       arguments:
-        --jira_user $(JIRA_USERNAME)
-        --jira_pass $(JIRA_PASSWORD)
-        --repo $(Build.SourcesDirectory)/indigo
-        --previous_platform_version $(PREVIOUS_PRODUCT_VERSION)
         --platform_version $(VERSION_PLATFORM)
-        --examples_version $(versionExamples)
+        --examples_version $(VERSION_EXAMPLES)
         --tomtom_android_tools_version $(VERSION_TOMTOM_ANDROID_TOOLS)
         --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
+        --releases_file_path releases.json
+        --tickets_file_path tickets.json
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
+
+  - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/releases.json
+    artifact: releases-info
+    displayName: 'Publish releases.json as artifact'
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
 
   - bash: |
       set -eux

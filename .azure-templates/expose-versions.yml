@@ -15,7 +15,15 @@ steps:
       # Do not use "set -eux" here, otherwise vso commands below will contain an extra quote at the end
       set -e
 
+      if [ $(Build.Reason) == 'Manual' ]
+      then
+        EXAMPLES=$(versionExamples)
+      else
+        EXAMPLES=$(BuildTags.versionExamples)
+      fi
+
       cd $(Build.SourcesDirectory)/ivi-example-app
+      git checkout tags/$EXAMPLES
       examplesTomlFilePath=build-logic/libraries.versions.toml
       INDIGO_PLATFORM=$(cat $examplesTomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
 
@@ -30,6 +38,7 @@ steps:
       NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
       ALEXA_AUTO_SDK=$(cat $examplesTomlFilePath | grep "amazonAlexaAutoSdk = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
+      echo "##vso[task.setvariable variable=EXAMPLES;isOutput=true]$EXAMPLES"
       echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
       echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
       echo "##vso[task.setvariable variable=INDIGO_COMMS_SDK;isOutput=true]$INDIGO_COMMS_SDK"
@@ -40,3 +49,22 @@ steps:
       echo "##vso[task.setvariable variable=ALEXA_AUTO_SDK;isOutput=true]$ALEXA_AUTO_SDK"
     name: Version
     displayName: 'Expose versions to Azure'
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+
+  - task: PythonScript@0
+    displayName: 'Compare IndiGO platform versions'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3.8
+      script: |
+        from semantic_version import Version
+
+        if Version("$(Version.INDIGO_PLATFORM)") <= Version("$(PREVIOUS_PRODUCT_VERSION)"):
+          print(
+            "##vso[task.logissue type=error;]Not allowed to release! "
+            "The current IndiGO platform version [$(Version.INDIGO_PLATFORM)] has already been "
+            "released. Or is older then the latest released version [$(PREVIOUS_PRODUCT_VERSION)]."
+          )
+          print('##vso[task.complete result=Failed;]DONE')
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+

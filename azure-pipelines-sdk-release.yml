@@ -21,7 +21,11 @@ parameters:
   - name: versionExamples
     displayName: 'Version examples (ivi-example-app)'
     type: string
-    default: ' '
+    default: '-'
+  - name: releaseNotes
+    displayName: 'Release notes to be shown on the portal'
+    type: string
+    default: 'Development release.'
   - name: shouldPublishLineageOsImage
     displayName: 'Publish the LineageOS system image to Nexus'
     type: boolean
@@ -57,6 +61,8 @@ variables:
       ) ]
   - name: versionExamples
     value: ${{ parameters.versionExamples }}
+  - name: releaseNotes
+    value: ${{ parameters.releaseNotes }}
   - name: publishLibraries
     ${{ if eq(parameters['shouldPublishLibraries'], true) }}:
       value: '--publish_libs'
@@ -92,7 +98,6 @@ resources:
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
-    ref: refs/tags/$(versionExamples)
   - repository: indigo
     type: git
     name: IVI/indigo
@@ -104,6 +109,14 @@ resources:
     endpoint: tomtom-internal_bilkes_personal
     name: tomtom-internal/TomTom-Android-Tools
 
+schedules:
+  - cron: "0 5,12 * * *"
+    displayName: Daily IndiGO SDK release trigger at 05:00 & 12:00 (UTC).
+    branches:
+      include:
+        - master
+
+# Only trigger from schedules. Or manual triggers.
 trigger:
 - none
 
@@ -117,11 +130,15 @@ stages:
         displayName: 'Get versions'
         container: docker_indigo_delivery
         steps:
+          - template: .azure-templates/check-for-new-release.yml
           - template: .azure-templates/expose-versions.yml
+          - template: .azure-templates/releasenotes-check.yml
           - template: build/build-cleanup.yml@devops-templates
 
   - stage: Publishing
-    dependsOn: []
+    dependsOn: Versions
+    variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
     displayName: 'Publish artifacts to Nexus'
     jobs:
       - job: PublishToNexus
@@ -131,11 +148,13 @@ stages:
         steps:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
+    condition: eq(dependencies.Versions.result, 'Succeeded')
 
   - stage: OSSCompliance
     displayName: OSS compliance scan
     dependsOn: Versions
     variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
       VERSION_NAVKIT2: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVKIT2_CORE_BOM'] ]
@@ -144,7 +163,7 @@ stages:
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
       VERSION_NAVKIT2UI: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVKIT2_UI'] ]
       VERSION_ALEXAAUTOSDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.ALEXA_AUTO_SDK'] ]
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+    condition: and(eq(variables.isMainlineBuild, true), eq(dependencies.Versions.result, 'Succeeded'))
     jobs:
       - job: OSSComplianceScan
         displayName: OSS compliance scan
@@ -154,7 +173,7 @@ stages:
             parameters:
               conf_file_path: .azure-templates/bdtools-sdk.yml
               product: ivi-indigo-sdk
-              product_version: $(versionExamples)
+              product_version: $(VERSION_EXAMPLES)
               report_filename: "oss-compliance_tomtom-indigo-sdk"
               artifactory_location: indigo_sdk_ossreport
               bdtools_environment: prod
@@ -162,6 +181,7 @@ stages:
   - stage: Verification
     dependsOn: [ Publishing, Versions ]
     variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
     jobs:
@@ -176,20 +196,21 @@ stages:
               versionLineageOs: '$(versionLineageOs)'
           - template: gradle/gradle.yml@devops-templates
             parameters:
-              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(versionExamples)-sources
+              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
               tasks: >-
-                assemble
+                assembleDebug
               projectOptions: >-
                 -PnexusUsername=$(VERIFICATION_USERNAME)
                 -PnexusPassword=$(VERIFICATION_PASSWORD)
                 -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
-              displayName: 'Assemble APKs using dependencies from Nexus'
+              displayName: 'Assemble debug APKs using dependencies from Nexus'
           - template: build/build-cleanup.yml@devops-templates
 
   - stage: Documentation
     displayName: 'Generate and publish API References and Developer Portal'
     dependsOn: [ Versions, Verification]
     variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
@@ -207,6 +228,7 @@ stages:
   - stage: Publication
     dependsOn: [ Documentation, Verification, Publishing, Versions ]
     variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
@@ -242,7 +264,7 @@ stages:
               cleanDestinationFolder: true
           - template: .azure-templates/publishing-github.yml
             parameters:
-              internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(versionExamples)-sources/
+              internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/
               sdkVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
           - template: azure/updatevariablegroup.yml@devops-templates
             parameters:

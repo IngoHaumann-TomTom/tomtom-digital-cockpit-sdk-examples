@@ -22,6 +22,11 @@ steps:
       mkdir $(Build.SourcesDirectory)/downloads
     displayName: Create download directory
 
+  - bash: |
+      set -eux
+      git checkout tags/$(VERSION_EXAMPLES)
+    displayName: Checkout example-app $(VERSION_EXAMPLES)
+
     # Download artifacts from Artifactory by providing the version of the artifact, and publish
     # these to Nexus. The values of the parameters below can be entered from the pipeline's UI.
   - task: PythonScript@0
@@ -36,7 +41,7 @@ steps:
         --nexus_pass $(NEXUS_PASSWORD)
         --artifactory_user $(ARTIFACTORY_USERNAME)
         --artifactory_pass $(ARTIFACTORY_PASSWORD)
-        --version_examples $(versionExamples)
+        --version_examples $(VERSION_EXAMPLES)
         --version_lineageos $(versionLineageOs)
         --download_base_path $(System.DefaultWorkingDirectory)/downloads
         --indigo_sources_path $(Build.SourcesDirectory)/indigo

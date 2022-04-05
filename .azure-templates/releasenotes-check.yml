@@ -1,0 +1,54 @@
+# Copyright © 2022 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+steps:
+  - bash: |
+      set -e
+
+      # Returns the date and time of a tag.
+      # Example: 2022-03-10 17:50:16 +0000 (tag: 1.0.3387).
+      newTagInfo=$(git log --tags --pretty="format:%ci %d" |grep $(Version.INDIGO_PLATFORM))
+      oldTagInfo=$(git log --tags --pretty="format:%ci %d" |grep $(PREVIOUS_PRODUCT_VERSION))
+
+      # Returns the date that belongs to the tag.
+      newTagDate=$(echo $newTagInfo |cut -d ' ' -f1)
+      oldTagDate=$(echo $oldTagInfo |cut -d ' ' -f1)
+
+      # Returns the time that belongs to the tag.
+      newTagTime=$(echo $newTagInfo |cut -d ' ' -f2)
+      oldTagTime=$(echo $oldTagInfo |cut -d ' ' -f2)
+
+      # Export variables.
+      echo "##vso[task.setvariable variable=newTagDateTime;isOutput=true]$newTagDate $newTagTime"
+      echo "##vso[task.setvariable variable=oldTagDateTime;isOutput=true]$oldTagDate $oldTagTime"
+    workingDirectory: $(Build.SourcesDirectory)/indigo
+    name: TagInfo
+    displayName: 'Get date & time of git tags'
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+
+  - task: PythonScript@0
+    name: CheckForReleaseNotes
+    displayName: 'Check for release notes'
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/retrieve_ticket_info.py
+      pythonInterpreter: /usr/bin/python3.8
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
+      arguments:
+        --jira_user $(JIRA_USERNAME)
+        --jira_pass $(JIRA_PASSWORD)
+        --new_tag_datetime "$(TagInfo.newTagDateTime)"
+        --old_tag_datetime "$(TagInfo.oldTagDateTime)"
+        --release_notes "$(releaseNotes)"
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+
+  - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/tickets.json
+    artifact: jira-tickets
+    displayName: 'Publish tickets.json as artifact'
+    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))

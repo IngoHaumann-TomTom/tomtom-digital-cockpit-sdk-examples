@@ -57,7 +57,7 @@ steps:
         --github_app_identifier=$(GITHUB_APP_IDENTIFIER) \
         --github_app_installation_identifier=$(GITHUB_APP_INSTALLATION_IDENTIFIER) \
         --github_app_private_key_path=$(caCertificate.secureFilePath) \
-        --version_examples=$(versionExamples) \
+        --version_examples=$(VERSION_EXAMPLES) \
         --sdk_version=${{parameters.sdkVersion}}
     name: GithubPublish
     displayName: 'Publish example sources to github'
