@@ -2,7 +2,7 @@
 title: Example Apps
 ---
 
-The TomTom IndiGO SDK comes with a set of example applications, each one of them containing the  
+The TomTom IndiGO SDK comes with a set of example applications, each one of them containing the
 [_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 functionality of the TomTom IndiGO platform. They also contain the source code that goes with the
 tutorials, to get you started with developing for TomTom IndiGO.
