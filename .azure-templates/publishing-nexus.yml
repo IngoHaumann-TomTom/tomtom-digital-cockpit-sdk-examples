@@ -24,6 +24,7 @@ steps:
 
   - bash: |
       set -eux
+      cd $(Build.SourcesDirectory)/ivi-example-app
       git checkout tags/$(VERSION_EXAMPLES)
     displayName: Checkout example-app $(VERSION_EXAMPLES)
 
