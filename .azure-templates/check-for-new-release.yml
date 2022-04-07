@@ -19,4 +19,5 @@ steps:
       pythonInterpreter: /usr/bin/python3.8
       arguments:
         --token $(System.AccessToken)
+        --top 10
     condition: ne(variables['Build.Reason'], 'Manual')
