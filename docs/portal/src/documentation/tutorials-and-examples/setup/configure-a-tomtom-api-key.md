@@ -31,7 +31,7 @@ You can override static configuration values in Android resources. See
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
 Gradle plugin.
 
 This option is preferred if you want to simplify the project setup. However it requires the key to
@@ -45,7 +45,7 @@ The `TemplateApplication` class contains an example explaining how to configure 
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
 Gradle plugin.
 
 This option is preferred if you want to obtain and configure the key at runtime.
