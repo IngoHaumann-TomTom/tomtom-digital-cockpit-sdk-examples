@@ -13,7 +13,6 @@ package com.example.ivi.common
 
 import com.tomtom.ivi.platform.framework.api.product.defaultapplication.DefaultApplication
 import com.tomtom.ivi.platform.navkit2.api.common.configuration.Navkit2ApiKeyStaticConfigurationProvider
-import com.tomtom.ivi.platform.navkit2.api.common.service.HttpFrameworkInitializer
 
 @Suppress("unused")
 class ExampleApplication : DefaultApplication() {
@@ -47,13 +46,6 @@ class ExampleApplication : DefaultApplication() {
         } else {
             super.createStaticConfigurationProviders()
         }
-
-    override fun onCreate() {
-        super.onCreate()
-        // We need to initialize the NavKit 2 HTTP framework in order to use NK2's map view.
-        // TODO(IVI-6706) - this should be initialize in the platform instead.
-        HttpFrameworkInitializer.init(applicationContext)
-    }
 
     companion object {
         /**
