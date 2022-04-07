@@ -64,7 +64,7 @@ to create a TomTom IndiGO application with all the default functionality from th
 
 The keys needed to sign the application with the same keys as the TomTom Indigo reference hardware 
 build (see 
-[Flashing the reference hardware](tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware)
+[Flashing the reference hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware)
 ) for more details on the reference hardware).
 
 ### `permissions/`
@@ -72,7 +72,7 @@ build (see
 Platform permissions needed on hardware for some of the functionality (related to media) to work. 
 This file will work with the template app, if another example app is used, please update the 
 package name at the top of the file. See 
-[Installing TomTom IndiGO on Hardware](tomtom-indigo/documentation/integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware) 
+[Installing TomTom IndiGO on Hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware) 
 for more information about the permissions.
 
 ## Building and running
