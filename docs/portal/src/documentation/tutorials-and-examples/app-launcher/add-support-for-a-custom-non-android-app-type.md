@@ -68,6 +68,8 @@ class WebApp(
     override val icon: DrawableResolver,
 ) : App {
 
+    override val id: String = "${this::class.java.simpleName}.$url"
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -165,8 +167,8 @@ class WebAppSourceProviderService(
 
         appStore = null
 
-         // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass] 
-         // must be returned inside a [Parcelable] wrapper class.
+        // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass] 
+        // must be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(WebApp::class.java)
 
         installedApps = listOf(
@@ -195,9 +197,6 @@ provide a service host builder. This can be achieved by creating two classes.
    `src/main/kotlin/com/example/ivi/example/applauncher/services/webappsourceprovider/WebAppSourceProviderServiceHost.kt`:
 
    ```kotlin
-   /**
-    * A [WebAppSourceProviderService] host server.
-    */
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
@@ -300,8 +299,8 @@ indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.ap
 ```
 
 Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
-`examples/applauncher/services` (for example `examples/applauncher/services/webapplaunchhandler`) and add a Gradle build
-script.
+`examples/applauncher/services` (for example `examples/applauncher/services/webapplaunchhandler`)
+and add a Gradle build script.
 
 Create `build.gradle.kts`:
 
@@ -364,9 +363,9 @@ class WebAppLaunchHandlerService(
     override fun onCreate() {
         super.onCreate()
 
-        
-         // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass]
-         // must be returned inside a [Parcelable] wrapper class.
+
+        // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass]
+        // must be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(WebApp::class.java)
     }
 
@@ -400,9 +399,6 @@ provide a service host builder. This can be achieved by creating two classes.
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
-   /**
-    * A [WebAppLaunchHandlerService] host server.
-    */
    class WebAppLaunchHandlerServiceHost(
        iviServiceHostContext: IviServiceHostContext,
        iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
@@ -423,10 +419,6 @@ provide a service host builder. This can be achieved by creating two classes.
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
-   /**
-    * A [WebAppLaunchHandlerServiceHost] builder used to build a [WebAppLaunchHandlerService]
-    * host.
-    */
    class WebAppLaunchHandlerServiceHostBuilder : IviServiceHostBuilder() {
 
      override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =

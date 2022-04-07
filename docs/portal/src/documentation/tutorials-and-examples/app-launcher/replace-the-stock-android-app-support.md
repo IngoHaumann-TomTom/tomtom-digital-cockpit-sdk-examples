@@ -121,9 +121,12 @@ class AndroidAppSourceProviderService(
         // be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(AndroidApp::class.java)
 
+        // The value of [launchablePackageName] should match the package name of an Android app
+        // known to be installed on the device, otherwise the app will not appear in the app
+        // launcher.
         installedApps = listOf(
             LaunchableAndroidApp(
-                launchablePackageName = "com.android.chrome"
+                launchablePackageName = "com.android.example"
             )
         )
     }
