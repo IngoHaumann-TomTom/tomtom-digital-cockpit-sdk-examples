@@ -4,7 +4,7 @@ layout: default
 ---
 
 It is important to allow users to customize their usage of an infotainment system. TomTom IndiGO 
-allows the creation of a personalised user experience by linking settings and preferences to
+allows the creation of a personalized user experience by linking settings and preferences to
 an active user profile. It is possible to have user profile specific settings with different 
 configuration values depending on the current user using the platform. This can be convenient, 
 for instance, when a user wants to use a UI with a dark theme and another user prefers to use a 

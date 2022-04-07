@@ -62,8 +62,8 @@ WhatsApp using the example companion app.
 
 In TomTom IndiGO, messages are subdivided in
 [`Conversation`](TTIVI_INDIGO_API)s.
-A conversation contains all messages sent between the user and a specific list of peers, using the
-same messaging provider, like SMS, WhatsApp, Facebook Messenger, etc.
+A conversation contains all messages sent between the user and a specific list of peers using the
+same messaging provider like SMS, WhatsApp, Facebook Messenger, etc.
 
 TomTom IndiGO can be extended with support for a new messaging service as follows:
 
