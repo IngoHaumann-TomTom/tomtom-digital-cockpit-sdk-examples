@@ -216,9 +216,9 @@ documentation for more examples.
 
 ## Related modules
 
-The [`platform_vehiclefunctions_api_service_vehicleevstatus`](TTIVI_INDIGO_API) module shows the
-definition of a simple vehicle functions service. It only exposes the current battery level for an
-Electric Vehicle (EV) or a hybrid vehicle. See the example application to see how this gets used.
+The [`platform_vehiclefunctions_api_service_vehicleelectricengine`](TTIVI_INDIGO_API) module shows
+the definition of a simple vehicle functions service. It only exposes the current battery level for
+an Electric Vehicle (EV) or a hybrid vehicle. See the example application to see how this gets used.
 
 The [`platform_vehiclefunctions_api_service_vehiclehvac`](TTIVI_INDIGO_API) module is a definition
 of an IVI service that is a conduit to the HVAC functionalities of the vehicle. It shows how to
