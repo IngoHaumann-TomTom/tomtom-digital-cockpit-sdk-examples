@@ -2,13 +2,13 @@
 title: Documentation
 submenu: # Additional submenu items for example - blog posts which will be displayed right below table of contents. (not mandatory)
     - title: Links
-    - title: "Platform overview"
+    - title: "Platform Overview"
       url: "/tomtom-indigo/documentation/platform-overview/what-is-tomtom-indigo"
-    - title: "Example apps"
+    - title: "Product Walk-through"
       url: "/tomtom-indigo/documentation/platform-overview/example-apps"
-    - title: "Getting Started"
+    - title: "Getting Started Guide"
       url: "/tomtom-indigo/documentation/getting-started/introduction"
-    - title: "Development guide"
+    - title: "Development Guide"
       url: "/tomtom-indigo/documentation/development/introduction"
     - title: "Integration Guide"
       url: "/tomtom-indigo/documentation/integrating-tomtom-indigo/introduction"
