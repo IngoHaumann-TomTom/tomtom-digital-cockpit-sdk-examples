@@ -15,11 +15,11 @@ steps:
       # Do not use "set -eux" here, otherwise vso commands below will contain an extra quote at the end
       set -e
 
-      if [ $(Build.Reason) == 'Manual' ]
+      if [ $(versionExamples) == 'latest' ]
       then
-        EXAMPLES=$(versionExamples)
-      else
         EXAMPLES=$(BuildTags.versionExamples)
+      else
+        EXAMPLES=$(versionExamples)
       fi
 
       cd $(Build.SourcesDirectory)/ivi-example-app
@@ -43,15 +43,21 @@ steps:
       echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
       echo "##vso[task.setvariable variable=INDIGO_COMMS_SDK;isOutput=true]$INDIGO_COMMS_SDK"
       echo "##vso[task.setvariable variable=NAVTEST;isOutput=true]$NAVTEST"
-      echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]NAVUI_EMULATORS"
+      echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]$NAVUI_EMULATORS"
       echo "##vso[task.setvariable variable=NAVKIT2_CORE_BOM;isOutput=true]$NAVKIT2_CORE_BOM"
       echo "##vso[task.setvariable variable=NAVAPP_COMPONENTS;isOutput=true]$NAVAPP_COMPONENTS"
       echo "##vso[task.setvariable variable=ALEXA_AUTO_SDK;isOutput=true]$ALEXA_AUTO_SDK"
+
+      echo "##vso[build.addbuildtag]versionExamples=$EXAMPLES"
+      echo "##vso[build.addbuildtag]indigoPlatform=$INDIGO_PLATFORM"
+      echo "##vso[build.addbuildtag]navKit2CoreBomNavApp=$NAVKIT2_CORE_BOM"
+      echo "##vso[build.addbuildtag]navAppComponents=$NAVAPP_COMPONENTS"
     name: Version
     displayName: 'Expose versions to Azure'
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+    condition: succeeded()
 
   - task: PythonScript@0
+    name: CompareVersions
     displayName: 'Compare IndiGO platform versions'
     inputs:
       scriptSource: 'inline'
@@ -59,12 +65,14 @@ steps:
       script: |
         from semantic_version import Version
 
+        release_allowed = True
         if Version("$(Version.INDIGO_PLATFORM)") <= Version("$(PREVIOUS_PRODUCT_VERSION)"):
           print(
-            "##vso[task.logissue type=error;]Not allowed to release! "
-            "The current IndiGO platform version [$(Version.INDIGO_PLATFORM)] has already been "
-            "released. Or is older then the latest released version [$(PREVIOUS_PRODUCT_VERSION)]."
+            "##vso[task.logissue type=warning;]Not allowed to release platform for version "
+            "[$(Version.INDIGO_PLATFORM)]! Previously the platform has been already successfully "
+            "released for version [$(PREVIOUS_PRODUCT_VERSION)], which is the same or newer."
           )
-          print('##vso[task.complete result=Failed;]DONE')
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+          release_allowed = False
+        print(f"##vso[task.setvariable variable=releaseAllowed;isOutput=true]{release_allowed}")
+    condition: succeeded()
 

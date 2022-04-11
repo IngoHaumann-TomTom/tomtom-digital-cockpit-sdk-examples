@@ -21,7 +21,7 @@ parameters:
   - name: versionExamples
     displayName: 'Version examples (ivi-example-app)'
     type: string
-    default: '-'
+    default: 'latest'
   - name: releaseNotes
     displayName: 'Release notes to be shown on the portal'
     type: string
@@ -148,7 +148,10 @@ stages:
         steps:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
-    condition: eq(dependencies.Versions.result, 'Succeeded')
+    condition: and(
+      eq(dependencies.Versions.result, 'Succeeded'),
+      eq(dependencies.Versions.outputs['GetVersions.CompareVersions.releaseAllowed'], 'True')
+      )
 
   - stage: OSSCompliance
     displayName: OSS compliance scan
@@ -163,7 +166,11 @@ stages:
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
       VERSION_NAVAPP_COMPONENTS: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVAPP_COMPONENTS'] ]
       VERSION_ALEXAAUTOSDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.ALEXA_AUTO_SDK'] ]
-    condition: and(eq(variables.isMainlineBuild, true), eq(dependencies.Versions.result, 'Succeeded'))
+    condition: and(
+      eq(variables.isMainlineBuild, true),
+      eq(dependencies.Versions.result, 'Succeeded'),
+      eq(dependencies.Versions.outputs['GetVersions.CompareVersions.releaseAllowed'], 'True')
+      )
     jobs:
       - job: OSSComplianceScan
         displayName: OSS compliance scan

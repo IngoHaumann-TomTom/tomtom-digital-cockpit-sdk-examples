@@ -30,7 +30,7 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)/indigo
     name: TagInfo
     displayName: 'Get date & time of git tags'
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+    condition: and(succeeded(), eq(variables['CompareVersions.releaseAllowed'], 'True'))
 
   - task: PythonScript@0
     name: CheckForReleaseNotes
@@ -46,9 +46,9 @@ steps:
         --new_tag_datetime "$(TagInfo.newTagDateTime)"
         --old_tag_datetime "$(TagInfo.oldTagDateTime)"
         --release_notes "$(releaseNotes)"
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+    condition: and(succeeded(), eq(variables['CompareVersions.releaseAllowed'], 'True'))
 
   - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/tickets.json
     artifact: jira-tickets
     displayName: 'Publish tickets.json as artifact'
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+    condition: and(succeeded(), eq(variables['CompareVersions.releaseAllowed'], 'True'))
