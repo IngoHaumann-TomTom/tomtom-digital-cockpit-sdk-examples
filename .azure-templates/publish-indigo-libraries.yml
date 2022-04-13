@@ -43,8 +43,8 @@ steps:
         publishLibrariesUploadPublicationToArtifactoryRepository
         artifactoryPublish
       projectOptions: >-
-        -PpublishUsername=$(ARTIFACTORY_USERNAME)
-        -PpublishPassword=$(ARTIFACTORY_PASSWORD)
+        -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
+        -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
         -PartifactoryRepo=ivi-test
         -PiviVersion=${{parameters.iviVersion}}
         -PdependenciesCatalogOnly

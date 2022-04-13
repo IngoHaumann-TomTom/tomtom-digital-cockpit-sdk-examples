@@ -39,8 +39,8 @@ steps:
     tasks: >-
       artifactoryPublish
     projectOptions:
-      -PpublishUsername=$(ARTIFACTORY_USERNAME)
-      -PpublishPassword=$(ARTIFACTORY_PASSWORD)
+      -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
+      -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
       -PiviVersion=$(product_version)
       -PuseInternalNavkit2ApiKey=true
     displayName: Publish APKs to Artifactory
