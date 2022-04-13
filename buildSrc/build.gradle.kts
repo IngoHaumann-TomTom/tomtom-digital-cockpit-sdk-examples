@@ -25,6 +25,7 @@ dependencies {
     implementation(indigoDependencies.gradlePluginNavtestAndroid)
     implementation(indigoDependencies.gradlePluginNavtestCore)
     implementation(indigoDependencies.gradlePluginNavuiEmulators)
+    implementation(libraries.gradlePluginApiAppsuiteDefaultsAlexa)
     implementation(libraries.gradlePluginApiAppsuiteDefaultsNavkit2)
     implementation(libraries.gradlePluginApiAppsuiteDefaultsUserprofiles)
     implementation(libraries.gradlePluginApiProductDefaultsCore)

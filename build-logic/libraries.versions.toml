@@ -18,6 +18,7 @@ indigoPlatform = "1.0.3587"
 
 [libraries]
 # Gradle plugins from the TomTom IndiGO platform & appsuite.
+gradlePluginApiAppsuiteDefaultsAlexa = { module = "com.tomtom.ivi.appsuite.gradle.alexa:api_appsuitedefaults_alexa", version.ref = "indigoPlatform" }
 gradlePluginApiAppsuiteDefaultsNavkit2 = { module = "com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2", version.ref = "indigoPlatform" }
 gradlePluginApiAppsuiteDefaultsUserprofiles = { module = "com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksConfig = { module = "com.tomtom.ivi.platform.gradle:api_framework_config", version.ref = "indigoPlatform" }
@@ -52,6 +53,8 @@ indigoPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:pl
 indigoPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform service APIs.
+indigoPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "indigoPlatform" }
+indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:platform_alexa_api_service_alexahandler", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "indigoPlatform" }
