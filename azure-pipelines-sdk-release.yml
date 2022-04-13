@@ -237,8 +237,6 @@ stages:
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
-      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
-      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
     jobs:
@@ -280,34 +278,3 @@ stages:
               variableName: 'PREVIOUS_PRODUCT_VERSION'
               variableValue: $(VERSION_PLATFORM)
               condition: and(eq(variables.isMainlineBuild, true), succeeded())
-      - job: SyncLatestApiDocumentation
-        displayName: 'Sync latest API documentation'
-        timeoutInMinutes: 10
-        container: docker_indigo_delivery
-        steps:
-          - checkout: none
-          - template: .azure-templates/aws-S3-upload-or-delete.yml
-            parameters:
-              apiSubFolder: tomtom-android-tools-api
-              artifactName: tomtom-android-tools-api-docs
-              version: $(VERSION_TOMTOM_ANDROID_TOOLS)
-              syncLatest: true
-          - template: .azure-templates/aws-S3-upload-or-delete.yml
-            parameters:
-              apiSubFolder: tomtom-indigo-gradleplugins-api
-              artifactName: indigo-gradleplugins-api-docs
-              version: $(VERSION_PLATFORM)
-              syncLatest: true
-          - template: .azure-templates/aws-S3-upload-or-delete.yml
-            parameters:
-              apiSubFolder: tomtom-indigo-comms-sdk-api
-              artifactName: indigo-communications-sdk-api-docs
-              version: $(VERSION_COMMUNICATIONS_SDK)
-              syncLatest: true
-          - template: .azure-templates/aws-S3-upload-or-delete.yml
-            parameters:
-              apiSubFolder: tomtom-indigo-api
-              artifactName: indigo-api-docs
-              version: $(VERSION_PLATFORM)
-              syncLatest: true
-          - template: build/build-cleanup.yml@devops-templates

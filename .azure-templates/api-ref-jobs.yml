@@ -10,6 +10,7 @@
 jobs:
   - job: GenerateTomTomAndroidToolsApiDocs
     displayName: 'Generate TomTom Android Tools API docs'
+    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
     timeoutInMinutes: 15
     container: docker_indigo_build
     steps:
@@ -29,6 +30,7 @@ jobs:
       - template: build/build-cleanup.yml@devops-templates
   - job: GenerateGradlepluginsApiDocs
     displayName: 'Generate IndiGO gradleplugins API docs'
+    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
     timeoutInMinutes: 10
     container: docker_indigo_build
     steps:
@@ -51,6 +53,7 @@ jobs:
       - template: build/build-cleanup.yml@devops-templates
   - job: GenerateCommunicationSdkApiDocs
     displayName: 'Generate IndiGO communications SDK API docs'
+    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
     timeoutInMinutes: 10
     container: docker_indigo_build
     steps:
@@ -75,7 +78,7 @@ jobs:
     dependsOn: GenerateTomTomAndroidToolsApiDocs
     steps:
       - checkout: none
-      - template: aws-S3-upload-or-delete.yml
+      - template: aws-S3-upload.yml
         parameters:
           artifactName: tomtom-android-tools-api-docs
           apiSubFolder: tomtom-android-tools-api
@@ -88,7 +91,7 @@ jobs:
     dependsOn: GenerateGradlepluginsApiDocs
     steps:
       - checkout: none
-      - template: aws-S3-upload-or-delete.yml
+      - template: aws-S3-upload.yml
         parameters:
           artifactName: indigo-gradleplugins-api-docs
           apiSubFolder: tomtom-indigo-gradleplugins-api
@@ -101,7 +104,7 @@ jobs:
     dependsOn: GenerateCommunicationSdkApiDocs
     steps:
       - checkout: none
-      - template: aws-S3-upload-or-delete.yml
+      - template: aws-S3-upload.yml
         parameters:
           artifactName: indigo-communications-sdk-api-docs
           apiSubFolder: tomtom-indigo-comms-sdk-api
@@ -109,7 +112,6 @@ jobs:
       - template: build/build-cleanup.yml@devops-templates
   - job: GenerateIndigoApiDocs
     displayName: 'Generate IndiGO API docs'
-    # TODO(IVI-6824): Investigate package-list errors
     timeoutInMinutes: 60
     container: 'docker_indigo_build'
     dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
@@ -138,39 +140,8 @@ jobs:
     dependsOn: GenerateIndigoApiDocs
     steps:
       - checkout: none
-      - template: aws-S3-upload-or-delete.yml
+      - template: aws-S3-upload.yml
         parameters:
           artifactName: indigo-api-docs
           apiSubFolder: tomtom-indigo-api
           version: $(VERSION_PLATFORM)
-  - job: DeleteIndigoApiDocsFromS3
-    displayName: 'Delete Indigo api docs'
-    container: docker_indigo_delivery
-    dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
-    condition: in(dependencies.IndigoApiDocsToS3.result, 'Failed')
-    steps:
-      - checkout: none
-      - template: aws-S3-upload-or-delete.yml
-        parameters:
-          artifactName: indigo-api-docs
-          apiSubFolder: tomtom-indigo-api
-          version: $(VERSION_PLATFORM)
-          deleteDocs: true
-  - job: DeleteIndigogradlepluginsApiDocsFromS3
-    displayName: 'Delete Indigogradleplugins api docs'
-    container: docker_indigo_delivery
-    dependsOn: [ IndigoGradlepluginsApiDocsToS3, IndigoApiDocsToS3 ]
-    condition: |
-      and
-      (
-        in(dependencies.IndigoGradlepluginsApiDocsToS3.result, 'Failed', 'Succeeded'),
-        in(dependencies.IndigoApiDocsToS3.result, 'Failed', 'Skipped')
-      )
-    steps:
-      - checkout: none
-      - template: aws-S3-upload-or-delete.yml
-        parameters:
-          artifactName: indigo-gradleplugins-api-docs
-          apiSubFolder: tomtom-indigo-gradleplugins-api
-          version: $(VERSION_PLATFORM)
-          deleteDocs: true

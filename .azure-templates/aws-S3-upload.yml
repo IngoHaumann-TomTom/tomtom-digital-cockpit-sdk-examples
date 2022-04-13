@@ -17,27 +17,15 @@ parameters:
   apiSubFolder: ''
   version: ''
   s3BaseUrl: 's3://devportal-bucket/downloads/tomtom-indigo'
-  syncLatest: false
-  deleteDocs: false
 
 steps:
   - download: current
     artifact: ${{parameters.artifactName}}
     displayName: 'Download ${{parameters.artifactName}} artifact'
-    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'false'), eq('${{ parameters.deleteDocs }}', 'false'))
+    condition: and(succeeded())
   - bash: |
       set -eux
       cd $(Pipeline.Workspace)/${{parameters.artifactName}}
       aws s3 sync html/ ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/${{parameters.version}}/
     displayName: 'Upload api docs v${{parameters.version}} to S3'
-    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'false'), eq('${{ parameters.deleteDocs }}', 'false'))
-  - bash: |
-      set -eux
-      aws s3 sync ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/${{parameters.version}}/ ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/latest/
-    displayName: 'Sync latest api docs with v${{parameters.version}}'
-    condition: and(succeeded(), eq('${{ parameters.syncLatest }}', 'true'), eq('${{ parameters.deleteDocs }}', 'false'))
-  - bash: |
-      set -eux
-      aws s3 rm ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/${{parameters.version}} --recursive
-    displayName: 'Delete ${{parameters.artifactName}} api docs v${{parameters.version}} from S3'
-    condition:  and(succeeded(), eq('${{ parameters.deleteDocs }}', 'true'))
+    condition: and(succeeded())
