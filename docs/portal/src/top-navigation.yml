@@ -12,7 +12,7 @@ menu:
   - items:
       - url: /tomtom-indigo/documentation/introduction
         title: Documentation
-      - url: /tomtom-indigo/api-reference/introduction
+      - url: /tomtom-indigo/api-reference/api-reference
         title: API Reference
-      - url: /tomtom-indigo/releases/introduction
+      - url: /tomtom-indigo/releases/releases
         title: Releases

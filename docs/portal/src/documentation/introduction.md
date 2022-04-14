@@ -37,7 +37,27 @@ information on both parts here on this developer portal. You can use the site ma
 skip ahead, or search for specific content by using the search bar above; just click the magnifying
 glass and enter your query.
 
-<br/>
+---
+
+## API Reference
+
+Developing for TomTom IndiGO requires a set of Application Programming Interfaces (API): the main
+TomTom IndiGO API and the TomTom Android Tools API. The reference documentation for both can be
+found on the [API reference documentation page](/tomtom-indigo/api-reference/api-reference).
+It provides the details of all classes and functions, and insights into the relation between all
+modules and packages.
+
+---
+
+## Releases
+
+Releases and release notes can be found on the [Releases page](/tomtom-indigo/releases/releases). 
+The latest Example Application can be downloaded from the TomTom IndiGO external binary repository, 
+using the credentials you received after signing the Evaluation Agreement (EA). To request access, 
+please go to the [Getting Started](/tomtom-indigo/documentation/getting-started/introduction) 
+guide, and "Register for early access".
+
+---
 
 ## Useful links
 
@@ -141,16 +161,6 @@ glass and enter your query.
     ]
   }
 />
-
----
-
-## API reference
-
-Developing for TomTom IndiGO requires a set of Application Programming Interfaces (API): the main
-TomTom IndiGO API and the TomTom Android Tools API. The reference documentation for both can be
-found on the [API reference documentation page](/tomtom-indigo/api-reference/introduction).
-It provides the details of all classes and functions, and insights into the relation between all
-modules and packages.
 
 ---
 

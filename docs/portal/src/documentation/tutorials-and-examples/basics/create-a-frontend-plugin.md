@@ -25,7 +25,7 @@ Creating a frontend and the menu item consists of a number of steps:
 - [Registering the frontend and menu item build config.](#registering-the-frontend-and-menu-item-build-config)
 
 For more information on all the classes and APIs,
-[see the API reference documentation](/tomtom-indigo/api-reference/tomtom-indigo-api-reference).
+[see the API reference documentation](/tomtom-indigo/api-reference/api-reference).
 
 All the code snippets in this guide can also be found in the TomTom IndiGO example application.
 

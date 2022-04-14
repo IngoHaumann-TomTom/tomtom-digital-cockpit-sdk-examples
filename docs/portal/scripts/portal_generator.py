@@ -43,13 +43,12 @@
 import shutil
 import os
 import sys
-from api_link_generator import api_link_generator
-from url_validator import url_validator
-from versions_generator import populate_versions
+from api_link_generator import generate_api_links
+from url_validator import validate_urls
+from api_releases_generator import generate_api_releases_sections
 
 SOURCE_DIR = "src"
 TARGET_FILETYPE = "*.md"
-API_REFERENCE_DIR = "api-reference"
 DOCUMENTATION_DIR = "documentation"
 INPUT_CHECK_FILE = "documentation/development/frontend-plugins.md"
 
@@ -122,12 +121,7 @@ clean_old_files(target_dir)
 
 # Generate and verify the portal content.
 create_intermediate_files(target_dir)
-api_link_generator(target_dir, versions)
+generate_api_links(target_dir, versions)
+generate_api_releases_sections(target_dir)
+validate_urls(target_dir, is_export)
 
-# TODO(IVI-6068): New integrated API Reference section
-if is_export:
-    populate_versions(os.path.join(target_dir, API_REFERENCE_DIR))
-
-url_validator(os.path.join(target_dir, DOCUMENTATION_DIR), is_export)
-
-# TODO(IVI-6067): Generate release notes

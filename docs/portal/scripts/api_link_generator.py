@@ -235,7 +235,7 @@ def create_index(target_dir):
 
     return map
 
-def api_link_generator(target_dir, versions):
+def generate_api_links(target_dir, versions):
     '''
     Replaces all API placeholders with the corresponding API Reference URLs.
 

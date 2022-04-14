@@ -139,7 +139,7 @@ def validate_internal_url_syntax(target_dir):
     if len(errors):
         raise SyntaxError("Encountered {} syntax error(s) in internal URLs:\n{}".format(len(errors), '\n'.join(errors)))
 
-def url_validator(target_dir, is_export):
+def validate_urls(target_dir, is_export):
     '''
     Validates the URLs found in Markdown files within a target directory by sending HTTP requests
     and checking the HTTP status code returned.

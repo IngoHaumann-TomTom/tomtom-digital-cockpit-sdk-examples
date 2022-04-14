@@ -18,5 +18,5 @@ requestAccessType: request-access-indigo
 menu:
   - title: Releases
     items:
-      - fileId: /introduction
+      - fileId: /releases
         title: Releases
