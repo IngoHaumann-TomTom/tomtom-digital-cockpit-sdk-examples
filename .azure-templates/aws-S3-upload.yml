@@ -22,10 +22,10 @@ steps:
   - download: current
     artifact: ${{parameters.artifactName}}
     displayName: 'Download ${{parameters.artifactName}} artifact'
-    condition: and(succeeded())
+    condition: succeeded()
   - bash: |
       set -eux
       cd $(Pipeline.Workspace)/${{parameters.artifactName}}
       aws s3 sync html/ ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/${{parameters.version}}/
     displayName: 'Upload api docs v${{parameters.version}} to S3'
-    condition: and(succeeded())
+    condition: succeeded()
