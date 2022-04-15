@@ -9,7 +9,7 @@ Each panel visually represents a frontend through a fragment made up of differen
 text, images, buttons, etc. To ensure a consistent UI style and to minimize implementation effort,
 these elements are implemented as reusable UI controls in the
 [TomTom Android Tools](/tomtom-indigo/api-reference/api-reference) library. They support various 
-forms of user interaction and their appearance can be customized easily.
+forms of user interaction and their appearance can be easily customized.
 
 The `com.tomtom.tools.android.core.theme` module declares the view element attributes that these
 controls need, to define their appearance. When using these controls, it is mandatory to define

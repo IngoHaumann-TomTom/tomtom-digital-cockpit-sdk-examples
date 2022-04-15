@@ -25,7 +25,7 @@ To see the latest source, run the following command:
 git checkout main
 ```
 
-The source is tagged for each releases of the SDK. To see source specific to a version, run the 
+The source is tagged for each release of the SDK. To see the source specific to a version, run the 
 following command:
 
 ```cmd
@@ -45,7 +45,7 @@ After logging in to Nexus with your
 the SDK versions under `com/tomtom/indigo/tomtom-indigo-sdk`:
 
 - Find the relevant version of the `tomtom-indigo-sdk`.
-- Click on the `+` icon left of this version to open its folder.
+- Click on the `+` icon to the left of this version to open its folder.
 - Click on the `tomtom-indigo-sdk-<version>.tar.gz` file to see its details in the panel on the
   right.
 - Click the `Path` link in the panel on the right to start downloading the zip.
