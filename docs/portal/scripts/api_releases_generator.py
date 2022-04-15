@@ -152,8 +152,7 @@ def get_release_notes(tickets):
     release_notes = []
 
     for ticket in list(tickets.keys()):
-         # TODO(IVI-7215) Preserve line-breaks in release notes
-        release_notes.extend(["<li>", "\n".join(tickets[ticket]['release notes']), "</li>"])
+        release_notes.extend(["<li>", "<br/> &emsp;&nbsp;".join(tickets[ticket]['release notes']), "</li>"])
     return "\n".join(release_notes)
 
 def construct_api(releases_dict, release_version, is_open=False):
