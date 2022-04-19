@@ -12,10 +12,6 @@
 import com.tomtom.ivi.buildsrc.extensions.androidTest
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-plugins {
-    id("com.tomtom.ivi.platform.tools.navkit2-functionaltest")
-}
-
 ivi {
     optInToExperimentalApis = true
 }
@@ -35,7 +31,6 @@ android {
 
 dependencies {
     implementation(project(":examples_plugin_frontend"))
-    implementation(libraries.indigoAppsuiteNavkit2ApiTestingFunctional)
     implementation(libraries.indigoPlatformMainmenuApiTestingFrontend)
     implementation(libraries.indigoPlatformSystemuiApiTestingTools)
     implementation(libraries.indigoPlatformToolsApiTestingFunctional)

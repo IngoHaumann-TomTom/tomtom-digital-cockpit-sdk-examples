@@ -31,7 +31,6 @@ dependencies {
     implementation(libraries.gradlePluginApiProductDefaultsCore)
     implementation(libraries.gradlePluginApiFrameworksConfig)
     implementation(libraries.gradlePluginApiFrameworksFrontend)
-    implementation(libraries.gradlePluginApiToolsNavkit2Test)
     implementation(libraries.gradlePluginApiToolsSigningConfig)
     implementation(libraries.gradlePluginApiToolsEmulators)
     implementation(libraries.gradlePluginApiToolsVersionIvi)

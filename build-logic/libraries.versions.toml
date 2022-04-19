@@ -24,13 +24,11 @@ gradlePluginApiAppsuiteDefaultsUserprofiles = { module = "com.tomtom.ivi.appsuit
 gradlePluginApiFrameworksConfig = { module = "com.tomtom.ivi.platform.gradle:api_framework_config", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksFrontend = { module = "com.tomtom.ivi.platform.gradle:api_framework_frontend", version.ref = "indigoPlatform" }
 gradlePluginApiProductDefaultsCore = { module = "com.tomtom.ivi.product.gradle:api_productdefaults_core", version.ref = "indigoPlatform" }
-gradlePluginApiToolsNavkit2Test = { module = "com.tomtom.ivi.platform.gradle:api_tools_navkit2test", version.ref = "indigoPlatform" }
 gradlePluginApiToolsSigningConfig = { module = "com.tomtom.ivi.platform.gradle:api_tools_signingconfig", version.ref = "indigoPlatform" }
 gradlePluginApiToolsEmulators = { module = "com.tomtom.ivi.platform.gradle:api_tools_emulators", version.ref = "indigoPlatform" }
 gradlePluginApiToolsVersionIvi = { module = "com.tomtom.ivi.platform.gradle:api_tools_version", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform components.
-indigoAppsuiteNavkit2ApiTestingFunctional = { module = "com.tomtom.ivi.appsuite:appsuite_navkit2_api_testing_functional", version.ref = "indigoPlatform" }
 indigoAppsuiteMediaApiCommonFrontend = { module = "com.tomtom.ivi.appsuite:appsuite_media_api_common_frontend", version.ref = "indigoPlatform" }
 indigoPlatformDebugApiFrontendExtensionDebugTab = { module = "com.tomtom.ivi.platform:platform_debug_api_frontendextension_debugtab", version.ref = "indigoPlatform" }
 indigoPlatformFrameworkApiCommonLifecycle = { module = "com.tomtom.ivi.platform:platform_framework_api_common_lifecycle", version.ref = "indigoPlatform" }

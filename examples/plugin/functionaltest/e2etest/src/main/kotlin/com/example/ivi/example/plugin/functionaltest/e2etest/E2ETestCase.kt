@@ -13,8 +13,6 @@ package com.example.ivi.example.plugin.functionaltest.e2etest
 
 import android.content.Intent
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.tomtom.ivi.appsuite.navkit2.api.testing.functional.NavkitConfigurationMockRule
-import com.tomtom.ivi.appsuite.navkit2.api.testing.functional.createWebserviceMockRuleConfig
 import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
 import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.MainMenuButton
 import com.tomtom.ivi.platform.mainmenu.api.testing.frontend.waitForMainMenuButtonIsDisplayed
@@ -24,10 +22,8 @@ import com.tomtom.ivi.platform.tools.api.testing.functional.CreateApiCallback
 import com.tomtom.ivi.platform.tools.api.testing.functional.GetServiceIdsCallback
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviActivityTestCase
 import com.tomtom.ivi.platform.tools.api.testing.functional.IviE2eTestCase
-import com.tomtom.ivi.platform.tools.api.testing.functional.WebserviceMockRuleConfig
 import org.junit.Before
 import org.junit.Rule
-import org.junit.rules.RuleChain
 
 /**
  * A base class for E2E tests of the example product that provides common functionality,
@@ -49,16 +45,6 @@ internal abstract class E2ETestCase :
 
     @get:Rule
     val systemUiIdlingResourceRule = SystemUiIdlingResourceRule(activityRule)
-
-    override val initialWebserviceMockRuleConfig: WebserviceMockRuleConfig
-        get() = createWebserviceMockRuleConfig(isWebserviceCaptureRun) {
-            includeNavigationWithAllowedMax10FailedRequests()
-            includeMapDisplay()
-            includeTrafficIncidents()
-        }
-
-    override val preActivityRule: RuleChain = RuleChain
-        .outerRule(NavkitConfigurationMockRule(webserviceMockUri))
 
     @Before
     fun waitForMainMenuIsDisplayed() {
