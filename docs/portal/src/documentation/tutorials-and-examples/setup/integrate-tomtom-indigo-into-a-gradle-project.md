@@ -17,46 +17,94 @@ repositories for which login credentials are required. These can be obtained fro
 Access to these repositories can be configured in Gradle as follows:
 
 ```kotlin
-repositories {
-    // Local artifact cache
-    mavenLocal()
+pluginManagement {
+    repositories {
+        // Local artifact cache.
+        mavenLocal()
 
-    maven("https://repo.tomtom.com/repository/ivi") {
-        credentials {
-            username = properties["nexusUsername"].toString()
-            password = properties["nexusPassword"].toString()
+        // TomTom IndiGO's Nexus repository.
+        maven("https://repo.tomtom.com/repository/ivi") {
+            credentials {
+                username =
+                    if (extra.has("nexusUsername")) extra["nexusUsername"].toString() else ""
+                password =
+                    if (extra.has("nexusPassword")) extra["nexusPassword"].toString() else ""
+            }
         }
+
+        // External repositories.
+        mavenCentral()
+        google()
+        maven("https://plugins.gradle.org/m2/")
     }
+}
 
-    // External repositories
-    mavenCentral()
-    google()
-    maven("https://plugins.gradle.org/m2/")
-    maven("https://jitpack.io")
+dependencyResolutionManagement {
+    repositories {
+        // Local artifact cache.
+        mavenLocal()
 
-    maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
+        // TomTom IndiGO's Nexus repository.
+        maven("https://repo.tomtom.com/repository/ivi") {
+            credentials {
+                username =
+                    if (extra.has("nexusUsername")) extra["nexusUsername"].toString() else ""
+                password =
+                    if (extra.has("nexusPassword")) extra["nexusPassword"].toString() else ""
+            }
+        }
+
+        // TomTom's Nexus repository for the Connectivity Agent.
+        maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
+
+        // External repositories.
+        mavenCentral()
+        google()
+        maven("https://plugins.gradle.org/m2/")
+    }
 }
 ```
 
 The above needs to be applied to `buildscript`, `buildSrc` and to all projects. As such, place the
-above in a file called `buildSrc/repositories.gradle.kts` and apply this file in
-`buildSrc/build.gradle.kts` with:
+above in a file called `build-logic/repositories.gradle.kts` and apply this file in
+the top-level `settings.gradle.kts` file like:
 
 ```kotlin
-buildscript {
-    apply("repositories.gradle.kts")
-}
-apply("repositories.gradle.kts")
+apply(from = "build-logic/repositories.gradle.kts")
 ```
 
-and in root project `build.gradle.kts` file:
+and in your `buildSrc/settings.gradle.kts` file like:
 
 ```kotlin
-apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
-subprojects {
-    apply(from = rootProject.file("buildSrc/repositories.gradle.kts"))
+apply(from = "../build-logic/repositories.gradle.kts")
+```
+
+## Dependency management
+
+The TomTom IndiGO platform publishes a version catalog which you can use to ensure your product
+uses the same versions as used by the TomTom IndiGO platform. Create:
+`build-logic/indigodependencies.versioncatalog.gradle.kts` and add:
+
+```kotlin
+enableFeaturePreview("VERSION_CATALOGS")
+
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    versionCatalogs {
+        create("indigoDependencies") {
+            val group = "com.tomtom.ivi.platform"
+            val artifact = "dependencies-catalog"
+            val version = "<TOMTOM-INDIGO-VERSION>"
+            from("${group}:${artifact}:${version}")
+        }
+    }
 }
 ```
+
+Replace the `<TOMTOM-INDIGO-VERSION>` with the TomTom IndiGO version you want to use.
+
+Next apply this file in the top-level `settings.gradle.kts` file and `buildSrc/settings.gradle.kts`
+files.
 
 ## BuildSrc dependencies
 
@@ -74,13 +122,19 @@ dependencies {
 
     // Optional: Plugin to configure the NavKit2 API key at build-time.
     implementation("com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2:$indigoPlatformVersion")
+
     // Mandatory: Plugin to configure the IVI application at build-time.
     implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$indigoPlatformVersion")
+
     // Optional: Plugin for versioning the APK based on the Git repository information.
     implementation("com.tomtom.ivi.platform.gradle:api_tools_version:$indigoPlatformVersion")
+
     // Optional: Plugin to use the default frontends and services from the TomTom IndiGO platform
     // and app suite.
     implementation("com.tomtom.ivi.product.gradle:api_productdefaults_core:$indigoPlatformVersion")
+
+    // Mandatory: For IVI services plugins.
+    implementation(indigoDependencies.gradlePluginKsp)
 }
 ```
 
@@ -92,6 +146,8 @@ Apply the following plugins in the top-level `build.gradle.kts` file to the root
 plugins {
     `kotlin-dsl`
     ...
+    // Mandatory: For IVI service plugins.
+    id("com.google.devtools.ksp") apply false
     // Mandatory: For configure the IVI application at build-time.
     id("com.tomtom.ivi.platform.framework.config")
     // Optional: Plugin for versioning the APK based on the Git repository information.

@@ -14,7 +14,7 @@ pluginManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom's PU IVI repo for the TomTom IndiGO product.
+        // TomTom IndiGO's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =
@@ -36,7 +36,7 @@ dependencyResolutionManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom's PU IVI repo for the TomTom IndiGO product.
+        // TomTom IndiGO's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =
@@ -46,7 +46,7 @@ dependencyResolutionManagement {
             }
         }
 
-        // TomTom's PU LNS repo for the Connectivity Agent.
+        // TomTom's Nexus repository for the Connectivity Agent.
         maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
 
         // External repositories.
