@@ -208,7 +208,8 @@ val androidAppSourceProviderServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppSourceProviderService",
                 serviceId = "com.tomtom.ivi.example.service.androidappsourceprovider",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider"),
+                multipleInstances = true
             )
         )
     )
@@ -408,7 +409,8 @@ val launchableAndroidAppLaunchHandlerServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppLaunchHandlerService",
                 serviceId = "com.tomtom.ivi.example.service.launchableandroidapplaunchhandler",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler"),
+                multipleInstances = true
             )
         )
     )

@@ -59,7 +59,8 @@ val androidAppSourceProviderServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppSourceProviderService",
                 serviceId = "com.example.ivi.example.applauncher.services.androidappsourceprovider",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider"),
+                multipleInstances = true
             )
         )
     )
@@ -73,7 +74,8 @@ val launchableAndroidAppLaunchHandlerServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppLaunchHandlerService",
                 serviceId = "com.example.ivi.example.applauncher.services.launchableandroidapplaunchhandler",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler"),
+                multipleInstances = true
             )
         )
     )
@@ -87,7 +89,8 @@ val webAppLaunchHandlerServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppLaunchHandlerService",
                 serviceId = "com.example.ivi.example.applauncher.services.webapplaunchhandler",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchhandler"),
+                multipleInstances = true
             )
         )
     )
@@ -101,7 +104,8 @@ val webAppSourceProviderServiceHost by extra {
             IviServiceInterfaceConfig(
                 serviceName = "AppSourceProviderService",
                 serviceId = "com.example.ivi.example.applauncher.services.webappsourceprovid",
-                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider")
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_appsourceprovider"),
+                multipleInstances = true
             )
         )
     )
