@@ -86,6 +86,8 @@ menu:
             title: Overview
           - fileId: /development/platform-features/safety-lock
             title: Safety Lock
+          - fileId: /development/platform-features/localization
+            title: Localization
   - title: Testing
     items:
       - fileId: /testing/introduction
@@ -152,6 +154,10 @@ menu:
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
             title: Use the Configuration Framework
+      - title: Localization
+        items:
+          - fileId: /tutorials-and-examples/localization/localize-strings
+            title: Localize Strings
       - title: Deployment
         items:
           - fileId: /tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system

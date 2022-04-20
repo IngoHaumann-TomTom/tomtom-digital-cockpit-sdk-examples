@@ -101,6 +101,13 @@ launcher.
 This guide explains how to create static and dynamic configurations by using the configuration
 generator, and how to use these to customize the application.
 
+## Localization
+
+- [Localize strings](/tomtom-indigo/documentation/tutorials-and-examples/localization/localize-strings) -
+This guide explains how to localize strings, how to discover string resources used in your
+application and how to get additional context information per string resource to facilitate
+translations.
+
 ## Deployment
 
 - [Configure the runtime deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system) - 

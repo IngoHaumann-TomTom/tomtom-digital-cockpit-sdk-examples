@@ -1,0 +1,15 @@
+---
+title: Localization
+layout: default
+---
+
+The [Android resource framework](https://developer.android.com/guide/topics/resources/providing-resources)
+provides [localization support](https://developer.android.com/guide/topics/resources/localization).
+On top of the standard Android resource framework, TomTom IndiGO provides additional tooling and
+additional metadata to facilitate localization.
+
+See [Localize Strings](/tomtom-indigo/documentation/tutorials-and-examples/localization/localize-strings)
+for more detailed information about the additional tooling and metadata.
+
+__Note:__ TomTom defines strings in British English. If the U.S. English localization for a string
+is not (yet) provided by TomTom, the British English string definition is used as fallback.

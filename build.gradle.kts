@@ -39,6 +39,7 @@ plugins {
     id("com.tomtom.navtest") apply true
     id("com.tomtom.navtest.android") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
+    id("com.tomtom.tools.android.extractstringsources") apply false
 }
 
 apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
