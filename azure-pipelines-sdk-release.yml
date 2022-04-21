@@ -160,7 +160,6 @@ stages:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
-      VERSION_NAVKIT2: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVKIT2_CORE_BOM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_NAVTESTCORE: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVTEST'] ]
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
