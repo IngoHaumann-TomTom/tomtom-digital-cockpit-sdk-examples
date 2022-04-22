@@ -29,18 +29,7 @@ steps:
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-
-        publishLibrariesPublicationToIntermediateLocalRepository
-      projectOptions: >-
-        -PiviVersion=${{parameters.iviVersion}}
-      displayName: 'Publish libraries to intermediate local repository'
-
-  - bash: mv $(Build.SourcesDirectory)/build/libraries-repo/ ../libraries-repo
-    displayName: 'Move libraries-repo folder'
-
-  - template: gradle/gradle.yml@devops-templates
-    parameters:
-      tasks: >-
-        publishLibrariesUploadPublicationToArtifactoryRepository
+        publishLibrariesPublicationToArtifactoryRepository
         artifactoryPublish
       projectOptions: >-
         -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
