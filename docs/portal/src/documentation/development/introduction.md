@@ -62,10 +62,9 @@ The User Interface (UI) part of an TomTom IndiGO _application_ is built using
 [frontend plugins](/tomtom-indigo/documentation/development/frontend-plugins). These are created
 using standard Android layouts and fragments, together with _panels_, which are Android views made
 to fit in with the TomTom IndiGO UI framework, each with its own specialized functionality. TomTom
-IndiGO also comes with a set of UI components, that are based on the standard Android components,
-but tailored for the TomTom IndiGO platform and its look and feel. You can read more about this in
-the [UI components](/tomtom-indigo/documentation/development/ui-components)
-section.
+IndiGO also comes with a set of UI controls, that are based on the standard Android controls, but
+tailored for the TomTom IndiGO platform and its look and feel. You can read more about this in the
+[UI controls](/tomtom-indigo/documentation/development/ui-controls) section.
 
 The [System UI](/tomtom-indigo/documentation/development/system-ui) section explains how _panels_
 are arranged, managed and presented to the user on the screen.

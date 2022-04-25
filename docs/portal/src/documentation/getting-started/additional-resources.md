@@ -31,9 +31,9 @@ understanding of these:
 - [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata):
   A lifecycle-aware observable data holder.
 - [Data binding](https://developer.android.com/topic/libraries/data-binding):
-  Binding UI components in layouts directly to data sources in code.
+  Binding UI controls in layouts directly to data sources in code.
 - [View binding](https://developer.android.com/topic/libraries/view-binding):
-  Accessing UI components defined in layouts from code, without using `findViewById()`.
+  Accessing UI controls defined in layouts from code, without using `findViewById()`.
 
 Next, you could follow along our
 [tutorials](/tomtom-indigo/documentation/tutorials-and-examples/overview)

@@ -5,7 +5,7 @@ layout: default
 
 Navigation is central to the TomTom IndiGO experience. Online navigation enables fresh and always
 up-to-date map content. It is built on top of TomTom's navigation SDK:
-NavKit2 and makes use of common UI components, made available through the NavKit2UI SDK.
+NavKit2 and makes use of common UI controls, made available through the NavKit2UI SDK.
 
 TomTom IndiGO provides a set of generic core services as well as
 [_off-the-shelf_, or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
@@ -20,9 +20,9 @@ The navigation domain includes the following sub-domains:
 - [Guidance](#guidance)
 
 ## Display a map
-Displaying the map using NavKit2 SDK requires two components: the _NavKit2 Map Visualisation_ library
-and the _NavKit2 Map Visualisation onboard service_ library. Additionally a suite of small UI
-components are provided by the NavKit2UI SDK, such as a Zoom Control, a Map Mode Toggle, Location
+Displaying the map using NavKit2 SDK requires two components: the _NavKit2 Map Visualisation_
+library and the _NavKit2 Map Visualisation onboard service_ library. Additionally a suite of small
+UI controls are provided by the NavKit2UI SDK, such as a Zoom Control, a Map Mode Toggle, Location
 Preview, etc. The _NavKit2 Map Visualisation_ library includes a map renderer (the component has to
 be integrated with app UI) and provides access to the map surface.
 The _NavKit 2 Map Visualisation_ library requires map tiles which are provided by the _NavKit 2 Map

@@ -54,8 +54,8 @@ menu:
         title: Frontend Plugins
       - fileId: /development/system-ui
         title: System UI
-      - fileId: /development/ui-components
-        title: UI Components
+      - fileId: /development/ui-controls
+        title: UI Controls
       - fileId: /development/ivi-services
         title: IVI Services
       - fileId: /development/theming-and-customization

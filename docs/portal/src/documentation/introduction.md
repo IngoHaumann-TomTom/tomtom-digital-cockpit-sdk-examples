@@ -98,7 +98,7 @@ guide, and "Register for early access".
         body: `When you've set up your development environment, you are ready to start developing
         a TomTom IndiGO application. A good start is to familiarize yourself with the architecture
         and design of TomTom IndiGO. Understanding this will make it easier to grasp the TomTom
-        IndiGO concepts of plugins, UI components, and more.`,
+        IndiGO concepts of plugins, UI controls, and more.`,
         button: {
           label: "Development Guide",
           href: "/tomtom-indigo/documentation/development/introduction"

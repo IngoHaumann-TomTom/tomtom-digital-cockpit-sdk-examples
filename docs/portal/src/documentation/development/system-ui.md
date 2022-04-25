@@ -363,4 +363,4 @@ side where the map is still visible.
 
 ## See also
 
-All of TomTom IndiGO's [UI components](/tomtom-indigo/documentation/development/ui-components).
+All of TomTom IndiGO's [UI controls](/tomtom-indigo/documentation/development/ui-controls).

@@ -48,7 +48,7 @@ nearby hospital by talking.
 
 Branding is important, which is why TomTom IndiGO provides the means to customize its look. Colors,
 margins, sizes, and fonts can all be changed by applying a different theme. TomTom IndiGO also
-supplies a set of UI components that share a look-and-feel and adhere to the theme, such that the
+supplies a set of UI controls that share a look-and-feel and adhere to the theme, such that the
 user can have a seamless UI experience.
 [Configuration Framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework)
 

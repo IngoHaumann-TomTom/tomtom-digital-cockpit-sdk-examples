@@ -1,5 +1,5 @@
 ---
-title: UI Components
+title: UI Controls
 ---
 
 In TomTom IndiGO, the
@@ -60,7 +60,7 @@ this control also provides predefined option for; Vertical alignment.
 
 Examples of [`TtTextView`](TTIVI_ANDROID_TOOLS_API)s configured in various ways:
 
-![TtTextView objects with different configurations](images/ui-components-textview.png)
+![TtTextView objects with different configurations](images/ui-controls-textview.png)
 
 ### Button
 
@@ -84,7 +84,7 @@ the following features:
     - __Floating__ is used for buttons which hover over content to promote an action.
     - __Toggle__ is used for buttons which allow the user to change a setting between two states.
 
-![TtButton objects with various configurations](images/ui-components-buttons-overview.png)
+![TtButton objects with various configurations](images/ui-controls-buttons-overview.png)
 
 ### TextInputField
 
@@ -98,7 +98,7 @@ as a result of the input.
 
 There is a `clear` icon, for the user to clear the input.
 
-![A TtTextInputField example](images/ui-components-textfield.png)
+![A TtTextInputField example](images/ui-controls-textfield.png)
 
 ### ImageView
 
@@ -119,7 +119,7 @@ the following features:
   When applying a radius to the image filter, you control the blurriness of the image during this
   transition.
 
-![A TtRemoteImageView with image placeholder](images/ui-components-remoteimageview.png)
+![A TtRemoteImageView with image placeholder](images/ui-controls-remoteimageview.png)
 
 #### TtRoundedImageCardView
 
@@ -136,7 +136,7 @@ This control consists of layered elements, from top to bottom:
 The source image can be retrieved from a given URI, optionally showing a placeholder image
 until the source image has been downloaded.
 
-![A RoundedImageCardView with a text label and a background image](images/ui-components-roundedimagecardview.png)
+![A RoundedImageCardView with a text label and a background image](images/ui-controls-roundedimagecardview.png)
 
 ### List
 
@@ -153,7 +153,7 @@ the following features:
   and item layout to populate view items in this list.
 - You can specify the maximum number of items to be displayed in the view.
 
-![A TtListLinearLayour example](images/ui-components-list.png)
+![A TtListLinearLayour example](images/ui-controls-list.png)
 
 #### TtListTableLayout
 
@@ -169,7 +169,7 @@ the following features:
   and item layout to populate view items in this list.
 - You can specify the maximum number of items to be displayed in the view.
 
-![A TtListTableLayout example](images/ui-components-listtablelayout.png)
+![A TtListTableLayout example](images/ui-controls-listtablelayout.png)
 
 #### TtListRecyclerView
 
@@ -190,7 +190,7 @@ the following features:
 - You can provide a sticky header. This is a header view that is always shown at the top of the
   [`TtListRecyclerView`](TTIVI_ANDROID_TOOLS_API) and does not disappear while scrolling.
 
-![A TtListRecyclerView implementng a contact list](images/ui-components-listrecyclerview.png)
+![A TtListRecyclerView implementng a contact list](images/ui-controls-listrecyclerview.png)
 
 ### ScrollBar
 
@@ -213,7 +213,7 @@ Here is an example demonstrating a combined usage of [`TtScrollBar`](TTIVI_ANDRO
 `up` button on the top of the bar. Also, the scroll bar indicator shows `D` for the current scroll
 position.
 
-![A TtScrollBar integrating a TtListRecyclerView](images/ui-components-scrollbar.png)
+![A TtScrollBar integrating a TtListRecyclerView](images/ui-controls-scrollbar.png)
 
 ### ScrollView
 
@@ -226,7 +226,7 @@ one of the following:
 - Bottom edge only.
 - Top and bottom edges.
 
-![A TtScrollView with fading effect on top and bottom](images/ui-components-scrollview.png)
+![A TtScrollView with fading effect on top and bottom](images/ui-controls-scrollview.png)
 
 ## Other controls
 
@@ -242,7 +242,7 @@ the following features:
 - The progress is updated smoothly by an
   [`Animator`](https://developer.android.com/reference/android/animation/Animator).
 
-![A TtProgressBar example](images/ui-components-progressbar.png)
+![A TtProgressBar example](images/ui-controls-progressbar.png)
 
 ### InformationControl
 
@@ -262,7 +262,7 @@ The content within this control consists of three sections that can be configure
 An action can be triggered when the user taps the _head section_ or the _main section_. A separate
 action can be triggered when the user taps the _tail section_.
 
-![A TtInformationControl with all sections displayed](images/ui-components-informationcontrol.png)
+![A TtInformationControl with all sections displayed](images/ui-controls-informationcontrol.png)
 
 ### NavigationBar
 
@@ -275,7 +275,7 @@ order to navigate backwards through the stack.
 
 The navigation bar can be configured to look as:
 
-![A TtNavigationBar showing a back button and breadcrumbs](images/ui-components-navigationbar-regular.png)
+![A TtNavigationBar showing a back button and breadcrumbs](images/ui-controls-navigationbar-regular.png)
 
 ### SearchView
 
@@ -293,7 +293,7 @@ the following features:
 This is how the control looks while a search is in progress, with the _clear icon_ visible and the
 _searching indicator_ animating:
 
-![A TtSearchView while search in progress](images/ui-components-searchview.png)
+![A TtSearchView while search in progress](images/ui-controls-searchview.png)
 
 ### SeekBar
 
@@ -308,7 +308,7 @@ the following features:
 - The progress is updated smoothly by an
   [`Animator`](https://developer.android.com/reference/android/animation/Animator).
 
-![A TtSeekBar example](images/ui-components-seekbar.png)
+![A TtSeekBar example](images/ui-controls-seekbar.png)
 
 ### TabBar
 
@@ -318,5 +318,5 @@ groups. The tabs within the tab bar can be visually represented by an icon, a te
 can have a fixed or a flexible width, depending on the configuration. When a tab is selected, it
 will be highlighted and the tab indicator moves under the selected tab.
 
-![A TtTabBar example](images/ui-components-tabbar.png)
+![A TtTabBar example](images/ui-controls-tabbar.png)
 

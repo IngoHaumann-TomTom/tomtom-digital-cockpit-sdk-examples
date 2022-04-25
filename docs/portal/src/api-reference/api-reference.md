@@ -20,7 +20,7 @@ libraries. Combined, these provide a full-featured toolkit for creating IVI appl
 
 - __TomTom Android Tools__
     - The TomTom Android Tools library contains useful tools for developing on Android. Read more 
-      about the [UI Components](/tomtom-indigo/documentation/development/ui-components) provided by 
+      about the [UI Controls](/tomtom-indigo/documentation/development/ui-controls) provided by 
       this library, and learn how you can reduce your implementation effort.
 
 - __TomTom IndiGO Comms SDK__
