@@ -45,6 +45,7 @@ dependencyResolutionManagement {
         // Repo for shared Android Tools like, UI Controls, resource resolutions,
         // viewcomparison test setup, animations...
         maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-release")
+        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-dev")
 
         // PU NAV repo for NavTest and Gradle plugins from NAV.
         maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")
