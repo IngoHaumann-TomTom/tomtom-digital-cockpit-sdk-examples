@@ -46,6 +46,8 @@ indigoPlatformNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platfor
 indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoPlatformSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
 indigoPlatformSystemuiApiTestingTools = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }
+# TODO(IVI-6507): Remove dependency on stock system ui host.
+indigoPlatformSystemuiApiStockSystemuihost = { module = "com.tomtom.ivi.platform:platform_systemui_api_stock_systemuihost", version.ref = "indigoPlatform" }
 indigoPlatformThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "indigoPlatform" }
 indigoPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "indigoPlatform" }
 indigoPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
