@@ -17,7 +17,7 @@ needs:
 The easiest way is to set the `navkit2ApiKey` property to your TomTom API key,
 in the top-level `local.properties` file or as a Gradle property:
 
-`navkit2ApiKey=<your Navkit2 API key>`
+`navkit2ApiKey=<your TomTom API key>`
 
 This option is preferred if you do not want to add the TomTom API key to your Source Code Management
 (SCM), for example Git. In this case you can configure the key in the `local.properties` file (which

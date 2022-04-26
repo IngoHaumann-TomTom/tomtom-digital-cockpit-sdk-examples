@@ -120,7 +120,7 @@ dependencies:
 dependencies {
     val indigoPlatformVersion = ...
 
-    // Optional: Plugin to configure the NavKit2 API key at build-time.
+    // Optional: Plugin to configure the TomTom API key at build-time.
     implementation("com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2:$indigoPlatformVersion")
 
     // Mandatory: Plugin to configure the IVI application at build-time.
@@ -174,7 +174,7 @@ plugins {
     // suite.
     id("com.tomtom.ivi.product.defaults.core")
 
-    // Optional: To configure the NavKit2 API key at build-time.
+    // Optional: To configure the TomTom API key at build-time.
     id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
