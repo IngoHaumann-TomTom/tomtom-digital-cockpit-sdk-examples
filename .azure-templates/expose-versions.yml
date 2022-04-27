@@ -30,7 +30,7 @@ steps:
       cd $(Build.SourcesDirectory)/indigo
       git checkout tags/$INDIGO_PLATFORM
       indigoTomlFilePath=build-logic/libraries.versions.toml
-      NAVAPP_COMPONENTS=$(cat $indigoTomlFilePath | grep "navAppComponents = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      NAVAPP_COMPONENTS=$(cat $indigoTomlFilePath | grep "navAppComponents = " | grep -Eo "[0-9]+.[0-9]+.*[^\"]")
       TOMTOM_ANDROID_TOOLS=$(cat $examplesTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
       INDIGO_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
       NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
