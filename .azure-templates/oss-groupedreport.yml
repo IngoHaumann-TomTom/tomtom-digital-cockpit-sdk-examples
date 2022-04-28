@@ -116,6 +116,30 @@ steps:
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
       artifactName: scanning-${{parameters.root_folder}}-output-$(System.JobAttempt)
+  - task: PythonScript@0
+    name: OSS_compliance_report
+    displayName: Generate OSS compliance report.
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: docs/portal/scripts/oss_generator.py
+      pythonInterpreter: /usr/bin/python3.7
+      arguments:
+        --output "$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).html"
+        --web "$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
+        --version "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
+        --project-name "IndiGO SDK"
+  - task: PublishPipelineArtifact@1
+    displayName: Publish OSS compliance report in pipeline artifacts ${{parameters.root_folder}}
+    inputs:
+      targetPath: '$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).html'
+      artifactName: oss-report
+  - template: publish/push-to-artifactory.yml@devops-templates
+    parameters:
+      currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
+      workingDirectory: "$(Agent.TempDirectory)"
+      artifactId: "${{parameters.artifactory_location}}"
+      folderOrFileName: "${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).html"
+      condition: eq(variables['Agent.JobStatus'], 'Succeeded')
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
