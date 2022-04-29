@@ -7,7 +7,7 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-mode: Mainline
+mode: ContinuousDeployment
+continuous-delivery-fallback-tag: ''
 increment: Patch
-
-next-version: 0.1
+next-version: 1.0
