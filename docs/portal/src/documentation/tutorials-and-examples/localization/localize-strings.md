@@ -138,7 +138,7 @@ context. The following table describes each attribute:
 | `description` | A description to give context as to where and how the string is used. |
 | `reviewed` | `yes` or `no` to indicate if the string text has been reviewed by TomTom. |
 | `translate` | `yes` or `no` to indicate if the string should be translated. For some strings, such as strings defining a product name, it does not make sense to translate them. |
-| `use` | Short description of the UI element, see table below for the possible values. |
+| `use` | Short description of the UI element, see the following table for the possible values. |
 
 Possible values for the `use` attribute:
 

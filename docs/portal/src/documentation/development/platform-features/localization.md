@@ -12,4 +12,4 @@ See [Localize Strings](/tomtom-indigo/documentation/tutorials-and-examples/local
 for more detailed information about the additional tooling and metadata.
 
 __Note:__ TomTom defines strings in British English. If the U.S. English localization for a string
-is not (yet) provided by TomTom, the British English string definition is used as fallback.
+is not (yet) provided by TomTom, the British English string definition is used as a fallback.

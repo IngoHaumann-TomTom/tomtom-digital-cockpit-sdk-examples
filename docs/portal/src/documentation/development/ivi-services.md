@@ -157,7 +157,7 @@ __Discoverable service__
 
 To create a discoverable service, the interface should instead be annotated with the 
 [`@IviDiscoverableService`](TTIVI_INDIGO_API) annotation. In addition to the `createApi` generated 
-method, a `createApis` method is also generated, which creates all instances for all registered 
+method, a `createApis` method is also generated that creates all instances for all registered 
 services for this interface.
 
 ## More information
