@@ -13,7 +13,7 @@ package com.example.ivi.example.plugin.service
 
 import com.example.ivi.example.plugin.common.Account
 import com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey
-import com.example.ivi.example.plugin.serviceapi.AccountServiceBase
+import com.example.ivi.example.plugin.serviceapi.AccountsServiceBase
 import com.example.ivi.example.plugin.serviceapi.SensitiveString
 import com.example.ivi.example.plugin.settingsserviceapi.AccountSettingsService
 import com.example.ivi.example.plugin.settingsserviceapi.createApi
@@ -24,8 +24,8 @@ import com.tomtom.tools.android.api.livedata.valueUpToDate
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
-    AccountServiceBase(iviServiceHostContext) {
+internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext) :
+    AccountsServiceBase(iviServiceHostContext) {
 
     private val onlineAccountEndpoint =
         iviServiceHostContext.staticConfigurationProvider[onlineAccountEndpointConfigKey]

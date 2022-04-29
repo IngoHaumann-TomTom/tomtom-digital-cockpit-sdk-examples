@@ -12,7 +12,8 @@ OS, which provides a hardware abstraction layer (HAL) that provides a consistent
 many different physical transport layers in the car.
 
 Read more about vehicle integration of TomTom IndiGO in the 
-[Integrating in Vehicle](/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-in-vehicle) section.
+[Integration into a Vehicle](/tomtom-indigo/documentation/integrating-tomtom-indigo/integration-into-a-vehicle)
+section.
 
 For TomTom IndiGO to obtain the correct permissions in the Android platform, it needs to run as a 
 system application, and signed with the platform key. Read more about how to do this and the 

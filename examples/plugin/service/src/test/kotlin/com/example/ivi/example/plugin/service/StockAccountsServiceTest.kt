@@ -30,7 +30,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-internal class StockAccountServiceTest : IviTestCase() {
+internal class StockAccountsServiceTest : IviTestCase() {
 
     private val sut = run {
         // An account settings service mock must be configured before the account service is
@@ -41,7 +41,7 @@ internal class StockAccountServiceTest : IviTestCase() {
             every { loginTimestamp } returns MutableLiveData(Instant.now().epochSecond)
             every { onlineLoginValidPeriodInDays} returns MutableLiveData(90L)
         }
-    }.let { StockAccountService(niceMockk()) }
+    }.let { StockAccountsService(niceMockk()) }
 
     @Before
     fun createSut() {

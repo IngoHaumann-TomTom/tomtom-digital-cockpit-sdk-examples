@@ -23,7 +23,7 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviServic
 @IviService(
     serviceId = "com.example.ivi.example.plugin.service"
 )
-interface AccountService {
+interface AccountsService {
     /**
      * Indicates which account is currently active.
      * `null` if no account is logged in.

@@ -15,7 +15,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.ItemSnapshotList
 import com.example.ivi.example.plugin.frontend.AccountTestPagingDataAdapter
 import com.example.ivi.example.plugin.frontend.TestData
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.example.ivi.example.plugin.serviceapi.SensitiveString
 import com.tomtom.ivi.platform.framework.api.testing.ipc.iviservice.datasource.SimpleTestIviDataSource
@@ -39,7 +39,7 @@ internal class AccountLoginViewModelTest : IviTestCase() {
     private val mutableServiceAvailable = MutableLiveData(true)
 
     // Service mock must be configured before a view model is created.
-    private val mockAccountService = mockkService(AccountService.Companion::createApi) {
+    private val mockAccountsService = mockkService(AccountsService.Companion::createApi) {
         every { serviceAvailable } returns mutableServiceAvailable
         every { accounts } returns MutableLiveData(
             SimpleTestIviDataSource(TestData.accountsDataSourceData)
@@ -136,7 +136,7 @@ internal class AccountLoginViewModelTest : IviTestCase() {
 
         // THEN
         verify {
-            mockAccountService.logInAsync(TestData.USERNAME, SensitiveString(TestData.PASSWORD), any())
+            mockAccountsService.logInAsync(TestData.USERNAME, SensitiveString(TestData.PASSWORD), any())
         }
     }
 }

@@ -27,7 +27,7 @@ val accountFrontend: FrontendConfig by project.extra
 val accountMenuItem: MenuItemConfig by project.extra
 
 apply(from = rootProject.file("examples/plugin/iviservicehosts.gradle.kts"))
-val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+val accountsServiceHosts: List<IviServiceHostConfig> by project.extra
 
 /**
  * IVI configuration for this example application.
@@ -50,14 +50,14 @@ ivi {
         }
         services {
             // Register the account and account settings services in the application.
-            addHosts(accountServiceHosts)
+            addHosts(accountsServiceHosts)
         }
         runtime {
             globalDeployments {
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
                     useDefaults()
                     // Deploys the account and account settings services in the same process.
-                    deployServiceHosts(inList(accountServiceHosts))
+                    deployServiceHosts(inList(accountsServiceHosts))
                         .withProcessName("account")
                 }
             }

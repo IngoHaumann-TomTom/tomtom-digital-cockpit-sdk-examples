@@ -62,7 +62,7 @@ the screen.
 
 ### Creating the FrontendBuilder class
 
-Add an `AccountFrontendBuilder` class, derived from [`FrontendBuilder`](TTIVI_INDIGO_API) class.
+Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIVI_INDIGO_API) class.
 Override the `build()` method in the class and return a new instance of the `AccountFrontend` class.
 
 ```kotlin

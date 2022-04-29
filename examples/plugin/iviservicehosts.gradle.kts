@@ -10,7 +10,6 @@
  */
 
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceDependencies
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
@@ -63,13 +62,13 @@ val accountSettingsServiceHost by extra {
     )
 }
 
-val accountServiceHost by extra {
+val accountsServiceHost by extra {
     IviServiceHostConfig(
-        serviceHostBuilderName = "AccountServiceHostBuilder",
+        serviceHostBuilderName = "AccountsServiceHostBuilder",
         implementationModule = ExampleModuleReference("examples_plugin_service"),
         interfaces = listOf(
             IviServiceInterfaceConfig(
-                serviceName = "AccountService",
+                serviceName = "AccountsService",
                 serviceApiModule = ExampleModuleReference("examples_plugin_serviceapi")
             )
         ),
@@ -77,6 +76,6 @@ val accountServiceHost by extra {
     )
 }
 
-val accountServiceHosts by extra {
-    listOf(accountServiceHost, accountSettingsServiceHost)
+val accountsServiceHosts by extra {
+    listOf(accountsServiceHost, accountSettingsServiceHost)
 }

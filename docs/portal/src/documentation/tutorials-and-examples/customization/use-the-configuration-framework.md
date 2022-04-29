@@ -2,23 +2,23 @@
 title: Use the Configuration Framework
 ---
 
-TomTom IndiGO supports customization on many levels, from configuration of functional features 
-to theming of the user interface. One form of customization is achieved through the use of the 
-TomTom IndiGO configuration framework which can be used to specify, for example, API keys or 
-configuration feature flags to toggle features on or off and other values that a component in the 
-IVI system can use to configure itself at runtime. 
+TomTom IndiGO supports customization on many levels, from configuration of functional features
+to theming of the user interface. One form of customization is achieved through the use of the
+TomTom IndiGO configuration framework which can be used to specify, for example, API keys or
+configuration feature flags to toggle features on or off and other values that a component in the
+IVI system can use to configure itself at runtime.
 
 A component such as an IVI service can use the configuration framework to define a configuration.
 A configuration may be either static or dynamic.
 
-Static configurations are loaded once at startup and have constant values that do not change at 
-runtime. This type of configuration is suitable for specifying, for example: URLs, authentication 
+Static configurations are loaded once at startup and have constant values that do not change at
+runtime. This type of configuration is suitable for specifying, for example: URLs, authentication
 keys, or certificates.
 
-Dynamic configurations can change at runtime. They start off with initial values (factory defaults) 
+Dynamic configurations can change at runtime. They start off with initial values (factory defaults)
 and their values can change while the system is running. For example, they can store user preferences
-which the user can set to a different value while using the system. Dynamic configurations keep 
-hold of the full history of default values. This allows an existing setting value to be updated from 
+which the user can set to a different value while using the system. Dynamic configurations keep
+hold of the full history of default values. This allows an existing setting value to be updated from
 any previous version to the latest suitable value in a compatible way.
 
 Every module may use static configurations directly via a static configuration provider,
@@ -30,19 +30,19 @@ generator and how to use these configurations in the application.
 
 ## Overview of the example application
 
-The example application adds the account frontend to the default TomTom IndiGO application. The 
-account frontend adds new panels to show account information or login page, which can be invoked by 
-a menu item. The account status is managed by the account service. When the user is authenticated, 
-the user name is stored in persistent storage by the account settings service, so the user does not 
-need to log in again after a restart of the application.
+The example application adds the account frontend to the default TomTom IndiGO application. The
+account frontend adds new panels to show account information or a login page, which can be invoked
+by a menu item. The account status is managed by the accounts service. When the user is
+authenticated, the user name is stored in persistent storage by the accounts settings service, so
+the user does not need to log in again after a restart of the application.
 The source code for the frontend and service can be found in the `examples` directory.
 See also
 [Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and the [`@IviService`](TTIVI_INDIGO_API) annotation.
 
-To demonstrate usage of different configurations, the account service will use a static
+To demonstrate usage of different configurations, the accounts service will use a static
 configuration to get the URL of the online API endpoint to authenticate the user.
-The login will be stored for a limited time. The account settings service will provide the time, as
+The login will be stored for a limited time. The accounts settings service will provide the time, as
 specified by a dynamic configuration.
 For that, you need to perform the following steps:
 
@@ -56,15 +56,14 @@ Static and dynamic configurations are defined in JSON files located in the `conf
 and `configurations/dynamic` directories of the source set.
 For example: `<moduleRoot>/src/main/configurations/static`.
 
-The JSON file schema is fully documented in the API reference documentation of 
+The JSON file schema is fully documented in the API reference documentation of
 [`IviConfigurationGeneratorConfig`](TTIVI_INDIGO_GRADLEPLUGINS_API).
 
 ### Static configuration file
 
-To create a static configuration for the account service, create a JSON file in the 
+To create a static configuration for the accounts service, create a JSON file in the
 `configurations/static` folder:
 `examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`
-
 
 ```json
 {
@@ -87,12 +86,12 @@ The configuration contains the URL of the online API endpoint, as specified by t
 __Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as
 a [Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
 
-__Note:__ `"description"` is an optional field. It is used as KDoc for the generated
-configuration keys.
+__Note:__ `"description"` is an optional field. It is used as KDoc for the generated configuration
+keys.
 
 ### Dynamic configuration file
 
-To create a dynamic configuration for the account settings service, create a JSON file in the 
+To create a dynamic configuration for the accounts settings service, create a JSON file in the
 `configurations/static` folder:
 `examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`
 
@@ -126,16 +125,16 @@ This file defines a __long number__ configuration with an
 `"onlineLoginValidPeriodInDaysConfigKey"` key that belongs to the package
 `com.example.ivi.example.plugin.service`.
 
-__Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as
-a [Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
+__Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as a
+[Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
 
 The `"version"` field specifies the revision number of the configuration file that shall be
 increased with any change to the configuration. The configuration keeps values for previous
 versions. They are used for updating old values in the persistent storage on the device to the
 current version.
-The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field 
-defines how old values are updated. In the example, it defines that old values are overridden with 
-the new values. See the API reference documentation for 
+The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field
+defines how old values are updated. In the example, it defines that old values are overridden with
+the new values. See the API reference documentation for
 [`ConfigurationUpdateStrategy`](TTIVI_INDIGO_API).
 The latest configuration version will be stored on the device, and will remain unchanged until the
 configuration file with a newer version is loaded.
@@ -159,9 +158,9 @@ The configuration generator looks for JSON files and processes them into:
 
 To enable the configuration generator, add following Gradle configuration into Gradle build
 configurations of modules that contains the configuration.
-For the given example, these are the account service module 
-`examples/plugin/service/build.gradle.kts` 
-and the account settings service module 
+For the given example, these are the accounts service module
+`examples/plugin/service/build.gradle.kts`
+and the accounts settings service module
 `examples/plugin/settingsservice/build.gradle.kts`
 
 ```kotlin
@@ -194,28 +193,28 @@ executed automatically during `assemble` or `build` tasks.
 Static configurations are provided by the static configuration provider that is in the context of
 IVI service [`IviServiceHostContext`](TTIVI_INDIGO_API)`.staticConfigurationProvider`.
 
-To get the configuration value in the `StockAccountService`, use the
+To get the configuration value of the `StockAccountsService`, use the
 `com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey`
 variable.
 
-`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountService.kt`
+`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
 
 ```kotlin
 import com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey
 
-class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
-    AccountServiceBase(iviServiceHostContext) {
-    
+class StockAccountsService(iviServiceHostContext: IviServiceHostContext) :
+    AccountsServiceBase(iviServiceHostContext) {
+
     private val onlineAccountEndpoint =
         iviServiceHostContext.staticConfigurationProvider[onlineAccountEndpointConfigKey]
-}    
+}
 ```
 
 The `onlineAccountEndpoint` is a string with the configuration value that is used during user log
 in. The `logIn` method calls `logInOnline()` to authenticate the user. The latter does not make a
 real network query but only does simple validation.
 
-`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountService.kt`
+`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
 
 ```kotlin
 private fun logInOnline(username: String, password: SensitiveString): Account? =
@@ -229,7 +228,7 @@ private fun logInOnline(username: String, password: SensitiveString): Account? =
 
 Dynamic configurations are used by settings services to initialize settings.
 
-First, add a new setting `onlineLoginValidPeriodInDays` to the account settings service that holds
+First, add a new setting `onlineLoginValidPeriodInDays` to the accounts settings service that holds
 the number of days the user may stay logged in.
 
 `examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`
@@ -254,13 +253,13 @@ import com.example.ivi.example.plugin.service.DynamicConfiguration.onlineLoginVa
 
 class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) :
     AccountSettingsServiceBase(iviServiceHostContext) {
-    
+
     // The `onlineLoginValidPeriodInDays` setting has default values provided by the dynamic
     // configuration key.
     // All methods for this setting have default implementation.
     override val onlineLoginValidPeriodInDaysConfigurationKey: LongDynamicConfigurationKey =
         onlineLoginValidPeriodInDaysConfigKey
-        
+
     // This key is used to load and store the setting value in the persistent storage on the device.
     override val onlineLoginValidPeriodInDaysSettingKey: LongSettingKey =
         onlineLoginValidPeriodInDaysConfigurationKey.toSettingKey(
@@ -271,5 +270,5 @@ class StockAccountSettingsService(iviServiceHostContext: IviServiceHostContext) 
 }
 ```
 
-Then the account service can use the `onlineLoginValidPeriodInDays` settings to validate the
+Then the accounts service can use the `onlineLoginValidPeriodInDays` settings to validate the
 logged in account when it is needed.

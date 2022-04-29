@@ -21,7 +21,7 @@ plugins {
 
 apply(from = rootProject.file("examples/plugin/iviservicehosts.gradle.kts"))
 
-val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+val accountsServiceHosts: List<IviServiceHostConfig> by project.extra
 
 apply(from = rootProject.file("examples/plugin/frontends-and-menuitems.gradle.kts"))
 
@@ -43,7 +43,7 @@ ivi {
             }
         }
         services {
-            addHosts(accountServiceHosts)
+            addHosts(accountsServiceHosts)
         }
     }
     optInToExperimentalApis = true

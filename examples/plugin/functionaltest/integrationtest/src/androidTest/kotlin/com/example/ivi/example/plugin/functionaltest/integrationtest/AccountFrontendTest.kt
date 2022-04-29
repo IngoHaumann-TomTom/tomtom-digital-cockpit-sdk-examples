@@ -16,8 +16,8 @@ import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.example.ivi.example.plugin.frontend.accountMenuItem
-import com.example.ivi.example.plugin.serviceapi.AccountService
-import com.example.ivi.example.plugin.serviceapi.AccountServiceApi
+import com.example.ivi.example.plugin.serviceapi.AccountsService
+import com.example.ivi.example.plugin.serviceapi.AccountsServiceApi
 import com.example.ivi.example.plugin.serviceapi.SensitiveString
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.testing.frontend.FrontendTestCase
@@ -35,19 +35,19 @@ import org.junit.Test
 internal class AccountFrontendTest : FrontendTestCase() {
     // An API wrapper cannot be created before test environment is fully configured, hence create
     // it later with @Before method.
-    private lateinit var accountServiceApi: AccountServiceApi
+    private lateinit var accountsServiceApi: AccountsServiceApi
 
     @Before
     fun createServiceApi() {
-        accountServiceApi = createApiWrapper { lifecycleOwner, iviServiceProvider ->
-            AccountService.createApi(lifecycleOwner, iviServiceProvider)
+        accountsServiceApi = createApiWrapper { lifecycleOwner, iviServiceProvider ->
+            AccountsService.createApi(lifecycleOwner, iviServiceProvider)
         }
-        assertTrue(accountServiceApi.serviceAvailable.waitForLiveData { value -> value })
+        assertTrue(accountsServiceApi.serviceAvailable.waitForLiveData { value -> value })
     }
 
     @After
     fun ensureNoUserLoggedIn() = runBlocking {
-        accountServiceApi.coLogOut()
+        accountsServiceApi.coLogOut()
     }
 
     @Test
@@ -63,7 +63,7 @@ internal class AccountFrontendTest : FrontendTestCase() {
     fun frontendOpensInfoPanelIfUserHasLoggedIn() {
         // GIVEN The user has logged in.
         runBlocking {
-            accountServiceApi.coLogIn("username", SensitiveString("password"))
+            accountsServiceApi.coLogIn("username", SensitiveString("password"))
         }
 
         // WHEN The frontend is invoked from the menu.
@@ -88,7 +88,7 @@ internal class AccountFrontendTest : FrontendTestCase() {
     fun frontendOpensLoginPanelIfUserHasLoggedOut() {
         // GIVEN The user has logged in.
         runBlocking {
-            accountServiceApi.coLogIn("username", SensitiveString("password"))
+            accountsServiceApi.coLogIn("username", SensitiveString("password"))
         }
         // AND The frontend is invoked from the menu.
         tapAccountMenuItem()
@@ -96,7 +96,7 @@ internal class AccountFrontendTest : FrontendTestCase() {
         waitForView(thatIsAccountInfoPanel).check(matches(isDisplayed()))
 
         // WHEN The user has logged out.
-        runBlocking { accountServiceApi.coLogOut() }
+        runBlocking { accountsServiceApi.coLogOut() }
 
         // THEN The login view is open.
         waitForView(thatIsAccountLoginView).check(matches(isDisplayed()))

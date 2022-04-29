@@ -12,20 +12,20 @@
 package com.example.ivi.example.plugin.frontend.info
 
 import androidx.lifecycle.map
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 
 internal class AccountInfoViewModel(panel: AccountInfoPanel) :
     FrontendViewModel<AccountInfoPanel>(panel) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
 
-    val displayName = accountServiceApi.activeAccount.map {
+    val displayName = accountsServiceApi.activeAccount.map {
         it?.username?.replaceFirstChar(Char::uppercaseChar)
     }
 
-    fun onLogoutClick() = accountServiceApi.logOutAsync()
+    fun onLogoutClick() = accountsServiceApi.logOutAsync()
 }

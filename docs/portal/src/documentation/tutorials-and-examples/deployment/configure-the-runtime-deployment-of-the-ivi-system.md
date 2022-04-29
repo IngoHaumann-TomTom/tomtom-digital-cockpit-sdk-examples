@@ -30,7 +30,7 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 apply(from = rootProject.file("iviservicehosts.gradle.kts"))
 
-val accountServiceHosts: List<IviServiceHostConfig> by project.extra
+val accountsServiceHosts: List<IviServiceHostConfig> by project.extra
 
 ivi {
     application {
@@ -43,8 +43,8 @@ ivi {
                     // Apply the default runtime deployments. This deploys all IVI service hosts
                     // implementations in separate processes.
                     useDefaults()
-                    // Deploy the `accountServiceHosts` in the same process.
-                    deployServiceHosts(inList(accountServiceHosts))
+                    // Deploy the `accountsServiceHosts` in the same process.
+                    deployServiceHosts(inList(accountsServiceHosts))
                         .withProcessName("account")
                 }
             }
@@ -54,7 +54,7 @@ ivi {
 ```
 
 The above example uses the default deployment configuration and configures the
-`accountServiceHosts` to run in the same process.
+`accountsServiceHosts` to run in the same process.
 
 ## How to add an IVI instance
 

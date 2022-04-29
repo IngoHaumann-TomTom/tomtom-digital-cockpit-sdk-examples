@@ -1,5 +1,5 @@
 ---
-title: Integrating in Vehicle
+title: Integration into a Vehicle
 ---
 
 When a head unit runs Android Automotive OS (AAOS) it needs to communicate with the vehicle it is
@@ -7,9 +7,9 @@ installed in. This happens through the car API of AAOS, which makes it possible 
 properties. When these properties change, the UI can be adjusted accordingly. Similarly when the UI
 controls are operated by the user, the new property value can be communicated to the vehicle.
 
-See Android [Physical car interaction](https://www.androidautomotivebook.com/android-automotive-and-physical-car-interaction/).
+See [Android Physical Car Interaction](https://www.androidautomotivebook.com/android-automotive-and-physical-car-interaction/).
 
-## Integrating in the vehicle
+## Integrating TomTom IndiGO into the vehicle
 
 When the APK is installed on a head unit, it needs to get information from the vehicle and send
 information to the vehicle.

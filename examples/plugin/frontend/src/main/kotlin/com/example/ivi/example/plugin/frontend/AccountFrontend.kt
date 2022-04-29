@@ -14,7 +14,7 @@ package com.example.ivi.example.plugin.frontend
 import androidx.lifecycle.map
 import com.example.ivi.example.plugin.frontend.info.AccountInfoPanel
 import com.example.ivi.example.plugin.frontend.login.AccountLoginPanel
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
@@ -25,12 +25,12 @@ import com.tomtom.tools.android.api.livedata.valueUpToDate
 
 internal class AccountFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
     private val isUserLoggedIn =
-        accountServiceApi.serviceAvailable.ifTrueOrDefault(false) {
-            accountServiceApi.activeAccount.map { it != null }
+        accountsServiceApi.serviceAvailable.ifTrueOrDefault(false) {
+            accountsServiceApi.activeAccount.map { it != null }
         }
 
     private val hasLoginPanel: Boolean

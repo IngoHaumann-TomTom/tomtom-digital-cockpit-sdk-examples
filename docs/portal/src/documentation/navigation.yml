@@ -96,8 +96,8 @@ menu:
     items:
       - fileId: /integrating-tomtom-indigo/introduction
         title: Introduction
-      - fileId: /integrating-tomtom-indigo/integrating-in-vehicle
-        title: Integrating in Vehicle
+      - fileId: /integrating-tomtom-indigo/integration-into-a-vehicle
+        title: Integration into a Vehicle
       - fileId: /integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware
         title: Installing TomTom IndiGO on Hardware
       - fileId: /integrating-tomtom-indigo/flashing-the-reference-hardware

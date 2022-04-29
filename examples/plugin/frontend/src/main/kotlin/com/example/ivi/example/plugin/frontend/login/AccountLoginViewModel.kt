@@ -18,7 +18,7 @@ import androidx.lifecycle.map
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.ivi.example.plugin.common.Account
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
 import com.example.ivi.example.plugin.serviceapi.SensitiveString
 import com.example.ivi.example.plugin.serviceapi.createApi
@@ -34,14 +34,14 @@ import kotlinx.coroutines.flow.Flow
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
     val username = MutableLiveData("")
     val password = MutableLiveData("")
 
     val isLoginEnabled = allTrue(
-        accountServiceApi.serviceAvailable,
+        accountsServiceApi.serviceAvailable,
         username.map { it.isNotBlank() },
         password.map { it.isNotBlank() }
     )
@@ -52,21 +52,21 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
      */
     @Suppress("unused")
     val lastLogin: LiveData<Account> =
-        accountServiceApi.accounts.mapQuery(lastLoginQuery).first()
+        accountsServiceApi.accounts.mapQuery(lastLoginQuery).first()
 
     /**
-     * Converts an [IviDataSource] [LiveData] to an [Flow] of [PagingData]. This
+     * Converts an [IviDataSource] [LiveData] to a [Flow] of [PagingData]. This
      * flow can be bound to an `RecyclerView`. See Android Paging library for details.
      */
     @Suppress("unused")
-    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountServiceApi.accounts
+    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountsServiceApi.accounts
         .mapPagingData(pagingConfig, allAccountsQuery, this)
 
     fun onLoginClick() {
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
             val username = username.value ?: return
             val password = password.value ?: return
-            accountServiceApi.logInAsync(username, SensitiveString(password))
+            accountsServiceApi.logInAsync(username, SensitiveString(password))
         }
     }
 

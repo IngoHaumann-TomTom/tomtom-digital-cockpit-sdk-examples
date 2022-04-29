@@ -17,15 +17,15 @@ The example application replaces TomTom IndiGO's user profile frontend with the 
 The account frontend adds new panels to show account information or a login page, which can be
 invoked by a menu item 
 (see [frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin))
-Account status is managed by the account service. The source code for the
-frontend and service can be found in the following folders in the example app source:
+Account status is managed by the accounts service. The source code for the frontend and service can
+be found in the following folders in the example app source:
 
 - `examples/plugin/serviceapi/`
 - `examples/plugin/service/`
 
 ## The plan
 
-The account service will provide methods to login and logout a user, and keep the current logged
+The accounts service will provide methods to login and logout a user, and keep the current logged
 user.
 
 To create an IVI service, you need to perform the following steps:
@@ -79,8 +79,7 @@ When the project is configured, create a Kotlin `interface` class, annotated wit
 [`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which 
 specifies the unique identifier that is used by client connections.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountService.kt`:
-
+Create `src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`:
 
 ```kotlin
 // The annotation for an IVI service interface.
@@ -91,7 +90,7 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviServic
 @IviService(
     serviceId = "com.example.ivi.example.plugin.service"
 )
-interface AccountService {
+interface AccountsService {
     val activeAccount: Account?
 
     @IviServiceFun
@@ -163,7 +162,7 @@ extension functions for the integration.
 
 ```kotlin
 @IviService(serviceId = "com.example.ivi.example.plugin.service")
-interface AccountService {
+interface AccountsService {
     @IviExperimental
     val accounts: IviDataSource<Account, AccountsDataSourceQuery>
 }
@@ -215,10 +214,10 @@ Create `src/main/AndroidManifest.xml`:
 
 The IVI service framework generates an abstract base class for the implementation of the service
 API. The generated name is of the format `<ServiceInterface>Base`, in our
-example `AccountServiceBase`. The service implementation must derive the class and implement the
+example `AccountsServiceBase`. The service implementation must derive the class and implement the
 methods defined in the service interface.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountService.kt`
+Create `src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
 
 ```kotlin
 package com.example.ivi.example.plugin.service
@@ -226,8 +225,8 @@ package com.example.ivi.example.plugin.service
 import com.example.ivi.example.plugin.common.Account
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
-internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
-    AccountServiceBase(iviServiceHostContext) {
+internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext) :
+    AccountsServiceBase(iviServiceHostContext) {
 
     override fun onCreate() {
         super.onCreate()
@@ -302,7 +301,7 @@ declared.
 The builder class must follow a specific naming convention. It must have a "ServiceHostBuilder"
 suffix and must start with an upper case character.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/service/AccountServiceHostBuilder.kt`:
+Create `src/main/kotlin/com/example/ivi/example/plugin/service/AccountsServiceHostBuilder.kt`:
 
 ```kotlin
 package com.example.ivi.example.plugin.service
@@ -313,13 +312,13 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContex
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
 
 // `ServiceHostBuilder` suffix is mandatory.
-class AccountServiceHostBuilder : SimpleIviServiceHostBuilder() {
+class AccountsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
     override fun createIviServices(
         iviServiceHostContext: IviServiceHostContext
     ): Collection<AnyIviServiceBase> =
         // Return the service interface implementation to run in the host.
-        listOf(StockAccountService(iviServiceHostContext))
+        listOf(StockAccountsService(iviServiceHostContext))
 
     // The builder implementation must at least contain an empty companion object, which will be
     // extended by the IVI service framework.
@@ -342,20 +341,20 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServic
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
 
 /**
- * Defines a configuration for the account service.
+ * Defines a configuration for the accounts service.
  *
  * The configuration specifies the service host implementation and the list of interfaces
  * implemented by this service host.
  */
-val accountServiceHost =
+val accountsServiceHost =
     IviServiceHostConfig(
         // Needs to match with the name of the builder class.
-        serviceHostBuilderName = "AccountServiceHostBuilder",
+        serviceHostBuilderName = "AccountsServiceHostBuilder",
         // The module with the implementation of the service host builder class.
         implementationModule = ExampleModuleReference("examples_plugin_service"),
         interfaces = listOf(
             IviServiceInterfaceConfig(
-                serviceName = "AccountService",
+                serviceName = "AccountsService",
                 // The module with the service interface.
                 serviceApiModule = ExampleModuleReference("examples_plugin_serviceapi")
             )
@@ -380,8 +379,8 @@ ivi {
     application {
         enabled = true
         services {
-            // Register the account service to the application.
-            addHost(accountServiceHost)
+            // Register the accounts service to the application.
+            addHost(accountsServiceHost)
         }
     }
 }
@@ -392,7 +391,7 @@ ivi {
 ## Use the IVI service in the client side code
 
 Clients access a service via an instance of the `<ServiceInterface>Api` class, in our
-example, `AccountServiceApi`. The API instance is created with `<ServiceInterface>.createApi(...)`
+example, `AccountsServiceApi`. The API instance is created with `<ServiceInterface>.createApi(...)`
 or `<ServiceInterface>.createApiOrNull(...)`. The former requires a service to be registered and
 running, and the latter is an optional connection.
 
@@ -407,7 +406,7 @@ package com.example.ivi.example.plugin.frontend.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.allTrue
@@ -417,8 +416,8 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
     // Create an instance of service's client API.
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
     // Properties used by the layout.
     val username = MutableLiveData("")
@@ -428,7 +427,7 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     // and `false` otherwise.
     val isLoginEnabled = allTrue(
         // Wait till the service becomes available.
-        accountServiceApi.serviceAvailable,
+        accountsServiceApi.serviceAvailable,
         username.map { it.isNotBlank() },
         password.map { it.isNotBlank() }
     )
@@ -442,11 +441,11 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
             val password = password.value ?: return
 
             // Log in an user with asynchronous call.
-            accountServiceApi.logInAsync(username, password)
+            accountsServiceApi.logInAsync(username, password)
 
             // There is a suspendable method as well.
             // runBlocking {
-            //     accountServiceApi.coLogIn(username, password)
+            //     accountsServiceApi.coLogIn(username, password)
             // }
         }
     }
@@ -460,7 +459,7 @@ to two execution models:
 as [coroutine](https://kotlinlang.org/docs/async-programming.html#coroutines) `coLogIn(...)` and
 async call `logInAsync(...)`.
 
-The `accountServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the 
+The `accountsServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the 
 service implementation.
 
 Create `src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfoViewModel.kt`:
@@ -469,7 +468,7 @@ Create `src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfo
 package com.example.ivi.example.plugin.frontend.info
 
 import androidx.lifecycle.map
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import java.util.Locale
@@ -477,14 +476,14 @@ import java.util.Locale
 internal class AccountInfoViewModel(panel: AccountInfoPanel) :
     FrontendViewModel<AccountInfoPanel>(panel) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
-    val displayName = accountServiceApi.activeAccount.map {
+    val displayName = accountsServiceApi.activeAccount.map {
         it?.username?.replaceFirstChar(Char::uppercaseChar)
     }
 
-    fun onLogoutClick() = accountServiceApi.logOutAsync()
+    fun onLogoutClick() = accountsServiceApi.logOutAsync()
 }
 ```
 

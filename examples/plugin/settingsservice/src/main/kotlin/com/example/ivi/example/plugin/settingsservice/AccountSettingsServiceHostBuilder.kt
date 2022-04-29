@@ -12,7 +12,6 @@
 package com.example.ivi.example.plugin.settingsservice
 
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.AnyIviServiceBase
-import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
 

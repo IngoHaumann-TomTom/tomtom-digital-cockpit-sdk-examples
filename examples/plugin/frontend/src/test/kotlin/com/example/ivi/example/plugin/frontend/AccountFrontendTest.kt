@@ -15,13 +15,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.ivi.example.plugin.common.Account
 import com.example.ivi.example.plugin.frontend.info.AccountInfoPanel
 import com.example.ivi.example.plugin.frontend.login.AccountLoginPanel
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.filterPanels
 import com.tomtom.ivi.platform.frontend.api.testing.unit.mockkFrontendContext
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.api.livedata.ImmutableLiveData
-import com.tomtom.tools.android.testing.mock.niceMockk
 import io.mockk.every
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -33,8 +32,8 @@ internal class AccountFrontendTest : IviTestCase() {
 
     // Service mock must be configured before a frontend is created.
     @Suppress("unused")
-    private val mockAccountService =
-        mockkService(AccountService.Companion::createApi) {
+    private val mockAccountsService =
+        mockkService(AccountsService.Companion::createApi) {
             every { serviceAvailable } returns ImmutableLiveData(true)
             every { activeAccount } returns mutableAccount
         }

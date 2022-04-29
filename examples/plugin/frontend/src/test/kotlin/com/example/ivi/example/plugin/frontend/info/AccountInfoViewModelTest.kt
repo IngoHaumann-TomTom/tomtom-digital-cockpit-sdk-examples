@@ -13,7 +13,7 @@ package com.example.ivi.example.plugin.frontend.info
 
 import androidx.lifecycle.MutableLiveData
 import com.example.ivi.example.plugin.frontend.TestData
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
 import com.tomtom.tools.android.testing.assertion.assertLiveDataEquals
@@ -25,7 +25,7 @@ import org.junit.Test
 internal class AccountInfoViewModelTest : IviTestCase() {
 
     // Service mock must be configured before a view model is created.
-    private val mockAccountService = mockkService(AccountService.Companion::createApi) {
+    private val mockAccountsService = mockkService(AccountsService.Companion::createApi) {
         every { serviceAvailable } returns MutableLiveData(true)
         every { activeAccount } returns MutableLiveData(TestData.testAccount)
     }
@@ -46,7 +46,7 @@ internal class AccountInfoViewModelTest : IviTestCase() {
 
         // THEN logout is called on the account service.
         verify {
-            mockAccountService.logOutAsync(any())
+            mockAccountsService.logOutAsync(any())
         }
     }
 }

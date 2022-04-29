@@ -24,7 +24,7 @@ __Note:__ `IviDataSource` is an experimental API.
 
 ## Overview of the example application
 
-The example application contains an `AccountService` which exposes all available accounts to its
+The example application contains an `AccountsService` which exposes all available accounts to its
 clients. It uses an `IviDataSource` for this. The example demonstrates how to implement an
 `IviDataSource` on the service side and how to use it in the account frontend.
 
@@ -134,7 +134,7 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviserviceannotations.IviServic
 @IviService(
     serviceId = "com.example.ivi.example.plugin.service"
 )
-interface AccountService {
+interface AccountsService {
     /**
      * Indicates which account is currently active.
      * `null` if no account is logged in.
@@ -234,14 +234,14 @@ internal class MutableAccountsDataSource : MutableIviDataSource<Account, Account
 }
 ```
 
-Next initialize a `MutableAccountsDataSource` instance in the `StockAccountService`.
+Next, initialize a `MutableAccountsDataSource` instance in the `StockAccountsService`.
 
 ```kotlin
 import com.example.ivi.example.plugin.common.Account
-import com.example.ivi.example.plugin.serviceapi.AccountServiceBase
+import com.example.ivi.example.plugin.serviceapi.AccountsServiceBase
 
-internal class StockAccountService(iviServiceHostContext: IviServiceHostContext) :
-    AccountServiceBase(iviServiceHostContext) {
+internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext) :
+    AccountsServiceBase(iviServiceHostContext) {
 
     private val mutableAccountsDataSource = MutableAccountsDataSource()
 
@@ -265,8 +265,8 @@ mutableAccountsDataSource.invalidateAllPagingSources()
 
 ## Use the data source
 
-Now with the data source defined in the `AccountService` interface and implemented in the
-`StockAccountService` we can start using the data source. In this tutorial we will use the data
+Now, with the data source defined in the `AccountsService` interface and implemented in the
+`StockAccountsService`, we can start using the data source. In this tutorial we will use the data
 source in the `AccountLoginViewModel` in two different ways:
 1. [By using `LiveData`](#using-livedata)
 2. [By using a `Flow` of `PagingData`](#using-flow-of-pagingdata)
@@ -283,7 +283,7 @@ value is set to the account info of the the last logged in user:
 ```kotlin
 import androidx.lifecycle.LiveData
 import com.example.ivi.example.plugin.common.Account
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
@@ -295,15 +295,15 @@ import kotlinx.coroutines.flow.Flow
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
     /**
      * Converts an [IviDataSource] [LiveData] to an [Account] [LiveData], the value of which is set
      * to the first item of the query result set.
      */
     val lastLogin: LiveData<Account> =
-        accountServiceApi.accounts.mapQuery(lastLoginQuery).first()
+        accountsServiceApi.accounts.mapQuery(lastLoginQuery).first()
 
     companion object {
         private val lastLoginQuery = AccountsDataSourceQuery(
@@ -350,7 +350,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.ivi.example.plugin.common.Account
-import com.example.ivi.example.plugin.serviceapi.AccountService
+import com.example.ivi.example.plugin.serviceapi.AccountsService
 import com.example.ivi.example.plugin.serviceapi.AccountsDataSourceQuery
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviDataSource
@@ -361,14 +361,14 @@ import kotlinx.coroutines.flow.Flow
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     FrontendViewModel<AccountLoginPanel>(panel) {
 
-    private val accountServiceApi =
-        AccountService.createApi(this, frontendContext.iviServiceProvider)
+    private val accountsServiceApi =
+        AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
     /**
-     * Converts an [IviDataSource] [LiveData] to an [Flow] of [PagingData]. This
+     * Converts an [IviDataSource] [LiveData] to a [Flow] of [PagingData]. This
      * flow can be bound to an `RecyclerView`. See Android Paging library for details.
      */
-    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountServiceApi.accounts
+    val allAccountsPagingDataFlow: Flow<PagingData<Account>> = accountsServiceApi.accounts
         .mapPagingData(pagingConfig, allAccountsQuery, this)
 
     companion object {
