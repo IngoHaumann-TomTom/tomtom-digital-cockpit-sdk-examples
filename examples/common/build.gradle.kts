@@ -12,11 +12,6 @@
 import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-plugins {
-    id("com.tomtom.ivi.product.defaults.core")
-    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
-}
-
 android {
     buildFeatures {
         dataBinding = true
