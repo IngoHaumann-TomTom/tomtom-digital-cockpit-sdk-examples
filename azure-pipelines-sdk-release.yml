@@ -94,7 +94,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.0.14
+    ref: refs/tags/2.0.16
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
