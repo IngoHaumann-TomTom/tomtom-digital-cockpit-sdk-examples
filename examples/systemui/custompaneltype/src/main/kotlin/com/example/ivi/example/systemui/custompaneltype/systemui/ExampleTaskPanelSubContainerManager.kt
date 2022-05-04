@@ -18,6 +18,7 @@ import android.view.animation.Animation
 import androidx.annotation.IdRes
 import com.example.ivi.example.systemui.custompaneltype.R
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ControlCenterPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelTransitionDestination
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelTransitionSource
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ProcessBarPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
@@ -89,6 +90,7 @@ internal class ExampleTaskPanelSubContainerManager(
 
     override fun removeSubContainer(
         subContainer: TaskPanelSubContainer,
+        panelTransitionDestination: PanelTransitionDestination?,
         onSubContainerRemoved: () -> Unit
     ) {
         val subContainerRoot = subContainer.root
