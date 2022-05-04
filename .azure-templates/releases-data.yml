@@ -10,6 +10,7 @@
 parameters:
   # Location of the releases.json file on Artifactory.
   urlReleasesJsonFile: 'https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json'
+  deleteReleaseEntry: false
 
 steps:
   - checkout: indigo
@@ -20,7 +21,11 @@ steps:
       artifact: jira-tickets
       path: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
     displayName: 'Download the jira-tickets artifact'
-    condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
+    condition: and(
+      succeeded(),
+      eq(variables.publishLibraries, '--publish_libs'),
+      eq('${{ parameters.deleteReleaseEntry }}', 'false')
+      )
 
   - template: download/download-and-verify.yml@devops-templates
     parameters:
@@ -46,12 +51,43 @@ steps:
         --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
         --releases_file_path releases.json
         --tickets_file_path tickets.json
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+    condition: and(
+      succeeded(),
+      eq(variables.isMainlineBuild, true),
+      eq('${{ parameters.deleteReleaseEntry }}', 'false')
+      )
 
   - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/releases.json
     artifact: releases-info
     displayName: 'Publish releases.json as artifact'
-    condition: and(ne(variables['Agent.JobStatus'], 'Canceled'), ne(variables['Agent.JobStatus'], 'Failed'), ne(variables['Agent.JobStatus'], 'SucceededWithIssues'))
+    condition: and(
+      eq('${{ parameters.deleteReleaseEntry }}', 'false'),
+      ne(variables['Agent.JobStatus'], 'Canceled'),
+      ne(variables['Agent.JobStatus'], 'Failed'),
+      ne(variables['Agent.JobStatus'], 'SucceededWithIssues')
+      )
+
+  - task: PythonScript@0
+    displayName: 'Delete release entry'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+      script: |
+        import json
+
+        platform_version = "$(VERSION_PLATFORM)"
+        examples_version = "$(VERSION_EXAMPLES)"
+
+        with open('releases.json', 'r+') as releases_json_file:
+          releases_data = json.load(releases_json_file)
+          sdk_version = f"{platform_version}-{examples_version.split('.')[-1]}"
+          if sdk_version in releases_data['releases']:
+            releases_data['releases'].pop(sdk_version)
+            releases_json_file.seek(0)
+            releases_json_file.truncate()
+            json.dump(releases_data, releases_json_file, indent=4)
+    condition: and(succeeded(), eq('${{ parameters.deleteReleaseEntry }}', 'true'))
 
   - bash: |
       set -eux
