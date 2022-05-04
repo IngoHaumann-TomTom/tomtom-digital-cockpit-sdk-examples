@@ -30,7 +30,8 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -57,7 +58,7 @@ internal class AccountLoginViewModelTest : IviTestCase() {
     }
 
     @Test
-    fun `allAccountsPagingDataFlow contains simulated data`() = runBlockingTest {
+    fun `allAccountsPagingDataFlow contains simulated data`() = runTest {
         // GIVEN
         val adapter = AccountTestPagingDataAdapter()
 
@@ -65,6 +66,7 @@ internal class AccountLoginViewModelTest : IviTestCase() {
         val job = launch {
             sut.allAccountsPagingDataFlow.collectLatest { adapter.submitData(it) }
         }
+        this.runCurrent()
         val snapshot = adapter.snapshot()
         job.cancel()
 

@@ -19,7 +19,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
@@ -43,7 +43,7 @@ internal class CustomContactsServiceTest : IviTestCase() {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `only contact 1 has an image`() = runBlockingTest{
+    fun `only contact 1 has an image`() = runTest {
         // GIVEN-WHEN
         sut.onCreate()
 
