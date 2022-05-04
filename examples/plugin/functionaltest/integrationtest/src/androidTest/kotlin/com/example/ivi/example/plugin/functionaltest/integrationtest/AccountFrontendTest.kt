@@ -21,8 +21,8 @@ import com.example.ivi.example.plugin.serviceapi.AccountsServiceApi
 import com.example.ivi.example.plugin.serviceapi.SensitiveString
 import com.example.ivi.example.plugin.serviceapi.createApi
 import com.tomtom.ivi.platform.frontend.api.testing.frontend.FrontendTestCase
-import com.tomtom.ivi.platform.mainmenu.api.service.menu.MenuServiceMock
-import com.tomtom.ivi.platform.mainmenu.api.testing.mockextension.injectMenuItemClicked
+import com.tomtom.ivi.platform.systemui.api.service.systemuimenuitems.SystemUiMenuItemsServiceMock
+import com.tomtom.ivi.platform.systemui.api.testing.mockextension.injectMenuItemClicked
 import com.tomtom.ivi.platform.tools.api.testing.functional.util.waitForLiveData
 import com.tomtom.tools.android.testing.functional.waitForView
 import com.tomtom.tools.android.testing.functional.withIdReference
@@ -110,9 +110,10 @@ internal class AccountFrontendTest : FrontendTestCase() {
         waitForView(thatIsAccountLoginView).check(matches(isDisplayed()))
     }
 
-    private fun tapAccountMenuItem() = withIviServiceMockOnTestThread(MenuServiceMock::class) {
-        injectMenuItemClicked(accountMenuItem)
-    }
+    private fun tapAccountMenuItem() =
+        withIviServiceMockOnTestThread(SystemUiMenuItemsServiceMock::class) {
+            injectMenuItemClicked(accountMenuItem)
+        }
 
     companion object {
         private val thatIsAccountLoginView = withIdReference(R.id::frontend_account_login_view)
