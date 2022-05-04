@@ -51,7 +51,7 @@ steps:
       echo "##vso[build.addbuildtag]navAppComponents=$NAVAPP_COMPONENTS"
     name: Version
     displayName: 'Expose versions to Azure'
-    condition: succeeded()
+    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))
 
   - task: PythonScript@0
     name: CompareVersions
@@ -71,5 +71,4 @@ steps:
           )
           release_allowed = False
         print(f"##vso[task.setvariable variable=releaseAllowed;isOutput=true]{release_allowed}")
-    condition: succeeded()
-
+    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))

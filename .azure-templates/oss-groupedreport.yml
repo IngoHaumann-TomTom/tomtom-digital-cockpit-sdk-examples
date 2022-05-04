@@ -122,7 +122,7 @@ steps:
     inputs:
       scriptSource: 'filePath'
       scriptPath: docs/portal/scripts/oss_generator.py
-      pythonInterpreter: /usr/bin/python3.7
+      pythonInterpreter: /usr/bin/python3.8
       arguments:
         --output "$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).html"
         --web "$(Agent.TempDirectory)/${{parameters.report_filename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
