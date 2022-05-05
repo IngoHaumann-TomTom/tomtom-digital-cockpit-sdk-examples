@@ -7,6 +7,40 @@ provides [localization support](https://developer.android.com/guide/topics/resou
 On top of the standard Android resource framework, TomTom IndiGO provides additional tooling and
 additional metadata to facilitate localization.
 
+## Example application
+
+To try it out, see the
+[`examples/examples_localizestrings`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings)
+application. This example project uses the default frontends and services from the TomTom IndiGO
+platform and app suite. It also has the above mentioned Gradle plugin applied. Run:
+
+```cmd
+./gradlew :examples_localizestrings_app:extractStringSources
+```
+
+The above command will download and extract all `strings.xml` files from modules in the artifact
+group `com.tomtom.uxstrings` used by the default frontends and services from the TomTom IndiGO
+platform and app suite. After running the above command, you can find the downloaded files in:
+`examples/localizestrings/app/build/string-sources`.
+
+From these files, you can create your own localized strings. The example project demonstrates this
+for the `Media` text in the menu bar:
+
+- The string in
+  [`localizestrings/app/src/main/res/values-fr-rCA`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rCA)
+  is used when the Android language is set to French (Canada).
+- The string in
+  [`localizestrings/app/src/main/res/values-fr-rFR`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rFR)
+  is used when the Android language is set to French (France) or other regions, like French (Algeria).
+- The string in
+  [`localizestrings/app/src/main/res/values-nl`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl)
+  is used when the Android language is set to Dutch, no matter which region.
+
+The British English version of the strings and the default value come included with the IndiGO
+platform, so these are not included in the example application.
+
+See [Localize string resources](#localize-string-resources) to provide additional localizations.
+
 ## Android resource framework localization support
 
 ### Localize string resources
@@ -70,29 +104,20 @@ dependencies {
 Next you can run Gradle task `:app:extractStringSources`. By default this will download and extract
 all `strings.xml` files from modules in the artifact group `com.tomtom.uxstrings` based on the
 dependencies used in your Android application. You can find the files in `app/build/string-sources`.
-For example, `app/build/string-sources/<group>:<module>:<version>/values/strings.xml` contains the
-string resource definitions used in the default local (U.S. English). In
-`app/build/string-sources/<group>:<module>:<version>/values-en-rGB/strings.xml` you will find the
+Usually the following files are generated:
+
+- Files `app/build/string-sources/<group>:<module>:<version>/values/strings.xml` contain the string
+  resource definitions used in the default local (U.S. English).
+- Files `app/build/string-sources/<group>:<module>:<version>/values-en-rGB/strings.xml` contain the
 British English localizations of the same strings.
 
-__Note:__ TomTom defines strings in British English. If the U.S. English localization for a string
-is not (yet) provided by TomTom, the British English string definition is used for the default
-locale.
+__Note:__ When a language-end-region string (e.g. `values-en-rUS`) is not provided, Android looks
+for a string with the correct language (e.g. `values-en` or `values-en-rUK`) before it falls back to
+the default string (i.e. `values`).
 
-To try it out, see the `examples/extractstringsources/app` example. This example project uses the
-default frontends and services from the TomTom IndiGO platform and app suite. It also has the the
-above mentioned Gradle plugin applied. Run:
-
-```cmd
-./gradlew :examples_extractstringsources_app:extractStringSources
-```
-
-The above command will download and extract all `strings.xml` files from modules in the artifact
-group `com.tomtom.uxstrings` used by the default frontends and services from the TomTom IndiGO
-platform and app suite. After running the above command, you can find the downloaded files in:
-`examples/extractstringsources/app/build/string-sources`.
-
-See [Localize string resources](#localize-string-resources) to provide additional localizations.
+TomTom defines strings in British English. If the U.S. English localization for a string is not
+(yet) provided by TomTom, Android will use the British English string definition and not the default
+string.
 
 ### Download string resource source files configuration
 

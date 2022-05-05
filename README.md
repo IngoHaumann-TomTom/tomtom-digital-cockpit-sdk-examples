@@ -22,38 +22,41 @@ The root directory for all the examples. This folder can be removed if only the 
 application (in the `template/` folder) is needed, see below.
 
 - `examples/common/`
- This folder contains an `Activity` and `Application` class that are used by all the examples that 
- are `Application` projects.
+  This folder contains an `Activity` and `Application` class that are used by all the examples that
+  are `Application` projects.
 
 - `examples/activityview/`
- Example showing an activityview.
+  Example showing an activityview.
 
 - `examples/companionapp/`
- Examples for the companion application.
+  Examples for the companion application.
 
 - `examples/debugtab/`
- Example to show how to add a debugtab.
+  Example to show how to add a debugtab.
 
 - `examples/e2etest/`
- Examples demonstrating e2e tests.
+  Examples demonstrating e2e tests.
 
 - `examples/integrationtest/`
- Examples demonstrating integration tests.
+  Examples demonstrating integration tests.
+
+- `examples/localizestrings/`
+  Examples demonstrating how to extend the TomTom IndiGO platform with your own translations for
+  additonal locales.
 
 - `examples/media/`
- Examples demonstrating how to customize the media app, create new user experiences for a specific
- media source, and create new media sources.
+  Examples demonstrating how to customize the media app, create new user experiences for a specific
+  media source, and create new media sources.
 
 - `examples/panelhierarchy/`
- Example showing a hierarchy of panels, with breadcrumbs.
+  Example showing a hierarchy of panels, with breadcrumbs.
 
 - `examples/plugin/`
- Examples demonstrating how to write plugins, both frontends and services, for the TomTom IndiGO 
- platform.
+  Examples demonstrating how to write plugins, both frontends and services, for the TomTom 
+  platform.
 
 - `examples/telephony/`
- Examples relating to telephony.
-
+  Examples relating to telephony.
 
 ### `template/`
 

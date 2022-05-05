@@ -31,3 +31,7 @@ android {
         dataBinding = true
     }
 }
+
+dependencies {
+    implementation(project(":examples_common"))
+}

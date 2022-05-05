@@ -12,5 +12,5 @@
   -->
 
 <resources>
-    <string name="app_name">IVI Example: Extract String Sources</string>
+    <string name="app_name">IVI Example: Localize Strings</string>
 </resources>
