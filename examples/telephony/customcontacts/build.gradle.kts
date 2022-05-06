@@ -19,5 +19,6 @@ dependencies {
     implementation(libraries.indigoPlatformContactsApiServiceContacts)
     implementation(libraries.indigoPlatformTelecomApiCommonModel)
 
+    testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
     testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
 }
