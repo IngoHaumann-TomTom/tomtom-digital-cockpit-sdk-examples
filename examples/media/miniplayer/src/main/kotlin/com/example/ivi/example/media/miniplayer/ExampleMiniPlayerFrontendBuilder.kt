@@ -13,6 +13,7 @@ package com.example.ivi.example.media.miniplayer
 
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaConfiguration
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaPolicyFrontendExtension
+import com.tomtom.ivi.appsuite.media.api.common.frontend.asMediaConfiguration
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaTaskPanelPolicy
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
@@ -37,42 +38,7 @@ internal class ExampleMiniPlayerFrontendBuilder : FrontendBuilder() {
         val extensions = getFrontendExtensionsByType<MediaPolicyFrontendExtension>()
         return ExampleMiniPlayerFrontend(
             frontendContext,
-            MediaConfiguration(
-                extensions.asSourceToPolicyProviderMap(),
-                extensions.asFallbackPolicyProvider()
-            )
+            extensions.asMediaConfiguration()
         )
-    }
-
-    companion object {
-
-        /**
-         * Converts [MediaPolicyFrontendExtension]s to a map of source-specific [PolicyProvider]s.
-         */
-        private fun Collection<MediaPolicyFrontendExtension>.asSourceToPolicyProviderMap() =
-            filter { it.sourceId != null }
-                .run {
-                    // Only one media policy frontend extension may be specified per source.
-                    check(size == distinctBy { it.sourceId!! }.size) {
-                        "A single source was specified more than one time, " +
-                            "sources=${map { it.sourceId }}"
-                    }
-
-                    associateBy({ it.sourceId!! }, { it.policyProvider })
-                }
-
-        /**
-         * Scans [MediaPolicyFrontendExtension]s for the fallback [PolicyProvider].
-         */
-        private fun Collection<MediaPolicyFrontendExtension>.asFallbackPolicyProvider() =
-            filter { it.sourceId == null }
-                .run {
-                    check(size == 1) {
-                        "Exactly one fallback media policy frontend extension can be specified! " +
-                            "detected=$size"
-                    }
-
-                    single().policyProvider
-                }
     }
 }

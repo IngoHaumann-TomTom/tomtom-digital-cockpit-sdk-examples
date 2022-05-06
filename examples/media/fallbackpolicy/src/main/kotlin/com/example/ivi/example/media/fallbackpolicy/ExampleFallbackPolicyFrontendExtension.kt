@@ -18,8 +18,9 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
  * Stock media player UI extension to configure custom policies for non configured media sources.
  * The configured policies can be found in the [exampleFallbackPolicyProvider].
  *
- * Specifying non specifically configured media sources here is done by setting the `sourceId`
- * parameter to `null`. Only one such extension can be in use in the build.
+ * Specifying non specifically configured media sources here is done by setting the
+ * [MediaPolicyFrontendExtension.sourcePackageName] parameter to `null`. Only one such extension can
+ * be in use in the build.
  *
  * An extension such as this one should replace the stock fallback policy which is normally provided
  * by default. This is done through the IVI configuration instance of the media player UI's
@@ -28,6 +29,6 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
  */
 internal val exampleFallbackPolicyFrontendExtension: FrontendExtension =
     MediaPolicyFrontendExtension(
-        sourceId = null /* Match non configured media sources. */,
+        sourcePackageName = null /* Match non configured media sources. */,
         policyProvider = exampleFallbackPolicyProvider
     )

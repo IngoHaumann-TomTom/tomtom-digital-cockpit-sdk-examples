@@ -27,6 +27,10 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
  */
 internal val exampleMediaSourceFrontendExtension: FrontendExtension =
     MediaPolicyFrontendExtension(
-        ExampleMediaSourceId,
-        exampleMediaSourcePolicyProvider
+        sourcePackageName = ExampleMediaSourceId.packageName,
+        // With the class name provided, the policies are applied to exactly matching
+        // MediaBrowserServiceCompat service. If you want to apply the policy to all
+        // MediaBrowserServiceCompat services in the package, leave this field as default or null.
+        sourceClassName = ExampleMediaSourceId.className,
+        policyProvider = exampleMediaSourcePolicyProvider
     )

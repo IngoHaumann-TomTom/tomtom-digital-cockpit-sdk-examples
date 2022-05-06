@@ -27,6 +27,6 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
  */
 internal val exampleMediaSourceFrontendExtension: FrontendExtension =
     MediaPolicyFrontendExtension(
-        ExampleMediaSourceId,
-        exampleMediaSourcePolicyProvider
+        sourcePackageName = "com.example.ivi.example.media.source",
+        policyProvider = exampleMediaSourcePolicyProvider
     )

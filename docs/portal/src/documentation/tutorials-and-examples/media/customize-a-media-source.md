@@ -262,14 +262,16 @@ package com.example.exampleinternetradio
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaPolicyFrontendExtension
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendExtension
 
-// This needs to match the Android MediaBrowserService package and class name of the media app.
-object ExampleInternetRadioSourceId :
-    SourceId("com.example.exampleinternetradio", "com.example.MediaService")
-
 val exampleInternetRadioFrontendExtension: FrontendExtension =
     MediaPolicyFrontendExtension(
-        ExampleInternetRadioSourceId,
-        exampleInternetRadioPolicyProvider
+        // This needs to match the Android package name of the media app.
+        sourcePackageName = "com.example.exampleinternetradio",
+        // The class name is optional and only required if the policy must explicitly target a 
+        // specific MediaBrowserService in the package, such as when the app contains more than one
+        // such service. This is needed to apply a different policy per service within the same 
+        // package.  
+        sourceClassName = "com.example.MediaService",
+        policyProvider = exampleInternetRadioPolicyProvider
     )
 ```
 
