@@ -36,6 +36,9 @@ REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
 # Regex pattern to retrieve API Reference URLs hosted on S3.
 REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 
+# Regex pattern to retrieve tomtom-internal Github URLs.
+REGEX_TOMTOM_GITHUB_URL = "\w+://github.com/tomtom-internal/.*?"
+
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
 
@@ -79,10 +82,14 @@ def check_external_url(content, errors, path, is_export):
     is_export : boolean
         Indicates whether the script is run with the optional argument "export".
     '''
-    for external_url in re.findall(REGEX_EXTERNAL_URL, content):
+    for external_url in re.findall(REGEX_EXTERNAL_URL, content, re.IGNORECASE):
 
         # Skip validation of S3 URLs when script is not run as export.
-        if not is_export and re.fullmatch(REGEX_S3_URL, external_url) != None:
+        if not is_export and re.fullmatch(REGEX_S3_URL, external_url, re.IGNORECASE) != None:
+            continue
+
+        # Skip validation of tomtom-internal Github URLs as access is restricted.
+        if re.fullmatch(REGEX_TOMTOM_GITHUB_URL, external_url, re.IGNORECASE) != None:
             continue
 
         status = is_url_available(external_url)
@@ -106,7 +113,7 @@ def check_internal_url(content, warnings, path):
         The path of the file being checked. For logging purposes.
     '''
 
-    for match in re.findall(REGEX_INTERNAL_URL, content):
+    for match in re.findall(REGEX_INTERNAL_URL, content, re.IGNORECASE):
         internal_url = os.path.join(PORTAL_BASE_URL, match[1:])
         status = is_url_available(internal_url)
 
@@ -131,9 +138,9 @@ def validate_internal_url_syntax(target_dir):
             content = file.read()
 
             # Exclude code blocks from checked URLs.
-            content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
+            content = re.sub(REGEX_CODE, "", content, re.DOTALL, re.IGNORECASE)
             
-            for match in re.findall(REGEX_INTERNAL_URL_NO_SLASH, content):
+            for match in re.findall(REGEX_INTERNAL_URL_NO_SLASH, content, re.IGNORECASE):
                 errors.append(f"{match} in file {path}")
             
     if len(errors):
@@ -161,7 +168,7 @@ def validate_urls(target_dir, is_export):
             content = file.read()
 
             # Exclude code blocks from checked URLs.
-            content = re.sub(REGEX_CODE, "", content, flags=re.DOTALL)
+            content = re.sub(REGEX_CODE, "", content, re.DOTALL, re.IGNORECASE)
             
             check_external_url(content, errors, path, is_export)
             check_internal_url(content, warnings, path)
