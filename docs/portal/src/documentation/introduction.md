@@ -133,25 +133,23 @@ guide, and "Register for early access".
   articles={
     [
       {
-        title: "Safety Lock",
-        body: `Safety lock is a feature that allows the UI to disable or change certain
-        functionality depending on whether or not it's safe for the driver to interact with.
-        For example, while driving it is commonly considered unsafe for the driver to be typing,
-        so a frontend that allows text input may disable its input field when safety lock is
-        enabled.`,
+        title: "Localization",
+        body: `The Android resource framework provides localization support. On top of the standard 
+        Android resource framework, TomTom IndiGO provides additional tooling and additional 
+        metadata to facilitate localization.`,
         button: {
           label: "Read more",
-          href: "/tomtom-indigo/documentation/development/platform-features/safety-lock"
+          href: "/tomtom-indigo/documentation/development/platform-features/localization"
         }
       },
       {
-        title: "Tutorial: Using an IVI data source",
-        body: `Properties of an IVI service interface are mirrored to all clients of the service.
-        A property of type IviDataSource can be used in an IVI service interface to expose a data
-        set to clients, without requiring the full data set to be loaded into memory.`,
+        title: "Tutorial: Add Support for a Custom Non-Android App Type",
+        body: `For a custom, non-Android, app type, a means to access the list of available apps to 
+        display in the App Launcher and also a means to launch these apps will be required. This 
+        tutorial explains how to implement this functionality.`,
         button: {
           label: "Read more",
-          href: "/tomtom-indigo/documentation/tutorials-and-examples/basics/use-an-ivi-data-source"
+          href: "/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type"
         }
       },
     ]
