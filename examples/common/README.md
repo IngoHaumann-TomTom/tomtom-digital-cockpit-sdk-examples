@@ -1,7 +1,7 @@
 # Common module
 
- This folder does **not** contain a standalone example, but contains common code to to make the 
- other examples smaller.
+This folder does __not__ contain a standalone example, but contains common code to make the other
+examples smaller.
 
 ## Copyright
 

@@ -42,7 +42,7 @@ application (in the `template/` folder) is needed, see below.
 
 - `examples/localizestrings/`
   Examples demonstrating how to extend the TomTom IndiGO platform with your own translations for
-  additonal locales.
+  additional locales.
 
 - `examples/media/`
   Examples demonstrating how to customize the media app, create new user experiences for a specific
@@ -107,7 +107,7 @@ And then build with:
 
 ## Setting up the development environment
 
-For the entire setup process, please consult the following page:
+For the entire setup process, please consult the TomTom IndiGO developer portal:
 [Getting Started](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/introduction)
 
 ## Copyright
