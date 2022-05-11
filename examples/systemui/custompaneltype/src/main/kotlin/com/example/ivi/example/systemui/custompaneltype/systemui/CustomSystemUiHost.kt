@@ -10,7 +10,6 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ControlCenter
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.GuidancePanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.HomePanel
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.LocationPreviewPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.MainMenuPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.NotificationPanel
@@ -54,7 +53,6 @@ internal class CustomSystemUiHost(
         DebugPanel::class,
         GuidancePanel::class,
         HomePanel::class,
-        LocationPreviewPanel::class,
         MainMenuPanel::class,
         ModalPanel::class,
         NotificationPanel::class,
