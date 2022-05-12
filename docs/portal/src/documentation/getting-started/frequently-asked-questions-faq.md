@@ -138,10 +138,10 @@ Cold boot the emulator, as explained in the
 Start a Route Demo:
 
 - Make sure a route has been planned.
-- Open the debug menu.
-- Scroll right until you find the `Navigation` tab.
-- Press `START ROUTE DEMO`.
-- Close the debug menu.
+- Tap on the chevron (current position indicator). The `Trip Preview` panel is shown.
+- Tap on the `Play` button in the `Trip Preview` panel to start the route demo.
+- You can change the vehicle speed by selecting the `1x`, `2x`, `3x` buttons.
+- Tap on the chevron again to hide the `Trip Preview` panel.
 
 ---
 
