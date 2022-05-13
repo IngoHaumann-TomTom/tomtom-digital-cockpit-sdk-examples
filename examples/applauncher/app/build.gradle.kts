@@ -20,8 +20,10 @@ plugins {
 }
 
 apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))
+
 val androidAppSourceProviderServiceHost: IviServiceHostConfig by project.extra
 val launchableAndroidAppLaunchHandlerServiceHost: IviServiceHostConfig by project.extra
+val webAppLaunchTriggerServiceHost: IviServiceHostConfig by project.extra
 val webAppLaunchHandlerServiceHost: IviServiceHostConfig by project.extra
 val webAppSourceProviderServiceHost: IviServiceHostConfig by project.extra
 
@@ -41,9 +43,9 @@ ivi {
         services {
             addHost(androidAppSourceProviderServiceHost)
             addHost(launchableAndroidAppLaunchHandlerServiceHost)
+            addHost(webAppLaunchTriggerServiceHost)
             addHost(webAppLaunchHandlerServiceHost)
             addHost(webAppSourceProviderServiceHost)
-
         }
         runtime {
             globalDeployments {
@@ -65,6 +67,7 @@ dependencies {
     implementation(project(":examples_common"))
     implementation(project(":examples_applauncher_services_androidappsourceprovider"))
     implementation(project(":examples_applauncher_services_launchableandroidapplaunchhandler"))
+    implementation(project(":examples_applauncher_services_webapplaunchtrigger"))
     implementation(project(":examples_applauncher_services_webapplaunchhandler"))
     implementation(project(":examples_applauncher_services_webappsourceprovider"))
 }

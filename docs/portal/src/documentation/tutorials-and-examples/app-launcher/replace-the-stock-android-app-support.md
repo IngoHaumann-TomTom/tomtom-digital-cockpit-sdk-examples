@@ -6,9 +6,9 @@ The TomTom IndiGO app launcher provides stock implementations for providing the 
 to show in the app launcher panel and for launching the Android apps when they are selected.
 
 The stock Android app source provider will provide the list of Android apps which are present on the
-device, and that were not installed as part of the TomTom IndiGO system image or subsequent TomTom IndiGO
-updates. If there is a requirement to show or filter apps based on different criteria then this can
-be done by overriding the stock app source provider.
+device, and that were not installed as part of the TomTom IndiGO system image or subsequent TomTom
+IndiGO updates. If there is a requirement to show or filter apps based on different criteria then
+this can be done by overriding the stock app source provider.
 
 An example of an alternative Android app source implementation could be one which returns a fixed
 list of pre-installed apps.
@@ -38,10 +38,10 @@ The stock Android app source provider implementation can be overridden by creati
 The following steps describe how to override the implementation of the stock
 [`AndroidApp`](TTIVI_INDIGO_API) source provider:
 
-1. [Create the replacement app source provider module](#create-the-replacement-app-source-provider-module)
-2. [Implement the replacement app source provider service](#implement-the-replacement-app-source-provider-service)
-3. [Create a service host for the replacement app source provider](#create-a-service-host-for-the-replacement-app-source-provider)
-4. [Configure the service host deployment for the replacement app source provider](#configure-the-service-host-deployment-for-the-replacement-app-source-provider)
+- [Create the replacement app source provider module](#create-the-replacement-app-source-provider-module)
+- [Implement the replacement app source provider service](#implement-the-replacement-app-source-provider-service)
+- [Create a service host for the replacement app source provider](#create-a-service-host-for-the-replacement-app-source-provider)
+- [Configure the service host deployment for the replacement app source provider](#configure-the-service-host-deployment-for-the-replacement-app-source-provider)
 
 ### Create the replacement app source provider module
 
@@ -92,8 +92,8 @@ base class and implements the methods defined in the [`AppSourceProviderService`
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_INDIGO_API) API reference
-documentation for detailed information on these properties.
+TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_INDIGO_API) API
+reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
 
@@ -116,7 +116,7 @@ class AndroidAppSourceProviderService(
         super.onCreate()
 
         appStore = null
-        
+
         // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass] must
         // be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(AndroidApp::class.java)
@@ -142,7 +142,7 @@ class AndroidAppSourceProviderService(
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder. This can be achieved by creating 2 classes.
 
-1. A `AndroidAppSourceProviderServiceHost` class:
+- A `AndroidAppSourceProviderServiceHost` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt`:
 
@@ -162,7 +162,7 @@ provide a service host builder. This can be achieved by creating 2 classes.
    }
    ```
 
-2. A `AndroidAppSourceProviderServiceHostBuilder` class:
+- A `AndroidAppSourceProviderServiceHostBuilder` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt`:
 
@@ -183,16 +183,17 @@ provide a service host builder. This can be achieved by creating 2 classes.
 
 ### Configure the service host deployment for the replacement app source provider
 
-__Note__
-Every service host needs to be configured and registered in your application. This is necessary to
-know which service should be started with which implementation when a client requires the access to
-a service api.
+__Note:__ Every service host needs to be configured and registered in your application. This is
+necessary to know which service should be started with which implementation when a client requires
+the access to a service api.
 
-Configure and add the service host in your application Gradle file:
+Define an IVI service host implementation, in your gradle file, This can also be defined in a
+top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
+multi-project build, including the tests.
+
+Modify `examples/applauncher/iviservicehosts.gradle.kts`:
 
 ```kotlin
-apply(from = rootProject.file("iviservicehosts.gradle.kts"))
-
 /**
  * Defines a configuration for the android app source provider service.
  *
@@ -214,6 +215,16 @@ val androidAppSourceProviderServiceHost by extra {
         )
     )
 }
+```
+
+Register the service host build configuration in the main application's build script.
+
+Modify `examples/applauncher/app/build.gradle.kts`:
+
+```kotlin
+apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))
+
+val androidAppSourceProviderServiceHost: IviServiceHostConfig by project.extra
 
 ivi {
     application {
@@ -239,10 +250,10 @@ In this example we will override the launching implementation for
 The following steps describe how to override the implementation of the stock
 [`LaunchableAndroidApp`](TTIVI_INDIGO_API) launch handler:
 
-1. [Create the replacement app launch handler module](#create-the-replacement-app-launch-handler-module)
-2. [Implement the replacement app launch handler service](#implement-the-replacement-app-launch-handler-service)
-3. [Create a service host for the replacement app launch handler](#create-a-service-host-for-the-replacement-app-launch-handler)
-4. [Configure the service host deployment for the replacement app launch handler](#configure-the-service-host-deployment-for-the-replacement-app-launch-handler)
+- [Create the replacement app launch handler module](#create-the-replacement-app-launch-handler-module)
+- [Implement the replacement app launch handler service](#implement-the-replacement-app-launch-handler-service)
+- [Create a service host for the replacement app launch handler](#create-a-service-host-for-the-replacement-app-launch-handler)
+- [Configure the service host deployment for the replacement app launch handler](#configure-the-service-host-deployment-for-the-replacement-app-launch-handler)
 
 ### Create the replacement app launch handler module
 
@@ -255,8 +266,8 @@ indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.ap
 ```
 
 Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
-`examples/applauncher/services` (for example `examples/applauncher/services/launchableandroidapplaunchhandler`) and add a
-Gradle build script.
+`examples/applauncher/services` (for example `examples/applauncher/services/launchableandroidapplaunchhandler`)
+and add a Gradle build script.
 
 Create `build.gradle.kts`:
 
@@ -292,7 +303,7 @@ The app launch handler service can be implemented by defining a class (for examp
 [`AppLaunchHandlerService`](TTIVI_INDIGO_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) API 
+TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
@@ -343,7 +354,7 @@ class LaunchableAndroidAppLaunchHandlerService(
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder. This can be achieved by creating two classes.
 
-1. A `LaunchableAndroidAppLaunchHandlerServiceHost` class:
+- A `LaunchableAndroidAppLaunchHandlerServiceHost` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHost.kt`:
 
@@ -363,7 +374,7 @@ provide a service host builder. This can be achieved by creating two classes.
    }
    ```
 
-2. A `LaunchableAndroidAppLaunchHandlerServiceHostBuilder` class:
+- A `LaunchableAndroidAppLaunchHandlerServiceHostBuilder` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHostBuilder.kt`:
 
@@ -385,16 +396,17 @@ provide a service host builder. This can be achieved by creating two classes.
 
 ### Configure the service host deployment for the replacement app launch handler
 
-__Note__
-Every service host needs to be configured and registered in your application. This is necessary to
-know which service should be started with which implementation when a client requires the access to
-a service api.
+__Note:__ Every service host needs to be configured and registered in your application. This is
+necessary to know which service should be started with which implementation when a client requires
+the access to a service api.
 
-Configure and add the service host in your application Gradle file:
+Define an IVI service host implementation, in your gradle file, This can also be defined in a
+top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
+multi-project build, including the tests.
+
+Modify `examples/applauncher/iviservicehosts.gradle.kts`:
 
 ```kotlin
-apply(from = rootProject.file("iviservicehosts.gradle.kts"))
-
 /**
  * Defines a configuration for the launchable android app launch handler service.
  *
@@ -415,6 +427,16 @@ val launchableAndroidAppLaunchHandlerServiceHost by extra {
         )
     )
 }
+```
+
+Register the service host build configuration in the main application's build script.
+
+Modify `examples/applauncher/app/build.gradle.kts`:
+
+```kotlin
+apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))
+
+val launchableAndroidAppLaunchHandlerServiceHost: IviServiceHostConfig by project.extra
 
 ivi {
     application {

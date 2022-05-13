@@ -10,9 +10,9 @@ will need to be implemented.
 The following steps describe how to create source provider and launch handler service
 implementations, using the example of a _web app_:
 
-1. [Create the web app type](#create-the-web-app-type)
-2. [Create the web app source provider](#create-the-web-app-source-provider)
-3. [Create the web app launch handler](#create-the-web-app-launch-handler)
+- [Create the web app type](#create-the-web-app-type)
+- [Create the web app source provider](#create-the-web-app-source-provider)
+- [Create the web app launch handler](#create-the-web-app-launch-handler)
 
 ## Create the web app type
 
@@ -89,10 +89,10 @@ class WebApp(
 
 The following steps describe how to create a custom app source provider service implementation:
 
-1. [Create the web app source provider service module](#create-the-web-app-source-provider-service-module)
-2. [Implement the web app source provider service](#implement-the-web-app-source-provider-service)
-3. [Create the web app source provider service host](#create-the-web-app-source-provider-service-host)
-4. [Configure the web app source provider service host deployment](#configure-the-web-app-source-provider-service-host-deployment)
+- [Create the web app source provider service module](#create-the-web-app-source-provider-service-module)
+- [Implement the web app source provider service](#implement-the-web-app-source-provider-service)
+- [Create the web app source provider service host](#create-the-web-app-source-provider-service-host)
+- [Configure the web app source provider service host deployment](#configure-the-web-app-source-provider-service-host-deployment)
 
 ### Create the web app source provider service module
 
@@ -192,7 +192,7 @@ class WebAppSourceProviderService(
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder. This can be achieved by creating two classes.
 
-1. A `WebAppSourceProviderServiceHost` class:
+- A `WebAppSourceProviderServiceHost` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/webappsourceprovider/WebAppSourceProviderServiceHost.kt`:
 
@@ -212,7 +212,7 @@ provide a service host builder. This can be achieved by creating two classes.
    }
    ```
 
-2. A `WebAppSourceProviderServiceHostBuilder` class:
+- A `WebAppSourceProviderServiceHostBuilder` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/webappsourceprovider/WebAppSourceProviderServiceHostBuilder.kt`:
 
@@ -238,16 +238,17 @@ provide a service host builder. This can be achieved by creating two classes.
 
 ### Configure the web app source provider service host deployment
 
-__Note__
-Every service host needs to be configured and registered in your application. This is necessary to
+__Note__: Every service host needs to be configured and registered in your application. This is necessary to
 know which service should be started with which implementation when a client requires the access to
 a service api.
 
-Configure and add the service host in your application Gradle file:
+Define an IVI service host implementation, in your gradle file, This can also be defined in a
+top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be
+used in a multi-project build, including the tests.
+
+Modify `examples/applauncher/iviservicehosts.gradle.kts`:
 
 ```kotlin
-apply(from = rootProject.file("iviservicehosts.gradle.kts"))
-
 /**
  * Defines a configuration for the web app source provider service.
  *
@@ -269,6 +270,16 @@ val webAppSourceProviderServiceHost by extra {
         )
     )
 }
+```
+
+Register the service host build configuration in the main application's build script.
+
+Modify `examples/applauncher/app/build.gradle.kts`:
+
+```kotlin
+apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))
+
+val webAppSourceProviderServiceHost: IviServiceHostConfig by project.extra
 
 ivi {
     application {
@@ -285,10 +296,10 @@ ivi {
 
 The following steps describe how to create a web app launch handler service implementation:
 
-1. [Create the web app launch handler service module](#create-the-web-app-launch-handler-service-module)
-2. [Implement the web app launch handler service](#implement-the-web-app-launch-handler-service)
-3. [Create the web app launch handler service host](#create-the-web-app-launch-handler-service-host)
-4. [Configure the web app launch handler service host deployment](#configure-the-web-app-launch-handler-service-host-deployment)
+- [Create the web app launch handler service module](#create-the-web-app-launch-handler-service-module)
+- [Implement the web app launch handler service](#implement-the-web-app-launch-handler-service)
+- [Create the web app launch handler service host](#create-the-web-app-launch-handler-service-host)
+- [Configure the web app launch handler service host deployment](#configure-the-web-app-launch-handler-service-host-deployment)
 
 ### Create the web app launch handler service module
 
@@ -341,6 +352,11 @@ The service implementation needs to set a number of properties for configuring i
 TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) API
 reference documentation for detailed information on these properties.
 
+In this example we will launch the _web app_ in the default browser app, whereas in production, it
+would be expected to launch the _web app_ within a
+[`WebView`](https://developer.android.com/reference/android/webkit/WebView) within a TomTom IndiGO
+panel.
+
 The properties can be set by overriding the `onCreate()` method.
 
 Create `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerService.kt`:
@@ -391,7 +407,7 @@ class WebAppLaunchHandlerService(
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder. This can be achieved by creating two classes.
 
-1. A `WebAppLaunchHandlerServiceHost` class:
+- A `WebAppLaunchHandlerServiceHost` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHost.kt`:
 
@@ -411,7 +427,7 @@ provide a service host builder. This can be achieved by creating two classes.
    }
    ```
 
-2. A `WebAppLaunchHandlerServiceHostBuilder` class:
+- A `WebAppLaunchHandlerServiceHostBuilder` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHostBuilder.kt`:
 
@@ -433,16 +449,17 @@ provide a service host builder. This can be achieved by creating two classes.
 
 ### Configure the web app launch handler service host deployment
 
-__Note__
-Every service host needs to be configured and registered in your application. This is necessary to
-know which service should be started with which implementation when a client requires the access to
-a service api.
+__Note:__ Every service host needs to be configured and registered in your application. This is 
+necessary to know which service should be started with which implementation when a client requires
+the access to a service api.
 
-Configure and add the service host in your application Gradle file:
+Define an IVI service host implementation, in your gradle file, This can also be defined in a
+top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a 
+multi-project build, including the tests.
+
+Modify `examples/applauncher/iviservicehosts.gradle.kts`:
 
 ```kotlin
-apply(from = rootProject.file("iviservicehosts.gradle.kts"))
-
 /**
  * Defines a configuration for the web app launch handler service.
  *
@@ -464,6 +481,18 @@ val webAppLaunchHandlerServiceHost by extra {
         )
     )
 }
+
+
+```
+
+Register the service host build configuration in the main application's build script.
+
+Modify `examples/applauncher/app/build.gradle.kts`:
+
+```kotlin
+apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))
+
+val webAppLaunchHandlerServiceHost: IviServiceHostConfig by project.extra
 
 ivi {
     application {

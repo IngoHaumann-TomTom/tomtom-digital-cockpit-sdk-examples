@@ -81,6 +81,21 @@ val launchableAndroidAppLaunchHandlerServiceHost by extra {
     )
 }
 
+val webAppLaunchTriggerServiceHost by extra {
+    IviServiceHostConfig(
+        serviceHostBuilderName = "WebAppLaunchTriggerServiceHostBuilder",
+        implementationModule = ExampleModuleReference("examples_applauncher_services_webapplaunchtrigger"),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "AppLaunchTriggerService",
+                serviceId = "com.example.ivi.example.applauncher.services.webapplaunchtrigger",
+                serviceApiModule = IviAppsuiteModuleReference("appsuite_appstore_api_service_applaunchtrigger"),
+                multipleInstances = true
+            )
+        )
+    )
+}
+
 val webAppLaunchHandlerServiceHost by extra {
     IviServiceHostConfig(
         serviceHostBuilderName = "WebAppLaunchHandlerServiceHostBuilder",
@@ -110,3 +125,6 @@ val webAppSourceProviderServiceHost by extra {
         )
     )
 }
+
+
+

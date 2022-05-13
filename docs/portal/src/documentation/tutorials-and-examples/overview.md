@@ -95,6 +95,10 @@ This guide explains how to display and launch custom non-Android app types from 
 This guide explains how to configure the stock Android apps that are being shown in the app 
 launcher.
 
+- [Add support for Web App launch trigger](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger) -
+This guide explains how to add the support for triggering the launch of a web app from an external 
+source.
+  
 ## Customization
 
 - [Use the configuration framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework) - 

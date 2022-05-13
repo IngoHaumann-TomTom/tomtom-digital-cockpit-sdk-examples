@@ -333,7 +333,7 @@ Define an IVI service host implementation, in your gradle file. This can also be
 top-level gradle file (e.g. `iviservicehosts.gradle.kts`) so it can be used in a 
 multi-project build, including the tests.
 
-Modify the `examples/plugin/app/build.gradle.kts`:
+Modify `examples/plugin/app/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -370,7 +370,7 @@ for details.
 
 Register the service host build configuration in the main application's build script.
 
-Modify the `examples/plugin/app/build.gradle.kts`:
+Modify `examples/plugin/app/build.gradle.kts`:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi

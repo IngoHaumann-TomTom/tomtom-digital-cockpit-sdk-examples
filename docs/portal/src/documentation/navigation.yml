@@ -150,6 +150,8 @@ menu:
             title: Add Support for a Custom Non-Android App Type
           - fileId: /tutorials-and-examples/app-launcher/replace-the-stock-android-app-support
             title: Replace the Stock Android App Support
+          - fileId: /tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger
+            title: Add Support for Web App Launch Trigger
       - title: Customization
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
