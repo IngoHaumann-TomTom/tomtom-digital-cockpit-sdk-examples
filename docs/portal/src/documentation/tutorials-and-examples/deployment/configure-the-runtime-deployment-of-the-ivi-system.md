@@ -136,7 +136,7 @@ default system UI use [`DefaultActivity`](TTIVI_INDIGO_API) as the base class.
     android:windowSoftInputMode="adjustPan">
 
     <intent-filter>
-        <action android:name="com.tomtom.ivi.integration.product.indigo.PASSENGER" />
+        <action android:name="com.tomtom.ivi.product.standalone.indigo.PASSENGER" />
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 

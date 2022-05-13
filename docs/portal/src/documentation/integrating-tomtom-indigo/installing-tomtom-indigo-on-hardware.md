@@ -61,7 +61,7 @@ and rebuild.
 $ adb remount
 $ adb push privapp-permissions-tomtom-indigo.xml /system/etc/permissions/
 $ adb shell mkdir /system/priv-app/TomTomIndigo
-$ adb push integration_products_indigo.apk /system/priv-app/TomTomIndigo/
+$ adb push standalone_indigo.apk /system/priv-app/TomTomIndigo/
 ```
 
 If it's not possible to sign the APK with the system signature, there will be the following
@@ -77,7 +77,7 @@ sources except Spotify.
 
 ```cmd
 $ adb root
-$ adb shell cmd notification allow_listener com.tomtom.ivi.integration.product.indigo/com.tomtom.ivi.appsuite.media.plugin.service.media.MediaNotificationListener
+$ adb shell cmd notification allow_listener com.tomtom.ivi.product.standalone.indigo/com.tomtom.ivi.appsuite.media.plugin.service.media.MediaNotificationListener
 ```
 
 Spotify only communicates with system apps signed with the platform signature, so if your APK is
