@@ -180,7 +180,7 @@ emulator. Ensure that the emulator AVD has sufficient disk storage configured:
   fields have at least the following values:
     - `RAM` : `3072 MB`
     - `VM heap` : `192 MB`
-    - `Internal Storage` : `2048 MB`
+    - `Internal Storage` : `4096 MB`
 
 ![Android Studio - Emulator Configuration](images/android_studio_emulator_configuration.png)
 

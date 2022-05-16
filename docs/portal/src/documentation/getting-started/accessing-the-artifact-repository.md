@@ -14,6 +14,9 @@ These credentials can be passed to the build process in several ways:
 - [Storing credentials globally](#storing-credentials-globally)
 - [Specifying credentials on the command line](#specifying-credentials-on-the-command-line)
 
+__Note:__ When you decide to store the binary artifacts or the Nexus credentials in a repository,
+please make sure that it is not publicly accessible.
+
 ## Storing credentials globally
 
 You can store the credentials in your `gradle.properties` file, in the directory specified by the

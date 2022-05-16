@@ -8,9 +8,12 @@ evaluation key with limited authorization can be
 After signing TomTom's evaluation agreement, additional authorizations will be granted and you can
 experience the full functionality of the TomTom IndiGO SDK and Navigation.
 
+__Note:__ When you decide to store the TomTom API key in a repository, please make sure that it is
+not publicly accessible.
+
 __Note:__ When you do not intend to use the Navigation services, there is no need to set an API key.
 However, the build process fails when no API key has been configured. You can set a Gradle property
-that allows building without the API key, but then TomTom IndiGO will not show the map and cannot 
+that allows building without the API key, but then TomTom IndiGO will not show the map and cannot
 calculate a route. Locate the Gradle properties file, as explained in the
 [Installing the API key](#installing-the-api-key) section, and add the following line. You can then
 skip the rest of this page.
@@ -31,7 +34,7 @@ connected services and user interface (UI). For more information, see the
   the registration form.
 - You will receive a confirmation email; click `Activate Account` and go to your
   [TomTom Developer dashboard](https://developer.tomtom.com/user/me/apps).
-- The API key you get assigned should be used in the TomTom IndiGO SDK, but it must still be 
+- The API key you get assigned should be used in the TomTom IndiGO SDK, but it must still be
   authorized by TomTom for the Navigation features used by TomTom IndiGO. See also section
   [Evaluation agreement](#evaluation-agreement).
 
@@ -39,16 +42,17 @@ connected services and user interface (UI). For more information, see the
 
 ## Installing the API key
 
-Now that you received your TomTom API key, it can be used with the TomTom IndiGO SDK.  Add it to 
+Now that you received your TomTom API key, it can be used with the TomTom IndiGO SDK.  Add it to
 either the top-level `local.properties` file or your `gradle.properties` file.
 
-- The `local.properties` file can be created in the top-level folder of your local TomTom IndiGO SDK.
+- The `local.properties` file can be created in the top-level folder of your local TomTom IndiGO
+  SDK.
 - The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
   environment variable, usually `~/.gradle/`. See
   [Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key)
   for details and alternative ways to configure the key.
-    - __Windows:__ Use the `%UserProfile%\.gradle` folder to find or create the 
-    `gradle.properties` file.
+    - __Windows:__ Use the `%UserProfile%\.gradle` folder to find or create the
+      `gradle.properties` file.
 
 Add a line to have the Gradle property match your TomTom API key:
 
