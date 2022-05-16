@@ -5,12 +5,13 @@ title: Configure an App Store
 An app store can allow your product to offer end-users of your system the ability to expand their
 system by installing additional apps.
 
-TomTom IndiGO supports integration of Android app stores through configuration. It does not come 
-with an app store configured by default, so you will need to choose and configure your own choice 
+TomTom IndiGO supports integration of Android app stores through configuration. It does not come
+with an app store configured by default, so you will need to choose and configure your own choice
 of app store.
 
 A number of companies provide Android app stores targeted at automotive applications. Available
 Automotive app stores include:
+
 - Faurecia Aptoide
 - Harman Ignite
 - Access Twine4Car
@@ -19,7 +20,7 @@ Contact your TomTom IndiGO sales representative for more information about avail
 
 Once installed and configured, an app store can be accessed via the App Launcher frontend, which is
 opened by tapping the `Apps` main menu item when using the example application. As there is no app
-store included with TomTom IndiGO, selecting the `Apps` main menu option currently displays a 
+store included with TomTom IndiGO, selecting the `Apps` main menu option currently displays a
 "Coming Soon" screen.
 
    ![App store coming soon](images/app-store-coming-soon.png)
@@ -27,8 +28,7 @@ store included with TomTom IndiGO, selecting the `Apps` main menu option current
 Any Android apps installed using the app store will appear in the App Launcher. From here they can
 be launched into a virtual display within TomTom IndiGO.
 
-__Note:__
-The App Launcher will display all non-system apps which have the
+__Note:__ The App Launcher will display all non-system apps which have the
 [LAUNCHER category](https://developer.android.com/reference/android/content/Intent#CATEGORY_LAUNCHER)
 or implement the
 [media service interface](https://developer.android.com/reference/android/service/media/MediaBrowserService#SERVICE_INTERFACE).
@@ -38,17 +38,16 @@ any existing sideloaded apps before configuring an app store.
 
 The steps below show how to install and configure your choice of app store:
 
-- [Install your app store APK.](#install-your-app-store-apk)
-- [Configure TomTom IndiGO to launch your app store](#configure-tomtom-indigo-to-launch-your-app-store)
+- [Install your app store APK](#install-your-app-store-apk).
+- [Configure TomTom IndiGO to launch your app store](#configure-tomtom-indigo-to-launch-your-app-store).
 - [Overriding app store configuration in Android resources](#overriding-app-store-configuration-in-android-resources).
 - [Overriding app store configuration with a static configuration provider](#overriding-app-store-configuration-with-a-static-configuration-provider).
 
 ## Install your app store APK
 
-__Note:__
-This section describes installing an app store during the development phase, for example, to try it
-out or for proof of concept purposes. For production, the app store APK should be preinstalled as
-part of the hardware platform system image.
+__Note:__ This section describes installing an app store during the development phase, for example,
+to try it out or for proof of concept purposes. For production, the app store APK should be
+preinstalled as part of the hardware platform system image.
 
 When you have chosen your app store and downloaded the required APK(s) to a machine with `adb`
 installed, you can install the app store using the following command:
@@ -59,13 +58,12 @@ adb install <your-app-store-APK-filename>
 
 ## Configure TomTom IndiGO to launch your app store
 
-Once you have installed your app store, you need to configure it within TomTom IndiGO by overriding 
+Once you have installed your app store, you need to configure it within TomTom IndiGO by overriding
 the default app store configuration (that is, no app store) with values relating to your chosen app
 store. The configuration values which must be overridden are as follows:
 
-1. App Store Display Name: The name you want to associate with the app store within the UI.
-2. App Store Package Name: Get this from your app store documentation or ask your app store
-   provider.
+- App Store Display Name: The name you want to associate with the app store within the UI.
+- App Store Package Name: Get this from your app store documentation or ask your app store provider.
 
 The default app store configuration can be overridden
 [using Android resource values](#overriding-app-store-configuration-in-android-resources) or by
@@ -113,11 +111,11 @@ class MyAppStoreConfigurationProvider(
 ```
 
 To configure the example application, the static configuration provider needs to be added to the
-existing list of providers returned by `TemplateApplication.createStaticConfigurationProviders()`. 
-In order for it to override any default values it must be added ahead of the default providers 
+existing list of providers returned by `TemplateApplication.createStaticConfigurationProviders()`.
+In order for it to override any default values it must be added ahead of the default providers
 list:
 
-**template/app/src/main/kotlin/com/example/ivi/template/app/TemplateApplication.kt**
+`template/app/src/main/kotlin/com/example/ivi/template/app/TemplateApplication.kt`
 
 ```kotlin
     override fun createStaticConfigurationProviders() =
@@ -133,7 +131,6 @@ After completing these steps you should see your app store icon above a button w
 "Download apps" when you open the App Launcher. Tapping this button should open your app store
 within a virtual display inside TomTom IndiGO.
 
-__Note:__
-If you have any sideloaded apps on the device then you will see the sideloaded apps displayed next
-to the app store icon and no "Download apps" button. In this case you can launch your app store by
-tapping on the app store icon.
+__Note:__ If you have any sideloaded apps on the device then you will see the sideloaded apps
+displayed next to the app store icon and no "Download apps" button. In this case you can launch your
+app store by tapping on the app store icon.

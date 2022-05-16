@@ -46,9 +46,9 @@ The login will be stored for a limited time. The accounts settings service will 
 specified by a dynamic configuration.
 For that, you need to perform the following steps:
 
-1. [Create configuration files](#create-configuration-files)
-2. [Enable the configuration generator](#enable-the-configuration-generator)
-3. [Access the configurations via configuration providers](#access-the-configurations-via-configuration-providers)
+- [Create configuration files](#create-configuration-files).
+- [Enable the configuration generator](#enable-the-configuration-generator).
+- [Access the configurations via configuration providers](#access-the-configurations-via-configuration-providers).
 
 ## Create configuration files
 
@@ -142,7 +142,7 @@ configuration file with a newer version is loaded.
 __Note:__ The `"description"` is an optional field. It is used as KDoc for the generated
 configuration keys.
 
-### Enable the configuration generator
+## Enable the configuration generator
 
 The configuration JSON files are suitable for human editing but not yet ready to be used in the
 application. To make the configurations available in the application, they need to be processed by
@@ -186,9 +186,9 @@ Then run Gradle task `generateConfigurations`:
 __Note__: The task is a dependency for `preDebugBuild` and `preReleaseBuild` tasks, so it is
 executed automatically during `assemble` or `build` tasks.
 
-### Access the configurations via configuration providers
+## Access the configurations via configuration providers
 
-#### Static configuration value
+### Static configuration value
 
 Static configurations are provided by the static configuration provider that is in the context of
 IVI service [`IviServiceHostContext`](TTIVI_INDIGO_API)`.staticConfigurationProvider`.
@@ -224,7 +224,7 @@ private fun logInOnline(username: String, password: SensitiveString): Account? =
     }
 ```
 
-#### Dynamic configuration value
+### Dynamic configuration value
 
 Dynamic configurations are used by settings services to initialize settings.
 

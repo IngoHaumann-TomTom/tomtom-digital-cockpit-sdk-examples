@@ -30,10 +30,10 @@ user.
 
 To create an IVI service, you need to perform the following steps:
 
-1. [Define an IVI service interface](#the-ivi-service-interface).
-2. [Create an implementation of the IVI service interface](#the-ivi-service-implementation).
-3. [Deploy the service](#service-deployment).
-4. [Use the service API in the client side code](#use-the-ivi-service-in-the-client-side-code).
+- [Define an IVI service interface](#the-ivi-service-interface).
+- [Create an implementation of the IVI service interface](#the-ivi-service-implementation).
+- [Deploy the service](#service-deployment).
+- [Use the service API in the client-side code](#use-the-ivi-service-in-the-client-side-code).
 
 ## IVI service interface project
 
@@ -388,11 +388,11 @@ ivi {
 // The rest of the build script, dependencies, etc.
 ```
 
-## Use the IVI service in the client side code
+## Use the IVI service in the client-side code
 
-Clients access a service via an instance of the `<ServiceInterface>Api` class, in our
-example, `AccountsServiceApi`. The API instance is created with `<ServiceInterface>.createApi(...)`
-or `<ServiceInterface>.createApiOrNull(...)`. The former requires a service to be registered and
+Clients access a service via an instance of the `<ServiceInterface>Api` class, in our example,
+`AccountsServiceApi`. The API instance is created with `<ServiceInterface>.createApi(...)` or
+`<ServiceInterface>.createApiOrNull(...)`. The former requires a service to be registered and
 running, and the latter is an optional connection.
 
 To use the service API, create an instance with `createApi` in the view-model of the account login

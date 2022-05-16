@@ -32,9 +32,9 @@ clients. It uses an `IviDataSource` for this. The example demonstrates how to im
 
 To implement and use an `IviDataSource` we will:
 
-1. [Define the IVI service interface](#the-ivi-service-interface).
-2. [Implement the data source](#the-data-source-implementation).
-3. [Use the data source](#use-the-data-source).
+- [Define the IVI service interface](#the-ivi-service-interface).
+- [Implement the data source](#the-data-source-implementation).
+- [Use the data source](#use-the-data-source).
 
 Before you start, we highly recommend making yourself familiar with the
 [Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
@@ -268,8 +268,9 @@ mutableAccountsDataSource.invalidateAllPagingSources()
 Now, with the data source defined in the `AccountsService` interface and implemented in the
 `StockAccountsService`, we can start using the data source. In this tutorial we will use the data
 source in the `AccountLoginViewModel` in two different ways:
-1. [By using `LiveData`](#using-livedata)
-2. [By using a `Flow` of `PagingData`](#using-flow-of-pagingdata)
+
+- [Using `LiveData`](#using-livedata).
+- [Using a `Flow` of `PagingData`](#using-a-flow-of-pagingdata).
 
 The latter variant allows the data source to be represented in a `RecyclerView`. When your aim is
 to use the data source outside of a `RecyclerView`, use the former variant.
@@ -327,7 +328,7 @@ transformation lambda as an argument. The lambda is provided with a
 See [this page](https://developer.android.com/topic/libraries/data-binding/expressions) for binding
 the `Account` `LiveData` to a view.
 
-### Using `Flow` of `PagingData`
+### Using a `Flow` of `PagingData`
 
 To expose a data source in an `RecyclerView`, you typically need to construct a
 [`Pager`](https://developer.android.com/reference/kotlin/androidx/paging/Pager) instance to
