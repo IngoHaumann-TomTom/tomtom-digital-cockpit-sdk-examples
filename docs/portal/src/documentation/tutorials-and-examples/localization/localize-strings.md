@@ -111,9 +111,9 @@ Usually the following files are generated:
 - Files `app/build/string-sources/<group>:<module>:<version>/values-en-rGB/strings.xml` contain the
 British English localizations of the same strings.
 
-__Note:__ When a language-end-region string (e.g. `values-en-rUS`) is not provided, Android looks
-for a string with the correct language (e.g. `values-en` or `values-en-rUK`) before it falls back to
-the default string (i.e. `values`).
+__Note:__ When a language-and-region string (for example `values-en-rUS`) is not provided, Android
+looks for a string with the correct language (for example `values-en` or `values-en-rUK`) before it
+falls back to the default string (read from `values`).
 
 TomTom defines strings in British English. If the U.S. English localization for a string is not
 (yet) provided by TomTom, Android will use the British English string definition and not the default

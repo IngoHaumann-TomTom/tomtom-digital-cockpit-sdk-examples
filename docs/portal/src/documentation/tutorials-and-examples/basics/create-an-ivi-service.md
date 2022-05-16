@@ -15,8 +15,8 @@ frontends. Such services may suit as a model for a frontend.
 
 The example application replaces TomTom IndiGO's user profile frontend with the account frontend.
 The account frontend adds new panels to show account information or a login page, which can be
-invoked by a menu item 
-(see [frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin))
+invoked by a menu item (see
+[frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)).
 Account status is managed by the accounts service. The source code for the frontend and service can
 be found in the following folders in the example app source:
 
@@ -75,8 +75,8 @@ Create `src/main/AndroidManifest.xml`:
 
 ### The IVI service interface
 
-When the project is configured, create a Kotlin `interface` class, annotated with the 
-[`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which 
+When the project is configured, create a Kotlin `interface` class, annotated with the
+[`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which
 specifies the unique identifier that is used by client connections.
 
 Create `src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`:
@@ -107,10 +107,10 @@ interface AccountsService {
 ```
 
 The interface may have nullable or non-nullable values, methods, and event listener interfaces. All
-methods must have the `suspend` modifier and the [`@IviServiceFun`](TTIVI_INDIGO_API) annotation. 
-The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation is required to distinguish methods of the 
-service interface from auxiliary methods added by Kotlin/Java compiler. The interface must at 
-least contain the empty companion object, which will be extended by the IVI service framework with 
+methods must have the `suspend` modifier and the [`@IviServiceFun`](TTIVI_INDIGO_API) annotation.
+The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation is required to distinguish methods of the
+service interface from auxiliary methods added by Kotlin/Java compiler. The interface must at
+least contain the empty companion object, which will be extended by the IVI service framework with
 a few methods, such as `createApi` and `createApiOrNull`. Kotlin does not allow extending the companion object if it has not been declared.
 
 The package may have multiple service interfaces defined, although each must have a distinct
@@ -252,11 +252,11 @@ internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext
 }
 ```
 
-The service implementation must initialize all properties of the service interface at a startup. 
+The service implementation must initialize all properties of the service interface at a startup.
 The service has observers for the properties to propagate changes to the clients. The lifecycle of
 observers depends on the service's lifecycle. Therefore, the service's lifecycle has to be started
 to propagate value changes. The implementation of `onCreate` callback in the base class starts the
-service's lifecycle. The service implementation should prefer overriding the `onCreate` callback 
+service's lifecycle. The service implementation should prefer overriding the `onCreate` callback
 for the initialization and avoid the `init` block. The overridden `onCreate()` method must call the
 super method. The `init` block can be still used to initialize private properties of the
 implementation that are not defined in the service interface and do not depend on the service's
@@ -281,7 +281,7 @@ An IVI service can be deployed in binder and direct mode. In binder mode the ser
 Android service in a separate process. In direct mode the service runs in a thread of the main
 application. Binder mode is preferred and used by default.
 
-Direct mode should be used if and only if binder mode cannot be used. For example, if a service 
+Direct mode should be used if and only if binder mode cannot be used. For example, if a service
 must run in the main process due to strict performance requirements or functional limitations.
 
 The deployment configuration is defined in the build script of the main or test application module.
@@ -329,8 +329,8 @@ class AccountsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
 ### Configure the deployment
 
-Define an IVI service host implementation, in your gradle file. This can also be defined in a 
-top-level gradle file (e.g. `iviservicehosts.gradle.kts`) so it can be used in a 
+Define an IVI service host implementation, in your gradle file. This can also be defined in a
+top-level gradle file (for example `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
 Modify `examples/plugin/app/build.gradle.kts`:
@@ -398,7 +398,7 @@ running, and the latter is an optional connection.
 To use the service API, create an instance with `createApi` in the view-model of the account login
 page of the account frontend.
 
-In `examples/plugin/frontend/` create: 
+In `examples/plugin/frontend/` create:
 `src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`:
 
 ```kotlin
@@ -433,7 +433,7 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
     )
 
     fun onLoginClick() {
-        // `LiveData.valueUpToDate` returns the current value if it is available. 
+        // `LiveData.valueUpToDate` returns the current value if it is available.
         // Unlike `LiveData.value` it uses an observer to obtain the value, so it can be used
         // with LiveData's transformations.
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
@@ -452,14 +452,14 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
 }
 ```
 
-The service's client API is similar to the service interface. Service properties are mirrored in 
-the API instance as `LiveData` of the original type. For example,`val activeAccount: Account?` in 
-the service interface becomes `val activeAccount: LiveData<Account?>`. Service methods are mapped 
+The service's client API is similar to the service interface. Service properties are mirrored in
+the API instance as `LiveData` of the original type. For example,`val activeAccount: Account?` in
+the service interface becomes `val activeAccount: LiveData<Account?>`. Service methods are mapped
 to two execution models:
 as [coroutine](https://kotlinlang.org/docs/async-programming.html#coroutines) `coLogIn(...)` and
 async call `logInAsync(...)`.
 
-The `accountsServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the 
+The `accountsServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the
 service implementation.
 
 Create `src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfoViewModel.kt`:

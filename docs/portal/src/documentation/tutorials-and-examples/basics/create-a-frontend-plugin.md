@@ -170,8 +170,8 @@ example the resolvers are defined as Android resources.
 Create the frontend and menu item build configurations. These configurations will be used to
 register the frontend and the menu item to the framework at build time.
 
-Define a frontend implementation and a menu item implementation. These can also be defined in a 
-top-level Gradle file (e.g. `frontends-and-menuitems.gradle.kts`) so it can be used in a 
+Define a frontend implementation and a menu item implementation. These can also be defined in a
+top-level Gradle file (for example `frontends-and-menuitems.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
 Create `examples/plugin/app/build.gradle.kts`:
