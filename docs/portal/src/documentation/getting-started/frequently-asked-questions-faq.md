@@ -10,15 +10,15 @@ Table of content:
 - [There is no map and/or search does not work](#there-is-no-map-andor-search-does-not-work)
     - [Network connection](#network-connection)
     - [TomTom API key](#tomtom-api-key)
-- [How to open/close the Debug Menu?](#how-to-openclose-the-debug-menu)
-- [How to start a Route Demo?](#how-to-start-a-route-demo)
+- [How do I open/close the Debug Menu?](#how-do-i-openclose-the-debug-menu)
+- [How do I start a Route Demo?](#how-do-i-start-a-route-demo)
 - [I am using a Mac(book) with an M1 chip and cannot start the android emulator](#i-am-using-a-macbook-with-an-m1-chip-and-cannot-start-the-android-emulator)
-- [Insufficient storage when installing the APK](#insufficient-storage-when-installing-the-apk)
+- [I get an insufficient storage when installing the APK](#i-get-an-insufficient-storage-when-installing-the-apk)
 - [The Android emulator is slow at starting](#the-android-emulator-is-slow-at-starting)
-- [How to cold boot the emulator?](#how-to-cold-boot-the-emulator)
-- [RuntimeException: Required support for OpenGL standard derivatives is missing](#runtimeexception-required-support-for-opengl-standard-derivatives-is-missing)
+- [How do I cold boot the emulator?](#how-do-i-cold-boot-the-emulator)
+- [I get RuntimeException: Required support for OpenGL standard derivatives is missing](#i-get-runtimeexception-required-support-for-opengl-standard-derivatives-is-missing)
 - [Android Studio does not install the application](#android-studio-does-not-install-the-application)
-- [Installing on a custom device](#installing-on-a-custom-device)
+- [How do I install the APK onto a custom device?](#how-do-i-install-the-apk-onto-a-custom-device)
 
 ---
 
@@ -91,7 +91,7 @@ For more details see
 
 ---
 
-## How to open/close the Debug Menu?
+## How do I open/close the Debug Menu?
 
 TomTom IndiGO provides a debug menu giving access to functionality that is not normally available 
 to the end-user. For example, starting a route demo.
@@ -105,7 +105,7 @@ To close the debug menu, perform the same action again.
 
 ---
 
-## How to start a Route Demo?
+## How do I start a Route Demo?
 
 A route demo is a simulation of a drive along a currently planned route on the device, this may be
 useful to see what happens at the various points along the route, without the need to go for an
@@ -169,7 +169,7 @@ computers with the M1 processor. Please verify that you have followed those exce
 
 ---
 
-## Insufficient storage when installing the APK
+## I get an insufficient storage error when installing the APK
 
 You may encounter an `INSTALL_FAILED_INSUFFICIENT_STORAGE` error when installing the APK on the
 emulator. Ensure that the emulator AVD has sufficient disk storage configured:
@@ -224,7 +224,7 @@ hw.ramSize=3072
 
 ---
 
-## How to cold boot the emulator?
+## How do I cold boot the emulator?
 
 In some situation a cold boot of the emulator is required, for example after changing its
 configuration, or as a precaution when unexpected behavior occurs.
@@ -241,7 +241,7 @@ Now wait for the emulator to start up.
 
 ---
 
-## RuntimeException: Required support for OpenGL standard derivatives is missing
+## I get RuntimeException: Required support for OpenGL standard derivatives is missing
 
 When you launch the application on emulator, it crashes and restarts in a never-ending loop. Look
 in the logcat and if you get the following error, you need to set the emulator's OpenGL ES API
@@ -279,7 +279,7 @@ Configuration `Run IVI Example` as delivered with the SDK has these settings pre
 
 ---
 
-## Installing on a custom device
+## How do I install the APK onto a custom device?
 
 Some features of the TomTom IndiGO example application require system permissions. For instance, 
 you won't be able to play music using Spotify nor use HVAC features. If you want to install the 
