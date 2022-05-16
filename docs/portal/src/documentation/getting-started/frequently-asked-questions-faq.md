@@ -140,7 +140,7 @@ Start a Route Demo:
 - Make sure a route has been planned.
 - Tap on the chevron (current position indicator). The `Trip Preview` panel is shown.
 - Tap on the `Play` button in the `Trip Preview` panel to start the route demo.
-- You can change the vehicle speed by selecting the `1x`, `2x`, `3x` buttons.
+- You can change the vehicle speed by selecting the `1x`, `2x`, or `3x` buttons.
 - Tap on the chevron again to hide the `Trip Preview` panel.
 
 ---

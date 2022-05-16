@@ -63,7 +63,7 @@ following the instructions in [Upgrade Tablet](#upgrade-tablet).
 The instructions are based on the official
 [LineageOS installation instructions](https://wiki.lineageos.org/devices/gts4lvwifi/install):
 
-As a preparation, download the following files:
+To prepare, download the following files:
 
 - [Odin (Samsung flashing tool)](https://androidfilehost.com/?fid=4349826312261712202)
 - [TWRP (Team Win Recovery Tool)](https://dl.twrp.me/gts4lvwifi/) (download the latest `img.tar` file)

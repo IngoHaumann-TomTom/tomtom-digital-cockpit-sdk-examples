@@ -187,7 +187,7 @@ __Note:__ Every service host needs to be configured and registered in your appli
 necessary to know which service should be started with which implementation when a client requires
 the access to a service api.
 
-Define an IVI service host implementation, in your gradle file, This can also be defined in a
+Define an IVI service host implementation in your gradle file. This can also be defined in a
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
