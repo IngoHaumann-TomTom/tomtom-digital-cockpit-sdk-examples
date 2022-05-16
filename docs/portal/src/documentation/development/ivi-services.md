@@ -162,11 +162,11 @@ services for this interface.
 
 ## More information
 
-For more details on how to create a IVI service, see the 
-[How to create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
-page, and for more details on how to create a frontend, see the 
-[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+For more details on how to create a IVI service, see the
+[Create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+page, and for more details on how to create a frontend, see the
+[Create a Frontend Plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 page.
-[How to Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin) 
+See
+[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for information about how to deploy IVI services.
-
