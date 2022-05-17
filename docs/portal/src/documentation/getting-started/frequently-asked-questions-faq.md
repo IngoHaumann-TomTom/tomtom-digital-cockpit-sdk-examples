@@ -272,6 +272,9 @@ package manager to handle installs:
 
 - Open the `Run/Debug Configurations` dialog via `Run` > `Edit Configurations...`.
 - In this dialog tick the box `Always install with package manager`.
+- Set field `Install Flags` to `-r -g`, to always reinstall the apk (`-r`) and to grant all
+  permissions requested in the manifest file (`-g`). See also the
+  [ADB Package Manager](https://developer.android.com/studio/command-line/adb#pm) documentation.
 
 Configuration `Run IVI Example` as delivered with the SDK has these settings pre-configured.
 
