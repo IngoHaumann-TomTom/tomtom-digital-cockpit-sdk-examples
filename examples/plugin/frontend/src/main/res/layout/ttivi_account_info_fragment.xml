@@ -10,7 +10,8 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:auto="http://schemas.android.com/apk/res-auto">
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,43 +22,54 @@
             type="com.example.ivi.example.plugin.frontend.info.AccountInfoViewModel" />
     </data>
 
-    <LinearLayout
-        android:id="@+id/frontend_account_info_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:orientation="vertical"
-        android:padding="0dp">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
+            android:id="@+id/frontend_account_info_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="@android:color/black"
-            android:contentDescription="@string/ttivi_account_info_avatar_description"
-            android:scaleType="fitStart"
-            android:src="@drawable/ttivi_account_info_avatar_placeholder" />
+            android:layout_centerInParent="true"
+            android:layout_marginVertical="?attr/tt_spacing_xxxl"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="?attr/tt_spacing_xxxl"
-            android:gravity="start"
-            android:text="@{@string/ttivi_account_info_welcomemessage(viewModel.displayName)}"
-            android:textAlignment="textStart"
-            android:textAppearance="?attr/tt_headline_text_style_m"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/ttivi_userprofile_info_avatar_height"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ttivi_account_info_placeholder_avatar" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_l" />
 
-        <com.tomtom.tools.android.api.uicontrols.button.TtButton
-            style="?attr/tt_button_style"
-            android:layout_width="match_parent"
-            android:onClick="@{() -> viewModel.onLogoutClick()}"
-            android:text="@string/ttivi_account_info_logoutbutton"
-            auto:ttActionType="primary" />
-    </LinearLayout>
+            <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{@string/ttivi_account_info_welcomemessage(viewModel.displayName)}"
+                android:textAlignment="center"
+                android:textAppearance="?attr/tt_headline_text_style_m"
+                android:textColor="?attr/tt_surface_content_color_emphasis_high" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_xxxl" />
+
+            <com.tomtom.tools.android.api.uicontrols.button.TtButton
+                style="?attr/tt_button_style"
+                android:layout_width="?attr/ttivi_userprofile_button_width"
+                android:layout_gravity="center"
+                android:onClick="@{() -> viewModel.onLogoutClick()}"
+                android:text="@string/ttivi_account_info_logoutbutton"
+                auto:ttActionType="secondary" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </layout>

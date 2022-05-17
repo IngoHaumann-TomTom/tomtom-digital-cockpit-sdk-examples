@@ -20,136 +20,108 @@
             type="com.example.ivi.example.plugin.frontend.login.AccountLoginViewModel" />
     </data>
 
-
-    <LinearLayout
-        android:id="@+id/frontend_account_login_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="?attr/tt_spacing_xl"
-        android:layout_marginVertical="?attr/tt_spacing_xl"
-        android:orientation="vertical"
-        tools:layout_marginHorizontal="40dp">
+        android:layout_height="match_parent">
 
-        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+        <LinearLayout
+            android:id="@+id/frontend_account_login_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:text="@string/ttivi_account_login_headline"
-            android:textAlignment="textStart"
-            android:textAppearance="?attr/tt_headline_text_style_m"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            tools:text="@string/ttivi_account_login_headline" />
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l"
-            tools:layout_height="32dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/ttivi_userprofile_login_icon_height"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ttivi_account_login_icon" />
 
-        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:text="@string/ttivi_account_login_message"
-            android:textAlignment="textStart"
-            android:textAppearance="?attr/tt_title_text_style_m"
-            android:textColor="?attr/tt_surface_content_color_emphasis_medium"
-            tools:text="@string/ttivi_account_login_message" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_l" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_xs"
-            tools:layout_height="16dp" />
+            <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/ttivi_account_login_headline"
+                android:textAlignment="center"
+                android:textAppearance="?attr/tt_headline_text_style_m"
+                android:textColor="?attr/tt_surface_content_color_emphasis_high"
+                tools:text="@string/ttivi_account_login_headline" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_divider_height_horizontal"
-            android:background="?attr/tt_surface_content_color_subdued"
-            tools:layout_height="2dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_xs"
+                />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l"
-            tools:layout_height="32dp" />
+            <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ttivi_account_login_message"
+                android:textAlignment="center"
+                android:textAppearance="?attr/tt_body_text_style_s"
+                android:textColor="?attr/tt_surface_content_color_emphasis_high"
+                tools:text="@string/ttivi_account_login_message" />
 
-        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/tt_spacing_xxs"
-            android:gravity="start"
-            android:labelFor="@id/frontend_account_login_screen_login_username_edit"
-            android:text="@string/ttivi_account_login_username"
-            android:textAlignment="textStart"
-            android:textAppearance="?attr/tt_title_text_style_m"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            tools:text="@string/ttivi_account_login_username" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_l" />
 
-        <EditText
-            android:id="@+id/frontend_account_login_screen_login_username_edit"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_button_height"
-            android:autofillHints="textPersonName"
-            android:background="@drawable/ttivi_account_login_edittext_background_roundedcorners"
-            android:importantForAutofill="yes"
-            android:inputType="textPersonName|textAutoComplete"
-            android:paddingHorizontal="?attr/tt_spacing_l"
-            android:singleLine="true"
-            android:text="@={viewModel.username}"
-            android:textAppearance="?attr/tt_label_text_style_l"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
+            <com.tomtom.tools.android.api.uicontrols.textinputfield.TtTextInputField
+                android:id="@+id/frontend_account_login_screen_login_username_edit"
+                android:layout_width="?attr/ttivi_userprofile_login_textbox_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="textPersonName"
+                android:importantForAutofill="yes"
+                android:inputType="textPersonName|textAutoComplete"
+                android:singleLine="true"
+                android:textAppearance="?attr/tt_label_text_style_l"
+                android:textColor="?attr/tt_surface_content_color_emphasis_high"
+                auto:ttHintText="@string/ttivi_account_login_username"
+                auto:ttInputText="@={viewModel.username}" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l"
-            tools:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_l" />
 
-        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/tt_spacing_xxs"
-            android:gravity="start"
-            android:labelFor="@id/frontend_account_login_screen_login_password_edit"
-            android:text="@string/ttivi_account_login_password"
-            android:textAlignment="textStart"
-            android:textAppearance="?attr/tt_title_text_style_m"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high"
-            tools:text="@string/ttivi_account_login_password" />
+            <!-- TODO(IVI-7440): TtTextInputField doesnt show asterisks chars for passwords type inputs -->
+            <com.tomtom.tools.android.api.uicontrols.textinputfield.TtTextInputField
+                android:id="@+id/frontend_account_login_screen_login_login_textbox_width"
+                android:layout_width="?attr/ttivi_userprofile_login_textbox_width"
+                android:layout_height="?attr/tt_button_height"
+                android:layout_gravity="center"
+                android:autofillHints="textPassword"
+                android:importantForAutofill="yes"
+                android:inputType="textNoSuggestions|text|textPassword|textAutoComplete"
+                android:singleLine="true"
+                android:textAppearance="?attr/tt_label_text_style_l"
+                android:textColor="?attr/tt_surface_content_color_emphasis_high"
+                auto:ttHintText="@string/ttivi_account_login_password"
+                auto:ttInputText="@={viewModel.password}" />
 
-        <EditText
-            android:id="@+id/frontend_account_login_screen_login_password_edit"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_button_height"
-            android:autofillHints="textPassword"
-            android:background="@drawable/ttivi_account_login_edittext_background_roundedcorners"
-            android:importantForAutofill="yes"
-            android:inputType="textNoSuggestions|text|textPassword|textAutoComplete"
-            android:paddingHorizontal="?attr/tt_spacing_l"
-            android:singleLine="true"
-            android:text="@={viewModel.password}"
-            android:textAppearance="?attr/tt_label_text_style_l"
-            android:textColor="?attr/tt_surface_content_color_emphasis_high" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="?attr/tt_spacing_xxxl" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l"
-            tools:layout_height="64dp" />
+            <com.tomtom.tools.android.api.uicontrols.button.TtButton
+                style="?attr/tt_button_style"
+                android:layout_width="?attr/ttivi_userprofile_button_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:enabled="@{viewModel.isLoginEnabled}"
+                android:onClick="@{() -> viewModel.onLoginClick()}"
+                android:text="@string/ttivi_account_login_loginbutton"
+                auto:ttActionType="primary" />
+        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="?attr/ttivi_divider_height_horizontal"
-            android:background="?attr/tt_surface_content_color_subdued"
-            tools:layout_height="2dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l" />
-
-        <com.tomtom.tools.android.api.uicontrols.button.TtButton
-            style="?attr/tt_button_style"
-            android:layout_width="match_parent"
-            android:enabled="@{viewModel.isLoginEnabled}"
-            android:onClick="@{() -> viewModel.onLoginClick()}"
-            android:text="@string/ttivi_account_login_loginbutton"
-            auto:ttActionType="primary" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

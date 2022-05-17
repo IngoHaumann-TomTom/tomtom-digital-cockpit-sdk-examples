@@ -22,7 +22,6 @@ internal class AccountInfoViewModel(panel: AccountInfoPanel) :
     private val accountsServiceApi =
         AccountsService.createApi(this, frontendContext.iviServiceProvider)
 
-
     val displayName = accountsServiceApi.activeAccount.map {
         it?.username?.replaceFirstChar(Char::uppercaseChar)
     }

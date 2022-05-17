@@ -77,7 +77,7 @@ internal class CustomSystemUiHost(
         val taskPanelContainerController = TaskPanelContainerController(
             ExampleTaskPanelSubContainerManager(animationController),
             binding.exampleSystemuiTaskPanelContainer,
-            viewModel.panelRegistry.iviPanelRegistry.taskPanelStack,
+            viewModel.panelRegistry.iviPanelRegistry.taskPanelStackData,
             createPanelContext()
         )
 

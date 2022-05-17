@@ -15,10 +15,8 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 
-// TODO(IVI-5437): Remove dependency on Mode.SIDE_BAR.
-@Suppress("DEPRECATION")
 internal class AccountLoginPanel(frontendContext: FrontendContext) :
-    TaskPanel(frontendContext, Mode.SIDE_BAR) {
+    TaskPanel(frontendContext) {
 
     override fun createInitialFragmentInitializer() =
         IviFragment.Initializer(AccountLoginFragment(), this)
