@@ -11,9 +11,9 @@ The TomTom IndiGO platform is a framework built on top of
 functionality needed for digital cockpits. It comes with a set of ready-made applications, and a set
 of platform APIs that extend the functionality of the standard Android Automotive platform.
 
-The TomTom IndiGO product is deployed as one single Android APK, which means that each
-_application_ for TomTom IndiGO is built as a set of plugins to the TomTom IndiGO framework. What is
-deployed as part of the end product, is configured at build time. You can, for example, select which
+The TomTom IndiGO product is deployed as one single Android APK, which means that each _application_
+for TomTom IndiGO is built as a set of plugins to the TomTom IndiGO framework. What is deployed as
+part of the end product, is configured at build time. You can, for example, select which
 off-the-shelf (or _stock_) TomTom IndiGO applications should be part of your product, and which ones
 should be replaced with your own _applications_, or merely add new functionality.
 
@@ -72,9 +72,8 @@ are arranged, managed and presented to the user on the screen.
 Non UI related logic can be wrapped in an
 [IVI service](/tomtom-indigo/documentation/development/ivi-services), which provides a mechanism to
 encapsulate longer-running tasks and business logic for some distinct functionality in the platform.
-These are based on Android
-[services](https://developer.android.com/guide/components/services), and use the same mechanisms,
-but hide some of the details of the Android service implementation.
+These are based on Android [services](https://developer.android.com/guide/components/services), and
+use the same mechanisms, but hide some of the details of the Android service implementation.
 
 The look and feel of the TomTom IndiGO product can be changed through
 [Theming and Customization](/tomtom-indigo/documentation/development/theming-and-customization),
@@ -85,6 +84,5 @@ additional functionality to support different themes and swapping them at runtim
 The TomTom IndiGO platform is divided into different functional
 [platform domains](/tomtom-indigo/documentation/development/platform-domains/overview), which are
 described separately. Next to to the various domains plugins can connect with, TomTom IndiGO offers
-a number of
-[platform features](/tomtom-indigo/documentation/development/platform-features/overview) to further
-integrate plugins with the rest of the system.
+a number of [platform features](/tomtom-indigo/documentation/development/platform-features/overview)
+to further integrate plugins with the rest of the system.

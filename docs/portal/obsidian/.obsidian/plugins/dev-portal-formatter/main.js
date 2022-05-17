@@ -29521,7 +29521,7 @@ var DevPortalFormatter = class extends import_obsidian.Plugin {
         const updatedNavigation = copyright + (0, import_obsidian.stringifyYaml)(navContent);
         this.app.vault.modify(navigation, updatedNavigation);
         if (old.includes("Untitled")) {
-          this.app.commands.executeCommandById("templater-obsidian:templates/default page template.md");
+          this.app.commands.executeCommandById("templater-obsidian:templates/default-page-template.md");
         }
         new import_obsidian.Notice(`Updated navigation.yml with ${newTitle} at ${newPath}. Make sure links are updated too.`);
       }

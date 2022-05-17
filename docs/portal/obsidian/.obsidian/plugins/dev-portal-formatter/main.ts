@@ -203,7 +203,7 @@ export default class DevPortalFormatter extends Plugin {
 			if (old.includes("Untitled")) {
 				// @ts-ignore
 				this.app.commands.executeCommandById(
-					"templater-obsidian:templates/default page template.md"
+					"templater-obsidian:templates/default-page-template.md"
 				);
 			}
 

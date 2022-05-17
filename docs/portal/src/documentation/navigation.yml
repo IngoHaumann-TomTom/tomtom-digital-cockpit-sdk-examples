@@ -49,7 +49,7 @@ menu:
   - title: Development
     items:
       - fileId: /development/introduction
-        title: Introduction
+        title: Development
       - fileId: /development/frontend-plugins
         title: Frontend Plugins
       - fileId: /development/system-ui
