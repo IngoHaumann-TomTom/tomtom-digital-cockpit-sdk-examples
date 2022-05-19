@@ -39,6 +39,9 @@ REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 # Regex pattern to retrieve tomtom-internal Github URLs.
 REGEX_TOMTOM_GITHUB_URL = "\w+://github.com/tomtom-internal/.*?"
 
+# Regex pattern to retrieve restricted Nexus URLs.
+REGEX_TOMTOM_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
+
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
 
@@ -90,6 +93,10 @@ def check_external_url(content, errors, path, is_export):
 
         # Skip validation of tomtom-internal Github URLs as access is restricted.
         if re.fullmatch(REGEX_TOMTOM_GITHUB_URL, external_url, re.IGNORECASE) != None:
+            continue
+
+        # Skip validation of TomTom Nexus URLs as access is restricted.
+        if re.fullmatch(REGEX_TOMTOM_NEXUS_URL, external_url, re.IGNORECASE) != None:
             continue
 
         status = is_url_available(external_url)
