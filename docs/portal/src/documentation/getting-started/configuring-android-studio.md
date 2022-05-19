@@ -4,7 +4,9 @@ title: Configuring Android Studio
 
 To install the Android Studio IDE, follow the instructions from the
 [official Android guide](https://developer.android.com/studio/install).
-For TomTom IndiGO you will need Android Studio version Arctic Fox 2020.3.1 or newer.
+For TomTom IndiGO the recommended version is Android Studio version `Chipmunk | 2021.2.1` or newer.
+
+![Android Studio Splash screen](images/android_studio_splash_screen.png)
 
 If you already have this Android Studio version installed, you can proceed to section
 [Building with Android Studio](#building-with-android-studio).
@@ -28,7 +30,9 @@ hard-coded version of this plugin.
 ## Building with Android Studio
 
 This section explains how to configure Android Studio for building the
-[TomTom IndiGO example apps](/tomtom-indigo/documentation/platform-overview/example-apps).
+[TomTom IndiGO template app](/tomtom-indigo/documentation/platform-overview/example-apps)
+and the
+[TomTom IndiGO example apps](/tomtom-indigo/documentation/tutorials-and-examples/overview#example-applications).
 
 Install Android 11 (R) SDK:
 

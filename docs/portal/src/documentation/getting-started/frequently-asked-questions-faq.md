@@ -276,7 +276,8 @@ package manager to handle installs:
   permissions requested in the manifest file (`-g`). See also the
   [ADB Package Manager](https://developer.android.com/studio/command-line/adb#pm) documentation.
 
-Configuration `Run IVI Example` as delivered with the SDK has these settings pre-configured.
+Configuration `Run IVI Template app` as delivered with the SDK has these settings pre-configured.
+For the example applications you can configure this yourself, if needed.
 
 ![Android Studio package manager](images/android_studio_package_manager.png)
 

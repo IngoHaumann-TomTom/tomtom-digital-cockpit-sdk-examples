@@ -52,7 +52,7 @@ application (in the `template/` folder) is needed, see below.
   Example showing a hierarchy of panels, with breadcrumbs.
 
 - `examples/plugin/`
-  Examples demonstrating how to write plugins, both frontends and services, for the TomTom 
+  Examples demonstrating how to write plugins, both frontends and services, for the TomTom IndiGO
   platform.
 
 - `examples/telephony/`
@@ -67,8 +67,8 @@ to create a TomTom IndiGO application with all the default functionality from th
 
 The keys needed to sign the application with the same keys as the TomTom Indigo reference hardware 
 build (see 
-[Flashing the reference hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware)
-) for more details on the reference hardware).
+[Flashing the reference hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware))
+for more details on the reference hardware).
 
 ### `permissions/`
 

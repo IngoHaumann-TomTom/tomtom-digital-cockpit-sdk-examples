@@ -2,24 +2,31 @@
 title: Example Apps
 ---
 
-The TomTom IndiGO SDK comes with a set of example applications, each one of them containing the
+The TomTom IndiGO SDK comes with a template application and a set of example applications.
+
+The template application demonstrates the
 [_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
-functionality of the TomTom IndiGO platform. They also contain the source code that goes with the
-tutorials, to get you started with developing for TomTom IndiGO.
+functionality of the TomTom IndiGO platform. This can be a good starting point for your own
+application, where you implement your features and customizations.
+
+The example applications help you to get started with developing for TomTom IndiGO. These
+applications are introduced in the
+[Example apps](#example-apps) section, and explained in more detail in the
+[Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
 
 ## Off-the-shelf functionality
 
-The TomTom IndiGO example applications integrate all the
+The TomTom IndiGO template application integrates all the
 [_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
-functionality implemented for the TomTom IndiGO platform. It is a fully working infotainment 
-system, including navigation, a media center, phone calling, messaging and much more. In the 
+functionality implemented for the TomTom IndiGO platform. It is a fully working infotainment
+system, including navigation, a media center, phone calling, messaging and much more. In the
 source code the _off-the-shelf functionality_ is often referred to as _stock functionality_.
 
-This walk-through of IndiGO platform functionality is using the plugin example, which can be found 
-in `examples/plugin/app`.
+This walk-through of IndiGO platform functionality is using the template application, which can be found
+in the `template/app` directory.
 
-The default view, when starting an application, looks like this. The map view will be
-different depending on your current location.
+The default view, when starting the application, looks like this. The map view will be different
+depending on your current location.
 
 ![start view](images/tomtom-indigo_amsterdam_map.png)
 
@@ -49,15 +56,15 @@ And here we have the same route, with the map in 3D mode instead.
 
 ### Media
 
-The media application in TomTom IndiGO, provides a framework for browsing and controlling audio
-content provided by third-party sources. The source view in the media application lists all the
+The media application in TomTom IndiGO provides a framework for browsing and controlling audio
+content, provided by third-party sources. The source view in the media application lists all the
 currently available media sources on the device. You can see iHeartRADIO as a 3rd party source on
 the device, and a paired mobile phone for BT audio streaming.
 
 ![media source selection](images/media_source_selection.png)
 
-Each source makes use of the same playback controls, which show the currently playing content at
-the same location of the screen. The user can therefore control what is playing, regardless of
+Each media source makes use of the same playback controls, which show the currently playing content
+at the same location of the screen. The user can therefore control what is playing, regardless of
 whether the user is browsing (other) media content, or not.
 
 ![iHeartRADIO](images/media_iheartradio.png)
@@ -77,7 +84,7 @@ providing functionality for many common HVAC requirements. This can be used as s
 implement additional functionality for the relevant car model. The reference implementation is
 wired up to the Vehicle Hardware Abstraction Layer (VHAL) in the Android Automotive platform.
 
-The reference application can be launched by touching the climate control area in the status bar
+The reference implementation can be launched by touching the climate control area in the status bar
 at the bottom of the screen, called the _Climate Control Center_. The most common HVAC
 functionalities, like changing the temperature, can also be accessed through the Climate Control
 Center directly, without having to launch the application.
@@ -87,9 +94,9 @@ Center directly, without having to launch the application.
 ### Calls application
 
 The calls application in TomTom IndiGO, provides functionality to make and receive phonecalls
-through a mobile phone that is paired to TomTom IndiGO via Bluetooth. Once a mobile phone is 
-paired, the contact list will sync with the TomTom IndiGO IVI system. Then the contacts will be 
-accessible under the _Contacts_ tab, which allows the user to select a contact and make a 
+through a mobile phone that is paired to TomTom IndiGO via Bluetooth. Once a mobile phone is
+paired, the contact list will sync with the TomTom IndiGO IVI system. Then the contacts will be
+accessible under the _Contacts_ tab, which allows the user to select a contact and make a
 phonecall.
 
 ![calls contacts](images/calls_contacts.png)
@@ -113,10 +120,13 @@ Picture showing the placeholder for an app store:
 
 ![app store and launcher](images/app_store.png)
 
-### Example Apps specific functionality
+## Example Apps
 
-The example applications also contain code that shows how to implement and integrate specific
-functionality in the TomTom IndiGO platform. Each example is explained and documented in the
+The example applications have all the
+[_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+functionality of the template application. On top of this, they also contain code demonstrating how to
+implement and integrate specific functionality in the TomTom IndiGO platform. Each example is
+explained and documented in the
 [Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
 
 For example, to get you started making your own TomTom IndiGO “application”, there are two examples
@@ -126,7 +136,7 @@ for the UI, along with an
 [IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 to implement the logic.
 These two components together implement an example for displaying account details. The example is
-then replacing the default TomTom IndiGO user profile frontend, with the new functionality. The 
+then replacing the default TomTom IndiGO user profile frontend, with the new functionality. The
 source can be found in: `examples/plugin/app`.
 
 ![example: account](images/example_account.png)
