@@ -40,6 +40,7 @@ plugins {
     id("com.tomtom.navtest.android") apply true
     id("com.tomtom.navui.emulators-plugin") apply false
     id("com.tomtom.tools.android.extractstringsources") apply false
+    id("org.sonarqube") apply true
 }
 
 apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
@@ -57,6 +58,17 @@ val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().f
 ivi {
     dependencySource =
         IviDependencySource.ArtifactRepository(libraries.versions.indigoPlatform.get())
+}
+
+sonarqube {
+    properties {
+        property("sonar.projectVersion", extra.get("iviVersion") as String)
+        property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.java.coveragePlugin", "jacoco")
+        val jvmVersion = indigoDependencies.versions.jvm.get()
+        property("sonar.java.source", jvmVersion)
+        property("sonar.java.target", jvmVersion)
+    }
 }
 
 iviEmulators {
@@ -309,6 +321,19 @@ subprojects {
                     testTags.add("unit")
                     variantFilter = { it.buildType == BuilderConstants.DEBUG }
                 }
+            }
+        }
+
+        apply(plugin = "jacoco")
+
+        tasks.withType(JacocoReport::class.java).configureEach {
+            reports.xml.required.set(true)
+        }
+
+        sonarqube {
+            properties {
+                property("sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir.path}/jacoco/xml/coverage-report.xml")
+                property("sonar.androidLint.reportPaths", "${project.buildDir.path}/reports/lint/report.xml")
             }
         }
     }

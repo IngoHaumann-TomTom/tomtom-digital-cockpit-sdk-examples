@@ -1,0 +1,21 @@
+steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube'  # service connection name
+    scannerMode: 'Other'
+    extraProperties: 'sonar.projectKey=ivi-example-app'
+  displayName: Prepare
+
+- template: gradle/gradle.yml@devops-templates
+  parameters:
+    tasks: >-
+      sonarqube
+    projectOptions:
+      -PiviVersion=$(product_version)
+      -PuseInternalNavkit2ApiKey=true
+    displayName: Analyze
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+  displayName: Publish

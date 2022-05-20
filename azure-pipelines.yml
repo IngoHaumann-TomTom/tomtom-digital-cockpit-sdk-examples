@@ -104,6 +104,20 @@ stages:
           runDebugAndroidTests
     - template: build/build-cleanup.yml@devops-templates
 
+- stage: Analyse
+  displayName: Analyse
+  dependsOn:
+    - ProductVersion
+    - Build
+  variables:
+    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+  jobs:
+  - job: SonarQube
+    displayName: Run SonarQube analysis
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/sonarqube-steps.yml
+
 - stage: OSSCompliance
   dependsOn: ProductVersion
   condition: and(eq(variables.isMainlineBuild, true), succeeded())

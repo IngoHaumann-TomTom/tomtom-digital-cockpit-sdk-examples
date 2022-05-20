@@ -22,6 +22,7 @@ dependencies {
     implementation(indigoDependencies.gradlePluginKotlin)
     implementation(indigoDependencies.gradlePluginKotlinSerialization)
     implementation(indigoDependencies.gradlePluginKsp)
+    implementation(indigoDependencies.gradlePluginSonarqube)
     implementation(indigoDependencies.gradlePluginNavtestAndroid)
     implementation(indigoDependencies.gradlePluginNavtestCore)
     implementation(indigoDependencies.gradlePluginNavuiEmulators)
