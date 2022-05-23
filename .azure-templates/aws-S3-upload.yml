@@ -14,18 +14,21 @@
 
 parameters:
   artifactName: ''
+  localDownloadBasePath: '$(Build.SourcesDirectory)/downloads'
   apiSubFolder: ''
   version: ''
   s3BaseUrl: 's3://devportal-bucket/downloads/tomtom-indigo'
 
 steps:
-  - download: current
-    artifact: ${{parameters.artifactName}}
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: ${{ parameters.artifactName }}
+      path: ${{ parameters.localDownloadBasePath }}/${{ parameters.apiSubFolder }}
     displayName: 'Download ${{parameters.artifactName}} artifact'
-    condition: succeeded()
+    condition: and(ne('${{ parameters.artifactName }}', ''), succeeded())
   - bash: |
       set -eux
-      cd $(Pipeline.Workspace)/${{parameters.artifactName}}
-      aws s3 sync html/ ${{parameters.s3BaseUrl}}/${{parameters.apiSubFolder}}/${{parameters.version}}/
-    displayName: 'Upload api docs v${{parameters.version}} to S3'
+      cd ${{ parameters.localDownloadBasePath }}/${{ parameters.apiSubFolder }}
+      aws s3 sync html/ ${{ parameters.s3BaseUrl }}/${{ parameters.apiSubFolder }}/${{ parameters.version }}/
+    displayName: 'Upload ${{ parameters.apiSubFolder }} docs v${{ parameters.version }} to S3'
     condition: succeeded()

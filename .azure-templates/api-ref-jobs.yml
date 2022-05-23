@@ -7,114 +7,82 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
+parameters:
+  artifactoryBaseUrl: https://artifactory.navkit-pipeline.tt3.com/artifactory
+  # The API reference subfolder names being used on S3.
+  gradlepluginsApiSubFolder: 'tomtom-indigo-gradleplugins-api'
+  commsSdkApiSubFolder: 'tomtom-indigo-comms-sdk-api'
+  androidToolsApiSubFolder: 'tomtom-android-tools-api'
+  indigoPlatformApiSubFolder: 'tomtom-indigo-api'
+
 jobs:
-  - job: GenerateTomTomAndroidToolsApiDocs
-    displayName: 'Generate TomTom Android Tools API docs'
-    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
+  - job: ApiDocsToS3
+    displayName: 'Upload API reference docs to S3'
     timeoutInMinutes: 15
-    container: docker_indigo_build
-    steps:
-      - checkout: tomtom-android-tools
-      - bash: |
-          cd $(Build.SourcesDirectory)
-          git checkout tags/$(VERSION_TOMTOM_ANDROID_TOOLS)
-        displayName: 'Checkout TomTom Android Tools v$(VERSION_TOMTOM_ANDROID_TOOLS)'
-      - template: gradle/gradle.yml@devops-templates
-        parameters:
-          tasks: >-
-            docs
-          displayName: 'Generate TomTom Android Tools API docs'
-      - publish: $(Build.SourcesDirectory)/build/docs/
-        artifact: tomtom-android-tools-api-docs
-        displayName: 'Publish TomTom Android Tools API docs as a pipeline artifact'
-      - template: build/build-cleanup.yml@devops-templates
-  - job: GenerateGradlepluginsApiDocs
-    displayName: 'Generate IndiGO gradleplugins API docs'
-    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
-    timeoutInMinutes: 10
-    container: docker_indigo_build
-    steps:
-      - checkout: indigo
-      - bash: |
-          cd $(Build.SourcesDirectory)
-          git checkout tags/$(VERSION_PLATFORM)
-        displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
-      - template: gradle/gradle.yml@devops-templates
-        parameters:
-          tasks: >-
-            docs
-          projectOptions: >-
-            -p gradleplugins/
-            -PiviVersion=$(VERSION_PLATFORM)
-          displayName: 'Generate IndiGO gradleplugins API docs'
-      - publish: $(Build.SourcesDirectory)/gradleplugins/build/docs/
-        artifact: indigo-gradleplugins-api-docs
-        displayName: 'Publish IndiGO gradleplugins API docs as a pipeline artifact'
-      - template: build/build-cleanup.yml@devops-templates
-  - job: GenerateCommunicationSdkApiDocs
-    displayName: 'Generate IndiGO communications SDK API docs'
-    # TODO(IVI-7012) Download API Reference from Artifactory instead of generating it
-    timeoutInMinutes: 10
-    container: docker_indigo_build
-    steps:
-      - checkout: indigo-ca-android-communication
-      - bash: |
-          cd $(Build.SourcesDirectory)
-          git checkout tags/$(VERSION_COMMUNICATIONS_SDK)
-        displayName: 'Checkout IndiGO communications SDK v$(VERSION_COMMUNICATIONS_SDK)'
-      - template: gradle/gradle.yml@devops-templates
-        parameters:
-          tasks: >-
-            docs
-          displayName: 'Generate IndiGO communications SDK API docs'
-      - publish: $(Build.SourcesDirectory)/build/docs/
-        artifact: indigo-communications-sdk-api-docs
-        displayName: 'Publish IndiGO communications SDK API docs as a pipeline artifact'
-      - template: build/build-cleanup.yml@devops-templates
-  - job: TomtomAndroidToolsApiDocsToS3
-    displayName: 'Upload TomTom Android Tools API docs to S3'
-    timeoutInMinutes: 10
     container: docker_indigo_delivery
-    dependsOn: GenerateTomTomAndroidToolsApiDocs
     steps:
       - checkout: none
+      - template: download/download-and-verify.yml@devops-templates
+        parameters:
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/$(VERSION_PLATFORM)/api-reference-docs-$(VERSION_PLATFORM).tar.gz
+          checksumType: 'sha256'
+          displayName: Download Gradle Plugins API Reference
+      - task: ExtractFiles@1
+        displayName: Extract Gradle Plugins API Reference
+        inputs:
+          archiveFilePatterns: 'downloads/api-reference-docs-$(VERSION_PLATFORM).tar.gz'
+          destinationFolder: $(Build.SourcesDirectory)/downloads/${{ parameters.gradlepluginsApiSubFolder }}/html
+          cleanDestinationFolder: true
       - template: aws-S3-upload.yml
         parameters:
-          artifactName: tomtom-android-tools-api-docs
-          apiSubFolder: tomtom-android-tools-api
-          version: $(VERSION_TOMTOM_ANDROID_TOOLS)
-      - template: build/build-cleanup.yml@devops-templates
-  - job: IndigoGradlepluginsApiDocsToS3
-    displayName: 'Upload IndiGO gradleplugins API docs to S3'
-    timeoutInMinutes: 10
-    container: docker_indigo_delivery
-    dependsOn: GenerateGradlepluginsApiDocs
-    steps:
-      - checkout: none
-      - template: aws-S3-upload.yml
-        parameters:
-          artifactName: indigo-gradleplugins-api-docs
-          apiSubFolder: tomtom-indigo-gradleplugins-api
+          apiSubFolder: ${{ parameters.gradlepluginsApiSubFolder }}
           version: $(VERSION_PLATFORM)
-      - template: build/build-cleanup.yml@devops-templates
-  - job: IndigoCommunicationSdkApiDocsToS3
-    displayName: 'Upload IndiGO communications SDK API docs to S3'
-    timeoutInMinutes: 10
-    container: docker_indigo_delivery
-    dependsOn: GenerateCommunicationSdkApiDocs
-    steps:
-      - checkout: none
+      - publish: $(Build.SourcesDirectory)/downloads/${{ parameters.gradlepluginsApiSubFolder }}
+        artifact: ${{ parameters.gradlepluginsApiSubFolder }}
+        displayName: 'Publish ${{ parameters.gradlepluginsApiSubFolder }} docs as a pipeline artifact'
+      - template: download/download-and-verify.yml@devops-templates
+        parameters:
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/$(VERSION_COMMUNICATIONS_SDK)/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz
+          checksumType: 'sha256'
+          displayName: Download Communications SDK API Reference
+      - task: ExtractFiles@1
+        displayName: Extract Communications SDK API Reference
+        inputs:
+          archiveFilePatterns: 'downloads/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz'
+          destinationFolder: $(Build.SourcesDirectory)/downloads/${{ parameters.commsSdkApiSubFolder }}/html
+          cleanDestinationFolder: true
       - template: aws-S3-upload.yml
         parameters:
-          artifactName: indigo-communications-sdk-api-docs
-          apiSubFolder: tomtom-indigo-comms-sdk-api
+          apiSubFolder: ${{ parameters.commsSdkApiSubFolder }}
           version: $(VERSION_COMMUNICATIONS_SDK)
+      - publish: $(Build.SourcesDirectory)/downloads/${{ parameters.commsSdkApiSubFolder }}
+        artifact: ${{ parameters.commsSdkApiSubFolder }}
+        displayName: 'Publish ${{ parameters.commsSdkApiSubFolder }} docs as a pipeline artifact'
+      - template: download/download-and-verify.yml@devops-templates
+        parameters:
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/$(VERSION_TOMTOM_ANDROID_TOOLS)/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz
+          checksumType: 'sha256'
+          displayName: Download TomTom Android Tools API Reference
+      - task: ExtractFiles@1
+        displayName: Extract TomTom Android Tools API Reference
+        inputs:
+          archiveFilePatterns: 'downloads/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz'
+          destinationFolder: $(Build.SourcesDirectory)/downloads/${{ parameters.androidToolsApiSubFolder }}/html
+          cleanDestinationFolder: true
+      - template: aws-S3-upload.yml
+        parameters:
+          apiSubFolder: ${{ parameters.androidToolsApiSubFolder }}
+          version: $(VERSION_TOMTOM_ANDROID_TOOLS)
+      - publish: $(Build.SourcesDirectory)/downloads/${{ parameters.androidToolsApiSubFolder }}
+        artifact: ${{ parameters.androidToolsApiSubFolder }}
+        displayName: 'Publish ${{ parameters.androidToolsApiSubFolder }} docs as a pipeline artifact'
       - template: build/build-cleanup.yml@devops-templates
+
   - job: GenerateIndigoApiDocs
     displayName: 'Generate IndiGO API docs'
     timeoutInMinutes: 60
     container: 'docker_indigo_build'
-    dependsOn: [ TomtomAndroidToolsApiDocsToS3, IndigoGradlepluginsApiDocsToS3, IndigoCommunicationSdkApiDocsToS3 ]
+    dependsOn: ApiDocsToS3
     steps:
       - checkout: indigo
       - bash: |
@@ -133,6 +101,7 @@ jobs:
         artifact: indigo-api-docs
         displayName: 'Publish IndiGO API docs as a pipeline artifact'
       - template: build/build-cleanup.yml@devops-templates
+
   - job: IndigoApiDocsToS3
     displayName: 'Upload IndiGO API docs to S3'
     timeoutInMinutes: 10
@@ -143,5 +112,6 @@ jobs:
       - template: aws-S3-upload.yml
         parameters:
           artifactName: indigo-api-docs
-          apiSubFolder: tomtom-indigo-api
+          apiSubFolder: ${{ parameters.indigoPlatformApiSubFolder }}
           version: $(VERSION_PLATFORM)
+      - template: build/build-cleanup.yml@devops-templates
