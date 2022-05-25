@@ -39,24 +39,26 @@ platform.
 
 ![TomTom IndiGO architecture overview](images/tomtom-indigo-architecture-overview.png)
 
-The TomTom IndiGO SDK includes an “IVI Example App” that integrates the platform with all of the
-off-the-shelf applications for TomTom IndiGO. The example app is a fully working In-Vehicle
-Infotainment system (IVI), including phone calling, contacts handling, messaging, notifications,
-multimedia, navigation and much more, all production-level code. All of the applications included in
-that example application belong to the top of the diagram, in the section “TomTom IndiGO Application
-Suite”. The
+The TomTom IndiGO SDK includes a template app that integrates the TomTom IndiGO platform with all
+of its
+[off-the-shelf functionality](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality).
+The template app is a fully working In-Vehicle Infotainment system (IVI), including phone calling,
+contacts handling, messaging, notifications, multimedia, navigation and much more, all
+production-level code. All of the applications included in that template application belong to the
+top of the diagram, in the section “TomTom IndiGO Application Suite”. The
 [Getting Started Guide](/tomtom-indigo/documentation/getting-started/introduction)
-explains step-by-step how to set up your development environment to build that example application.
+explains step-by-step how to set up your development environment to build the template application
+and the example applications.
 
 ## Using off-the-shelf components to assemble your product
 
-When you look at the source code of the IVI Example App, you will notice the Kotlin code for the
+When you look at the source code of the IVI Template App, you will notice the Kotlin code for the
 product is really just a couple of lines of code. Most of the work is done by a Gradle build file
 that pulls in all the off-the-shelf components that provide the actual functionality of the
 application. In the diagram, these off-the-shelf components are the modules (or _puzzle pieces_) in
 the blocks “TomTom IndiGO Application Suite” and “TomTom IndiGO Application Platform”.
 
-Forking and building the IVI Example App is a great way to start development of a new IVI system.
+Forking and building the IVI Template App is a great way to start development of a new IVI system.
 It gets you up and running really fast. From there on, you can easily modify or add any puzzle
 piece you need and you’ll have a working system from day one.
 
