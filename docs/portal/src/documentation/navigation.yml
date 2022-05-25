@@ -104,6 +104,8 @@ menu:
         title: Flashing the Reference Hardware
       - fileId: /integrating-tomtom-indigo/companion-application
         title: Companion Application
+      - fileId: /integrating-tomtom-indigo/integrating-amazon-alexa
+        title: Integrating Amazon Alexa
   - title: Tutorials and Examples
     items:
       - fileId: /tutorials-and-examples/overview
@@ -151,7 +153,11 @@ menu:
           - fileId: /tutorials-and-examples/app-launcher/replace-the-stock-android-app-support
             title: Replace the Stock Android App Support
           - fileId: /tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger
-            title: Add Support for Web App Launch Trigger
+            title: Add Support for Web App Launch Trigger            
+      - title: Voice Personal Assistant
+        items:
+          - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service
+            title: Create a Custom Alexa Handler Service
       - title: Customization
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework

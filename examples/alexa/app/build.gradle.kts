@@ -9,11 +9,8 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -24,21 +21,9 @@ plugins {
     id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
-val customCarControlHandlerServiceHost by extra {
-    IviServiceHostConfig(
-        serviceHostBuilderName = "CustomCarControlHandlerServiceHostBuilder",
-        implementationModule = ExampleModuleReference("examples_alexa_customcarcontrolhandler"),
-        interfaces = listOf(
-            IviServiceInterfaceConfig(
-                serviceName = "AlexaHandlerService",
-                serviceId = "com.example.ivi.example.alexa.customcarcontrol",
-                serviceApiModule = IviPlatformModuleReference(
-                    "platform_alexa_api_service_alexahandler"
-                )
-            )
-        )
-    )
-}
+apply(from = rootProject.file("examples/alexa/iviservicehosts.gradle.kts"))
+
+val customCarControlHandlerServiceHost: IviServiceHostConfig by project.extra
 
 /**
  * IVI configuration for this example application.

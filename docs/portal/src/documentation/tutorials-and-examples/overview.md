@@ -98,7 +98,13 @@ launcher.
 - [Add support for Web App launch trigger](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger) -
 This guide explains how to add the support for triggering the launch of a web app from an external 
 source.
-  
+
+## Voice Personal Assistant (VPA)
+
+- [Create a Custom Alexa Handler Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service) -
+This guide explains how to add a custom Alexa handler service that can be used to extend the set of
+stock Alexa platform message handlers offered by the TomTom IndiGO platform.
+
 ## Customization
 
 - [Use the configuration framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework) - 
