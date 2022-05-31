@@ -11,7 +11,7 @@ The TomTom IndiGO platform offers a stock implementation of a VPA Adaptation ser
 Auto VPA, provided by the stock Alexa service.
 This service interacts with the Alexa engine by exchanging asynchronous JSON-based messages with
 the Alexa Auto Client Service (AACS) application. More information about the AACS is available in
-the [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/aacs/android)
+the [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 documentation page.
 
 These JSON messages are called "AASB" messages in the Alexa Auto documentation, because they are
@@ -20,7 +20,7 @@ used by the Alexa Auto Services Bridge (AASB) Extension.
 The AASB messages are grouped into "topics", each representing a domain that requires a platform
 implementation. For details about the AASB messages, see the
 [AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)
-and the [AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/SDK_MODULES)
+and the [AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
 pages.
 
 The stock Alexa service of TomTom IndiGO already implements message handlers for many of the topics
@@ -158,7 +158,7 @@ detailed information on these methods.
 The Alexa Handler service is able to communicate with the Alexa Auto Client Service by exchanging
 JSON based Alexa Auto Services Bridge (AASB) messages.
 More information on the format of the AASB messages is available in the
-[Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/SDK_MODULES)
+[Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
 page.
 
 Whenever the TomTom IndiGO platform receives a JSON AASB message from the Alexa Auto Client Service
@@ -180,7 +180,7 @@ Typically, in order to parse an AASB message, you would:
    ```
 
 2. Define a data class that represents the message to be parsed. For example, the data class
-   representing the CarControl [SetControllerValue](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/modules/car-control/aasb-docs/CarControl/#setcontrollervalue)
+   representing the CarControl [SetControllerValue](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervalue)
    message would look like this:
 
    ```kotlin
@@ -227,7 +227,7 @@ request was successfully executed or not.
 Typically, in order to send an AASB reply message, you would:
 
 1. Define a data class that represents the message to be sent to AACS. For example, the data class
-   representing the CarControl [SetControllerValueMessageReply](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/modules/car-control/aasb-docs/CarControl/#setcontrollervaluereply)
+   representing the CarControl [SetControllerValueMessageReply](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervaluereply)
    message would look like this:
 
    ```kotlin
@@ -279,7 +279,7 @@ functions.
 Typically, in order to send an AASB "Publish" message, you would:
 
 1. Define a data class that represents the message to be sent to AACS. For example, the data class
-   representing the [DoNotDisturbChanged](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/modules/alexa/aasb-docs/DoNotDisturb/#donotdisturbchanged)
+   representing the [DoNotDisturbChanged](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/DoNotDisturb/#donotdisturbchanged)
    message would look like this:
 
     ```kotlin
@@ -442,6 +442,6 @@ ivi {
 ## External links
 
 - TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
-- [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/aacs/android)
+- [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 - [Alexa Auto AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)
-- [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/SDK_MODULES)
+- [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)

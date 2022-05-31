@@ -87,7 +87,7 @@ A list of the prerequisites is provided below:
   control over your Amazon Developer Account.
 - Within your Amazon Developer Account, an Alexa Voice Service product and security profile should
   have been set up. See
-  [Amazon's instructions](https://alexa.github.io/alexa-auto-sdk/docs/sdk-docs/NEED_HELP/#registering-a-product-and-creating-a-security-profile)
+  [Amazon's instructions](https://alexa.github.io/alexa-auto-sdk/docs/get-started/#register-an-avs-product)
   or speak to your Amazon contact to understand how to do this.
 - You will need your product's _Product ID_ and _Client ID_ which can be obtained from the
   [Amazon Voice Service console](https://developer.amazon.com/alexa/console/avs/products)
@@ -177,7 +177,7 @@ or
 
 The additional parameters correspond to the configuration values which Amazon have documented in
 their
-[VehicleConfiguration reference page](https://alexa.github.io/alexa-auto-sdk/docs/android/enumcom_1_1amazon_1_1aace_1_1vehicle_1_1config_1_1_vehicle_configuration_1_1_vehicle_property_type.html)
+[VehicleConfiguration reference page](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/core/?h=vehicleconfiguration#required-vehicle-info-configuration)
 and are also listed in the table below:
 
 | Configuration key name                      | Description                                                     |
