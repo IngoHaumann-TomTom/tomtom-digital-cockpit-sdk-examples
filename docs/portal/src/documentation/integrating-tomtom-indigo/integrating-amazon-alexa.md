@@ -198,6 +198,7 @@ and are also listed in the table below:
 | `alexaVehicleInfoCountriesConfigKey`        | A comma-delimited list of ISO codes of countries where the vehicle is operating. |
 | `alexaVehicleInfoVehicleIdentifierConfigKey`| The manufacturer's identifier for the vehicle. |
 | `alexaVehicleOperatingCountryConfigKey`     | The 2-letter ISO code of the main operating country of the vehicle. |
+| `alexaAplEnabledConfigKey`                  | Indicates whether support for the Alexa Presentation Language is enabled. Set to false by default. |
 
 ### Dynamic configuration
 
