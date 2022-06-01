@@ -93,17 +93,8 @@ For more details see
 
 ## How do I open/close the Debug Menu?
 
-TomTom IndiGO provides a debug menu giving access to functionality that is not normally available 
-to the end-user. This can be useful for developers to set the product up for testing or for 
-accessing hidden features that aid development. For example, changing the SafetyLock mode.
-
-Opening the debug menu can be done in various ways:
-
-- On the emulator, press the backtick ("\`") key on your keyboard.
-- On a real device, long press the "volume down" key.
-- In a terminal, type `adb shell input keyevent KEYCODE_GRAVE`.
-
-To close the debug menu, perform the same action again.
+Refer to the explanation on
+[The Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu).
 
 ---
 
@@ -163,7 +154,7 @@ Your CPU does not support VT-x. Unfortunately, your computer does not support ha
 
 The Apple M1 processor is not an Intel-based chip and the hardware-accelerated virtualization
 package does not work on this processor architecture. Special setup is required to get even the
-default Android emulator working, so this is not just a TomTom IndiGO-specific problem. Official 
+default Android emulator working, so this is not just a TomTom IndiGO-specific problem. Official
 Android support for this chip is still in progress.
 
 The previous instructions on how to configure an Android Virtual Device, specify exceptions for
@@ -198,9 +189,9 @@ Cold boot the emulator, as explained in the
 The emulator may be slow at starting up on some configurations, especially the first time and
 especially on an Apple Mac.
 
-Locate the `config.ini` file for the AVD you are using for running TomTom IndiGO in the emulator. 
+Locate the `config.ini` file for the AVD you are using for running TomTom IndiGO in the emulator.
 If you have followed the instructions in
-[The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator), it should 
+[The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator), it should
 be at the following location:
 
 __Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
@@ -287,11 +278,11 @@ For the example applications you can configure this yourself, if needed.
 
 ## How do I install the APK onto a custom device?
 
-Some features of the TomTom IndiGO example application require system permissions. For instance, 
-you won't be able to play music using Spotify nor use HVAC features. If you want to install the 
-example app on a different emulator or device, you need to make sure that it is signed with the 
+Some features of the TomTom IndiGO example application require system permissions. For instance,
+you won't be able to play music using Spotify nor use HVAC features. If you want to install the
+example app on a different emulator or device, you need to make sure that it is signed with the
 corresponding platform key.
 
-The TomTom Indigo platform debug key and password files, used for the pre-created tablet and 
-emulator images, are in the `keystore` directory in the example source. Drop in your own platform 
+The TomTom Indigo platform debug key and password files, used for the pre-created tablet and
+emulator images, are in the `keystore` directory in the example source. Drop in your own platform
 keys, replacing the existing ones in that directory, then rebuild and deploy.

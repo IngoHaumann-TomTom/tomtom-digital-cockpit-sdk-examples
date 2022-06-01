@@ -148,3 +148,9 @@ navigation between hierarchies. The example source is in `examples/panelhierarch
 example app.
 
 ![example: hierarchy](images/example_hierarchy.png)
+
+## Debug menu
+
+The template app and the example apps also give access to the 
+[debug menu](/tomtom-indigo/documentation/getting-started/the-debug-menu),
+which allows you to tweak the TomTom IndiGO behavior.
