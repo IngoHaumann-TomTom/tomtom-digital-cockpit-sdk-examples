@@ -330,13 +330,15 @@ The default template for [`NotificationPanel`](TTIVI_INDIGO_API)s can be used by
 
 [TODO(IVI-5615)]: # (Add UX design of notification template)
 
-### Process bar template
+### Process panel template
 
-The default template for [`ProcessBarPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`ProcessBarFragment`](TTIVI_INDIGO_API) and [`ProcessBarViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_fragment_processbar`](TTIVI_INDIGO_API).
+The default template for [`ProcessPanel`](TTIVI_INDIGO_API)s can be used by extending
+[`ProcessFragment`](TTIVI_INDIGO_API) and [`ProcessViewModel`](TTIVI_INDIGO_API) from
+[`platform_frontend_api_fragment_process`](TTIVI_INDIGO_API). It can also be used for
+[`TaskProcessPanel`](TTIVI_INDIGO_API)s by extending [`TaskProcessFragment`](TTIVI_INDIGO_API)
+and [`TaskProcessViewModel`](TTIVI_INDIGO_API).
 
-[TODO(IVI-5616)]: # (Add UX design of process bar template)
+[TODO(IVI-5616)]: # (Add UX design of process template)
 
 ### Modal template
 
