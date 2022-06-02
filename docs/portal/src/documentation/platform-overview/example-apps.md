@@ -108,18 +108,21 @@ to ensure privacy.
 
 ![calls recents](images/calls_recents.png)
 
-### Third-party Apps
+### Apps
 
-TomTom IndiGO supports integration of Android application stores. The _Apps_ tab contains a
-placeholder for an app store, which can be configured to display the app store of your choice. This
-tab also contains any other application that is installed outside of the system image.
+The _Apps_ tab provides an _overflow_ panel which allows access to any additional applications that 
+do not fit within the main menu. 
+
+TomTom IndiGO supports integration of Android app stores and the _Apps_ tab can be configured to 
+display the app store of your choice. This tab also contains any Android apps installed from the app 
+store as well as any other application that is installed outside of the system image.
 
 You can read more about how to configure an app store of your choice in
 [this section](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-an-app-store).
 
-Picture showing the placeholder for an app store:
+Picture showing the _Apps_ tab with an app store configured and some third-party apps installed:
 
-![app store and launcher](images/app_store.png)
+![overflow panel](images/overflow_panel.png)
 
 ## Example Apps
 
