@@ -46,7 +46,7 @@ internal class ExampleTaskPanelSubContainerManager(
     private val panelTransitionSources =
         mutableMapOf<TaskPanelSubContainer, PanelTransitionSource?>()
 
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "kotlin:S1874")
     override fun addSubContainer(
         parentContainer: ViewGroup,
         mode: TaskPanel.Mode,
