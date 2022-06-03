@@ -54,10 +54,10 @@ all of them at once. There are various situations in which a panel offered by a 
 be displayed to a user. The view model decides when to show which panel. It may, for example, choose
 not to show:
 
-- A low priority notification, like a text message, when the system UI is already showing a high
+- A low priority notification panel, like a text message, when the system UI is already showing a high
   priority notification, like incoming phone call. This is done to not overload the driver with
   information.
-- A low priority process bar, like a media player, when a high priority process bar, like for an
+- A low priority process panel, like a media player, when a high priority process panel, like for an
   ongoing call, is more relevant to the driver.
 - The search panel on the home screen when a guidance panel is available for an active route, in
   order to not clutter the home screen.
@@ -116,7 +116,7 @@ information from the system UI for its contents.
 
 Frontends expose panels, which the system UI processes and presents when appropriate. Panels are
 used for a wide range of functionalities. This is not limited to opening panels when pressing a menu
-item, but also notifications, process bars, and even the menu itself.
+item, but also notification panels, process panels, and even the menu itself.
 
 ### Panel types
 
@@ -140,15 +140,15 @@ user selections. This allows the menu frontend itself to not have any dependenci
 frontends directly. A frontend can provide a menu by adding a panel that extends
 [`MainMenuPanel`](TTIVI_INDIGO_API) to its panels.
 
-#### Process bar panels
+#### Process panels
 
-Frontends can visualize ongoing processes in the UI using process bar panels, which can be created
-by adding a panel that extends [`ProcessBarPanel`](TTIVI_INDIGO_API) to the frontend's panels. This
-can be used, for example, to show an ongoing audio streaming process or during a phone call. The
-process bar panel's metadata is used by the system UI to determine the priority of when to show
-certain process bar panels. For example, an ongoing phone call has a higher priority than streaming
-media. When both these frontends provide a process bar panel at the same time, the process bar for
-phone calls will be shown instead of the one for media.
+Frontends can visualize ongoing processes in the UI using process panels, which can be created by
+adding a panel that extends [`ProcessPanel`](TTIVI_INDIGO_API) to the frontend's panels. This can
+be used, for example, to show an ongoing audio streaming process or during a phone call. The
+process panel's metadata is used by the system UI to determine the priority of when to show certain
+process panels. For example, an ongoing phone call has a higher priority than streaming media. When
+both these frontends provide a process panel at the same time, the process panel for phone calls
+will be shown instead of the one for media.
 
 #### Task panels
 
@@ -189,21 +189,21 @@ and may be dismissed by the user through system UI functionality, like swiping i
 action can trigger the system UI to dismiss the whole task panel stack, rather than just a single
 one.
 
-#### Task process bar panel
+#### Task process panel
 
-A task process bar panel allows a frontend to visualize an ongoing processe in all of its task
-panels. Unlike the process bar, a task process bar panel is part of the task panel and as such does
+A task process panel allows a frontend to visualize an ongoing processe in all of its task
+panels. Unlike the process panel, a task process panel is part of the task panel and as such does
 not overlap the task panel itself.
 
-TomTom IndiGO's system UI may hide the process bar when a task panel is opened. However, if the
+TomTom IndiGO's system UI may hide the process panel when a task panel is opened. However, if the
 process is relevant to that task panel, it likely wants to continue presenting that process to the
 user, for example, to show a mini player for the currently playing music. In these cases, the
-frontend can add a panel extending [`TaskProcessBarPanel`](TTIVI_INDIGO_API), which the system UI
-will show next to the task panel itself within the task panel's container. The task process bar
-panel will persist for the whole task panel stack. When task panels get added and removed from the
-stack, the same task process bar panel will continue to be visible. A frontend's task process bar
-panel will only be shown if it also has an active task panel, and will not be shown for task panels
-of other frontends.
+frontend can add a panel extending [`TaskProcessPanel`](TTIVI_INDIGO_API), which the system UI will
+show next to the task panel itself within the task panel's container. The task process panel will
+persist for the whole task panel stack. When task panels get added and removed from the stack, the
+same task process panel will continue to be visible. A frontend's task process panel will only be
+shown if it also has an active task panel, and will not be shown for task panels of other
+frontends.
 
 #### Notification panels
 
@@ -318,15 +318,15 @@ you full control over the contents.
 
 TomTom IndiGO offers templates for:
 
-- Notifications
-- Process bars
-- Modals
+- Notification panels
+- Process panels
+- Modal panels
 
-### Notification template
+### Notification panel template
 
 The default template for [`NotificationPanel`](TTIVI_INDIGO_API)s can be used by extending
 [`NotificationFragment`](TTIVI_INDIGO_API) and [`NotificationViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_fragment_notification`](TTIVI_INDIGO_API).
+[`platform_frontend_api_template_notificationpanel`](TTIVI_INDIGO_API).
 
 [TODO(IVI-5615)]: # (Add UX design of notification template)
 
@@ -334,13 +334,13 @@ The default template for [`NotificationPanel`](TTIVI_INDIGO_API)s can be used by
 
 The default template for [`ProcessPanel`](TTIVI_INDIGO_API)s can be used by extending
 [`ProcessFragment`](TTIVI_INDIGO_API) and [`ProcessViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_fragment_process`](TTIVI_INDIGO_API). It can also be used for
+[`platform_frontend_api_template_processpanel`](TTIVI_INDIGO_API). It can also be used for
 [`TaskProcessPanel`](TTIVI_INDIGO_API)s by extending [`TaskProcessFragment`](TTIVI_INDIGO_API)
 and [`TaskProcessViewModel`](TTIVI_INDIGO_API).
 
 [TODO(IVI-5616)]: # (Add UX design of process template)
 
-### Modal template
+### Modal panel template
 
 The default template for [`ModalPanel`](TTIVI_INDIGO_API)s can be used by extending
 [`ModalFragment`](TTIVI_INDIGO_API) and [`ModalViewModel`](TTIVI_INDIGO_API) from
@@ -355,13 +355,13 @@ that through the _safe area_ in [`PanelContext`](TTIVI_INDIGO_API). The safe are
 of space from each side of a panel that is not safe to display important content due to the panel
 being overlapped by others.
 
-For example, when the process bar opens, it will cover the bottom part of the home panel. The system
-UI informs the home panel that a certain amount of pixels from the bottom is now hidden. The map
-display home panel then uses this information to make sure the chevron isn't shown below the process
-bar, by moving it upwards. (The _chevron_ is the blue arrow that indicates the current location on
-the map.) When doing so, the home panel must still draw the map outside of the safe area because
-that area might not be covered in its entirety. For example, the process bar has space on either
-side where the map is still visible.
+For example, when the process panel opens, it will cover the bottom part of the home panel. The
+system UI informs the home panel that a certain amount of pixels from the bottom is now hidden. The
+map display home panel then uses this information to make sure the chevron isn't shown below the
+process panel, by moving it upwards. (The _chevron_ is the blue arrow that indicates the current
+location on the map.) When doing so, the home panel must still draw the map outside of the safe
+area because that area might not be covered in its entirety. For example, the process panel has
+space on either side where the map is still visible.
 
 ## See also
 

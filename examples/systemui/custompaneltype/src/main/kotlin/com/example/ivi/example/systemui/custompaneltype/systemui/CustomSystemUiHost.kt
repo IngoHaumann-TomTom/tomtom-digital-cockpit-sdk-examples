@@ -15,10 +15,10 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ModalPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.NotificationPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.OverlayPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelTypeSet
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ProcessBarPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ProcessPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.SearchPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskProcessBarPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskProcessPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.panelTypeSetOf
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FixedConstructorFactory
 import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHost
@@ -45,7 +45,7 @@ internal class CustomSystemUiHost(
     override val supportedPanelTypes: PanelTypeSet = panelTypeSetOf(
         CustomSystemUiPanel::class,
         TaskPanel::class,
-        TaskProcessBarPanel::class,
+        TaskProcessPanel::class,
     )
 
     override val unsupportedPanelTypes: PanelTypeSet = panelTypeSetOf(
@@ -57,7 +57,7 @@ internal class CustomSystemUiHost(
         ModalPanel::class,
         NotificationPanel::class,
         OverlayPanel::class,
-        ProcessBarPanel::class,
+        ProcessPanel::class,
         SearchPanel::class
     )
 
