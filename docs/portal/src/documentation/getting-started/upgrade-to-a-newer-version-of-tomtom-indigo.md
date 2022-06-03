@@ -36,3 +36,6 @@ and then merging it with your application.
 
 When rebuilding the application, the updated build files make Gradle pull the new version of the
 TomTom IndiGO binaries from the TomTom repository, and use these in the build process.
+
+__Next step:__ Learn more about Kotlin on the Android platform in the
+[Additional Resources](/tomtom-indigo/documentation/getting-started/additional-resources) page.

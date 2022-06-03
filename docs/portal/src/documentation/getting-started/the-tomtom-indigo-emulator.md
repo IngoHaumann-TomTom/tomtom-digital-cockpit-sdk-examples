@@ -145,5 +145,5 @@ Android Virtual Device (AVD) with it:
 
 ![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
-If you encounter any issues, please consult our
-[Frequently Asked Questions](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq).
+__Next step:__
+[The Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu).

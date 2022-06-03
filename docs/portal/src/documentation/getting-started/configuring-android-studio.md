@@ -95,4 +95,4 @@ License for package Android SDK Build-Tools 30.0.2 not accepted.
 ```
 
 
-__Next step:__ [The TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator).
+__Next step:__ [The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator).

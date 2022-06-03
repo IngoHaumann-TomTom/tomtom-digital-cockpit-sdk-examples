@@ -40,10 +40,10 @@ menu:
         title: Getting the TomTom API Key
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
-      - fileId: /getting-started/the-debug-menu
-        title: The Debug Menu
       - fileId: /getting-started/the-tomtom-indigo-emulator
         title: The TomTom IndiGO Emulator
+      - fileId: /getting-started/the-debug-menu
+        title: The Debug Menu
       - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-indigo
         title: Upgrade to a Newer Version of TomTom IndiGO
       - fileId: /getting-started/additional-resources

@@ -50,4 +50,4 @@ __Windows:__
 ```
 
 __Next step:__
-[Getting the TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
+[Getting the TomTom API Key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
