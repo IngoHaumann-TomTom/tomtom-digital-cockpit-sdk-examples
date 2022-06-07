@@ -107,3 +107,35 @@ custom one, implemented as seen fit. The pages
 and
 [Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 describe this in further detail.
+
+## Safety lock static configuration
+
+As explained in the introduction, the safety lock service is configured per _IVI instance_, see also
+[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system).
+
+In addition, it is also possible to specify how the safety lock impacts the user experience.
+For example, while driving it is commonly considered unsafe for the driver to be typing, 
+and therefore, a frontend that allows text input may disable its input when the safety lock is 
+enabled. It is possible to configure this restriction by changing the safety lock static 
+configuration, see also [Configuration Framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework).
+
+The safety lock default configuration is defined as a resource file that contains configuration
+keys and their values. The following keys and values are defined by default:
+
+```xml
+<resources>
+    <!-- Indicates whether the text input fields are restricted by the safety lock mode when 
+    available or not; `true` by default. -->
+    <bool name="isTextInputRestrictedBySafetyLockConfigKey">true</bool>
+</resources>
+```
+
+If you don't want to restrict access to text input fields, you can configure it by setting the
+`isTextInputRestrictedBySafetyLockConfigKey` to `false`:
+
+```xml 
+<bool name="isTextInputRestrictedBySafetyLockConfigKey">false</bool>
+```
+
+__Note:__ It is the responsibility of service or frontend implementation, to take into account this 
+configuration, in addition to the [`SafetyLockService`](TTIVI_INDIGO_API).

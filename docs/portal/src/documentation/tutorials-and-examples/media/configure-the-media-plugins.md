@@ -20,8 +20,8 @@ keys and their values. The following keys and values are defined in the media pl
 
 ```xml
 <resources>
-    <!-- Indicates if the media frontend has a mini player or not. By default it is set to true -->
-    <bool name="hasMiniPlayerConfigKey" optional="true">true</bool>
+    <!-- Indicates whether the media frontend has a mini player or not; `true` by default. -->
+    <bool name="hasMiniPlayerConfigKey">true</bool>
 </resources>
 ```
 
@@ -45,5 +45,5 @@ want to implement your own frontend plugin for the mini player, you can configur
 `hasMiniPlayerConfigKey` to `false`: 
 
 ```xml 
-<bool name="hasMiniPlayerConfigKey" optional="true">false</bool>
+<bool name="hasMiniPlayerConfigKey">false</bool>
 ```
