@@ -344,7 +344,7 @@ and [`TaskProcessViewModel`](TTIVI_INDIGO_API).
 
 The default template for [`ModalPanel`](TTIVI_INDIGO_API)s can be used by extending
 [`ModalFragment`](TTIVI_INDIGO_API) and [`ModalViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_fragment_modal`](TTIVI_INDIGO_API).
+[`platform_frontend_api_template_modalpanel`](TTIVI_INDIGO_API).
 
 [TODO(IVI-5617)]: # (Add UX design of model template)
 
