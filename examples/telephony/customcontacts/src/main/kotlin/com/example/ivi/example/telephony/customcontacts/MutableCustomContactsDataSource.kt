@@ -14,11 +14,18 @@ package com.example.ivi.example.telephony.customcontacts
 import com.tomtom.ivi.platform.contacts.api.common.model.Contact
 import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement.ContactGroup
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement.ContactItem
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery
-import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.COMPANY_NAME_ASC
-import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.FAMILY_NAME_ASC
-import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.FIRST_NAME_ASC
-import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.PRIMARY_SORT_KEY
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactGroupOrder
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactGroupOrder.GROUP_ASC
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactGroupOrderBy
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder.COMPANY_NAME_ASC
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder.FAMILY_NAME_ASC
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder.FIRST_NAME_ASC
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder.PRIMARY_SORT_KEY
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrderBy
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.All
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.Favorites
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactByPhoneNumber
@@ -56,21 +63,21 @@ internal class MutableCustomContactsDataSource :
             when (query.selection) {
                 is All -> {
                     contacts.values.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
                 is Favorites -> {
                     contacts.values.filter {
                         it.favorite
                     }.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
                 is Groups -> {
                     contacts.values.groupBy {
                         it.toFirstLetter()
                     }.map {
-                        ContactsDataSourceElement.ContactGroup(it.key.toString(), it.value.size)
+                        ContactGroup(it.key.toString(), it.value.size)
                     }
                 }
                 is FindContactsByFirstName -> {
@@ -80,7 +87,7 @@ internal class MutableCustomContactsDataSource :
                             true
                         )
                     }.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
 
@@ -91,7 +98,7 @@ internal class MutableCustomContactsDataSource :
                             true
                         )
                     }.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
 
@@ -102,48 +109,92 @@ internal class MutableCustomContactsDataSource :
                             true
                         )
                     }.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
 
                 is FindContactByPhoneNumber -> {
                     contacts.values.filter {
                         it.phoneNumbers.any { phoneNumber ->
-                            (query.selection as? FindContactByPhoneNumber)?.phoneNumber ==
-                                phoneNumber.number
+                            (query.selection as? FindContactByPhoneNumber)
+                                ?.phoneNumber == phoneNumber.number
                         }
                     }.map {
-                        ContactsDataSourceElement.ContactItem(it)
+                        ContactItem(it)
                     }
                 }
             }.let { data ->
                 when (query.orderBy) {
-                    COMPANY_NAME_ASC -> {
-                        data.sortedBy {
-                            (it as? ContactsDataSourceElement.ContactItem)?.contact?.companyName
-                        }
+                    is ContactItemOrderBy -> {
+                        return@let sortContactItems(
+                            (query.orderBy as ContactItemOrderBy).order,
+                            data
+                        )
                     }
-                    FAMILY_NAME_ASC -> {
-                        data.sortedBy {
-                            (it as? ContactsDataSourceElement.ContactItem)?.contact?.familyName
-                        }
+                    is ContactGroupOrderBy -> {
+                        return@let sortContactGroups(
+                            (query.orderBy as ContactGroupOrderBy).order,
+                            data
+                        )
                     }
-                    FIRST_NAME_ASC -> {
-                        data.sortedBy {
-                            (it as? ContactsDataSourceElement.ContactItem)?.contact?.displayName
-                        }
-                    }
-                    PRIMARY_SORT_KEY -> {
-                        data.sortedBy {
-                            (it as? ContactsDataSourceElement.ContactItem)?.contact?.primarySortKey
-                        }
-                    }
-                    else -> {
-                        data
-                    }
+                    else -> return@let data
                 }
             }
         )
+    }
+
+    private fun sortContactItems(
+        order: ContactItemOrder,
+        data: List<ContactsDataSourceElement>
+    ): List<ContactsDataSourceElement> {
+        when (order) {
+            COMPANY_NAME_ASC -> {
+                data.sortedBy {
+                    (it as? ContactItem)?.contact?.companyName
+                }.also {
+                    return it
+                }
+            }
+            FAMILY_NAME_ASC -> {
+                data.sortedBy {
+                    (it as? ContactItem)?.contact?.familyName
+                }.also {
+                    return it
+                }
+            }
+            FIRST_NAME_ASC -> {
+                data.sortedBy {
+                    (it as? ContactItem)?.contact?.givenName
+                }.also {
+                    return it
+                }
+            }
+            PRIMARY_SORT_KEY -> {
+                data.sortedBy {
+                    (it as? ContactItem)?.contact?.primarySortKey
+                }.also {
+                    return it
+                }
+            }
+        }
+    }
+
+    private fun sortContactGroups(
+        order: ContactGroupOrder,
+        data: List<ContactsDataSourceElement>
+    ): List<ContactsDataSourceElement> {
+        when (order) {
+            GROUP_ASC -> {
+                data.sortedBy {
+                    (it as? ContactGroup)?.group
+                }.also {
+                    return it
+                }
+            }
+            else -> {
+                return data
+            }
+        }
     }
 
     /**

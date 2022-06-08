@@ -14,6 +14,8 @@ package com.example.ivi.example.telephony.customcontacts
 import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrder.PRIMARY_SORT_KEY
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactOrderBy.ContactItemOrderBy
 import com.tomtom.ivi.platform.framework.api.testing.ipc.iviservice.datasource.assertIviDataSourceEquals
 import com.tomtom.ivi.platform.telecom.api.common.model.PhoneBookSynchronizationStatus
 import com.tomtom.ivi.platform.tools.api.testing.unit.IviTestCase
@@ -44,7 +46,7 @@ internal class CustomContactsServiceTest : IviTestCase() {
         )
         val allContactsQuery = ContactsDataSourceQuery(
             ContactsDataSourceQuery.ContactSelection.All,
-            ContactsDataSourceQuery.ContactOrderBy.PRIMARY_SORT_KEY
+            ContactItemOrderBy(PRIMARY_SORT_KEY)
         )
 
         // THEN
@@ -52,7 +54,10 @@ internal class CustomContactsServiceTest : IviTestCase() {
         assertIviDataSourceEquals(contactsDataSource, sut.contactsDataSource, allContactsQuery)
         assertEquals("John Smith", sut.contacts[ContactId("1")]?.displayName)
         assertEquals("Kelly Goodwin", sut.contacts[ContactId("2")]?.displayName)
-        assertEquals(PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS, sut.phoneBookSynchronizationStatus)
+        assertEquals(
+            PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS,
+            sut.phoneBookSynchronizationStatus
+        )
     }
 
     @ExperimentalCoroutinesApi
