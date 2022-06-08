@@ -54,7 +54,7 @@ internal class ExampleTaskPanelSubContainerManager(
         mode: TaskPanel.Mode,
         panelTransitionSource: PanelTransitionSource?,
         @IdRes subContainerTaskPanelId: Int?,
-        @IdRes subContainerTaskProcessBarId: Int?
+        @IdRes subContainerTaskProcessPanelId: Int?
     ): TaskPanelSubContainer =
         when (mode) {
             TaskPanel.Mode.SIDE_BAR -> R.layout.ttivi_systemui_taskpanel_subcontainer_sidebar
@@ -68,9 +68,9 @@ internal class ExampleTaskPanelSubContainerManager(
                 R.id.ttivi_systemui_taskpanel_subcontainer_taskpanels_stub_id
             )!!.apply { id = subContainerTaskPanelId ?: View.generateViewId() }
 
-            val taskProcessBarPanelContainer = findViewById<ViewGroup>(
-                R.id.ttivi_systemui_taskprocessbar_subcontainer_taskprocessbar_stub_id
-            )!!.apply { id = subContainerTaskProcessBarId ?: View.generateViewId() }
+            val taskProcessPanelContainer = findViewById<ViewGroup>(
+                R.id.ttivi_systemui_taskprocesspanel_subcontainer_taskprocesspanel_stub_id
+            )!!.apply { id = subContainerTaskProcessPanelId ?: View.generateViewId() }
 
             parentContainer.addView(this)
 
@@ -85,7 +85,7 @@ internal class ExampleTaskPanelSubContainerManager(
                 ttiviDismissalDirection = TtiviDismissableContainer.DismissalDirection.NONE
             }
 
-            TaskPanelSubContainer(this, taskPanelContainer, taskProcessBarPanelContainer).also {
+            TaskPanelSubContainer(this, taskPanelContainer, taskProcessPanelContainer).also {
                 panelTransitionSources[it] = panelTransitionSource
             }
         }
