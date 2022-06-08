@@ -186,6 +186,7 @@ subprojects {
                     "org.jetbrains.kotlinx" -> {
                         when (requested.name) {
                             "kotlinx-coroutines-core",
+                            "kotlinx-coroutines-core-jvm",
                             "kotlinx-coroutines-android",
                             "kotlinx-coroutines-test" ->
                                 useVersion(versions.kotlinxCoroutines.get())
