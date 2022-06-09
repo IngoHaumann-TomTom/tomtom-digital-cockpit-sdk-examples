@@ -12,11 +12,89 @@ not affect the UI.
 It is also possible to run multiple IVI service hosts in one process to limit the impact of the
 Binder IPC and reduce the (limited) overhead of each process.
 
-The default IVI application configuration deploys each service host implementations in separate
-processes.
+The default IVI application configuration deploys each service host implementation in a separate
+process.
 
 An IVI service host can be deployed to multiple runtime deployments. This allows multiple
 instances of the service host to run in separate processes.
+
+## IVI instance overview
+
+A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI instance. There
+is at least a single default IVI instance, typically the one associated with the center stack. A single 
+system may run multiple IVI instances that all need access to service hosts which are specific to 
+each IVI instance and service hosts that are accessible by all IVI instances.
+
+## Runtime deployment configuration overview
+
+There are two components of an IVI runtime configuration:
+- [`globalDeployments`](TTIVI_INDIGO_API) which are relevant to the entire system.
+- [`multipleInstanceDeployments`](TTIVI_INDIGO_API) which relate to specific IVI instances.
+
+### [`globalDeployments`](TTIVI_INDIGO_API) overview
+
+[`globalDeployments`](TTIVI_INDIGO_API) will contain the service hosts that host IVI Service APIs 
+that are relevant for the whole application. These service hosts will only have one instance 
+available system-wide.
+
+In production, there should be only one runtime deployment created inside the 
+[`globalDeployments`](TTIVI_INDIGO_API) configuration: the 
+[`RuntimeDeploymentIdentifier`](TTIVI_INDIGO_API)`.globalRuntime`. However, it is possible to define 
+multiple runtimes. This can be useful, for instance when creating integration tests, in order to 
+test how certain functionality behaves under different deployment configurations. The example below 
+shows two global deployment configurations for the `connectionTestServiceHosts`. The 
+`OwnProcessDeployment` creates an instance of `connectionTestServiceHosts` which runs in its own 
+process, and `MainProcessDeployment` creates an instance in the main process. This deployment could 
+be useful to test if a workflow behaves properly when deployed in its own process or just the main 
+one.
+  
+```kotlin
+runtime {
+    ...
+    globalDeployments {
+        create(RuntimeDeploymentIdentifier.globalRuntime)
+        create("OwnProcessDeployment") {
+            autoRegister = false
+            deployServiceHosts(connectionTestServiceHosts).asBinderHost()
+        }
+        create("MainProcessDeployment") {
+            autoRegister = false
+            deployServiceHosts(connectionTestServiceHosts).asBinderHost()
+                .inMainProcess()
+        }
+    }
+}
+```
+
+### [`multipleInstanceDeployments`](TTIVI_INDIGO_API) overview
+
+[`multipleInstanceDeployments`](TTIVI_INDIGO_API) will contain services hosts that are relevant for 
+a given IVI instance. Multiple IVI instances can be configured in one deployment. This means that a 
+given process will run as many instances of a service host, as there are IVI instances configured.
+
+There can be multiple runtimes created inside [`multipleInstanceDeployments`](TTIVI_INDIGO_API) in 
+production. This can be useful to increase the reliability of the system, since it will enable the 
+isolation of service hosts. In the example below there will be one process spawned with an instance 
+of `accountServiceHost` associated with the `passengerIviInstance`, and another process with an 
+instance of `accountServiceHost` associated with the `accountServiceHost`. Therefore, if one of them 
+crashes there will be no impact on the other.
+
+```kotlin
+runtime {
+...
+
+    multipleInstanceDeployments { 
+        create("DriverDeployment") { 
+            iviInstances = listOf(driverIviInstance) 
+            deployServiceHosts(inList(accountServiceHost)) 
+        } 
+        create("PassengerDeployment") { 
+            iviInstances = listOf(passengerIviInstance) 
+            deployServiceHosts(inList(accountServiceHost)) 
+        } 
+    } 
+}
+```
 
 ## How to extend the default runtime deployment
 
@@ -40,8 +118,8 @@ ivi {
             globalDeployments {
                 // Create the "Global" runtime deployment.
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    // Apply the default runtime deployments. This deploys all IVI service hosts
-                    // implementations in separate processes.
+                    // Apply the default runtime deployments. This deploys each IVI service host
+                    // implementation in a separate process.
                     useDefaults()
                     // Deploy the `accountsServiceHosts` in the same process.
                     deployServiceHosts(inList(accountsServiceHosts))
@@ -118,7 +196,7 @@ ivi {
 
 The above configuration results in running all IVI service host instances in their own process.
 
-**Note** It is also possible to map multiple IVI instances to the same runtime deployment. In this
+__Note:__ It is also possible to map multiple IVI instances to the same runtime deployment. In this
 case the IVI service host instances of these IVI instances will run in the same process. Another
 option is to selectively deploy services across deployments.
 
@@ -153,7 +231,7 @@ The above example defines a `PassengerActivity` that is associate to the `Passen
 Standard Android services (not IVI service hosts) are not managed by the IVI platform in any way.
 The IVI build config only allows an Android service to be deployed in a configurable process name.
 For instance, it is possible to deploy an Android service in the same process as an IVI service
-host without the need to hardcode the process name of the Android service in an
+host without the need to hard-code the process name of the Android service in an
 `AndroidManifest.xml` file.
 
 ```kotlin
@@ -187,7 +265,7 @@ Android service into the build.
 Android broadcast receivers are not managed by the IVI platform in any way. The IVI build config
 only allows a broadcast receiver to be deployed in a configurable process name. For instance, it
 is possible to deploy a broadcast receiver in the same process as an IVI service host without the
-need to hardcode the process name of the broadcast receiver in an `AndroidManifest.xml` file.
+need to hard-code the process name of the broadcast receiver in an `AndroidManifest.xml` file.
 
 ```kotlin
 val broadcastReceiver = BroadcastReceiverConfig("com....BroadcastReceiver")
