@@ -183,7 +183,7 @@ Then run Gradle task `generateConfigurations`:
 ./gradlew examples_plugin_settingsservice:generateConfigurations examples_plugin_service:generateConfigurations
 ```
 
-__Note__: The task is a dependency for `preDebugBuild` and `preReleaseBuild` tasks, so it is
+__Note:__ The task is a dependency for `preDebugBuild` and `preReleaseBuild` tasks, so it is
 executed automatically during `assemble` or `build` tasks.
 
 ## Access the configurations via configuration providers

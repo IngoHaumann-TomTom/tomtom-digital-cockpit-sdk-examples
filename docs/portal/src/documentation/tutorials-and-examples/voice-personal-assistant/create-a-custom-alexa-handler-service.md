@@ -63,6 +63,26 @@ interface that can be implemented by an OEM to fulfill one of these purposes:
   CarControl message handler doesn't have built-in support. You could then add this functionality by
   implementing an [AlexaHandlerService](TTIVI_INDIGO_API).
 
+## Example app
+
+The TomTom IndiGO SDK comes with an example app showing how to use the Alexa feature, see directory
+`examples/alexa`. By default, this application is excluded from the build, because it requires
+Alexa libraries that are not publicly available.
+
+To build the Alexa example app, you should edit the build files:
+
+__gradle.properties__
+
+```kotlin
+optInToAlexaExamples=true
+```
+
+Alternatively, you can set this Gradle property from the command-line:
+
+```cmd
+./gradlew assemble -PoptInToAlexaExamples=true
+```
+
 ## How to create a custom Alexa Handler service
 
 The following sections describe how to create a custom Alexa Handler service implementation.

@@ -238,7 +238,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 ### Configure the web app source provider service host deployment
 
-__Note__: Every service host needs to be configured and registered in your application. This is necessary to
+__Note:__ Every service host needs to be configured and registered in your application. This is necessary to
 know which service should be started with which implementation when a client requires the access to
 a service api.
 

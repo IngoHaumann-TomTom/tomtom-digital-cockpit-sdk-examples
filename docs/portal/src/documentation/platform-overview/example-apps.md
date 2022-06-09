@@ -25,7 +25,7 @@ source code the _off-the-shelf functionality_ is often referred to as _stock fun
 This walk-through of the IndiGO platform functionality is using the template application, which can be found
 in the `template/app` directory.
 
-The default view, when starting the application, looks like this. 
+The default view, when starting the application, looks like this.
 
 ![start view](images/tomtom-indigo_amsterdam_map.png)
 
@@ -34,16 +34,16 @@ The screen of the TomTom IndiGO system is divided into a few different areas. Th
 contains the map, which provides navigation functionality, with search, route guidance, traffic
 information and so on. The main menu is on the left-hand side, which allows access to other
 functionality of the platform and ability to always return to navigation. Along the bottom there
-is a statusbar, including the Climate Control Center, which contains the Heating, Ventilation, 
+is a statusbar, including the Climate Control Center, which contains the Heating, Ventilation,
 and Air conditioning (HVAC) controls.
 
 ### Navigation
 
 The default view in the TomTom IndiGO product shows navigation functionality with the current
 location on the background map. The map is interactive and you can pan, zoom and switch between the
-2D overview mode and the 3D navigation view. To navigation to a location, you can either search for
-it through the search box at the top of the screen, or simply select a location on the map with a
-long press.
+2D overview mode and the 3D navigation view. To navigate to a location, you can either search for it
+through the search box at the top of the screen, or simply select a location on the map with a long
+press.
 
 A planned route to Schiphol airport in Amsterdam, with the guidance panel enabled, showing
 guidance instructions for the drive, looks like this:
@@ -78,11 +78,11 @@ after media playing has stopped.
 
 ### Climate Control
 
-Climate control in the car is usually referred to as _HVAC_ (heating, ventilcation and air conditioning). 
-Since HVAC functionality can differ a lot between OEMs, the TomTom IndiGO platform comes with a 
-reference implementation, providing functionality for many common HVAC requirements. This can be used 
-as a starting point to implement additional functionality for the relevant car model. The reference 
-implementation is wired up to the Vehicle Hardware Abstraction Layer (VHAL) in the Android Automotive 
+Climate control in the car is usually referred to as _HVAC_ (heating, ventilcation and air conditioning).
+Since HVAC functionality can differ a lot between OEMs, the TomTom IndiGO platform comes with a
+reference implementation, providing functionality for many common HVAC requirements. This can be used
+as a starting point to implement additional functionality for the relevant car model. The reference
+implementation is wired up to the Vehicle Hardware Abstraction Layer (VHAL) in the Android Automotive
 platform.
 
 The reference implementation can be launched by touching the climate control area in the status bar
@@ -110,11 +110,11 @@ to ensure privacy.
 
 ### Apps
 
-The _Apps_ tab provides an _overflow_ panel which allows access to any additional applications that 
-do not fit within the main menu. 
+The _Apps_ tab provides an _overflow_ panel which allows access to any additional applications that
+do not fit within the main menu.
 
-TomTom IndiGO supports integration of Android app stores and the _Apps_ tab can be configured to 
-display the app store of your choice. This tab also contains any Android apps installed from the app 
+TomTom IndiGO supports integration of Android app stores and the _Apps_ tab can be configured to
+display the app store of your choice. This tab also contains any Android apps installed from the app
 store as well as any other application that is installed outside of the system image.
 
 You can read more about how to configure an app store of your choice in
@@ -139,8 +139,8 @@ that explain how to
 for the UI, along with an
 [IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 to implement the logic serving that UI.
-These two components together implement an example for displaying account details. The example replaces 
-the default stock implementation of the TomTom IndiGO user profile frontend, with the new functionality. 
+These two components together implement an example for displaying account details. The example replaces
+the default stock implementation of the TomTom IndiGO user profile frontend, with the new functionality.
 The source code can be found in: `examples/plugin/app`.
 
 ![example: account](images/example_account.png)
@@ -154,6 +154,6 @@ example app.
 
 ## Debug menu
 
-The template app and the example apps also give access to the 
+The template app and the example apps also give access to the
 [debug menu](/tomtom-indigo/documentation/getting-started/the-debug-menu),
 which allows you to tweak the TomTom IndiGO behavior.

@@ -34,10 +34,16 @@ fileTree(templateAppDir)
         project(projectName).projectDir = file.parentFile
     }
 
+val optInToAlexaExamples = (extra.get("optInToAlexaExamples") as String).toBoolean()
 val examplesDir = File(rootProject.projectDir, "examples")
 if (examplesDir.exists()) {
     fileTree(examplesDir)
-        .matching { include("**/build.gradle.kts") }
+        .matching {
+            include("**/build.gradle.kts")
+            if (!optInToAlexaExamples) {
+                exclude("alexa/**")
+            }
+        }
         .forEach { file ->
             val projectName = ":" + file.toProjectName(examplesDir.parentFile)
             include(projectName)
