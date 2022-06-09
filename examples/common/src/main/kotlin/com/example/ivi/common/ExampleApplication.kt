@@ -17,6 +17,9 @@ import com.tomtom.ivi.platform.navkit2.api.common.configuration.Navkit2ApiKeySta
 @Suppress("unused")
 class ExampleApplication : DefaultApplication() {
 
+    // Disable trace event forwarding for release builds.
+    override val isTraceEventForwardingEnabled: Boolean = BuildConfig.DEBUG
+
     /**
      * The following [createStaticConfigurationProviders] implementation serves as an example for
      * configuring the NavKit2 API key with a [Navkit2ApiKeyStaticConfigurationProvider] instance,
