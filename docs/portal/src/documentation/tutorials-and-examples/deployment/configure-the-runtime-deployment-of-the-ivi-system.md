@@ -3,10 +3,10 @@ title: Configure the Runtime Deployment of the IVI System
 ---
 
 Android allows the running of Android services in processes separate from the main
-application/activity process(es). The TomTom IndiGO platform uses Android services for IVI service 
-hosts and therefore it is possible to isolate the IVI service host instances too. The main 
-advantage of process isolation is that when a process unexpectedly crashes (and restarts), this 
-only affects the service host instances running in that process and not all other services and does 
+application/activity process(es). The TomTom IndiGO platform uses Android services for IVI service
+hosts and therefore it is possible to isolate the IVI service host instances too. The main
+advantage of process isolation is that when a process unexpectedly crashes (and restarts), this
+only affects the service host instances running in that process and not all other services and does
 not affect the UI.
 
 It is also possible to run multiple IVI service hosts in one process to limit the impact of the
@@ -21,33 +21,37 @@ instances of the service host to run in separate processes.
 ## IVI instance overview
 
 A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI instance. There
-is at least a single default IVI instance, typically the one associated with the center stack. A single 
-system may run multiple IVI instances that all need access to service hosts which are specific to 
-each IVI instance and service hosts that are accessible by all IVI instances.
+is at least a single default IVI instance, typically the one associated with the center stack. A
+single system may run multiple IVI instances that all need access to service hosts which are
+specific to each IVI instance and service hosts that are accessible by all IVI instances.
 
 ## Runtime deployment configuration overview
 
-There are two components of an IVI runtime configuration:
-- [`globalDeployments`](TTIVI_INDIGO_API) which are relevant to the entire system.
-- [`multipleInstanceDeployments`](TTIVI_INDIGO_API) which relate to specific IVI instances.
+There are two aspects of an IVI runtime configuration:
 
-### [`globalDeployments`](TTIVI_INDIGO_API) overview
+- The [`globalDeployments`](#globaldeployments), which are relevant to the entire system.
+- The [`multipleInstanceDeployments`](#multipleinstancedeployments), which relate to specific IVI
+  instances.
 
-[`globalDeployments`](TTIVI_INDIGO_API) will contain the service hosts that host IVI Service APIs 
-that are relevant for the whole application. These service hosts will only have one instance 
-available system-wide.
+### `globalDeployments`
 
-In production, there should be only one runtime deployment created inside the 
-[`globalDeployments`](TTIVI_INDIGO_API) configuration: the 
-[`RuntimeDeploymentIdentifier`](TTIVI_INDIGO_API)`.globalRuntime`. However, it is possible to define 
-multiple runtimes. This can be useful, for instance when creating integration tests, in order to 
-test how certain functionality behaves under different deployment configurations. The example below 
-shows two global deployment configurations for the `connectionTestServiceHosts`. The 
-`OwnProcessDeployment` creates an instance of `connectionTestServiceHosts` which runs in its own 
-process, and `MainProcessDeployment` creates an instance in the main process. This deployment could 
-be useful to test if a workflow behaves properly when deployed in its own process or just the main 
+The [`RuntimeConfigurator`](TTIVI_INDIGO_GRADLEPLUGINS_API).`globalDeployments()` will contain the
+service hosts that host IVI Service APIs that are relevant for the whole application. These service
+hosts will only have one instance available system-wide.
+
+In production, there should be only one runtime deployment created inside the `globalDeployments`
+configuration: the
+[`RuntimeDeploymentIdentifier`](TTIVI_INDIGO_GRADLEPLUGINS_API)`.globalRuntime`. However, it is
+possible to define multiple runtimes. This can be useful, for instance when creating integration
+tests, in order to test how certain functionality behaves under different deployment configurations.
+The example below shows two global deployment configurations for the `connectionTestServiceHosts`.
+The `OwnProcessDeployment` creates an instance of `connectionTestServiceHosts` which runs in its own
+process, and `MainProcessDeployment` creates an instance in the main process. This deployment could
+be useful to test if a workflow behaves properly when deployed in its own process or just the main
 one.
-  
+
+__build.gradle.kts:__
+
 ```kotlin
 runtime {
     ...
@@ -66,39 +70,44 @@ runtime {
 }
 ```
 
-### [`multipleInstanceDeployments`](TTIVI_INDIGO_API) overview
+### `multipleInstanceDeployments`
 
-[`multipleInstanceDeployments`](TTIVI_INDIGO_API) will contain services hosts that are relevant for 
-a given IVI instance. Multiple IVI instances can be configured in one deployment. This means that a 
-given process will run as many instances of a service host, as there are IVI instances configured.
+The [`RuntimeConfigurator`](TTIVI_INDIGO_GRADLEPLUGINS_API).`multipleInstanceDeployments()` will
+contain service hosts that are relevant for a given IVI instance. Multiple IVI instances can be
+configured in one deployment. This means, that a given process will run as many instances of a
+service host as there are IVI instances configured.
 
-There can be multiple runtimes created inside [`multipleInstanceDeployments`](TTIVI_INDIGO_API) in 
-production. This can be useful to increase the reliability of the system, since it will enable the 
-isolation of service hosts. In the example below there will be one process spawned with an instance 
-of `accountServiceHost` associated with the `passengerIviInstance`, and another process with an 
-instance of `accountServiceHost` associated with the `accountServiceHost`. Therefore, if one of them 
-crashes there will be no impact on the other.
+In production, there can be multiple runtimes created inside the `multipleInstanceDeployments`
+configuration. This can be useful to increase the reliability of the system, since it will enable
+the isolation of service hosts. In the example below there will be one process spawned with an
+instance of `accountServiceHost` associated with the `passengerIviInstance`, and another process
+with an instance of `accountServiceHost` associated with the `accountServiceHost`. Therefore, if one
+of them crashes there will be no impact on the other.
+
+__build.gradle.kts:__
 
 ```kotlin
 runtime {
 ...
 
-    multipleInstanceDeployments { 
-        create("DriverDeployment") { 
-            iviInstances = listOf(driverIviInstance) 
-            deployServiceHosts(inList(accountServiceHost)) 
-        } 
-        create("PassengerDeployment") { 
-            iviInstances = listOf(passengerIviInstance) 
-            deployServiceHosts(inList(accountServiceHost)) 
-        } 
-    } 
+    multipleInstanceDeployments {
+        create("DriverDeployment") {
+            iviInstances = listOf(driverIviInstance)
+            deployServiceHosts(inList(accountServiceHost))
+        }
+        create("PassengerDeployment") {
+            iviInstances = listOf(passengerIviInstance)
+            deployServiceHosts(inList(accountServiceHost))
+        }
+    }
 }
 ```
 
 ## How to extend the default runtime deployment
 
 In the main application build script, you can override the default runtime deployment. For example:
+
+__build.gradle.kts:__
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
@@ -142,6 +151,8 @@ To add an IVI instance, it needs to be created in the main application build scr
 be mapped to a runtime deployment. The following example defines two IVI instances, the
 "CenterStack" instance and the "Passenger" instance, and maps each IVI instance to its own runtime
 deployment.
+
+__build.gradle.kts:__
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
@@ -203,8 +214,10 @@ option is to selectively deploy services across deployments.
 To use an IVI instance, an Android Activity needs to be bound to an IVI instance. The Android
 manifest entry for the activity must define a metadata entry with the name
 `com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE` and the value of the name of
-IVI instance. The activity must subclass the [`IviActivity`](TTIVI_INDIGO_API) class. To use the 
+IVI instance. The activity must subclass the [`IviActivity`](TTIVI_INDIGO_API) class. To use the
 default system UI use [`DefaultActivity`](TTIVI_INDIGO_API) as the base class.
+
+__AndroidManifest.xml:__
 
 ```xml
 <activity
@@ -233,6 +246,8 @@ The IVI build config only allows an Android service to be deployed in a configur
 For instance, it is possible to deploy an Android service in the same process as an IVI service
 host without the need to hard-code the process name of the Android service in an
 `AndroidManifest.xml` file.
+
+__build.gradle.kts:__
 
 ```kotlin
 val androidService = AndroidServiceConfig("com....Service")
@@ -266,6 +281,8 @@ Android broadcast receivers are not managed by the IVI platform in any way. The 
 only allows a broadcast receiver to be deployed in a configurable process name. For instance, it
 is possible to deploy a broadcast receiver in the same process as an IVI service host without the
 need to hard-code the process name of the broadcast receiver in an `AndroidManifest.xml` file.
+
+__build.gradle.kts:__
 
 ```kotlin
 val broadcastReceiver = BroadcastReceiverConfig("com....BroadcastReceiver")
