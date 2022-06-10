@@ -34,10 +34,3 @@ understanding of these:
   Binding UI controls in layouts directly to data sources in code.
 - [View binding](https://developer.android.com/topic/libraries/view-binding):
   Accessing UI controls defined in layouts from code, without using `findViewById()`.
-
-__Next Step:__ Check the
-[Tutorials and examples](/tomtom-indigo/documentation/tutorials-and-examples/overview)
-pages to get a better understanding of how TomTom IndiGO uses these technologies.
-
-If you encounter any issues, please consult our
-[Frequently Asked Questions](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq).

@@ -145,5 +145,31 @@ Android Virtual Device (AVD) with it:
 
 ![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
-__Next step:__
-[The Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu).
+## Congratulations!
+
+You now have an operational TomTom IndiGO environment. From here on, you have several options:
+
+- Experience the
+  [off-the-shelf features](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality)
+  in the template application.
+
+- Build and execute the example applications, as explained in the 
+  [Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
+
+- Use the
+  [Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu)
+  to explore the TomTom IndiGO platform in more detail. For example, by
+  [starting a route demo](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq#how-do-i-start-a-route-demo).
+
+- As the TomTom IndiGO platform evolves, you can integrate its newest features by following the
+  instructions on the
+  [Upgrade to a Newer Version of TomTom IndiGO](docs/portal/src/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-indigo.md)
+  page.
+
+- When you want to learn more about Kotlin or the Android platform, explore the documentation listed
+  on the
+  [Additional Resources](/tomtom-indigo/documentation/getting-started/additional-resources)
+  page.
+
+- If you encounter any issues, please consult our
+  [Frequently Asked Questions](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq).

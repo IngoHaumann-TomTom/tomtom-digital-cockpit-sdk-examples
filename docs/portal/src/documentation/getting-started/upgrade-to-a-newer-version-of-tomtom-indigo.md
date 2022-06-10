@@ -2,7 +2,7 @@
 title: Upgrade to a Newer Version of TomTom IndiGO
 ---
 
-While developing with TomTom IndiGO, you may want to integrate new features and improvements of
+While developing with TomTom IndiGO, you may wish to integrate new features and improvements of
 TomTom IndiGO. In other words, you want to upgrade to a newer version of the TomTom IndiGO
 platform.
 
@@ -36,6 +36,3 @@ and then merging it with your application.
 
 When rebuilding the application, the updated build files make Gradle pull the new version of the
 TomTom IndiGO binaries from the TomTom repository, and use these in the build process.
-
-__Next step:__ Learn more about Kotlin on the Android platform in the
-[Additional Resources](/tomtom-indigo/documentation/getting-started/additional-resources) page.

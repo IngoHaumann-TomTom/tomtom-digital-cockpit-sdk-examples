@@ -39,6 +39,3 @@ disable the
 feature:
 
 ![Debug Menu Safety Lock](images/debug_menu_safety_lock.png)
-
-__Next step:__
-[Upgrade to a Newer Version of TomTom IndiGO](/tomtom-indigo/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-indigo).
