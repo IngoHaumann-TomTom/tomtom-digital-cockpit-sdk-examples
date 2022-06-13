@@ -90,6 +90,8 @@ stages:
     timeoutInMinutes: 15
     steps:
     - template: .azure-templates/test-unit.yml
+      parameters:
+        artifactName: unit-test
     - template: build/build-cleanup.yml@devops-templates
 
   - job: IntegrationTests
@@ -116,6 +118,16 @@ stages:
     displayName: Run SonarQube analysis
     container: 'docker_indigo_build'
     steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: Download unit-test-results
+      inputs:
+        artifact: unit-test-results
+        path: $(Build.SourcesDirectory)
+    - task: DownloadPipelineArtifact@2
+      displayName: Download unit-test-results
+      inputs:
+        artifact: integration-test-results
+        path: $(Build.SourcesDirectory)
     - template: .azure-templates/sonarqube-steps.yml
 
 - stage: OSSCompliance

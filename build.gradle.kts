@@ -26,6 +26,7 @@ import com.tomtom.navtest.extensions.navTestRoot
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.sonarqube.gradle.SonarQubeProperties
 
 plugins {
     `kotlin-dsl`
@@ -48,12 +49,24 @@ apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/developerPortal.gradle.kts"))
 
+val isRunningOnCi: Boolean by extra(
+    (System.getenv("TF_BUILD") ?: System.getenv("BUILD_BUILDNUMBER"))
+        .orEmpty()
+        .isNotEmpty()
+)
+
 val jvmVersion = JavaVersion.toVersion(indigoDependencies.versions.jvm.get())
 
 // Make a single directory where to store all test results.
-val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
-val testRootDir: File by extra(File(rootProject.projectDir, "IviTest"))
-val testOutputDirectory: File by extra(testRootDir.resolve(LocalDateTime.now().format(formatter)))
+val testOutputDirectory: File by extra {
+    val testRootDir: File by extra(File(rootProject.projectDir, "IviTest"))
+    if (isRunningOnCi) {
+        testRootDir
+    } else {
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+        testRootDir.resolve(LocalDateTime.now().format(formatter))
+    }
+}
 
 ivi {
     dependencySource =
@@ -333,9 +346,43 @@ subprojects {
 
         sonarqube {
             properties {
-                property("sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir.path}/jacoco/xml/coverage-report.xml")
-                property("sonar.androidLint.reportPaths", "${project.buildDir.path}/reports/lint/report.xml")
+                val projectNavTestDir: File by lazy {
+                    testOutputDirectory.resolve(project.name)
+                }
+
+                setSonarPropertyPaths(
+                    propertyName = "sonar.coverage.jacoco.xmlReportPaths",
+                    paths = listOf(
+                        "$projectNavTestDir/unitDebug/jacoco/xml/coverage-report.xml",
+                        "$projectNavTestDir/unitRelease/jacoco/xml/coverage-report.xml"
+                    )
+                )
+
+                setSonarPropertyPaths(
+                    propertyName = "sonar.junit.reportPaths",
+                    paths = listOf(
+                        "$projectNavTestDir/unitDebug/junitXml",
+                        "$projectNavTestDir/unitRelease/junitXml",
+                        "$projectNavTestDir/androidTestDebug/results",
+                        "$projectNavTestDir/androidTestRelease/results",
+                    )
+                )
             }
         }
+    }
+}
+
+/**
+ * Add a Sonar property referring to filesystem paths.
+ * Sonar is picky about broken paths, and some properties support wildcards while others do not;
+ * therefore it seems sensible to only give existing paths to properties.
+ */
+fun SonarQubeProperties.setSonarPropertyPaths(propertyName: String, paths: List<String>) {
+    val validPaths = paths.mapNotNull { path ->
+        File(path).takeIf { it.exists() }?.absolutePath
+    }
+    if (validPaths.isNotEmpty()) {
+        logger.lifecycle("${project.name}: Sonarqube property '$propertyName' set to: $validPaths")
+        property(propertyName, validPaths.joinToString(", "))
     }
 }
