@@ -97,7 +97,7 @@
             android:id="@+id/example_media_miniplayer_progress_bar"
             style="?attr/tt_smoothprogressbar_style"
             android:layout_width="0dp"
-            android:layout_height="?attr/ttivi_media_player_progressbar_height"
+            android:layout_height="?attr/ttivi_processpanel_progressbar_height"
             android:layout_marginTop="?attr/tt_spacing_s"
             android:max="100000"
             auto:layout_constraintBottom_toBottomOf="parent"
