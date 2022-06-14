@@ -191,26 +191,7 @@ stages:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
     jobs:
-      - job: DownloadAndVerify
-        displayName: 'Verify SDK contents'
-        timeoutInMinutes: 30
-        container: docker_indigo_build
-        steps:
-          - template: .azure-templates/downloading-nexus.yml
-            parameters:
-              sdkArtifactVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
-              versionLineageOs: '$(versionLineageOs)'
-          - template: gradle/gradle.yml@devops-templates
-            parameters:
-              cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
-              tasks: >-
-                assembleDebug
-              projectOptions: >-
-                -PnexusUsername=$(VERIFICATION_USERNAME)
-                -PnexusPassword=$(VERIFICATION_PASSWORD)
-                -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
-              displayName: 'Assemble debug APKs using dependencies from Nexus'
-          - template: build/build-cleanup.yml@devops-templates
+      - template: .azure-templates/verify-sdk-jobs.yml
 
   - stage: Documentation
     displayName: 'Generate and publish API References and Developer Portal'

@@ -1,0 +1,62 @@
+# Copyright © 2022 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+jobs:
+  - job: DownloadAndVerifyWithoutAlexaApp
+    displayName: 'Verify SDK contents without Alexa examples'
+    timeoutInMinutes: 30
+    container: docker_indigo_build
+    steps:
+      - template: downloading-nexus.yml
+        parameters:
+          sdkArtifactVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+          versionLineageOs: '$(versionLineageOs)'
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+          tasks: >-
+            assembleDebug
+          projectOptions: >-
+            -PnexusUsername=$(VERIFICATION_USERNAME)
+            -PnexusPassword=$(VERIFICATION_PASSWORD)
+            -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
+          displayName: 'Assemble debug APKs using dependencies from Nexus'
+      - template: build/build-cleanup.yml@devops-templates
+
+  - job: DownloadAndVerifyWithAlexaApp
+    displayName: 'Verify SDK contents with Alexa examples'
+    timeoutInMinutes: 30
+    container: docker_indigo_build
+    steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: tomtom-indigo-sdk
+          path: $(Build.SourcesDirectory)/downloads
+        displayName: Download the tomtom-indigo-sdk pipeline artifact
+        condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: '**/*.tar.gz'
+          destinationFolder: '$(Build.SourcesDirectory)/downloads/sdk'
+          cleanDestinationFolder: false
+          overwriteExistingFiles: false
+        displayName: Extract tomtom-indigo-sdk-${{parameters.sdkArtifactVersion}}.tar.gz
+        condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          cwd: $(Build.SourcesDirectory)/downloads/sdk/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+          tasks: >-
+            assembleDebug
+          projectOptions: >-
+            -PnexusUsername=$(NEXUS_USERNAME)
+            -PnexusPassword=$(NEXUS_PASSWORD)
+            -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
+            -PoptInToAlexaExamples=true
+          displayName: 'Assemble debug APKs using dependencies from Nexus'
+      - template: build/build-cleanup.yml@devops-templates
