@@ -159,7 +159,8 @@ stages:
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
   dependsOn:
     - ProductVersion
-    - Build
+    - Analyse
+    - OSSCompliance
   variables:
     product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
   jobs:
