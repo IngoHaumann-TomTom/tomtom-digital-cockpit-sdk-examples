@@ -164,7 +164,7 @@ user interface so that the end-user can access them.
 Creating a media control can be the way to do that. A media control is a visual control for a
 media-related command. They appear in the following locations:
 - The playback controls. This is the bottom bar in the stock media frontend.
-- The mini player. This is the process bar from the stock media frontend that appears when the
+- The mini player. This is the process panel from the stock media frontend that appears when the
   frontend is closed.
 
 Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)

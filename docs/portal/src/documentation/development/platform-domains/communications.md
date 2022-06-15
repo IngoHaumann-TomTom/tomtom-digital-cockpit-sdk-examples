@@ -34,7 +34,7 @@ The following diagram shows a high-level overview of the architecture of calling
 It shows the following components:
 
 - __Communications frontend__: This implements the user interface for incoming call notifications,
-    the ongoing call process bar, as well as the recent calls and contacts list.
+    the ongoing call process panel, as well as the recent calls and contacts list.
 - __Telecom service__: This service provides support for initiating calls and getting the status
     of all current calls, both incoming and outgoing.
 - __Custom connection service__: An example of a custom connection service, which can be used to

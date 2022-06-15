@@ -148,7 +148,7 @@ UI elements.
 The background colors are classified into:
 
 - _Surface colors_ that affect the background of the components. The surface is the background of
-  all panels, notifications, the process bar, etc.
+  all panels, notifications, the process panel, etc.
 - _Primary colors_ that are used for primary actions like primary buttons.
 - _Secondary colors_ that are used for secondary actions like secondary buttons, the background of
   segmented controls, etc.
