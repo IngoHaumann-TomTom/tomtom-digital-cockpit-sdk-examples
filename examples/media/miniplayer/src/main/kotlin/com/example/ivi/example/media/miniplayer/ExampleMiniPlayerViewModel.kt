@@ -50,8 +50,8 @@ internal class ExampleMiniPlayerViewModel(panel: ExampleMiniPlayerPanel) :
     val primaryText = playbackViewModel.primaryText
     val secondaryText = playbackViewModel.secondaryText
     val elapsedTime: LiveData<DurationStringResolver?> =
-        playbackViewModel.elapsedTimeMs.map { elapsedTime ->
-            elapsedTime?.let { DurationStringResolver(it.toDuration(DurationUnit.MILLISECONDS)) }
+        playbackViewModel.elapsedTime.map { elapsedTime ->
+            elapsedTime?.let { DurationStringResolver(it) }
         }
     val isBuffering = playbackViewModel.isBuffering
     val artUri = playbackViewModel.artUri

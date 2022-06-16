@@ -29,7 +29,7 @@ internal class ExampleMediaSourceItemDataExtractionPolicy : MediaItemDataExtract
             artworkUri = item.artUri,
             isPlayable = item.isPlayable,
             isBrowsable = item.isBrowsable,
-            durationMs = item.durationMs
+            duration = item.duration
         )
     }
 }
