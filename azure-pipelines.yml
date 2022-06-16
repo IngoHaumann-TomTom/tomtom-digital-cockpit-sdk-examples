@@ -57,7 +57,10 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.1.0
+    ref: refs/tags/2.1.2
+  - repository: indigoqa
+    type: git
+    name: IVI/indigo-qa
 
 pool: 'IVI 2.0'
 
@@ -142,10 +145,6 @@ stages:
     displayName: OSS compliance scan
     container: docker_indigo_scanner
     steps:
-    - bash: |
-        set -eux
-        echo -e "\nnavkit2ApiKey=$(NAVKIT2_API_KEY)" >> $(Build.SourcesDirectory)/gradle.properties
-      displayName: configure navkit2api key for scan
     - template: oss/scan-and-report.yml@devops-templates
       parameters:
         conf_file_path: .azure-templates/bdtools.yml
@@ -155,6 +154,8 @@ stages:
         artifactory_location: products_indigo_examples
         bdtools_environment: prod
         run_compliancecheck: true
+        check_license_risk: true
+
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
