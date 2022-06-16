@@ -8,6 +8,7 @@
 # immediately return or destroy it.
 
 parameters:
+  artifactoryBaseUrl: https://artifactory.navkit-pipeline.tt3.com/artifactory
   # The API reference subfolder names being used on S3.
   gradlepluginsApiSubFolder: 'tomtom-indigo-gradleplugins-api'
   commsSdkApiSubFolder: 'tomtom-indigo-comms-sdk-api'
@@ -23,7 +24,7 @@ jobs:
       - checkout: none
       - template: download/download-and-verify.yml@devops-templates
         parameters:
-          downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/$(VERSION_PLATFORM)/api-reference-docs-$(VERSION_PLATFORM).tar.gz
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/$(VERSION_PLATFORM)/api-reference-docs-$(VERSION_PLATFORM).tar.gz
           checksumType: 'sha256'
           displayName: Download Gradle Plugins API Reference
       - task: ExtractFiles@1
@@ -41,7 +42,7 @@ jobs:
         displayName: 'Publish ${{ parameters.gradlepluginsApiSubFolder }} docs as a pipeline artifact'
       - template: download/download-and-verify.yml@devops-templates
         parameters:
-          downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/$(VERSION_COMMUNICATIONS_SDK)/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/$(VERSION_COMMUNICATIONS_SDK)/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz
           checksumType: 'sha256'
           displayName: Download Communications SDK API Reference
       - task: ExtractFiles@1
@@ -59,7 +60,7 @@ jobs:
         displayName: 'Publish ${{ parameters.commsSdkApiSubFolder }} docs as a pipeline artifact'
       - template: download/download-and-verify.yml@devops-templates
         parameters:
-          downloadUrl: $(artifactoryBaseUrl)/nav-maven-release/com/tomtom/tools/android/api-reference-docs/$(VERSION_TOMTOM_ANDROID_TOOLS)/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz
+          downloadUrl: ${{ parameters.artifactoryBaseUrl }}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/$(VERSION_TOMTOM_ANDROID_TOOLS)/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz
           checksumType: 'sha256'
           displayName: Download TomTom Android Tools API Reference
       - task: ExtractFiles@1
