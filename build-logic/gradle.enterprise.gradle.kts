@@ -41,5 +41,31 @@ gradleEnterprise {
             isTaskInputFiles = true
         }
         isUploadInBackground = ! isCiBuild
+        if (isCiBuild) {
+            val baseUrl = System.getenv("SYSTEM_TEAMFOUNDATIONCOLLECTIONURI")
+            val project = System.getenv("SYSTEM_TEAMPROJECT")
+            val buildId = System.getenv("BUILD_BUILDID")
+            val buildNumber = System.getenv("BUILD_BUILDNUMBER")
+
+            val buildUrl = "$baseUrl$project/_build/results?buildId=$buildId"
+            link("Build Url", buildUrl)
+            value("Build Number", buildNumber)
+        }
+    }
+
+    buildCache {
+        local {
+            isEnabled = true
+        }
+
+        remote<HttpBuildCache> {
+            isEnabled = true
+            isPush = isCiBuild
+            url = uri("https://gradle-poc.tomtomgroup.com/cache/")
+            credentials {
+                username = "ci"
+                password = System.getenv("GRADLE_REMOTE_CACHE_PWD")
+            }
+        }
     }
 }
