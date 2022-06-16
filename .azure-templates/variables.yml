@@ -14,3 +14,6 @@ variables:
   # Version of the Docker images from the `indigo-docker` repo.
   - name: dockerImageVersion
     value: '4.0.5'
+  # Artifactory base url.
+  - name: artifactoryBaseUrl
+    value: 'https://artifactory.navkit-pipeline.tt3.com/artifactory'

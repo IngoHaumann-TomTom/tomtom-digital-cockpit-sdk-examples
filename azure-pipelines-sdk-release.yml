@@ -74,6 +74,8 @@ variables:
   - name: publishEmulatorImages
     ${{ if eq(parameters['shouldPublishEmulatorImages'], true) }}:
       value: '--publish_emulators'
+  - name: ossReportName
+    value: 'oss-compliance_tomtom-indigo-sdk'
 
 resources:
   containers:
@@ -180,7 +182,7 @@ stages:
               conf_file_path: .azure-templates/bdtools-sdk.yml
               product: ivi-indigo-sdk
               product_version: $(VERSION_EXAMPLES)
-              report_filename: "oss-compliance_tomtom-indigo-sdk"
+              report_filename: $(ossReportName)
               artifactory_location: indigo_sdk_ossreport
               bdtools_environment: prod
 
@@ -247,6 +249,16 @@ stages:
               archiveFilePatterns: 'downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz'
               destinationFolder: $(Build.SourcesDirectory)/artifactsource
               cleanDestinationFolder: true
+          - template: download/download-and-verify.yml@devops-templates
+              downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/indigo_sdk_ossreport/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/$(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md
+              downloadDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+              checksumType: 'sha256'
+              displayName: Download IndiGO SDK OSS report
+          - bash: |
+              set -eux
+              mv $(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md "oss-compliancy-report.md"
+            workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+            displayName: Rename IndiGO SDK OSS report
           - template: .azure-templates/publishing-github.yml
             parameters:
               internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/

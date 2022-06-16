@@ -9,7 +9,7 @@
 
 parameters:
   # Location of the releases.json file on Artifactory.
-  urlReleasesJsonFile: 'https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json'
+  urlReleasesJsonFile: '$(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json'
   deleteReleaseEntry: false
 
 steps:
