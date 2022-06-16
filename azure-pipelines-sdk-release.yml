@@ -250,6 +250,7 @@ stages:
               destinationFolder: $(Build.SourcesDirectory)/artifactsource
               cleanDestinationFolder: true
           - template: download/download-and-verify.yml@devops-templates
+            parameters:
               downloadUrl: https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/indigo_sdk_ossreport/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/$(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md
               downloadDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
               checksumType: 'sha256'
