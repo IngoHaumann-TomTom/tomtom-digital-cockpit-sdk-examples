@@ -286,3 +286,12 @@ corresponding platform key.
 The TomTom Indigo platform debug key and password files, used for the pre-created tablet and
 emulator images, are in the `keystore` directory in the example source. Drop in your own platform
 keys, replacing the existing ones in that directory, then rebuild and deploy.
+
+---
+
+## Android doesn't allow my application while driving
+
+An IVI application must tag all its activities to be _Distraction Optimized_; see more about 
+[driver distraction guidelines](https://source.android.com/devices/automotive/driver_distraction/guidelines#do).
+To do this, add the `distractionOptimized` meta-data attribute in the `AndroidManifest.xml` for all 
+activities. See also [`IviActivity`](TTIVI_INDIGO_API).
