@@ -143,13 +143,14 @@ guide, and "Register for early access".
         }
       },
       {
-        title: "Tutorial: Add Support for a Custom Non-Android App Type",
-        body: `For a custom, non-Android, app type, a means to access the list of available apps to 
-        display in the App Launcher and also a means to launch these apps will be required. This 
-        tutorial explains how to implement this functionality.`,
+        title: "Integrating Amazon Alexa",
+        body: `TomTom IndiGO can support the use of multiple voice personal assistants (VPAs) in a 
+        single product. The end-user can invoke each one with a separate wake-up-word and then use 
+        them one at a time. TomTom IndiGO comes with a pre-integration of Amazon's VPA, Alexa, 
+        specifically Alexa Auto.`,
         button: {
           label: "Read more",
-          href: "/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type"
+          href: "/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa"
         }
       },
     ]
