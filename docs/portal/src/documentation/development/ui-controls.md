@@ -6,20 +6,32 @@ In TomTom IndiGO, the
 [System UI](/tomtom-indigo/documentation/development/system-ui)
 is made up of a number of panels, such as the main menu, notifications, etc.
 Each panel visually represents a frontend through a fragment made up of different UI elements like
-text, images, buttons, etc. To ensure a consistent UI style and to minimize implementation effort,
-these elements are implemented as reusable UI controls in the
-[TomTom Android Tools](/tomtom-indigo/api-reference/api-reference) library. They support various 
-forms of user interaction and their appearance can be easily customized.
+text, images, buttons, etc. 
 
-The `com.tomtom.tools.android.core.theme` module declares the view element attributes that these
-controls need, to define their appearance. When using these controls, it is mandatory to define
-these attribute values. For further information, check the
-[Theming](/tomtom-indigo/documentation/development/theming-and-customization)
+TomTom provides a reusable UI controls library 
+[TomTom Android Tools](/tomtom-indigo/api-reference/api-reference) that developers can use to build 
+the user interface of their frontend. These controls have additional features compared to their 
+built-in Android equivalents to allow developers to build a consistent look-and-feel and to 
+minimize implementation effort. The controls also support various forms of user interaction and 
+their appearance can be easily customized.
+
+It is recommended that, __where__ __possible__, controls from these libraries are used instead of 
+their Android equivalents so that the resulting IVI system has a consistent UI across their 
+frontends. The standard build-in Android control should still be used where no equivalent exists 
+in the UI library or where the Android control provides features not available in the UI library
+control.
+
+For a complete list of available controls and specific details about each one, see the API 
+reference of the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
+
+It is possible to customise the style of the UI controls by setting their attribute values to
+specific theme attributes. The `com.tomtom.tools.android.core.theme` module declares the view 
+element attributes that these controls need, to define their appearance. When using these controls, 
+it is mandatory to define these attribute values. More information on how to theme UI controls 
+can be found in the [Theming](/tomtom-indigo/documentation/development/theming-and-customization)
 documentation.
 
-For more details of these controls, see the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
-
-The most commonly used custom controls are:
+The most commonly used TomTom UI controls are:
 
 - [TextView](#textview)
 - [Button](#button)
@@ -35,7 +47,7 @@ The most commonly used custom controls are:
 - [ScrollView](#scrollview)
 - [ProgressBar](#progressbar)
 
-Other controls that are available in TomTom IndiGO are:
+Other controls that are also available in TomTom IndiGO are:
 
 - [InformationControl](#informationcontrol)
 - [NavigationBar](#navigationbar)
@@ -58,22 +70,38 @@ In contrast to the Android class
 [`AppCompatTextView`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatTextView),
 this control also provides predefined option for; Vertical alignment.
 
-Examples of [`TtTextView`](TTIVI_ANDROID_TOOLS_API)s configured in various ways:
+This is how a [`TtTextView`](TTIVI_ANDROID_TOOLS_API)s can look when configured in various ways:
 
 ![TtTextView objects with different configurations](images/ui-controls-textview.png)
 
+A [`TtTextView`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a 
+standard Android view. The following example illustrates how to do this and how to style the control:
+
+```xml
+ <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+    android:id="@+id/displayLargeText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Display large"
+    android:textAppearance="?attr/tt_display_text_style_l"
+    android:textColor="?attr/tt_surface_content_color_emphasis_low" />
+```
+
+Predefined styling attributes are provided to help style the text label. More information on these can 
+be found in the 
+[Theming and Customization](/tomtom-indigo/documentation/development/theming-and-customization)
+document.
+
 ### Button
 
-The [`TtButton`](TTIVI_ANDROID_TOOLS_API) class provides a basic form of interaction. It can be tapped
-on to trigger an action.
-
-The [`TtButton`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
+The [`TtButton`](TTIVI_ANDROID_TOOLS_API) class contains an implementation of a basic tappable 
+button UI control and adds additional features not present in the built-in Android
 [`AppCompatButton`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatButton)
-the following features:
+class. These include:
 
 - You can provide a drawable, a text label or both, that will be shown on the button.
 - Showing a badge on top of the drawable is also possible. A typical use case could be to inform the
-  user when something changes, like new messages become available.
+  user that something has changed, for example, new messages have arrived.
 - Several types of buttons are defined. They all have a different appearance and should be used for
   different use cases:
     - __Primary__ is used for actions with the most emphasis.
@@ -84,7 +112,53 @@ the following features:
     - __Floating__ is used for buttons which hover over content to promote an action.
     - __Toggle__ is used for buttons which allow the user to change a setting between two states.
 
+The following diagram shows examples of these buttons. The specific appearances such as 
+__Destructive__ and __Acceptance__ can be used to ensure that all buttons with those roles look
+and behave in the same way across the entire IVI system.
+
 ![TtButton objects with various configurations](images/ui-controls-buttons-overview.png)
+
+A [`TtButton`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a 
+standard Android view. 
+
+The following example illustrates how to add a primary button with a text label to your UI:
+
+```xml
+<com.tomtom.tools.android.api.uicontrols.button.TtButton
+    android:id="@+id/primaryButtonExample"
+    style="@style/TtAppButtonStyle"
+    android:layout_gravity="center"
+    android:text="I am a Primary Button"
+    auto:ttActionType="ActionType.PRIMARY" />
+```
+    
+where the `TtAppButtonStyle` style is defined as
+
+```xml
+<style name="TtAppButtonStyle">
+    <item name="android:layout_marginHorizontal>?attr/tt_spacing_3"</item>
+    <item name="android:layout_marginVertical>?attr/tt_spacing_5"</item>
+    <item name="android:padding=">?attr/tt_spacing_2"</item>
+</style>
+```
+
+The style can be reused so that other buttons with different `ttActionType`s have the same 
+margin and padding.
+
+To add a teriary button with an icon, the following XML code can be used:
+
+```xml
+<com.tomtom.tools.android.api.uicontrols.button.TtButton
+    android:id="@+id/iconButtonExample"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    auto:ttActionType="tertiary"
+    auto:ttDrawable="@drawable/myButtonIcon"
+    auto:ttDrawableTint="?attr/tt_surface_content_color_emphasis_high" />
+```
+
+The [`TtButton`](TTIVI_ANDROID_TOOLS_API) API reference describes the other available attributes 
+which can be used to for example, add an image to the button.
 
 ### TextInputField
 
