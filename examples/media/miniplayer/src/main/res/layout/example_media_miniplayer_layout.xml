@@ -24,14 +24,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="?attr/tt_spacing_s"
+        android:layout_margin="?attr/tt_spacing_5"
         auto:visibleIf="@{viewModel.isAvailable}">
 
         <com.tomtom.tools.android.api.uicontrols.imageview.TtRemoteImageView
             android:id="@+id/example_media_miniplayer_art"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="?attr/tt_spacing_m"
+            android:paddingStart="?attr/tt_spacing_6"
             android:paddingEnd="0dp"
             auto:layout_constraintBottom_toBottomOf="parent"
             auto:layout_constraintDimensionRatio="1:1"
@@ -45,8 +45,8 @@
             android:id="@+id/example_media_miniplayer_primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="?attr/tt_spacing_l"
-            android:layout_marginEnd="?attr/tt_spacing_l"
+            android:layout_marginStart="?attr/tt_spacing_8"
+            android:layout_marginEnd="?attr/tt_spacing_8"
             android:singleLine="true"
             android:text="@{viewModel.primaryText}"
             android:textAppearance="?attr/tt_headline_text_style_s"
@@ -98,7 +98,7 @@
             style="?attr/tt_smoothprogressbar_style"
             android:layout_width="0dp"
             android:layout_height="?attr/ttivi_processpanel_progressbar_height"
-            android:layout_marginTop="?attr/tt_spacing_s"
+            android:layout_marginTop="?attr/tt_spacing_5"
             android:max="100000"
             auto:layout_constraintBottom_toBottomOf="parent"
             auto:layout_constraintEnd_toStartOf="@id/example_media_miniplayer_art"

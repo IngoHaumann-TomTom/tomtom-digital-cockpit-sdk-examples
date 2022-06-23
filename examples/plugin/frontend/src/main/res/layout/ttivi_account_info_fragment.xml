@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginVertical="?attr/tt_spacing_xxxl"
+            android:layout_marginVertical="?attr/tt_spacing_16"
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
@@ -45,7 +45,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_l" />
+                android:layout_height="?attr/tt_spacing_8" />
 
             <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_xxxl" />
+                android:layout_height="?attr/tt_spacing_16" />
 
             <com.tomtom.tools.android.api.uicontrols.button.TtButton
                 style="?attr/tt_button_style"

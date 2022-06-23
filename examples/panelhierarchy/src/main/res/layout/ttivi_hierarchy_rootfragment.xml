@@ -32,7 +32,7 @@
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="?attr/tt_spacing_xxxl"
+            android:layout_margin="?attr/tt_spacing_16"
             android:gravity="start"
             android:text="@string/ttivi_hierarchy_header"
             android:textAlignment="textStart"
@@ -41,7 +41,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l" />
+            android:layout_height="?attr/tt_spacing_8" />
 
         <com.tomtom.tools.android.api.uicontrols.button.TtButton
                 style="?attr/tt_button_style"
@@ -52,7 +52,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l" />
+            android:layout_height="?attr/tt_spacing_8" />
 
         <com.tomtom.tools.android.api.uicontrols.button.TtButton
                 style="?attr/tt_button_style"
@@ -63,7 +63,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="?attr/tt_spacing_l" />
+            android:layout_height="?attr/tt_spacing_8" />
 
         <com.tomtom.tools.android.api.uicontrols.button.TtButton
                 style="?attr/tt_button_style"

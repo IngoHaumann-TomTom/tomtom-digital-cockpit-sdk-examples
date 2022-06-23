@@ -103,9 +103,9 @@ how categories are defined, and which categories attributes belong to, are:
 <!-- attrs_dimens_spacing.xml -->
 <resources>
     <declare-styleable name="TtiviThemeCategoryDimensSpacing">
-        <attr name="tt_spacing_s" format="dimension" />
-        <attr name="tt_spacing_m" format="dimension" />
-        <attr name="tt_spacing_l" format="dimension" />
+        <attr name="tt_spacing_1" format="dimension" />
+        <attr name="tt_spacing_2" format="dimension" />
+        <attr name="tt_spacing_3" format="dimension" />
     </declare-styleable>
 </resources>
  

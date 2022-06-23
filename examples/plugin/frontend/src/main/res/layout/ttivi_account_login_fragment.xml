@@ -42,7 +42,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_l" />
+                android:layout_height="?attr/tt_spacing_8" />
 
             <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
                 android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_xs"
+                android:layout_height="?attr/tt_spacing_4"
                 />
 
             <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
@@ -72,7 +72,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_l" />
+                android:layout_height="?attr/tt_spacing_8" />
 
             <com.tomtom.tools.android.api.uicontrols.textinputfield.TtTextInputField
                 android:id="@+id/frontend_account_login_screen_login_username_edit"
@@ -90,7 +90,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_l" />
+                android:layout_height="?attr/tt_spacing_8" />
 
             <!-- TODO(IVI-7440): TtTextInputField doesnt show asterisks chars for passwords type inputs -->
             <com.tomtom.tools.android.api.uicontrols.textinputfield.TtTextInputField
@@ -109,7 +109,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="?attr/tt_spacing_xxxl" />
+                android:layout_height="?attr/tt_spacing_16" />
 
             <com.tomtom.tools.android.api.uicontrols.button.TtButton
                 style="?attr/tt_button_style"
