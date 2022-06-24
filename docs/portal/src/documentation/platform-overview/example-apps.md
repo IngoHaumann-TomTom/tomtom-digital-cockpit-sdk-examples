@@ -155,5 +155,5 @@ example app.
 ## Debug menu
 
 The template app and the example apps also give access to the
-[debug menu](/tomtom-indigo/documentation/getting-started/the-debug-menu),
+[Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu),
 which allows you to tweak the TomTom IndiGO behavior.

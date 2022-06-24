@@ -147,7 +147,9 @@ Android Virtual Device (AVD) with it:
 
 ## Congratulations!
 
-You now have an operational TomTom IndiGO environment. From here on, you have several options:
+You now have an operational TomTom IndiGO environment.
+
+From here on, you have several options:
 
 - Experience the
   [off-the-shelf features](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality)
@@ -163,7 +165,7 @@ You now have an operational TomTom IndiGO environment. From here on, you have se
 
 - As the TomTom IndiGO platform evolves, you can integrate its newest features by following the
   instructions on the
-  [Upgrade to a Newer Version of TomTom IndiGO](docs/portal/src/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-indigo.md)
+  [Upgrade to a Newer Version of TomTom IndiGO](docs/portal/src/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-indigo)
   page.
 
 - When you want to learn more about Kotlin or the Android platform, explore the documentation listed
