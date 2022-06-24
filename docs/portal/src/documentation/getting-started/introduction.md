@@ -28,7 +28,7 @@ navigation available in your products.
 The TomTom IndiGO SDK has the following minimal requirements:
 
 - OpenJDK 11. (AdoptOpenJDK 11 for Windows.)
-- Android Studio Arctic Fox 2020.3.1 or more recent.
+- Android Studio `Chipmunk | 2021.2.1` or newer.
 - __Windows:__ WinRAR, to support compressed archives with long paths.
 
 If you are new to Android or Kotlin, please have a look at our

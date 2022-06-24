@@ -32,7 +32,10 @@ the SDK versions under `com/tomtom/indigo/tomtom-indigo-sdk`:
 - Click on the `+` icon to the left of this version to open its folder.
 - Click on the `tomtom-indigo-sdk-<version>.tar.gz` file to see its details in the panel on the
   right.
-- Click the `Path` link in the panel on the right to start downloading the zip.
+- Click the `Path` link in the panel on the right to start downloading the SDK tarball.
+- Extract the SDK tarball to your local disk.
+  - __Windows:__ Use a tool that supports long filenames, for example
+    [WinRAR](https://www.win-rar.com).
 
 ## Accessing the TomTom IndiGO SDK Example Sources through GitHub
 

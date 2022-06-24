@@ -23,9 +23,11 @@ plugin:
 
 ![Upgrade Gradle Plugin](images/android_studio_upgrade_gradle_plugin.png)
 
-__Ignore this upgrade!__ The TomTom IndiGO build files specify the exact version of the plugin that is
-needed. The upgrade by Android Studio would change the TomTom IndiGO build files to use a wrong and
-hard-coded version of this plugin.
+<Blockquote type="warning" hasIcon>
+    <b>Ignore this upgrade!</b> The TomTom IndiGO build files specify the exact version of the
+    plugin that is needed. The upgrade by Android Studio would change the TomTom IndiGO build files
+    into using a wrong and hard-coded version of this plugin.
+</Blockquote>
 
 ## Building with Android Studio
 
