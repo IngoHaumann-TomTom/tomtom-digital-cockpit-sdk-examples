@@ -2,6 +2,7 @@
 title: IVI Services
 ---
 
+An IVI system is made up of IVI services which can provide a UI or another service with information.
 TomTom IndiGO services provide a mechanism to encapsulate longer running tasks and business logic 
 for some distinct functionality in the platform. They don't contain a User Interface (UI) of their 
 own and can run in the background for a long time, matching the platform lifetime if required.
@@ -13,9 +14,10 @@ functionality of the product. The User Interface (UI) of the application is buil
 IndiGO [frontend plugins](/tomtom-indigo/documentation/development/frontend-plugins), and are created to 
 display something on the screen. They are subsequently destroyed when content disappears from the 
 screen. Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated 
-by the Android platform. Whereas service hosts should contain functionality that does not need to 
-(or should) run on the UI thread, as they run in an entirely different process. IVI service hosts 
-can implement multiple IVI service interfaces.
+by the Android platform. Whereas IVI services should contain functionality that does not need to 
+(or should not) run on the UI thread. IVI services are hosted in service hosts and each service host 
+instance will host at least one IVI service implementation. Service hosts may be configured to run
+in separate processes, therefore IVI service implementations may as well run in separate processes.
 
 ### Discoverable services
 
