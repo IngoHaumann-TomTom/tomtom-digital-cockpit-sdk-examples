@@ -2,12 +2,182 @@
 title: Theming and Customization
 ---
 
-## Theming
+## Introduction
 
-The look of TomTom IndiGO is determined by the theme. A theme consists of a number of styles, each 
-of which focus on a different category of themeable attributes, like colors or spacing. You can 
-change the styles used in the theme to adapt the look to match your brand. This page explains the 
-details of theming and how to customize it.
+TomTom IndiGO supports theming of the UI. This enables IVI systems built on top of TomTom IndiGO
+to have a customized look and feel which is aligned with the branding, make or model of the 
+vehicle and which is consistent across the entire system. It also allows the system to support 
+runtime theme switching, enabling the possibility of allowing the end-user to change the look of 
+their UI while they are using their IVI system.
+
+A theme is composed of styles which are divided into [theme categories](#theme-categories). 
+Each category focuses on an aspect of the visual user interface such as colors or spacing between 
+UI components. This page describes how to add themable UI controls and the theming system in 
+detail.
+
+## How to Implement a Themable UI
+
+TomTom's IndiGO's theming mechanism makes use of 
+[Android's stylable XML attributes](https://developer.android.com/training/custom-views/create-view#customattr) 
+and [Android styles](https://developer.android.com/guide/topics/resources/style-resource). The 
+rest of this guide assumes a basic understanding of these concepts. 
+
+A theme is divided into theme categories, each of which consists of a list of Android XML 
+attributes which can be used to set the styling of a specific aspect of the UI, such as the
+color of some text. When implementing the UI, the developer can select attributes from the 
+appropriate category instead of hardcoding a value into their layout XML.
+
+Examples of the built-in theme categories include:
+
+- __TtThemeCategoryColors__ contains the possible common theme colors. This can be used to 
+ensure similar parts of the UI such as the backgrounds of all panels of a certain type are the 
+same color.
+- __TtThemeCategoryDimensSpacing__ contains the common spacing values in the theme. This can
+be used to ensure that all of the margin and padding values around similar UI controls such 
+as the padding inside OK buttons is always the same.
+- __TtThemeCategoryDimensTextSize__ contains the common text sizes in the theme. This can be
+used to ensure that for example, all titles have the same size. 
+
+For example, inside `TtThemeCategoryColors`, there is
+
+```xml
+...
+<!-- Used inside UI elements which require the most attention. -->
+<attr name="tt_surface_content_color_emphasis_high" format="color" />
+...
+<!-- Used to indicate something is wrong. E.g., an error message in a text field. -->
+<attr name="tt_surface_content_color_critical" format="color" />
+```
+
+As described by its documentation, the `tt_surface_content_color_emphasis_high ` 
+attribute should be used when styling a UI content whose color should indicate to the user
+that it is important. This attribute can be used as the value of `android:textColor`
+when styling a [`TtTextView`](TTIVI_ANDROID_TOOLS_API). (More detailed information on how 
+colors are organized in the theming system is available in the [Color System](#color-system) 
+section.
+
+For example, if we were adding an important title to the UI, this attribute could be used to 
+set the text color: 
+
+```xml
+<com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+    android:id="@+id/importantTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Important Title"
+    android:textAppearance="?attr/tt_display_text_style_l"
+    android:textColor="?attr/tt_surface_content_color_emphasis_high" />
+```
+
+Alternatively, to style multiple buttons in the same way, the attribute can be used in
+an [Android style](https://developer.android.com/guide/topics/resources/style-resource):
+
+```xml
+<style name="ImportantTextViewStyle">
+    <item name="android:textColor>?attr/tt_surface_content_color_emphasis_high"</item>
+</style>
+
+<style name="ImportantButtonStyle">
+    <item name="android:textColor>?attr/tt_surface_content_color_emphasis_high"</item>
+</style>
+```
+
+The use of these attributes is core to ensuring that the entire UI of the IVI system 
+is consistent __and__ changes consistently when the end-user changes the UI theme at runtime.
+
+To change the actual values of these attributes (and hence the look of the UI), see the section
+[Customizing the Built-In Themes](#customizing-the-built-in-themes)
+
+TomTom IndiGO also provides a 
+[UI controls](/tomtom-indigo/documentation/development/ui-controls) library 
+consisting of a number of UI controls which extend what is available by default in Android. These 
+also help with producing a themable UI and it is advised to use them where possible.
+
+### Theme Attribute Naming Convention
+
+The built-in IndiGO themes are made up of a large number of styleable XML attributes.
+These theme attributes follow a naming convention which help inform the developer of where they
+should be used. The naming convention of theme attributes follows the 
+`prefix_what_where_which_quality_quantity` format. Taking color attributes as an example, the 
+attribute names consist of:
+
+- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO 
+  specific component attributes, which are defined in
+  [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) is `ttivi`.
+- `what` determines the _background color_.
+- `where` determines the _place_ where it is used. Optional.
+- `which` for all color attributes is `color`.
+- `quality` represents the _type of emphasis_. Optional.
+- `quantity` determines the _level of emphasis_. Optional.
+
+In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies 
+_background colors_ and _emphasis_, among other things, to achieve a coherent UI design.
+
+Some examples for color attributes are:
+
+| Prefix | What      | Where    | Which  | Quality    | Quantity |
+| ------ | --------- | -------- | ------ | ---------- | -------- |
+| tt     | _primary  |          | _color |            |          |
+| tt     | _primary  | _content | _color | _emphasis  | _high    |
+| tt     | _primary  | _content | _color | _emphasis  | _medium  |
+| tt     | _primary  | _content | _color | _emphasis  | _low     |
+| tt     | _primary  | _content | _color | _subdued   |          |
+| tt     | _primary  | _content | _color | _highlight |          |
+| ttivi  | _mainmenu | _content | _color | _emphasis  | _high    |
+
+__Note:__ All attributes defined within the same `prefix_what_where_...` are called a _group_.
+
+#### Global tokens
+
+Most theme attributes refer to a very specific aspect of the UI such as the color of the content
+in a panel. However, some of the attributes in a theme have more of a global scope and refer to
+a general part of the UI. These attributes are referred to as global tokens or global attributes.
+
+For certain global attributes the naming convention is based on a baseline value. The baseline value
+is specified as the suffix of the attribute name, for example, it is the _1 in `tt_size_1`.
+
+The naming convention is composed of the following parts:
+
+- `Prefix` for all attributes defined in `core_theme` is `_tt_`.
+- `Category` represents the global category.
+- `Scale` indicates the factor that the baseline value should be multiplied by to get to the final 
+value. When the baseline value for the radius `tt_radius_1` is 4dp, the `tt_radius_23` is 
+therefore 4 * 23 = 92dp.
+
+The common naming convention is applied for the following categories in the built-in themes:
+
+| Prefix | Category    | Scale | Example           |
+| ------ | ----------- | ----- | ----------------- |
+| tt     | _size       | _1    | tt\_size\_1       |
+| tt     | _spacing    | _0.5  | tt\_spacing\_0.5  |
+| tt     | _radius     | _23   | tt\_radius\_23    |
+| tt     | _icon\_size | _2    | tt\_icon\_size\_2 |
+
+## Customizing the Built-In Themes
+
+TomTom IndiGO comes with some pre-defined themes including a dark and a light theme. The theme can
+be customized by deriving a new theme from the existing one and overriding the existing values 
+of these attributes in the new theme.
+
+For example, to create new light and dark themes which are based on the build-in TomTom IndiGO
+themes, the following XML can be used:
+
+```
+<resources>
+    <style name="MyProductLightTheme" parent="TtiviThemeColorLight">
+        <!-- Define a new high emphasis content color for the light theme -->
+        <item name="tt_surface_content_color_emphasis_high">@color/product_palette_blue</item>
+    </style>
+
+    <style name="MyProductDarkTheme" parent="TtiviThemeColorDark">
+        <!-- Define a new high emphasis content color for the dark theme -->
+        <item name="tt_surface_content_color_emphasis_high">@color/product_palette_red</item>
+    </style>
+```
+
+All UI controls which use these attributes will get the defined value when the theme is changed.
+
+## The Theming System
 
 TomTom IndiGO's theming mechanism is heavily based on
 [Android's theming approach](https://developer.android.com/guide/topics/ui/look-and-feel/themes), 
@@ -49,47 +219,14 @@ If you want a customized theme, you must add your own
 of the `platform_theming_api_stock_theme` to suit your look, or replace the
 `platform_theming_api_stock_theme` entirely.
 
-### Naming Convention
+## Theming Design Concepts
 
-The naming convention of theming attributes follows the `prefix_what_where_which_quality_quantity`
-format. Taking color attributes as an example, the attribute names consist of:
+### Theme Categories
 
-- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO 
-  specific component attributes, which are defined in
-  [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) is `ttivi`.
-- `what` determines the _background color_.
-- `where`_)*_ determines the _place_ where it is used.
-- `which` for all color attributes is `color`.
-- `quality`_)*_ represents the _type of emphasis_.
-- `quantity`_)*_ determines the _level of emphasis_.
-
-_)*_ `where`, `quality` and `quantity` are optional.
-
-In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies 
-_background colors_ and _emphasis_, among other things, to achieve a coherent UI design.
-
-Some examples for color attributes are:
-
-| Prefix | What      | Where    | Which  | Quality    | Quantity |
-| ------ | --------- | -------- | ------ | ---------- | -------- |
-| tt     | _primary  |          | _color |            |          |
-| tt     | _primary  | _content | _color | _emphasis  | _high    |
-| tt     | _primary  | _content | _color | _emphasis  | _medium  |
-| tt     | _primary  | _content | _color | _emphasis  | _low     |
-| tt     | _primary  | _content | _color | _subdued   |          |
-| tt     | _primary  | _content | _color | _highlight |          |
-| ttivi  | _mainmenu | _content | _color | _emphasis  | _high    |
-
-__Note:__ All attributes defined within the same `prefix_what_where_...` are called a _group_.
-
-## Theming design concepts
-
-### Theming categories
-
-The appearance of the UI can be affected by colors, margins, font types, etc. To reduce the
-duplication when creating a new theme and to be able to apply styles independently, these attributes
-are defined in categories like color, spacing, font, etc. Each category represents a set of
-attributes for the theme.
+The appearance of the UI is determined by colors, margins, font types, etc. A theme is divided
+into categories for each of these aspects of the UI. To reduce duplication when creating a new theme 
+and to be able to apply styles independently, these attributes are defined in categories like color, 
+spacing and font. Each category represents a set of attributes for the theme.
 
 By having categories of theming attributes, you can create a slightly different theme based on any
 other theme. For example, you can create a new look by keeping all categories unchanged, except the
@@ -124,7 +261,7 @@ how categories are defined, and which categories attributes belong to, are:
 </resources>
 ```
 
-### Color system
+### Color System
 
 The color system helps you to apply colors to your UI, including your brand colors. Colors provide a
 hierarchy of information, give the correct meaning to UI elements, and meet legibility and contrast
@@ -141,7 +278,7 @@ will determine if the UI as a whole is light or dark.
 By defining which colors can go on top of each other, you can ensure enough contrast to distinguish
 UI elements.
 
-#### Background colors
+#### Background Colors
 
 ![Background colors](images/theming-background-colors.png)
 
@@ -161,7 +298,7 @@ The background colors are classified into:
 - _Control center colors_ that are used for elements in the control bar, and the background and
   system icons on top of it.
 
-#### Content colors
+#### Content Colors
 
 ![Content colors](images/theming-content-colors.png)
 
