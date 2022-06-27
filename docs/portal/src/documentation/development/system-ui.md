@@ -2,18 +2,25 @@
 title: System UI
 ---
 
-Like everything in TomTom IndiGO, its UI also consists of plugins:
-[_frontend_ plugins](/tomtom-indigo/documentation/development/frontend-plugins). They expose _panels_ which
-contain a visual user interface for the functionality within the frontend's domain. These panels can
-be seen as pieces of the complete user interface. To enable a high degree of flexibility within the
-TomTom IndiGO framework, there is no direct coupling between different frontends or their panels,
-allowing plugins to be independently added, removed or replaced.
+Like everything in TomTom IndiGO, its user interface (UI) also consists of plugins:
+[_frontend_ plugins](/tomtom-indigo/documentation/development/frontend-plugins). They expose
+[panels](/tomtom-indigo/documentation/development/frontend-plugins#Panel) which contain a visual
+user interface for the functionality within the frontend's domain. These panels can be seen as
+pieces of the complete user interface. To enable a high degree of flexibility within the TomTom
+IndiGO framework, there is no direct coupling between different frontends or their panels, allowing
+plugins to be independently added, removed or replaced.
 
 Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a
 cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the
-container to place the panels in. In common usage, each `Activity` uses a single system UI instance
+containers to place the panels in. In common usage, each `Activity` uses a single system UI instance
 in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_INDIGO_API) that does just that.
 Different system UIs can be used per display, hosted in multiple or a single `Activity`.
+
+TomTom IndiGO provides a system UI for the
+[_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+implementation. It is built on top of the system UI interface and provides the customer an out of
+the box experience. Alternatively, the customer can replace the off-the-shelf frontend and services
+with their own implementations.
 
 ## The Model-View-ViewModel pattern (MVVM) used in the system UI
 
@@ -112,256 +119,97 @@ attached to the system UI, `Panel.onAttached` will be called with a
 [`PanelContext`](TTIVI_INDIGO_API) parameter, that allows the panel to use a limited set of
 information from the system UI for its contents.
 
-## Frontends
+## System UI Anatomy
 
-Frontends expose panels, which the system UI processes and presents when appropriate. Panels are
-used for a wide range of functionalities. This is not limited to opening panels when pressing a menu
-item, but also notification panels, process panels, and even the menu itself.
+A [`SystemUiHost`](TTIVI_INDIGO_API) hosts a system UI, which is responsible for providing the
+system a UI view containing the [`Frontend`](TTIVI_INDIGO_API)s within it. It has a layout which
+is composed of containers for panels. The image below gives an overview of how a stock system UI may
+look. In this example, the [`StockSystemUiHost`](TTIVI_INDIGO_API) defines a layout which contains
+the following visible containers:
 
-### Panel types
+- A container on the left for the 
+  [main menu](/tomtom-indigo/documentation/development/frontend-plugins#Main-menu-panel).
+- A container on the bottom for the 
+  [control center](/tomtom-indigo/documentation/development/frontend-plugins#Control-center-panels).
+- A container at the top for the [search](/tomtom-indigo/documentation/development/frontend-plugins#Search-panel).
+- A container as the background for the [navigation](/tomtom-indigo/documentation/development/frontend-plugins#Home-panel).
 
-TomTom IndiGO offers a fixed set of panel types that can be used by the system UI.
+![System UI overview image](images/system-ui-overview.png)
 
-__Note:__ As part of an upcoming API for creating custom system UI plugins, capabilities will be
-added to create custom panel types for frontends to use.
+[TODO(IVI-7779)]: # (Complete below with ModalPanel, ProcessPanel etc.)
 
-#### Home panel
+And it also defines containers which are only visible when necessary
 
-The home panel is the main element shown on the screen when starting TomTom IndiGO. The default home
-panel contains a map that allows the user to plan a trip somewhere and navigate to it.  A frontend
-can provide a home panel by adding a panel that extends [`HomePanel`](TTIVI_INDIGO_API) to its
-panels.
+- The notification container. 
+  [Notifications](/tomtom-indigo/documentation/development/frontend-plugins#Notification-panels) are
+  triggered when events, like phone calls or messages, occur in the system. This container becomes
+  visible when such an event occurs. Notifications will be added to this container and displayed as
+  a list. A notification with a higher priority will be displayed above other notifications with
+  lower priorities. When notifications have the same priority, the latest notification will be put
+  above other notifications with the same priority.
 
-#### Main menu panel
-
-The main menu panel provides a way of accessing the other system frontends. Main menu panels
-commonly depend on the [`MenuService`](TTIVI_INDIGO_API), which provides the menu items and handles
-user selections. This allows the menu frontend itself to not have any dependencies on other
-frontends directly. A frontend can provide a menu by adding a panel that extends
-[`MainMenuPanel`](TTIVI_INDIGO_API) to its panels.
-
-#### Process panels
-
-Frontends can visualize ongoing processes in the UI using process panels, which can be created by
-adding a panel that extends [`ProcessPanel`](TTIVI_INDIGO_API) to the frontend's panels. This can
-be used, for example, to show an ongoing audio streaming process or during a phone call. The
-process panel's metadata is used by the system UI to determine the priority of when to show certain
-process panels. For example, an ongoing phone call has a higher priority than streaming media. When
-both these frontends provide a process panel at the same time, the process panel for phone calls
-will be shown instead of the one for media.
-
-#### Task panels
-
-Tapping on a menu item in TomTom IndiGO's main menu commonly leads to a panel sliding open. This
-panel is called a _task panel_, and it can be created by adding a panel that extends
-[`TaskPanel`](TTIVI_INDIGO_API) to the frontend's panels. It allows the user to perform a certain
-task, after which the panel typically is closed again. Task panels can be thought of as an "app"
-within TomTom IndiGO.
-
-Task panels can be stacked to create a user flow through various screens. The top-most task panel
-will be shown to the user, and when that panel is removed, the next task panel on the stack will be
-shown.
-
-A header with a consistent look and feel across other task panels can be added by placing the
-[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) control in the panel's layout. This is typically placed
-in the top-left of the panel, but may be placed anywhere.
-
-System UI provides task panels with data to populate the navigation bar. System UI calls the task
-panels's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_INDIGO_API) data. When a
-task panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) interface,
-a fully populated [`NavigationBarViewModel`](TTIVI_INDIGO_API) is available in the task panel's view
-model in [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` based on this data.
-When your task panel's view model extends from [`FrontendViewModel`](TTIVI_INDIGO_API), implementing
-[`NavigatablePanelViewModel`](TTIVI_INDIGO_API) is as easy as inheriting from it; no implementation
-is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the task panel's
-layout by assigning [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` to 
-[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
-
-Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
-For example, the system UI may hide the back button in the navigation bar if there's only one task
-panel in the stack. It may also fill in the breadcrumbs for quick access to other task panels in the
-stack. The metadata in the task panel interface, such as the label, can be used to provide the
-information shown in the navigation bar.
-
-Task panels derive from class `DismissablePanel` in package
-[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
-and may be dismissed by the user through system UI functionality, like swiping it away. Such an
-action can trigger the system UI to dismiss the whole task panel stack, rather than just a single
-one.
-
-#### Task process panel
-
-A task process panel allows a frontend to visualize an ongoing processe in all of its task
-panels. Unlike the process panel, a task process panel is part of the task panel and as such does
-not overlap the task panel itself.
-
-TomTom IndiGO's system UI may hide the process panel when a task panel is opened. However, if the
-process is relevant to that task panel, it likely wants to continue presenting that process to the
-user, for example, to show a mini player for the currently playing music. In these cases, the
-frontend can add a panel extending [`TaskProcessPanel`](TTIVI_INDIGO_API), which the system UI will
-show next to the task panel itself within the task panel's container. The task process panel will
-persist for the whole task panel stack. When task panels get added and removed from the stack, the
-same task process panel will continue to be visible. A frontend's task process panel will only be
-shown if it also has an active task panel, and will not be shown for task panels of other
-frontends.
-
-#### Notification panels
-
-TomTom IndiGO notifications are created by adding a panel that extends
-[`NotificationPanel`](TTIVI_INDIGO_API) to the frontend's panels. Through this interface, metadata
-such as the priority can be passed to the system UI. The system UI uses this metadata to determine
-when and how to show the notification. For example, it may choose to suppress a low priority
-notification while a higher priority notification is active to avoid distracting the driver.
-
-Notification panels derive from class `DismissablePanel` in package
-[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
-and may be dismissed by the user through system UI functionality, like swiping it away.
-
-#### Modal panels
-
-A modal panel is a _floating_ panel that blocks all other user interaction until it has been
-dismissed. They are used to display information that:
-
-- Needs attention from the user in order to give instructions or critical information.
-- Requires information in order to continue with a service or workflow.
-
-Modal panels interrupt a user's workflow by design. When active, a user is blocked from the task
-panel or home panel content. They cannot return to their previous workflow until the modal task is
-completed or the modal panel has been dismissed.
-
-Modal panels are used for short and non-frequent tasks, such as logging into an account, Bluetooth
-device pairing, making small changes, or management tasks. If a user needs to repeatedly perform a
-task, consider letting the user perform it in the original panel. Modal panels can be created by
-adding a panel that extends [`ModalPanel`](TTIVI_INDIGO_API) to the frontend's panels.
-
-Modal panels can be stacked to create a user flow through various screens. The top-most modal panel
-will be shown to the user. When that panel is dismissed, the next modal panel on the stack will be
-shown.
-
-A header with a consistent look and feel across other modal panels can be added by placing the
-[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) control in the panel's layout. This is typically placed
-in the top-left of the panel, but may be placed anywhere.
-
-System UI provides modal panels with data to populate the navigation bar. System UI calls the modal
-panels's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_INDIGO_API) data. When a
-modal panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) interface,
-a fully populated [`NavigationBarViewModel`](TTIVI_INDIGO_API) is available in the modal panel's
-view model in [`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` based on this
-data. When your modal panel's view model extends from [`FrontendViewModel`](TTIVI_INDIGO_API),
-implementing [`NavigatablePanelViewModel`](TTIVI_INDIGO_API) is as easy as inheriting from
-it; no implementation is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated
-in the modal panel's layout by assigning
-[`NavigationBarViewModel`](TTIVI_INDIGO_API)`.navigationBarViewModel` to
-[`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
-
-Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
-For example, the system UI may hide the back button in the navigation bar if there's only one modal
-panel in the stack. It may also fill in the breadcrumbs for quick access to other modal panels in
-the stack. The metadata in the modal panel interface, such as the label, can be used to provide the
-information shown in the navigation bar.
-
-Modal panels derive from class `DismissablePanel` in package
-[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API),
-and may be dismissed by the user through system UI functionality, like clicking a close button. Such
-an action can trigger the system UI to dismiss the whole modal panels stack, rather than just a
-single one.
-
-#### Control center panels
-
-TomTom IndiGO's control center is an isolated area of the system UI that provides persistent
-indicators and controls, that are accessible to the user at all times. For example, a clock or
-temperature controls. It is populated with various panels extending
-[`ControlCenterPanel`](TTIVI_INDIGO_API). The metadata set in the panel's interface lets the
-system UI determine where to show the panel. For example, a panel with its `type` property set
-to `SYSTEM_STATUS_DRIVER` will be shown somewhere easily accessible by the driver and may be
-positioned differently depending on the location of the steering wheel.
-
-#### Search panel
-
-The search panel offers quick access to search functionality. This panel is meant to provide a
-visual context for location based search, such as searching for a driving destination, parking spots
-or charging stations. A frontend can add this search functionality by adding a panel that extends
-[`SearchPanel`](TTIVI_INDIGO_API) to its panels.
-
-__Note:__ The search panel is explicitly _not_ meant for searching content within a task panel, like
-songs within a media frontend.
-
-#### Guidance panel
-
-The guidance panel displays guidance information for the active trip. A frontend can provide that
-guidance information by adding a panel that extends [`GuidancePanel`](TTIVI_INDIGO_API) to its
-panels.
-
-#### Overlay panels
-
-Frontends can overlay the system UI using overlay panels, which can be created by adding a panel
-that extends [`OverlayPanel`](TTIVI_INDIGO_API) to the frontend's panels. Overlay panels are used to
-show a temporary visual effect over the system UI's main content area. This can be used, for
-example, to visualize the state of a currently active VPA or provide large and noticeable navigation
-instructions.
-
-## Panel templates
-
-Some panels in various plugins have a very similar layout. For example, most notifications have an
-icon, text and buttons arranged in the same way. These panel-specific layouts are offered by
-TomTom IndiGO in the shape of _templates_ that request a view model and put the information that
-it contains in the right place.
-
-These templates are implemented in the form of a base fragment class. In order to use a template,
-your panel's fragment should extend one of these base template fragments. The view model referred to
-by your fragment must then also extend the `ViewModel` type used by that template fragment. The
-properties in that template `ViewModel` can be set by your own view model to populate the template.
-
-__Note:__ It is not strictly necessary to use a template. If your panel uses a different layout,
-then extending the regular [`IviFragment`](TTIVI_INDIGO_API) instead of the template's fragment gives
-you full control over the contents.
-
-TomTom IndiGO offers templates for:
-
-- Notification panels
-- Process panels
-- Modal panels
-
-### Notification panel template
-
-The default template for [`NotificationPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`NotificationFragment`](TTIVI_INDIGO_API) and [`NotificationViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_template_notificationpanel`](TTIVI_INDIGO_API).
-
-[TODO(IVI-5615)]: # (Add UX design of notification template)
-
-### Process panel template
-
-The default template for [`ProcessPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`ProcessFragment`](TTIVI_INDIGO_API) and [`ProcessViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_template_processpanel`](TTIVI_INDIGO_API). It can also be used for
-[`TaskProcessPanel`](TTIVI_INDIGO_API)s by extending [`TaskProcessFragment`](TTIVI_INDIGO_API)
-and [`TaskProcessViewModel`](TTIVI_INDIGO_API).
-
-[TODO(IVI-5616)]: # (Add UX design of process template)
-
-### Modal panel template
-
-The default template for [`ModalPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`ModalFragment`](TTIVI_INDIGO_API) and [`ModalViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_template_modalpanel`](TTIVI_INDIGO_API).
-
-[TODO(IVI-5617)]: # (Add UX design of model template)
+![System UI notification_container image](images/system-ui-notification-container.png)
 
 ## Safe area
 
-When panels are overlapped by other panels or system UI elements, the system UI can inform panels of
-that through the _safe area_ in [`PanelContext`](TTIVI_INDIGO_API). The safe area indicates the amount
-of space from each side of a panel that is not safe to display important content due to the panel
-being overlapped by others.
+Panels can be overlapped by other panels or system UI elements, and in some cases this could lead
+to an unpleasant user experience. For example, when the process panel opens, it will cover the
+bottom part of the home panel. The chevron, the blue arrow that indicates the current location on
+the map, may be covered by the process panel and the user can't see it until the process panel is
+gone.
 
-For example, when the process panel opens, it will cover the bottom part of the home panel. The
-system UI informs the home panel that a certain amount of pixels from the bottom is now hidden. The
-map display home panel then uses this information to make sure the chevron isn't shown below the
-process panel, by moving it upwards. (The _chevron_ is the blue arrow that indicates the current
-location on the map.) When doing so, the home panel must still draw the map outside of the safe
-area because that area might not be covered in its entirety. For example, the process panel has
-space on either side where the map is still visible.
+To provide a better user experience, the system UI needs some information to inform the panels about
+them being overlapped. This is achieved through the [`SafeArea`](TTIVI_INDIGO_API) in
+[`PanelContext`](TTIVI_INDIGO_API). The _safe area_ indicates the amount of space from each side of 
+a panel that is not safe to display important content due to the panel being overlapped by others.
+And each panel can have its own [`SafeArea`](TTIVI_INDIGO_API).
+
+With _safe area_, in the example above, the map display home panel can use this information to make
+sure the chevron isn't shown underneath the process panel, by moving it upwards. When doing so, the
+home panel must still draw the map outside of the safe area because that area might not be covered
+in its entirety. For example, the process panel has space on either side where the map is still
+visible.
+
+## System UI services
+
+Apart from [`SystemUiHost`](TTIVI_INDIGO_API), there are services which are used by the system UI.
+The sections below provide an overview of these services.
+
+[TODO(IVI-7779)]: # (Complete this section with services the system UI provides)
+
+### Notification Services
+
+[`NotificationPanel`](TTIVI_INDIGO_API)s are displayed as a part of the system UI. The container for
+notifications defines their width and where the notifications will be presented. Additional services
+provide input for the system UI, so it can decide when notifications can be displayed.
+
+#### NotificationDisplayService
+
+The [`NotificationDisplayService`](TTIVI_INDIGO_API) provides information for clients responsible
+for displaying notifications to the user. The client of this service will typically be a system UI,
+which uses this information to decide when to display certain notifications to the user.
+The [`NotificationDisplayService`](TTIVI_INDIGO_API) should gather the values of all
+[`NotificationSuppressionService`](TTIVI_INDIGO_API) implementations to determine the final
+notification suppression policy.
+
+#### NotificationSuppressionService
+
+A [`NotificationSuppressionService`](TTIVI_INDIGO_API) indicates whether notifications should be
+suppressed. As this is a discoverable service, various domains can have their own implementation of
+this interface. For example, the system can suppress notifications when the user is providing input
+by using the keyboard. The values of all [`NotificationSuppressionService`](TTIVI_INDIGO_API)
+implementations combined can be used to determine the final notification suppression policy.
+
+#### NotificationCenterService
+
+The [`NotificationCenterService`](TTIVI_INDIGO_API) is for a notification center, which offers
+additional interaction with notifications to the user. A notification center is a UI that allows
+users to access notifications in more detail than the system UI offers by default. For example, a
+notification center may allow previously suppressed or dismissed notifications to be seen. The image
+below shows the notification center (the bell on the control center frontend), and the user can
+interact with it to view previously suppressed notifications.
+
+![System UI notification_center image](images/system-ui-notification-center.png)
 
 ## See also
 

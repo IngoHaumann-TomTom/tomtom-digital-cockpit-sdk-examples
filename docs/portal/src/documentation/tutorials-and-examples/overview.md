@@ -56,6 +56,10 @@ This guide explains how to use `IviDataSource` to handle some IVI service proper
 This guide explains how to create a new tab for the debug menu, and how to customize the existing
 tabs.
 
+## Notifications
+- [Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notification/create-a-notification-panel) -
+  This guide explains how to create and show a notification panel.
+  
 ## Media
 
 - [Create a new media user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface) -

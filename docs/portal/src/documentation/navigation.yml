@@ -132,6 +132,10 @@ menu:
             title: Use an IVI Data Source
           - fileId: /tutorials-and-examples/basics/configure-debug-tabs
             title: Configure Debug Tabs
+      - title: Notifications
+        items:
+          - fileId: /tutorials-and-examples/media/create-a-notification-panel
+            title: Create a Notification Panel
       - title: Media
         items:
           - fileId: /tutorials-and-examples/media/create-a-new-media-user-interface
