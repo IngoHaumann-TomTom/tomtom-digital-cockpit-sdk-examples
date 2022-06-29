@@ -27,18 +27,17 @@
         android:layout_margin="?attr/tt_spacing_5"
         auto:visibleIf="@{viewModel.isAvailable}">
 
-        <com.tomtom.tools.android.api.uicontrols.imageview.TtRemoteImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/example_media_miniplayer_art"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:paddingStart="?attr/tt_spacing_6"
             android:paddingEnd="0dp"
+            android:src="@{viewModel.art}"
             auto:layout_constraintBottom_toBottomOf="parent"
             auto:layout_constraintDimensionRatio="1:1"
             auto:layout_constraintEnd_toEndOf="parent"
             auto:layout_constraintTop_toTopOf="parent"
-            auto:ttPlaceholderDrawable="@drawable/ttivi_media_icon_noalbumcover"
-            auto:ttUri="@{viewModel.artUri}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
@@ -77,8 +76,8 @@
             android:id="@+id/example_media_miniplayer_controls_secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            auto:layout_constraintTop_toTopOf="parent"
             auto:layout_constraintStart_toEndOf="@id/example_media_miniplayer_controls_primary"
+            auto:layout_constraintTop_toTopOf="parent"
             auto:ttContents="@{viewModel.secondaryButtons}" />
 
         <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
@@ -88,9 +87,9 @@
             android:text="@{viewModel.elapsedTime}"
             android:textAppearance="?attr/tt_label_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_medium"
+            auto:layout_constraintBottom_toTopOf="@id/example_media_miniplayer_progress_bar"
             auto:layout_constraintEnd_toStartOf="@id/example_media_miniplayer_art"
-            auto:layout_constraintStart_toStartOf="parent"
-            auto:layout_constraintBottom_toTopOf="@id/example_media_miniplayer_progress_bar" />
+            auto:layout_constraintStart_toStartOf="parent" />
 
 
         <com.tomtom.tools.android.api.uicontrols.progressbar.TtSmoothProgressBar

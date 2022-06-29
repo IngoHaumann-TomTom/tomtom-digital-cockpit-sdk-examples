@@ -54,7 +54,7 @@ internal class ExampleMiniPlayerViewModel(panel: ExampleMiniPlayerPanel) :
             elapsedTime?.let { DurationStringResolver(it) }
         }
     val isBuffering = playbackViewModel.isBuffering
-    val artUri = playbackViewModel.artUri
+    val art = playbackViewModel.art
     val progressData = playbackViewModel.progress
 
     private val activePolicyProvider = panel.mediaService.activeSource.map { source ->

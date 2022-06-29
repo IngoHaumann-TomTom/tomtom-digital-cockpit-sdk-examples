@@ -37,7 +37,6 @@ The most commonly used TomTom UI controls are:
 - [Button](#button)
 - [TextInputField](#textinputfield)
 - [ImageView](#imageview)
-    - [TtRemoteImageView](#ttremoteimageview)
     - [TtRoundedImageCardView](#ttroundedimagecardview)
 - [List](#list)
     - [TtListLinearLayout](#ttlistlinearlayout)
@@ -175,25 +174,6 @@ There is a `clear` icon, for the user to clear the input.
 ![A TtTextInputField example](images/ui-controls-textfield.png)
 
 ### ImageView
-
-#### TtRemoteImageView
-
-The [`TtRemoteImageView`](TTIVI_ANDROID_TOOLS_API) class is used to asynchronously load and display 
-a remote image from a given URI.
-
-The [`TtRemoteImageView`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
-[`AppCompatImageView`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatImageView)
-the following features:
-
-- An image placeholder can be displayed while waiting for the remote image to be downloaded.
-- The remote image will be downloaded from the given URI automatically. When the download is
-  completed, the image placeholder will be replaced by the retrieved image. No caching is
-  implemented for images in [`TtRemoteImageView`](TTIVI_ANDROID_TOOLS_API) objects.
-- A cross-fade animation is applied when the image changes. You can control the animation duration.
-  When applying a radius to the image filter, you control the blurriness of the image during this
-  transition.
-
-![A TtRemoteImageView with image placeholder](images/ui-controls-remoteimageview.png)
 
 #### TtRoundedImageCardView
 
