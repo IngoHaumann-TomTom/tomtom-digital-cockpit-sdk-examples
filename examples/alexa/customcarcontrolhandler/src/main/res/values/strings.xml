@@ -12,5 +12,5 @@
   -->
 
 <resources>
-    <string name="alexa_aacs_config_directory">aacs</string>
+    <string name="custom_control_config_directory">config</string>
 </resources>

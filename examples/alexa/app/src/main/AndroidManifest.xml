@@ -10,4 +10,6 @@
   ~ immediately return or destroy it.
   -->
 
-<manifest package="com.example.ivi.example.alexa.app" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ivi.example.alexa.app"
+    android:sharedUserId="com.tomtom.ivi.IviUserId" />

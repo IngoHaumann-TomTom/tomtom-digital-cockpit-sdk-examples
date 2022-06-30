@@ -27,6 +27,7 @@ import com.tomtom.kotlin.traceevents.TraceEventListener
 import com.tomtom.kotlin.traceevents.TraceLog
 import com.tomtom.kotlin.traceevents.TraceLogLevel
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
@@ -174,21 +175,52 @@ internal class CustomCarControlHandlerService(
         // CarControl message handler.
         priority = AlexaHandlerService.DEFAULT_HANDLER_PRIORITY
 
-        // This configuration adds a "default.light" endpoint to the CarControl configuration that
-        // will be sent to AACS.
+        // Copy the `custom_assets.json` file from the assets storage to the internal storage, so
+        // that it can be found by AACS.
+        copyCustomAssets()
+
+        // This configuration adds 2 additional endpoints to the CarControl configuration that
+        // will be sent to AACS:
+        // - a "default.light" endpoint, associated to "light" assets that are already available in
+        //   the default automotive catalog assets
+        //   (see https://github.com/alexa/alexa-auto-sdk/blob/master/modules/car-control/assets/assets-1P.json)
+        // - a "default.custom_device" endpoint, associated to a custom
+        //   "My.Alexa.Automotive.DeviceName.CustomDevice" asset, defined in the
+        //   "custom_assets.json" file.
         // This will allow us to receive a CarControl message when the user says: "Alexa, switch
-        // on/off the light".
+        // on/off the light" or "Alexa, turn on/off my custom device".
         aacsConfiguration = readAacsConfig(context)
 
         // All required properties have been set, so the service is now ready.
         serviceReady = true
     }
 
+    @Suppress("kotlin:S6300") // Custom assets file does not contain sensitive data.
+    private fun copyCustomAssets() {
+        try {
+            with(context) {
+                val customAssetsPath =
+                    getString(R.string.custom_control_config_directory) +
+                        File.separator +
+                        CUSTOM_ASSETS_FILENAME
+                assets.open(customAssetsPath).use { inputFile ->
+                    FileOutputStream(filesDir?.resolve(CUSTOM_ASSETS_FILENAME)).use {
+                        inputFile.copyTo(it)
+                    }
+                }
+            }
+        } catch (exception: IOException) {
+            tracer.e("Failed to copy custom assets file.", exception)
+        }
+    }
+
     private fun readAacsConfig(context: Context): String? =
         try {
             with(context) {
-                val filePath = getString(R.string.alexa_aacs_config_directory) +
-                    File.separator + AACS_CONFIG_FILENAME
+                val filePath = getString(R.string.custom_control_config_directory) +
+                    File.separator +
+                    AACS_CONFIG_FILENAME
+
                 assets.open(filePath).bufferedReader().use { it.readText() }
             }
         } catch (exception: IOException) {
@@ -228,12 +260,13 @@ internal class CustomCarControlHandlerService(
 
     private fun setPowerControllerValue(message: SetPowerControllerValueIncomingMessage): Boolean {
         return when (message.payload.endpointId.toDeviceName()) {
-            LIGHT_ID -> {
+            LIGHT_ID,
+            CUSTOM_DEVICE_ID -> {
                 sendSetControllerValueReply(message.header.id, true)
                 true
             }
             // We are only interested in handling `SetPowerControllerValue` messages for the "light"
-            // endpoint device.
+            // and the "custom_device" endpoint devices.
             // We return `false` for any other device, so that the message can be forwarded to other
             // CarControl message handlers.
             else -> false
@@ -293,6 +326,7 @@ internal class CustomCarControlHandlerService(
 
     private companion object {
         const val AACS_CONFIG_FILENAME = "aacs_customcarcontrol_config.json"
+        const val CUSTOM_ASSETS_FILENAME = "custom_assets.json"
 
         const val JSON_VALUE_CONTROLLER_MODE = "MODE"
         const val JSON_VALUE_CONTROLLER_POWER = "POWER"
@@ -302,5 +336,6 @@ internal class CustomCarControlHandlerService(
         const val JSON_KEY_PAYLOAD = "payload"
 
         const val LIGHT_ID = "light"
+        const val CUSTOM_DEVICE_ID = "custom_device"
     }
 }
