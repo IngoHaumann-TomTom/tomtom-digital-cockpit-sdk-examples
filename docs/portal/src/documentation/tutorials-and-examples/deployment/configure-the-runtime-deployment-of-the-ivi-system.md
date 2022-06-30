@@ -10,11 +10,11 @@ service hosts. The main advantage of process isolation is that when a process un
 (and restarts), this only affects the service host instances running in that process and not all 
 other services and does not affect the UI.
 
-It is also possible to run multiple IVI service hosts in one process to limit the impact of the
-Binder IPC and reduce the (limited) overhead of each process.
-
 The default IVI application configuration deploys each service host implementation in a separate
-process.
+process. It is also possible to run multiple IVI service hosts in one process, to limit the impact of 
+the Binder IPC and reduce the (limited) overhead of each process. The IVI services provided by TomTom
+can be rearranged, default implementations can be replaced by new ones and services can be removed 
+from the deployment.
 
 An IVI service host can be deployed to multiple runtime deployments. This allows multiple
 instances of the service host to run in separate processes.
@@ -143,6 +143,36 @@ ivi {
 
 The above example uses the default deployment configuration and configures the
 `accountsServiceHosts` to run in the same process.
+
+## How to replace a default service host
+
+The default IVI service hosts can be found inside the module
+[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_API) and in the 
+`api_appsuitedefaults_*` modules. It is possible to replace a default service host, for instance to 
+deploy a new implementation of an IVI service API. The example below replaces the default 
+`contactsServiceHost` with a custom `cloudContactsServiceHost`.
+
+__build.gradle.kts:__
+
+```kotlin
+val cloudContactsServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        services {
+            removeHost(contactsServiceHost)
+            addHost(cloudContactsServiceHost)
+        }
+        globalRuntime {
+             create(RuntimeDeploymentIdentifier.global) {
+                 useDefaults()
+                 deployServiceHost(cloudContactsServiceHost)
+             }
+        }
+    }
+}
+```
 
 ## How to add an IVI instance
 
