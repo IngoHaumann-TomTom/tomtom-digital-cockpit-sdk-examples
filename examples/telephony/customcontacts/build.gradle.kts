@@ -16,6 +16,7 @@ ivi {
 }
 
 dependencies {
+    implementation(libraries.indigoPlatformContactsApiCommonUtil)
     implementation(libraries.indigoPlatformContactsApiServiceContacts)
     implementation(libraries.indigoPlatformTelecomApiCommonModel)
 

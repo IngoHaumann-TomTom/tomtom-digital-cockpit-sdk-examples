@@ -14,7 +14,7 @@
 [versions]
 # TomTom IndiGO platform.
 # This line is being parsed using a regex. And should not be altered carelessly.
-indigoPlatform = "1.0.3865"
+indigoPlatform = "1.0.3866"
 
 [libraries]
 # Gradle plugins from the TomTom IndiGO platform & appsuite.
@@ -54,14 +54,15 @@ indigoPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:pl
 indigoPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "indigoPlatform" }
 
 # TomTom IndiGO platform service APIs.
-indigoPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "indigoPlatform" }
-indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:platform_alexa_api_service_alexahandler", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "indigoPlatform" }
 indigoAppsuiteAppstoreApiServiceApplaunchtrigger = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchtrigger", version.ref = "indigoPlatform" }
-indigoPlatformRecentcallsApiServiceRecentcalls = { module = "com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls", version.ref = "indigoPlatform" }
+indigoPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "indigoPlatform" }
+indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:platform_alexa_api_service_alexahandler", version.ref = "indigoPlatform" }
+indigoPlatformContactsApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_contacts_api_common_util", version.ref = "indigoPlatform" }
 indigoPlatformContactsApiServiceContacts = { module = "com.tomtom.ivi.platform:platform_contacts_api_service_contacts", version.ref = "indigoPlatform" }
+indigoPlatformRecentcallsApiServiceRecentcalls = { module = "com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiCommonModel = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_model", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiCommonUtils = { module = "com.tomtom.ivi.platform:platform_telecom_api_common_utils", version.ref = "indigoPlatform" }
 indigoPlatformTelecomApiServiceTelecom = { module = "com.tomtom.ivi.platform:platform_telecom_api_service_telecom", version.ref = "indigoPlatform" }
