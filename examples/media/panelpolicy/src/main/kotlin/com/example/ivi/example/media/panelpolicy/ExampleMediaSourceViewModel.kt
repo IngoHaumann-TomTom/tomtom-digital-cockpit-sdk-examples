@@ -48,7 +48,7 @@ internal class ExampleMediaSourceViewModel(panel: ExampleMediaSourcePanel)
     fun dismiss(): Unit = panel.dismiss()
 
     private fun IviMediaItem.asMediaEntryGroupItem(onClick: ClickAction) = MediaEntryGroupItem(
-        itemData = panel.policyProvider.extractItemDataPolicy(this),
+        item = panel.policyProvider.itemMappingPolicy(this),
         itemState = ImmutableLiveData(MediaEntryGroupItem.ItemState.IDLE),
         type = ListGroupItem.ItemType.LIST_ITEM,
         clickAction = onClick

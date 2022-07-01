@@ -12,24 +12,20 @@
 package com.example.ivi.example.media.custompolicies
 
 import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
-import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaItemData
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaItemDataExtractionPolicy
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItemBuilder
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaItemMappingPolicy
 
-/***
- * [MediaItemDataExtractionPolicy] helps change how the information from a source is displayed to
+/**
+ * [MediaItemMappingPolicy] helps change how the information from a source is displayed to
  * the user.
  * In this case, we want all media to always show a title and a subtitle even if the source doesn't
  * make any available.
  */
-internal class ExampleMediaSourceItemDataExtractionPolicy : MediaItemDataExtractionPolicy {
-    override fun invoke(item: IviMediaItem): MediaItemData {
-        return MediaItemData(
-            title = item.title ?: "No Title",
-            subtitle = item.subtitle ?: "No Artist",
-            artworkUri = item.artUri,
-            isPlayable = item.isPlayable,
-            isBrowsable = item.isBrowsable,
-            duration = item.duration
-        )
+internal class ExampleMediaSourceItemMappingPolicy : MediaItemMappingPolicy {
+    override fun invoke(item: IviMediaItem): IviMediaItem {
+        return IviMediaItemBuilder(item)
+            .withTitle(item.title ?: "No Title")
+            .withDisplaySubtitle(item.subtitle ?: "No Artist")
+            .build()
     }
 }

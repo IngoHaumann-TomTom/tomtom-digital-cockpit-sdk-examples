@@ -63,7 +63,7 @@ The wish in this example is to invert the `title` and the `subtitle` so that the
 is displayed more prominently, and the radio station's name is shown in a less prominent way.
 
 The first step to achieve this result is to create a new module made to contain all code related to
-`ExampleInternetRadio`. In this new module, a new `MediaItemDataExtractionPolicy` object (see
+`ExampleInternetRadio`. In this new module, a new `MediaItemMappingPolicy` object (see
 package [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)), should be
 created:
 
@@ -71,32 +71,28 @@ created:
 package com.example.exampleinternetradio
 
 import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
-import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaItemData
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaItemDataExtractionPolicy
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItemBuilder
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaItemMappingPolicy
 
-class ExampleInternetRadioMediaItemDataExtractionPolicy : MediaItemDataExtractionPolicy {
-    override fun invoke(item: IviMediaItem): MediaItemData {
-        return MediaItemData(
-            title = item.subtitle ?: "",  // The subtitle is set to the title field.
-            subtitle = item.title,        // The title is set to the subtitle field.
-            artworkUri = item.artUri,
-            isPlayable = item.isPlayable,
-            isBrowsable = item.isBrowsable,
-            durationMs = item.durationMs
-        )
+class ExampleInternetRadioMediaItemMappingPolicy : MediaItemMappingPolicy {
+    override fun invoke(item: IviMediaItem): IviMediaItem {
+        return IviMediaItemBuilder(item)
+            .withTitle(item.subtitle ?: "")     // The subtitle is set to the title field.
+            .withDisplaySubtitle(item.title)    // The title is set to the subtitle field.
+            .build()
     }
 }
 ```
 
-A `MediaItemDataExtractionPolicy` customizes how the user interface will display media item data,
-and can be as complex as necessary: it might be useful to examine whether an item is playable or
-browsable (or both) before making a decision on how to fill the [`MediaItemData`](TTIVI_INDIGO_API)
-fields; or maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type
-of content is being played. It all depends on how the media source presents its information. Also
-note that this data might change over time, posing integration issues when new versions are released
+A `MediaItemMappingPolicy` customizes how the user interface will display media item data, and can 
+be as complex as necessary: it might be useful to examine whether an item is playable or browsable 
+(or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_INDIGO_API) fields; or 
+maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type of content 
+is being played. It all depends on how the media source presents its information. Also note that 
+this data might change over time, posing integration issues when new versions are released
 potentially with changes in media item data provisioning.
 
-The new `ExampleInternetRadioMediaItemDataExtractionPolicy` data extraction policy class needs to be
+The new `ExampleInternetRadioMediaItemMappingPolicy` data mapping policy class needs to be
 specified in a [`PolicyProvider`](TTIVI_INDIGO_API), which will only be used  when browsing
 `ExampleInternetRadio` content.
 The [policy installation](#install-customization-policies) section explains how.
@@ -284,7 +280,7 @@ package com.example.exampleinternetradio
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 
 val exampleInternetRadioPolicyProvider = PolicyProvider(
-    extractItemDataPolicy = ExampleInternetRadioMediaItemDataExtractionPolicy(),
+    itemMappingPolicy = ExampleInternetRadioMediaItemMappingPolicy(),
     sourceAttributionPolicy = ExampleInternetRadioSourceAttributionPolicy(),
     mediaControlPolicy = ExampleInternetRadioMediaControlPolicy()
 )

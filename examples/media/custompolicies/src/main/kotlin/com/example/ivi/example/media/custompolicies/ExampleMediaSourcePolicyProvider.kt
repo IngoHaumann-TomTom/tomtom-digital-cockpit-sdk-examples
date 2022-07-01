@@ -24,7 +24,7 @@ import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
 internal val exampleMediaSourcePolicyProvider = PolicyProvider(
     isPlaylistItemPolicy = ExampleMediaSourceIsPlaylistItemPolicy(),
     compareItemsPolicy = ExampleMediaSourceItemComparisonPolicy(),
-    extractItemDataPolicy = ExampleMediaSourceItemDataExtractionPolicy(),
+    itemMappingPolicy = ExampleMediaSourceItemMappingPolicy(),
     sourceAttributionPolicy = ExampleMediaSourceSourceAttributionPolicy(),
     mediaControlPolicy = ExampleMediaSourceMediaControlPolicy()
 )
