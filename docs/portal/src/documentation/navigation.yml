@@ -134,7 +134,7 @@ menu:
             title: Configure Debug Tabs
       - title: Notifications
         items:
-          - fileId: /tutorials-and-examples/media/create-a-notification-panel
+          - fileId: /tutorials-and-examples/notifications/create-a-notification-panel
             title: Create a Notification Panel
       - title: Media
         items:
