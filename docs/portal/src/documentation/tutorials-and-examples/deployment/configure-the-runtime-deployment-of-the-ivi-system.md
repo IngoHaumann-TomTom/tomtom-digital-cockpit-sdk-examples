@@ -147,7 +147,7 @@ The above example uses the default deployment configuration and configures the
 ## How to replace a default service host
 
 The default IVI service hosts can be found inside the module
-[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_API) and in the 
+[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_GRADLEPLUGINS_API) and in the 
 `api_appsuitedefaults_*` modules. It is possible to replace a default service host, for instance to 
 deploy a new implementation of an IVI service API. The example below replaces the default 
 `contactsServiceHost` with a custom `cloudContactsServiceHost`.
