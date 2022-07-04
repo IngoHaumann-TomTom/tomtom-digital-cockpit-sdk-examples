@@ -193,7 +193,7 @@ you full control over the contents.
 More information about how the system UI handles the notifications can be found in
 [System UI](/tomtom-indigo/documentation/development/system-ui). Or, if you want to start building a
 notification, see
-[Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notification/create-a-notification-panel).
+[Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel).
 
 ##### Modal panels
 

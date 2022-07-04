@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.notification
+package com.example.ivi.example.notifications
 
 import androidx.lifecycle.LiveData
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.NotificationPanel

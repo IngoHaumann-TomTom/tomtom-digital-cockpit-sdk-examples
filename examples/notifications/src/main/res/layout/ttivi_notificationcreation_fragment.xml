@@ -17,7 +17,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.ivi.example.notification.NotificationCreationViewModel" />
+            type="com.example.ivi.example.notifications.NotificationCreationViewModel" />
     </data>
 
     <LinearLayout

@@ -48,7 +48,7 @@ application (in the `template/` folder) is needed, see below.
   Examples demonstrating how to customize the media app, create new user experiences for a specific
   media source, and create new media sources.
 
-- `examples/notification/`
+- `examples/notifications/`
   Examples demonstrating how to create and show notifications.
   
 - `examples/panelhierarchy/`

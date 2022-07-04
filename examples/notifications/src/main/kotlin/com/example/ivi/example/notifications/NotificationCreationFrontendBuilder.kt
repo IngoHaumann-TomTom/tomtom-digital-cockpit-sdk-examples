@@ -9,18 +9,12 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.notification
+package com.example.ivi.example.notifications
 
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
-import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.AnyPanel
-import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 
-internal class NotificationCreationPanel(
-    frontendContext: FrontendContext,
-    val addPanel: (AnyPanel) -> Unit,
-) : TaskPanel(frontendContext)  {
-
-    override fun createInitialFragmentInitializer() =
-        IviFragment.Initializer(NotificationCreationFragment(), this)
+class NotificationCreationFrontendBuilder : FrontendBuilder() {
+    override fun build(frontendContext: FrontendContext) =
+        NotificationCreationFrontend(frontendContext)
 }

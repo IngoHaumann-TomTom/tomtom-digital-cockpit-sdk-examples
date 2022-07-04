@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.notification
+package com.example.ivi.example.notifications
 
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment

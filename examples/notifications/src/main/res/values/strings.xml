@@ -12,7 +12,7 @@
   -->
 
 <resources>
-    <string name="app_name">IVI Example: Notification</string>
+    <string name="app_name">IVI Example: Notifications</string>
 
     <string name="notification_creation_taskpanel_button">Notification</string>
     <string name="stock_notification_button">Create a stock notification</string>

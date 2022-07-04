@@ -9,12 +9,16 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.notification
+package com.example.ivi.example.notifications
 
-import com.tomtom.ivi.platform.mainmenu.api.common.menu.MenuItem
+import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
+import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskPanel
 
-val notificationCreationMenuItem = MenuItem(
-    NotificationCreationFrontend::class.qualifiedName!!,
-    R.drawable.ttivi_notificationcreation_menuitem,
-    R.string.notification_creation_taskpanel_button
-)
+class NotificationCreationFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
+
+    override fun openTaskPanels() {
+        removePanels<TaskPanel>()
+        addPanel(NotificationCreationPanel(frontendContext, ::addPanel))
+    }
+}

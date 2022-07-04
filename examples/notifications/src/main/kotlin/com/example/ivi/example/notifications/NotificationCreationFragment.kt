@@ -9,9 +9,9 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.notification
+package com.example.ivi.example.notifications
 
-import com.example.ivi.example.notification.databinding.TtiviNotificationcreationFragmentBinding
+import com.example.ivi.example.notifications.databinding.TtiviNotificationcreationFragmentBinding
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 internal class NotificationCreationFragment :

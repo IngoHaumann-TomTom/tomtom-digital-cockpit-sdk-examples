@@ -28,7 +28,7 @@ android {
 
 val notificationCreationFrontend = FrontendConfig(
     frontendBuilderName = "NotificationCreationFrontendBuilder",
-    implementationModule = ExampleModuleReference("examples_notification"),
+    implementationModule = ExampleModuleReference("examples_notifications"),
     creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
 )
 
