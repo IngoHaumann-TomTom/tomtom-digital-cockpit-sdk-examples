@@ -42,7 +42,7 @@ internal class ExampleMiniPlayerViewModel(panel: ExampleMiniPlayerPanel) :
      */
     private val playbackViewModel = MediaPlaybackViewModel(
         panel.mediaConfiguration,
-        panel.mediaService.asMediaPlaybackParameters(),
+        panel.mediaService.asMediaPlaybackParameters(panel.mediaConfiguration),
         viewModelScope,
         SourceAttributionFormat(preferSimplified = true)
     )
