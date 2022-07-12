@@ -76,6 +76,16 @@ variables:
       value: '--publish_emulators'
   - name: ossReportName
     value: 'oss-compliance_tomtom-indigo-sdk'
+  - name: blackduckUrl
+    ${{ if eq(variables['System.TeamProject'], 'IVI') }}:
+      value: 'https://hub.tomtomgroup.com'
+    ${{ else }}:
+      value: 'https://blackduck-preprod.navkit-pipeline.tt3.com/'
+  - name: blackduckApiToken
+    ${{ if eq(variables['System.TeamProject'], 'IVI') }}:
+      value: $(blackduck-prod-pat)
+    ${{ else }}:
+      value: $(blackduck-preprod-pat)
 
 resources:
   containers:
@@ -96,7 +106,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.1.0
+    ref: refs/tags/2.2.2
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
@@ -179,12 +189,13 @@ stages:
         steps:
           - template: .azure-templates/oss-groupedreport.yml
             parameters:
-              conf_file_path: .azure-templates/bdtools-sdk.yml
+              configurationFilePath: .azure-templates/bdtools-sdk.yml
               product: ivi-indigo-sdk
-              product_version: $(VERSION_EXAMPLES)
-              report_filename: $(ossReportName)
-              artifactory_location: indigo_sdk_ossreport
-              bdtools_environment: prod
+              productVersion: $(VERSION_EXAMPLES)
+              reportFilename: $(ossReportName)
+              artifactoryLocation: indigo_sdk_ossreport
+              bdtoolsUrl: ${{variables.blackduckUrl}}
+              bdApiToken: ${{variables.blackduckApiToken}}
 
   - stage: Verification
     dependsOn: [ Publishing, Versions ]

@@ -26,6 +26,16 @@ variables:
       eq(variables['Build.SourceBranch'], 'refs/heads/master'),
       eq(variables['System.DefinitionId'], 1986)
       ) ]
+  - name: blackduckUrl
+    ${{ if eq(variables['System.TeamProject'], 'IVI') }}:
+      value: 'https://hub.tomtomgroup.com'
+    ${{ else }}:
+      value: 'https://blackduck-preprod.navkit-pipeline.tt3.com/'
+  - name: blackduckApiToken
+    ${{ if eq(variables['System.TeamProject'], 'IVI') }}:
+      value: $(blackduck-prod-pat)
+    ${{ else }}:
+      value: $(blackduck-preprod-pat)
 
 # Trigger builds on new commits on stable branches.
 # Builds from PRs are triggered by the Branch Policy in the repo settings.
@@ -57,7 +67,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.1.2
+    ref: refs/tags/2.2.2
   - repository: indigoqa
     type: git
     name: IVI/indigo-qa
@@ -147,15 +157,15 @@ stages:
     steps:
     - template: oss/scan-and-report.yml@devops-templates
       parameters:
-        conf_file_path: .azure-templates/bdtools.yml
+        configurationFilePath: .azure-templates/bdtools.yml
         product: ivi-indigo-docs
-        product_version: $(product_version)
-        report_filename: products_indigo_examples
-        artifactory_location: products_indigo_examples
-        bdtools_environment: prod
-        run_compliancecheck: true
-        check_license_risk: true
-
+        productVersion: $(product_version)
+        reportFilename: products_indigo_examples
+        artifactoryLocation: products_indigo_examples
+        bdtoolsUrl: ${{variables.blackduckUrl}}
+        bdApiToken: ${{variables.blackduckApiToken}}
+        runComplianceCheck: true
+        checkLicenseRisk: true
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
