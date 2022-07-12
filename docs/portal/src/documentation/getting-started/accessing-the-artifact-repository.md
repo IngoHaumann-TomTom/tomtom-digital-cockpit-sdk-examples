@@ -2,8 +2,8 @@
 title: Accessing the Artifact Repository
 ---
 
-The [TomTom repository credentials](/tomtom-indigo/documentation/getting-started/introduction) that you
-used in step 
+The [TomTom repository credentials](/tomtom-indigo/documentation/getting-started/introduction) that
+you used in step
 [Accessing TomTom IndiGO SDK Example Sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources)
 are also needed by the build process, to retrieve TomTom IndiGO platform dependencies from the IVI
 [Nexus](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-sdk)
@@ -50,4 +50,4 @@ __Windows:__
 ```
 
 __Next step:__
-[Getting the TomTom API Key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
+[Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).

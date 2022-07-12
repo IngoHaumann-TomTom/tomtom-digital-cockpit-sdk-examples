@@ -2,14 +2,20 @@
 title: Frequently Asked Questions (FAQ)
 ---
 
+<Blockquote>
+    For TomTom IndiGO version 1.0.3880-1630 and earlier,&nbsp;
+    <a href="/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq-navkit2">
+        some additional issues
+    </a>
+    &nbsp;are explained.
+</Blockquote>
+
 Table of content:
 
 - [When building, there are a lot of unresolved dependencies](#when-building-there-are-a-lot-of-unresolved-dependencies)
     - [Missing credentials](#missing-credentials)
     - [Incorrect Nexus repository credentials](#incorrect-nexus-repository-credentials)
 - [There is no map and/or search does not work](#there-is-no-map-andor-search-does-not-work)
-    - [Network connection](#network-connection)
-    - [TomTom API key](#tomtom-api-key)
 - [How do I open/close the Debug Menu?](#how-do-i-openclose-the-debug-menu)
 - [How do I start a Route Demo?](#how-do-i-start-a-route-demo)
 - [I am using a Mac(book) with an M1 chip and cannot start the android emulator](#i-am-using-a-macbook-with-an-m1-chip-and-cannot-start-the-android-emulator)
@@ -68,26 +74,17 @@ For example:
 
 ## There is no map and/or search does not work
 
-### Network connection
+TomTom IndiGO uses an on-board map for its navigation features, but this map is not included in the
+SDK package or in the emulator image. You must download and install the map separately, as explained
+in [Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).
 
-When you start the application for the first time, you should see a map of the world as background
-to the application. If this is not there, it may mean that the device/emulator cannot connect to a
-network.
+The
+[demo maps](/tomtom-indigo/documentation/getting-started/accessing-the-map-data#downloading-the-map)
+cover a limited area only. Outside this area, TomTom IndiGO does not show map details, nor can it
+find a location or calculate a route.
 
-On the emulator, open the `Settings` and enable `Wi-Fi`. Then cold boot the emulator.  See detailed
-instructions in
-[The TomTom IndiGO emulator device](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#the-tomtom-indigo-emulator-device)
-under `Enable wifi` and `Now restart the emulator`.
-
-For a real device, make sure that it has a working Internet connection.
-
-### TomTom API key
-
-Another reason for this behavior may be that you have not configured a TomTom API key, or you are
-using an API key with limited authorizations.
-
-For more details see
-[Getting the TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
+If you need a map for an area not included in these demo maps, please ask your TomTom
+representative.
 
 ---
 

@@ -8,9 +8,11 @@ been created for running TomTom IndiGO. This configuration contains a number of 
 the emulator hardware and the Android platform on which it runs. This emulator can be used for
 development on top of TomTom IndiGO and runs x86\_64 AOSP with Android 11 Automotive.
 
-__Note:__ The TomTom IndiGO platform also runs on a standard Android device, with a TomTom
-IndiGO-supported CPU architecture. However, some features may not work as TomTom IndiGO is
-implemented for the Android Automotive variant.
+<Blockquote type="announcement">
+    The TomTom IndiGO platform also runs on a standard Android device, with a TomTom
+    IndiGO-supported CPU architecture. However, some features may not work as TomTom IndiGO is
+    implemented for the Android Automotive variant.
+</Blockquote>
 
 ## The TomTom IndiGO emulator image
 
@@ -153,7 +155,7 @@ Android Virtual Device (AVD) with it:
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
 - You will now see the TomTom IndiGO home screen. Note that the map data shows only when you have
-  [configured a valid TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
+  [installed an on-board map](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).
 
 ![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
@@ -167,7 +169,7 @@ From here on, you have several options:
   [off-the-shelf features](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality)
   in the template application.
 
-- Build and execute the example applications, as explained in the 
+- Build and execute the example applications, as explained in the
   [Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
 
 - Use the

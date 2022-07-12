@@ -36,8 +36,11 @@ menu:
         title: Accessing TomTom IndiGO SDK Example Sources
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
-      - fileId: /getting-started/getting-the-tomtom-api-key
-        title: Getting the TomTom API Key
+      - fileId: /getting-started/accessing-the-map-data
+        title: Accessing the Map Data
+      - fileId: /getting-started/getting-the-tomtom-api-key-navkit2
+        title: Getting the TomTom API Key (NavKit2)
+        isHidden: true
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
       - fileId: /getting-started/the-tomtom-indigo-emulator
@@ -50,6 +53,9 @@ menu:
         title: Additional Resources
       - fileId: /getting-started/frequently-asked-questions-faq
         title: Frequently Asked Questions (FAQ)
+      - fileId: /getting-started/frequently-asked-questions-faq-navkit2
+        title: Frequently Asked Questions (NavKit2)
+        isHidden: true
   - title: Development
     items:
       - fileId: /development/introduction
@@ -70,6 +76,9 @@ menu:
             title: Overview
           - fileId: /development/platform-domains/navigation
             title: Navigation
+          - fileId: /development/platform-domains/navigation-navkit2
+            title: Navigation (NavKit2)
+            isHidden: true
           - fileId: /development/platform-domains/media
             title: Media
           - fileId: /development/platform-domains/vehicle-functions
@@ -118,8 +127,12 @@ menu:
         items:
           - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project
             title: Integrate TomTom IndiGO into a Gradle Project
-          - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key
-            title: Configure a TomTom API Key
+          - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project-navkit2
+            title: Integrate TomTom IndiGO into a Gradle Project (NavKit2)
+            isHidden: true
+          - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key-navkit2
+            title: Configure a TomTom API Key (NavKit2)
+            isHidden: true
           - fileId: /tutorials-and-examples/setup/configure-an-app-store
             title: Configure an App Store
       - title: Basics
@@ -161,7 +174,7 @@ menu:
           - fileId: /tutorials-and-examples/app-launcher/replace-the-stock-android-app-support
             title: Replace the Stock Android App Support
           - fileId: /tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger
-            title: Add Support for Web App Launch Trigger            
+            title: Add Support for Web App Launch Trigger
       - title: Voice Personal Assistant
         items:
           - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service

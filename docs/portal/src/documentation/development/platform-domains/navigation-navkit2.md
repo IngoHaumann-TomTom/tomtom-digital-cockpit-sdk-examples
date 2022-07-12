@@ -1,15 +1,10 @@
 ---
-title: Navigation
+title: Navigation (NavKit2)
 layout: default
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, please skip this page and instead go
-    to&nbsp;
-    <a href="/tomtom-indigo/documentation/development/platform-domains/navigation-navkit2">
-        Navigation (NavKit2)
-    </a>
-    .
+<Blockquote hasIcon>
+    This page is applicable only for TomTom IndiGO version 1.0.3880-1630 and earlier.
 </Blockquote>
 
 Navigation is central to the TomTom IndiGO experience. Online navigation enables fresh and always

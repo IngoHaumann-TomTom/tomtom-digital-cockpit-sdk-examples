@@ -1,31 +1,24 @@
 ---
-title: Integrate TomTom IndiGO into a Gradle Project
+title: Integrate TomTom IndiGO into a Gradle Project (NavKit2)
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, please skip this page and instead go
-    to&nbsp;
-    <a href="/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project-navkit2">
-        Integrate TomTom IndiGO into a Gradle Project (NavKit2)
-    </a>
-    .
+<Blockquote hasIcon>
+    This page is applicable only for TomTom IndiGO version 1.0.3880-1630 and earlier.
 </Blockquote>
 
 This pages contains the steps required to integrate the TomTom IndiGO platform into an existing
 Android Gradle project. If you are new to TomTom IndiGO, our recommendation is to use the examples
-as a starting point, as these already cover the steps described on this page. Use the steps on this
-page as a reference to integrate the TomTom IndiGO platform into an existing / newly created Android
-Gradle project. These steps assume a basic level of experience with setting up Gradle build files
-using Kotlin.
+as a starting point as these examples already cover the steps described on this page. Use the steps
+on this page as a reference to integrate the TomTom IndiGO platform into an existing / newly created
+Android Gradle project. These steps assume a basic level of experience with setting up Gradle build
+files using Kotlin.
 
 ## Maven repositories
 
 Gradle will need to be able to download TomTom IndiGO platform dependencies from TomTom's Maven
-repositories, for which login credentials are required. These can be obtained from TomTom.
+repositories for which login credentials are required. These can be obtained from TomTom.
 
 Access to these repositories can be configured in Gradle as follows:
-
-__build-logic/repositories.gradle.kts:__
 
 ```kotlin
 pluginManagement {
@@ -76,16 +69,15 @@ dependencyResolutionManagement {
 }
 ```
 
-The above needs to be applied to `buildscript`, `buildSrc` and to all projects. As such, apply this
-file in the Gradle settings files.
-
-__settings.gradle.kts:__
+The above needs to be applied to `buildscript`, `buildSrc` and to all projects. As such, place the
+above in a file called `build-logic/repositories.gradle.kts` and apply this file in
+the top-level `settings.gradle.kts` file like:
 
 ```kotlin
 apply(from = "build-logic/repositories.gradle.kts")
 ```
 
-__buildSrc/settings.gradle.kts:__
+and in your `buildSrc/settings.gradle.kts` file like:
 
 ```kotlin
 apply(from = "../build-logic/repositories.gradle.kts")
@@ -94,9 +86,8 @@ apply(from = "../build-logic/repositories.gradle.kts")
 ## Dependency management
 
 The TomTom IndiGO platform publishes a version catalog which you can use to ensure your product
-uses the same versions as used by the TomTom IndiGO platform.
-
-__build-logic/indigodependencies.versioncatalog.gradle.kts:__
+uses the same versions as used by the TomTom IndiGO platform. Create:
+`build-logic/indigodependencies.versioncatalog.gradle.kts` and add:
 
 ```kotlin
 enableFeaturePreview("VERSION_CATALOGS")
@@ -114,24 +105,27 @@ dependencyResolutionManagement {
 }
 ```
 
-Replace the `<TOMTOM-INDIGO-VERSION>` with the TomTom IndiGO version you want to use, in format
-`x.y.z`.
+Replace the `<TOMTOM-INDIGO-VERSION>` with the TomTom IndiGO version you want to use.
 
-Next, apply this file in the top-level `settings.gradle.kts` file and `buildSrc/settings.gradle.kts`
+Next apply this file in the top-level `settings.gradle.kts` file and `buildSrc/settings.gradle.kts`
 files.
 
 ## BuildSrc dependencies
 
 The TomTom IndiGO platform provides Gradle plugins for the build-time configuration of the TomTom
 IndiGO platform. This allows you to, for example, include all of IndiGO's default frontends in your
-product. To allow these Gradle plugins to be used in the Gradle projects, it is required to add them
-as `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
+product. To allow the Gradle plugins to be used in the Gradle projects it is required to add the
+Gradle plugins as `implementation` dependencies to the `buildSrc`. The following adds these
+dependencies:
 
-__buildSrc/build.gradle.kts:__
+**buildSrc/build.gradle.kts**
 
 ```kotlin
 dependencies {
-    val indigoPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val indigoPlatformVersion = ...
+
+    // Optional: Plugin to configure the TomTom API key at build-time.
+    implementation("com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2:$indigoPlatformVersion")
 
     // Mandatory: Plugin to configure the IVI application at build-time.
     implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$indigoPlatformVersion")
@@ -150,9 +144,7 @@ dependencies {
 
 ## Root project configuration
 
-Apply the following plugins to the root Gradle project:
-
-__build.gradle.kts:__
+Apply the following plugins in the top-level `build.gradle.kts` file to the root Gradle project:
 
 ```kotlin
 plugins {
@@ -160,18 +152,14 @@ plugins {
     ...
     // Mandatory: For IVI service plugins.
     id("com.google.devtools.ksp") apply false
-
-    // Mandatory: For configuring the IVI application at build-time.
+    // Mandatory: For configure the IVI application at build-time.
     id("com.tomtom.ivi.platform.framework.config")
-
     // Optional: Plugin for versioning the APK based on the Git repository information.
     id("com.tomtom.ivi.platform.tools.version")
 }
 ```
 
-In the same file, configure the TomTom IndiGO platform dependency source.
-
-__build.gradle.kts:__
+In the same file, configure the TomTom IndiGO platform dependency source:
 
 ```kotlin
 ivi {
@@ -182,15 +170,16 @@ ivi {
 ## Integrating TomTom IndiGO platform into the APK
 
 To integrate the TomTom IndiGO platform into an APK, you can add the following to the
-build file of the project that builds the APK:
-
-__my_project/build.gradle.kts:__
+`build.gradle.kts` of the project that builds the APK:
 
 ```kotlin
 plugins {
-    // Optional: To use the default frontends and services from the TomTom IndiGO platform
-    // and app suite.
+    // Optional: To use the default frontends and services from the TomTom IndiGO platform and app
+    // suite.
     id("com.tomtom.ivi.product.defaults.core")
+
+    // Optional: To configure the TomTom API key at build-time.
+    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
 ivi {
@@ -209,18 +198,19 @@ TomTom IndiGO platform and app suite for default runtime deployment.
 If you only want to apply defaults from the TomTom IndiGO platform without the appsuite default, you
 can achieve this by only applying the `id("com.tomtom.ivi.platform.defaults.core")` Gradle plugin.
 Additionally, if you want to include a selection of the TomTom IndiGO Applications, you can apply
-the Gradle plugin for each individual TomTom IndiGO Application.
+the Gradle plugins for each individual TomTom IndiGO Application.
 
-To allow these Gradle plugins to be used in the Gradle projects, it is required to add them as
-`implementation` dependencies to the `buildSrc`. The following adds these dependencies:
+To allow these Gradle plugins to be used in the Gradle projects it is required to add the Gradle
+plugins as `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
 
 ```kotlin
 dependencies {
-    val indigoPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val indigoPlatformVersion = ...
 
     // Optional: Plugin to configure in the default frontends and services from the TomTom IndiGO platform.
     implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:$indigoPlatformVersion")
-
+    // Optional: Plugin to configure in the defaults from NavKit2 TomTom IndiGO Application.
+    implementation("com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2:$indigoPlatformVersion")
     // Optional: Plugin to configure in the defaults from Media TomTom IndiGO Application.
     implementation("com.tomtom.ivi.appsuite.gradle.media:api_appsuitedefaults_media:$indigoPlatformVersion")
     // Optional: Plugin to configure in the defaults from Communications TomTom IndiGO Application.
@@ -257,6 +247,8 @@ plugins {
     // This plugin should be always applied first, before the rest of the `defaults` plugins.
     id("com.tomtom.ivi.platform.defaults.core")
 
+    // Optional: To configure in the defaults from NavKit2 TomTom IndiGO Application.
+    id("com.tomtom.ivi.appsuite.navkit2.defaults.navkit2")
     // Optional: To configure in the defaults from Media TomTom IndiGO Application.
     id("com.tomtom.ivi.appsuite.media.defaults.media")
     // Optional: To configure in the defaults from Communications TomTom IndiGO Application.
@@ -285,8 +277,8 @@ plugins {
 }
 ```
 
-__Note:__ Some of these Gradle plugins add menu items. The order in which these plugins are applied,
-defines the order of the menu items in the main menu frontend.
+Some of these Gradle plugins add menu items. The order in which these plugins are applied defines
+the order of menu items within the main menu frontend.
 
 ## Module references
 
@@ -295,9 +287,9 @@ Before adding frontends or IVI service hosts, our recommendation is to implement
 
 The `ModuleReference` implementation class can be used in the build configurations of the frontend
 and IVI service host later on. It will be used to refer to modules that implement the frontend or
-IVI service host, and also to resolve the full-qualified package names.
+IVI service host and to resolve the full-qualified package names as well.
 
-Create the `ModuleReference` implementation class `<ProjectName>ModuleReference` in `buildSrc`.
+Create the `ModuleReference` implementation class (`<ProjectName>ModuleReference`) in `buildSrc`.
 You can use `ExampleModuleReference.kt` in
 `buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/` as an example.
 

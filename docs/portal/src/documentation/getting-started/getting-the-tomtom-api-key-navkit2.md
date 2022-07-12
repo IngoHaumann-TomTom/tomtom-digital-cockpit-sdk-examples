@@ -1,6 +1,10 @@
 ---
-title: Getting the TomTom API Key
+title: Getting the TomTom API Key (NavKit2)
 ---
+
+<Blockquote hasIcon>
+    This page is applicable only for TomTom IndiGO version 1.0.3880-1630 and earlier.
+</Blockquote>
 
 The TomTom IndiGO SDK uses TomTom's online Navigation services, for which an API key is required. An
 evaluation key with limited authorization can be
@@ -49,7 +53,7 @@ either the top-level `local.properties` file or your `gradle.properties` file.
   SDK.
 - The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
   environment variable, usually `~/.gradle/`. See
-  [Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key)
+  [Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key-navkit2)
   for details and alternative ways to configure the key.
     - __Windows:__ Use the `%UserProfile%\.gradle` folder to find or create the
       `gradle.properties` file.
@@ -59,6 +63,13 @@ Add a line to have the Gradle property match your TomTom API key:
 ```cmd
 navkit2ApiKey=<your-tomtom-api-key>
 ```
+
+## Using a configuration provider for the API key
+
+Apart from specifying the API key as a Gradle property, it can also be set using the
+[TomTom IndiGO configuration framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework),
+as explained in
+[Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key-navkit2).
 
 ## Evaluation agreement
 

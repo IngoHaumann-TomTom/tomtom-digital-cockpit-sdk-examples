@@ -2,6 +2,10 @@
 title: Configure a TomTom API Key
 ---
 
+<Blockquote hasIcon>
+    This page is applicable only for TomTom IndiGO version 1.0.3880-1630 and earlier.
+</Blockquote>
+
 You have received a TomTom API key, which must be used in the example app for the map and
 navigation-related features to work. These features use TomTom's NavKit2 libraries.
 
@@ -31,7 +35,7 @@ You can override static configuration values in Android resources. See
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API)
 Gradle plugin.
 
 This option is preferred if you want to simplify the project setup. However it requires the key to
@@ -45,15 +49,7 @@ The `TemplateApplication` class contains an example explaining how to configure 
 
 Disable the build-time check by setting the `disableNavkit2ApiKeyBuildTimeCheck` property to `true`
 in the top-level `gradle.properties` file, or by not applying the
-[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API) 
+[`com.tomtom.ivi.appsuite.gradle.navkit2.api.appsuitedefaults.navkit2.config`](TTIVI_INDIGO_GRADLEPLUGINS_API)
 Gradle plugin.
 
 This option is preferred if you want to obtain and configure the key at runtime.
-
-## Next steps
-
-See:
-
-- [How to create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
-- [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
-

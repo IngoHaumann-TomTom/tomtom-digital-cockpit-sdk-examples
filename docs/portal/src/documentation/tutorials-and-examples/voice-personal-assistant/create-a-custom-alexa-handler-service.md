@@ -71,7 +71,7 @@ Alexa libraries that are not publicly available.
 
 To build the Alexa example app, you should edit the build files:
 
-__gradle.properties__
+__gradle.properties:__
 
 ```kotlin
 optInToAlexaExamples=true
@@ -92,7 +92,7 @@ The following sections describe how to create a custom Alexa Handler service imp
 To implement a custom Alexa Handler service, create a new module under `examples/alexa` (for
 example `examples/alexa/customalexahandler`) and add a Gradle build script.
 
-__build.gradle.kts__
+__build.gradle.kts:__
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -123,7 +123,7 @@ indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:
 The Alexa Handler service implementation project is an Android project, so it must also have
 an `AndroidManifest.xml` file.
 
-__src/main/AndroidManifest.xml__
+__src/main/AndroidManifest.xml:__
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -188,7 +188,8 @@ which matches with the topic configured in the service implementation, the
 The service implementation needs to parse this message and handle it as needed.
 Typically, in order to parse an AASB message, you would:
 
-1. Instantiate an instance of the [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serialization-guide.md)
+1. Instantiate an instance of the
+   [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serialization-guide.md)
    JSON parser:
 
    ```kotlin
@@ -200,7 +201,8 @@ Typically, in order to parse an AASB message, you would:
    ```
 
 2. Define a data class that represents the message to be parsed. For example, the data class
-   representing the CarControl [SetControllerValue](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervalue)
+   representing the CarControl
+   [SetControllerValue](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervalue)
    message would look like this:
 
    ```kotlin
@@ -247,7 +249,8 @@ request was successfully executed or not.
 Typically, in order to send an AASB reply message, you would:
 
 1. Define a data class that represents the message to be sent to AACS. For example, the data class
-   representing the CarControl [SetControllerValueMessageReply](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervaluereply)
+   representing the CarControl
+   [SetControllerValueMessageReply](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervaluereply)
    message would look like this:
 
    ```kotlin
@@ -299,7 +302,8 @@ functions.
 Typically, in order to send an AASB "Publish" message, you would:
 
 1. Define a data class that represents the message to be sent to AACS. For example, the data class
-   representing the [DoNotDisturbChanged](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/DoNotDisturb/#donotdisturbchanged)
+   representing the
+   [DoNotDisturbChanged](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/DoNotDisturb/#donotdisturbchanged)
    message would look like this:
 
     ```kotlin
@@ -400,7 +404,7 @@ Define an IVI service host implementation in your gradle file, This can also be 
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
-__examples/alexa/iviservicehosts.gradle.kts__
+__examples/alexa/iviservicehosts.gradle.kts:__
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -433,7 +437,7 @@ val customAlexaHandlerServiceHost by extra {
 
 Register the service host build configuration in the main application's build script.
 
-__examples/alexa/app/build.gradle.kts__
+__examples/alexa/app/build.gradle.kts:__
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
