@@ -32,6 +32,7 @@ import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQ
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.Favorites
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactByContactId
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByCompanyName
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByDisplayNames
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByFamilyName
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByFirstName
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByPhoneNumber
@@ -77,9 +78,7 @@ internal class MutableCustomContactsDataSource :
                 is Groups -> {
                     contacts.values.groupBy {
                         it.toFirstLetter()
-                    }.map {
-                        ContactGroup(it.key.toString(), it.value.size)
-                    }
+                    }.map { ContactGroup(it.key.toString(), it.value.size) }
                 }
                 is FindContactsByFirstName -> {
                     contacts.values.filter {
@@ -87,6 +86,14 @@ internal class MutableCustomContactsDataSource :
                             (query.selection as FindContactsByFirstName).firstName,
                             true
                         )
+                    }.toContactItem()
+                }
+                is FindContactsByDisplayNames -> {
+                    contacts.values.filter { contact ->
+                        (query.selection as FindContactsByDisplayNames).displayNames
+                            .any { displayName ->
+                                contact.displayName.startsWith(displayName, true)
+                            }
                     }.toContactItem()
                 }
                 is FindContactsByFamilyName -> {
