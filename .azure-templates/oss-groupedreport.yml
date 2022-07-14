@@ -19,8 +19,8 @@ parameters:
   productVersion: ''
   # reportFilename: the name of the report.
   reportFilename: ''
-  # root_folder: where the scan starts (relative path to the root of the project).
-  rootFolder: ''
+  # repository : path of the repository to scan
+  repository: '$(Build.Repository.Name)'
   # artifactoryLocation : the location in Artifactory where to publish the report.
   artifactoryLocation: ''
   # bdtoolsUrl: specifies which environment to publish the scan.
@@ -29,6 +29,7 @@ parameters:
   bdApiToken: ''
 
 steps:
+  - checkout: self
   - bash: |
       set -e
       patch_version="$(echo '$(VERSION_EXAMPLES)' | cut -d'.' -f3)"
@@ -57,7 +58,7 @@ steps:
       echo "Create locked configuration"
 
       bdt config --repo-type=GIT \
-                 --repository=. \
+                 --repository=${{parameters.repository}} \
                  --version=${{parameters.product}}:${{parameters.productVersion}} \
                  --git-tag-limit=500 \
                  --auto-inherit=${{parameters.product}}:GIT_TAG \
@@ -70,15 +71,16 @@ steps:
                  --dependency='${{parameters.product}}->nav-tomtom-android-tools:$(VERSION_TOMTOM_ANDROID_TOOLS)' \
                  --dependency='${{parameters.product}}->nav-navtest-core:$(VERSION_NAVTESTCORE)' \
                  --dependency='${{parameters.product}}->nav-emulator-plugin:$(VERSION_NAVEMULATOR)' \
-                 --dependency='${{parameters.product}}->ivi-indigo-alexa-auto-sdk:$(VERSION_ALEXAAUTOSDK)'
+                 --dependency='${{parameters.product}}->ivi-indigo-alexa-auto-sdk:$(VERSION_ALEXAAUTOSDK)' \
+                 --lock-configuration=$(Agent.TempDirectory)/bdtools.lock.yml
 
       bdt scan  --repo-type=LOCAL \
-                --repository=./${{parameters.root_folder}} \
+                --repository=${{parameters.repository}} \
                 --host-type=LOCAL \
                 --log-level=DEBUG \
-                --log-folder $(Agent.TempDirectory)/bdtoolslogs \
-                --cache $(Agent.TempDirectory)/bdtoolscache \
-                --lock-configuration ./bdtools.lock.yml
+                --log-folder=$(Agent.TempDirectory)/bdtoolslogs \
+                --cache=$(Agent.TempDirectory)/bdtoolscache \
+                --lock-configuration=$(Agent.TempDirectory)/bdtools.lock.yml
     env:
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
@@ -89,39 +91,39 @@ steps:
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: ArchiveFiles@2
-    displayName: 'Archive BlackDuck lock file ${{parameters.root_folder}}'
+    displayName: 'Archive BlackDuck lock file'
     inputs:
-      rootFolderOrFile: 'bdtools.lock.yml'
+      rootFolderOrFile: '$(Agent.TempDirectory)/bdtools.lock.yml'
       includeRootFolder: false
       archiveType: 'tar'
       tarCompression: 'gz'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools.lock.tar.gz'
       replaceExistingArchive: true
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish lock file in pipeline artifacts ${{parameters.root_folder}}'
+    displayName: 'Publish lock file in pipeline artifacts'
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
-      artifactName: scanning-${{parameters.root_folder}}-lockfile-$(System.JobAttempt)
+      targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools.lock.tar.gz'
+      artifactName: scanning-lockfile-$(System.JobAttempt)
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: ArchiveFiles@2
-    displayName: 'Archive BlackDuck logs ${{parameters.root_folder}}'
+    displayName: 'Archive BlackDuck logs'
     inputs:
       rootFolderOrFile: '$(Agent.TempDirectory)/bdtoolslogs/'
       includeRootFolder: false
       archiveType: 'tar'
       tarCompression: 'gz'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs.tar.gz'
       replaceExistingArchive: true
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish logs in pipeline artifacts ${{parameters.root_folder}}'
+    displayName: 'Publish logs in pipeline artifacts'
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
-      artifactName: scanning-${{parameters.root_folder}}-logs-$(System.JobAttempt)
+      targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs.tar.gz'
+      artifactName: scanning-logs-$(System.JobAttempt)
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - script: |
@@ -135,15 +137,15 @@ steps:
     env:
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
-    displayName: Generate report ${{parameters.root_folder}}
+    displayName: Generate report
     retryCountOnTaskFailure: 3
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish output in pipeline artifacts ${{parameters.root_folder}}'
+    displayName: 'Publish output in pipeline artifacts'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
-      artifactName: scanning-${{parameters.root_folder}}-output-$(System.JobAttempt)
+      artifactName: scanning-output-$(System.JobAttempt)
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PythonScript@0
@@ -161,7 +163,7 @@ steps:
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Publish OSS compliance report in pipeline artifacts ${{parameters.root_folder}}'
+    displayName: 'Publish OSS compliance report in pipeline artifacts'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md'
       artifactName: oss-report
