@@ -8,6 +8,7 @@ import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendMetadata
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ControlCenterPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ExpandedProcessPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.GuidancePanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.HomePanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.MainMenuPanel
@@ -51,6 +52,7 @@ internal class CustomSystemUiHost(
     override val unsupportedPanelTypes: PanelTypeSet = panelTypeSetOf(
         ControlCenterPanel::class,
         DebugPanel::class,
+        ExpandedProcessPanel::class,
         GuidancePanel::class,
         HomePanel::class,
         MainMenuPanel::class,
