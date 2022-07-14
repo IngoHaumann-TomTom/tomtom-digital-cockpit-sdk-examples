@@ -218,7 +218,7 @@ stages:
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
-      eq(variables['Build.Reason'], 'Manual'
+      eq(variables['Build.Reason'], 'Manual')
       )
     jobs:
       - job: ReleasesData
@@ -311,7 +311,7 @@ stages:
               variableValue: $(VERSION_PLATFORM)
               condition: and(
                 succeeded(),
-                eq(variables.isMainlineBuild, true),
+                eq(variables.isMainlineBuild, true)
                 )
 
   - stage: Cleanup
