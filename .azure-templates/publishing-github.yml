@@ -13,7 +13,6 @@
 parameters:
   # Folder for the internal example source (should have been prepared for release before this).
   internalExampleSourceFolder: ''
-  sdkVersion: ''
 
 steps:
   - checkout: indigoqa
@@ -25,7 +24,7 @@ steps:
       mkdir $(Build.SourcesDirectory)/downloads
     displayName: Create download directory
 
-  # TODO(IVI-7077): Add the installation to the Docker image instead. 
+  # TODO(IVI-7077): Add the installation to the Docker image instead.
   - script: |
       apk update
       apk upgrade
@@ -33,7 +32,7 @@ steps:
       rm -rf /var/cache/apk/*
     displayName: 'Install Ruby'
 
-  # TODO(IVI-7077): Add the installation to the Docker image instead. 
+  # TODO(IVI-7077): Add the installation to the Docker image instead.
   # Faraday (this version) is required to create a Github App installation token correctly
   - script: |
       gem install octokit
@@ -54,10 +53,12 @@ steps:
         --download_base_path=$(System.DefaultWorkingDirectory)/downloads \
         --internal_source_folder=${{parameters.internalExampleSourceFolder}} \
         --external_repo_name="tomtom-internal/tomtom-indigo-sdk-examples" \
+        --external_repo_branch=$(externalRepoBranch) \
         --github_app_identifier=$(GITHUB_APP_IDENTIFIER) \
         --github_app_installation_identifier=$(GITHUB_APP_INSTALLATION_IDENTIFIER) \
         --github_app_private_key_path=$(caCertificate.secureFilePath) \
         --version_examples=$(VERSION_EXAMPLES) \
-        --sdk_version=${{parameters.sdkVersion}}
+        --version_tag=$(versionTag) \
+        --commit_message=$(commitMessage)
     name: GithubPublish
     displayName: 'Publish example sources to github'

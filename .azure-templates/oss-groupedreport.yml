@@ -33,7 +33,25 @@ steps:
       set -e
       patch_version="$(echo '$(VERSION_EXAMPLES)' | cut -d'.' -f3)"
       echo "##vso[task.setvariable variable=PATCH_VERSION]${patch_version}"
-    displayName: create patch version variable
+    displayName: 'Create patch version variable'
+
+  - task: PythonScript@0
+    name: CompareVersions
+    displayName: 'Check if scan is allowed'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3.8
+      script: |
+        from semantic_version import Version
+
+        scan_allowed = True
+        if Version("$(VERSION_PLATFORM)-$(PATCH_VERSION)") <= Version("$(OSS_GROUP_REPORT_VERSION)"):
+          print(
+            "##vso[task.logissue type=warning;]OSS scan will be skipped. Group report for SDK "
+            "version [$(VERSION_PLATFORM)-$(PATCH_VERSION)] is already available on artifactory."
+          )
+          scan_allowed = False
+        print(f"##vso[task.setvariable variable=scanAllowed;isOutput=true]{scan_allowed}")
 
   - script: |
       echo "Create locked configuration"
@@ -68,8 +86,10 @@ steps:
     retryCountOnTaskFailure: 3
     continueOnError: true
     timeoutInMinutes: 20
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: ArchiveFiles@2
-    displayName: Archive BlackDuck lock file ${{parameters.root_folder}}
+    displayName: 'Archive BlackDuck lock file ${{parameters.root_folder}}'
     inputs:
       rootFolderOrFile: 'bdtools.lock.yml'
       includeRootFolder: false
@@ -77,13 +97,17 @@ steps:
       tarCompression: 'gz'
       archiveFile: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
       replaceExistingArchive: true
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: PublishPipelineArtifact@1
-    displayName: Publish lock file in pipeline artifacts ${{parameters.root_folder}}
+    displayName: 'Publish lock file in pipeline artifacts ${{parameters.root_folder}}'
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools-${{parameters.root_folder}}.lock.tar.gz'
       artifactName: scanning-${{parameters.root_folder}}-lockfile-$(System.JobAttempt)
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: ArchiveFiles@2
-    displayName: Archive BlackDuck logs ${{parameters.root_folder}}
+    displayName: 'Archive BlackDuck logs ${{parameters.root_folder}}'
     inputs:
       rootFolderOrFile: '$(Agent.TempDirectory)/bdtoolslogs/'
       includeRootFolder: false
@@ -91,13 +115,17 @@ steps:
       tarCompression: 'gz'
       archiveFile: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
       replaceExistingArchive: true
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: PublishPipelineArtifact@1
-    displayName: Publish logs in pipeline artifacts ${{parameters.root_folder}}
+    displayName: 'Publish logs in pipeline artifacts ${{parameters.root_folder}}'
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs-${{parameters.root_folder}}.tar.gz'
       artifactName: scanning-${{parameters.root_folder}}-logs-$(System.JobAttempt)
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - script: |
-      # Will generete a JSON report to a file on the current working directory
+      # This will generete a JSON report to a file on the current working directory
       # called "license_compliance_report.json" based on the BOM of the project specified.
       bdt report  --project ${{parameters.product}} \
                   --version ${{parameters.productVersion}} \
@@ -109,14 +137,18 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Generate report ${{parameters.root_folder}}
     retryCountOnTaskFailure: 3
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: PublishPipelineArtifact@1
-    displayName: Publish output in pipeline artifacts ${{parameters.root_folder}}
+    displayName: 'Publish output in pipeline artifacts ${{parameters.root_folder}}'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
       artifactName: scanning-${{parameters.root_folder}}-output-$(System.JobAttempt)
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: PythonScript@0
     name: OSS_compliance_report
-    displayName: Generate OSS compliance report.
+    displayName: 'Generate OSS compliance report.'
     inputs:
       scriptSource: 'filePath'
       scriptPath: docs/portal/scripts/oss_generator.py
@@ -126,22 +158,34 @@ steps:
         --markdown-table "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
         --version "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
         --project-name "IndiGO SDK"
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: PublishPipelineArtifact@1
-    displayName: Publish OSS compliance report in pipeline artifacts ${{parameters.root_folder}}
+    displayName: 'Publish OSS compliance report in pipeline artifacts ${{parameters.root_folder}}'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md'
       artifactName: oss-report
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"
       folderOrFileName: "${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md"
-      condition: eq(variables['Agent.JobStatus'], 'Succeeded')
+      condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"
       folderOrFileName: "${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
-      condition: eq(variables['Agent.JobStatus'], 'Succeeded')
+      condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
+  - template: azure/updatevariablegroup.yml@devops-templates
+    parameters:
+      endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
+      groupName: 'ProductVersion'
+      variableName: 'OSS_GROUP_REPORT_VERSION'
+      variableValue: $(VERSION_PLATFORM)-$(PATCH_VERSION)
+      condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))

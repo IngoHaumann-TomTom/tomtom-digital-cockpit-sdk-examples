@@ -63,11 +63,11 @@ steps:
         from semantic_version import Version
 
         release_allowed = True
-        if Version("$(Version.INDIGO_PLATFORM)") <= Version("$(PREVIOUS_PRODUCT_VERSION)"):
+        if Version("$(Version.INDIGO_PLATFORM)") <= Version("$(latestReleasedPlatformVersion)"):
           print(
             "##vso[task.logissue type=warning;]Not allowed to release platform for version "
             "[$(Version.INDIGO_PLATFORM)]! Previously the platform has been already successfully "
-            "released for version [$(PREVIOUS_PRODUCT_VERSION)], which is the same or newer."
+            "released for version [$(latestReleasedPlatformVersion)], which is the same or newer."
           )
           release_allowed = False
         print(f"##vso[task.setvariable variable=releaseAllowed;isOutput=true]{release_allowed}")

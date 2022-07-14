@@ -33,7 +33,7 @@ parameters:
   - name: versionLineageOs
     displayName: 'Version LineageOS system image (tablet)'
     type: string
-    default: '18.1.18'
+    default: '18.1.22'
   - name: shouldPublishEmulatorImages
     displayName: 'Publish the latest available emulator system images to Nexus'
     type: boolean
@@ -86,6 +86,11 @@ variables:
       value: $(blackduck-prod-pat)
     ${{ else }}:
       value: $(blackduck-preprod-pat)
+  - name: latestReleasedPlatformVersion
+    ${{ if eq(variables['Build.Reason'], 'Manual') }}:
+      value: '$(RELEASED_PLATFORM_VERSION)'
+    ${{ else }}:
+      value: '$(RELEASED_BETA_PLATFORM_VERSION)'
 
 resources:
   containers:
@@ -113,14 +118,10 @@ resources:
   - repository: indigo
     type: git
     name: IVI/indigo
-  - repository: indigo-ca-android-communication
-    type: git
-    name: IVI/indigo-ca-android-communication
-  - repository: tomtom-android-tools
-    type: github
-    endpoint: tomtom-internal_bilkes_personal
-    name: tomtom-internal/TomTom-Android-Tools
 
+# Bi-daily scheduled run.
+# But only if the code on the master branch has changed since the last successful scheduled run.
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml#cron-syntax
 schedules:
   - cron: "0 5,12 * * *"
     displayName: Daily IndiGO SDK release trigger at 05:00 & 12:00 (UTC).
@@ -166,7 +167,7 @@ stages:
       )
 
   - stage: OSSCompliance
-    displayName: OSS compliance scan
+    displayName: 'OSS compliance scan'
     dependsOn: Versions
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
@@ -208,13 +209,17 @@ stages:
 
   - stage: Documentation
     displayName: 'Generate and publish API References and Developer Portal'
-    dependsOn: [ Versions, Verification]
+    dependsOn: [ Versions, Verification ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+    condition: and(
+      succeeded(),
+      eq(variables.isMainlineBuild, true),
+      eq(variables['Build.Reason'], 'Manual'
+      )
     jobs:
       - job: ReleasesData
         displayName: 'Releases data'
@@ -231,9 +236,19 @@ stages:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+      ${{ if eq(variables['Build.Reason'], 'Manual') }}:
+        externalRepoBranch: 'main'
+        versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+      ${{ else }}:
+        externalRepoBranch: 'beta'
+        versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)-beta'
+      commitMessage: 'TomTom IndiGO SDK Release $(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+    condition: and(
+      not(failed()),
+      eq(variables.isMainlineBuild, true),
+      eq(dependencies.Versions.outputs['GetVersions.CompareVersions.releaseAllowed'], 'True')
+      )
     jobs:
-      # TODO(IVI-4866): Publish Example App source to github as part of the SDK release
       - job: PublishRelease
         displayName: 'Publish SDK release to Nexus'
         timeoutInMinutes: 10
@@ -244,6 +259,7 @@ stages:
               artifact: tomtom-indigo-sdk
               path: $(Build.SourcesDirectory)/downloads
             displayName: Download the tomtom-indigo-sdk pipeline artifact
+          # TODO(IVI-4825): Remove the SDK tarball on Nexus
           - bash: |
               set -eux
               curl -v -u '$(NEXUS_USERNAME):$(NEXUS_PASSWORD)'\
@@ -254,6 +270,8 @@ stages:
                 -F "maven2.asset1=@$(Build.SourcesDirectory)/downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz"\
                 -F "maven2.asset1.extension=tar.gz"\
                 "https://repo.tomtom.com/service/rest/v1/components?repository=ivi"
+            displayName: 'Publish tomtom-indigo-sdk tarball to Nexus'
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'Manual'))
           - task: ExtractFiles@1
             displayName: Extracting SDK artifact
             inputs:
@@ -274,14 +292,27 @@ stages:
           - template: .azure-templates/publishing-github.yml
             parameters:
               internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/
-              sdkVersion: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
           - template: azure/updatevariablegroup.yml@devops-templates
             parameters:
               endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
               groupName: 'ProductVersion'
-              variableName: 'PREVIOUS_PRODUCT_VERSION'
+              variableName: 'RELEASED_PLATFORM_VERSION'
               variableValue: $(VERSION_PLATFORM)
-              condition: and(eq(variables.isMainlineBuild, true), succeeded())
+              condition: and(
+                succeeded(),
+                eq(variables.isMainlineBuild, true),
+                eq(variables['Build.Reason'], 'Manual')
+                )
+          - template: azure/updatevariablegroup.yml@devops-templates
+            parameters:
+              endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
+              groupName: 'ProductVersion'
+              variableName: 'RELEASED_BETA_PLATFORM_VERSION'
+              variableValue: $(VERSION_PLATFORM)
+              condition: and(
+                succeeded(),
+                eq(variables.isMainlineBuild, true),
+                )
 
   - stage: Cleanup
     dependsOn: [ Versions, Documentation, Publication ]
@@ -297,6 +328,7 @@ stages:
         displayName: 'Delete release entry'
         timeoutInMinutes: 10
         container: docker_indigo_delivery
+        condition: eq(variables['Build.Reason'], 'Manual')
         steps:
           - template: .azure-templates/releases-data.yml
             parameters:
