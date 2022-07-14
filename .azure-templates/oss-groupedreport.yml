@@ -63,7 +63,7 @@ steps:
                  --git-tag-limit=500 \
                  --auto-inherit=${{parameters.product}}:GIT_TAG \
                  --log-level=DEBUG \
-                 --static-configuration=${{parameters.configurationFilePath}} \
+                 --static-configuration=${{parameters.repository}}/${{parameters.configurationFilePath}} \
                  --dependency='${{parameters.product}}->ivi-indigo:$(VERSION_PLATFORM)' \
                  --dependency='${{parameters.product}}->ivi-indigo-docs:$(VERSION_EXAMPLES)' \
                  --dependency='${{parameters.product}}->ivi-indigo-companion-app-android-communication:$(VERSION_COMMUNICATIONS_SDK)' \
