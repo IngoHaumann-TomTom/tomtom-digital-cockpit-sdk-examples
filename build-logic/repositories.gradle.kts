@@ -50,9 +50,6 @@ dependencyResolutionManagement {
         // PU NAV repo for NavTest and Gradle plugins from NAV.
         maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")
 
-        // PU NAV repo for NavKit2.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navkit2-maven-release-local")
-
         // PU LNS repo for the Connectivity Agent.
         maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
 

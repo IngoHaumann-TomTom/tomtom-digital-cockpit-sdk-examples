@@ -33,7 +33,6 @@ steps:
         createEmulators
         startEmulators
       projectOptions: >-
-        -PuseInternalNavkit2ApiKey=true
         -Pemulators=${{parameters.nrOfEmulators}}
         -PemulatorDirectory=$(Build.SourcesDirectory)/TestAVDs
       displayName: 'Start emulators'
@@ -43,7 +42,6 @@ steps:
       tasks: ${{parameters.testTasks}}
       projectOptions: >-
         --max-workers=12
-        -PuseInternalNavkit2ApiKey=true
       testResultsFiles: '**/androidTest*/**/TEST-*.xml'
       testRunTitle: 'Tests'
       displayName: 'Run tests'
@@ -53,8 +51,6 @@ steps:
     parameters:
       tasks: >-
         pullDeviceDebugInfo
-      projectOptions: >-
-        -PuseInternalNavkit2ApiKey=true
       displayName: 'Retrieve emulator logs and metadata'
       condition: succeededOrFailed()
 
@@ -72,7 +68,5 @@ steps:
       tasks: >-
         killEmulators
         deleteEmulators
-      projectOptions: >-
-        -PuseInternalNavkit2ApiKey=true
       displayName: 'Stop emulators'
       condition: always()

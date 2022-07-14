@@ -16,4 +16,3 @@ projects:
       - FULL_SCAN
     passthrough:
       - --detect.gradle.included.configurations=releaseRuntimeClasspath
-      - "--detect.gradle.build.command='-PuseInternalNavkit2ApiKey=true'"

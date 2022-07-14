@@ -18,7 +18,6 @@ steps:
         portal_check
       projectOptions:
         -PiviVersion=$(product_version)
-        -PuseInternalNavkit2ApiKey=true
       displayName: 'Validate Developer Portal content'
       continueOnError: true
 

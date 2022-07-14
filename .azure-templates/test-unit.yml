@@ -23,8 +23,6 @@ steps:
   parameters:
     tasks: >-
       test
-    projectOptions: >-
-      -PuseInternalNavkit2ApiKey=true
     testResultsFiles: '**/TEST-*Test.xml'
     testRunTitle: 'Unit tests'
     displayName: 'Run unit tests'

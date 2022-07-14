@@ -9,7 +9,6 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
     id("com.tomtom.ivi.product.defaults.core")
-    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
 ivi {
@@ -60,7 +59,6 @@ android {
 dependencies {
     implementation(indigoDependencies.tomtomAutomotiveAndroidCar)
     implementation(libraries.indigoPlatformThemingApiCommonAttributes)
-    implementation(libraries.indigoPlatformNavkit2ApiCommonConfiguration)
     implementation(libraries.indigoPlatformFrameworkApiProductDebugPermissions)
     implementation(libraries.indigoPlatformFrameworkApiProductDefaultActivity)
     implementation(libraries.indigoPlatformFrameworkApiProductDefaultApplication)

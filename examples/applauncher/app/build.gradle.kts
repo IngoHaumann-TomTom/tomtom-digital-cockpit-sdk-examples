@@ -16,7 +16,6 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
     id("com.tomtom.ivi.product.defaults.core")
-    id("com.tomtom.ivi.appsuite.navkit2.defaults.config")
 }
 
 apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))

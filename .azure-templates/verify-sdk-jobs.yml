@@ -25,7 +25,6 @@ jobs:
           projectOptions: >-
             -PnexusUsername=$(VERIFICATION_USERNAME)
             -PnexusPassword=$(VERIFICATION_PASSWORD)
-            -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates
 
@@ -56,7 +55,6 @@ jobs:
           projectOptions: >-
             -PnexusUsername=$(NEXUS_USERNAME)
             -PnexusPassword=$(NEXUS_PASSWORD)
-            -Pnavkit2ApiKey=$(NAVKIT2_API_KEY)
             -PoptInToAlexaExamples=true
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates

@@ -19,7 +19,6 @@ jobs:
         portal_export
       projectOptions:
         -PiviVersion=$(product_version)
-        -PuseInternalNavkit2ApiKey=true
       displayName: 'Export Developer Portal'
       condition: succeeded()
   - publish: $(System.DefaultWorkingDirectory)/docs/portal/build/export

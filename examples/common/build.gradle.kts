@@ -44,6 +44,5 @@ dependencies {
     implementation(libraries.indigoPlatformFrameworkApiProductDebugPermissions)
     implementation(libraries.indigoPlatformFrameworkApiProductDefaultActivity)
     implementation(libraries.indigoPlatformFrameworkApiProductDefaultApplication)
-    implementation(libraries.indigoPlatformNavkit2ApiCommonConfiguration)
     implementation(libraries.indigoPlatformThemingApiCommonAttributes)
 }

@@ -28,7 +28,6 @@ steps:
     projectOptions:
       ${{parameters.extraLintParameters}}
       -PiviVersion=$(product_version)
-      -PuseInternalNavkit2ApiKey=true
     displayName: 'Run linters'
     condition: succeeded()
 
@@ -45,7 +44,6 @@ steps:
       assemble
     projectOptions: >-
       -PiviVersion=$(product_version)
-      -PuseInternalNavkit2ApiKey=true
     displayName: 'Assemble APKs'
     condition: succeeded()
 

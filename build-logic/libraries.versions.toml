@@ -19,7 +19,6 @@ indigoPlatform = "1.0.3923"
 [libraries]
 # Gradle plugins from the TomTom IndiGO platform & appsuite.
 gradlePluginApiAppsuiteDefaultsAlexa = { module = "com.tomtom.ivi.appsuite.gradle.alexa:api_appsuitedefaults_alexa", version.ref = "indigoPlatform" }
-gradlePluginApiAppsuiteDefaultsNavkit2 = { module = "com.tomtom.ivi.appsuite.gradle.navkit2:api_appsuitedefaults_navkit2", version.ref = "indigoPlatform" }
 gradlePluginApiAppsuiteDefaultsUserprofiles = { module = "com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksConfig = { module = "com.tomtom.ivi.platform.gradle:api_framework_config", version.ref = "indigoPlatform" }
 gradlePluginApiFrameworksFrontend = { module = "com.tomtom.ivi.platform.gradle:api_framework_frontend", version.ref = "indigoPlatform" }
@@ -43,7 +42,6 @@ indigoPlatformFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:pl
 indigoPlatformFrontendApiCommonUicontrols = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_uicontrols", version.ref = "indigoPlatform" }
 indigoPlatformFrontendApiTemplateNotificationPanel = { module = "com.tomtom.ivi.platform:platform_frontend_api_template_notificationpanel", version.ref = "indigoPlatform" }
 indigoPlatformFrontendApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_testing_frontend", version.ref = "indigoPlatform" }
-indigoPlatformNavkit2ApiCommonConfiguration = { module = "com.tomtom.ivi.platform:platform_navkit2_api_common_configuration", version.ref = "indigoPlatform" }
 indigoPlatformMainmenuApiTestingFrontend = { module = "com.tomtom.ivi.platform:platform_mainmenu_api_testing_frontend", version.ref = "indigoPlatform" }
 indigoPlatformSettingsApiServicesSettingsManagement = { module = "com.tomtom.ivi.platform:platform_settings_api_service_settingsmanagement", version.ref = "indigoPlatform" }
 indigoPlatformSystemuiApiTestingTools = { module = "com.tomtom.ivi.platform:platform_systemui_api_testing_tools", version.ref = "indigoPlatform" }

@@ -12,7 +12,6 @@ steps:
       sonarqube
     projectOptions:
       -PiviVersion=$(product_version)
-      -PuseInternalNavkit2ApiKey=true
     displayName: Analyze
 
 - task: SonarQubePublish@5
