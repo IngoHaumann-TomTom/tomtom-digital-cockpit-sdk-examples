@@ -35,12 +35,24 @@ Each map consists of a keystore file and a tarball with the map data.
 
 ## Installing the map
 
+Make sure you have built the `IVI Template App` and running it in the 
+[TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#running-the-tomtom-indigo-emulator), 
+if you are installing the on-board map on an emulator.
+
+<Blockquote>
+  The on-board map and keystore file need to be installed for each application individually. In 
+  these instructions the target application is the IVI Template App, with the package 
+  name <code>com.example.ivi.template.app</code>. For one of the example apps, use the package name 
+  from that specific AndroidManifest.xml file.
+</Blockquote>
+
 To install a downloaded map on the emulator or on a real device:
 
 - Push the keystore file:
 
 ```cmd
 adb root
+adb shell mkdir /data/media/10/Android/data/com.example.ivi.template.app/files/keystore
 adb push NK_AUTO_DEV.NKS /data/media/10/Android/data/com.example.ivi.template.app/files/keystore
 ```
 
@@ -50,12 +62,36 @@ adb push NK_AUTO_DEV.NKS /data/media/10/Android/data/com.example.ivi.template.ap
 adb push my-folder-with-map-data /data/media/10/Android/data/com.example.ivi.template.app/files/map/
 ```
 
-- Restart the TomTom IndiGO application:
-  - Swipe up from the bottom.
-  - Go to the menu :::
-  - Go to _Settings_ > _Apps and Notifications_
-  - Select _IndiGO application_
-  - Select _Force stop_ then _Open_
+- Restart the `IVI Template App`:
+  - Swipe up from the bottom of the device's screen.
+  - Click on the _All apps_ menu icon (grid of nine squares).
+  - Scroll down and select _Settings_.
+  - Scroll down and select _Apps & notifications_.
+  - Select _Show all apps_.
+  - Scroll down and select _IVI Template App_.
+  - Select _Force stop_ on the top right of the screen and click _OK_.
+  - Click on the _All apps_ menu icon (grid of nine squares).
+  - Scroll down and restart the _IVI Template App_
+
+If the map and keystore file were succesfully installed, you will now see a blue chevron appear.
+
+![Android Studio - TomTom IndiGO Emulator Chevron](images/emulator_blue_chevron.png)
+
+## Setting the emulator location
+
+The IVI Template App's navigation features only work if the emulator device's location is within
+the on-board map's region. 
+
+- Change the device's location:
+  - Press the _Extended Controls_ menu icon (three vertical dots) in Android Studio's Emulator window.
+  - Select _Location_ from the menu.
+  - Enter and select a location within the on-board map's region in the _Search_ bar.
+  - Select _Set Location_.
+
+The on-board map should now be visible and navigation features operational.
+
+![Android Studio - TomTom IndiGO Emulator Map Visible](images/emulator_onboard_map_visible.png)
+
 
 ### Using other map regions
 

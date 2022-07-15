@@ -98,6 +98,8 @@ Android Virtual Device (AVD) with it:
 
 ![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_tomtom-indigo_emulator_device.png)
 
+## Running the TomTom IndiGO emulator
+
 - Click the triangular `play` icon on the right to start the emulator.
 - When the emulator has started, it shows inside a `Device Manager` subwindow:
 
