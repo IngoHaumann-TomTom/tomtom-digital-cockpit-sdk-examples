@@ -153,7 +153,7 @@ steps:
     displayName: 'Generate OSS compliance report.'
     inputs:
       scriptSource: 'filePath'
-      scriptPath: docs/portal/scripts/oss_generator.py
+      scriptPath: ${{parameters.repository}}/docs/portal/scripts/oss_generator.py
       pythonInterpreter: /usr/bin/python3.8
       arguments:
         --output "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md"

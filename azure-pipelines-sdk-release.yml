@@ -162,6 +162,7 @@ stages:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
     condition: and(
+      eq(variables.isMainlineBuild, true),
       eq(dependencies.Versions.result, 'Succeeded'),
       eq(dependencies.Versions.outputs['GetVersions.CompareVersions.releaseAllowed'], 'True')
       )
@@ -231,7 +232,7 @@ stages:
       # TODO(IVI-6383): Add DevPortal export to SDK Release Pipeline
 
   - stage: Publication
-    dependsOn: [ Documentation, Verification, Publishing, Versions ]
+    dependsOn: [ OSSCompliance, Documentation, Verification, Publishing, Versions ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
