@@ -14,11 +14,11 @@ layout: default
 
 Navigation is central to the TomTom IndiGO experience. Online navigation enables fresh and always
 up-to-date map content. It is built on top of TomTom's navigation SDK:
-NavKit2 and makes use of common UI controls, made available through the NavKit2UI SDK.
+NavKit and makes use of common UI controls, made available through the NavKitUI SDK.
 
 TomTom IndiGO provides a set of generic core services as well as
 [_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
-implementations. They are built on top of NavKit2 and NavKit2UI SDK and provide the customer with
+implementations. They are built on top of NavKit and NavKitUI SDK and provide the customer with
 an out of the box navigation experience. Alternatively the customer can replace the off-the-shelf
 frontend and services with their own implementations.
 
@@ -29,10 +29,10 @@ The navigation domain includes the following sub-domains:
 - [Guidance](#guidance)
 
 ## Display a map
-Displaying the map using NavKit2 SDK requires two components: the _NavKit2 Map Visualisation_
-library and the _NavKit2 Map Visualisation onboard service_ library. Additionally a suite of small
-UI controls are provided by the NavKit2UI SDK, such as a Zoom Control, a Map Mode Toggle, Location
-Preview, etc. The _NavKit2 Map Visualisation_ library includes a map renderer (the component has to
+Displaying the map using NavKit SDK requires two components: the _NavKit Map Visualisation_
+library and the _NavKit Map Visualisation onboard service_ library. Additionally a suite of small
+UI controls are provided by the NavKitUI SDK, such as a Zoom Control, a Map Mode Toggle, Location
+Preview, etc. The _NavKit Map Visualisation_ library includes a map renderer (the component has to
 be integrated with app UI) and provides access to the map surface.
 The _NavKit 2 Map Visualisation_ library requires map tiles which are provided by the _NavKit 2 Map
 Visualisation onboard service_. Communication between the two mentioned components is done using
@@ -46,7 +46,7 @@ IndiGO:
 
 It shows the following components:
 - __Map display frontend__: This implements the user interface for the map display.
-- __Trip render manager__: Implements NavKit2 `Trip Renderer` and `Trip` to provide trip rendering
+- __Trip render manager__: Implements NavKit `Trip Renderer` and `Trip` to provide trip rendering
   functionality.
 - __Map display connection service__: Provides a way to configure the map data source
   (online or onboard).
@@ -61,12 +61,12 @@ The following diagram shows a high-level overview of the architecture of search 
 
 It shows the following components: 
 - __Search frontend__: This implements the user interface for the search functionality.
-- __Search ui component api__: Provides the NK2 and NK2UI components.
+- __Search ui component api__: Provides the NavKit and NavKitUI components.
 - __Vehicle location service__: This service exposes information related to the current driving
   situation and to the current location, regardless of whether a trip is planned.
 - __Navigation service__: This service implements all navigation related functionality, including
   planning a trip to a user provided location.
-- __Navigation connection service__: Starts and manages the background NK2 worker service.
+- __Navigation connection service__: Starts and manages the background NavKit worker service.
 
 ## Guidance
 
@@ -90,5 +90,5 @@ It shows the following components:
 - __Guidance instructions service__: This service contains the data of the next guidance instruction.
 - __Navigation service__: This service implements all navigation related functionality, including
   updating the active trip and monitoring for the trip for completion.
-- __Navigation provider__: This manages the lifecycle of NK2 navigation instances.
-- __Driving context api provider__: This manages the lifecycle of NK2 driving context API instances.
+- __Navigation provider__: This manages the lifecycle of NavKit navigation instances.
+- __Driving context api provider__: This manages the lifecycle of NavKit driving context API instances.

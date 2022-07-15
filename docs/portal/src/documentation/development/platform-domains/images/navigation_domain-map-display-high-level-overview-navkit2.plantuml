@@ -22,7 +22,7 @@ package "IndiGO platform"<<Rectangle>> {
     }
 }
 
-package "NavKit"<<Rectangle>> {
+package "NavKit2"<<Rectangle>> {
     component TripRenderer as [Trip Renderer]<<Api>>
     component Trip as [Trip]<<Api>>
     component TrafficRenderer as [Traffic Renderer]<<Api>>

@@ -23,7 +23,7 @@ package "IndiGO platform"<<Rectangle>> {
     }
 }
 
-package "NavKit"<<Rectangle>> {
+package "NavKit2"<<Rectangle>> {
     component DrivingContextApiProvider as [Driving Context Api Provider]<<Api>>
     component NavigationProvider as [Navigation Provider]<<Api>>
 

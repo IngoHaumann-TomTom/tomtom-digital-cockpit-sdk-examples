@@ -37,7 +37,7 @@ deployed in separate process to reduce impact of potential malfunction.
 The following diagram shows a high-level overview of the architecture of map rendering in TomTom
 IndiGO:
 
-![Map rendering high-level overview image](images/navigation_domain-map-display-high-level-overview.svg)
+![Map rendering high-level overview image (NavKit2)](images/navigation_domain-map-display-high-level-overview-navkit2.svg)
 
 It shows the following components:
 - __Map display frontend__: This implements the user interface for the map display.
@@ -52,16 +52,16 @@ It shows the following components:
 
 The following diagram shows a high-level overview of the architecture of search in TomTom IndiGO:
 
-![Search high-level overview image](images/navigation_domain-search-high-level-overview.svg)
+![Search high-level overview image (NavKit2)](images/navigation_domain-search-high-level-overview-navkit2.svg)
 
 It shows the following components: 
 - __Search frontend__: This implements the user interface for the search functionality.
-- __Search ui component api__: Provides the NK2 and NK2UI components.
+- __Search ui component api__: Provides the NavKit2 and NavKit2UI components.
 - __Vehicle location service__: This service exposes information related to the current driving
   situation and to the current location, regardless of whether a trip is planned.
 - __Navigation service__: This service implements all navigation related functionality, including
   planning a trip to a user provided location.
-- __Navigation connection service__: Starts and manages the background NK2 worker service.
+- __Navigation connection service__: Starts and manages the background NavKit2 worker service.
 
 ## Guidance
 
@@ -74,16 +74,16 @@ each other:
   foundation for future functionality such as route demos.
 
 An example of the interactions between these domains is show below:
-![Planning a route](images/navigation_domain-guidance-planning-a-route.svg)
+![Planning a route (NavKit2)](images/navigation_domain-guidance-planning-a-route-navkit2.svg)
 
 The following diagram shows a high-level overview of the architecture of guidance in TomTom IndiGO:
 
-![Guidance high-level overview image](images/navigation_domain-guidance-high-level-overview.svg)
+![Guidance high-level overview image (NavKit2)](images/navigation_domain-guidance-high-level-overview-navkit2.svg)
 
 It shows the following components:
 - __Guidance frontend__: This implements the user interface for the guidance functionality.
 - __Guidance instructions service__: This service contains the data of the next guidance instruction.
 - __Navigation service__: This service implements all navigation related functionality, including
   updating the active trip and monitoring for the trip for completion.
-- __Navigation provider__: This manages the lifecycle of NK2 navigation instances.
-- __Driving context api provider__: This manages the lifecycle of NK2 driving context API instances.
+- __Navigation provider__: This manages the lifecycle of NavKit2 navigation instances.
+- __Driving context api provider__: This manages the lifecycle of NavKit2 driving context API instances.

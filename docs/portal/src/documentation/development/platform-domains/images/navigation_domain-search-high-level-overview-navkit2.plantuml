@@ -23,12 +23,12 @@ package "IndiGO platform"<<Rectangle>> {
     component VehicleLocationService as [Vehicle Location Service]<<Service>>
 }
 
-package "NavKit"<<Rectangle>> {
+package "NavKit2"<<Rectangle>> {
     component FtsResult as [Fts Result]<<Api>>
     component Search as [Search]<<Api>>
 }
 
-package "NavKitUI"<<Rectangle>> {
+package "NavKit2UI"<<Rectangle>> {
 }
 
 StockSearchFrontend -d-> NavigationConnectionService
@@ -42,9 +42,9 @@ NavigationService -d-> TripPlanError
 
 VehicleLocationService -d-> Coordinate
 
-SearchUiComponentApi -d-> NavKitUI
-SearchUiComponentApi -d-> NavKit
-NavKitUI -d-> NavKit
+SearchUiComponentApi -d-> NavKit2UI
+SearchUiComponentApi -d-> NavKit2
+NavKit2UI -d-> NavKit2
 
 
 

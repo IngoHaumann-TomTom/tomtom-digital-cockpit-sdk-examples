@@ -3,7 +3,7 @@ cluster IndiGO application suite--><rect fill="#FFFFFF" height="81" style="strok
 cluster IndiGO platform--><rect fill="#FFFFFF" height="222" style="stroke:#000000;stroke-width:1.5;" width="586" x="7" y="116.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="127" x="236.5" y="131.9482">IndiGO platform</text><!--MD5=[c1d676ded42000381bd6d4e96119a0f4]
 cluster Core Service APIs--><rect fill="#FFFFFF" height="81" style="stroke:#000000;stroke-width:1.5;" width="471" x="63" y="143.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="140" x="228.5" y="158.9482">Core Service APIs</text><!--MD5=[d4cabe04da2f58be5e8ee88408aadc41]
 cluster Common APIs--><rect fill="#FFFFFF" height="81" style="stroke:#000000;stroke-width:1.5;" width="570" x="15" y="249.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="109" x="245.5" y="264.9482">Common APIs</text><!--MD5=[5fe9d65315b71e2f10cfee898398be24]
-cluster NavKit--><rect fill="#FFFFFF" height="81" style="stroke:#000000;stroke-width:1.5;" width="471" x="601" y="143.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="63" x="805" y="158.9482">NavKit</text><!--MD5=[e7f1dc64dd39e19121bb1ca09d0b1bbd]
+cluster NavKit2--><rect fill="#FFFFFF" height="81" style="stroke:#000000;stroke-width:1.5;" width="471" x="601" y="143.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="63" x="805" y="158.9482">NavKit2</text><!--MD5=[e7f1dc64dd39e19121bb1ca09d0b1bbd]
 entity StockGuidanceFrontend--><rect fill="#BCDCF5" height="46.2969" rx="5" ry="5" style="stroke:#8DC3EB;stroke-width:1.5;" width="219" x="460.5" y="54.9531"/><rect fill="#BCDCF5" height="10" style="stroke:#8DC3EB;stroke-width:1.5;" width="15" x="659.5" y="59.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="657.5" y="61.9531"/><rect fill="#BCDCF5" height="2" style="stroke:#8DC3EB;stroke-width:1.5;" width="4" x="657.5" y="65.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="179" x="475.5" y="87.9482">Stock Guidance Frontend</text><!--MD5=[27c888550d5cc10519c189b7b7af0f73]
 entity NavigationService--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="169" x="357.5" y="170.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="506.5" y="175.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="504.5" y="177.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="504.5" y="181.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="372.5" y="203.9482">NavigationService</text><!--MD5=[a3db520059bc69b4ea9d108eb057d21d]
 entity GuidanceInstructionsService--><rect fill="#F8C9DF" height="46.2969" rx="5" ry="5" style="stroke:#F29AC2;stroke-width:1.5;" width="251" x="71.5" y="170.9531"/><rect fill="#F8C9DF" height="10" style="stroke:#F29AC2;stroke-width:1.5;" width="15" x="302.5" y="175.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="300.5" y="177.9531"/><rect fill="#F8C9DF" height="2" style="stroke:#F29AC2;stroke-width:1.5;" width="4" x="300.5" y="181.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="211" x="86.5" y="203.9482">Guidance Instructions Service</text><!--MD5=[f5828fa494324866718cd10a7674f338]
@@ -46,7 +46,7 @@ package "IndiGO platform"<<Rectangle>> {
     }
 }
 
-package "NavKit"<<Rectangle>> {
+package "NavKit2"<<Rectangle>> {
     component DrivingContextApiProvider as [Driving Context Api Provider]<<Api>>
     component NavigationProvider as [Navigation Provider]<<Api>>
 
@@ -139,7 +139,7 @@ package "IndiGO platform"<<Rectangle>> {
     }
 }
 
-package "NavKit"<<Rectangle>> {
+package "NavKit2"<<Rectangle>> {
     component DrivingContextApiProvider as [Driving Context Api Provider]<<Api>>
     component NavigationProvider as [Navigation Provider]<<Api>>
 
