@@ -28,4 +28,4 @@ If you are new to Android or Kotlin, please have a look at our
 to learn more about them.
 
 __Get started:__
-[Installing OpenJDK 11](/tomtom-indigo/documentation/getting-started/installing-openjdk-11).
+[Installing OpenJDK 11](/tomtom-indigo/documentation/getting-started/installing-openjdk-11)

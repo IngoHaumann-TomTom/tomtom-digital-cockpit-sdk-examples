@@ -50,4 +50,4 @@ __Windows:__
 ```
 
 __Next step:__
-[Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).
+[Configuring Android Studio](/tomtom-indigo/documentation/getting-started/configuring-android-studio)

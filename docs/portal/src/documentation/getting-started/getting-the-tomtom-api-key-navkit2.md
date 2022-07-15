@@ -81,4 +81,4 @@ __Note:__ You will not get a new API key, but TomTom will grant access to the na
 for your API key.
 
 __Next step:__
-[Configuring Android Studio](/tomtom-indigo/documentation/getting-started/configuring-android-studio).
+[Configuring Android Studio](/tomtom-indigo/documentation/getting-started/configuring-android-studio)

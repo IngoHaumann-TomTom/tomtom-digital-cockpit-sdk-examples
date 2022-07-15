@@ -62,4 +62,4 @@ git checkout tags/<sdk-version>
 ```
 
 __Next step:__
-[Accessing the Artifact Repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository).
+[Accessing the Artifact Repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository)

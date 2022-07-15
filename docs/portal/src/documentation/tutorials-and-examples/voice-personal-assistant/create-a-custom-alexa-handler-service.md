@@ -3,8 +3,10 @@ title: Create a Custom Alexa Handler Service
 ---
 
 <Blockquote type="announcement" hasIcon>
-<a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa">Additional requirements&nbsp;</a>
-exist for using Amazon Alexa in your TomTom IndiGO product.
+    <a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa">
+        Additional requirements
+    </a>
+    &nbsp;exist for using Amazon Alexa in your TomTom IndiGO product.
 </Blockquote>
 
 The TomTom IndiGO platform offers a stock implementation of a VPA Adaptation service for the Alexa

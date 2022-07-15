@@ -95,4 +95,4 @@ Open the downloaded `.msi` file, to install the JDK:
 ```
 
 __Next step:__ 
-[Accessing TomTom IndiGO SDK Example Sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources).
+[Accessing TomTom IndiGO SDK Example Sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources)

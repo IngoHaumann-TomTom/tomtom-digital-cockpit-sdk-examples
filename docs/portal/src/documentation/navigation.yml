@@ -36,15 +36,15 @@ menu:
         title: Accessing TomTom IndiGO SDK Example Sources
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
+      - fileId: /getting-started/configuring-android-studio
+        title: Configuring Android Studio
+      - fileId: /getting-started/the-tomtom-indigo-emulator
+        title: The TomTom IndiGO Emulator
       - fileId: /getting-started/accessing-the-map-data
         title: Accessing the Map Data
       - fileId: /getting-started/getting-the-tomtom-api-key-navkit2
         title: Getting the TomTom API Key (NavKit2)
         isHidden: true
-      - fileId: /getting-started/configuring-android-studio
-        title: Configuring Android Studio
-      - fileId: /getting-started/the-tomtom-indigo-emulator
-        title: The TomTom IndiGO Emulator
       - fileId: /getting-started/the-debug-menu
         title: The Debug Menu
       - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-indigo
