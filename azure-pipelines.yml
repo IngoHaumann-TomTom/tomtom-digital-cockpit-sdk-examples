@@ -166,6 +166,7 @@ stages:
         bdApiToken: ${{variables.blackduckApiToken}}
         runComplianceCheck: true
         checkLicenseRisk: true
+        checkSecurityRisk: true
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
