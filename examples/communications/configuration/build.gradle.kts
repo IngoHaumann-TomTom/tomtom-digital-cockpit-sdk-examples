@@ -9,11 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.appsuite.gradle.media.api.appsuitedefaults.media.defaultMediaPolicyFrontendExtensions
-import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -28,18 +23,6 @@ ivi {
 
     application {
         enabled = true
-        iviInstances {
-            create(IviInstanceIdentifier.default) {
-                useDefaults()
-            }
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-                }
-            }
-        }
     }
 }
 

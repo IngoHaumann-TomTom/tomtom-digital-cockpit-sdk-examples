@@ -39,7 +39,7 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
                 frontends {
                     replace(userProfileFrontend, accountFrontend)
                 }
@@ -49,14 +49,17 @@ ivi {
             }
         }
         services {
-            // Register the account and account settings services in the application.
+            // Register the account and account settings service hosts in the application.
             addHosts(accountsServiceHosts)
         }
         runtime {
             globalDeployments {
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-                    // Deploys the account and account settings services in the same process.
+                    // Apply the default runtime deployments. This deploys each IVI service host
+                    // implementation in a separate process.
+                    applyDefaultDeployments(all())
+
+                    // Deploys the account and account settings service hosts in the same process.
                     deployServiceHosts(inList(accountsServiceHosts))
                         .withProcessName("account")
                 }

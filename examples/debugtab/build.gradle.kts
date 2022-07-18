@@ -12,7 +12,6 @@
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendExtensionConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.defaults.config.debugFrontend
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -40,18 +39,11 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
                 frontends {
                     configure(debugFrontend) {
                         addExtension(debugTabFrontendExtension)
                     }
-                }
-            }
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
                 }
             }
         }

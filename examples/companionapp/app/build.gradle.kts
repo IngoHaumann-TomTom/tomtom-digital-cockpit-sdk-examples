@@ -39,21 +39,9 @@ ivi {
 
     application {
         enabled = true
-        iviInstances {
-            create(IviInstanceIdentifier.default) {
-                useDefaults()
-            }
-        }
         services {
             // Register the companion app service in the application.
             addHost(customCompanionExampleServiceHost)
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-                }
-            }
         }
     }
 }

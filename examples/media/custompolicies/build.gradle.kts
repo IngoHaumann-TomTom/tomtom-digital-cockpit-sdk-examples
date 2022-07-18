@@ -39,18 +39,11 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
                 frontends {
                     configure(mediaFrontend) {
                         addExtension(exampleMediaSourceFrontendExtension)
                     }
-                }
-            }
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
                 }
             }
         }

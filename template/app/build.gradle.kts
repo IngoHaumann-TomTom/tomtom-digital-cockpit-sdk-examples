@@ -3,8 +3,6 @@
  */
 
 import com.tomtom.ivi.buildsrc.environment.ProjectAbis
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -14,18 +12,6 @@ plugins {
 ivi {
     application {
         enabled = true
-        iviInstances {
-            create(IviInstanceIdentifier.default) {
-                useDefaults()
-            }
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-                }
-            }
-        }
     }
 }
 

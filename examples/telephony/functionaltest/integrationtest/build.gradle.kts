@@ -9,7 +9,6 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
@@ -19,11 +18,6 @@ plugins {
 ivi {
     application {
         enabled = true
-        iviInstances {
-            create(IviInstanceIdentifier.default) {
-                useDefaults()
-            }
-        }
     }
     optInToExperimentalApis = true
 }

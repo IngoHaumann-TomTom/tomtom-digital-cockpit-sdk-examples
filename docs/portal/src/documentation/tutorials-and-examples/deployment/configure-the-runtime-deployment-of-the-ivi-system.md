@@ -54,18 +54,29 @@ one.
 __build.gradle.kts:__
 
 ```kotlin
-runtime {
-    ...
-    globalDeployments {
-        create(RuntimeDeploymentIdentifier.globalRuntime)
-        create("OwnProcessDeployment") {
-            autoRegister = false
-            deployServiceHosts(connectionTestServiceHosts).asBinderHost()
-        }
-        create("MainProcessDeployment") {
-            autoRegister = false
-            deployServiceHosts(connectionTestServiceHosts).asBinderHost()
-                .inMainProcess()
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
+val connectionTestServiceHosts = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        ...
+        runtime {
+            globalDeployments {
+                create(RuntimeDeploymentIdentifier.globalRuntime)
+                create("OwnProcessDeployment") {
+                    autoRegister = false
+                    deployServiceHosts(connectionTestServiceHosts).asBinderHost()
+                }
+                create("MainProcessDeployment") {
+                    autoRegister = false
+                    deployServiceHosts(connectionTestServiceHosts).asBinderHost()
+                        .inMainProcess()
+                }
+            }
         }
     }
 }
@@ -88,17 +99,26 @@ of them crashes there will be no impact on the other.
 __build.gradle.kts:__
 
 ```kotlin
-runtime {
-...
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
-    multipleInstanceDeployments {
-        create("DriverDeployment") {
-            iviInstances = listOf(driverIviInstance)
-            deployServiceHosts(inList(accountServiceHost))
-        }
-        create("PassengerDeployment") {
-            iviInstances = listOf(passengerIviInstance)
-            deployServiceHosts(inList(accountServiceHost))
+val accountServiceHost = IviServiceHostConfig(...)
+
+ivi {
+    application {
+        enabled = true
+        ...
+        runtime {
+            multipleInstanceDeployments {
+                create("DriverDeployment") {
+                    iviInstances = listOf(driverIviInstance)
+                    deployServiceHost(accountServiceHost)
+                }
+                create("PassengerDeployment") {
+                    iviInstances = listOf(passengerIviInstance)
+                    deployServiceHost(accountServiceHost)
+                }
+            }
         }
     }
 }
@@ -111,7 +131,6 @@ In the main application build script, you can override the default runtime deplo
 __build.gradle.kts:__
 
 ```kotlin
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -130,7 +149,8 @@ ivi {
                 create(RuntimeDeploymentIdentifier.globalRuntime) {
                     // Apply the default runtime deployments. This deploys each IVI service host
                     // implementation in a separate process.
-                    useDefaults()
+                    applyDefaultDeployments(all())
+
                     // Deploy the `accountsServiceHosts` in the same process.
                     deployServiceHosts(inList(accountsServiceHosts))
                         .withProcessName("account")
@@ -155,6 +175,11 @@ deploy a new implementation of an IVI service API. The example below replaces th
 __build.gradle.kts:__
 
 ```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.defaults.config.contactsServiceHost
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
 val cloudContactsServiceHost = IviServiceHostConfig(...)
 
 ivi {
@@ -166,7 +191,7 @@ ivi {
         }
         globalRuntime {
              create(RuntimeDeploymentIdentifier.global) {
-                 useDefaults()
+                 applyDefaultDeployments(all())
                  deployServiceHost(cloudContactsServiceHost)
              }
         }
@@ -200,7 +225,7 @@ ivi {
         iviInstances {
             // Create the "CenterStack" IVI instance with the default frontends and menu items.
             create(centerStackIviInstance) {
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
             }
             // Create the "Passenger" IVI instance. In this example only the `mainMenuFrontend` is
             // added.
@@ -281,6 +306,11 @@ host without the need to hard-code the process name of the Android service in an
 __build.gradle.kts:__
 
 ```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.AndroidServiceConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
 val androidService = AndroidServiceConfig("com....Service")
 val someServiceHost = IviServiceHostConfig(...)
 
@@ -292,7 +322,7 @@ ivi {
         }
         globalRuntime {
              create(RuntimeDeploymentIdentifier.global) {
-                 useDefaults()
+                 applyDefaultDeployments(all())
                  deployServiceHost(someServiceHost)
                  deployAndroidService(androidService).inSameProcessAs(someServiceHost)
              }
@@ -316,6 +346,11 @@ need to hard-code the process name of the broadcast receiver in an `AndroidManif
 __build.gradle.kts:__
 
 ```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.BroadcastReceiverConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
+import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+
 val broadcastReceiver = BroadcastReceiverConfig("com....BroadcastReceiver")
 val someServiceHost = IviServiceHostConfig(...)
 
@@ -327,7 +362,7 @@ ivi {
         }
         globalRuntime {
              create(RuntimeDeploymentIdentifier.global) {
-                 useDefaults()
+                 applyDefaultDeployments(all())
                  deployServiceHost(someServiceHost)
                  deployBroadcastReceiver(broadcastReceiver).inSameProcessAs(someServiceHost)
              }

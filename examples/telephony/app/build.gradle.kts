@@ -11,10 +11,8 @@
 
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.RuntimeDeploymentIdentifier
 import com.tomtom.ivi.platform.gradle.api.defaults.config.contactsServiceHost
 import com.tomtom.ivi.platform.gradle.api.defaults.config.recentCallsServiceHost
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -55,11 +53,6 @@ ivi {
 
     application {
         enabled = true
-        iviInstances {
-            create(IviInstanceIdentifier.default) {
-                useDefaults()
-            }
-        }
         services {
             // Replace the default contact service with the custom contacts service.
             removeHost(contactsServiceHost)
@@ -69,13 +62,6 @@ ivi {
             // host.
             removeHost(recentCallsServiceHost)
             addHost(customRecentCallsServiceHost)
-        }
-        runtime {
-            globalDeployments {
-                create(RuntimeDeploymentIdentifier.globalRuntime) {
-                    useDefaults()
-                }
-            }
         }
     }
 }

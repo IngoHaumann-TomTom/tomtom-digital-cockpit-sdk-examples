@@ -33,7 +33,7 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
                 frontends {
                     add(accountFrontend)
                 }

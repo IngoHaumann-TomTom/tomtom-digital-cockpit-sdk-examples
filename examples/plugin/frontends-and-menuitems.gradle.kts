@@ -29,6 +29,14 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendE
  * import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemConfig
  * import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
  *
+ * plugins {
+ *     // Apply the Gradle plugin to define the default frontends, menu items and services from
+ *     // TomTom IndiGO Platform and from all TomTom IndiGO Applications (from the appsuite). The
+ *     // default frontends, menu items and services are defined in groups. The groups are applied
+ *     // to the IVI application configuration below.
+ *     id("com.tomtom.ivi.platform.defaults.core")
+ * }
+ *
  * // Define the frontends and menu items as defined in top-level
  * // `frontends-and-menuitems.gradle.kts` file.
  * apply(from = rootProject.file("frontends-and-menuitems.gradle.kts"))
@@ -38,26 +46,23 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendE
  * val accountFrontend: FrontendConfig by project.extra
  * val accountMenuItem: MenuItemConfig by project.extra
  *
- * plugins {
- *     // Apply the plugin to use the default frontends and services from the TomTom IndiGO platform
- *     // and app suite.
- *     id("com.tomtom.ivi.platform.defaults.core")
- * }
- *
  * ivi {
  *     application {
  *         enabled = true
  *         iviInstances {
  *             create(IviInstanceIdentifier.default) {
- *                 // Use the defaults frontends and menu items as defined by the
- *                 // `com.tomtom.ivi.platform.defaults.core` plugin.
- *                 useDefaults()
+ *                 // Configure all frontends and menu items from all groups that do not require an
+ *                 // explicit opt-in. The groups are defined by the
+ *                 // `com.tomtom.ivi.platform.defaults.core` Gradle plugin.
+ *                 applyGroups { includeDefaultGroups() }
+ *
+ *                 // Register the `accountFrontend`.
  *                 frontends {
- *                     // Register the `accountFrontend`.
  *                     add(accountFrontend)
  *                 }
+ *
+ *                 // Register the `accountMenuItem` and associate it to the `accountFrontend`.
  *                 menuItems {
- *                     // Register the `accountMenuItem` and associate it to the `accountFrontend`.
  *                     addLast(accountMenuItem to accountFrontend)
  *                 }
  *             }

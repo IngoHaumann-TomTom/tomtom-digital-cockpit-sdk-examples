@@ -247,7 +247,7 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 // Use the default frontends and menu items as defined by the plugin applied above:
                 // `com.tomtom.ivi.product.defaults.core`.
-                useDefaults()
+                applyGroups { includeDefaultGroups() }
                 frontends {
                     // Register the `accountFrontend`.
                     add(accountFrontend)
@@ -284,12 +284,14 @@ import com.tomtom.ivi.platform.gradle.api.plugin.defaultsplatform.userProfileMen
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
-    // Apply the plugin to use default frontends and services from TomTom IndiGO Platform
-    // and from all TomTom IndiGO Applications (from appsuite).
+    // Apply the Gradle plugin to define the default frontends, menu items and services from
+    // TomTom IndiGO Platform and from all TomTom IndiGO Applications (from the appsuite). The
+    // default frontends, menu items and services are defined in groups. The groups are applied
+    // to the IVI application configuration below.
     id("com.tomtom.ivi.product.defaults.core")
 }
 
-// Create `accountFrontend` and `accountMenuItem`
+// Create `accountFrontend` and `accountMenuItem`.
 val accountFrontend = FrontendConfig(
     frontendBuilderName = "AccountFrontendBuilder",
     implementationModule = ExampleModuleReference("examples_plugin_frontend"),
@@ -302,16 +304,19 @@ ivi {
         enabled = true
         iviInstances {
             create(IviInstanceIdentifier.default) {
-                // Use the default frontends and menu items as defined by the plugin applied above:
-                // `com.tomtom.ivi.product.defaults.core`.
-                useDefaults()
+                // Configure all frontends and menu items from all groups that do not require an
+                // explicit opt-in. The groups are defined by the
+                // `com.tomtom.ivi.platform.defaults.core` Gradle plugin.
+                applyGroups { includeDefaultGroups() }
+
+                // Replace TomTom IndiGO's user profile frontend with the `accountFrontend`.
                 frontends {
-                    // Replace the TomTom IndiGO's user profile frontend with the `accountFrontend`.
                     replace(userProfileFrontend, accountFrontend)
                 }
+
+                // Replace TomTom IndiGO's user profile menu item with the `accountMenuItem`
+                // and associate it with the `accountFrontend`.
                 menuItems {
-                    // Replace the TomTom IndiGO's user profile menu item with the `accountMenuItem`
-                    // and associate it with the `accountFrontend`.
                     replace(userProfileMenuItem, accountMenuItem to accountFrontend)
                 }
             }
