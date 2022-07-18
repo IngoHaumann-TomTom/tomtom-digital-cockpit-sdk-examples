@@ -74,11 +74,11 @@ an [Android style](https://developer.android.com/guide/topics/resources/style-re
 
 ```xml
 <style name="ImportantTextViewStyle">
-    <item name="android:textColor>?attr/tt_surface_content_color_emphasis_high"</item>
+    <item name="android:textColor">?attr/tt_surface_content_color_emphasis_high</item>
 </style>
 
 <style name="ImportantButtonStyle">
-    <item name="android:textColor>?attr/tt_surface_content_color_emphasis_high"</item>
+    <item name="android:textColor">?attr/tt_surface_content_color_emphasis_high</item>
 </style>
 ```
 
