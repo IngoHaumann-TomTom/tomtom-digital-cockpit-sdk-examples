@@ -183,7 +183,7 @@ Each [`NotificationPanel`](TTIVI_INDIGO_API) has its own
 to show the notification. For example, it may choose to suppress a low priority notification, while
 a higher priority notification is active, to avoid distracting the driver.
 
-TomTom IndiGO provides a pre-defined UI [template](#Notification panel template), that clients can
+TomTom IndiGO provides a pre-defined UI [template](#notification-panel-template), that clients can
 use to present information. The user can also tap on the notification to trigger an action.
 Notification panels that choose to use[`NotificationFragment`](TTIVI_INDIGO_API) get this UI
 template, but it is not mandatory to use a template. If your panel uses a different layout, then
