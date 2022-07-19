@@ -1,5 +1,5 @@
 ---
-title: Use Quick Reply Settings
+title: How to use the Communications Plugin Settings
 ---
 
 The IVI platform comes with a [`MessagingAppSettingsService`](TTIVI_INDIGO_API) that provides

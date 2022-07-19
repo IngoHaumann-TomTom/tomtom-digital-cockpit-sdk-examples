@@ -165,6 +165,10 @@ menu:
             title: Create a Custom Contacts Service
           - fileId: /tutorials-and-examples/communications/create-a-custom-recentcalls-service
             title: Create a Custom Recent Calls Service
+          - fileId: /tutorials-and-examples/communications/configure-the-communications-plugin
+            title: Configure the Communications Plugin
+          - fileId: /tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings
+            title: How to use the Communications Plugin Settings
       - title: App Launcher
         items:
           - fileId: /tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service

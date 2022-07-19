@@ -1,5 +1,5 @@
 ---
-title: Configure the Communications Plugins
+title: Configure the Communications Plugin
 ---
 
 The off-the-shelf communications plugin comes with default configuration. This configuration provides a
