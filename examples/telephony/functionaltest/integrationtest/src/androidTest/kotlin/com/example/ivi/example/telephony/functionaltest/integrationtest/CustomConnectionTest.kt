@@ -15,9 +15,12 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.app.Instrumentation
+import android.telecom.DisconnectCause
+import android.telecom.DisconnectCause.REMOTE
 import android.telecom.TelecomManager
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.ivi.example.telephony.customconnection.CustomConnectionFacade
+import com.tomtom.ivi.platform.telecom.api.common.model.CallState
 import com.tomtom.ivi.platform.tools.api.testing.functional.util.waitForNonUi
 import com.tomtom.tools.android.testing.functional.TtFunctionalTestCase
 import com.tomtom.tools.android.testing.functional.util.withIdleMainThread
@@ -63,7 +66,7 @@ internal class CustomConnectionTest : TtFunctionalTestCase() {
     }
 
     @Test
-    fun incomingCallIsCreatedProperly() {
+    fun incomingCallIsCreatedProperlyAndAnswered() {
         // GIVEN there are no ongoing calls
         assertFalse(customConnectionFacade.isInCall())
 
@@ -76,15 +79,31 @@ internal class CustomConnectionTest : TtFunctionalTestCase() {
         // AND the CustomConnectionService is ready
         waitForConnectionServiceToBeReady()
 
-        // THEN there is an ongoing call
+        // THEN there is an incoming call
         assertTrue(
             waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
                 customConnectionFacade.isInCall()
             })
+
+        assertTrue(
+            withMainThread {
+                customConnectionFacade.getCallState(PHONE_NUMBER) == CallState.RINGING
+            }
+        )
+
+        // WHEN incoming call is accepted
+        customConnectionFacade.applyCallState(PHONE_NUMBER, CallState.ACTIVE, null)
+
+        // THEN verify call state
+        assertTrue(
+            waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
+                customConnectionFacade.getCallState(PHONE_NUMBER) == CallState.ACTIVE
+            }
+        )
     }
 
     @Test
-    fun outgoingCallIsCreatedProperly() {
+    fun outgoingCallIsCreatedProperlyThenGetsDisconnected() {
         // GIVEN there are no ongoing calls
         assertFalse(customConnectionFacade.isInCall())
 
@@ -100,6 +119,26 @@ internal class CustomConnectionTest : TtFunctionalTestCase() {
         assertTrue(
             waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
                 customConnectionFacade.isInCall()
+            }
+        )
+
+        assertTrue(
+            withMainThread {
+                customConnectionFacade.getCallState(PHONE_NUMBER) == CallState.DIALING
+            }
+        )
+
+        // WHEN call is disconnected
+        customConnectionFacade.applyCallState(
+            PHONE_NUMBER,
+            CallState.DISCONNECTED,
+            DisconnectCause(REMOTE)
+        )
+
+        // THEN verify call is removed
+        assertTrue(
+            waitForNonUi(CONNECTION_SERVICE_TIMEOUT_MS) {
+                customConnectionFacade.getCallState(PHONE_NUMBER) == null
             }
         )
     }

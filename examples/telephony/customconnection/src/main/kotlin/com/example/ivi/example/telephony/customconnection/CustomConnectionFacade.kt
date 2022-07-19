@@ -170,7 +170,7 @@ class CustomConnectionFacade(private val context: Context) {
      * @param callState The new call state.
      * @param disconnectCause The disconnection cause used for DISCONNECTED state.
      */
-    private fun applyCallState(
+    fun applyCallState(
         phoneNumber: String,
         callState: CallState,
         disconnectCause: DisconnectCause?
@@ -189,7 +189,7 @@ class CustomConnectionFacade(private val context: Context) {
      * @param phoneNumber The phone number for the call.
      * @return The call state, if the call exists else `null`.
      */
-    private fun getCallState(
+    fun getCallState(
         phoneNumber: String
     ): CallState? {
         return CustomConnectionServiceHolder.withCustomConnectionService {

@@ -227,12 +227,16 @@ class CustomConnectionFacade(private val context: Context) {
     }
     
     // Updates a call state.
-    private fun applyCallState(
+    fun applyCallState(
         phoneNumber: String,
         callState: CallState,
         disconnectCause: DisconnectCause?
     ) {
         tracer.applyCallState(phoneNumber, callState, disconnectCause)
+        CustomConnectionServiceHolder.withCustomConnectionService {
+            // Change call's state.
+            it.changeConnectionState(phoneNumber, callState, disconnectCause)
+        }
         //...
     }
     
