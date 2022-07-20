@@ -5,38 +5,38 @@ title: Theming and Customization
 ## Introduction
 
 TomTom IndiGO supports theming of the UI. This enables IVI systems built on top of TomTom IndiGO
-to have a customized look and feel which is aligned with the branding, make or model of the 
-vehicle and which is consistent across the entire system. It also allows the system to support 
-runtime theme switching, enabling the possibility of allowing the end-user to change the look of 
+to have a customized look and feel which is aligned with the branding, make or model of the
+vehicle and which is consistent across the entire system. It also allows the system to support
+runtime theme switching, enabling the possibility of allowing the end-user to change the look of
 their UI while they are using their IVI system.
 
-A theme is composed of styles which are divided into [theme categories](#theme-categories). 
-Each category focuses on an aspect of the visual user interface such as colors or spacing between 
-UI components. This page describes how to add themable UI controls and the theming system in 
+A theme is composed of styles which are divided into [theme categories](#theme-categories).
+Each category focuses on an aspect of the visual user interface such as colors or spacing between
+UI components. This page describes how to add themable UI controls and the theming system in
 detail.
 
 ## How to Implement a Themable UI
 
-TomTom's IndiGO's theming mechanism makes use of 
-[Android's stylable XML attributes](https://developer.android.com/training/custom-views/create-view#customattr) 
-and [Android styles](https://developer.android.com/guide/topics/resources/style-resource). The 
-rest of this guide assumes a basic understanding of these concepts. 
+TomTom's IndiGO's theming mechanism makes use of
+[Android's stylable XML attributes](https://developer.android.com/training/custom-views/create-view#customattr)
+and [Android styles](https://developer.android.com/guide/topics/resources/style-resource). The
+rest of this guide assumes a basic understanding of these concepts.
 
-A theme is divided into theme categories, each of which consists of a list of Android XML 
+A theme is divided into theme categories, each of which consists of a list of Android XML
 attributes which can be used to set the styling of a specific aspect of the UI, such as the
-color of some text. When implementing the UI, the developer can select attributes from the 
+color of some text. When implementing the UI, the developer can select attributes from the
 appropriate category instead of hardcoding a value into their layout XML.
 
 Examples of the built-in theme categories include:
 
-- __TtThemeCategoryColors__ contains the possible common theme colors. This can be used to 
-ensure similar parts of the UI such as the backgrounds of all panels of a certain type are the 
+- __TtThemeCategoryColors__ contains the possible common theme colors. This can be used to
+ensure similar parts of the UI such as the backgrounds of all panels of a certain type are the
 same color.
 - __TtThemeCategoryDimensSpacing__ contains the common spacing values in the theme. This can
-be used to ensure that all of the margin and padding values around similar UI controls such 
+be used to ensure that all of the margin and padding values around similar UI controls such
 as the padding inside OK buttons is always the same.
 - __TtThemeCategoryDimensTextSize__ contains the common text sizes in the theme. This can be
-used to ensure that for example, all titles have the same size. 
+used to ensure that for example, all titles have the same size.
 
 For example, inside `TtThemeCategoryColors`, there is
 
@@ -49,15 +49,15 @@ For example, inside `TtThemeCategoryColors`, there is
 <attr name="tt_surface_content_color_critical" format="color" />
 ```
 
-As described by its documentation, the `tt_surface_content_color_emphasis_high ` 
+As described by its documentation, the `tt_surface_content_color_emphasis_high `
 attribute should be used when styling a UI content whose color should indicate to the user
 that it is important. This attribute can be used as the value of `android:textColor`
-when styling a [`TtTextView`](TTIVI_ANDROID_TOOLS_API). (More detailed information on how 
-colors are organized in the theming system is available in the [Color System](#color-system) 
+when styling a [`TtTextView`](TTIVI_ANDROID_TOOLS_API). More detailed information on how
+colors are organized in the theming system is available in the [Color System](#color-system)
 section.
 
-For example, if we were adding an important title to the UI, this attribute could be used to 
-set the text color: 
+For example, if we were adding an important title to the UI, this attribute could be used to
+set the text color:
 
 ```xml
 <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
@@ -82,26 +82,26 @@ an [Android style](https://developer.android.com/guide/topics/resources/style-re
 </style>
 ```
 
-The use of these attributes is core to ensuring that the entire UI of the IVI system 
+The use of these attributes is core to ensuring that the entire UI of the IVI system
 is consistent __and__ changes consistently when the end-user changes the UI theme at runtime.
 
 To change the actual values of these attributes (and hence the look of the UI), see the section
 [Customizing the Built-In Themes](#customizing-the-built-in-themes)
 
-TomTom IndiGO also provides a 
-[UI controls](/tomtom-indigo/documentation/development/ui-controls) library 
-consisting of a number of UI controls which extend what is available by default in Android. These 
+TomTom IndiGO also provides a
+[UI controls](/tomtom-indigo/documentation/development/ui-controls) library
+consisting of a number of UI controls that extend what is available by default in Android. These
 also help with producing a themable UI and it is advised to use them where possible.
 
 ### Theme Attribute Naming Convention
 
 The built-in IndiGO themes are made up of a large number of styleable XML attributes.
 These theme attributes follow a naming convention which help inform the developer of where they
-should be used. The naming convention of theme attributes follows the 
-`prefix_what_where_which_quality_quantity` format. Taking color attributes as an example, the 
+should be used. The naming convention of theme attributes follows the
+`prefix_what_where_which_quality_quantity` format. Taking color attributes as an example, the
 attribute names consist of:
 
-- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO 
+- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO
   specific component attributes, which are defined in
   [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) is `ttivi`.
 - `what` determines the _background color_.
@@ -110,7 +110,7 @@ attribute names consist of:
 - `quality` represents the _type of emphasis_. Optional.
 - `quantity` determines the _level of emphasis_. Optional.
 
-In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies 
+In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies
 _background colors_ and _emphasis_, among other things, to achieve a coherent UI design.
 
 Some examples for color attributes are:
@@ -140,8 +140,8 @@ The naming convention is composed of the following parts:
 
 - `Prefix` for all attributes defined in `core_theme` is `_tt_`.
 - `Category` represents the global category.
-- `Scale` indicates the factor that the baseline value should be multiplied by to get to the final 
-value. When the baseline value for the radius `tt_radius_1` is 4dp, the `tt_radius_23` is 
+- `Scale` indicates the factor that the baseline value should be multiplied by to get to the final
+value. When the baseline value for the radius `tt_radius_1` is 4dp, the `tt_radius_23` is
 therefore 4 * 23 = 92dp.
 
 The common naming convention is applied for the following categories in the built-in themes:
@@ -156,13 +156,13 @@ The common naming convention is applied for the following categories in the buil
 ## Customizing the Built-In Themes
 
 TomTom IndiGO comes with some pre-defined themes including a dark and a light theme. The theme can
-be customized by deriving a new theme from the existing one and overriding the existing values 
+be customized by deriving a new theme from the existing one and overriding the existing values
 of these attributes in the new theme.
 
 For example, to create new light and dark themes which are based on the build-in TomTom IndiGO
 themes, the following XML can be used:
 
-```
+```xml
 <resources>
     <style name="MyProductLightTheme" parent="TtiviThemeColorLight">
         <!-- Define a new high emphasis content color for the light theme -->
@@ -180,7 +180,7 @@ All UI controls which use these attributes will get the defined value when the t
 ## The Theming System
 
 TomTom IndiGO's theming mechanism is heavily based on
-[Android's theming approach](https://developer.android.com/guide/topics/ui/look-and-feel/themes), 
+[Android's theming approach](https://developer.android.com/guide/topics/ui/look-and-feel/themes),
 while additionally providing a means to switch themes at runtime through a service. The Android
 styles within the theme are applied to the context of the system UI. All the fragments hosted in the
 system UI will get that context with the correct styles applied. Similarly, when a theme changes at
@@ -189,12 +189,12 @@ context that has the new styles applied.
 
 The theme is provided by the [`ThemingService`](TTIVI_INDIGO_API). This service is responsible for
 deciding which theme should be used by the system UI. It loads the styles that themes can use from
-all discoverable [`ThemeComponentProviderService`](TTIVI_INDIGO_API) instances. (You can read more 
-on discoverable services in the documentation on 
-[`IviDiscoverableServiceIdProvider`](TTIVI_INDIGO_API).) You can add your own instances, or replace 
+all discoverable [`ThemeComponentProviderService`](TTIVI_INDIGO_API) instances. (You can read more
+on discoverable services in the documentation on
+[`IviDiscoverableServiceIdProvider`](TTIVI_INDIGO_API).) You can add your own instances, or replace
 the default one with custom instances that provide alternative styles.
 
-__Note:__ The [`ThemingService`](TTIVI_INDIGO_API) works with [`IviTheme`](TTIVI_INDIGO_API)s, which 
+__Note:__ The [`ThemingService`](TTIVI_INDIGO_API) works with [`IviTheme`](TTIVI_INDIGO_API)s, which
 are explained in detail in the [Customization](#customization) section.
 
 The styles must provide values for _all_ attributes within their respective categories. Failing to
@@ -204,7 +204,7 @@ available attributes are defined within the
 
 The `core_theme` is a _TomTomAndroidTools_ module which defines common theme attributes that can be
 used in various projects. The [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) module,
-which extends `core_theme`, also defines extra theme attributes for TomTom IndiGO. You can customize 
+which extends `core_theme`, also defines extra theme attributes for TomTom IndiGO. You can customize
 the visual appearance of your product by providing the desired values of these attributes.
 
 ![Theming high-level diagram](images/theming-high-level-diagram.svg)
@@ -224,9 +224,9 @@ of the `platform_theming_api_stock_theme` to suit your look, or replace the
 ### Theme Categories
 
 The appearance of the UI is determined by colors, margins, font types, etc. A theme is divided
-into categories for each of these aspects of the UI. To reduce duplication when creating a new theme 
-and to be able to apply styles independently, these attributes are defined in categories like color, 
-spacing and font. Each category represents a set of attributes for the theme.
+into categories for each of these aspects of the UI. To reduce duplication when creating a new theme
+and to be able to apply styles independently, these attributes are defined in categories like color,
+spacing, and font. Each category represents a set of attributes for the theme.
 
 By having categories of theming attributes, you can create a slightly different theme based on any
 other theme. For example, you can create a new look by keeping all categories unchanged, except the
@@ -245,14 +245,14 @@ how categories are defined, and which categories attributes belong to, are:
         <attr name="tt_spacing_3" format="dimension" />
     </declare-styleable>
 </resources>
- 
+
 <!-- attrs.xml -->
 <resources>
     <declare-styleable name="TtiviThemeCategoryStyles">
         <attr name="ttivi_navigation_search_input_text_appearance_style" format="reference" />
     </declare-styleable>
 </resources>
- 
+
 <!-- attrs_colors.xml -->
 <resources>
     <declare-styleable name="TtiviThemeCategoryColors">
@@ -267,7 +267,7 @@ The color system helps you to apply colors to your UI, including your brand colo
 hierarchy of information, give the correct meaning to UI elements, and meet legibility and contrast
 standards.
 
-The TomTom IndiGO color system is designed with a focus on: hierarchy, background colors, 
+The TomTom IndiGO color system is designed with a focus on: hierarchy, background colors,
 content colors, and emphasis.
 
 #### Hierarchy
@@ -293,7 +293,7 @@ The background colors are classified into:
   decision of the user.
 - _Overlay color_ that is used for components that come on top of the surfaces such as overlays,
   pop-overs, etc.
-- _Main menu colors_ that are used for the active app icon, inactive icons, labels, and the 
+- _Main menu colors_ that are used for the active app icon, inactive icons, labels, and the
   background of the main menu.
 - _Control center colors_ that are used for elements in the control bar, and the background and
   system icons on top of it.
@@ -341,9 +341,9 @@ Emphasis is classified into:
 Here we'll dive deeper into the way you can customize your product using the tools that theming
 provides.
 
-An [`IviThemeComponent`](TTIVI_INDIGO_API) contains the necessary style information and it belongs 
-to a single [`IviThemeCategory`](TTIVI_INDIGO_API). The theme component styles are defined as 
-Android [style](https://developer.android.com/guide/topics/resources/style-resource) resources. For 
+An [`IviThemeComponent`](TTIVI_INDIGO_API) contains the necessary style information and it belongs
+to a single [`IviThemeCategory`](TTIVI_INDIGO_API). The theme component styles are defined as
+Android [style](https://developer.android.com/guide/topics/resources/style-resource) resources. For
 example, a Noto Sans font style is defined as:
 
 ```xml
@@ -358,7 +358,7 @@ example, a Noto Sans font style is defined as:
 
 A theme category, like color or font, is represented by an [`IviThemeCategory`](TTIVI_INDIGO_API).
 They may contain multiple [`IviThemeComponent`](TTIVI_INDIGO_API)s. For example, a font
-[`IviThemeCategory`](TTIVI_INDIGO_API) can have several font 
+[`IviThemeCategory`](TTIVI_INDIGO_API) can have several font
 [`IviThemeComponent`](TTIVI_INDIGO_API)s, each for a different font.
 
 An [`IviTheme`](TTIVI_INDIGO_API) is a collection of [`IviThemeComponent`](TTIVI_INDIGO_API)s.
@@ -366,7 +366,7 @@ An [`IviTheme`](TTIVI_INDIGO_API) is a collection of [`IviThemeComponent`](TTIVI
 A [`TtiviThemeCategoryPreset`](TTIVI_INDIGO_API) is a pre-defined set of
 [`IviThemeCategory`](TTIVI_INDIGO_API)s.
 
-An [`IviTheme`](TTIVI_INDIGO_API) must contain at least one [`IviThemeComponent`](TTIVI_INDIGO_API) 
+An [`IviTheme`](TTIVI_INDIGO_API) must contain at least one [`IviThemeComponent`](TTIVI_INDIGO_API)
 for each [`IviThemeCategory`](TTIVI_INDIGO_API) listed in the
 [`TtiviThemeCategoryPreset`](TTIVI_INDIGO_API). The [`ThemingService`](TTIVI_INDIGO_API) has the
 responsibility to check this.
@@ -376,8 +376,8 @@ responsibility to check this.
 First you need to define styleable attributes for a category. Next you can define a style for it,
 which will be used by an [`IviThemeComponent`](TTIVI_INDIGO_API) later.
 
-Let's use an example to demonstrate the creation of a custom theme. TomTom IndiGO extends color 
-attributes like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It 
+Let's use an example to demonstrate the creation of a custom theme. TomTom IndiGO extends color
+attributes like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It
 is defined like this:
 
 ```xml
@@ -398,7 +398,7 @@ And there is a default value for that color attribute in `stock_theme` as well:
 </resources>
 ```
 
-The TomTom IndiGO style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and 
+The TomTom IndiGO style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and
 there you can define the value you want for your theme:
 
 ```xml
@@ -439,7 +439,7 @@ class StockThemeComponentProviderService(
     iviServiceHostContext: IviServiceHostContext,
     serviceIdProvider: IviDiscoverableServiceIdProvider,
 ) : ThemeComponentProviderServiceBase(iviServiceHostContext, serviceIdProvider) {
-    
+
     init {
         availableThemeComponents = listOf(
             with(TtiviThemeCategoryPreset.COLOR) {

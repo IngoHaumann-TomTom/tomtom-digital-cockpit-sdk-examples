@@ -24,7 +24,7 @@ control.
 For a complete list of available controls and specific details about each one, see the API 
 reference of the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
 
-It is possible to customise the style of the UI controls by setting their attribute values to
+It is possible to customize the style of the UI controls by setting their attribute values to
 specific theme attributes. The `com.tomtom.tools.android.core.theme` module declares the view 
 element attributes that these controls need, to define their appearance. When using these controls, 
 it is mandatory to define these attribute values. More information on how to theme UI controls 

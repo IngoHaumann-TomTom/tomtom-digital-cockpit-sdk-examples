@@ -8,7 +8,7 @@ title: Configuring Android Studio
     <a href="/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key-navkit2">
         Getting the TomTom API Key (NavKit2)
     </a>
-    &nbsp;before installing Android Studio.
+    &nbsp;<i>before</i> you install Android Studio.
 </Blockquote>
 
 To install the Android Studio IDE, follow the instructions from the

@@ -153,7 +153,7 @@ back button in the navigation bar, if there's only one task panel in the stack. 
 the breadcrumbs for quick access to other task panels in the stack. The metadata in the task panel
 interface, such as the label, can be used to provide the information shown in the navigation bar.
 
-When the user dismiss the panel, like swiping it away, can trigger the system UI to dismiss the
+When the user dismisses the panel, like swiping it away, it can trigger the system UI to dismiss the
 whole task panel stack, rather than just a single one.
 
 ##### Task process panel
@@ -176,7 +176,7 @@ frontends.
 
 ##### Notification panels
 
-A notification is a panel which TomTom IndiGO uses to present information to the user.
+A notification is a panel that TomTom IndiGO uses to present information to the user.
 
 Each [`NotificationPanel`](TTIVI_INDIGO_API) has its own
 [`NotificationPanel`](TTIVI_INDIGO_API)`.Priority`. The system UI uses it to determine when and how
@@ -239,8 +239,8 @@ panel in the stack. It may also fill in the breadcrumbs for quick access to othe
 the stack. The metadata in the modal panel interface, such as the label, can be used to provide the
 information shown in the navigation bar.
 
-When the user dismiss the panel, like clicking a close button, can trigger the system UI to dismiss
-the whole modal panels stack, rather than just a single one.
+When the user dismisses the panel, like clicking a close button, it can trigger the system UI to
+dismiss the whole modal panels stack, rather than just a single one.
 
 ##### Control center panels
 

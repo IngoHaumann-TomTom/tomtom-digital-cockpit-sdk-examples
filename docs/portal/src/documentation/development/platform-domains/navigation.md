@@ -18,7 +18,7 @@ NavKit and makes use of common UI controls, made available through the NavKitUI 
 
 TomTom IndiGO provides a set of generic core services as well as
 [_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
-implementations. They are built on top of NavKit and NavKitUI SDK and provide the customer with
+implementations. They are built on top of the NavKit and NavKitUI SDK and provide the customer with
 an out of the box navigation experience. Alternatively the customer can replace the off-the-shelf
 frontend and services with their own implementations.
 
@@ -29,7 +29,7 @@ The navigation domain includes the following sub-domains:
 - [Guidance](#guidance)
 
 ## Display a map
-Displaying the map using NavKit SDK requires two components: the _NavKit Map Visualisation_
+Displaying the map using the NavKit SDK requires two components: the _NavKit Map Visualisation_
 library and the _NavKit Map Visualisation onboard service_ library. Additionally a suite of small
 UI controls are provided by the NavKitUI SDK, such as a Zoom Control, a Map Mode Toggle, Location
 Preview, etc. The _NavKit Map Visualisation_ library includes a map renderer (the component has to

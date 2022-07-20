@@ -8,7 +8,7 @@ Like everything in TomTom IndiGO, its user interface (UI) also consists of plugi
 user interface for the functionality within the frontend's domain. These panels can be seen as
 pieces of the complete user interface. To enable a high degree of flexibility within the TomTom
 IndiGO framework, there is no direct coupling between different frontends or their panels, allowing
-plugins to be independently added, removed or replaced.
+plugins to be independently added, removed, or replaced.
 
 Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a
 cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the

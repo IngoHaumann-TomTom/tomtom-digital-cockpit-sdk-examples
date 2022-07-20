@@ -10,7 +10,7 @@ and can be changed if necessary. This guide explains this procedure.
 - The communications plugin default configuration [Default communications plugin configuration](communications-plugin-default-configuration)
 - Change the communications plugin configuration [Change the communications plugin configuration](change-the-communications-plugin-configuration)
 
-## communications plugin default configuration
+## Communications plugin default configuration
 
 The communications plugin default configuration is defined as a resource file that contains configuration 
 keys and their values. The following keys and values are defined in the communications plugin:
