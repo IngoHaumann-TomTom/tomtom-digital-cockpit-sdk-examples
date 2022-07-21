@@ -272,7 +272,7 @@ stages:
                 -F "maven2.asset1.extension=tar.gz"\
                 "https://repo.tomtom.com/service/rest/v1/components?repository=ivi"
             displayName: 'Publish tomtom-indigo-sdk tarball to Nexus'
-            condition: and(succeeded(), eq(variables['Build.Reason'], 'Manual'))
+            condition: succeeded()
           - task: ExtractFiles@1
             displayName: Extracting SDK artifact
             inputs:
