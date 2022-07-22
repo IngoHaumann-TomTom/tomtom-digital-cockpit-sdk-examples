@@ -35,4 +35,4 @@ Another reason for this behavior may be that you have not configured a TomTom AP
 using an API key with limited authorizations.
 
 For more details see
-[Getting the TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key).
+[Getting the TomTom API key](/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key-navkit2).
