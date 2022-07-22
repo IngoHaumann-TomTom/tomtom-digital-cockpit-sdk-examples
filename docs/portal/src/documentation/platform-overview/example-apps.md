@@ -25,9 +25,9 @@ source code the _off-the-shelf functionality_ is often referred to as _stock fun
 This walk-through of the IndiGO platform functionality is using the template application, which can be found
 in the `template/app` directory.
 
-The default view, when starting the application, looks like this.
+The default view, when starting the application, looks like this:
 
-![start view](images/tomtom-indigo_amsterdam_map.png)
+![start view](images/tomtom-indigo_detroit_map.png)
 
 The contents of the map view will vary depending on your current location.
 The screen of the TomTom IndiGO system is divided into a few different areas. The background
@@ -45,14 +45,14 @@ location on the background map. The map is interactive and you can pan, zoom and
 through the search box at the top of the screen, or simply select a location on the map with a long
 press.
 
-A planned route to Schiphol airport in Amsterdam, with the guidance panel enabled, showing
+A planned route from Detroit city to Wayne County airport, with the guidance panel enabled, showing
 guidance instructions for the drive, looks like this:
 
-![navigation 2D view](images/navigation_route_to_schiphol_2D.png)
+![navigation 2D view](images/navigation_route_to_wayne_airport_2D.png)
 
-And here we have the same route, with the map in 3D mode instead.
+And here we have the same route, with the map in 3D mode instead:
 
-![navigation 3D view](images/navigation_route_to_schiphol_3D.png)
+![navigation 3D view](images/navigation_route_to_wayne_airport_3D.png)
 
 ### Media
 

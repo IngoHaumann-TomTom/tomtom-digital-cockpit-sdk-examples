@@ -44,7 +44,7 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
   - The `TomTom IndiGO - Android 11 Emulators` entry should not show an error.
   - The `TomTom IndiGO - Nexus repository` entry will show an error, which you can ignore.
 
-![Android Studio SDK Update Sites](images/android_studio_sdk_update_sites.png)
+![Android Studio - SDK Update Sites](images/android_studio_sdk_update_sites.png)
 
 - Switch to tab `SDK platforms` and tick `Show Package Details` on the bottom right.
 
@@ -118,8 +118,8 @@ Android Virtual Device (AVD) with it:
   - Enable `Wi-Fi` by pressing the toggle button so it turns blue.
 
 - Set the emulator's OpenGL ES API level to 3.1:
-  - Click the three dots in the top bar of the emulator screen. This opens the `Extended Controls`
-    dialog.
+  - Click the three vertical dots in the top bar of the emulator screen. This opens the `Extended
+    Controls` dialog.
   - Select `Settings` at the left.
   - Select the `Advanced` tab at the top.
   - This should say `Desktop native OpenGL` and `Renderer maximum (up to OpenGL ES 3.1)`, see
@@ -156,8 +156,9 @@ Android Virtual Device (AVD) with it:
 
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
-- You will now see the TomTom IndiGO home screen. Note that the map data shows only when you have
-  [installed an on-board map](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).
+- You will now see the TomTom IndiGO home screen. Note that map data shows only when you have
+  [installed an on-board map](/tomtom-indigo/documentation/getting-started/accessing-the-map-data)
+  and the current location is inside this map.
 
 ![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
