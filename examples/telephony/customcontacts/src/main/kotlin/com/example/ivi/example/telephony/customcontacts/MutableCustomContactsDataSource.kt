@@ -36,6 +36,7 @@ import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQ
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByFamilyName
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByFirstName
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsByPhoneNumber
+import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.FindContactsBySource
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceQuery.ContactSelection.Groups
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.IviPagingSource
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.datasource.MutableIviDataSource
@@ -120,6 +121,11 @@ internal class MutableCustomContactsDataSource :
                                 phoneNumber.number
                             )
                         }
+                    }.toContactItem()
+                }
+                is FindContactsBySource -> {
+                    contacts.values.filter {
+                        (query.selection as FindContactsBySource).source == it.source
                     }.toContactItem()
                 }
                 is FindContactByContactId -> {
