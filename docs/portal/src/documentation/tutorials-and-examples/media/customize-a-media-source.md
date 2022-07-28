@@ -12,7 +12,7 @@ These customization capabilities are currently offered:
   See the [content display](#modify-content-display) section for details.
 - Add new custom action icons specific to an app.
   See the [custom action](#add-a-custom-action) section for details.
-- Select which app name and icon are displayed to the user in different contexts.
+- Select which app name, icon and colors are displayed to the user in different contexts.
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
   See the documentation of type `MediaItemComparisonPolicy` in the package
@@ -194,7 +194,7 @@ theme's colors.
 The company behind the `ExampleInternetRadio` app may have the following branding guidelines:
 The name must be fully displayed as "Example Internet Radio", if possible, and only if not possible
 (for example, due to insufficient space in the UI), the name must then be displayed as
-"ExampleRadio". Different icons are also prescribed for light and dark themes.
+"ExampleRadio". Different icons and colors are also prescribed for light and dark themes.
 
 To aid the process of adherence to these branding guidelines, the
 [`MediaSourceAttributionPolicy`](TTIVI_INDIGO_API) policy is available. A
@@ -236,11 +236,18 @@ class ExampleInternetRadioSourceAttributionPolicy : MediaSourceAttributionPolicy
         else
             ResourceDrawableResolver(R.drawable.ic_sel_logo_only)
     }
+
+    override fun getStyle(): SourceStyle {
+        return SourceStyle(AttrColorResolver(R.attr.exampleinternetradio_accent_color))
+    }
 }
 ```
 
 The `getName()` method uses the right string at the right time, and the `getLogo()` method uses
-resources which are selected by Android by the type of theme currently in use.
+resources which are selected by Android by the type of theme currently in use. 
+The `getStyle()` method can return a [`SourceStyle`](TTIVI_INDIGO_API) to override the default 
+`accentColor` provided by the source APK theme. When not specified, it returns `null` and will keep 
+the default color. 
 
 The new `ExampleInternetRadioSourceAttributionPolicy` needs to be specified in a
 [`PolicyProvider`](TTIVI_INDIGO_API) which will be used only when browsing `ExampleInternetRadio`

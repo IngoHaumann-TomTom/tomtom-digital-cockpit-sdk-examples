@@ -21,9 +21,9 @@ import com.tomtom.tools.android.api.resourceresolution.string.StaticStringResolv
 import com.tomtom.tools.android.api.resourceresolution.string.StringResolver
 
 /**
- * A [MediaSourceAttributionPolicy] changes how the logos and name of a media source are displayed
- * by the stock media player UI, by using the [SourceAttributionFormat] flags to determine the
- * best logo or name to display in that context.
+ * A [MediaSourceAttributionPolicy] changes how the logos, name and colors of a media source are
+ * displayed by the stock media player UI, by using the [SourceAttributionFormat] flags to determine
+ * the best logo or name to display in that context.
  */
 internal class ExampleMediaSourceSourceAttributionPolicy : MediaSourceAttributionPolicy {
     override fun getName(
