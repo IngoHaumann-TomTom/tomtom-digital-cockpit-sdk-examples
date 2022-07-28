@@ -35,7 +35,7 @@ resources:
     - repository: devops-templates
       type: git
       name: IVI/devops-templates
-      ref: refs/tags/2.2.4
+      ref: refs/tags/2.2.5
 
 variables:
   - template: .azure-templates/variables.yml
@@ -43,7 +43,7 @@ variables:
 
 stages:
   - stage: VeracodeScan
-    displayName: Veracode scan for Indigo APK
+    displayName: Veracode scan for Example app APK
     jobs:
       - job: Veracode
         timeoutInMinutes: 160
@@ -56,34 +56,16 @@ stages:
               buildType: 'specific'
               project: 'IVI'
               definition: '1986'
-              buildVersionToDownload: 'latestFromBranch'
+              specificBuildWithTriggering: true
+              buildVersionToDownload: 'specific'
+              runId: $(resources.pipeline.veracode_scan_exampleapp.runID)
               branchName: 'refs/heads/master'
               allowPartiallySucceededBuilds: true
               artifact: 'builds'
               targetPath: '$(Build.ArtifactStagingDirectory)/APK'
-          - bash: |
-              set -eu
-              apkFilepath=$(find $(Build.ArtifactStagingDirectory)/APK -name "*x86_64-debug*.apk")
-
-              if [ -z $apkFilepath ]
-              then
-                echo "APK file not found."
-                exit 1
-              fi
-              cd "$( dirname "$(find $ANDROID_SDK_ROOT/build-tools/* -name aapt | head -n 1)" )"
-              output=$(./aapt dump badging $apkFilepath | grep versionName)
-              apkVersion=$(echo $output | grep -Po '(?<=versionName=).*?(?= )' | tr -d "'")
-              echo "##vso[task.setvariable variable=scanFilePath]${apkFilepath}"
-              echo "APK file to be scanned : $apkFilepath"
-
-              if [ -z $apkVersion ]
-              then
-                echo "APK version is not found."
-                exit 1
-              fi
-              echo "##vso[task.setvariable variable=productVersion]${apkVersion}"
-              echo "Product version fetched from APK : $apkVersion"
-            displayName: Fetch product version from APK
+          - template: build/get-version-from-apk.yml@devops-templates
+            parameters:
+              apkDirectory: '$(Build.ArtifactStagingDirectory)/APK'
           - template: veracode/veracode-scan.yml@devops-templates
             parameters:
               waitTimeIntervalInSeconds: 300
