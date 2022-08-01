@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.panelpolicy
+package com.example.ivi.example.media.userflowpolicy
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map

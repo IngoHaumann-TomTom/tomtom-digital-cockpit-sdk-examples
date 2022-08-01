@@ -14,23 +14,25 @@ package com.example.ivi.example.media.miniplayer
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaConfiguration
 import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaPolicyFrontendExtension
 import com.tomtom.ivi.appsuite.media.api.common.frontend.asMediaConfiguration
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaTaskPanelPolicy
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaSourceAttributionPolicy
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ExpandedProcessPanel
+import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ProcessPanel
 
 /**
  * This [FrontendBuilder] uses the [MediaPolicyFrontendExtension]s from the IVI Gradle configuration
  * of the media frontend to customize the media sources exactly as the stock media player UI does.
  *
- * It is convenient when it is only necessary to create a new visual look for the "currently
- * playing media" panel, or when moving it to a different part of the TomTom IndiGO system UI.
+ * It is convenient to customize visual and interaction aspects of the stock media player UI, such
+ * as the browsing experience, the media playback [ProcessPanel], or the media
+ * [ExpandedProcessPanel].
  *
- * For any deeper levels of customization, such as making a whole new media player UI, it is
- * necessary to carefully evaluate what to re-use from the stock [MediaConfiguration]. For
- * instance, the [MediaTaskPanelPolicy] provided by a [PolicyProvider] is probably not reusable
- * in that case.
+ * However, when making a completely new media player frontend to replace the stock one, it will be
+ * necessary to evaluate which components of the stock [MediaConfiguration] can be re-used. For
+ * instance, the stock [MediaSourceAttributionPolicy]s define colors and icons that might not match
+ * an UI other than the stock one.
  */
 internal class ExampleMiniPlayerFrontendBuilder : FrontendBuilder() {
 

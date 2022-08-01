@@ -18,7 +18,7 @@ package "IndiGO application suite"<<Rectangle>> {
 
     package "appsuite_media_api_common_frontend" {
         class PolicyProvider<<Api>>
-        interface MediaTaskPanelPolicy<<Api>>
+        interface UserFlowPolicy<<Api>>
     }
 }
 
@@ -33,7 +33,7 @@ package "Media source"<<Rectangle>> {
 
 MyPanel --> SourceClient : connects\nto source
 MyPanel --> PolicyProvider : uses\npolicies
-PolicyProvider -> MediaTaskPanelPolicy
+PolicyProvider -> UserFlowPolicy
 MyPanel -> MediaServiceApi : uses
 SourceClient --> MediaBrowser
 MediaBrowser -right-> MediaBrowserService

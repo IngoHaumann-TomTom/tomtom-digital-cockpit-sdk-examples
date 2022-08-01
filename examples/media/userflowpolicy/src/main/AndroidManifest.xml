@@ -12,10 +12,10 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ivi.example.media.panelpolicy">
+    package="com.example.ivi.example.media.userflowpolicy">
 
     <application
-        android:label="@string/example_media_panelpolicy_title"
+        android:label="@string/example_media_userflowpolicy_title"
         tools:ignore="MissingApplicationIcon"
         tools:replace="android:label" />
 </manifest>

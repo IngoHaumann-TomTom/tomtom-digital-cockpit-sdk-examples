@@ -11,8 +11,8 @@
   -->
 
 <resources>
-    <string name="example_media_panelpolicy_title">IVI Example: Media Panel Policy</string>
-    <string name="example_media_panelpolicy_empty">No content available.</string>
-    <string name="example_media_panelpolicy_loading">Loading.</string>
-    <string name="example_media_panelpolicy_back">Back</string>
+    <string name="example_media_userflowpolicy_title">IVI Example: Media User Flow Policy</string>
+    <string name="example_media_userflowpolicy_empty">No content available.</string>
+    <string name="example_media_userflowpolicy_loading">Loading.</string>
+    <string name="example_media_userflowpolicy_back">Back</string>
 </resources>

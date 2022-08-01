@@ -9,14 +9,14 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.panelpolicy
+package com.example.ivi.example.media.userflowpolicy
 
-import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.MediaTaskPanelPolicy
 import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
+import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.UserFlowPolicy
 
 /**
  * The [PolicyProvider] selects which behavior to customize. In this case we customize the
- * [MediaTaskPanelPolicy].
+ * [UserFlowPolicy].
  *
  * There are more policies available than the one in this example. If a policy is not provided here
  * the frontend uses a default one.
@@ -24,5 +24,7 @@ import com.tomtom.ivi.appsuite.media.api.common.frontend.policies.PolicyProvider
  * This [PolicyProvider] is used in the [exampleMediaSourceFrontendExtension].
  */
 internal val exampleMediaSourcePolicyProvider = PolicyProvider(
-    panelFactoryPolicy = ExampleMediaSourceTaskPanelPolicy()
+    userFlowPolicy = UserFlowPolicy(
+        browseSourceUserFlow = ExampleMediaSourceBrowseUserFlow()
+    )
 )

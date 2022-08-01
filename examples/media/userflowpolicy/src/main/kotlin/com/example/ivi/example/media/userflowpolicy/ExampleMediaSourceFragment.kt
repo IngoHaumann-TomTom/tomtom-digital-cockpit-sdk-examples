@@ -9,17 +9,17 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.media.panelpolicy
+package com.example.ivi.example.media.userflowpolicy
 
 import android.content.Context
-import com.example.ivi.example.media.panelpolicy.databinding.ExamplesMediaPanelpolicyPanelBinding
+import com.example.ivi.example.media.userflowpolicy.databinding.ExamplesMediaUserflowpolicyPanelBinding
 import com.tomtom.ivi.appsuite.media.api.common.core.SourceClient
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 
 /**
  * An [IviFragment] responsible for creating a layout and linking it to a ViewModel. This connects
  * the [ExampleMediaSourceViewModel] to the XML layout, represented by
- * [ExamplesMediaPanelpolicyPanelBinding].
+ * [ExamplesMediaUserflowpolicyPanelBinding].
  */
 internal class ExampleMediaSourceFragment :
     IviFragment<ExampleMediaSourcePanel, ExampleMediaSourceViewModel>(
@@ -27,7 +27,7 @@ internal class ExampleMediaSourceFragment :
     ) {
 
     override val viewFactory =
-        ViewFactory(ExamplesMediaPanelpolicyPanelBinding::inflate) { binding ->
+        ViewFactory(ExamplesMediaUserflowpolicyPanelBinding::inflate) { binding ->
             binding.viewModel = viewModel
         }
 

@@ -110,7 +110,8 @@ This diagram shows the most relevant components:
 - The media service, see [division of responsibility](#division-of-responsibility).
 - The source client, which is contained in the [media library](#media-library).
 - The [`PolicyProvider`](TTIVI_INDIGO_API), which provides [policies](#policies). For example, the
-  [`MediaTaskPanelPolicy`](TTIVI_INDIGO_API) can be used to create [panels](#panels).
+  [`UserFlowPolicy`](TTIVI_INDIGO_API) can be used to customize user flows such as browsing a
+  source, logging in and opening settings.
 
 ### Configuring the media application frontend
 

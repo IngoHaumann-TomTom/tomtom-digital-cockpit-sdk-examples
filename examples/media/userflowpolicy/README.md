@@ -1,6 +1,6 @@
-# Module examples_media_panelpolicy
+# Module examples_media_userflowpolicy
 
-## Example media panel policy customization
+## Example user flow policy customization
 
 This is an example demonstrating how to customize the browsing experience for a specific media
 source in the TomTom IndiGO stock media player UI.
