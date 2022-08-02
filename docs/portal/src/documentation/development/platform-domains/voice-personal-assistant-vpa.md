@@ -27,12 +27,10 @@ The diagram shows the most relevant components in this architecture:
   associated Adaptation Service whose job is to interface directly with the VPA engine.
   All other components in TomTom IndiGO communicate with the VPA engine via the Adaptation Service.
 
-<!-- TODO(IVI-7340): Remove this comment line. -->
   Currently, TomTom IndiGO offers an off-the-shelf implementation of a VPA Adaptation service for
   the Alexa Auto VPA, provided by the off-the-shelf Alexa service, and plans to offer a second
   implementation that will provide an abstraction for the Cerence Assistant VPA.
 
-<!-- TODO(IVI-7340): Remove this comment line and make __Note:__ bold again. -->
   __Note:__ Alexa Auto is available as part of TomTom IndiGO upon approval by TomTom and Amazon. To
   request TomTom IndiGO's implementation for Alexa Auto please contact your local sales
   representative.
@@ -41,7 +39,6 @@ The diagram shows the most relevant components in this architecture:
   that multiple VPAs do not interfere with each other and that commands to and from a VPA go to the
   right UI / VPA adaptation.
 
-<!-- TODO(IVI-7340): Remove this comment line. -->
   For example:
 
   - It informs the UI when Alexa is speaking, so that the
@@ -50,7 +47,6 @@ The diagram shows the most relevant components in this architecture:
   - It indicates that one VPA would like to show the user a disambiguation list and what is in that
     list.
 
-<!-- TODO(IVI-7340): Remove this comment line. -->
   This service can also send requests to VPA adaptations, for example, to inform them that the
   user would like to login to their service, if that is needed.
 
@@ -64,7 +60,6 @@ The diagram shows the most relevant components in this architecture:
   provided by a VPA frontend can be found in section
   [Implementing a custom VPA frontend](#implementing-a-custom-vpa-frontend).
 
-<!-- TODO(IVI-7340): Remove this comment line. -->
   Currently, TomTom IndiGO offers an off-the-shelf implementation of a frontend, the Alexa frontend,
   designed to be used with the Alexa Auto VPA. This frontend has multiple responsibilities:
 
@@ -114,7 +109,6 @@ Typically, a VPA frontend would render 2 main UI components:
   dialogue state (for example, whether the VPA is idle, listening, thinking, speaking, or
   expecting an answer from the user).
 
-<!-- TODO(IVI-7340): Remove this comment line. -->
   In the off-the-shelf Alexa frontend, this is implemented as an [`OverlayPanel`](TTIVI_INDIGO_API)
   that temporarily overlays the system UI's main content area.
 

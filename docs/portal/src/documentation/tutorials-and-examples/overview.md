@@ -101,6 +101,9 @@ source.
 
 ## Voice Personal Assistant (VPA)
 
+- [Create a Custom VPA Adaptation Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-vpa-adaptation-service) -
+  This guide explains how to add a custom VPA Adaptation service to support a 3rd party VPA.
+
 - [Create a Custom Alexa Handler Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service) -
 This guide explains how to add a custom Alexa handler service that can be used to extend the set of
 stock Alexa platform message handlers offered by the TomTom IndiGO platform.

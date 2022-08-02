@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 TomTom NV. All rights reserved.
+ * Copyright © 2022 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -9,20 +9,19 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.alexa.customcarcontrolhandler
+package com.example.ivi.example.vpa.service
 
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
 /**
- * A [CustomCarControlHandlerServiceHost] builder used to build a [CustomCarControlHandlerService]
- * host.
+ * An [ExampleVpaServiceHost] builder used to build an [ExampleVpaService] host.
  */
-class CustomCarControlHandlerServiceHostBuilder : IviServiceHostBuilder() {
+class ExampleVpaServiceHostBuilder : IviServiceHostBuilder() {
 
     override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
-        CustomCarControlHandlerServiceHost(iviServiceHostContext) {
+        ExampleVpaServiceHost(iviServiceHostContext) {
             getDiscoverableServiceId(it)
         }
 

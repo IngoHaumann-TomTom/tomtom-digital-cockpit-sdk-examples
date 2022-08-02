@@ -181,6 +181,8 @@ menu:
             title: Add Support for Web App Launch Trigger
       - title: Voice Personal Assistant
         items:
+          - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-vpa-adaptation-service
+            title: Create a Custom VPA Adaptation Service
           - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service
             title: Create a Custom Alexa Handler Service
       - title: Customization

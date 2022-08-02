@@ -31,6 +31,7 @@ offered by Alexa Auto, namely:
 - AddressBook
 - Alerts
 - AlexaClient
+- APL (Alexa Presentation Language)
 - AudioInput
 - AudioOutput
 - Authorization

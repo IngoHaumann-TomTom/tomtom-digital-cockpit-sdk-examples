@@ -78,7 +78,7 @@ after media playing has stopped.
 
 ### Climate Control
 
-Climate control in the car is usually referred to as _HVAC_ (heating, ventilcation and air conditioning).
+Climate control in the car is usually referred to as _HVAC_ (heating, ventilation and air conditioning).
 Since HVAC functionality can differ a lot between OEMs, the TomTom IndiGO platform comes with a
 reference implementation, providing functionality for many common HVAC requirements. This can be used
 as a starting point to implement additional functionality for the relevant car model. The reference

@@ -9,22 +9,22 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.alexa.customcarcontrolhandler
+package com.example.ivi.example.vpa.service
 
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
-import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
 /**
- * A [CustomCarControlHandlerServiceHost] builder used to build a [CustomCarControlHandlerService]
- * host.
+ * An [ExampleVpaService] host server.
  */
-class CustomCarControlHandlerServiceHostBuilder : IviServiceHostBuilder() {
+internal class ExampleVpaServiceHost(
+    iviServiceHostContext: IviServiceHostContext,
+    iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
+) :
+    IviServiceHostBase(iviServiceHostContext) {
 
-    override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
-        CustomCarControlHandlerServiceHost(iviServiceHostContext) {
-            getDiscoverableServiceId(it)
-        }
-
-    companion object
+    override val iviServices = setOf(
+        ExampleVpaService(iviServiceHostContext, iviDiscoverableServiceIdProvider)
+    )
 }
