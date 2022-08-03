@@ -70,6 +70,38 @@ plugins {
     id("com.tomtom.ivi.appsuite.alexa.defaults.config")
 }
 ```
+
+Explicitly include the Alexa group (this is an opt-in group) in the product's `iviInstance` and
+services in the `build.gradle.kts` file:
+
+```kotlin
+ivi {
+    application {
+        enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                applyGroups {
+                    ...
+                    include(
+                        IviAppsuite.alexaGroup // explicit opt-in group.
+                    )
+                    ...
+                }
+            }
+        }
+        services {
+            applyGroups {
+                ...
+                include(
+                    IviAppsuite.alexaGroup // explicit opt-in group.
+                )
+                ...
+            }
+        }
+    }
+}
+```
+
 These plugins will add the Alexa TomTom IndiGO application to your product and will provide a simple
 way to configure the Alexa application.
 

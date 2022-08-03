@@ -191,11 +191,109 @@ plugins {
     // Optional: To use the default frontends and services from the TomTom IndiGO platform
     // and app suite.
     id("com.tomtom.ivi.product.defaults.core")
+    // Optional: Add a non-default frontend.
+    id("com.tomtom.ivi.appsuite.alexa.defaults.alexa")
 }
 
 ivi {
     application {
         enabled = true
+    }
+}
+```
+
+The Gradle plugin applied in this example `id("com.tomtom.ivi.product.defaults.core")`
+configures all the default frontends, frontend extensions, menu items and IVI service hosts from the
+TomTom IndiGO platform and app suite for the default runtime deployment. Unless defined otherwise
+all default components are enabled in the `ivi` `application`.
+
+If you only want to apply defaults from the TomTom IndiGO platform without the appsuite default, you
+can achieve this by only applying the platform Gradle
+plugin: `id("com.tomtom.ivi.platform.defaults.core")`.
+
+Furthermore, you can add specific non-default platform or appsuite plugins, such
+as `id("com.tomtom.ivi.appsuite.alexa.defaults.alexa")`. However, any non-default plugin components
+need to be enabled explicitly in the `ivi` `application`.
+
+### Configuring the IVI application
+
+The `ivi` `application` contains three important blocks. The `iviInstances`, the `services` and
+the `runtime`. If any of these blocks are not specified, defaults will apply. However, by using the
+blocks, one can have control over how the platform is integrated.
+
+This can be achieved in a fine-grained way by specifically adding, removing or replacing components
+such as frontends, or in a more coarse-grained way by including or excluding groups.
+
+__build.gradle.kts:__
+
+```kotlin
+ivi {
+    application {
+        enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                applyGroups {
+                    includeDefaultGroups() // include all defaults.
+                    include(IviAppsuite.alexaGroup) // include explicit opt-in app suite plugin.
+                    exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                }
+                frontends {
+                    replace(userProfileFrontend, accountFrontend)
+                    remove(mediaFrontend)
+                }
+                menuItems {
+                    add(myMenuItem)
+                    replace(userProfileMenuItem, accountMenuItem to accountFrontend)
+                }
+            }
+        }
+        services {
+            applyGroups {
+                includeDefaultGroups()
+                include(IviAppsuite.alexaGroup)
+                exclude(IviPlatform.debugGroup)
+            }
+        }
+    }
+}
+```
+
+Applying groups can be particularly useful for long term stable integration. For instance, in the
+above example, the `alexaGroup` is an opt-in group. Instead of adding the specific frontend and menu
+items specifically, the entire group is added. This is robust against future changes, which may add
+or remove frontends or menu items. If the fine-grained method is used, it would require changes to
+the `build.gradle.kts`, but using groups this is not needed.
+
+Similarly, if a default group needs to be excluded, this can be achieved by excluding all components
+individually (frontends, menu items, services), or simply by excluding its group. The example below
+excludes the `debugGroup` for the release build only.
+
+```kotlin
+androidComponents {
+    onVariants { variant ->
+        variant.ivi {
+            application {
+                enabled = true
+                iviInstances {
+                    create(IviInstanceIdentifier.default) {
+                        applyGroups {
+                            includeDefaultGroups() // include all defaults.
+                            if (variant.buildType == "release") {
+                                exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                            }
+                        }
+                    }
+                }
+                services {
+                    applyGroups {
+                        includeDefaultGroups()
+                        if (variant.buildType == "release") {
+                            exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 ```
