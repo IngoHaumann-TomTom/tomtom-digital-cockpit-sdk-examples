@@ -1,7 +1,9 @@
-# Adding a custom panel type to the system UI
+# ActivityView example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This example app demonstrates how to embed a third-party Android activity in your TomTom IndiGO
+based application.
 
 ## Copyright
 

@@ -2,10 +2,10 @@
 title: Customize a Media Source
 ---
 
-Most media apps offer content which can be browsed and played liberally, letting the user more or
-less in control of the playback. Potentially, these apps require logging in before allowing access.
-This kind of media app is easier to customize, as the TomTom IndiGO Application Suite already
-provides a delightful user interface for media.
+Most media apps offer content which can be browsed and played freely, letting the user more or less
+in control of the playback. Potentially, these apps require logging in before allowing access. This
+kind of media app is easier to customize, as the TomTom IndiGO Application Suite already provides a
+delightful user interface for media.
 
 These customization capabilities are currently offered:
 - Modify how content provided by the media app is displayed to the user.
@@ -25,7 +25,7 @@ customizations, the [policy installation](#install-customization-policies) secti
 apply them to the build.
 
 More venues for customization are planned for the future, but if it is necessary to change the user
-experience in a more radical fashion, then it is possible to
+experience in a more radical way, then it is possible to
 [create a new user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
 
 Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO
@@ -38,9 +38,13 @@ will be of great help. In the
 details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 If you want to configure the media plugins with a more global configuration, you can follow
-this guide: [how to configure the media plugins](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins).
+this guide:
+[How to configure the media plugins](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins).
 
 ## Modify content display
+
+The concepts presented here are implemented in applications that you can find in
+`examples/media/custompolicies` and `examples/media/miniplayer`.
 
 A media source might provide poor quality of its input data, due to a sub-par implementation of the
 Android Automotive Media API, causing the default user interface to display it incorrectly.
@@ -84,11 +88,11 @@ class ExampleInternetRadioMediaItemMappingPolicy : MediaItemMappingPolicy {
 }
 ```
 
-A `MediaItemMappingPolicy` customizes how the user interface will display media item data, and can 
-be as complex as necessary: it might be useful to examine whether an item is playable or browsable 
-(or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_INDIGO_API) fields; or 
-maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type of content 
-is being played. It all depends on how the media source presents its information. Also note that 
+A `MediaItemMappingPolicy` customizes how the user interface will display media item data, and can
+be as complex as necessary: it might be useful to examine whether an item is playable or browsable
+(or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_INDIGO_API) fields; or
+maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type of content
+is being played. It all depends on how the media source presents its information. Also note that
 this data might change over time, posing integration issues when new versions are released
 potentially with changes in media item data provisioning.
 
@@ -244,10 +248,10 @@ class ExampleInternetRadioSourceAttributionPolicy : MediaSourceAttributionPolicy
 ```
 
 The `getName()` method uses the right string at the right time, and the `getLogo()` method uses
-resources which are selected by Android by the type of theme currently in use. 
-The `getStyle()` method can return a [`SourceStyle`](TTIVI_INDIGO_API) to override the default 
-`accentColor` provided by the source APK theme. When not specified, it returns `null` and will keep 
-the default color. 
+resources which are selected by Android by the type of theme currently in use.
+The `getStyle()` method can return a [`SourceStyle`](TTIVI_INDIGO_API) to override the default
+`accentColor` provided by the source APK theme. When not specified, it returns `null` and will keep
+the default color.
 
 The new `ExampleInternetRadioSourceAttributionPolicy` needs to be specified in a
 [`PolicyProvider`](TTIVI_INDIGO_API) which will be used only when browsing `ExampleInternetRadio`
@@ -269,10 +273,10 @@ val exampleInternetRadioFrontendExtension: FrontendExtension =
     MediaPolicyFrontendExtension(
         // This needs to match the Android package name of the media app.
         sourcePackageName = "com.example.exampleinternetradio",
-        // The class name is optional and only required if the policy must explicitly target a 
+        // The class name is optional and only required if the policy must explicitly target a
         // specific MediaBrowserService in the package, such as when the app contains more than one
-        // such service. This is needed to apply a different policy per service within the same 
-        // package.  
+        // such service. This is needed to apply a different policy per service within the same
+        // package.
         sourceClassName = "com.example.MediaService",
         policyProvider = exampleInternetRadioPolicyProvider
     )

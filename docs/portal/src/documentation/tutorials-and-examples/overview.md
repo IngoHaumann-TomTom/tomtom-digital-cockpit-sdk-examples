@@ -55,7 +55,7 @@ tabs.
 ## Notifications
 - [Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel) -
   This guide explains how to create and show a notification panel.
-  
+
 ## Media
 
 - [Create a new media user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface) -
@@ -81,6 +81,13 @@ display in the contacts panel.
 - [Create a custom recent calls service](/tomtom-indigo/documentation/tutorials-and-examples/communications/create-a-custom-recentcalls-service) -
 This guide explains how to add a recent calls service that provides information that TomTom
 IndiGO can display in the recent calls panel.
+
+- [Configure the Communications Plugin](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/communications/configure-the-communications-plugin) -
+This guide explains how to configure the behavior of the off-the-shelf communications plugin.
+
+- [How to use the Communications Plugin Settings](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings) -
+This guide explains how to conigure the [`MessagingAppSettingsService`](TTIVI_INDIGO_API) for
+_custom quick replies_ handling.
 
 ## App Launcher
 

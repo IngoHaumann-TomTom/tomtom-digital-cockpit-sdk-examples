@@ -12,6 +12,8 @@ This document describes how to do this.
 
 The following sections describe how to create a custom contacts service implementation.
 
+Example code for the concepts presented here is provided in `examples/telephone/customcontacts`.
+
 ### Service module setup
 
 To create a custom contacts service, add a manifest file to your module and add a dependency to

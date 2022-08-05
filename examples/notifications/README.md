@@ -1,7 +1,12 @@
-# Adding a custom panel type to the system UI
+# Notifications example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This example app demonstrates how to create and show notifications.
+For a detailed explanation, see the
+[Create a Notification Panel](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel)
+page on the
+[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
 
 ## Copyright
 

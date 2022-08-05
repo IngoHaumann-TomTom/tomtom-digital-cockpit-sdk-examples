@@ -1,7 +1,12 @@
-# Common module
+# Common code for the example applications
+
+## Introduction
 
 This folder does __not__ contain a standalone example, but contains common code to make the other
 examples smaller.
+
+Here you will find an `Activity` and `Application` class that are used by the example apps that
+are an `Application` project.
 
 ## Copyright
 

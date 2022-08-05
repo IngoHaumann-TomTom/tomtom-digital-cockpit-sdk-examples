@@ -18,6 +18,8 @@ custom
 
 The following sections describe how to create a custom connection service implementation.
 
+Example code for the concepts presented here is provided in `examples/telephone/customconnection`.
+
 ### Service module setup
 
 To create a custom connection service, add an `AndroidManifest.xml` file to your module. In this 

@@ -1,7 +1,9 @@
-# Adding a custom panel type to the system UI
+# System UI example applications
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This directory holds a set of example apps that demonstrate how to create your own system UI, such
+as creating a custom panel type.
 
 ## Copyright
 

@@ -16,7 +16,8 @@ TomTom IndiGO provides clients different ways for the notification creation. You
 - [`StockNotificationPanel`](TTIVI_INDIGO_API) to create a notification;
 - or implement a [`NotificationPanel`](TTIVI_INDIGO_API) yourself.
 
-The next sections explain the different ways to create a notification.
+The next sections explain the different ways to create a notification. An example app is provided in
+directory `examples/notifications`.
   
 ## Create a Stock Notification Panel
 

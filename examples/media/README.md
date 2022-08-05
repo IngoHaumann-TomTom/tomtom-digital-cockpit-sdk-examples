@@ -1,7 +1,10 @@
-# Adding a custom panel type to the system UI
+# Media example applications
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This directory holds a set of example apps that demonstrate how to customize the media app, how to
+create a new user experience for a specific media source, and how to create a new media source.
+For details see the subdirectories.
 
 ## Copyright
 

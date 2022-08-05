@@ -1,7 +1,11 @@
-# Adding a custom panel type to the system UI
+# Debug tab example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This example app shows how to create an additional tab in the Debug menu, as explained on the
+[Configure Debug Tabs](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/basics/configure-debug-tabs)
+page of the
+[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
 
 ## Copyright
 

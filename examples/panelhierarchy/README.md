@@ -1,7 +1,10 @@
-# Adding a custom panel type to the system UI
+# Panel hierarchy example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+An example that shows how to build a panel hierarchy, where individual task panels add other task
+panels to the stack. The frontend provides the `HierarchyRootPanel` with an `AddPanel` callback that
+it can use to add other panels to the stack.
 
 ## Copyright
 

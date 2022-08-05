@@ -1,11 +1,14 @@
-# Localize strings example application
+# TomTom IndiGO template application
 
 ## Introduction
 
-This example app demonstrates how to extend the TomTom IndiGO platform with your own translations
-for additional locales. For a detailed explanation, see the
-[Localize Strings](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/localization/localize-strings)
-page on the
+The TomTom IndiGO template application contains all of the off-the-shelf functionality implemented
+by the TomTom IndiGO platform. It is a fully working infotainment system, including navigation, a
+media center, phone calling, messaging and much more.
+
+A detailed explanation of the template app and the off-the-shelf functionality is provided on
+[this page](https://developer.tomtom.com/tomtom-indigo/documentation/platform-overview/example-apps)
+of the
 [TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
 
 ## Copyright

@@ -1,7 +1,12 @@
-# Adding a custom panel type to the system UI
+# Communications example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+Subdirectory `configuration` holds an example of how to configure the behavior of the off-the-shelf
+communications plugin. For a detailed explanation, see the
+[Configure the Communications Plugin](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/communications/configure-the-communications-plugin)
+page on the
+[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
 
 ## Copyright
 

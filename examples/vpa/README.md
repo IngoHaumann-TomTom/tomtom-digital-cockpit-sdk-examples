@@ -1,7 +1,10 @@
-# Adding a custom panel type to the system UI
+# Voice Personal Assistant (VPA) example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This example application provides an empty VPA service, as a starting point for building your own
+VPA service. This may be needed when your requirements are not covered by the TomTom IndiGO
+off-the-shelf VPA services.
 
 ## Copyright
 

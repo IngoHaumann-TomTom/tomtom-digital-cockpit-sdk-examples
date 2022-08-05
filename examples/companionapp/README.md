@@ -1,7 +1,17 @@
-# Adding a custom panel type to the system UI
+# Companion app example application
 
-This directory contains an example system UI that supports a custom panel type,
-`CustomSystemUiPanel`, including a frontend that uses this panel type.
+## Introduction
+
+This example app demonstrates how to interact with a companion app service.
+
+## Directory structure
+
+The source code is stored in subdirectories, each one covering a specific aspect:
+
+- `app` : the IVI configuration for this example application.
+- `service` : a custom service for companion app that proxies the Communications SDK ExampleService
+  over an IVI service.
+- `serviceapi` : an IVI service API definition for the custom companion app service.
 
 ## Copyright
 

@@ -1,11 +1,14 @@
-# Localize strings example application
+# Applauncher example application
 
 ## Introduction
 
-This example app demonstrates how to extend the TomTom IndiGO platform with your own translations
-for additional locales. For a detailed explanation, see the
-[Localize Strings](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/localization/localize-strings)
-page on the
+This example app shows how to extend or override the functionality of the App Launcher. This allows
+you to provide support for your own custom app types, or modify how the App Launcher handles
+launching of Android apps.
+
+For more information see the
+[app launcher](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service)
+pages on the
 [TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
 
 ## Copyright

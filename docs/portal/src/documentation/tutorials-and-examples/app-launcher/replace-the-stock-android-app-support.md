@@ -142,7 +142,7 @@ class AndroidAppSourceProviderService(
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder. This can be achieved by creating 2 classes.
 
-- A `AndroidAppSourceProviderServiceHost` class:
+- An `AndroidAppSourceProviderServiceHost` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt`:
 
@@ -162,7 +162,7 @@ provide a service host builder. This can be achieved by creating 2 classes.
    }
    ```
 
-- A `AndroidAppSourceProviderServiceHostBuilder` class:
+- An `AndroidAppSourceProviderServiceHostBuilder` class:
 
    `src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt`:
 
@@ -176,7 +176,7 @@ provide a service host builder. This can be achieved by creating 2 classes.
       override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
           AndroidAppSourceProviderServiceHost(iviServiceHostContext) {
             getDiscoverableServiceId(it)
-          } 
+          }
       companion object
    }
    ```
@@ -389,7 +389,7 @@ provide a service host builder. This can be achieved by creating two classes.
          LaunchableAndroidAppLaunchHandlerServiceHost(iviServiceHostContext) {
            getDiscoverableServiceId(it)
          }
-   
+
      companion object
    }
    ```

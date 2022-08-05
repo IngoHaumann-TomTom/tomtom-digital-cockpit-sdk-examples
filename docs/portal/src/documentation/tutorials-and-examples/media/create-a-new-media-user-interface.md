@@ -2,16 +2,17 @@
 title: Create a New Media User Interface
 ---
 
-The TomTom IndiGO Application Suite provides a default user interface (UI). This user interface 
-might not be suitable for a media app (also called "media source"), when it does not conform to the 
-typical organization of content, or when their offered content can not be liberally browsed or 
+The TomTom IndiGO Application Suite provides a default user interface (UI). This user interface
+might not be suitable for a media app (also called "media source"), when it does not conform to the
+typical organization of content, or when their offered content can not be liberally browsed or
 played or controlled.
 Such sources would look disappointing or completely unusable in the default user interface from the
 TomTom IndiGO Application Suite.
 
 A few examples of media apps which are not suitable for the default user interface:
+
 - A controller/player for an AM/FM/DAB+ radio tuner installed in the system:
-  the default user interface would show the bands, stations, and favorites lumped together as tabs,
+  The default user interface would show the bands, stations, and favorites lumped together as tabs,
   and dump together all known stations in a single tab.
 - An app which can only stream music (for example via Bluetooth, or via Wi-Fi):
   No content would be available for browsing, without explanation.
@@ -56,13 +57,16 @@ display, and no functionality other than basic browsing and playing.
 
 ### Example panel
 
+An application that implements the concepts presented here is provided in directory
+`examples/media/userflowpolicy`.
+
 The example's panel class, based on [`MediaTaskPanel`](TTIVI_INDIGO_API), enables browsing through the
 stations recognized by the radio and the raw frequencies offered by each radio band.
 
 In the panel the media [`Options`](TTIVI_INDIGO_API) are used to print out to
-the device logcat all media items retrieved by all media services: this helps _only_ in the initial
-discovery phase to analyze the format of all content returned by the media source. This setting
-*must not* be used in production, and will not function in _release_ builds.
+the device logcat all media items retrieved by all media services: this helps __only__ in the
+initial discovery phase to analyze the format of all content returned by the media source. This
+setting __must not__ be used in production, and will not function in _release_ builds.
 
 The [`RootSourceClient`](TTIVI_INDIGO_API) is used to browse the
 content and retrieve the available categories (in the case of radio, those are bands and stations),
@@ -220,8 +224,8 @@ internal class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioView
 
 To create more complex user interfaces, additional facilities are provided:
 
-* [Media visualization components](#media-visualization-components)
-* [Media view model components](#media-view-model-components)
+- [Media visualization components](#media-visualization-components)
+- [Media view model components](#media-view-model-components)
 
 ### Media visualization components
 
@@ -240,5 +244,5 @@ the artwork, title, and sub-title for media items in a predictable way.
 
 You can easily create views that display playback information and/or contain media controls by using
 the media-oriented set of view models:
-[`MediaPlaybackViewModel`](TTIVI_INDIGO_API), [`TouchTrackViewModel`](TTIVI_INDIGO_API), and 
+[`MediaPlaybackViewModel`](TTIVI_INDIGO_API), [`TouchTrackViewModel`](TTIVI_INDIGO_API), and
 [`MediaButtonsViewModel`](TTIVI_INDIGO_API).
