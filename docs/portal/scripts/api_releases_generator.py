@@ -14,10 +14,12 @@ import os
 import datetime
 from urllib.request import urlopen
 from collections import deque
+from enum import Enum
 
 # Paths to Markdown files to generate.
 API_REFERENCE_FILE = "api-reference/api-reference.md"
-RELEASES_FILE = "releases/releases.md"
+RECENT_RELEASES_FILE = "releases/releases.md"
+OLDER_RELEASES_FILE = "releases/older-releases.md"
 
 # Base URLs for the API References hosted on S3.
 INDIGO_S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo"
@@ -42,7 +44,16 @@ RELEASES_NEXUS_BASE_URL = "https://repo.tomtom.com/repository/ivi/com/tomtom/ind
 API_PLACEHOLDER = "TTIVI_API_ANCHOR"
 
 # Placeholder to be replaced by a list of releases.
-RELEASES_PLACEHOLDER = "TTIVI_RELEASES_ANCHOR"
+RECENT_RELEASES_PLACEHOLDER = "TTIVI_RECENT_RELEASES_ANCHOR"
+OLDER_RELEASES_PLACEHOLDER = "TTIVI_OLDER_RELEASES_ANCHOR"
+
+RECENT_AMOUNT = 12
+
+class Accordion_style(Enum):
+    FIRST_OPEN = 1
+    ALL_OPEN = 2
+    ALL_CLOSED = 3
+
 
 def get_releases_dict():
     '''
@@ -75,7 +86,7 @@ def get_date(date):
     -------
     str
         Release date in human-readable format.
-    '''    
+    '''
     date_obj = datetime.datetime.strptime(date, '%m/%d/%Y, %H:%M:%S')
     return date_obj.strftime("%d %b %Y, %H:%M")
 
@@ -92,12 +103,12 @@ def get_opened(is_open):
     -------
     str
         Returns 'isOpened' or an empty string.
-    '''    
+    '''
     return "isOpened" if is_open else ""
 
 def get_api_link(api_version, library_url, library_name):
     '''
-    Generates an HTML link to an API Reference specified by 'api_version', 'library_url', and 
+    Generates an HTML link to an API Reference specified by 'api_version', 'library_url', and
     'library_name'.
 
     Parameters
@@ -113,7 +124,7 @@ def get_api_link(api_version, library_url, library_name):
     -------
     str
         An HTML '<a href=>' link to an API Reference.
-    '''    
+    '''
     return f"\n<a href=\"{library_url}/{api_version}/index.html\">"\
         f"{library_name} - version {api_version}</a>"
 
@@ -148,16 +159,18 @@ def get_release_notes(tickets):
     -------
     str
         An HTML list of release notes for a single SDK release.
-    '''  
+    '''
     release_notes = []
 
+    release_notes.append("<div><ul>")
     for ticket in list(tickets.keys()):
         release_notes.extend(["<li>", "<br/>".join(tickets[ticket]['release notes']), "</li>"])
+    release_notes.append("</ul></div>")
     return "\n".join(release_notes)
 
-def construct_api(releases_dict, release_version, is_open=False):
+def construct_api(releases_dict, release_version, is_open):
     '''
-    Generates a single custom Accordion element (for a single SDK release) for the API Reference 
+    Generates a single custom Accordion element (for a single SDK release) for the API Reference
     section.
 
     Parameters
@@ -173,7 +186,7 @@ def construct_api(releases_dict, release_version, is_open=False):
     -------
     accordion : str
         An HTML '<Accordion>' element of a single SDK release with linked API References.
-    '''  
+    '''
     indigo_version = releases_dict[release_version]['versions'][INDIGO_JSON]
     gradleplugins_version = releases_dict[release_version]['versions'][INDIGO_GRADLEPLUGINS_JSON]
     comms_version = releases_dict[release_version]['versions'][INDIGO_COMMS_JSON]
@@ -188,7 +201,7 @@ def construct_api(releases_dict, release_version, is_open=False):
         "\n</Accordion>\n"
     return accordion
 
-def construct_release(releases_dict, release_version, is_open=False):
+def construct_release(releases_dict, release_version, is_open):
     '''
     Generates a single custom Accordion element (for a single SDK release) for the Releases section.
 
@@ -213,12 +226,12 @@ def construct_release(releases_dict, release_version, is_open=False):
     # TODO(IVI-7216) Exclusively link to GitHub Example App repository
     accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
         f"{get_release_link(release_version)}"\
-        f"<b>Release notes:</b>\n"\
+        f"<b>Release notes</b>\n"\
         f"{get_release_notes(tickets)}\n"\
         "</Accordion>\n"
     return accordion
 
-def get_accordions(construct_function, releases_dict):
+def get_accordions(construct_function, releases_dict, accordion_style):
     '''
     Higher-order function to generate the full list of SDK releases.
 
@@ -229,6 +242,8 @@ def get_accordions(construct_function, releases_dict):
         individual Accordion components.
     releases_dict : dict
         A dictionary with release versions as keys, and release data as values.
+    accordion_style : Accordion_style
+        Enum specifying which accordion entries should be open and which ones closed.
 
     Returns
     -------
@@ -237,20 +252,29 @@ def get_accordions(construct_function, releases_dict):
     '''
     accordions = deque()
 
-    for release in releases_dict:
-        # Append left to accordions container so the order becomes chronologic.
-        accordions.appendleft(construct_function(releases_dict, release))
-    
-    # set 'isOpened' on current Accordion.
-    accordions.popleft()
-    current_release = (list(releases_dict.keys())[-1])
-    accordions.appendleft(construct_function(releases_dict, current_release, is_open=True))
+    if accordion_style == Accordion_style.ALL_OPEN:
+        for release in releases_dict:
+            # Append left to accordions container so the order becomes chronologic.
+            accordions.appendleft(construct_function(releases_dict, release, is_open=True))
+    else:
+        if accordion_style == Accordion_style.ALL_CLOSED:
+            for release in releases_dict:
+                # Append left to accordions container so the order becomes chronologic.
+                accordions.appendleft(construct_function(releases_dict, release, is_open=False))
+        else:
+            for release in releases_dict:
+                # Append left to accordions container so the order becomes chronologic.
+                accordions.appendleft(construct_function(releases_dict, release, is_open=False))
+            # set 'isOpened' on current Accordion item.
+            accordions.popleft()
+            current_release = (list(releases_dict.keys())[-1])
+            accordions.appendleft(construct_function(releases_dict, current_release, is_open=True))
 
     return "\n".join(accordions)
 
-def generate_file(file_path, placeholder, construct_function, releases_dict):
+def generate_file(file_path, placeholder, construct_function, releases_dict, accordion_style):
     '''
-    Transforms the content of an intermediate file specified by 'file_path', replacing 'placeholder' 
+    Transforms the content of an intermediate file specified by 'file_path', replacing 'placeholder'
     by the full list of SDK releases (as Accordion components).
 
     Parameters
@@ -263,13 +287,31 @@ def generate_file(file_path, placeholder, construct_function, releases_dict):
         The function that will be used to construct the individual Accordion components.
     releases_dict : dict
         A dictionary with release versions as keys, and release data as values.
+    accordion_style : Accordion_style
+        Enum specifying which accordion entries should be open and which ones closed.
     '''
     with open(file_path, 'r+', encoding="utf-8") as file:
         content = file.read()
-        content = content.replace(placeholder, get_accordions(construct_function, releases_dict))
+        content = content.replace(placeholder, \
+            get_accordions(construct_function, releases_dict, accordion_style))
         file.seek(0)
         file.write(content)
         file.truncate()
+
+def split_dict(releases_dict):
+    '''
+    Splits 'releases_dict' into 'recent_releases_dict' which holds the 12 most recent releases and
+    'older_releases_dict' which holds all other releases.
+
+    Parameters
+    -----------
+    releases_dict : dict
+        A dictionary with release versions as keys, and release data as values.
+    '''
+    recent_releases_dict = dict(list(releases_dict.items())[(len(releases_dict)-RECENT_AMOUNT):])
+    older_releases_dict = dict(list(releases_dict.items())[:(len(releases_dict)-RECENT_AMOUNT):])
+
+    return older_releases_dict, recent_releases_dict
 
 def generate_api_releases_sections(target_dir):
     '''
@@ -281,13 +323,21 @@ def generate_api_releases_sections(target_dir):
         Path to directory containing the export files.
     '''
     releases_dict = get_releases_dict()
-    api_reference_path = os.path.join(target_dir, API_REFERENCE_FILE)
-    releases_path = os.path.join(target_dir, RELEASES_FILE)
+    older_releases_dict, recent_releases_dict = split_dict(releases_dict)
 
     # Generate API Reference section.
-    generate_file(api_reference_path, API_PLACEHOLDER, construct_api, releases_dict)
+    api_reference_path = os.path.join(target_dir, API_REFERENCE_FILE)
+    generate_file(api_reference_path, API_PLACEHOLDER, \
+        construct_api, releases_dict, Accordion_style.FIRST_OPEN)
 
-    # Generate Releases section.
-    generate_file(releases_path, RELEASES_PLACEHOLDER, construct_release, releases_dict)
+    # Generate recent Releases section.
+    recent_releases_path = os.path.join(target_dir, RECENT_RELEASES_FILE)
+    generate_file(recent_releases_path, RECENT_RELEASES_PLACEHOLDER, \
+        construct_release, recent_releases_dict, Accordion_style.ALL_OPEN)
+
+    # Generate older Releases section.
+    older_releases_path = os.path.join(target_dir, OLDER_RELEASES_FILE)
+    generate_file(older_releases_path, OLDER_RELEASES_PLACEHOLDER, \
+        construct_release, older_releases_dict, Accordion_style.ALL_CLOSED)
 
 

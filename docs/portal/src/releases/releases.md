@@ -47,6 +47,10 @@ Android Automotive emulator. You can also opt to build your own APK from the sou
 The `README.md` file in the sources folder contains information related to the structure of the
 application.
 
-## Releases
+## Recent releases
 
-TTIVI_RELEASES_ANCHOR
+TTIVI_RECENT_RELEASES_ANCHOR
+
+## Older releases
+
+See the release notes for [older releases](/tomtom-indigo/releases/older-releases).

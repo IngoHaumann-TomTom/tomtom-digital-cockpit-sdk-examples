@@ -20,3 +20,5 @@ menu:
     items:
       - fileId: /releases
         title: Releases
+      - fileId: /older-releases
+        title: Older Releases
