@@ -21,7 +21,7 @@ steps:
       sourceRepository=$(basename $(System.PullRequest.SourceRepositoryURI))
       branchnamePrefix=refs/heads/
       sourceBranchWithPrefix=$(System.PullRequest.SourceBranch)
-      sourceBranch=${sourceBranchWithPrefix//$sourceBranchWithPrefix/}
+      sourceBranch=${sourceBranchWithPrefix//$branchnamePrefix/}
       baseUrl=$(echo $(System.CollectionUri) |sed "s@//@//$PAT\@@g")
       git clone -b $sourceBranch --single-branch ${baseUrl}IVI-Developers/_git/$sourceRepository $(Pipeline.Workspace)/s
     env:
