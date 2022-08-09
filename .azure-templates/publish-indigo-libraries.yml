@@ -19,7 +19,9 @@ steps:
 
       rm -rf $(Pipeline.Workspace)/s/* $(Pipeline.Workspace)/s/.*
       sourceRepository=$(basename $(System.PullRequest.SourceRepositoryURI))
-      sourceBranch=$(basename $(System.PullRequest.SourceBranch))
+      branchnamePrefix=refs/heads/
+      sourceBranchWithPrefix=$(System.PullRequest.SourceBranch)
+      sourceBranch=${sourceBranchWithPrefix//$sourceBranchWithPrefix/}
       baseUrl=$(echo $(System.CollectionUri) |sed "s@//@//$PAT\@@g")
       git clone -b $sourceBranch --single-branch ${baseUrl}IVI-Developers/_git/$sourceRepository $(Pipeline.Workspace)/s
     env:
