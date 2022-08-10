@@ -1,0 +1,47 @@
+---
+title: Home Panel
+---
+
+The home panel is, by default, the bottom layer of the system UI in TomTom IndiGO. When the system 
+is started, or the user closes an application, this is the screen the user is greeted with. By 
+default, TomTom IndiGO serves the navigation experience as home screen. This choice was made 
+because for many drivers navigation guidance is the primary on-screen task while driving, and 
+setting up a route is the first thing they do. Even when driving without a route, the TomTom IndiGO 
+navigation experience provides contextually relevant information about traffic delays and road 
+closures.
+
+## Navigation Safe Area
+
+The system UI provides the safe area for the home panel. The search/guidance panels are independent 
+from the home panel and placed by the system UI; these contribute to the safe area just like the 
+process panel does. When optimizing for a certain screensize it may be useful to reconfigure their 
+layout. The map safe area (for the route and chevron) is defined by the navigation app and not 
+by the system UI.
+
+![navigation safe area](images/home-panel/navigation-safe-area.png)
+
+## Replacing the Home screen
+
+As the system UI layout can be replaced, it is also possible to replace the home screen 
+entirely. To do this, the map and navigation UI should probably be moved into a separate navigation 
+application. Currently, both map display and navigation are decoupled from the system UI and offered 
+through frontend plugins, like all other panels. Below is an example of an alternative approach to 
+the home screen, where the most relevant information of different applications is extracted into 
+widgets. Currently we don't offer widgets, but is it possible to create them using the custom 
+panel types, which are supported by TomTom IndiGO.
+
+![example](images/home-panel/example.png)
+
+## Customization
+
+The home screen experience can be replaced in its entirety, which has the ability to greatly impact 
+the overall user experience. The stock navigation experience does follow the system theme, but  
+currently most parts of the flows are not customizable.
+
+| Component     | Customizable  |
+| ------------- | ------------- |
+| Replaceable | The default home screen (navigation app) can be replaced with a custom frontend. |
+| Theme | The default home screen (navigation app) can be styled by changing the system theme. |
+| Map style | The map style can be customized and linked to the system theme. |
+| Safe area | The safe areas of the navigation UI and map can be customized in the system UI. They can be animated or change instantly. |
+| Navigation UI | The panels in the navigation UI are moveable and resizable in the system UI. Their animations can also be changed. However, the content and layout of the panels can currently not be changed much. Optimization for different screen sizes is planned. |

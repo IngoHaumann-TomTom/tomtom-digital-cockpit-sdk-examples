@@ -56,6 +56,31 @@ menu:
       - fileId: /getting-started/frequently-asked-questions-faq-navkit2
         title: Frequently Asked Questions (NavKit2)
         isHidden: true
+  - title: Design
+    items:
+      - fileId: /design/introduction
+        title: Introduction
+      - title: System UI
+        items:
+          - fileId: /design/system-ui/overview
+            title: Overview
+          - fileId: /design/system-ui/overlay-panels
+            title: Overlay Panels
+          - fileId: /design/system-ui/control-center
+            title: Control Center
+          - fileId: /design/system-ui/main-menu
+            title: Main Menu
+          - fileId: /design/system-ui/notifications
+            title: Notifications
+          - fileId: /design/system-ui/modal-panels
+            title: Modal Panels
+          - fileId: /design/system-ui/task-panels
+            title: Task Panels
+          - fileId: /design/system-ui/process-panels
+            title: Process Panels
+          - fileId: /design/system-ui/home-panel
+            title: Home Panel
+
   - title: Development
     items:
       - fileId: /development/introduction

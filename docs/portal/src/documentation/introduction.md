@@ -10,6 +10,8 @@ submenu: # Additional submenu items for example - blog posts which will be displ
       url: "/tomtom-indigo/documentation/getting-started/introduction"
     - title: "Development Guide"
       url: "/tomtom-indigo/documentation/development/introduction"
+    - title: "Design Guide"
+      url: "/tomtom-indigo/documentation/design/introduction"
     - title: "Integration Guide"
       url: "/tomtom-indigo/documentation/integrating-tomtom-indigo/introduction"
     - title: "Tutorials"
@@ -98,6 +100,17 @@ guide, and "Register for early access".
         button: {
           label: "Development Guide",
           href: "/tomtom-indigo/documentation/development/introduction"
+        }
+      },
+      {
+        title: "Designing for TomTom IndiGO",
+        body: `The TomTom IndiGO Design Documentation helps automakers's
+        design and development teams, as well as partners, develop faster on TomTom IndiGO, by 
+        better understanding the platform's capabilities, the Application Suite, and how these can be 
+        extended and customized.`,
+        button: {
+          label: "Design Guide",
+          href: "/tomtom-indigo/documentation/design/introduction"
         }
       },
       {
