@@ -15,7 +15,8 @@ document describes how to do this.
 
 The following sections describe how to create a custom recent calls service implementation.
 
-Example code for the concepts presented here is provided in `examples/telephone/customrecentcalls`.
+The example code for the concepts presented here is provided in 
+`examples/telephone/customrecentcalls`.
 
 ### Service module setup
 

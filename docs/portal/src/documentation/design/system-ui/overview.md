@@ -4,8 +4,8 @@ title: Overview
 
 ## Overview
 
-The system UI defines the layout of the system on a displayed level in TomTom IndiGO, as well as the 
-rules and behaviors of it. The system UI decides when to show which panel and defines the container 
+The system UI defines the layout of the system on a displayed level in TomTom IndiGO, along with its
+rules and behaviors. The system UI decides when to show which panel and defines the container 
 to place these panels in. Frontends expose panels, which the system UI processes and presents when 
 appropriate. Panels have many use-cases. This is not limited to opening panels when pressing a menu 
 item, but also notifications, process panels, and even the menu itself. 
@@ -32,9 +32,9 @@ approaches to customizing it are available.
 ## Configuration examples
 
 The positioning and constraints of the content of the different system UI layers can be customized. 
-Below are, as examples, the stock configuration for landscape screens and a possible configuration 
-for portrait screens. Customizing the layout of the layers in the system UI is, next to theming, a 
-highly effective way to create a distinct and optimized experience for a vehicle and its specific 
-hardware setup.
+The following examples show the stock configuration for landscape screens and a possible 
+configuration for portrait screens. Customizing the layout of the layers in the system UI is, next 
+to theming, a highly effective way to create a distinct and optimized experience for a vehicle and 
+its specific hardware setup.
 
 ![anatomy](images/overview/configuration.png)

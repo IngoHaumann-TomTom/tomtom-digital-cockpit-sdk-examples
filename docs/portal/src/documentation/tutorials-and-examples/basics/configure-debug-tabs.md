@@ -11,8 +11,8 @@ via the backtick ("\`") key, or via ADB with `adb shell input keyevent --longpre
 To add a new debug tab, an example app is provided in the `examples/debugtab` directory, with
 `com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFrontendExtension`.
 
-The debug tab's fragment is made with [`DebugTabFragment`](TTIVI_INDIGO_API) and the view model with
-a normal [`FrontendViewModel`](TTIVI_INDIGO_API), templated with the
+The debug tab's fragment is made with the [`DebugTabFragment`](TTIVI_INDIGO_API) and the view model 
+with a normal [`FrontendViewModel`](TTIVI_INDIGO_API), templated with the
 [`TabbedDebugPanel`](TTIVI_INDIGO_API) type.
 
 The debug tab is then registered in the debug menu with a

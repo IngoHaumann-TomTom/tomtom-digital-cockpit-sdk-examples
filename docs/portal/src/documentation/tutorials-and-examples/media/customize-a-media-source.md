@@ -2,14 +2,14 @@
 title: Customize a Media Source
 ---
 
-Most media apps offer content which can be browsed and played freely, letting the user more or less
+Most media apps offer content that can be browsed and played freely, leaving the user more or less
 in control of the playback. Potentially, these apps require logging in before allowing access. This
 kind of media app is easier to customize, as the TomTom IndiGO Application Suite already provides a
 delightful user interface for media.
 
 These customization capabilities are currently offered:
 - Modify how content provided by the media app is displayed to the user.
-  See the [content display](#modify-content-display) section for details.
+  See the [content display](#modifying-content-display) section for details.
 - Add new custom action icons specific to an app.
   See the [custom action](#add-a-custom-action) section for details.
 - Select which app name, icon and colors are displayed to the user in different contexts.
@@ -41,7 +41,7 @@ If you want to configure the media plugins with a more global configuration, you
 this guide:
 [How to configure the media plugins](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins).
 
-## Modify content display
+## Modifying content display
 
 The concepts presented here are implemented in applications that you can find in
 `examples/media/custompolicies` and `examples/media/miniplayer`.

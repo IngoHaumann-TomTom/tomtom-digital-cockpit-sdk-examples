@@ -3,11 +3,11 @@ title: Control Center
 ---
 
 The control center is a collection of controls and indicators that are part of the system UI shell. 
-By default they are grouped into three sections, and placed into a single bar on the bottom of the 
+By default, they are grouped into three sections, and placed into a single bar at the bottom of the 
 screen. However, they are easy to replace or reposition. The main use case for these controls and 
 indicators is having them be available as secondary info from any context. This makes them suitable 
-for conveying system status or giving quick access to frequently used controls. For instance, the top level 
-controls section can be used when no hardware controls are available to control HVAC 
+for conveying system status or giving quick access to frequently used controls. For instance, the 
+top level controls section can be used when no hardware controls are available to control HVAC 
 systems, like the defroster.
 
 ![overview](images/control-center/overview.png)
@@ -17,13 +17,13 @@ systems, like the defroster.
 Three sections of controls are provided by default: 
 
 - __Driver system status__: Buttons placed on the driver side for actions that may frequently be 
-  triggered (for example tap to talk for VPA).
-- __Top level controls__: Vehicle controls as an optional substitute or extension of hardware controls, 
-  particularly for HVAC systems.
+  triggered (for example tap-to-talk for VPA).
+- __Top level controls__: Vehicle controls as an optional substitute or extension of hardware 
+  controls, particularly for HVAC systems.
 - __Co-driver system status__: Information or status indicators placed on the side of the passenger. 
   These controls still often provide (less frequently used) entry points to relevant 
-  flows. For instance, the Bluetooth indicator is the entry point for the device pop-over and pairing
-  flow.
+  flows. For instance, the Bluetooth indicator is the entry point for the device pop-over and 
+  pairing flow.
 
 ## Customization
 
@@ -34,8 +34,8 @@ fully replaced without much difficulty.
 | ------------- | ------------- |
 | Theming | The content color, background and size of the control center are exposed as attributes in the system theme. |
 | Replaceable | The control center container, its layout and the individual sections are all replacable. |
-| Position & Orientation | The system UI can position and constrain the control center freely. However, vertical orientation can be used only in combination with a custom control center frontend suited for vertical orientation as well. |
-| Layout | The system UI can position and constrain the sections (driver system status, top level control, co-driver system status) freely within the control center container. New sections can be added, but existing sections can not be individually modified. |
+| Position & Orientation | The system UI can position and constrain the control center. However, vertical orientation can be used only in combination with a custom control center frontend suited for vertical orientation as well. |
+| Layout | The system UI can position and constrain the sections (driver system status, top-level control, co-driver system status) freely within the control center container. New sections can be added, but existing sections cannot be individually modified. |
 | Content | The content of the individual sections of the control center is not modifiable, but each section can be replaced with a new (custom) control center section. |
 | Split | This can be achieved by modifying the system UI layout. |
 

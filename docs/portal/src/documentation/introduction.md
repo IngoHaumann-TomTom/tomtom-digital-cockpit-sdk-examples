@@ -104,8 +104,8 @@ guide, and "Register for early access".
       },
       {
         title: "Designing for TomTom IndiGO",
-        body: `The TomTom IndiGO Design Documentation helps automakers's
-        design and development teams, as well as partners, develop faster on TomTom IndiGO, by 
+        body: `The TomTom IndiGO design documentation helps carmakers's and partner's
+        design and development teams develop faster on TomTom IndiGO, by 
         better understanding the platform's capabilities, the Application Suite, and how these can be 
         extended and customized.`,
         button: {

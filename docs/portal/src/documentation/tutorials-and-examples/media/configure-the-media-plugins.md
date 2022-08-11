@@ -33,13 +33,13 @@ in your application, such as `<module>/res/value/ttivi-media-configuration.xml`.
 
 The custom configuration overrides the default values with the one provided.
 
-## Configure the mini player
+## Configuring the mini player
 
 When audio is playing, a mini player is shown on the home screen.
 
 ![mini player](images/media_mini_player.png)
 
-If you don't want to use the mini player provided with the off-the-shelf media plugin or you
+If you don't want to use the mini player provided with the off-the-shelf media plugin, or you
 want to implement your own frontend plugin for the mini player, you can configure it by setting the
 `hasMiniPlayerConfigKey` to `false`:
 

@@ -2,13 +2,13 @@
 title: Configure the Communications Plugin
 ---
 
-The off-the-shelf communications plugin comes with default configuration. This configuration
+The off-the-shelf communications plugin comes with a default configuration. This configuration
 provides a default behavior, such as closing the frontend when making an outgoing call. This
 configuration is based on the
 [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
 and can be changed if necessary. This guide explains how to make such changes.
 
-For a code example, see directory `examples/communications/configuration`.
+For a code example, see the `examples/communications/configuration` directory.
 
 ## Communications plugin default configuration
 
@@ -23,7 +23,7 @@ plugin:
 </resources>
 ```
 
-## Change the communications plugin configuration
+## Changing the communications plugin configuration
 
 The communications plugin default configuration can be changed by adding a custom configuration
 resource file in your application, such as
@@ -33,7 +33,7 @@ resource file in your application, such as
 
 The custom configuration overrides the default values with the one provided.
 
-## Configure the frontend's behaviour when making an outgoing call
+## Configuring the frontend's behavior when making an outgoing call
 
 When an outgoing call is made, the communications frontend will be closed by default.
 

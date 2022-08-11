@@ -12,7 +12,7 @@ This document describes how to do this.
 
 The following sections describe how to create a custom contacts service implementation.
 
-Example code for the concepts presented here is provided in `examples/telephone/customcontacts`.
+The example code for the concepts presented here is provided in `examples/telephone/customcontacts`.
 
 ### Service module setup
 
@@ -179,7 +179,8 @@ override fun onCreate() {
 ```
 
 The [`ContactsService`](TTIVI_INDIGO_API)`.contacts` and 
-[`ContactsService`](TTIVI_INDIGO_API)`.phoneBookSynchronizationStatus` properties have been initialized.
+[`ContactsService`](TTIVI_INDIGO_API)`.phoneBookSynchronizationStatus` properties have been 
+initialized.
 
 When the service is destroyed:
 

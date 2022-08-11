@@ -13,7 +13,7 @@ different use cases.
 
 ### Process panel selection
 
-Each app must inform the system to visualise the audio process in the process bar. 
+Each app must inform the system to visualize the audio process in the process bar. 
 The process bar panel's metadata is used by the system UI to determine the priority of showing 
 the various process bar panels. For example, an ongoing phone call has a higher priority than 
 streaming media. When both frontends provide a process bar panel at the same time, the process 
@@ -31,7 +31,7 @@ __Priority per domain:__
 - Entertainment (2nd)
 
 __Communication audio processes:__ When multiple communication audio processes are active, these 
-will be prioritized in chronological order, the newest process is visualised on top.
+will be prioritized in chronological order, and the newest process is visualized on top.
 
 ## Anatomy
 
@@ -41,7 +41,7 @@ The process panel is populated using a UI template that comprises several sectio
 
 | Section     | Use  |
 | ------------- | ------------- |
-| Main controls | The most important controls for the process (for example, hang up button for a phone call), as this section is positioned closer towards the driver. This is a list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)). |
+| Main controls | The most important controls for the process (for example, a hang-up button for a phone call), as this section is positioned closer to the driver. This is a list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)). |
 | Metadata | Information about the ongoing process ([TtInformationControl](TTIVI_ANDROID_TOOLS_API)) |
 | Secondary controls | An optional secondary list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)) to perform actions on ongoing process. |
 | Progress | An optional progress indicator along the top of the process panel. (__Note:__ Coming soon.) |
@@ -54,10 +54,10 @@ Different formfactors / layouts may be supported later on.
 
 | Component     | Customizable  |
 | ------------- | ------------- |
-| Theme | The color, size, background and animation of the process panel can be modified using the system theme. The process panel template also follows the theme. |
-| Position | The position and size of the process panel can be changed in the system UI. (__Note:__ The process panel can be removed but this is not recommended, as every app has a contract with the process panel, and frontends may rely on their ongoing processes being accessible. Alternatively, it is possible to 'conditionally hide’ a process panel.) |
+| Theme | The color, size, background, and animation of the process panel can be modified using the system theme. The process panel template also follows the theme. |
+| Position | The position and size of the process panel can be changed in the system UI. (__Note:__ The process panel can be removed but this is not recommended as every app has a contract with the process panel, and frontends may rely on their ongoing processes being accessible. Alternatively, it is possible to 'conditionally hide’ a process panel.) |
 | Animation | The panel enter and exit animation can be changed in the system UI. |
 | Orientation | Currently only the default horizontal layout is supported in the process panel template. However, support for a vertical layout is planned. |
 | Layout | The layout template of the process panel currently cannot be modified without breaking compatibility with the process bar implementation for the entertainment app and communication app. |
 | Content | Process panels created by various applications can be populated according to the process panel template. However, existing applications may not offer customization of how they populate the process panel. Currently, the communication app offers no customization, while in the entertainment app the primary and secondary actions can be customized on a per source basis. |
-| Priority | It is not possible to customise the process panel priority selection. |
+| Priority | It is not possible to customize the process panel priority selection. |
