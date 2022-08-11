@@ -9,6 +9,9 @@
  * immediately return or destroy it.
  */
 
+import com.tomtom.ivi.appsuite.gradle.alexa.api.appsuitedefaults.alexa.alexaGroup
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviAppsuite
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -27,10 +30,25 @@ val customCarControlHandlerServiceHost: IviServiceHostConfig by project.extra
  */
 ivi {
     optInToExperimentalApis = true
-
     application {
         enabled = true
+        iviInstances {
+            create(IviInstanceIdentifier.default) {
+                applyGroups {
+                    includeDefaultGroups()
+                    include(
+                        IviAppsuite.alexaGroup
+                    )
+                }
+            }
+        }
         services {
+            applyGroups {
+                includeDefaultGroups()
+                include(
+                    IviAppsuite.alexaGroup
+                )
+            }
             addHost(customCarControlHandlerServiceHost)
         }
     }
