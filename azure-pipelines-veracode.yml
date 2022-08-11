@@ -35,7 +35,7 @@ resources:
     - repository: devops-templates
       type: git
       name: IVI/devops-templates
-      ref: refs/tags/2.2.5
+      ref: refs/tags/2.2.6
 
 variables:
   - template: .azure-templates/variables.yml
@@ -66,6 +66,7 @@ stages:
           - template: build/get-version-from-apk.yml@devops-templates
             parameters:
               apkDirectory: '$(Build.ArtifactStagingDirectory)/APK'
+              apkNamePattern: '*x86_64-debug*.apk'
           - template: veracode/veracode-scan.yml@devops-templates
             parameters:
               waitTimeIntervalInSeconds: 300
