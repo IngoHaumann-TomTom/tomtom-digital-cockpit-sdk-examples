@@ -7,6 +7,7 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviInstanceBoundIviS
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.Panel
 import com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.FrontendRegistry
 import com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.IviPanelRegistry
+import com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.IviPanelRegistry.Companion.extractPanels
 import com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.PanelRegistry
 import com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.panelcoordination.mapToSingle
 import com.tomtom.tools.android.api.livedata.flatMap
@@ -34,11 +35,12 @@ internal class CustomPanelRegistry(
             lifecycleOwner: LifecycleOwner,
             iviServiceProvider: IviInstanceBoundIviServiceProvider
         ) = CustomPanelRegistry(
-            frontendRegistry.frontends.flatMap { it.panels }.mapToSingle(),
-            IviPanelRegistry.build {
-                extractDefaultPanelsFrom(frontendRegistry)
-                withServiceSupport(lifecycleOwner, iviServiceProvider)
-            }
+            customPanel = frontendRegistry.frontends.flatMap { it.panels }.mapToSingle(),
+            iviPanelRegistry = IviPanelRegistry.build(
+                frontendRegistry.extractPanels(),
+                lifecycleOwner,
+                iviServiceProvider
+            )
         )
     }
 }
