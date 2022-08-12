@@ -1,11 +1,8 @@
 package com.example.ivi.example.systemui.custompaneltype.systemui
 
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.ivi.example.systemui.custompaneltype.common.CustomSystemUiPanel
 import com.example.ivi.example.systemui.custompaneltype.databinding.TtiviCustompaneltypeCustomsystemuiBinding
-import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
-import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendMetadata
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ControlCenterPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ExpandedProcessPanel
@@ -23,6 +20,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.TaskProcessPa
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.panelTypeSetOf
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FixedConstructorFactory
 import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHost
+import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHostContext
 import com.tomtom.ivi.platform.systemui.api.common.systemuihost.containercontrollers.TaskPanelContainerController
 import com.tomtom.tools.android.core.animation.LifecycleAwareAnimationController
 
@@ -32,11 +30,8 @@ import com.tomtom.tools.android.core.animation.LifecycleAwareAnimationController
  *
  * @see https://developer.tomtom.com/tomtom-indigo/documentation/development/system-ui
  */
-internal class CustomSystemUiHost(
-    fragmentActivity: FragmentActivity,
-    iviInstanceId: IviInstanceId,
-    frontendMetadata: Collection<FrontendMetadata>
-) : SystemUiHost(fragmentActivity, iviInstanceId, frontendMetadata) {
+internal class CustomSystemUiHost(systemUiHostContext: SystemUiHostContext) :
+    SystemUiHost(systemUiHostContext) {
 
     private lateinit var viewModel: CustomSystemUiViewModel
 

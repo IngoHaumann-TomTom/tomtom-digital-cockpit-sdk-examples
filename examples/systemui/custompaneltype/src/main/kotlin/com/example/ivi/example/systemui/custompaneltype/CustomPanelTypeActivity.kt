@@ -21,9 +21,5 @@ import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHost
  */
 class CustomPanelTypeActivity : DefaultActivity() {
     override fun createSystemUiHost(iviInstanceId: IviInstanceId): SystemUiHost =
-        CustomSystemUiHost(
-            this,
-            iviInstanceId,
-            getFrontendMetadata(iviInstanceId)
-        )
+        CustomSystemUiHost(getDefaultSystemUiHostContext(iviInstanceId))
 }
