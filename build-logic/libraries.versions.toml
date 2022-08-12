@@ -14,7 +14,7 @@
 [versions]
 # TomTom IndiGO platform.
 # This line is being parsed using a regex. And should not be altered carelessly.
-indigoPlatform = "1.0.4040"
+indigoPlatform = "1.0.4043"
 
 [libraries]
 # Gradle plugins from the TomTom IndiGO platform & appsuite.
