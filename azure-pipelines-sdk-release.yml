@@ -26,6 +26,10 @@ parameters:
     displayName: 'Release notes to be shown on the portal'
     type: string
     default: 'Development release.'
+  - name: shouldPublishDocumentation
+    displayName: 'Publish documentation. WARNING: To be used by Archipelago only!'
+    type: boolean
+    default: false
   - name: shouldPublishLineageOsImage
     displayName: 'Publish the LineageOS system image to Nexus'
     type: boolean
@@ -63,6 +67,8 @@ variables:
     value: ${{ parameters.versionExamples }}
   - name: releaseNotes
     value: ${{ parameters.releaseNotes }}
+  - name: publishDocumentation
+    value: ${{ parameters.shouldPublishDocumentation }}
   - name: publishLibraries
     ${{ if eq(parameters['shouldPublishLibraries'], true) }}:
       value: '--publish_libs'
@@ -87,7 +93,7 @@ variables:
     ${{ else }}:
       value: $(blackduck-preprod-pat)
   - name: latestReleasedPlatformVersion
-    ${{ if eq(variables['Build.Reason'], 'Manual') }}:
+    ${{ if eq(parameters['shouldPublishDocumentation'], true) }}:
       value: '$(RELEASED_PLATFORM_VERSION)'
     ${{ else }}:
       value: '$(RELEASED_BETA_PLATFORM_VERSION)'
@@ -219,7 +225,7 @@ stages:
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
-      eq(variables['Build.Reason'], 'Manual')
+      eq(variables.publishDocumentation, true)
       )
     jobs:
       - job: ReleasesData
@@ -237,7 +243,7 @@ stages:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
-      ${{ if eq(variables['Build.Reason'], 'Manual') }}:
+      ${{ if eq(variables.publishDocumentation, true) }}:
         externalRepoBranch: 'main'
         versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
       ${{ else }}:
@@ -302,7 +308,7 @@ stages:
               condition: and(
                 succeeded(),
                 eq(variables.isMainlineBuild, true),
-                eq(variables['Build.Reason'], 'Manual')
+                eq(variables.publishDocumentation, true)
                 )
           - template: azure/updatevariablegroup.yml@devops-templates
             parameters:
@@ -329,7 +335,7 @@ stages:
         displayName: 'Delete release entry'
         timeoutInMinutes: 10
         container: docker_indigo_delivery
-        condition: eq(variables['Build.Reason'], 'Manual')
+        condition: eq(variables.publishDocumentation, true)
         steps:
           - template: .azure-templates/releases-data.yml
             parameters:
