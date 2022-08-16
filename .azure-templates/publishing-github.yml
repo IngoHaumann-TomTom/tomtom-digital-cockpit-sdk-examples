@@ -52,7 +52,7 @@ steps:
       ruby $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/indigo_platform_publishing_app.rb \
         --download_base_path=$(System.DefaultWorkingDirectory)/downloads \
         --internal_source_folder=${{parameters.internalExampleSourceFolder}} \
-        --external_repo_name="tomtom-internal/tomtom-indigo-sdk-examples" \
+        --external_repo_name="tomtom-international/tomtom-indigo-sdk-examples" \
         --external_repo_branch=$(externalRepoBranch) \
         --github_app_identifier=$(GITHUB_APP_IDENTIFIER) \
         --github_app_installation_identifier=$(GITHUB_APP_INSTALLATION_IDENTIFIER) \
