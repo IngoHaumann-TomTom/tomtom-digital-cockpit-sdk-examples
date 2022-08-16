@@ -88,7 +88,7 @@ stages:
   jobs:
   - template: gradle/dependencies-scan.yml@devops-templates
     parameters:
-      dependenciesTaskName: showAllDependencies -PuseInternalNavkit2ApiKey=true
+      dependenciesTaskName: showAllDependencies
   - job: Build
     displayName: Lint & Build
     timeoutInMinutes: 20
