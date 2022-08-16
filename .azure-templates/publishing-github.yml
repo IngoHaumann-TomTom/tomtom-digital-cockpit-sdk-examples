@@ -24,24 +24,6 @@ steps:
       mkdir $(Build.SourcesDirectory)/downloads
     displayName: Create download directory
 
-  # TODO(IVI-7077): Add the installation to the Docker image instead.
-  - script: |
-      apk update
-      apk upgrade
-      apk add "ruby>3.0"
-      rm -rf /var/cache/apk/*
-    displayName: 'Install Ruby'
-
-  # TODO(IVI-7077): Add the installation to the Docker image instead.
-  # Faraday (this version) is required to create a Github App installation token correctly
-  - script: |
-      gem install octokit
-      gem install jwt
-      gem install dotenv
-      gem install git
-      gem install faraday -v 1.10.0
-    displayName: 'Install gems'
-
   - task: DownloadSecureFile@1
     name: caCertificate
     displayName: 'Download CA certificate'
