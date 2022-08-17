@@ -45,6 +45,10 @@ resources:
     type: git
     name: IVI/devops-templates
     ref: refs/tags/2.2.3
+  - repository: indigo-pr
+    type: git
+    name: IVI/indigo
+    ref: $(Build.SourceBranch)
 
 pool: 'IVI 2.0'
 

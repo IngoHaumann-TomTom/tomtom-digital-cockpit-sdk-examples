@@ -14,19 +14,7 @@ parameters:
   iviVersion: ''
 
 steps:
-  - bash: |
-      set -ux
-
-      rm -rf $(Pipeline.Workspace)/s/* $(Pipeline.Workspace)/s/.*
-      sourceRepository=$(basename $(System.PullRequest.SourceRepositoryURI))
-      branchnamePrefix=refs/heads/
-      sourceBranchWithPrefix=$(System.PullRequest.SourceBranch)
-      sourceBranch=${sourceBranchWithPrefix//$branchnamePrefix/}
-      baseUrl=$(echo $(System.CollectionUri) |sed "s@//@//$PAT\@@g")
-      git clone -b $sourceBranch --single-branch ${baseUrl}IVI-Developers/_git/$sourceRepository $(Pipeline.Workspace)/s
-    env:
-      PAT: $(System.AccessToken)
-    displayName: 'Checkout $(System.PullRequest.SourceRepositoryURI)@$(System.PullRequest.SourceBranch)'
+  - checkout: indigo-pr
 
   - template: gradle/gradle.yml@devops-templates
     parameters:
