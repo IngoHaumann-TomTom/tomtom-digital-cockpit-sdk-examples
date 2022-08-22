@@ -177,26 +177,23 @@ internal class MutableCustomContactsDataSource :
         else -> contactElements
     }
 
-    private fun findMatchingContacts(key: String): List<ContactItem> {
-        return (
-            contacts.values.filter {
-                var contactFound = false
-                if (it.givenName.isNotBlank()) {
-                    contactFound = it.givenName.startsWith(key, true)
-                }
-                if (it.familyName.isNotBlank() && !contactFound) {
-                    contactFound = it.familyName.startsWith(key, true)
-                }
-                if (it.companyName.isNotBlank() && !contactFound) {
-                    contactFound = it.companyName.startsWith(key, true)
-                }
-                if (it.displayName.isNotBlank() && !contactFound) {
-                    contactFound = it.displayName.startsWith(key, true)
-                }
-                contactFound
-            }.toContactItem()
-        )
-    }
+    private fun findMatchingContacts(key: String) =
+        contacts.values.filter {
+            var contactFound = false
+            if (it.givenName.isNotBlank()) {
+                contactFound = it.givenName.startsWith(key, true)
+            }
+            if (it.familyName.isNotBlank() && !contactFound) {
+                contactFound = it.familyName.startsWith(key, true)
+            }
+            if (it.companyName.isNotBlank() && !contactFound) {
+                contactFound = it.companyName.startsWith(key, true)
+            }
+            if (it.displayName.isNotBlank() && !contactFound) {
+                contactFound = it.displayName.startsWith(key, true)
+            }
+            contactFound
+        }.toContactItem()
 
     /**
      * Groups contact by first letter. Contact starting with no letter character are grouped in
