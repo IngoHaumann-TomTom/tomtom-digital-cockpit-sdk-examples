@@ -18,16 +18,36 @@
   * To compile the Example app as an external developer, follow the instructions in the
   * `Getting Started` guide of the Developer Portal.
   */
-pluginManagement {
-    repositories {
-        // Local artifact cache.
-        mavenLocal()
 
-        // Artifactory cache for Maven Central, JCenter, etc.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/maven-remotes")
-        // Repo for shared Android Tools plugins.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-release/")
+val mainArtifactorySaasUsername: String? by extra
+val mainArtifactorySaasToken: String? by extra
+
+val useSaasArtifactory = (mainArtifactorySaasUsername != null) && (mainArtifactorySaasToken != null)
+
+fun RepositoryHandler.tomtomArtifactory(repoName: String) {
+    if (useSaasArtifactory) {
+        maven("https://artifactory.tomtomgroup.com/artifactory/$repoName") {
+            credentials {
+                username = mainArtifactorySaasUsername
+                password = mainArtifactorySaasToken
+            }
+        }
+    } else {
+        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/$repoName")
     }
+}
+
+// Doing it in this way (as opposed to `pluginManagement{repositories{...}}`)
+// allows to use the `tomtomArtifactory` function defined above and avoid copypaste
+// https://docs.gradle.org/current/userguide/upgrading_version_5.html#the_pluginmanagement_block_in_settings_scripts_is_now_isolated
+pluginManagement.repositories {
+    // Local artifact cache.
+    mavenLocal()
+
+    // Artifactory cache for Maven Central, JCenter, etc.
+    tomtomArtifactory("maven-remotes")
+    // Repo for shared Android Tools plugins.
+    tomtomArtifactory("nav-maven-release")
 }
 
 dependencyResolutionManagement {
@@ -36,24 +56,24 @@ dependencyResolutionManagement {
         mavenLocal()
 
         // Artifactory cache for Maven Central, JCenter, etc.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/maven-remotes")
+        tomtomArtifactory("maven-remotes")
 
         // PU IVI repo for internal dependencies.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven")
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-test")
+        tomtomArtifactory("ivi-maven")
+        tomtomArtifactory("ivi-test")
 
         // Repo for shared Android Tools like, UI Controls, resource resolutions,
         // viewcomparison test setup, animations...
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-release")
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/nav-maven-dev")
+        tomtomArtifactory("nav-maven-release")
+        tomtomArtifactory("nav-maven-dev")
 
         // PU NAV repo for NavTest and Gradle plugins from NAV.
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-releases")
+        tomtomArtifactory("navapp-releases")
 
         // PU LNS repo for the Connectivity Agent.
         maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
 
         // Analytics repo (used by NavApp components)
-        maven("https://artifactory.navkit-pipeline.tt3.com/artifactory/dataunit-maven-release")
+        tomtomArtifactory("dataunit-maven-release")
     }
 }

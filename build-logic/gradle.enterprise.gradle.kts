@@ -18,7 +18,7 @@
  */
 buildscript {
     repositories {
-        maven(url = "https://artifactory.navkit-pipeline.tt3.com/artifactory/maven-remotes")
+        gradlePluginPortal()
     }
     dependencies {
         classpath("com.gradle:gradle-enterprise-gradle-plugin:3.8.1")
