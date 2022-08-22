@@ -68,9 +68,9 @@ interface that can be implemented by an OEM to fulfill one of these purposes:
 
 ## Example app
 
-The TomTom IndiGO SDK comes with an example app showing how to use the Alexa feature, see directory
-`examples/alexa`. By default, this application is excluded from the build, because it requires
-Alexa libraries that are not publicly available.
+The TomTom IndiGO SDK comes with an example app showing how to include Alexa in your product and add
+custom Alexa handler services, see directory `examples/alexa`. By default, this application is
+excluded from the build, because it requires Alexa libraries that are not publicly available.
 
 To build the Alexa example app, you should edit the build files:
 
@@ -85,6 +85,19 @@ Alternatively, you can set this Gradle property from the command-line:
 ```cmd
 ./gradlew assemble -PoptInToAlexaExamples=true
 ```
+
+The example app includes 2 examples of custom Alexa handler services:
+- `CustomEqualizerControllerHandlerService`: sample implementation of an Alexa handler service for
+  the [EqualizerController](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/EqualizerController)
+  topic. It shows how to handle user requests such as "Increase the bass level" or "Decrease the
+  treble level".
+- `CustomCarControlHandlerService`: sample implementation of an Alexa handler service for the
+  [CarControl](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl) topic. It
+  shows how to define custom CarControl endpoints and assets, as well as how to handle user requests
+  such as "Turn on the light", "Increase the light brightness" or "Switch on my custom device".
+  More details about customizing the Alexa Car Control feature are available in the
+  [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
+  tutorial.
 
 ## How to create a custom Alexa Handler service
 
@@ -472,3 +485,4 @@ ivi {
 - [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 - [Alexa Auto AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)
 - [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
+- [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)

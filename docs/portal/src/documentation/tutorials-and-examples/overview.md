@@ -115,6 +115,10 @@ source.
 This guide explains how to add a custom Alexa handler service that can be used to extend the set of
 stock Alexa platform message handlers offered by the TomTom IndiGO platform.
 
+- [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature) -
+This guide explains how to customize or replace the stock Alexa Car Control handler service offered
+by the TomTom IndiGO platform.
+
 ## Customization
 
 - [Use the configuration framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework) -
