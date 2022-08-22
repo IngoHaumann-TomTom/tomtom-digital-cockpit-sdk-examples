@@ -25,20 +25,18 @@ The diagram shows the most relevant components in this architecture:
 - _TomTom IndiGO platform (VPA adaptations)_: Specific VPA implementations typically provide their
   engine in the form of a library in an SDK. To abstract the VPA-specific APIs away, each VPA has an
   associated Adaptation Service whose job is to interface directly with the VPA engine.
-  All other components in TomTom IndiGO communicate with the VPA engine via the Adaptation Service.
-
+  All other components in TomTom IndiGO communicate with the VPA engine via the Adaptation
+  Service.<br/>
   Currently, TomTom IndiGO offers an off-the-shelf implementation of a VPA Adaptation service for
   the Alexa Auto VPA, provided by the off-the-shelf Alexa service, and plans to offer a second
-  implementation that will provide an abstraction for the Cerence Assistant VPA.
-
+  implementation that will provide an abstraction for the Cerence Assistant VPA.<br/>
   __Note:__ Alexa Auto is available as part of TomTom IndiGO upon approval by TomTom and Amazon. To
   request TomTom IndiGO's implementation for Alexa Auto please contact your local sales
   representative.
 
 - _[`VpaMediatorService`](TTIVI_INDIGO_API)_: This is a platform service whose role is to ensure
   that multiple VPAs do not interfere with each other and that commands to and from a VPA go to the
-  right UI / VPA adaptation.
-
+  right UI / VPA adaptation.<br/>
   For example:
 
   - It informs the UI when Alexa is speaking, so that the
@@ -48,8 +46,7 @@ The diagram shows the most relevant components in this architecture:
     list.
 
   This service can also send requests to VPA adaptations, for example, to inform them that the
-  user would like to login to their service, if that is needed.
-
+  user would like to login to their service, if that is needed.<br/>
   VPA frontends must communicate through this service to interact with a VPA.
 
 - _[`VpaMediatorSettingsService`](TTIVI_INDIGO_API)_: This is a platform service providing access to
@@ -58,8 +55,7 @@ The diagram shows the most relevant components in this architecture:
 
 - _VPA frontends_: The application frontends for the VPAs. More information on the typical features
   provided by a VPA frontend can be found in section
-  [Implementing a custom VPA frontend](#implementing-a-custom-vpa-frontend).
-
+  [Implementing a custom VPA frontend](#implementing-a-custom-vpa-frontend).<br/>
   Currently, TomTom IndiGO offers an off-the-shelf implementation of a frontend, the Alexa frontend,
   designed to be used with the Alexa Auto VPA. This frontend has multiple responsibilities:
 
@@ -80,6 +76,7 @@ frontend is the VPA mediator service.
 
 This service provides a number of properties that should be observed to build the UI for a VPA,
 such as:
+
 - The VPA properties, like the current locale(s) or whether the
   [wake word](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/glossary.html#w) is enabled.
 - The VPA authentication state.
@@ -89,9 +86,9 @@ such as:
 - The visual metadata that should be shown by the UI to complement a voice interaction.
 
 Additionally, if the request was initiated from the UI rather than by voice, the VPA frontend can
-also send a number of requests to a VPA by calling VPA mediator service methods.
-This may be needed to allow the end-user to be able to perform a function with a mixture of voice
-and touch, to ensure that the VPA still has the right context. For example:
+also send a number of requests to a VPA by calling VPA mediator service methods. This may be needed
+to allow the end-user to be able to perform a function with a mixture of voice and touch, to ensure
+that the VPA still has the right context. For example:
 
 - To log in or log out of a VPA.
 - To request a VPA to start listening (for example, if a
@@ -107,8 +104,7 @@ Typically, a VPA frontend would render 2 main UI components:
 
 - A "chrome" component that is only activated when a voice interaction is ongoing, showing the VPA's
   dialogue state (for example, whether the VPA is idle, listening, thinking, speaking, or
-  expecting an answer from the user).
-
+  expecting an answer from the user).<br/>
   In the off-the-shelf Alexa frontend, this is implemented as an [`OverlayPanel`](TTIVI_INDIGO_API)
   that temporarily overlays the system UI's main content area.
 

@@ -148,14 +148,10 @@ Then, follow these steps:
 23. This time, when asked to select a file, select the previously downloaded `TWRP` file.
 
 24. Press the __Start__ button and keep the `Volume Up`  button pressed while the file is
-    being flashed and the tablet reboots.
-    The tablet should now reboot into recovery: the `Team Win Recovery Project` tool (`TWRP`).
-<!-- TODO(IVI-7340: Replace this comment line with an empty line. -->
-<!--                Remove HTML break from next line. -->
-<!--                Indent next lines so they show as part of the numbered-list item. -->
-<!--                Make __Note:__ bold. -->
-<br/> Note: Be sure to reboot into recovery immediately after installing `TWRP`. If you
-don’t, the custom recovery will be overwritten on boot.
+    being flashed and the tablet reboots.<br/>
+    The tablet should now reboot into recovery: the `Team Win Recovery Project` tool (`TWRP`).<br/>
+    __Note__: Be sure to reboot into recovery immediately after installing `TWRP`. If you don’t, the
+    custom recovery will be overwritten on boot.
 
 25. The recovery tool will ask whether to keep System Read Only, as shown in the image below.
 
@@ -172,16 +168,12 @@ don’t, the custom recovery will be overwritten on boot.
 28. Return to the previous menu and tap `Advanced Wipe`, select the `Cache` and
     `System` partitions, and then `Swipe to Wipe`.
 
-29. Sideload the LineageOS `.zip` package.
-<!-- TODO(IVI7340): Remove this comment line. Convert the next lines into 2nd-level bullet items: -->
-<!--    - On the device, select `Advanced` → `ADB Sideload`, then swipe to begin sideload. -->
-<!--    - On the host machine, sideload the package using: -->
-<!--      `adb sideload lineageos-gts4lvwifi-<version>-ota.zip`; this is the file you downloaded from -->
-<!--      [here](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Flineageos-gts4lvwifi). -->
-   The first step, on the device, select `Advanced` → `ADB Sideload`, then swipe to begin sideload.
-   The next step, on the host machine, sideload the package using:
-   `adb sideload lineageos-gts4lvwifi-<version>-ota.zip`; this is the file you downloaded from
-   [here](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Flineageos-gts4lvwifi).
+29. Sideload the LineageOS `.zip` package:
+    - On the device, select `Advanced` → `ADB Sideload`, then swipe to begin sideload.
+    - On the host machine, sideload the package using:
+      `adb sideload lineageos-gts4lvwifi-<version>-ota.zip`<br/>
+      This is the file you downloaded from
+      [here](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Flineageos-gts4lvwifi).
 
 30. On the device, select `System` → `Reboot`. The tablet will now reboot into the custom
     TomTom IndiGO image.
