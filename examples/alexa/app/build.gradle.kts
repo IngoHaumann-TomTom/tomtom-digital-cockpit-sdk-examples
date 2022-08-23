@@ -18,7 +18,7 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 plugins {
     id("com.tomtom.ivi.product.defaults.core")
     id("com.tomtom.ivi.appsuite.alexa.defaults.alexa")
-    id("com.tomtom.ivi.appsuite.alexa.defaults.internal-config")
+    id("com.tomtom.ivi.appsuite.alexa.defaults.config")
 }
 
 apply(from = rootProject.file("examples/alexa/iviservicehosts.gradle.kts"))

@@ -86,6 +86,21 @@ Alternatively, you can set this Gradle property from the command-line:
 ./gradlew assemble -PoptInToAlexaExamples=true
 ```
 
+Additionally, you will need to register your own Alexa product with Amazon and obtain a set of Alexa
+IDs, as explained on the
+[Register your Alexa product with Amazon](/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
+page.
+
+Once you have your own set of Alexa IDs, you can configure the Alexa example app:
+
+- Edit the `examples/alexa/app/src/main/res/values/alexa_ids.xml` file and add your own Alexa IDs.
+- Set the `disableAlexaDeviceIdBuildTimeCheck` Gradle property to `true` to disable the build-time
+  check for Alexa IDs.
+
+Alternatively, you can also configure the Alexa example app by setting the `alexaDeviceInfoClientId`
+and `alexaDeviceInfoProductId` properties in the top-level `local.properties` file or as Gradle
+properties. In this case you won't need to set `disableAlexaDeviceIdBuildTimeCheck` to `true`.
+
 The example app includes 2 examples of custom Alexa handler services:
 - `CustomEqualizerControllerHandlerService`: sample implementation of an Alexa handler service for
   the [EqualizerController](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/EqualizerController)
