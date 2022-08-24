@@ -56,5 +56,6 @@ jobs:
             -PnexusUsername=$(NEXUS_USERNAME)
             -PnexusPassword=$(NEXUS_PASSWORD)
             -PoptInToAlexaExamples=true
+            -PdisableAlexaDeviceIdBuildTimeCheck=true
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates
