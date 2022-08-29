@@ -7,7 +7,7 @@ The end-user can invoke each one with a separate wake-up-word and then use them 
 TomTom IndiGO comes with a pre-integration of Amazon's VPA, Alexa, specifically
 [Alexa Auto](https://github.com/alexa/alexa-auto-sdk).
 
-To be able to use Alexa in your product, you will need to integrate some additional Android APKs in
+To be able to use Alexa in your product, you will need to integrate an additional Android APK in
 your development platform and configure some development account information into your application.
 This page explains how to do this.
 
@@ -18,14 +18,12 @@ the TomTom IndiGO reference hardware (Samsung Galaxy S5e WiFi tablet).
 
 Follow these steps to integrate Amazon Alexa on your custom hardware platform:
 
-1. Download the Alexa APKs:
-   - [lve-app-4.0.0.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lve-app/4.0.0/lve-app-4.0.0.apk)
-   - [lm-app-en_US-4.0.0.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lm-app-en_US/4.0.0/lm-app-en_US-4.0.0.apk)
-1. Sign the Alexa APKs with the same key that was used for signing the TomTom IndiGO APK
-1. Install the signed Alexa APKs on your device:
+1. Download the Alexa LM app APK:
+   - [lm-app-en_US-4.1.1.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lm-app-en_US/4.1.1/lm-app-en_US-4.1.1.apk)
+1. Sign the Alexa APK with the same key that was used for signing the TomTom IndiGO APK
+1. Install the signed Alexa APK on your device:
    ```cmd
-   adb install lve-app-4.0.0-signed.apk
-   adb install lm-app-en_US-4.0.0-signed.apk
+   adb install lm-app-en_US-4.1.1-signed.apk
    ```
 1. Set the SELinux policy on your device to be permissive:
    ```cmd
