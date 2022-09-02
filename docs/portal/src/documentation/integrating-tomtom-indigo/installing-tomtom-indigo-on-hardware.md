@@ -67,8 +67,8 @@ $ adb push standalone_indigo.apk /system/priv-app/TomTomIndigo/
 If it's not possible to sign the APK with the system signature, there will be the following
 limitations (note that you should still follow the two other steps):
 
-- Media being played by the system will not be visible in the process panel, nor will it be possible
-  to control it.
+- Media being played by the system will not be visible in the main process panel, nor will it be 
+  possible to control it.
 - The media source Spotify will never work: TomTom IndiGO needs to be signed with platform keys for
   Spotify to communicate with it.
 

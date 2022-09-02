@@ -36,24 +36,25 @@ TomTom IndiGO currently includes two types of task panels:
  ]}
 />
 
-## Process panel inside a task panel
+## Task process panel inside a task panel
 
-A task process bar panel allows a frontend to visualize an ongoing process in all of its task 
-panels. Unlike the process bar, a task process bar panel is part of the task panel and as such does 
-not overlap the task panel itself. The task process bar panel will persist for the whole task panel stack. 
+A task process panel allows a frontend to visualize an ongoing process in all of its task panels.
+Unlike the main process panel, a task process panel is part of the task panel and as such does not 
+overlap the task panel itself. The task process bar panel will persist for the whole task panel
+stack. 
 
-The process panel UI template can also be used 
+The compact process panel UI template can also be used 
 [outside the process panel](#task-panel-alongside-the-task-process-panel-layout). For instance, the 
-TomTom IndiGO media application uses it to have UI consistency between the process panel Mini 
-Player and Now Playing Bar. 
+TomTom IndiGO media application uses it to have UI consistency between the Mini Player main process
+panel and Now Playing task process panel. 
 
 ![process panel](images/task-panels/process-panel.png)
 
 ### Task panel alongside the task process panel layout
 
 The layout template for the type of task panel can determine which side of the task panel shows a 
-process panel (for example, in the media or communication app). The following example visualizes how a 
-process panel could be moved to the side on certain screen sizes.
+task process panel (for example, in the media or communication app). The following example visualizes how
+a process panel could be moved to the side on certain screen sizes.
 
 <Blockquote>
     This is just an example, as alternative layouts of the task process panel are not yet supported 

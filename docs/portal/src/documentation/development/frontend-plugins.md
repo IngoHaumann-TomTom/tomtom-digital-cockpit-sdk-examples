@@ -50,7 +50,7 @@ applications. The arrangement of these panels is orchestrated by the System UI w
 the correct parts are displayed and dismissed appropriately.
 
 Panels are used for a wide range of functionalities. This is not limited to opening panels when
-pressing a menu item, but also notification panels, process panels, and even the main menu itself.
+pressing a menu item, but also notification panels, main process panels, and even the main menu itself.
 
 A menu item can be associated with a frontend. This menu item is added to the main menu to open
 the frontend's main task panel and can also be used to create the frontend on demand.
@@ -109,15 +109,15 @@ user selections. This allows the menu frontend itself to not have any dependenci
 frontends directly. A frontend can provide a menu by adding a panel that extends
 [`MainMenuPanel`](TTIVI_INDIGO_API) to its panels.
 
-##### Process panels
+##### Main process panels
 
-Frontends can visualize ongoing processes in the UI, by using process panels. These can be created
-by adding a panel that extends [`ProcessPanel`](TTIVI_INDIGO_API) to the frontend's panels. This can
-be used, for example, to show an ongoing audio streaming process or during a phone call. The
-process panel's metadata is used by the system UI to determine the priority of when to show them.
-For example, an ongoing phone call has a higher priority than streaming media. When both these
-frontends provide a process panel at the same time, the process panel for phone calls will be shown
-instead of the one for media.
+Frontends can visualize ongoing processes in the UI, by using main process panels. These can be 
+created by adding a panel that extends [`MainProcessPanel`](TTIVI_INDIGO_API) to the frontend's 
+panels. This can be used, for example, to show an ongoing audio streaming process or during a phone 
+call. The main process panel's metadata is used by the system UI to determine the priority of when 
+to show them. For example, an ongoing phone call has a higher priority than streaming media. When 
+both these frontends provide a main process panel at the same time, the main process panel for phone
+calls will be shown instead of the one for media.
 
 ##### Task panels
 
@@ -159,14 +159,14 @@ whole task panel stack, rather than just a single one.
 ##### Task process panel
 
 A task process panel allows a frontend to visualize an ongoing process in all of its task panels.
-Unlike the process panel, a task process panel is part of the task panel and as such does not
+Unlike the main process panel, a task process panel is part of the task panel and as such does not
 overlap the task panel itself.
 
 [TODO(IVI-7779)]: # (Some content below is better be described in the system UI doc.)
 
-TomTom IndiGO's system UI may hide the process panel when a task panel is opened. However, if the
-process is relevant to that task panel, it likely wants to continue presenting that process to the
-user; for example, to show a mini player for the currently playing music. In these cases, the
+TomTom IndiGO's system UI may hide the main process panel when a task panel is opened. However, if 
+the process is relevant to that task panel, it likely wants to continue presenting that process to 
+the user; for example, to show a mini player for the currently playing music. In these cases, the
 frontend can add a panel extending [`TaskProcessPanel`](TTIVI_INDIGO_API), which the system UI will
 show next to the task panel itself, within the task panel's container. The task process panel will
 persist for the whole task panel stack. When task panels get added and removed from the stack, the
@@ -322,12 +322,14 @@ The template consists of several sections:
 
 ##### Process panel template
 
-The default template for [`ProcessPanel`](TTIVI_INDIGO_API)s can be used by extending
-[`ProcessFragment`](TTIVI_INDIGO_API) and [`ProcessViewModel`](TTIVI_INDIGO_API) from
-[`platform_frontend_api_template_processpanel`](TTIVI_INDIGO_API).
+The default template for [`MainProcessPanel`](TTIVI_INDIGO_API)s can be used by extending
+[`MainCompactProcessFragment`](TTIVI_INDIGO_API) and 
+[`MainCompactProcessViewModel`](TTIVI_INDIGO_API) from
+[`platform_frontend_api_template_compactprocesspanel`](TTIVI_INDIGO_API).
 
 It can also be used for [`TaskProcessPanel`](TTIVI_INDIGO_API)s by extending
-[`TaskProcessFragment`](TTIVI_INDIGO_API) and [`TaskProcessViewModel`](TTIVI_INDIGO_API).
+[`TaskCompactProcessFragment`](TTIVI_INDIGO_API) and 
+[`TaskCompactProcessViewModel`](TTIVI_INDIGO_API).
 
 [TODO(IVI-5616)]: # (Add UX design of process template)
 

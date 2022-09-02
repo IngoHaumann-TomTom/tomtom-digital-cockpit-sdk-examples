@@ -76,8 +76,8 @@ menu:
             title: Modal Panels
           - fileId: /design/system-ui/task-panels
             title: Task Panels
-          - fileId: /design/system-ui/process-panels
-            title: Process Panels
+          - fileId: /design/system-ui/main-process-panels
+            title: Main Process Panels
           - fileId: /design/system-ui/home-panel
             title: Home Panel
 

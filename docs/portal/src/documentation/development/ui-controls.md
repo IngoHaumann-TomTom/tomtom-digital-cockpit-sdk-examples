@@ -302,7 +302,7 @@ the following features:
 
 The [`TtInformationControl`](TTIVI_ANDROID_TOOLS_API) class is designed to present various types of
 information in a view. It can be used in different places across the system, like lists,
-notifications, process panel, etc.
+notifications, process panels, etc.
 
 The content within this control consists of three sections that can be configured individually:
 

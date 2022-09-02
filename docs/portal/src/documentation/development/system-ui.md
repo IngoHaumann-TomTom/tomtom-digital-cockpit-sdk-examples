@@ -64,8 +64,8 @@ not to show:
 - A low priority notification panel, like a text message, when the system UI is already showing a high
   priority notification, like incoming phone call. This is done to not overload the driver with
   information.
-- A low priority process panel, like a media player, when a high priority process panel, like for an
-  ongoing call, is more relevant to the driver.
+- A low priority main process panel, like a media player, when a high priority main process panel, 
+  like for an ongoing call, is more relevant to the driver.
 - The search panel on the home screen when a guidance panel is available for an active route, in
   order to not clutter the home screen.
 
@@ -153,10 +153,10 @@ And it also defines containers which are only visible when necessary
 ## Safe area
 
 Panels can be overlapped by other panels or system UI elements, and in some cases this could lead
-to an unpleasant user experience. For example, when the process panel opens, it will cover the
+to an unpleasant user experience. For example, when the main process panel opens, it will cover the
 bottom part of the home panel. The chevron, the blue arrow that indicates the current location on
-the map, may be covered by the process panel and the user can't see it until the process panel is
-gone.
+the map, may be covered by the main process panel and the user can't see it until the main process
+panel is gone.
 
 To provide a better user experience, the system UI needs some information to inform the panels about
 them being overlapped. This is achieved through the [`SafeArea`](TTIVI_INDIGO_API) in
@@ -165,10 +165,10 @@ a panel that is not safe to display important content due to the panel being ove
 And each panel can have its own [`SafeArea`](TTIVI_INDIGO_API).
 
 With _safe area_, in the example above, the map display home panel can use this information to make
-sure the chevron isn't shown underneath the process panel, by moving it upwards. When doing so, the
-home panel must still draw the map outside of the safe area because that area might not be covered
-in its entirety. For example, the process panel has space on either side where the map is still
-visible.
+sure the chevron isn't shown underneath the main process panel, by moving it upwards. When doing so,
+the home panel must still draw the map outside of the safe area because that area might not be 
+covered in its entirety. For example, the main process panel has space on either side where the map 
+is still visible.
 
 ## System UI services
 

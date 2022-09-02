@@ -14,8 +14,8 @@ closures.
 
 The system UI provides the safe area for the home panel. The search/guidance panels are independent 
 from the home panel and placed by the system UI; these contribute to the safe area just like the 
-process panel does. When optimizing for a certain screensize it may be useful to reconfigure their 
-layout. The map safe area (for the route and chevron) is defined by the navigation app and not 
+main process panel does. When optimizing for a certain screensize it may be useful to reconfigure
+their layout. The map safe area (for the route and chevron) is defined by the navigation app and not 
 by the system UI.
 
 ![navigation safe area](images/home-panel/navigation-safe-area.png)
