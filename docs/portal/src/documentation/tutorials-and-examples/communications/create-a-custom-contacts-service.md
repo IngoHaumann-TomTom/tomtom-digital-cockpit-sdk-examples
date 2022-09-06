@@ -2,10 +2,10 @@
 title: Create a Custom Contacts Service
 ---
 
-The IVI platform comes with a [`ContactsService`](TTIVI_INDIGO_API) interface for getting access to 
-address book contacts. A product may provide its own implementation of the 
-[`ContactsService`](TTIVI_INDIGO_API) interface or use an existing implementation. In order for the 
-UI to be able to display contacts from this service, a custom contacts service needs to be written. 
+The IVI platform comes with a [`ContactsService`](TTIVI_INDIGO_API) interface for getting access to
+address book contacts. A product may provide its own implementation of the
+[`ContactsService`](TTIVI_INDIGO_API) interface or use an existing implementation. In order for the
+UI to be able to display contacts from this service, a custom contacts service needs to be written.
 This document describes how to do this.
 
 ## How to create a custom contacts service
@@ -19,14 +19,18 @@ The example code for the concepts presented here is provided in `examples/teleph
 To create a custom contacts service, add a manifest file to your module and add a dependency to
 the [`ContactsService`](TTIVI_INDIGO_API) to your Gradle file.
 
-Your `AndroidManifest.xml` should contain:
+Your
+[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/AndroidManifest.xml#L14)
+should contain:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.example.ivi.example.telephony.customcontacts" />
 ```
 
-Your Gradle file should contain:
+Your
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/build.gradle.kts#L20)
+file should contain:
 
 ```kotlin
 dependencies {
@@ -37,9 +41,10 @@ dependencies {
 ### Service configuration
 
 To configure a contacts service to use your custom implementation, define a service host
-configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
-in a file, like `ContactsServiceHostConfig.kt` in the `buildScr` module, within the`config.services` 
-folder.
+configuration class that inherits from the [`IviServiceHostConfig`](TTIVI_INDIGO_GRADLEPLUGINS_API)
+class. This class should be placed in the application Gradle build file.
+
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L24-L35)
 
 ```kotlin
 val customContactsServiceHost = IviServiceHostConfig(
@@ -61,6 +66,8 @@ In order to create the service host configuration named `CustomContactsServiceHo
 platform needs a service host builder class with the specific
 name `CustomContactsServiceHostBuilder`.
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt#L21-L29)
+
 ```kotlin
 class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 
@@ -73,12 +80,13 @@ class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
 }
 ```
 
-__Note__
-Every service host configuration needs to be registered in your application. This is necessary to
-know which service should be started with which implementation when a client requires the access to
-a service api.
+__Note:__ Every service host configuration needs to be registered in your application. This is
+necessary to know which service should be started with which implementation when a client requires
+the access to a service api.
 
-To register this configuration, add the service host to your application Gradle file:
+To register this configuration, add the service host to your application
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L57-L59)
+file:
 
 ```kotlin
 ivi {
@@ -96,6 +104,8 @@ ivi {
 In order to create a custom contacts service implementation you need to create a class that inherits
 from the `ContactsServiceBase` class.
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L31-L35)
+
 ```kotlin
 internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     ContactsServiceBase(iviServiceHostContext) {
@@ -104,14 +114,15 @@ internal class CustomContactsService(iviServiceHostContext: IviServiceHostContex
 }
 ```
 
-__Note__
-The contacts service implementation can define any kind of source for the list of contacts, for
-example the Android's 
+__Note:__ The contacts service implementation can define any kind of source for the list of
+contacts, for example the Android
 [Contacts provider](https://developer.android.com/guide/topics/providers/contacts-provider).
 
 In this example the contacts service contains two contacts. The list of contacts contains those two
 contacts after initialization. Only the contact with the id `1` has an image. The mutable
 list `contactsSource` is the source of contacts:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L41-L77)
 
 ```kotlin
 // The source of contacts.
@@ -161,6 +172,8 @@ methods.
 
 When the service is created:
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L79-L97)
+
 ```kotlin
 override fun onCreate() {
     super.onCreate()
@@ -178,11 +191,13 @@ override fun onCreate() {
 }
 ```
 
-The [`ContactsService`](TTIVI_INDIGO_API)`.contacts` and 
-[`ContactsService`](TTIVI_INDIGO_API)`.phoneBookSynchronizationStatus` properties have been 
+The [`ContactsService`](TTIVI_INDIGO_API)`.contacts` and
+[`ContactsService`](TTIVI_INDIGO_API)`.phoneBookSynchronizationStatus` properties have been
 initialized.
 
 When the service is destroyed:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L99-L102)
 
 ```kotlin
 override fun onDestroy() {
@@ -193,9 +208,11 @@ override fun onDestroy() {
 
 ### Custom API implementation
 
-To provide clients with contact images, override the 
-[`ContactsService`](TTIVI_INDIGO_API)'s `getImage()` method with your custom implementation. In 
+To provide clients with contact images, override the
+[`ContactsService`](TTIVI_INDIGO_API)'s `getImage()` method with your custom implementation. In
 this example only `ContactId("1")` has an image.
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L104-L113)
 
 ```kotlin
 override suspend fun getImage(contactId: ContactId): Bitmap? {

@@ -33,6 +33,8 @@ All the code snippets in this guide can also be found in the TomTom IndiGO examp
 
 Create a new frontend by deriving the `Frontend` framework class.
 
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt#L26)
+
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
@@ -58,12 +60,14 @@ the screen.
 - `createMainTaskPanel` - override it to display a single `TaskPanel` when the UI is shown.
 - `openTaskPanels` - override it when more control is needed over which panels should be shown.
 
-**Note:** A frontend class must override only one of these two methods.
+__Note:__ A frontend class must override only one of these two methods.
 
 ### Creating the FrontendBuilder class
 
 Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIVI_INDIGO_API) class.
 Override the `build()` method in the class and return a new instance of the `AccountFrontend` class.
+
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt#L14-L22)
 
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
@@ -96,6 +100,8 @@ Derive from the [`TaskPanel`](TTIVI_INDIGO_API) class, and override the
 `createInitialFragmentInitializer()` method, which should return a new instance of the
 [`IviFragment`](TTIVI_INDIGO_API) class (described further down).
 
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt#L18-L23)
+
 ```kotlin
 internal class AccountLoginPanel(frontendContext: FrontendContext) :
     TaskPanel(frontendContext) {
@@ -108,6 +114,8 @@ internal class AccountLoginPanel(frontendContext: FrontendContext) :
 Also create a `ViewModel` class, derived from the [`FrontendViewModel`](TTIVI_INDIGO_API) class.
 The `ViewModel` is the ViewModel in the Model-View-ViewModel (MVVM) pattern, whose role is to
 expose streams of data relevant to the view and streams of events to the model.
+
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L41)
 
 ```kotlin
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
@@ -129,6 +137,8 @@ TomTom IndiGO platform is designed to work well with the MVVM pattern, and this 
 `onCreateView` callback as a convenience to inflate a data binding layout and using that in the
 fragment. If an `onCreateView` custom implementation still is preferred, the `viewFactory` property
 can be left as null instead.
+
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt#L17-L21)
 
 ```kotlin
 internal class AccountLoginFragment :
@@ -153,6 +163,8 @@ Create an `AccountMenuItem.kt` file, add a property in the file and assign it a
 [`MenuItem`](TTIVI_INDIGO_API) instance. The name of the property must follow a specific naming
 convention. It must have a "MenuItem" suffix and must start with a lower case character.
 
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt#L16-L21)
+
 ```kotlin
 val accountMenuItem = MenuItem(
     AccountFrontend::class.qualifiedName!!,
@@ -174,7 +186,9 @@ Define a frontend implementation and a menu item implementation. These can also 
 top-level Gradle file (for example `frontends-and-menuitems.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
-Create `examples/plugin/app/build.gradle.kts`:
+Create an
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L26)
+file:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -209,7 +223,9 @@ for details.
 The last step is to register the frontend and the menu item to build configurations in the main
 application's build script.
 
-Modify `examples/plugin/app/build.gradle.kts`:
+Modify the
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L25-L50)
+file:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -271,9 +287,11 @@ instance. See
 for more details about IVI instance configurations.
 
 The final step is to let the new frontend replace TomTom IndiGO's user profile frontend. For this
-we have to use 'replace' instead of `add`. The same applies for the user profile menu item.
+we have to use `replace` instead of `add`. The same applies for the user profile menu item.
 
-Modify `examples/plugin/app/build.gradle.kts`:
+Modify the
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L43-L48)
+file:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig

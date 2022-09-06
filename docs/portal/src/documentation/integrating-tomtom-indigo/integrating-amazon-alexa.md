@@ -18,40 +18,45 @@ the TomTom IndiGO reference hardware (Samsung Galaxy S5e WiFi tablet).
 
 Follow these steps to integrate Amazon Alexa on your custom hardware platform:
 
-1. Download the Alexa LM app APK:
-   - [lm-app-en_US-4.1.1.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lm-app-en_US/4.1.1/lm-app-en_US-4.1.1.apk)
-1. Sign the Alexa APK with the same key that was used for signing the TomTom IndiGO APK
-1. Install the signed Alexa APK on your device:
-   ```cmd
-   adb install lm-app-en_US-4.1.1-signed.apk
-   ```
-1. Set the SELinux policy on your device to be permissive:
-   ```cmd
-   adb shell setenforce permissive
-   ```
-   Alternatively, add the line below to one of your SELinux policy files:
-   ```cmd
-   # Allow platform_app to manage UDS sockets. This is needed both
-   # for Navkit2 and Alexa Local Voice Controller.
-   allow platform_app app_data_file:sock_file create_file_perms;
-   ```
+- Download the Alexa LM app APK:
+  - [lm-app-en_US-4.1.1.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lm-app-en_US/4.1.1/lm-app-en_US-4.1.1.apk)
+- Sign the Alexa APK with the same key that was used for signing the TomTom IndiGO APK
+- Install the signed Alexa APK on your device:
+  ```cmd
+  adb install lm-app-en_US-4.1.1-signed.apk
+  ```
+- Set the SELinux policy on your device to be permissive:
+  ```cmd
+  adb shell setenforce permissive
+  ```
+  Alternatively, add the line below to one of your SELinux policy files:
+  ```cmd
+  # Allow platform_app to manage UDS sockets. This is needed both
+  # for Navkit2 and Alexa Local Voice Controller.
+  allow platform_app app_data_file:sock_file create_file_perms;
+  ```
 
 ## Integrating Amazon Alexa in your product
 
 To be able to use Alexa in your TomTom IndiGO-based product, there are some steps that need to be
 followed:
+
 1. [Apply the Alexa plugins](#apply-the-alexa-plugins)
 1. [Register your Alexa product with Amazon](#register-your-alexa-product-with-amazon)
 1. [Specify your Amazon Alexa IDs](#specify-your-amazon-alexa-ids)
 
 ### Apply the Alexa plugins
 
-Declare a reference to the Alexa plugin library in the `/build-logic/libraries.versions.toml` file:
+Declare a reference to the Alexa plugin library in the
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L21)
+file:
 ```toml
 gradlePluginApiAppsuiteDefaultsAlexa = { module = "com.tomtom.ivi.appsuite.gradle.alexa:api_appsuitedefaults_alexa", version.ref = "indigoPlatform" }
 ```
 
-Add a dependency on the Alexa plugin library in the `/buildSrc/build.gradle.kts` file:
+Add a dependency on the Alexa plugin library in the
+[`/buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/build.gradle.kts#L30)
+file:
 ```kotlin
 dependencies {
     ...
@@ -60,7 +65,9 @@ dependencies {
 }
 ```
 
-Apply the Alexa plugins in the product's `build.gradle.kts` file:
+Apply the Alexa plugins in the product's
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20-L21)
+file:
 ```kotlin
 plugins {
     ...
@@ -69,8 +76,13 @@ plugins {
 }
 ```
 
-Explicitly include the Alexa group (this is an opt-in group) in the product's `iviInstance` and
-services in the `build.gradle.kts` file:
+Explicitly include the Alexa group (this is an opt-in group) in the product's
+[`iviInstances`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L41)
+and
+[`services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L50)
+in the
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L32)
+file.
 
 ```kotlin
 ivi {
@@ -130,6 +142,7 @@ they can be used with the TomTom IndiGO SDK.
 
 The Amazon Alexa IDs can be configured in various ways depending on your development and
 production needs:
+
 - [Via `local.properties` or Gradle properties](#via-local.properties-or-gradle-properties).
 - [By overriding the static configuration values in Android resources](#by-overriding-the-static-configuration-values-in-android-resources).
 - [With a static configuration provider](#with-a-static-configuration-provider).
@@ -151,7 +164,9 @@ The latter option makes the IDs available in any Gradle project.
 
 You can override static configuration values in Android resources.
 
-For example:
+For example in the
+[`alexa_ids.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml#L29-L34)
+file:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -170,7 +185,9 @@ in the top-level `gradle.properties` file:
 disableAlexaDeviceIdBuildTimeCheck=true
 ```
 
-or by not applying the `com.tomtom.ivi.appsuite.alexa.defaults.config` Gradle plugin.
+or by not applying the `com.tomtom.ivi.appsuite.alexa.defaults.config` Gradle plugin in the
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20)
+file.
 
 This option is preferred if you want to simplify the project setup. However, it requires the IDs to
 be added to your SCM.
@@ -200,8 +217,8 @@ This option is preferred if you want to obtain and configure the IDs at runtime.
 Setting up your Amazon Alexa IDs allows your product to access Alexa so that your end-users can use
 the voice assistant. There are additional parameters, however, which can be set to give Alexa more
 information about the product and vehicle in which it is running.
-These additional parameters can be configured
-[by overriding the static configuration values in Android resources](#by-overriding-the-static-configuration-values-in-android-resources)
+These additional parameters can be configured by
+[overriding the static configuration values in Android resources](#by-overriding-the-static-configuration-values-in-android-resources)
 or
 [using a static configuration provider](#with-a-static-configuration-provider).
 

@@ -36,9 +36,6 @@ REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
 # Regex pattern to retrieve API Reference URLs hosted on S3.
 REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 
-# Regex pattern to retrieve tomtom-internal Github URLs.
-REGEX_TOMTOM_GITHUB_URL = "\w+://github.com/tomtom-internal/.*?"
-
 # Regex pattern to retrieve restricted Nexus URLs.
 REGEX_TOMTOM_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
 
@@ -89,10 +86,6 @@ def check_external_url(content, errors, path, is_export):
 
         # Skip validation of S3 URLs when script is not run as export.
         if not is_export and re.fullmatch(REGEX_S3_URL, external_url, re.IGNORECASE) != None:
-            continue
-
-        # Skip validation of tomtom-internal Github URLs as access is restricted.
-        if re.fullmatch(REGEX_TOMTOM_GITHUB_URL, external_url, re.IGNORECASE) != None:
             continue
 
         # Skip validation of TomTom Nexus URLs as access is restricted.

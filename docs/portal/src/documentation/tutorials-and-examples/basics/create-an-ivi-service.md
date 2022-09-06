@@ -42,10 +42,13 @@ To create an IVI service, you need to perform the following steps:
 An IVI service interface should be defined in a dedicated module, so it can be used both by the
 service implementation, and the service's clients.
 
-To define the service interface, first create a new module at `examples/plugin/serviceapi` and add
-a build script.
+To define the service interface, first create a new module at
+[`examples/plugin/serviceapi`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/serviceapi)
+and add a build script.
 
-Create `build.gradle.kts`:
+Create a
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/build.gradle.kts#L12-L17)
+file:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -65,7 +68,9 @@ project, set `settingsServiceApi` to true instead of `serviceApi`.
 The IVI service interface project is an Android project, so it must have an `AndroidManifest.xml`
 file.
 
-Create `src/main/AndroidManifest.xml`:
+Create a
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/AndroidManifest.xml#L14)
+file:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -79,7 +84,8 @@ When the project is configured, create a Kotlin `interface` class, annotated wit
 [`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which
 specifies the unique identifier that is used by client connections.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`:
+Create
+[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt#L17-L53)
 
 ```kotlin
 // The annotation for an IVI service interface.
@@ -111,7 +117,8 @@ methods must have the `suspend` modifier and the [`@IviServiceFun`](TTIVI_INDIGO
 The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation is required to distinguish methods of the
 service interface from auxiliary methods added by Kotlin/Java compiler. The interface must at
 least contain the empty companion object, which will be extended by the IVI service framework with
-a few methods, such as `createApi` and `createApiOrNull`. Kotlin does not allow extending the companion object if it has not been declared.
+a few methods, such as `createApi` and `createApiOrNull`. Kotlin does not allow extending the
+companion object if it has not been declared.
 
 The package may have multiple service interfaces defined, although each must have a distinct
 identifier. The package may contain other classes, functions, and any other Kotlin code like a
@@ -160,6 +167,8 @@ This makes it possible to represent elements in a
 The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_INDIGO_API) module contains
 extension functions for the integration.
 
+[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt#L33-L37)
+
 ```kotlin
 @IviService(serviceId = "com.example.ivi.example.plugin.service")
 interface AccountsService {
@@ -187,10 +196,13 @@ client's API, and service connections.
 
 An IVI service implementation should be defined in a different package than the interface.
 
-To implement the service interface, create a new module at `examples/plugin/service/` and add a
-build script.
+To implement the service interface, create a new module at
+[`examples/plugin/service/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/service)
+and add a build script.
 
-Create `build.gradle.kts`:
+Create a
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/build.gradle.kts#L23)
+file:
 
 ```kotlin
 dependencies {
@@ -202,7 +214,9 @@ dependencies {
 The IVI service implementation project is an Android project, so it must have
 an `AndroidManifest.xml`file.
 
-Create `src/main/AndroidManifest.xml`:
+Create a
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/AndroidManifest.xml#L14)
+file:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -217,7 +231,8 @@ API. The generated name is of the format `<ServiceInterface>Base`, in our
 example `AccountsServiceBase`. The service implementation must derive the class and implement the
 methods defined in the service interface.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
+Create
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27)
 
 ```kotlin
 package com.example.ivi.example.plugin.service
@@ -230,7 +245,6 @@ internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext
 
     override fun onCreate() {
         super.onCreate()
-
     }
 
     override fun onRequiredPropertiesInitialized() {
@@ -301,7 +315,8 @@ declared.
 The builder class must follow a specific naming convention. It must have a "ServiceHostBuilder"
 suffix and must start with an upper case character.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/service/AccountsServiceHostBuilder.kt`:
+Create
+[`src/main/kotlin/com/example/ivi/example/plugin/service/AccountsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/AccountsServiceHostBuilder.kt#L12-L26)
 
 ```kotlin
 package com.example.ivi.example.plugin.service
@@ -333,7 +348,9 @@ Define an IVI service host implementation, in your gradle file. This can also be
 top-level gradle file (for example `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
-Modify `examples/plugin/app/build.gradle.kts`:
+Modify the
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L30)
+file:
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -370,7 +387,9 @@ for details.
 
 Register the service host build configuration in the main application's build script.
 
-Modify `examples/plugin/app/build.gradle.kts`:
+Modify the
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L51-L54)
+file:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -398,8 +417,11 @@ running, and the latter is an optional connection.
 To use the service API, create an instance with `createApi` in the view-model of the account login
 page of the account frontend.
 
-In `examples/plugin/frontend/` create:
-`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`:
+In
+[`examples/plugin/frontend/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/frontend)
+create:
+
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L71)
 
 ```kotlin
 package com.example.ivi.example.plugin.frontend.login
@@ -462,7 +484,8 @@ async call `logInAsync(...)`.
 The `accountsServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the
 service implementation.
 
-Create `src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfoViewModel.kt`:
+Create
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfoViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/info/AccountInfoViewModel.kt#L12-L30)
 
 ```kotlin
 package com.example.ivi.example.plugin.frontend.info

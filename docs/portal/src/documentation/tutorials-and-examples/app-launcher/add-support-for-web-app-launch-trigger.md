@@ -32,16 +32,22 @@ broadcast:
 ## Create web app launch trigger service module
 
 First, add the [`AppLaunchTriggerService`](TTIVI_INDIGO_API) dependency to the
-`/build-logic/libraries.versions.toml` file:
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L58)
+file:
 
 ```toml
 indigoAppsuiteAppstoreApiServiceApplaunchtrigger = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchtrigger", version.ref = "indigoPlatform" }
 ```
 
-Create a new module (for example, `webapplaunchtrigger`) under`examples/applauncher/services`, and
-add a Gradle build script.
+Create a new module (for example,
+[`webapplaunchtrigger`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/webapplaunchtrigger))
+under
+[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services),
+and add a Gradle build script.
 
-Create `build.gradle.kts`:
+Create a
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/build.gradle.kts#L12-L21)
+file:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -59,7 +65,9 @@ dependencies {
 The app launch trigger module is an Android module, so it must also have an `AndroidManifest.xml`
 file.
 
-Create `src/main/AndroidManifest.xml`:
+Create a
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/AndroidManifest.xml#L14)
+file:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -77,7 +85,8 @@ we can extract the required information for launching a _web app_.
 
 Let's assume that the _web app_ URL value will be sent with a key name `url`.
 
-Create `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt`
+Create
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt#L14-L40)
 
 ```kotlin
 import android.content.BroadcastReceiver
@@ -118,10 +127,11 @@ class, and provides the required implementation for the
 
 For an instance of `WebAppLaunchTriggerBroadcastReceiver` to receive a broadcast, we need to
 register it with an
-[IntentFilter](https://developer.android.com/reference/android/content/IntentFilter), which
-identifies the broadcast action.
+[`IntentFilter`](https://developer.android.com/reference/android/content/IntentFilter),
+which identifies the broadcast action.
 
-Create `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt`
+Create
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt#L14-L47)
 
 ```kotlin
 import android.content.IntentFilter
@@ -162,43 +172,43 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - A `WebAppLaunchTriggerServiceHost` class:
 
-   `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt`:
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt#L14-L26)
 
-   ```kotlin
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
-   
-   class WebAppLaunchTriggerServiceHost(
-   iviServiceHostContext: IviServiceHostContext,
-   iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
-   ) : IviServiceHostBase(iviServiceHostContext) {
-   
-       override val iviServices = setOf(
-           WebAppLaunchTriggerService(iviServiceHostContext, iviDiscoverableServiceIdProvider)
-       )
-   }
-   ```
+  ```kotlin
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+
+  class WebAppLaunchTriggerServiceHost(
+  iviServiceHostContext: IviServiceHostContext,
+  iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
+  ) : IviServiceHostBase(iviServiceHostContext) {
+
+      override val iviServices = setOf(
+          WebAppLaunchTriggerService(iviServiceHostContext, iviDiscoverableServiceIdProvider)
+      )
+  }
+  ```
 
 - A `WebAppLaunchTriggerServiceHostBuilder` class:
 
-   `src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt`:
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt#L14-L26)
 
-   ```kotlin
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
-   
-   class WebAppLaunchTriggerServiceHostBuilder : IviServiceHostBuilder() {
-   
-       override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
-           WebAppLaunchTriggerServiceHost(iviServiceHostContext) {
-               getDiscoverableServiceId(it)
-           }
-   
-       companion object
-   }
-   ```
+  ```kotlin
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+
+  class WebAppLaunchTriggerServiceHostBuilder : IviServiceHostBuilder() {
+
+      override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
+          WebAppLaunchTriggerServiceHost(iviServiceHostContext) {
+              getDiscoverableServiceId(it)
+          }
+
+      companion object
+  }
+  ```
 
 ## Configure web app launch trigger service host deployment
 
@@ -210,7 +220,9 @@ Define an IVI service host implementation in your gradle file. This can also be 
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be
 used in a multi-project build, including the tests.
 
-Modify `examples/applauncher/iviservicehosts.gradle.kts`:
+Modify the
+[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L84-L97)
+file:
 
 ```kotlin
 /**
@@ -237,7 +249,9 @@ val webAppLaunchTriggerServiceHost by extra {
 
 Register the service host build configuration in the main application's build script.
 
-Modify `examples/applauncher/app/build.gradle.kts`:
+Modify the
+[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L39)
+file:
 
 ```kotlin
 apply(from = rootProject.file("examples/applauncher/iviservicehosts.gradle.kts"))

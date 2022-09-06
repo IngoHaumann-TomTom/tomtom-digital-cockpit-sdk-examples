@@ -66,12 +66,15 @@ E2E scenarios than there are integration tests, which is why E2E testing sits at
 pyramid. They rely on everything working as expected and only verify whether all modules can work
 together to achieve a common goal.
 
-> **Note:** Since E2E tests are so complex to set up and run, they may suffer from all kinds of
-influences that may make the test results less reliable. Things like timing, threads, mocked network
-access, etc. can all cause issues that make the test fail, not because the code is wrong but because
-creating a reliable test bed is difficult. Tests that do not always give the same result with each
-run are called flaky tests, and they cause headaches and take a lot of time to fix. So make every
-effort to write tests that are not flaky but guarantee correct results each time they are run.
+<Blockquote>
+    Since E2E tests are so complex to set up and run, they may suffer from all kinds of influences
+    that may make the test results less reliable. Things like timing, threads, mocked network
+    access, etc. can all cause issues that make the test fail, not because the code is wrong but
+    because creating a reliable test bed is difficult. Tests that do not always give the same result
+    with each run are called flaky tests, and they cause headaches and take a lot of time to fix. So
+    make every effort to write tests that are not flaky but guarantee correct results each time they
+    are run.
+</Blockquote>
 
 ## Running TomTom IndiGO tests
 
@@ -138,7 +141,7 @@ properly to it, without running any of the `Dependency`'s code.
 
 ---
 
-**See also:**
+__See also:__
 
 - Martin Fowler:
   ["The Practical Test Pyramid"](https://martinfowler.com/articles/practical-test-pyramid.html)

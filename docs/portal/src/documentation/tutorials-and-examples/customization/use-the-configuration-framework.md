@@ -62,8 +62,10 @@ The JSON file schema is fully documented in the API reference documentation of
 ### Static configuration file
 
 To create a static configuration for the accounts service, create a JSON file in the
-`configurations/static` folder:
-`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`
+[`configurations/static`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/service/src/main/configurations/static)
+folder:
+
+[`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json#L2-L10)
 
 ```json
 {
@@ -83,17 +85,19 @@ This file defines a __string__ configuration item with a key `"onlineAccountEndp
 belongs to the package `com.example.ivi.example.plugin.service`.
 The configuration contains the URL of the online API endpoint, as specified by the `"value"` field.
 
-__Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as
-a [Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
+__Note:__ The `"name"` field must have a `ConfigKey` suffix, and be suitable for use as a
+[Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
 
-__Note:__ `"description"` is an optional field. It is used as KDoc for the generated configuration
+__Note:__ The `"description"` field is optional. It is used as KDoc for the generated configuration
 keys.
 
 ### Dynamic configuration file
 
 To create a dynamic configuration for the accounts settings service, create a JSON file in the
-`configurations/static` folder:
-`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`
+[`configurations/dynamic`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/settingsservice/src/main/configurations/dynamic)
+folder:
+
+[`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json#L2-L22)
 
 ```json
 {
@@ -125,22 +129,21 @@ This file defines a __long number__ configuration with an
 `"onlineLoginValidPeriodInDaysConfigKey"` key that belongs to the package
 `com.example.ivi.example.plugin.service`.
 
-__Note:__ The key name must have a `ConfigKey` suffix, and be suitable for use as a
+__Note:__ The `"name"` field must have a `ConfigKey` suffix, and be suitable for use as a
 [Kotlin property name](https://kotlinlang.org/docs/coding-conventions.html#property-names).
 
-The `"version"` field specifies the revision number of the configuration file that shall be
-increased with any change to the configuration. The configuration keeps values for previous
-versions. They are used for updating old values in the persistent storage on the device to the
-current version.
+__Note:__ The `"description"` field is optional. It is used as KDoc for the generated configuration
+keys.
+
+The `"version"` field specifies the revision number of the configuration file. It must be increased
+with any change to the configuration. The configuration keeps values for previous versions. These
+are used for updating old values in the device's persistent storage to the current version.<br/>
 The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field
 defines how old values are updated. In the example, it defines that old values are overridden with
 the new values. See the API reference documentation for
 [`ConfigurationUpdateStrategy`](TTIVI_INDIGO_API).
-The latest configuration version will be stored on the device, and will remain unchanged until the
+The latest configuration version will be stored on the device, and will remain unchanged until a
 configuration file with a newer version is loaded.
-
-__Note:__ The `"description"` is an optional field. It is used as KDoc for the generated
-configuration keys.
 
 ## Enable the configuration generator
 
@@ -158,10 +161,10 @@ The configuration generator looks for JSON files and processes them into:
 
 To enable the configuration generator, add following Gradle configuration into Gradle build
 configurations of modules that contains the configuration.
-For the given example, these are the accounts service module
-`examples/plugin/service/build.gradle.kts`
-and the accounts settings service module
-`examples/plugin/settingsservice/build.gradle.kts`
+For the given example, these are the _accounts service_ module
+[`examples/plugin/service/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/build.gradle.kts#L14-L19)
+and the _accounts settings service_ module
+[`examples/plugin/settingsservice/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/build.gradle.kts#L18-L23):
 
 ```kotlin
 ivi {
@@ -183,7 +186,7 @@ Then run Gradle task `generateConfigurations`:
 ./gradlew examples_plugin_settingsservice:generateConfigurations examples_plugin_service:generateConfigurations
 ```
 
-__Note:__ The task is a dependency for `preDebugBuild` and `preReleaseBuild` tasks, so it is
+__Note:__ This task is a dependency of the `preDebugBuild` and `preReleaseBuild` tasks, so it is
 executed automatically during `assemble` or `build` tasks.
 
 ## Access the configurations via configuration providers
@@ -194,10 +197,9 @@ Static configurations are provided by the static configuration provider that is 
 IVI service [`IviServiceHostContext`](TTIVI_INDIGO_API)`.staticConfigurationProvider`.
 
 To get the configuration value of the `StockAccountsService`, use the
-`com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey`
-variable.
+`StaticConfiguration.onlineAccountEndpointConfigKey` variable.
 
-`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27-L31)
 
 ```kotlin
 import com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey
@@ -214,7 +216,7 @@ The `onlineAccountEndpoint` is a string with the configuration value that is use
 in. The `logIn` method calls `logInOnline()` to authenticate the user. The latter does not make a
 real network query but only does simple validation.
 
-`examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L86-L91)
 
 ```kotlin
 private fun logInOnline(username: String, password: SensitiveString): Account? =
@@ -231,7 +233,7 @@ Dynamic configurations are used by settings services to initialize settings.
 First, add a new setting `onlineLoginValidPeriodInDays` to the accounts settings service that holds
 the number of days the user may stay logged in.
 
-`examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`
+[`src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt#L22-L38)
 
 ```kotlin
 interface AccountSettingsService {
@@ -244,7 +246,7 @@ By default, the settings service initializes properties with values from dynamic
 The service implementation only needs to set the configuration key and the setting key.
 The latter can be easily made from the former.
 
-`examples/plugin/settingsservice/src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt`
+[`src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt#L40-L47)
 
 ```kotlin
 // Both variables are generated by the configuration generator.

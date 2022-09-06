@@ -18,8 +18,10 @@ with a normal [`FrontendViewModel`](TTIVI_INDIGO_API), templated with the
 The debug tab is then registered in the debug menu with a
 [`DebugTabFrontendExtension`](TTIVI_INDIGO_API).
 
-The product's `build.gradle.kts` file should then be changed to include, in the `ivi` configuration,
-a customization of the debug frontend:
+The product's
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/debugtab/build.gradle.kts#L12-L51)
+file should then be changed to include, in the `ivi` configuration, a customization of the debug
+frontend:
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference

@@ -57,7 +57,7 @@ display, and no functionality other than basic browsing and playing.
 
 ### Example panel
 
-An application that implements the concepts presented here is provided in the 
+An application that implements the concepts presented here is provided in the
 `examples/media/userflowpolicy` directory.
 
 The example's panel class, based on [`MediaTaskPanel`](TTIVI_INDIGO_API), enables browsing through the
@@ -68,10 +68,11 @@ the device logcat all media items retrieved by all media services: this helps __
 initial discovery phase to analyze the format of all content returned by the media source. This
 setting __must not__ be used in production, and will not function in _release_ builds.
 
-The [`RootSourceClient`](TTIVI_INDIGO_API) is used to browse the
-content and retrieve the available categories (in the case of radio, those are bands and stations),
-while the [`MediaService`](TTIVI_INDIGO_API) lets the user play a
-radio.
+The [`RootSourceClient`](TTIVI_INDIGO_API) is used to browse the content and retrieve the available
+categories (in the case of radio, those are bands and stations), while the
+[`MediaService`](TTIVI_INDIGO_API) lets the user play a radio.
+
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt#L38-L74)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -136,9 +137,8 @@ internal class RadioPanel(mediaContext: MediaFrontendContext) :
 
 ### Example view model
 
-The view model, a
-[`FrontendViewModel`](TTIVI_INDIGO_API), transforms
-the panel's data into information ready to use in a view.
+The view model, a [`FrontendViewModel`](TTIVI_INDIGO_API), transforms the panel's data into
+information ready to use in a view.
 
 In this example, the `RadioRecyclerViewItem` type represents an entry to display with a standard
 Android RecyclerView adapter.
@@ -146,6 +146,8 @@ Android RecyclerView adapter.
 There is a "back" button, which triggers the `onBackPressed` function to dismiss the panel; and a
 "Stations list" button, that calls `onStationsButtonClicked` to show the list of stations
 recognized by the tuner.
+
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt#L31-L56)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -197,6 +199,8 @@ a container for glue code to connect the ViewModel to the XML layout, represente
 used in the panel to the necessary Android
 [`Context`](https://developer.android.com/reference/kotlin/android/content/Context).
 
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt#L24-L45)
+
 ```kotlin
 import android.content.Context
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
@@ -233,8 +237,7 @@ Standardizing how media contents are displayed is not a simple task; to simplify
 [`MediaContentView`](TTIVI_INDIGO_API), an Android
 [`RecyclerView`](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView)
 specialization, displays media items according to their type as specified by the Android Automotive
-Media APIs. Its item types, defined by the
-[`MediaGroupItem`](TTIVI_INDIGO_API)
+Media APIs. Its item types, defined by the [`MediaGroupItem`](TTIVI_INDIGO_API)
 sealed class, will be displayed together without restriction as dictated by the standard: a part of
 the displayed content can be shown as a list, while another can be laid out in a grid, and headers
 can logically separate different groups of contents. Both the list and the grid items display

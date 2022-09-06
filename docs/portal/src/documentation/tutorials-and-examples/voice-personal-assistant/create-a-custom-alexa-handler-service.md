@@ -72,9 +72,9 @@ The TomTom IndiGO SDK comes with an example app showing how to include Alexa in 
 custom Alexa handler services, see directory `examples/alexa`. By default, this application is
 excluded from the build, because it requires Alexa libraries that are not publicly available.
 
-To build the Alexa example app, you should edit the build files:
-
-__gradle.properties:__
+To build the Alexa example app, you should edit the top-level
+[`gradle.properties`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/gradle.properties#L52)
+file:
 
 ```kotlin
 optInToAlexaExamples=true
@@ -93,7 +93,9 @@ page.
 
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:
 
-- Edit the `examples/alexa/app/src/main/res/values/alexa_ids.xml` file and add your own Alexa IDs.
+- Edit the
+  [`examples/alexa/app/src/main/res/values/alexa_ids.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml)
+  file and add your own Alexa IDs.
 - Set the `disableAlexaDeviceIdBuildTimeCheck` Gradle property to `true` to disable the build-time
   check for Alexa IDs.
 
@@ -102,11 +104,13 @@ and `alexaDeviceInfoProductId` properties in the top-level `local.properties` fi
 properties. In this case you won't need to set `disableAlexaDeviceIdBuildTimeCheck` to `true`.
 
 The example app includes 2 examples of custom Alexa handler services:
-- `CustomEqualizerControllerHandlerService`: sample implementation of an Alexa handler service for
-  the [EqualizerController](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/EqualizerController)
+- [`CustomEqualizerControllerHandlerService`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customequalizercontrollerhandler/src/main/kotlin/com/example/ivi/example/alexa/customequalizercontrollerhandler/CustomEqualizerControllerHandlerService.kt#L33-L37):
+  sample implementation of an Alexa handler service for the
+  [EqualizerController](https://alexa.github.io/alexa-auto-sdk/docs/aasb/alexa/EqualizerController)
   topic. It shows how to handle user requests such as "Increase the bass level" or "Decrease the
   treble level".
-- `CustomCarControlHandlerService`: sample implementation of an Alexa handler service for the
+- [`CustomCarControlHandlerService`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L41-L45):
+  sample implementation of an Alexa handler service for the
   [CarControl](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl) topic. It
   shows how to define custom CarControl endpoints and assets, as well as how to handle user requests
   such as "Turn on the light", "Increase the light brightness" or "Switch on my custom device".
@@ -118,12 +122,21 @@ The example app includes 2 examples of custom Alexa handler services:
 
 The following sections describe how to create a custom Alexa Handler service implementation.
 
+The IndiGO Alexa example app shows two implementations of such a service, a
+[custom car control handler](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler)
+and a
+[custom equalizer control handler](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa/customequalizercontrollerhandler).
+The code snippets show a _generic_ implementation of such a service, but they link to the source
+code of the
+[`CustomCarControlHandler`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler)
+example implementation.
+
 ### Create a service implementation module
 
 To implement a custom Alexa Handler service, create a new module under `examples/alexa` (for
 example `examples/alexa/customalexahandler`) and add a Gradle build script.
 
-__build.gradle.kts:__
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/build.gradle.kts#L24-L25)
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -144,7 +157,9 @@ dependencies {
 }
 ```
 
-Declare Alexa dependencies in `/build-logic/libraries.versions.toml` file:
+Declare Alexa dependencies in the
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L59-L60)
+file:
 
 ```toml
 indigoPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "indigoPlatform" }
@@ -154,7 +169,7 @@ indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:
 The Alexa Handler service implementation project is an Android project, so it must also have
 an `AndroidManifest.xml` file.
 
-__src/main/AndroidManifest.xml:__
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/AndroidManifest.xml#L14)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -174,7 +189,7 @@ documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method. For example:
 
-__src/main/kotlin/com/example/ivi/example/alexa/customalexahandler/CustomAlexaHandlerService.kt__
+[`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L230-L259)
 
 ```kotlin
 import com.amazon.aacsconstants.Topic
@@ -221,7 +236,8 @@ Typically, in order to parse an AASB message, you would:
 
 1. Instantiate an instance of the
    [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serialization-guide.md)
-   JSON parser:
+   JSON parser:<br/>
+   [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L49-L53)
 
    ```kotlin
    private val jsonParser = Json {
@@ -234,7 +250,8 @@ Typically, in order to parse an AASB message, you would:
 2. Define a data class that represents the message to be parsed. For example, the data class
    representing the CarControl
    [SetControllerValue](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervalue)
-   message would look like this:
+   message would look like this:<br/>
+   [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L102-L113)
 
    ```kotlin
    @Serializable
@@ -252,9 +269,9 @@ Typically, in order to parse an AASB message, you would:
    ```
 
 3. Decode the AASB message into an instance of the data class using the
-   [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`parseAasbMessage` function.
-
-   For example:
+   [`com.tomtom.ivi.platform.alexa.api.common.util`](TTIVI_INDIGO_API).`parseAasbMessage` function.
+   For example:<br/>
+   [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L294-L326)
 
    ```kotlin
    override suspend fun onMessageReceived(action: String, messageContents: String
@@ -282,7 +299,8 @@ Typically, in order to send an AASB reply message, you would:
 1. Define a data class that represents the message to be sent to AACS. For example, the data class
    representing the CarControl
    [SetControllerValueMessageReply](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl/#setcontrollervaluereply)
-   message would look like this:
+   message would look like this:<br/>
+   [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L157-L165)
 
    ```kotlin
    @Serializable
@@ -300,9 +318,8 @@ Typically, in order to send an AASB reply message, you would:
 2. Create an instance of this class, encode it as a JSON string and send it using the
    [AacsSenderWrapper](TTIVI_INDIGO_API) helper class. You would normally also use the
    [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbReplyHeader` helper
-   function to create the AASB reply header.
-
-   For example:
+   function to create the AASB reply header. For example:<br/>
+   [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L430-L444)
 
    ```kotlin
    private fun sendSetControllerValueReply(messageId: String, success: Boolean) {
@@ -353,9 +370,7 @@ Typically, in order to send an AASB "Publish" message, you would:
 2. Create an instance of this class, encode it as a JSON string and send it using the
    [AacsSenderWrapper](TTIVI_INDIGO_API) helper class. You would normally also use the
    [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbRequestHeader` helper function to
-   create the AASB Publish header.
-
-   For example:
+   create the AASB Publish header. For example:
 
    ```kotlin
    private fun sendDoNotDisturbChanged(messageId: String, success: Boolean) {
@@ -380,62 +395,60 @@ Typically, in order to send an AASB "Publish" message, you would:
 
 Your module will also need to define a service host where the service will be running, as well as
 provide a service host builder.
-This can be achieved by creating 2 classes.
+This can be achieved by creating two classes.
 
-1. A `CustomAlexaHandlerServiceHost` class:
+- A `CustomAlexaHandlerServiceHost` class:<br/>
+  [`CustomAlexaHandlerServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerServiceHost.kt#L21-L30)
 
-   __src/main/kotlin/com/example/ivi/example/alexa/customalexahandler/CustomAlexaHandlerServiceHost.kt__
+  ```kotlin
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
+  import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
 
-   ```kotlin
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
-   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+  /**
+   * A [CustomAlexaHandlerService] host server.
+   */
+  internal class CustomAlexaHandlerServiceHost(
+      iviServiceHostContext: IviServiceHostContext,
+      iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
+  ) :
+      IviServiceHostBase(iviServiceHostContext) {
 
-   /**
-    * A [CustomAlexaHandlerService] host server.
-    */
-   internal class CustomAlexaHandlerServiceHost(
-       iviServiceHostContext: IviServiceHostContext,
-       iviDiscoverableServiceIdProvider: IviDiscoverableServiceIdProvider
-   ) :
-       IviServiceHostBase(iviServiceHostContext) {
+      override val iviServices = setOf(
+          CustomAlexaHandlerService(iviServiceHostContext, iviDiscoverableServiceIdProvider)
+      )
+  }
+  ```
 
-       override val iviServices = setOf(
-           CustomAlexaHandlerService(iviServiceHostContext, iviDiscoverableServiceIdProvider)
-       )
-   }
-   ```
+- A `CustomAlexaHandlerServiceHostBuilder` class:<br/>
+  [`CustomAlexaHandlerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerServiceHostBuilder.kt#L22-L30)
 
-2. A `CustomAlexaHandlerServiceHostBuilder` class:
+  ```kotlin
+  /**
+   * A [CustomAlexaHandlerServiceHost] builder used to build a [CustomAlexaHandlerService]
+   * host.
+   */
+  class CustomAlexaHandlerServiceHostBuilder : IviServiceHostBuilder() {
 
-   __src/main/kotlin/com/example/ivi/example/alexa/customalexahandler/CustomAlexaHandlerServiceHostBuilder.kt__
+      override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
+          CustomAlexaHandlerServiceHost(iviServiceHostContext) {
+              getDiscoverableServiceId(it)
+          }
 
-   ```kotlin
-   /**
-    * A [CustomAlexaHandlerServiceHost] builder used to build a [CustomAlexaHandlerService]
-    * host.
-    */
-   class CustomAlexaHandlerServiceHostBuilder : IviServiceHostBuilder() {
-
-       override fun build(iviServiceHostContext: IviServiceHostContext): IviServiceHostBase =
-           CustomAlexaHandlerServiceHost(iviServiceHostContext) {
-               getDiscoverableServiceId(it)
-           }
-
-       companion object
-   }
-   ```
+      companion object
+  }
+  ```
 
 Please ensure that the `CustomAlexaHandlerServiceHostBuilder` class is added to the root of your
 module hierarchy.
 
 ### Configure the service host deployment
 
-Define an IVI service host implementation in your gradle file, This can also be defined in a
+Define an IVI service host implementation in your gradle file. This can also be defined in a
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
-__examples/alexa/iviservicehosts.gradle.kts:__
+[`/examples/alexa/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/iviservicehosts.gradle.kts#L52-L66)
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -468,7 +481,7 @@ val customAlexaHandlerServiceHost by extra {
 
 Register the service host build configuration in the main application's build script.
 
-__examples/alexa/app/build.gradle.kts:__
+[`/examples/alexa/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L53)
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
@@ -494,10 +507,10 @@ ivi {
 // The rest of the build script, dependencies, etc.
 ```
 
-## External links
+## References
 
 - TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
+- TomTom IndiGO [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
 - [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 - [Alexa Auto AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)
 - [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
-- [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)

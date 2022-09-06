@@ -10,7 +10,7 @@ additional metadata to facilitate localization.
 ## Example application
 
 To try it out, see the
-[`examples/examples_localizestrings`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings)
+[`examples/examples_localizestrings`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings)
 application. This example project uses the default frontends and services from the TomTom IndiGO
 platform and app suite. It also has the above mentioned Gradle plugin applied. Run:
 
@@ -20,20 +20,20 @@ platform and app suite. It also has the above mentioned Gradle plugin applied. R
 
 The above command will download and extract all `strings.xml` files from modules in the artifact
 group `com.tomtom.uxstrings` used by the default frontends and services from the TomTom IndiGO
-platform and app suite. After running the above command, you can find the downloaded files in:
-`examples/localizestrings/app/build/string-sources`.
+platform and app suite. After running the above command, you can find the downloaded files in the
+`examples/localizestrings/app/build/string-sources` directory.
 
 From these files, you can create your own localized strings. The example project demonstrates this
 for the `Media` text in the menu bar:
 
 - The string in
-  [`localizestrings/app/src/main/res/values-fr-rCA`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rCA)
+  [`src/main/res/values-fr-rCA/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rCA/strings.xml#L3)
   is used when the Android language is set to French (Canada).
 - The string in
-  [`localizestrings/app/src/main/res/values-fr-rFR`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rFR)
+  [`src/main/res/values-fr-rFR/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rFR/strings.xml#L3)
   is used when the Android language is set to French (France) or other regions, like French (Algeria).
 - The string in
-  [`localizestrings/app/src/main/res/values-nl`](https://github.com/tomtom-internal/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl)
+  [`src/main/res/values-nl/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl/strings.xml#L3)
   is used when the Android language is set to Dutch, no matter which region.
 
 The British English version of the strings and the default value come included with the IndiGO
@@ -71,11 +71,13 @@ is used and where.
 
 String resources are defined in `strings.xml` source files. You can download and extract the
 `strings.xml` sources files from dependencies used in your Android Application by running a Gradle
-task. This requires the `"com.tomtom.tools.android.extractstringsources` Gradle plugin to be applied
+task. This requires the `com.tomtom.tools.android.extractstringsources` Gradle plugin to be applied
 in your Android Application Gradle subproject. In this tutorial we refer to the Android Application
 Gradle subproject with `app`.
 
-To apply the Gradle plugin define the following in your `app/build.gradle.kts` file:
+To apply the Gradle plugin define the following in your
+[`app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/localizestrings/app/build.gradle.kts#L16)
+file:
 
 ```kotlin
 plugins {
@@ -84,7 +86,9 @@ plugins {
 ```
 
 For this to work, you need to configure the version of this Gradle plugin. Add the following in
-your top-level `build.gradle.kts` file:
+your top-level
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build.gradle.kts#L43)
+file:
 
 ```kotlin
 plugins {
@@ -93,7 +97,8 @@ plugins {
 ```
 
 And a dependency to `com.tomtom.tools.android:gradle-plugins:<version>` in your
-`buildSrc/build.gradle.kts` file. For example:
+[`buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/build.gradle.kts#L29)
+file. For example:
 
 ```kotlin
 dependencies {

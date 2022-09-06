@@ -17,6 +17,8 @@ this guide:
 The media plugin default configuration is defined as a resource file that contains configuration
 keys and their values. The following keys and values are defined in the media plugin:
 
+[`examples/media/miniplayer/src/main/res/values/example-media-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/miniplayer/src/main/res/values/example-media-configuration.xml#L13-L19)
+
 ```xml
 <resources>
     <!-- Indicates whether the media frontend has a mini player or not; `true` by default. -->
@@ -27,11 +29,10 @@ keys and their values. The following keys and values are defined in the media pl
 ## Change the media plugin configuration
 
 The media plugin default configuration can be changed by adding a custom configuration resource file
-in your application, such as `<module>/res/value/ttivi-media-configuration.xml`.
-
-![media configuration](images/media_configuration_file.png)
-
-The custom configuration overrides the default values with the one provided.
+in your application. The custom configuration overrides the default values with the ones provided.
+For an example, see the 
+[`template/app/res/value/ttivi-media-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/template/app/src/main/res/values/ttivi-media-configuration.xml#L13-L14)
+file.
 
 ## Configuring the mini player
 

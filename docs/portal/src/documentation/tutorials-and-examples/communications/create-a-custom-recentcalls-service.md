@@ -2,10 +2,10 @@
 title: Create a Custom Recent Calls Service
 ---
 
-The IVI platform comes with a [`RecentCallsService`](TTIVI_INDIGO_API) interface for accessing recent 
-calls information. A product may provide its own implementation of the 
-[`RecentCallsService`](TTIVI_INDIGO_API) interface or use an existing implementation. When 
-the existing implementation of a [`RecentCallsService`](TTIVI_INDIGO_API) is inadequate 
+The IVI platform comes with a [`RecentCallsService`](TTIVI_INDIGO_API) interface for accessing recent
+calls information. A product may provide its own implementation of the
+[`RecentCallsService`](TTIVI_INDIGO_API) interface or use an existing implementation. When
+the existing implementation of a [`RecentCallsService`](TTIVI_INDIGO_API) is inadequate
 (for example if we want to only show the recent calls of the day, filtering out older
 calls) it is possible to define a custom recent calls service. In order for the UI to be able to
 display recent calls from this service, a custom recent calls service needs to be written. This
@@ -15,7 +15,7 @@ document describes how to do this.
 
 The following sections describe how to create a custom recent calls service implementation.
 
-The example code for the concepts presented here is provided in 
+The example code for the concepts presented here is provided in
 `examples/telephone/customrecentcalls`.
 
 ### Service module setup
@@ -23,14 +23,18 @@ The example code for the concepts presented here is provided in
 To create a custom recent calls service, add a manifest file to your module and add a dependency to
 the [`RecentCallsService`](TTIVI_INDIGO_API) to your Gradle file.
 
-Your `AndroidManifest.xml` should contain:
+Your
+[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/AndroidManifest.xml#L14)
+should contain:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.example.ivi.example.telephony.customrecentcalls" />
 ```
 
-Your Gradle file should contain:
+Your
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/build.gradle.kts#L19)
+file should contain:
 
 ```kotlin
 dependencies {
@@ -42,8 +46,9 @@ dependencies {
 
 To configure a recent calls service to use your custom implementation, define a service host
 configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
-in a file, like `RecentCallsServiceHostConfig.kt`, in the `buildScr` module, within the
-`config.services` folder.
+in the application Gradle build file.
+
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L37-L46)
 
 ```kotlin
 val customRecentCallsServiceHost = IviServiceHostConfig(
@@ -65,6 +70,8 @@ In order to create the service host configuration named `CustomRecentCallsServic
 platform needs a service host builder class with the specific
 name `CustomRecentCallsServiceHostBuilder`.
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt#L24-L33)
+
 ```kotlin
 class CustomRecentCallsServiceHostBuilder : IviServiceHostBuilder() {
 
@@ -78,12 +85,13 @@ class CustomRecentCallsServiceHostBuilder : IviServiceHostBuilder() {
 }
 ```
 
-__Note__
-Every service host configuration needs to be registered in your application. This is so that the
-platform knows which service should be started with which implementation when a client requires
-the access to a service api.
+__Note:__ Every service host configuration needs to be registered in your application. This is so
+that the platform knows which service should be started with which implementation when a client
+requires the access to a service api.
 
 To register this configuration, add the service host to your application Gradle file:
+
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L61-L64)
 
 ```kotlin
 ivi {
@@ -101,20 +109,23 @@ ivi {
 In order to create a recent calls service implementation you need to create a class that
 inherits from the `RecentCallsServiceBase` base class.
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L27-L28)
+
 ```kotlin
 internal class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
     RecentCallsServiceBase(iviServiceHostContext) {
 }
 ```
 
-__Note__
-The recent calls service implementation can define any kind of source as the list of recent calls,
-for example the Android 
+__Note:__ The recent calls service implementation can define any kind of source as the list of
+recent calls, for example the Android
 [CallLog provider](https://developer.android.com/reference/android/provider/CallLog).
 
-In this example, the recent calls service always returns a list of two hardcoded calls. The list of
+In this example, the recent calls service always returns a list of two hard-coded calls. The list of
 recent calls contains those two recent calls after initialization. The list `recentCallsSource` is
 the source of recent calls:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L31-L46)
 
 ```kotlin
 // The source of recent calls.
@@ -143,6 +154,8 @@ methods.
 
 When the service is created:
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L48-L63)
+
 ```kotlin
 override fun onCreate() {
     super.onCreate()
@@ -166,6 +179,8 @@ then the [`RecentCallsService`](TTIVI_INDIGO_API) properties `recentCallsDescend
 `phoneBookSynchronizationStatus` have been initialized.
 
 When the service is destroyed:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L65-L68)
 
 ```kotlin
 override fun onDestroy() {

@@ -27,11 +27,8 @@ plugin:
 
 The communications plugin default configuration can be changed by adding a custom configuration
 resource file in your application, such as
-`<module>/res/value/example-communications-configuration.xml`.
-
-![communications configuration](images/communications_configuration_file.png)
-
-The custom configuration overrides the default values with the one provided.
+[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml),
+which then overrides the default values with the ones provided.
 
 ## Configuring the frontend's behavior when making an outgoing call
 
@@ -39,6 +36,8 @@ When an outgoing call is made, the communications frontend will be closed by def
 
 If you don't want to close the frontend provided with the off-the-shelf communications plugin, you
 can configure it by setting the `keepCommunicationsPanelOpenOnOutgoingCallConfigKey` to `true`:
+
+[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml#L14-L17)
 
 ```xml
 <bool name="keepCommunicationsPanelOpenOnOutgoingCallConfigKey">true</bool>

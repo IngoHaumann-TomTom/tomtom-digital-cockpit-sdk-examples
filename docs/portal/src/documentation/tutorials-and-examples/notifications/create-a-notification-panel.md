@@ -16,9 +16,9 @@ TomTom IndiGO provides clients different ways for the notification creation. You
 - [`StockNotificationPanel`](TTIVI_INDIGO_API) to create a notification;
 - or implement a [`NotificationPanel`](TTIVI_INDIGO_API) yourself.
 
-The following sections explain different ways to create a notification. An example app is 
+The following sections explain different ways to create a notification. An example app is
 provided in the `examples/notifications` directory.
-  
+
 ## Create a Stock Notification Panel
 
 [`StockNotificationPanel`](TTIVI_INDIGO_API) is a notification panel which can only be created by
@@ -29,6 +29,8 @@ content.
 
 The example below creates a notification when you click on the button. It demonstrates how you can
 create it by using [`StockNotificationPanel`](TTIVI_INDIGO_API)`.create`.
+
+[`src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt#L27-L82)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -101,12 +103,14 @@ internal class NotificationCreationViewModel(panel: NotificationCreationPanel) :
 
 ![Stock notification panel](images/create_stock_notification_panel.png)
 
-## Implement your own [`NotificationPanel`](TTIVI_INDIGO_API)
+## Implement your own Notification Panel
 
 If you need more complex logic for notifications, for example extra actions to be performed when a
 notification is dismissed, you can implement [`NotificationPanel`](TTIVI_INDIGO_API) yourself. The
 example below is similar to the previous one, except we choose to implement
 [`NotificationPanel`](TTIVI_INDIGO_API) manually.
+
+[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt#L19-L38)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -151,6 +155,11 @@ internal class ExampleNotificationPanel(
         // Things to be executed when the panel is dismissed.
     }
 }
+```
+
+[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt#L24-L77)
+
+```kotlin
 
 internal class ExampleNotificationViewModel(panel: ExampleNotificationPanel) :
     NotificationViewModel<ExampleNotificationPanel>(panel){

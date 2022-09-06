@@ -2,13 +2,13 @@
 title: Create a Custom Connection Service
 ---
 
-The TomTom IndiGO platform allows end-users to make phone calls using a Bluetooth-connected phone 
-using the Bluetooth Hands Free Profile. TomTom IndiGO can be extended to support other 
-communications services such as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of 
-an online conference calling or messaging service and make and receive calls using the existing 
+The TomTom IndiGO platform allows end-users to make phone calls using a Bluetooth-connected phone
+using the Bluetooth Hands Free Profile. TomTom IndiGO can be extended to support other
+communications services such as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of
+an online conference calling or messaging service and make and receive calls using the existing
 communications framework for these new services.
 
-A [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService) 
+A [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService)
 is a service used by Android to implement calling functionality, like phone calling or any VOIP
 calling service like WhatsApp. Another communications service can be supported by implementing a
 custom
@@ -18,14 +18,18 @@ custom
 
 The following sections describe how to create a custom connection service implementation.
 
-The example code for the concepts presented here is provided in 
+The example code for the concepts presented here is provided in
 `examples/telephone/customconnection`.
 
 ### Service module setup
 
-To create a custom connection service, add an `AndroidManifest.xml` file to your module. In this 
-file your custom service has to be declared so it can be seen by the system. This XML file should 
+To create a custom connection service, add an `AndroidManifest.xml` file to your module. In this
+file your custom service has to be declared so it can be seen by the system. This XML file should
 also contain the package name together with some permissions:
+
+Add a
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/AndroidManifest.xml#L14-L33)
+file:
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,9 +53,11 @@ package="com.example.ivi.example.telephony.customconnection">
 </manifest>
 ```
 
-Add a dependency to the [`TelecomService`](TTIVI_INDIGO_API) and 
-[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
-in your Gradle file:
+Add a dependency to the [`TelecomService`](TTIVI_INDIGO_API) and
+[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
+in your
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/build.gradle.kts#L21)
+file:
 
 ```kotlin
 dependencies {
@@ -60,15 +66,19 @@ dependencies {
 }
 ```
 
-The dependency to the [`TelecomService`](TTIVI_INDIGO_API) is necessary in order to use `CallState` 
-and `toPhoneUri`, both required for the phone call state management.
+The dependency to the [`TelecomService`](TTIVI_INDIGO_API) is necessary in order to use
+[`CallState`](TTIVI_INDIGO_API) and
+`toPhoneUri` (package [com.tomtom.ivi.platform.telecom.api.common.utils](TTIVI_INDIGO_API)),
+both required for the phone call state management.
 
-The dependency to the 
-[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
-is necessary in order to create a dispatcher in your custom service class as it is not possible to 
-inherit from 
-[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService) 
+The dependency to the
+[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
+is necessary in order to create a dispatcher in your custom service class, as it is not possible to
+inherit from
+[`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
 directly:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L48)
 
 ```kotlin
 private val dispatcher = ServiceLifecycleDispatcher(this)
@@ -77,8 +87,10 @@ private val dispatcher = ServiceLifecycleDispatcher(this)
 ### Service preparation
 
 To use your custom implementation you need to create an internal object
-`CustomConnectionServiceHolder.kt` that will create and store an instance of 
+`CustomConnectionServiceHolder.kt` that will create and store an instance of
 `CustomConnectionService`.
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt#L21-L42)
 
 ```kotlin
 internal object CustomConnectionServiceHolder {
@@ -101,21 +113,23 @@ internal object CustomConnectionServiceHolder {
 }
 ```
 
-`CustomConnectionService` will be set when the 
-[`TelecomManager`](https://developer.android.com/reference/android/telecom/TelecomManager) binds to 
-the `CustomConnectionService`, which will happen when creating an incoming or outgoing call. If 
-there is no more ongoing call, the 
-[`TelecomManager`](https://developer.android.com/reference/android/telecom/TelecomManager) unbinds 
+`CustomConnectionService` will be set when the
+[`TelecomManager`](https://developer.android.com/reference/android/telecom/TelecomManager) binds to
+the `CustomConnectionService`, which will happen when creating an incoming or outgoing call. If
+there is no more ongoing call, the
+[`TelecomManager`](https://developer.android.com/reference/android/telecom/TelecomManager) unbinds
 the `CustomConnectionService` and this shall be null.
 
 ### Service definition
 
 In order to create a connection service implementation you need to create a class that inherits from
 the `ConnectionService` and `LifecycleOwner` classes. It should implement the required functions
-from [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService) 
-like `onCreateOutgoingConnection`, `onCreateOutgoingConnectionFailed`, `onCreateIncomingConnection` 
+from [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService)
+like `onCreateOutgoingConnection`, `onCreateOutgoingConnectionFailed`, `onCreateIncomingConnection`
 and `onCreateIncomingConnectionFailed`. It should also implement `getLifecycle` from
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService).
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L67-L115)
 
 ```kotlin
 internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
@@ -135,7 +149,7 @@ internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
             tracer.onCreateOutgoingConnection(this)
         }
     }
-    
+
     override fun onCreateOutgoingConnectionFailed(
         connectionManagerPhoneAccount: PhoneAccountHandle?,
         request: ConnectionRequest?
@@ -181,6 +195,8 @@ In this example we have created the `CustomConnectionFacade` class that simulate
 outgoing calls. This class is also able to change the current call's state. Simulated calls can be
 created after registering a custom phone account in the system.
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt#L58-L131)
+
 ```kotlin
 class CustomConnectionFacade(private val context: Context) {
     //...
@@ -192,7 +208,7 @@ class CustomConnectionFacade(private val context: Context) {
         telecomManager.registerPhoneAccount(customPhoneAccount)
         //...
     }
-    
+
     // Unregisters the custom phone account from the system. The recent calls related to the custom
     // phone account will be deleted as well.
     private fun unregisterCustomPhoneAccount(): Boolean {
@@ -204,7 +220,7 @@ class CustomConnectionFacade(private val context: Context) {
         telecomManager.unregisterPhoneAccount(customPhoneAccount.accountHandle)
         //...
     }
-    
+
     // Creates an incoming call using the [customPhoneAccount].
     private fun createIncomingCall(phoneNumber: String) {
         //...
@@ -214,7 +230,7 @@ class CustomConnectionFacade(private val context: Context) {
         tracer.onCreateIncomingCall(uri)
         telecomManager.addNewIncomingCall(customPhoneAccount.accountHandle, extras)
     }
-    
+
     // Creates an outgoing call using the [customPhoneAccount].
     private fun createOutgoingCall(phoneNumber: String) {
         //...
@@ -228,7 +244,7 @@ class CustomConnectionFacade(private val context: Context) {
         //...
         telecomManager.placeCall(uri, extras)
     }
-    
+
     // Updates a call state.
     fun applyCallState(
         phoneNumber: String,
@@ -242,7 +258,7 @@ class CustomConnectionFacade(private val context: Context) {
         }
         //...
     }
-    
+
     //...
 }
 ```
@@ -254,6 +270,8 @@ methods.
 
 When the service is created:
 
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L50-L54)
+
 ```kotlin
 override fun onCreate() {
     dispatcher.onServicePreSuperOnCreate()
@@ -263,10 +281,12 @@ override fun onCreate() {
 }
 ```
 
-The `CustomConnectionServiceHolder` creates and stores an instance of the 
+The `CustomConnectionServiceHolder` creates and stores an instance of the
 `CustomConnectionService`.
 
 When the service is destroyed:
+
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L56-L60)
 
 ```kotlin
 override fun onDestroy() {

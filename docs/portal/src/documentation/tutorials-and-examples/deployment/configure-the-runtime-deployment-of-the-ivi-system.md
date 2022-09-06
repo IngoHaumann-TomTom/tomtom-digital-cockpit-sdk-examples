@@ -3,17 +3,17 @@ title: Configure the Runtime Deployment of the IVI System
 ---
 
 Android allows the running of Android services in processes separate from the main
-application/activity process(es). The TomTom IndiGO platform uses Android services for IVI service 
-hosts and therefore it is possible to isolate the IVI service host instances too, see 
-[IVI Services](/tomtom-indigo/documentation/development/ivi-services) for more details about IVI 
-service hosts. The main advantage of process isolation is that when a process unexpectedly crashes 
-(and restarts), this only affects the service host instances running in that process and not all 
+application/activity process(es). The TomTom IndiGO platform uses Android services for IVI service
+hosts and therefore it is possible to isolate the IVI service host instances too, see
+[IVI Services](/tomtom-indigo/documentation/development/ivi-services) for more details about IVI
+service hosts. The main advantage of process isolation is that when a process unexpectedly crashes
+(and restarts), this only affects the service host instances running in that process and not all
 other services and does not affect the UI.
 
 The default IVI application configuration deploys each service host implementation in a separate
-process. It is also possible to run multiple IVI service hosts in one process, to limit the impact of 
+process. It is also possible to run multiple IVI service hosts in one process, to limit the impact of
 the Binder IPC and reduce the (limited) overhead of each process. The IVI services provided by TomTom
-can be rearranged, default implementations can be replaced by new ones and services can be removed 
+can be rearranged, default implementations can be replaced by new ones and services can be removed
 from the deployment.
 
 An IVI service host can be deployed to multiple runtime deployments. This allows multiple
@@ -167,9 +167,9 @@ The above example uses the default deployment configuration and configures the
 ## How to replace a default service host
 
 The default IVI service hosts can be found inside the module
-[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_GRADLEPLUGINS_API) and in the 
-`api_appsuitedefaults_*` modules. It is possible to replace a default service host, for instance to 
-deploy a new implementation of an IVI service API. The example below replaces the default 
+[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_GRADLEPLUGINS_API) and in the
+`api_appsuitedefaults_*` modules. It is possible to replace a default service host, for instance to
+deploy a new implementation of an IVI service API. The example below replaces the default
 `contactsServiceHost` with a custom `cloudContactsServiceHost`.
 
 __build.gradle.kts:__

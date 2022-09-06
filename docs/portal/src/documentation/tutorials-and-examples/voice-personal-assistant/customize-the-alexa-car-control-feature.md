@@ -36,9 +36,9 @@ includes an example `CustomCarControlHandlerService` (see directory
 - How to handle user requests such as "Turn on the light", "Increase the light brightness" or
   "Switch on my custom device".
 
-To build the Alexa example app, you should edit the build files:
-
-__gradle.properties:__
+To build the Alexa example app, you should edit the top-level
+[`gradle.properties`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/gradle.properties#L52)
+file:
 
 ```kotlin
 optInToAlexaExamples=true
@@ -57,7 +57,9 @@ page.
 
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:
 
-- Edit the `examples/alexa/app/src/main/res/values/alexa_ids.xml` file and add your own Alexa IDs.
+- Edit the
+  [`examples/alexa/app/src/main/res/values/alexa_ids.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml)
+  file and add your own Alexa IDs.
 - Set the `disableAlexaDeviceIdBuildTimeCheck` Gradle property to `true` to disable the build-time
   check for Alexa IDs.
 
@@ -102,7 +104,7 @@ To define a custom Car Control configuration:
 
 1. Add an `aacs_customcarcontrol_config.json` file to the Android assets of your
    `CustomCarControlHandlerService` module (for example
-   `src/main/assets/config/aacs_customcarcontrol_config.json`)
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json)).
 
 2. Define your custom Car Control configuration in the `aacs_customcarcontrol_config.json` file. The
    format of the file is described in the Alexa Auto
@@ -110,28 +112,27 @@ To define a custom Car Control configuration:
    page.
 
 3. In the initialization of your `CustomCarControlHandlerService`, read the contents of the
-   `aacs_customcarcontrol_config.json` file into the `aacsConfiguration` property.
+   `aacs_customcarcontrol_config.json` file into the `aacsConfiguration` property.<br/>
+   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L280-L292)
 
-    __CustomCarControlHandlerService.kt:__
+   ```kotlin
+   private fun readAacsConfig(context: Context): String? =
+       try {
+           with(context) {
+               val filePath = "config/aacs_customcarcontrol_config.json"
+               assets.open(filePath).bufferedReader().use { it.readText() }
+           }
+       } catch (exception: IOException) {
+           tracer.e("AACS configuration file not found.", exception)
+           null
+       }
 
-    ```kotlin
-    private fun readAacsConfig(context: Context): String? =
-        try {
-            with(context) {
-                val filePath = "config/aacs_customcarcontrol_config.json"
-                assets.open(filePath).bufferedReader().use { it.readText() }
-            }
-        } catch (exception: IOException) {
-            tracer.e("AACS configuration file not found.", exception)
-            null
-        }
-
-    override fun onCreate() {
-        ...
-        aacsConfiguration = readAacsConfig(context)
-        ...
-    }
-    ```
+   override fun onCreate() {
+       ...
+       aacsConfiguration = readAacsConfig(context)
+       ...
+   }
+   ```
 
 ### Define custom Car Control assets
 
@@ -149,45 +150,45 @@ custom assets if they are not already part of the default catalog. This is expla
 To define and use custom assets:
 
 1. Add a `custom_assets.json` file to the Android assets of your `CustomCarControlHandlerService`
-   module (for example `src/main/assets/config/custom_assets.json`).
+   module (for example
+   [`src/main/assets/config/custom_assets.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/custom_assets.json)).
 
 2. Add your custom assets definitions to the `custom_assets.json` file. The format of this file must
    follow the same schema as the
    [automotive catalog of assets](https://github.com/alexa/alexa-auto-sdk/blob/master/modules/car-control/assets/assets-1P.json).
 
 3. In the initialization of your `CustomCarControlHandlerService`, copy the `custom_assets.json`
-   file to the app's internal storage:
+   file to the app's internal storage:<br/>
+   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L262-L278)
 
-    __CustomCarControlHandlerService.kt:__
+   ```kotlin
+       override fun onCreate() {
+           ...
+           // Copy the `custom_assets.json` file from the assets storage to the internal storage, so
+           // that it can be found by AACS.
+           copyCustomAssets()
+           ...
+       }
 
-    ```kotlin
-        override fun onCreate() {
-            ...
-            // Copy the `custom_assets.json` file from the assets storage to the internal storage, so
-            // that it can be found by AACS.
-            copyCustomAssets()
-            ...
-        }
+       private fun copyCustomAssets() {
+           try {
+               with(context) {
+                   val customAssetsPath = "config/custom_assets.json"
+                   assets.open(customAssetsPath).use { inputFile ->
+                       FileOutputStream(filesDir?.resolve("custom_assets.json")).use {
+                           inputFile.copyTo(it)
+                       }
+                   }
+               }
+           } catch (exception: IOException) {
+               tracer.e("Failed to copy custom assets file.", exception)
+           }
+       }
+   ```
 
-        private fun copyCustomAssets() {
-            try {
-                with(context) {
-                    val customAssetsPath = "config/custom_assets.json"
-                    assets.open(customAssetsPath).use { inputFile ->
-                        FileOutputStream(filesDir?.resolve("custom_assets.json")).use {
-                            inputFile.copyTo(it)
-                        }
-                    }
-                }
-            } catch (exception: IOException) {
-                tracer.e("Failed to copy custom assets file.", exception)
-            }
-        }
-    ```
-
-4. Add a reference to the `custom_assets.json` file to the `aacs_customcarcontrol_config.json` file.
-
-   __aacs_customcarcontrol_config.json:__
+4. Add a reference to the `custom_assets.json` file in the `aacs_customcarcontrol_config.json`
+   file.<br/>
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L2-L10)
 
    ```json
    {
@@ -207,9 +208,8 @@ To define and use custom assets:
 
 5. In your Car Control configuration (`aacs_customcarcontrol_config.json`), you can then refer to
    your custom assets by the `assetId` defined in the `custom_assets.json` file. For example, to
-   define an endpoint that includes a custom asset in its list of `friendlyNames`:
-
-   __aacs_customcarcontrol_config.json:__
+   define an endpoint that includes a custom asset in its list of `friendlyNames`:<br/>
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L13-L23)
 
    ```json
    {
@@ -261,8 +261,8 @@ to deploy the custom Car Control handler service in your application.
 
 ## References
 
+- TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
 - [Alexa Auto Car Control Module](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/car-control)
 - [Alexa Auto Car Control AASB Reference](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl)
 - [Automotive Catalog of Assets](https://github.com/alexa/alexa-auto-sdk/blob/master/modules/car-control/assets/assets-1P.json)
 - [Create a Custom Alexa Handler Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service)
-- TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
