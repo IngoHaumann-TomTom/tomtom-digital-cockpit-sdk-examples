@@ -75,5 +75,8 @@ dependencyResolutionManagement {
 
         // Analytics repo (used by NavApp components)
         tomtomArtifactory("dataunit-maven-release")
+
+        // PU NAV repo for NavKit2
+        tomtomArtifactory("navkit2-maven-release-local")
     }
 }
