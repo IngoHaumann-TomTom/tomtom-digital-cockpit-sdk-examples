@@ -96,7 +96,7 @@ def check_external_url(content, errors, path, is_export):
 
         # Check for client and server error responses.
         if status >= 400 or status == 204:
-            errors.append(f"{external_url} in {path}")
+            errors.append(f"{external_url} in {path} (status={status})")
 
 def check_internal_url(content, warnings, path):
     '''
@@ -119,7 +119,7 @@ def check_internal_url(content, warnings, path):
 
         # Check for client and server error responses.
         if status > 200:
-            warnings.append(f"{internal_url} in {path}")
+            warnings.append(f"{internal_url} in {path} (status={status})")
 
 def validate_internal_url_syntax(target_dir):
     '''
