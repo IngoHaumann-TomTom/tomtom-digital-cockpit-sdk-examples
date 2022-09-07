@@ -61,7 +61,7 @@ file:
 
 ```kotlin
 dependencies {
-    implementation("com.tomtom.ivi.platform:platform_telecom_api_service_telecom")
+    implementation(libraries.indigoPlatformTelecomApiServiceTelecom)
     implementation("androidx.lifecycle:lifecycle-service:2.3.1")
 }
 ```
@@ -227,8 +227,8 @@ class CustomConnectionFacade(private val context: Context) {
         val extras = Bundle()
         val uri = phoneNumber.toPhoneUri()
         extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri)
-        tracer.onCreateIncomingCall(uri)
         telecomManager.addNewIncomingCall(customPhoneAccount.accountHandle, extras)
+        tracer.onCreatedIncomingCall(uri)
     }
 
     // Creates an outgoing call using the [customPhoneAccount].
@@ -240,9 +240,9 @@ class CustomConnectionFacade(private val context: Context) {
             TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE,
             customPhoneAccount.accountHandle
         )
-        tracer.onCreateOutgoingCall(phoneNumber.toPhoneUri())
         //...
         telecomManager.placeCall(uri, extras)
+        tracer.onCreatedOutgoingCall(phoneNumber.toPhoneUri())
     }
 
     // Updates a call state.
@@ -275,7 +275,6 @@ When the service is created:
 ```kotlin
 override fun onCreate() {
     dispatcher.onServicePreSuperOnCreate()
-    tracer.onCreate()
     CustomConnectionServiceHolder.setCustomConnectionService(this)
     super.onCreate()
 }
@@ -291,7 +290,6 @@ When the service is destroyed:
 ```kotlin
 override fun onDestroy() {
     dispatcher.onServicePreSuperOnDestroy()
-    tracer.onDestroy()
     super.onDestroy()
     CustomConnectionServiceHolder.setCustomConnectionService(null)
 }

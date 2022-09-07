@@ -38,7 +38,7 @@ file should contain:
 
 ```kotlin
 dependencies {
-    implementation("com.tomtom.ivi.platform:platform_recentcalls_api_service_recentcalls")
+    implementation(libraries.indigoPlatformRecentcallsApiServiceRecentcalls)
 }
 ```
 
@@ -48,19 +48,21 @@ To configure a recent calls service to use your custom implementation, define a 
 configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
 in the application Gradle build file.
 
-[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L37-L46)
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L37-L48)
 
 ```kotlin
-val customRecentCallsServiceHost = IviServiceHostConfig(
-    serviceHostName = "CustomRecentCallsServiceHost",
-    implementationModule = ExampleModuleReference("services_customrecentcalls"),
-    interfaces = listOf(
-        IviServiceInterfaceConfig(
-            serviceName = "RecentCallsService",
-            serviceApiModule = IviPlatformModuleReference("platform_recentcalls_api_service_recentcalls")
+val customRecentCallsServiceHost by extra {
+    IviServiceHostConfig(
+        serviceHostBuilderName = "CustomRecentCallsServiceHostBuilder",
+        implementationModule = ExampleModuleReference("examples_telephony_customrecentcalls"),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "RecentCallsService",
+                serviceApiModule = IviPlatformModuleReference("platform_recentcalls_api_service_recentcalls")
+            )
         )
     )
-)
+}
 ```
 
 In this configuration, the `services_customrecentcalls` module defines the implementation for
@@ -95,9 +97,14 @@ To register this configuration, add the service host to your application Gradle 
 
 ```kotlin
 ivi {
+    optInToExperimentalApis = true
+
     application {
+        enabled = true
         services {
-            // Register the custom recent calls service.
+            // Replace the default recent calls service host with the custom recent calls service
+            // host.
+            removeHost(recentCallsServiceHost)
             addHost(customRecentCallsServiceHost)
         }
     }
@@ -171,7 +178,7 @@ override fun onCreate() {
     // Make sure that the list is in descending chronological order.
     // If a client (typically a view model) requires the list in a different order,
     // then it should resort the list before use.
-    recentCallsDescending = recentCallsSource.sortedByDescending(RecentCall::timestamp)
+    recentCallsDescending = recentCallsSource.sortedByDescending(RecentCall::creationTime)
 }
 ```
 

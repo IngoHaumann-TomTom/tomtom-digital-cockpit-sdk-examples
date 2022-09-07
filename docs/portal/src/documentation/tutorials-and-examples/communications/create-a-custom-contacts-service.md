@@ -34,7 +34,7 @@ file should contain:
 
 ```kotlin
 dependencies {
-    implementation("com.tomtom.ivi.platform:platform_contacts_api_service_contacts")
+    implementation(libraries.indigoPlatformContactsApiServiceContacts)
 }
 ```
 
@@ -47,16 +47,18 @@ class. This class should be placed in the application Gradle build file.
 [`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L24-L35)
 
 ```kotlin
-val customContactsServiceHost = IviServiceHostConfig(
-    serviceHostBuilderName = "CustomContactsServiceHostBuilder",
-    implementationModule = ExampleModuleReference("services_customcontacts"),
-    interfaces = listOf(
-        IviServiceInterfaceConfig(
-            serviceName = "ContactsService",
-            serviceApiModule = IviPlatformModuleReference("platform_contacts_api_service_contacts")
+val customContactsServiceHost by extra {
+    IviServiceHostConfig(
+        serviceHostBuilderName = "CustomContactsServiceHostBuilder",
+        implementationModule = ExampleModuleReference("examples_telephony_customcontacts"),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "ContactsService",
+                serviceApiModule = IviPlatformModuleReference("platform_contacts_api_service_contacts")
+            )
         )
     )
-)
+}
 ```
 
 In this configuration, the `services_customcontacts` module defines the implementation for
@@ -85,14 +87,18 @@ necessary to know which service should be started with which implementation when
 the access to a service api.
 
 To register this configuration, add the service host to your application
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L57-L59)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L53-L61)
 file:
 
 ```kotlin
 ivi {
+    optInToExperimentalApis = true
+
     application {
+        enabled = true
         services {
-            // Register the custom contacts service.
+            // Replace the default contact service with the custom contacts service.
+            removeHost(contactsServiceHost)
             addHost(customContactsServiceHost)
         }
     }
