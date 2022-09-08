@@ -91,7 +91,7 @@ stages:
       dependenciesTaskName: showAllDependencies
   - job: Build
     displayName: Lint & Build
-    timeoutInMinutes: 20
+    timeoutInMinutes: 25
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/build-steps.yml
