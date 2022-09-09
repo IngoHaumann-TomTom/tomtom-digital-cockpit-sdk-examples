@@ -30,6 +30,21 @@ steps:
     inputs:
       secureFile: 'publishindigodocs.private-key.pem'
 
+  - bash: |
+      set -eu
+
+      if [ "$(PUBLISH_DOCUMENTATION)" = "true" ]
+      then
+        echo "##vso[task.setvariable variable=externalRepoBranch]main"
+        echo "##vso[task.setvariable variable=versionTag]$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)"
+      else
+        echo "##vso[task.setvariable variable=externalRepoBranch]beta"
+        echo "##vso[task.setvariable variable=versionTag]$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)-beta"
+      fi
+
+      commitMessage='TomTom IndiGO SDK Release $(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+      echo "##vso[task.setvariable variable=commitMessage]$commitMessage"
+
   - script: |
       ruby $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/indigo_platform_publishing_app.rb \
         --download_base_path=$(System.DefaultWorkingDirectory)/downloads \

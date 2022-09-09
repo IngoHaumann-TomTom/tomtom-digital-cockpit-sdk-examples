@@ -22,14 +22,6 @@ parameters:
     displayName: 'Version examples (ivi-example-app)'
     type: string
     default: 'latest'
-  - name: releaseNotes
-    displayName: 'Release notes to be shown on the portal'
-    type: string
-    default: 'Development release.'
-  - name: shouldPublishDocumentation
-    displayName: 'Publish documentation. WARNING: To be used by Archipelago only!'
-    type: boolean
-    default: false
   - name: shouldPublishLineageOsImage
     displayName: 'Publish the LineageOS system image to Nexus'
     type: boolean
@@ -65,10 +57,6 @@ variables:
       ) ]
   - name: versionExamples
     value: ${{ parameters.versionExamples }}
-  - name: releaseNotes
-    value: ${{ parameters.releaseNotes }}
-  - name: publishDocumentation
-    value: ${{ parameters.shouldPublishDocumentation }}
   - name: publishLibraries
     ${{ if eq(parameters['shouldPublishLibraries'], true) }}:
       value: '--publish_libs'
@@ -92,11 +80,6 @@ variables:
       value: $(blackduck-prod-pat)
     ${{ else }}:
       value: $(blackduck-preprod-pat)
-  - name: latestReleasedPlatformVersion
-    ${{ if eq(parameters['shouldPublishDocumentation'], true) }}:
-      value: '$(RELEASED_PLATFORM_VERSION)'
-    ${{ else }}:
-      value: '$(RELEASED_BETA_PLATFORM_VERSION)'
 
 resources:
   containers:
@@ -225,7 +208,7 @@ stages:
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
-      eq(variables.publishDocumentation, true)
+      eq(dependencies.Versions.outputs['GetVersions.CheckForReleaseNotes.publishDocumentation'], true)
       )
     jobs:
       - job: ReleasesData
@@ -243,13 +226,7 @@ stages:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
-      ${{ if eq(variables.publishDocumentation, true) }}:
-        externalRepoBranch: 'main'
-        versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
-      ${{ else }}:
-        externalRepoBranch: 'beta'
-        versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)-beta'
-      commitMessage: 'TomTom IndiGO SDK Release $(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+      PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
     condition: and(
       not(failed()),
       eq(variables.isMainlineBuild, true),
@@ -308,7 +285,7 @@ stages:
               condition: and(
                 succeeded(),
                 eq(variables.isMainlineBuild, true),
-                eq(variables.publishDocumentation, true)
+                eq(variables.PUBLISH_DOCUMENTATION, true)
                 )
           - template: azure/updatevariablegroup.yml@devops-templates
             parameters:
@@ -326,6 +303,7 @@ stages:
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
     condition: or(
       eq(dependencies.Documentation.result, 'Failed'),
       eq(dependencies.Publication.result, 'Failed')
@@ -335,7 +313,7 @@ stages:
         displayName: 'Delete release entry'
         timeoutInMinutes: 10
         container: docker_indigo_delivery
-        condition: eq(variables.publishDocumentation, true)
+        condition: eq(variables.PUBLISH_DOCUMENTATION, true)
         steps:
           - template: .azure-templates/releases-data.yml
             parameters:
