@@ -9,11 +9,11 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.processpanel.mainprocesspanel.callmainprocesspanel
+package com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel
 
 import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.template.compactprocesspanel.MainCompactProcessFragment
 
 @OptIn(IviExperimental::class)
-internal class CallMainProcessFragment : MainCompactProcessFragment
-<CallMainProcessPanel, CallMainProcessViewModel>(CallMainProcessViewModel::class)
+internal class ExampleCallMainProcessFragment : MainCompactProcessFragment
+<ExampleCallMainProcessPanel, ExampleCallMainProcessViewModel>(ExampleCallMainProcessViewModel::class)

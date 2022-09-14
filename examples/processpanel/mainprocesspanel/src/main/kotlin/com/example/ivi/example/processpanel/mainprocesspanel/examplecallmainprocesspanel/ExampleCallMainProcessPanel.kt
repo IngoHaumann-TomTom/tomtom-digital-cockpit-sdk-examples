@@ -9,19 +9,19 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.processpanel.mainprocesspanel.callmainprocesspanel
+package com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel
 
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.MainProcessPanel
 
-internal class CallMainProcessPanel(
+internal class ExampleCallMainProcessPanel(
     frontendContext: FrontendContext,
     val dismiss: () -> Unit
 ) : MainProcessPanel(frontendContext, Priority.HIGH) {
 
     override fun createInitialFragmentInitializer() =
-        IviFragment.Initializer(CallMainProcessFragment(), this)
+        IviFragment.Initializer(ExampleCallMainProcessFragment(), this)
 }
 
 

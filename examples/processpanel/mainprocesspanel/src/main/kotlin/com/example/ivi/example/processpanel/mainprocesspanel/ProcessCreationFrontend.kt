@@ -11,21 +11,21 @@
 
 package com.example.ivi.example.processpanel.mainprocesspanel
 
-import com.example.ivi.example.processpanel.mainprocesspanel.callmainprocesspanel.CallMainProcessPanel
+import com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel.ExampleCallMainProcessPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 
 class ProcessCreationFrontend(frontendContext: FrontendContext) : Frontend(frontendContext) {
 
-    private var callMainProcessPanel by createPanelDelegate<CallMainProcessPanel>()
+    private var exampleCallMainProcessPanel by createPanelDelegate<ExampleCallMainProcessPanel>()
 
     override fun openTaskPanels() {
         addPanel(ProcessCreationPanel(frontendContext,
             addMainProcessPanel = {
                 removePanels<ProcessCreationPanel>()
-                callMainProcessPanel = CallMainProcessPanel(frontendContext) {
+                exampleCallMainProcessPanel = ExampleCallMainProcessPanel(frontendContext) {
                     // dismiss process panel
-                    callMainProcessPanel = null
+                    exampleCallMainProcessPanel = null
                 }
             }
         ))

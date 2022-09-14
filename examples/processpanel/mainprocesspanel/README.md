@@ -2,7 +2,12 @@
 
 ## Introduction
 
-This example app demonstrates how to create and show a main process panel. 
+This example app demonstrates how to create and show a main process panel.
+For a detailed explanation, see the
+- [Main Process Panels](/tomtom-indigo/documentation/design/system-ui/main-process-panels).
+- [Create a Main Process Panel](/tomtom-indigo/documentation/tutorials-and-examples/main-process-panel/create-a-main-process-panel)
+pages on the
+[TomTom IndiGO Developer Portal](/tomtom-indigo/documentation/introduction).
 
 ## Copyright
 

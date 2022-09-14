@@ -9,10 +9,9 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.processpanel.mainprocesspanel.callmainprocesspanel
+package com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import com.example.ivi.example.processpanel.mainprocesspanel.R
 import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
@@ -31,9 +30,8 @@ import com.tomtom.tools.android.api.uicontrols.imageview.ImageDescriptor
 import com.tomtom.tools.android.api.uicontrols.imageview.ImageType
 
 @OptIn(IviExperimental::class)
-internal class CallMainProcessViewModelFactory(
-    private val title: StringResolver = ResourceStringResolver(R.string.ttivi_processcreation_mainprocesspanel_title),
-    private var isMuted: MutableLiveData<Boolean> = MutableLiveData(true),
+internal class ExampleCallMainProcessViewModelFactory(
+    private val title: StringResolver,
     doEndCall: () -> Unit,
     doDismissCall: () -> Unit,
 ) {
@@ -54,19 +52,14 @@ internal class CallMainProcessViewModelFactory(
 
     private val toggleMuteControl = CompactProcessControlViewModel(
         buttonViewModel = TtButtonViewModel(
-            isActivated = isMuted,
+            isActivated = ImmutableLiveData(true),
             actionType = ImmutableLiveData(TtButton.ActionType.TERTIARY),
             isEnabled = ImmutableLiveData(true),
             onClick = {
-                isMuted.value = !(isMuted.value ?: false)
+                // Add your implementation to toggle mute control.
             },
-            image = isMuted.map {
-                ResourceDrawableResolver(
-                    when (it) {
-                        true -> R.drawable.ttivi_processcreation_icon_microphonemuted
-                        false -> R.drawable.ttivi_processcreation_icon_microphone
-                    }
-                )
+            image = ImmutableLiveData(true).map {
+                ResourceDrawableResolver(R.drawable.ttivi_processcreation_icon_microphonemuted)
             },
             isVisible = ImmutableLiveData(true)
         )

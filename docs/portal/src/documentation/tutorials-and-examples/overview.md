@@ -53,8 +53,14 @@ This guide explains how to create a new tab for the debug menu, and how to custo
 tabs.
 
 ## Notifications
+
 - [Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel) -
   This guide explains how to create and show a notification panel.
+
+## Main Process Panel
+
+- [Create a main process panel](/tomtom-indigo/documentation/tutorials-and-examples/main-process-panel/create-a-main-process-panel) -
+  This guide explains how to create and show a main process panel.
 
 ## Media
 

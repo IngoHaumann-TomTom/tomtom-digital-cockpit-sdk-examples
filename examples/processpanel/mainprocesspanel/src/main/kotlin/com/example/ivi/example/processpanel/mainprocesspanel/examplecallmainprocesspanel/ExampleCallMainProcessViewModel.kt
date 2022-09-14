@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.example.processpanel.mainprocesspanel.callmainprocesspanel
+package com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel
 
 import androidx.lifecycle.viewModelScope
 import com.example.ivi.example.processpanel.mainprocesspanel.R
@@ -19,10 +19,10 @@ import com.tomtom.tools.android.api.resourceresolution.string.ResourceStringReso
 import kotlinx.coroutines.launch
 
 @OptIn(IviExperimental::class)
-internal class CallMainProcessViewModel(panel: CallMainProcessPanel) :
-    MainCompactProcessViewModel<CallMainProcessPanel>(panel) {
+internal class ExampleCallMainProcessViewModel(panel: ExampleCallMainProcessPanel) :
+    MainCompactProcessViewModel<ExampleCallMainProcessPanel>(panel) {
     private val factory =
-        CallMainProcessViewModelFactory(
+        ExampleCallMainProcessViewModelFactory(
             title = ResourceStringResolver(R.string.ttivi_processcreation_mainprocesspanel_title),
             doDismissCall = ::closePanel,
             doEndCall = ::closePanel
