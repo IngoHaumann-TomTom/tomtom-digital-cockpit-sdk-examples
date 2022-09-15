@@ -45,7 +45,7 @@ REGEX_CODE = "```(.*?)```"
 # Error placeholder for HTTP Requests.
 HTTP_ERROR = 1000
 
-def is_url_available(url, backoff_seconds = 5):
+def is_url_available(url, backoff_seconds = 10):
     '''
     Sends a HTTP request to URL and returns the HTTP response code.
     If HTTP request fails, HTTP_ERROR is returned.
@@ -63,9 +63,16 @@ def is_url_available(url, backoff_seconds = 5):
         The HTTP response code.
     '''
     try:
-        status = requests.head(url).status_code
+        response = requests.head(url)
+        status = response.status_code
         if status == 429:  # retry-after
-            time.sleep(backoff_seconds)
+            if "Retry-After" in response.headers:
+                sleep_seconds = int(response.headers["Retry-After"])
+                sleep_seconds = max(sleep_seconds, 10)
+                sleep_seconds = min(sleep_seconds, 60)
+                time.sleep(sleep_seconds)
+            else:
+                time.sleep(backoff_seconds)
             return is_url_available(url, min(2 * backoff_seconds, 60))
     except:
         status = HTTP_ERROR
