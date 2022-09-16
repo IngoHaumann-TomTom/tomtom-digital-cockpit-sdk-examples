@@ -36,6 +36,9 @@ REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
 # Regex pattern to retrieve API Reference URLs hosted on S3.
 REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 
+# Regex pattern to retrieve TomTom IndiGO Github URLs.
+REGEX_INDIGO_GITHUB_URL = "\w+://github.com/tomtom-international/tomtom-indigo-sdk-examples/.*?"
+
 # Regex pattern to retrieve restricted Nexus URLs.
 REGEX_TOMTOM_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
 
@@ -78,7 +81,7 @@ def is_url_available(url, backoff_seconds = 10):
         status = HTTP_ERROR
     return status
 
-def check_external_url(content, errors, path, is_export):
+def check_external_url(content, warnings, errors, path, is_export):
     '''
     Checks the external URLs found in the Markdown file in 'path' by sending HTTP requests
     and checking the HTTP status code returned.
@@ -87,6 +90,8 @@ def check_external_url(content, errors, path, is_export):
     -----------
     content : str
         The file's content.
+    warnings : list
+        A list containing warning messages for logging purposes. Any new warning(s) will be appended to this list.
     errors : list
         A list containing error messages for logging purposes. Any new error(s) will be appended to this list.
     path : str
@@ -108,7 +113,10 @@ def check_external_url(content, errors, path, is_export):
 
         # Check for client and server error responses.
         if status >= 400 or status == 204:
-            errors.append(f"{external_url} in {path} (status={status})")
+            if re.fullmatch(REGEX_INDIGO_GITHUB_URL, external_url, re.IGNORECASE) != None:
+                warnings.append(f"{external_url} in {path} (status={status})")
+            else:
+                errors.append(f"{external_url} in {path} (status={status})")
 
 def check_internal_url(content, warnings, path):
     '''
@@ -182,11 +190,11 @@ def validate_urls(target_dir, is_export):
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, re.DOTALL, re.IGNORECASE)
             
-            check_external_url(content, errors, path, is_export)
+            check_external_url(content, warnings, errors, path, is_export)
             check_internal_url(content, warnings, path)
 
     if len(warnings):
-        print("Encountered {} broken internal URL(s):\n{}".format(len(warnings), '\n'.join(warnings)))
+        print("Warning: Encountered {} broken internal URL(s):\n{}".format(len(warnings), '\n'.join(warnings)))
 
     if len(errors):
         raise ConnectionError("Encountered {} broken external URL(s):\n{}".format(len(errors), '\n'.join(errors)))
