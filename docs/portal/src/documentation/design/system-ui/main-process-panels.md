@@ -13,7 +13,7 @@ different use cases.
 
 ### Main process panel selection
 
-Each app must inform the system to visualize the audio process in the main process panel. 
+Each app must tell the system to visualize its process in the main process panel. 
 The main process panel's metadata is used by the system UI to determine the priority in which the  
 various main process panels are shown. For example, an ongoing phone call has a higher priority than 
 streaming media. When both frontends provide a main process panel at the same time, the main process 
@@ -57,7 +57,7 @@ Different formfactors / layouts may be supported later on.
 | Theme | The color, size, background, and animation of the main process panel can be modified using the system theme. The main process panel template also follows the theme. |
 | Position | The position and size of the main process panel can be changed in the system UI. (__Note:__ The main process panel can be removed but this is not recommended as every app has a contract with the main process panel, and frontends may rely on their ongoing processes being accessible. Alternatively, it is possible to 'conditionally hide’ a main process panel.) |
 | Animation | The panel enter and exit animation can be changed in the system UI. |
-| Orientation | Currently only the default horizontal layout is supported in the main process panel template. However, support for a vertical layout is planned. |
+| Orientation | Horizontal and vertical layouts are supported in the main process panel template.
 | Layout | The layout template of the main process panel currently cannot be modified without breaking compatibility with the main process panel implementation for the entertainment app and communication app. |
 | Content | Main process panels created by various applications can be populated according to the main process panel template. However, existing applications may not offer customization of how they populate the process panel. Currently, the communication app offers no customization, while in the entertainment app the primary and secondary actions can be customized on a per source basis. |
 | Priority | It is not possible to customize the main process panel priority selection. |

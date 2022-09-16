@@ -46,7 +46,7 @@ good, albeit more laborious option.
    },
   {
      title: 'Configured',
-     body: 'Changed the orientation, content, visualization style, and theming.',
+     body: 'Changed the content, visualization style, and theming.',
      img: {
        src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui/main-menu/configured.png',
        alt: 'configured',

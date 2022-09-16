@@ -27,13 +27,13 @@ notifications.
 
 Notification sorting is determined by priority and chronology. Important notifications 
 with HIGH or CRITICAL priority are always shown, even when interacting with the system or while Do 
-Not Disturb is active. When notifications have the same priority, the oldest one is shown first 
+Not Disturb is active. When notifications have the same priority, the newest one is shown first 
 (until dismissed). However, when a higher priority notification comes in, it takes precedence.
 
 ### Notification suppression
 
-The notification suppression is a platform mechanism that, when enabled, supresses notifications 
-with low priority. The notification lock may be linked to a global toggle (for example “Do not 
+The notification suppression is a platform mechanism that, when enabled, suppresses notifications 
+with medium and low priority. The notification lock may be linked to a global toggle (for example “Do not 
 disturb”) or automated contextually. By default, the notification suppression is enabled when the 
 user has interacted with the screen in the last 5 seconds.
 
@@ -66,7 +66,7 @@ notifications created by stock experiences (media, communication app) cannot cur
 | ------------- | ------------- |
 | Backdrop | The position, style and animation of the notification backdrop can be changed in the system UI. |
 | Position | The position of the notification stack can be changed in the system UI. |
-| Animation | The animations of the backdrop and invidual notifications are customizable. The animation used for Notifications panels can depend on the transition source or destination. For example, notification panels can dismiss towards the bottom when transitioning to a process bar panel. |
+| Animation | The animations of the backdrop and invidual notifications are customizable. The animation used for Notifications panels can depend on the transition source or destination. For example, notification panels can dismiss towards the bottom when transitioning to a process panel. |
 | Theming | The styling of the notification content, container, and backdrop can be modified by changing the system theme. |
 | Notification layout | The stock notification layout currently cannot be replaced, though support for creating alternative layouts for the notification data template is planned. It is also possible to create a notification panel with a completely custom UI. |
 | Notification content | Notifications can be populated by applications/plugins in any way. However, the notifications created by existing applications (e.g. the communication app) can currently not be modified. |

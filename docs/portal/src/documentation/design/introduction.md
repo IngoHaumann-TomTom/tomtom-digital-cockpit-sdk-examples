@@ -38,7 +38,7 @@ build new applications in a consistent and unified way.
 <ImageArticleGrid articles={
  [
   {
-     title: 'UI Controls & Customisation (expected Q4 2022)',
+     title: 'UI Controls & Customization (expected Q4 2022)',
      body: 'This section provides an overview of the UI Controls delivered with TomTom IndiGO. It includes hero shots, component description and usage, links to API references, and configuration and customization options.',
      img: {
        src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/introduction/ui-controls.png',

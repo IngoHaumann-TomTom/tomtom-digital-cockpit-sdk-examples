@@ -13,40 +13,21 @@ dismiss the whole task panel stack, rather than just a single one.
 
 ## Anatomy
 
-TomTom IndiGO currently includes two types of task panels:
+Task panels can display an application UI with all the available screen space, except for the main menu and control center.
+The task panel just provides a container with a default background and animation. Both can be replaced when creating a custom system UI. The panel is not concerned with the content of the panel.
 
-<ImageArticleGrid articles={
- [
-   {
-     title: 'Maximized panel',
-     body: 'Full panels can display an application UI with all available screen space, with the exception of the main menu and control center. The task panel just provides a container with a default background and animation. Both can be replaced when creating a custom system UI. The panel is not concerned with the content of the panel.',
-     img: {
-       src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui/task-panels/max-panel.png',
-       alt: 'maximized panel',
-     }
-   },
-  {
-     title: 'Half panel (deprecated)',
-     body: 'Half panels were used to position an application UI next to the navigation / home UI of the base layer of the system UI. This may be used to accomodate performing simple on screen tasks without losing the visibility of the map. However, this pattern is being deprecated on a platform level in favor of having the simpler full panel used in all situations. If something else than full panels is required for an application UI, a custom implementation will be required.',
-     img: {
-       src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui//task-panels/half-panel.png',
-       alt: 'half panel',
-     }
-   },
- ]}
-/>
+![panel](images/task-panels/max-panel.png)
 
 ## Task process panel inside a task panel
 
 A task process panel allows a frontend to visualize an ongoing process in all of its task panels.
 Unlike the main process panel, a task process panel is part of the task panel and as such does not 
-overlap the task panel itself. The task process bar panel will persist for the whole task panel
+overlap the task panel itself. The task process panel will persist for the whole task panel
 stack. 
 
 The compact process panel UI template can also be used 
-[outside the process panel](#task-panel-alongside-the-task-process-panel-layout). For instance, the 
-TomTom IndiGO media application uses it to have UI consistency between the Mini Player main process
-panel and Now Playing task process panel. 
+[outside the process panel](#task-panel-alongside-the-task-process-panel-layout).
+For example, the TomTom IndiGO media application uses it to have UI consistency between the Mini Player main process panel and Now Playing task process panel. 
 
 ![process panel](images/task-panels/process-panel.png)
 

@@ -4,6 +4,8 @@
 /local.properties
 docs/portal/html/
 IviTest
+.obsidian/
+
 # IntelliJ
 *.iml
 .idea/workspace.xml
