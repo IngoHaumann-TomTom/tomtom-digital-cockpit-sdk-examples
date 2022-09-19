@@ -60,6 +60,11 @@ Currently, the __initial__ flashing procedure requires the availability of:
 __Note:__ If the tablet has already been flashed with the LineageOS image, it can be upgraded by
 following the instructions in [Upgrade Tablet](#upgrade-tablet).
 
+<Blockquote type="warning" hasIcon>
+    TomTom takes no responsibility for any damage that may occur from installing or using the 
+    following freely available third-party tools and files.
+</Blockquote>
+
 The instructions are based on the official
 [LineageOS installation instructions](https://wiki.lineageos.org/devices/gts4lvwifi/install):
 
