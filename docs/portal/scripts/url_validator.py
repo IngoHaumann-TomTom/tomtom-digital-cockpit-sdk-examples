@@ -73,8 +73,10 @@ def is_url_available(url, backoff_seconds = 10):
                 sleep_seconds = int(response.headers["Retry-After"])
                 sleep_seconds = max(sleep_seconds, 10)
                 sleep_seconds = min(sleep_seconds, 60)
+                print(f"Status {status}: Sleep {sleep_seconds} before retrying {url}")
                 time.sleep(sleep_seconds)
             else:
+                print(f"Status {status}: Sleep {backoff_seconds} before retrying {url}")
                 time.sleep(backoff_seconds)
             return is_url_available(url, min(2 * backoff_seconds, 60))
     except:
