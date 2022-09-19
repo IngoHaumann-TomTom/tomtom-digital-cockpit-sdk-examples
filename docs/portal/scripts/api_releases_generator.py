@@ -34,11 +34,17 @@ INDIGO_GRADLEPLUGINS_JSON = INDIGO_JSON
 INDIGO_COMMS_JSON = "iviCommunicationsSdk"
 ANDROID_TOOLS_JSON = "tomtomAndroidTools"
 
+# Example App Sources version first introduced on GitHub
+GITHUB_INTRODUCTION_VERSION = 1864
+
 # Internal Artifactory URL to releases.json file.
 RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
 
 # Base URL for Nexus releases.
 RELEASES_NEXUS_BASE_URL = "https://repo.tomtom.com/repository/ivi/com/tomtom/indigo/tomtom-indigo-sdk"
+
+# Base URL for GitHub releases.
+RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indigo-sdk-examples/releases/tag"
 
 # Placeholder to be replaced by a list of paired API References.
 API_PLACEHOLDER = "TTIVI_API_ANCHOR"
@@ -142,7 +148,16 @@ def get_release_link(release_version):
     str
         An HTML link to an SDK release on Nexus.
     '''
-    # TODO(IVI-7216) Exclusively link to GitHub Example App repository
+    # TODO(IVI-4825) Remove Example App Sources Nexus link
+
+    # Retrieve Example App Sources version number.
+    example_app_sources_version = int(release_version[-4:])
+
+    if example_app_sources_version >= GITHUB_INTRODUCTION_VERSION:
+        return f"\n<a href=\"{RELEASES_GITHUB_BASE_URL}/{release_version}\">"\
+            f"GitHub - TomTom IndiGO SDK - version {release_version}</a>\n"\
+            f"<a href=\"{RELEASES_NEXUS_BASE_URL}/{release_version}/tomtom-indigo-sdk-{release_version}.tar.gz\">"\
+            f"Nexus - TomTom IndiGO SDK - version {release_version}</a>\n"
     return f"\n<a href=\"{RELEASES_NEXUS_BASE_URL}/{release_version}/tomtom-indigo-sdk-{release_version}.tar.gz\">"\
         f"TomTom IndiGO SDK - version {release_version}</a>"
 
@@ -223,11 +238,11 @@ def construct_release(releases_dict, release_version, is_open):
     date = releases_dict[release_version]['date']
     tickets = releases_dict[release_version]['tickets']
 
-    # TODO(IVI-7216) Exclusively link to GitHub Example App repository
+    # TODO(IVI-4825) Remove Example App Sources Nexus link
     accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
         f"{get_release_link(release_version)}"\
         f"<b>Release notes</b>\n"\
-        f"{get_release_notes(tickets)}\n"\
+        f"{get_release_notes(tickets)}"\
         "</Accordion>\n"
     return accordion
 
