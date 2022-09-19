@@ -33,7 +33,7 @@ steps:
   - bash: |
       set -eu
 
-      if [ "$(PUBLISH_DOCUMENTATION)" = "true" ]
+      if [ "$(PUBLISH_DOCUMENTATION)" = "True" ]
       then
         echo "##vso[task.setvariable variable=externalRepoBranch]main"
         echo "##vso[task.setvariable variable=versionTag]$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)"
