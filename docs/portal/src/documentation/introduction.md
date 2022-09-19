@@ -146,16 +146,6 @@ guide, and "Register for early access".
   articles={
     [
       {
-        title: "Localization",
-        body: `The Android resource framework provides localization support. On top of the standard 
-        Android resource framework, TomTom IndiGO provides additional tooling and additional 
-        metadata to facilitate localization.`,
-        button: {
-          label: "Read more",
-          href: "/tomtom-indigo/documentation/development/platform-features/localization"
-        }
-      },
-      {
         title: "Integrating Amazon Alexa",
         body: `TomTom IndiGO can support the use of multiple voice personal assistants (VPAs) in a 
         single product. The end-user can invoke each one with a separate wake-up-word and then use 
@@ -164,6 +154,17 @@ guide, and "Register for early access".
         button: {
           label: "Read more",
           href: "/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa"
+        }
+      },
+      {
+        title: "TomTom IndiGO Example App Sources on GitHub",
+        body: `The Example App Sources of the TomTom IndiGO SDK releases are now published
+        to a publicly accessible GitHub repository. Changelogs can be found in the commits.
+        Official releases can be found on the &apos;main&apos; branch, development releases
+        on the &apos;beta&apos; branch.`,
+        button: {
+          label: "Visit GitHub repository",
+          href: "https://github.com/tomtom-international/tomtom-indigo-sdk-examples"
         }
       },
     ]
