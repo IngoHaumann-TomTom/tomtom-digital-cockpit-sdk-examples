@@ -13,6 +13,7 @@ import re
 import os
 import tarfile
 import shutil
+import time
 from pathlib import Path
 import requests
 
@@ -76,10 +77,9 @@ def download_api_ref(artifactory_url, target_dir):
     os.makedirs(target_dir)
 
     # Download and extract API Reference from Artifactory.
-    try:
-        response = requests.get(artifactory_url)
-    except:
-        raise ConnectionError(f"API Reference cannot be retrieved from {artifactory_url}.")
+    response = requests.get(artifactory_url)
+    if not response.ok:
+        raise ConnectionError(f"API Reference cannot be retrieved from {url} (status {status}.")
     with open(download_target, "wb") as file:
         file.write(response.content)
     with tarfile.open(download_target, 'r') as archive:
