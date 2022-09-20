@@ -14,7 +14,7 @@ package com.example.ivi.example.telephony.customcontacts
 import com.tomtom.ivi.platform.contacts.api.common.model.Contact
 import com.tomtom.ivi.platform.contacts.api.common.model.ContactId
 import com.tomtom.ivi.platform.contacts.api.common.util.comparePhoneNumbers
-import com.tomtom.ivi.platform.contacts.api.common.util.toContactItem
+import com.tomtom.ivi.platform.contacts.api.common.util.toContactItems
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement.ContactGroup
 import com.tomtom.ivi.platform.contacts.api.service.contacts.ContactsDataSourceElement.ContactItem
@@ -66,14 +66,12 @@ internal class MutableCustomContactsDataSource :
         return MutableContactsPagingSource(
             when (query.selection) {
                 is All -> {
-                    contacts.values.map {
-                        ContactItem(it)
-                    }
+                    contacts.values.toList().toContactItems(query.flags)
                 }
                 is Favorites -> {
                     contacts.values.filter {
                         it.favorite
-                    }.toContactItem()
+                    }.toContactItems(query.flags)
                 }
                 is Groups -> {
                     contacts.values.groupBy {
@@ -86,7 +84,7 @@ internal class MutableCustomContactsDataSource :
                             .any { displayName ->
                                 contact.displayName.startsWith(displayName, true)
                             }
-                    }.toContactItem()
+                    }.toContactItems(query.flags)
                 }
                 is FindContactsByPhoneNumber -> {
                     contacts.values.filter {
@@ -96,25 +94,48 @@ internal class MutableCustomContactsDataSource :
                                 phoneNumber.number
                             )
                         }
-                    }.toContactItem()
+                    }.toContactItems(query.flags)
                 }
                 is FindContactsBySource -> {
                     contacts.values.filter {
                         (query.selection as FindContactsBySource).source == it.source
-                    }.toContactItem()
+                    }.toContactItems(query.flags)
                 }
                 is FindContactByContactId -> {
                     contacts.values.filter {
                         (query.selection as FindContactByContactId).contactId == it.contactId
-                    }.toContactItem()
+                    }.toContactItems(query.flags)
                 }
                 is FindContactsBySearchKey -> {
                     findMatchingContacts(
                         (query.selection as FindContactsBySearchKey).searchKey
-                    )
+                    ).toContactItems(query.flags)
                 }
+            }.map { contactElement ->
+                query.map?.invoke(contactElement) ?: contactElement
             }.let { contactElements ->
                 orderContactElements(query.orderBy, contactElements)
+            }
+        )
+    }
+
+    private fun findMatchingContacts(key: String): List<Contact> {
+        return (
+            contacts.values.filter {
+                var contactFound = false
+                if (it.givenName.isNotBlank()) {
+                    contactFound = it.givenName.startsWith(key, true)
+                }
+                if (it.familyName.isNotBlank() && !contactFound) {
+                    contactFound = it.familyName.startsWith(key, true)
+                }
+                if (it.companyName.isNotBlank() && !contactFound) {
+                    contactFound = it.companyName.startsWith(key, true)
+                }
+                if (it.displayName.isNotBlank() && !contactFound) {
+                    contactFound = it.displayName.startsWith(key, true)
+                }
+                contactFound
             }
         )
     }
@@ -127,6 +148,14 @@ internal class MutableCustomContactsDataSource :
             contactElements.sortedBy {
                 it.contact.companyName.ifEmpty { it.contact.displayName }
             }
+        }
+        CONTACT_GROUP_ASC -> {
+            contactElements
+                .groupBy { it.contact.toFirstLetter() }
+                .toSortedMap()
+                .flatMap {
+                    it.value
+                }
         }
         FAMILY_NAME_ASC -> {
             contactElements.sortedBy {
@@ -142,14 +171,6 @@ internal class MutableCustomContactsDataSource :
             contactElements.sortedBy {
                 it.contact.primarySortKey.ifBlank { it.contact.displayName }
             }
-        }
-        CONTACT_GROUP_ASC -> {
-            contactElements
-                .groupBy { it.contact.displayName.first() }
-                .toSortedMap()
-                .flatMap {
-                    it.value
-                }
         }
     }
 
@@ -185,24 +206,6 @@ internal class MutableCustomContactsDataSource :
         }
         else -> contactElements
     }
-
-    private fun findMatchingContacts(key: String) =
-        contacts.values.filter {
-            var contactFound = false
-            if (it.givenName.isNotBlank()) {
-                contactFound = it.givenName.startsWith(key, true)
-            }
-            if (it.familyName.isNotBlank() && !contactFound) {
-                contactFound = it.familyName.startsWith(key, true)
-            }
-            if (it.companyName.isNotBlank() && !contactFound) {
-                contactFound = it.companyName.startsWith(key, true)
-            }
-            if (it.displayName.isNotBlank() && !contactFound) {
-                contactFound = it.displayName.startsWith(key, true)
-            }
-            contactFound
-        }.toContactItem()
 
     /**
      * Groups contact by first letter. Contact starting with no letter character are grouped in

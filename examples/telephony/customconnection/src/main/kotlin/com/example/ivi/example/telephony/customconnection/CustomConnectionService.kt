@@ -126,7 +126,7 @@ internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
         callState: CallState,
         disconnectCause: DisconnectCause?
     ) {
-        val uri = phoneNumber.toPhoneUri()
+        val uri = phoneNumber.toPhoneUri().uri
         allConnections.filter { it.address == uri }.forEach {
             when (callState) {
                 CallState.ANSWERING,
@@ -153,7 +153,7 @@ internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
     internal fun getConnectionState(
         phoneNumber: String
     ): CallState? {
-        val uri = phoneNumber.toPhoneUri()
+        val uri = phoneNumber.toPhoneUri().uri
         return allConnections.firstOrNull { it.address == uri }?.let {
             nativeCallStateToIviCallSate(it.state)
         }

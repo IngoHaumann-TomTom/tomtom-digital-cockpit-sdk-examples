@@ -23,6 +23,7 @@ import android.telecom.PhoneAccount
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
 import com.tomtom.ivi.platform.telecom.api.common.model.CallState
+import com.tomtom.ivi.platform.telecom.api.common.model.PhoneUri
 import com.tomtom.ivi.platform.telecom.api.common.utils.toPhoneUri
 import com.tomtom.kotlin.traceevents.TraceEventListener
 import com.tomtom.kotlin.traceevents.TraceLog
@@ -95,7 +96,7 @@ class CustomConnectionFacade(private val context: Context) {
         require(phoneNumber.isNotBlank())
         require(isCustomPhoneAccountRegisteredAsSelfManagedAccount())
         val extras = Bundle()
-        val uri = phoneNumber.toPhoneUri()
+        val uri = phoneNumber.toPhoneUri().uri
         extras.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_ADDRESS, uri)
         telecomManager.addNewIncomingCall(customPhoneAccount.accountHandle, extras)
         tracer.onCreatedIncomingCall(uri)
@@ -114,7 +115,7 @@ class CustomConnectionFacade(private val context: Context) {
         require(phoneNumber.isNotBlank())
         require(isCustomPhoneAccountRegisteredAsSelfManagedAccount())
         val extras = Bundle()
-        val uri = phoneNumber.toPhoneUri()
+        val uri = phoneNumber.toPhoneUri().uri
         extras.putParcelable(
             TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE,
             customPhoneAccount.accountHandle
@@ -127,7 +128,7 @@ class CustomConnectionFacade(private val context: Context) {
             return
         }
         telecomManager.placeCall(uri, extras)
-        tracer.onCreatedOutgoingCall(phoneNumber.toPhoneUri())
+        tracer.onCreatedOutgoingCall(phoneNumber.toPhoneUri().uri)
     }
 
     /**

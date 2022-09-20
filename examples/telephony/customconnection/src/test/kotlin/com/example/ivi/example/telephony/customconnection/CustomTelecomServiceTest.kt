@@ -78,13 +78,13 @@ internal class CustomConnectionServiceTest : IviTestCase() {
             ),
             CustomConnectionFacade.IVI_CUSTOM_PHONE_ACCOUNT_ID
         )
-        val request = ConnectionRequest(phoneAccountHandle, PHONE_NUMBER.toPhoneUri(), Bundle.EMPTY)
+        val request = ConnectionRequest(phoneAccountHandle, PHONE_NUMBER.toPhoneUri().uri, Bundle.EMPTY)
 
         // WHEN
         val connection = sut.onCreateIncomingConnection(phoneAccountHandle, request)
 
         // THEN
-        assertEquals(PHONE_NUMBER.toPhoneUri(), connection?.address)
+        assertEquals(PHONE_NUMBER.toPhoneUri().uri, connection?.address)
         assertEquals(STATE_RINGING, connection?.state)
     }
 
@@ -98,13 +98,13 @@ internal class CustomConnectionServiceTest : IviTestCase() {
             ),
             CustomConnectionFacade.IVI_CUSTOM_PHONE_ACCOUNT_ID
         )
-        val request = ConnectionRequest(phoneAccountHandle, PHONE_NUMBER.toPhoneUri(), Bundle.EMPTY)
+        val request = ConnectionRequest(phoneAccountHandle, PHONE_NUMBER.toPhoneUri().uri, Bundle.EMPTY)
 
         // WHEN
         val connection = sut.onCreateOutgoingConnection(phoneAccountHandle, request)
 
         // THEN
-        assertEquals(PHONE_NUMBER.toPhoneUri(), connection?.address)
+        assertEquals(PHONE_NUMBER.toPhoneUri().uri, connection?.address)
         assertEquals(STATE_DIALING, connection?.state)
     }
 
