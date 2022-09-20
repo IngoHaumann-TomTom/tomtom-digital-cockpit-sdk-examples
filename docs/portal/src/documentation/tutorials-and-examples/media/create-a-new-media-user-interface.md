@@ -58,7 +58,8 @@ display, and no functionality other than basic browsing and playing.
 ### Example panel
 
 An application that implements the concepts presented here is provided in the
-`examples/media/userflowpolicy` directory.
+[`examples/media/userflowpolicy`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/media/userflowpolicy)
+directory.
 
 The example's panel class, based on [`MediaTaskPanel`](TTIVI_INDIGO_API), enables browsing through the
 stations recognized by the radio and the raw frequencies offered by each radio band.

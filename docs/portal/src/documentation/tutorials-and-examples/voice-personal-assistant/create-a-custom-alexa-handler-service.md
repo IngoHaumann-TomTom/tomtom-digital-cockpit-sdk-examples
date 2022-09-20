@@ -69,10 +69,12 @@ interface that can be implemented by an OEM to fulfill one of these purposes:
 ## Example app
 
 The TomTom IndiGO SDK comes with an example app showing how to include Alexa in your product and add
-custom Alexa handler services, see directory `examples/alexa`. By default, this application is
-excluded from the build, because it requires Alexa libraries that are not publicly available.
+custom Alexa handler services. See the
+[`examples/alexa`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa)
+directory.
 
-To build the Alexa example app, you should edit the top-level
+By default, this application is excluded from the build, because it requires Alexa libraries that
+are not publicly available. To build the Alexa example app, you should edit the top-level
 [`gradle.properties`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/gradle.properties#L52)
 file:
 

@@ -13,7 +13,9 @@ you can create your own VPA Adaptation Service.
 ## Example VPA app
 
 The TomTom IndiGO SDK comes with an example app showing how to create a custom VPA Adaptation
-Service, see directory `examples/vpa`.
+Service. See the
+[`examples/vpa`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/vpa)
+directory.
 
 ## Create a custom VPA Adaptation Service
 

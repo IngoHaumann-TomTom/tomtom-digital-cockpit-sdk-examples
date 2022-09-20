@@ -281,8 +281,10 @@ example app on a different emulator or device, you need to make sure that it is 
 corresponding platform key.
 
 The TomTom Indigo platform debug key and password files, used for the pre-created tablet and
-emulator images, are in the `keystore` directory in the example source. Drop in your own platform
-keys, replacing the existing ones in that directory, then rebuild and deploy.
+emulator images, are in the
+[`keystore`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/keystore)
+directory in the example source. Drop in your own platform keys, replacing the existing ones in that
+directory, then rebuild and deploy.
 
 ---
 

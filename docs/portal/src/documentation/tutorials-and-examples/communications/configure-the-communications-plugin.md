@@ -8,7 +8,9 @@ configuration is based on the
 [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
 and can be changed if necessary. This guide explains how to make such changes.
 
-For a code example, see the `examples/communications/configuration` directory.
+For a code example, see the
+[`examples/communications/configuration`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/communications/configuration)
+directory.
 
 ## Communications plugin default configuration
 

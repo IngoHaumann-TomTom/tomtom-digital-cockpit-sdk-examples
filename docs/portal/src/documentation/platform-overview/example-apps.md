@@ -23,7 +23,9 @@ system, including navigation, a media center, phone calling, messaging and much 
 source code the _off-the-shelf functionality_ is often referred to as _stock functionality_.
 
 This walk-through of the IndiGO platform functionality is using the template application, which can be found
-in the `template/app` directory.
+in the
+[`template/app`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/template/app)
+directory.
 
 The default view, when starting the application, looks like this:
 

@@ -103,7 +103,9 @@ By default, IVI applications use the dynamic configuration provider
 [`JsonDynamicConfigurationProvider`](TTIVI_INDIGO_API) that reads configuration from JSON files
 from Android assets. A configuration resource is a JSON file (or files). It is named after the
 dynamic configuration group, thus all related configuration values are in the same file.
-Configuration files are located in the `configurations` directory in Android assets.
+Configuration files are located in the
+[`configurations`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/settingsservice/src/main/configurations)
+directory in Android assets.
 
 Dynamic configurations are created with the configuration generator.
 See the API reference documentation of

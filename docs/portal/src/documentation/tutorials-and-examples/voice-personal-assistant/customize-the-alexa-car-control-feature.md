@@ -29,9 +29,11 @@ tutorial.
 
 ## Example app
 
-The TomTom IndiGO SDK comes with an example Alexa app (see directory `examples/alexa`). The app
-includes an example `CustomCarControlHandlerService` (see directory
-`examples/alexa/customcarcontrolhandler`), showing:
+The TomTom IndiGO SDK comes with an example Alexa app. See directory
+[`examples/alexa`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa).
+The app includes an example
+[`CustomCarControlHandlerService`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler),
+showing:
 - How to define custom CarControl endpoints and assets.
 - How to handle user requests such as "Turn on the light", "Increase the light brightness" or
   "Switch on my custom device".
