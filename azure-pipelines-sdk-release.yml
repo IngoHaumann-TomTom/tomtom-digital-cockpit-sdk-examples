@@ -198,7 +198,6 @@ stages:
       - template: .azure-templates/verify-sdk-jobs.yml
 
   - stage: Documentation
-    displayName: 'Generate and publish API References and Developer Portal'
     dependsOn: [ Versions, Verification ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
@@ -217,11 +216,28 @@ stages:
         steps:
           - template: .azure-templates/releases-data.yml
       - template: .azure-templates/api-ref-jobs.yml
-      # - template: .azure-templates/portal_export.yml
-      # TODO(IVI-6383): Add DevPortal export to SDK Release Pipeline
+
+  - stage: DevPortal
+    dependsOn: [ Versions, Verification, Documentation ]
+    variables:
+      VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
+    displayName: 'Developer Portal'
+    jobs:
+      - job: DeveloperPortalExport
+        timeoutInMinutes: 10
+        displayName: Developer Portal
+        container: docker_indigo_delivery
+        steps:
+          - template: .azure-templates/portal_export.yml
+          - template: build/build-cleanup.yml@devops-templates
+    condition: and(
+      succeeded(),
+      eq(variables.isMainlineBuild, true),
+      eq(dependencies.Versions.outputs['GetVersions.CheckForReleaseNotes.publishDocumentation'], true)
+      )
 
   - stage: Publication
-    dependsOn: [ OSSCompliance, Documentation, Verification, Publishing, Versions ]
+    dependsOn: [ OSSCompliance, Documentation, DevPortal, Verification, Publishing, Versions ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]

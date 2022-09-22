@@ -7,21 +7,27 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-jobs:
-- job: DeveloperPortalExport
-  condition: and(eq(variables.isMainlineBuild, true), succeeded())
-  displayName: Developer Portal
-  timeoutInMinutes: 10
-  steps:
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+steps:
+  - checkout: ivi-example-app
+
+  - bash: |
+      set -eux
+      cd $(Build.SourcesDirectory)/ivi-example-app
+      git checkout tags/$(VERSION_EXAMPLES)
+    displayName: Checkout example-app $(VERSION_EXAMPLES)
+    condition: succeeded()
+
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-
         portal_export
-      projectOptions:
-        -PiviVersion=$(product_version)
-      displayName: 'Export Developer Portal'
-      condition: succeeded()
-  - publish: $(System.DefaultWorkingDirectory)/docs/portal/build/export
+    displayName: Generate Developer Portal export
+    condition: succeeded()
+
+  - publish: $(Build.SourcesDirectory)/ivi-example-app/docs/portal/build/export
     artifact: developer-portal-export
     displayName: 'Publish Developer Portal export as artifact'
     condition: succeeded()
