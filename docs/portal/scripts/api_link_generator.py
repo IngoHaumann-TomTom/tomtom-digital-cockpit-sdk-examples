@@ -55,7 +55,7 @@ def is_valid_placeholder(match):
     -----------
     bool
         True if valid placeholder syntax.
-    
+
     '''
     return match == INDIGO_PLACEHOLDER or \
         match == INDIGO_GRADLEPLUGINS_PLACEHOLDER or \
@@ -260,7 +260,7 @@ def generate_api_links(target_dir, versions):
     print(f"    IndiGO Gradle Plugins version {indigo_gradleplugins_version}")
     print(f"    IndiGO Comms SDK version {indigo_comms_version}")
     print(f"    TomTom Android Tools version {android_tools_version}")
-    
+
     # The base URLs of the hosted API References on the S3 bucket.
     indigo_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-api/{indigo_version}"
     indigo_gradleplugins_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-gradleplugins-api/{indigo_gradleplugins_version}"

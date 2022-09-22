@@ -9,11 +9,11 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-# This script validates internal URLs (checked against pages on the live Portal) and external URLs 
-# that are included in our Developer Portal Markdown content. 
-# 
-# External URLs that return a invalid HTTP response status will raise an Exception and will fail 
-# the script. Internal URLs that are invalid only produce warnings in the standard output. This 
+# This script validates internal URLs (checked against pages on the live Portal) and external URLs
+# that are included in our Developer Portal Markdown content.
+#
+# External URLs that return a invalid HTTP response status will raise an Exception and will fail
+# the script. Internal URLs that are invalid only produce warnings in the standard output. This
 # allows us to add links to pages that are yet to be published.
 
 import os
@@ -101,24 +101,25 @@ def check_external_url(content, warnings, errors, path, is_export):
     is_export : boolean
         Indicates whether the script is run with the optional argument "export".
     '''
-    for external_url in re.findall(REGEX_EXTERNAL_URL, content, re.IGNORECASE):
+    for line_number, line in enumerate(content.splitlines(), 1):
+        for external_url in re.findall(REGEX_EXTERNAL_URL, line, re.IGNORECASE):
 
-        # Skip validation of S3 URLs when script is not run as export.
-        if not is_export and re.fullmatch(REGEX_S3_URL, external_url, re.IGNORECASE) != None:
-            continue
+            # Skip validation of S3 URLs when script is not run as export.
+            if not is_export and re.fullmatch(REGEX_S3_URL, external_url, re.IGNORECASE) != None:
+                continue
 
-        # Skip validation of TomTom Nexus URLs as access is restricted.
-        if re.fullmatch(REGEX_TOMTOM_NEXUS_URL, external_url, re.IGNORECASE) != None:
-            continue
+            # Skip validation of TomTom Nexus URLs as access is restricted.
+            if re.fullmatch(REGEX_TOMTOM_NEXUS_URL, external_url, re.IGNORECASE) != None:
+                continue
 
-        status = is_url_available(external_url)
+            status = is_url_available(external_url)
 
-        # Check for client and server error responses.
-        if status >= 400 or status == 204:
-            if re.fullmatch(REGEX_INDIGO_GITHUB_URL, external_url, re.IGNORECASE) != None:
-                warnings.append(f"{external_url} in {path} (status={status})")
-            else:
-                errors.append(f"{external_url} in {path} (status={status})")
+            # Check for client and server error responses.
+            if status >= 400 or status == 204:
+                if re.fullmatch(REGEX_INDIGO_GITHUB_URL, external_url, re.IGNORECASE) != None:
+                    warnings.append(f"{external_url} in {path}:{line_number} (status {status})")
+                else:
+                    errors.append(f"{external_url} in {path}:{line_number} (status {status})")
 
 def check_internal_url(content, warnings, path):
     '''
@@ -135,13 +136,14 @@ def check_internal_url(content, warnings, path):
         The path of the file being checked. For logging purposes.
     '''
 
-    for match in re.findall(REGEX_INTERNAL_URL, content, re.IGNORECASE):
-        internal_url = os.path.join(PORTAL_BASE_URL, match[1:])
-        status = is_url_available(internal_url)
+    for line_number, line in enumerate(content.splitlines(), 1):
+        for match in re.findall(REGEX_INTERNAL_URL, line, re.IGNORECASE):
+            internal_url = os.path.join(PORTAL_BASE_URL, match[1:])
+            status = is_url_available(internal_url)
 
-        # Check for client and server error responses.
-        if status > 200:
-            warnings.append(f"{internal_url} in {path} (status={status})")
+            # Check for client and server error responses.
+            if status > 200:
+                warnings.append(f"{internal_url} in {path}:{line_number} (status {status})")
 
 def validate_internal_url_syntax(target_dir):
     '''
@@ -153,7 +155,7 @@ def validate_internal_url_syntax(target_dir):
     target_dir : str
         The files within this directory will be checked for URL syntax.
 
-    '''   
+    '''
     errors = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
@@ -161,10 +163,11 @@ def validate_internal_url_syntax(target_dir):
 
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, re.DOTALL, re.IGNORECASE)
-            
-            for match in re.findall(REGEX_INTERNAL_URL_NO_SLASH, content, re.IGNORECASE):
-                errors.append(f"{match} in file {path}")
-            
+
+            for line_number, line in enumerate(content.splitlines(), 1):
+                for match in re.findall(REGEX_INTERNAL_URL_NO_SLASH, line, re.IGNORECASE):
+                    errors.append(f"{match} in file {path}:{line_number}")
+
     if len(errors):
         raise SyntaxError("Encountered {} syntax error(s) in internal URLs:\n{}".format(len(errors), '\n'.join(errors)))
 
@@ -191,7 +194,7 @@ def validate_urls(target_dir, is_export):
 
             # Exclude code blocks from checked URLs.
             content = re.sub(REGEX_CODE, "", content, re.DOTALL, re.IGNORECASE)
-            
+
             check_external_url(content, warnings, errors, path, is_export)
             check_internal_url(content, warnings, path)
 
