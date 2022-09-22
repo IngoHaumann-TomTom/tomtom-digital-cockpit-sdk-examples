@@ -53,7 +53,7 @@ __Note:__ On some operating systems, a hash character `#` in the username or pas
 escaped as `\#` to be properly recognized.
 
 If your credentials are properly stored, then the environment variable `GRADLE_USER_HOME` may point
-to a folder other than `~/.gradle/`. Check this environment variable and move your
+to a directory other than `~/.gradle/`. Check this environment variable and move your
 `gradle.properties` file to the correct location. You can check where it points to during the build
 when compiling with `--debug` and look in the logs for `Gradle user home:`
 
@@ -195,7 +195,7 @@ __Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
 
 __Windows:__ `%UserProfile%\.android\avd\IndiGO_Test_Device_API_30.avd\config.ini`
 
-Otherwise it could be in one of the other `.avd` folders at that location.
+Otherwise it could be in one of the other `.avd` directories at that location.
 
 When you have found the `config.ini` file, you can try a few things:
 

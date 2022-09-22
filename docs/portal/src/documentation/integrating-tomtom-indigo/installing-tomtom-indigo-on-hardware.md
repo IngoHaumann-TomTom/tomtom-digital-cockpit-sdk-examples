@@ -54,8 +54,9 @@ can simply replace these with your own platform keys and rebuild.
 ### Then push the APK to the system partition
 
 - Remount the system partition to be writeable.
-- Copy the `privapp-permissions-tomtom-indigo.xml` (found in the `permissions/` folder) file to
-  `/system/etc/permissions` on the device.
+- Copy the `privapp-permissions-tomtom-indigo.xml` file from the
+  [`permissions`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/permissions)
+  directory to `/system/etc/permissions` on the device.
 - Install the TomTom IndiGO APK to `/system/priv-app` on the device.
 
 ```cmd

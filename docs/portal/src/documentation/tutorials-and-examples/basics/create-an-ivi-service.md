@@ -18,10 +18,10 @@ The account frontend adds new panels to show account information or a login page
 invoked by a menu item (see
 [frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)).
 Account status is managed by the accounts service. The source code for the frontend and service can
-be found in the following folders in the example app source:
+be found in the following directories in the example app source:
 
-- `examples/plugin/serviceapi/`
-- `examples/plugin/service/`
+- [`examples/plugin/serviceapi/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/serviceapi)
+- [`examples/plugin/service/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/service)
 
 ## The plan
 

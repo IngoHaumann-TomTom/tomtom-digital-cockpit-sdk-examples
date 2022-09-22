@@ -62,7 +62,7 @@ adb push NK_AUTO_DEV.NKS /data/media/10/Android/data/com.example.ivi.template.ap
 - Extract the downloaded tarball with map data, then push it to the target device:
 
 ```cmd
-adb push my-folder-with-map-data /data/media/10/Android/data/com.example.ivi.template.app/files/map/
+adb push my-directory-with-map-data /data/media/10/Android/data/com.example.ivi.template.app/files/map/
 ```
 
 - Restart the `IVI Template App`:

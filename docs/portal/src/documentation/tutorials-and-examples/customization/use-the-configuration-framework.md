@@ -64,7 +64,7 @@ The JSON file schema is fully documented in the API reference documentation of
 
 To create a static configuration for the accounts service, create a JSON file in the
 [`configurations/static`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/service/src/main/configurations/static)
-folder:
+directory:
 
 [`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json#L2-L10)
 
@@ -96,7 +96,7 @@ keys.
 
 To create a dynamic configuration for the accounts settings service, create a JSON file in the
 [`configurations/dynamic`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/settingsservice/src/main/configurations/dynamic)
-folder:
+directory:
 
 [`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json#L2-L22)
 

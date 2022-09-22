@@ -18,8 +18,9 @@ development on top of TomTom IndiGO and runs x86\_64 AOSP with Android 11 Automo
 
 Follow these steps to install the TomTom IndiGO emulator image in Android Studio:
 
-- Copy the file `docs/resources/devices.xml` (from the `examples` source), to your `~/.android/`
-  folder.
+- Copy the file
+  [`docs/resources/devices.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/docs/resources)
+  to your `~/.android/` directory.
   - __Windows:__ Copy to your `%UserProfile%\.android\` folder.
 
 - If Android Studio is running, restart it, so that the new file is picked up.

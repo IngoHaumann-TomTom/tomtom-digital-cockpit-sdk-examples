@@ -11,9 +11,9 @@ logged in, you have the option to logout again. We will also add a menu item to 
 will be associated to the new frontend. The final step will be to let the new frontend replace
 TomTom IndiGO's user profile frontend.
 
-The source for this example can be found in the following folders in the examples source:
-- `examples/plugin/app/`
-- `examples/plugin/frontend/`
+The source for this example can be found in the following directories in the examples source:
+- [`examples/plugin/app/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/app)
+- [`examples/plugin/frontend/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/frontend)
 
 Creating a frontend and the menu item consists of a number of steps:
 

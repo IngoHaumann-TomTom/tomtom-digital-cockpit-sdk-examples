@@ -49,9 +49,9 @@ connected services and user interface (UI). For more information, see the
 Now that you received your TomTom API key, it can be used with the TomTom IndiGO SDK.  Add it to
 either the top-level `local.properties` file or your `gradle.properties` file.
 
-- The `local.properties` file can be created in the top-level folder of your local TomTom IndiGO
+- The `local.properties` file can be created in the top-level directory of your local TomTom IndiGO
   SDK.
-- The `gradle.properties` file is located in the folder specified by the `GRADLE_USER_HOME`
+- The `gradle.properties` file is located in the directory specified by the `GRADLE_USER_HOME`
   environment variable, usually `~/.gradle/`. See
   [Configure a TomTom API Key](/tomtom-indigo/documentation/tutorials-and-examples/setup/configure-a-tomtom-api-key-navkit2)
   for details and alternative ways to configure the key.
