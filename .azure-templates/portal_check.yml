@@ -16,8 +16,6 @@ steps:
     parameters:
       tasks: >-
         portal_check
-      projectOptions:
-        -PiviVersion=$(product_version)
       displayName: 'Validate Developer Portal content'
       continueOnError: true
 

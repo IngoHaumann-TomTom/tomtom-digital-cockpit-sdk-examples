@@ -24,8 +24,7 @@ steps:
     parameters:
       tasks: >-
         portal_export
-    displayName: Generate Developer Portal export
-    condition: succeeded()
+      displayName: Generate Developer Portal export
 
   - publish: $(Build.SourcesDirectory)/ivi-example-app/docs/portal/build/export
     artifact: developer-portal-export
