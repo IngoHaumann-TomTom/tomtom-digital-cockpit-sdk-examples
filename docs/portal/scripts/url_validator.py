@@ -19,6 +19,7 @@
 import os
 import requests
 import re
+import time
 from pathlib import Path
 
 TARGET_FILETYPE = "*.md"
@@ -45,13 +46,9 @@ REGEX_TOMTOM_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
 
-# Error placeholder for HTTP Requests.
-HTTP_ERROR = 1000
-
 def is_url_available(url, backoff_seconds = 10):
     '''
     Sends a HTTP request to URL and returns the HTTP response code.
-    If HTTP request fails, HTTP_ERROR is returned.
 
     Parameters
     -----------
@@ -65,22 +62,21 @@ def is_url_available(url, backoff_seconds = 10):
     status : int
         The HTTP response code.
     '''
-    try:
-        response = requests.head(url)
-        status = response.status_code
-        if status == 429:  # retry-after
-            if "Retry-After" in response.headers:
-                sleep_seconds = int(response.headers["Retry-After"])
-                sleep_seconds = max(sleep_seconds, 10)
-                sleep_seconds = min(sleep_seconds, 60)
-                print(f"Status {status}: Sleep {sleep_seconds} before retrying {url}")
-                time.sleep(sleep_seconds)
-            else:
-                print(f"Status {status}: Sleep {backoff_seconds} before retrying {url}")
-                time.sleep(backoff_seconds)
-            return is_url_available(url, min(2 * backoff_seconds, 60))
-    except:
-        status = HTTP_ERROR
+    response = requests.head(url)
+    status = response.status_code
+
+    if status == 429:  # retry-after
+        if "Retry-After" in response.headers:
+            retry_after = int(response.headers["Retry-After"])
+            sleep_seconds = max(retry_after, 10)
+            sleep_seconds = min(sleep_seconds, 60)
+            print(f"Status {status}: Retry-after {retry_after} sleep {sleep_seconds} before retrying {url}")
+            time.sleep(sleep_seconds)
+        else:
+            print(f"Status {status}: Sleep {backoff_seconds} before retrying {url}")
+            time.sleep(backoff_seconds)
+        return is_url_available(url, min(2 * backoff_seconds, 60))
+
     return status
 
 def check_external_url(content, warnings, errors, path, is_export):
