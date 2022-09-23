@@ -478,7 +478,7 @@ The service's client API is similar to the service interface. Service properties
 the API instance as `LiveData` of the original type. For example,`val activeAccount: Account?` in
 the service interface becomes `val activeAccount: LiveData<Account?>`. Service methods are mapped
 to two execution models:
-as [coroutine](https://kotlinlang.org/docs/async-programming.html#coroutines) `coLogIn(...)` and
+as [coroutine](https://kotlinlang.org/docs/async-programming.html#coroutines) `coLogIn(...)` and as
 async call `logInAsync(...)`.
 
 The `accountsServiceApi.serviceAvailable` property mirrors the `serviceReady` property of the

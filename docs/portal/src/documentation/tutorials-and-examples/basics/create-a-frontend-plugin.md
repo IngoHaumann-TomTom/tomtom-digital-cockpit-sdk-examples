@@ -4,7 +4,7 @@ title: Create a Frontend Plugin
 For an introduction to frontend plugins in the TomTom IndiGO platform, see
 ([Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins))
 
-## Introduction
+## Introduction <!-- omit in toc -->
 In this example, we will create a new frontend for managing an account on the device. It will
 provide a login screen where you can enter a username and a password to login, and if the user is
 logged in, you have the option to logout again. We will also add a menu item to the main menu that
@@ -17,12 +17,15 @@ The source for this example can be found in the following directories in the exa
 
 Creating a frontend and the menu item consists of a number of steps:
 
-- [Creating the `Frontend` class, deriving the abstract `Frontend` class.](#creating-the-frontend-class)
-- [Creating the `FrontendBuilder` class.](#creating-the-frontendbuilder-class)
-- [Creating the `Panel` class, and a `Fragment` to display the content on the screen.](#creating-the-panel)
-- [Creating a `MenuItem`.](#creating-a-menu-item)
-- [Defining the frontend and menu item build config.](#defining-the-frontend-and-menu-item-build-config)
-- [Registering the frontend and menu item build config.](#registering-the-frontend-and-menu-item-build-config)
+  - [Creating the frontend class](#creating-the-frontend-class)
+    - [Frontend lifecycle methods](#frontend-lifecycle-methods)
+    - [Showing panels on the screen](#showing-panels-on-the-screen)
+  - [Creating the FrontendBuilder class](#creating-the-frontendbuilder-class)
+  - [Creating the panel](#creating-the-panel)
+  - [Creating a menu item](#creating-a-menu-item)
+  - [Defining the frontend and menu item build config](#defining-the-frontend-and-menu-item-build-config)
+  - [Registering the frontend and menu item build config](#registering-the-frontend-and-menu-item-build-config)
+- [More information](#more-information)
 
 For more information on all the classes and APIs,
 [see the API reference documentation](/tomtom-indigo/api-reference/api-reference).
@@ -62,7 +65,7 @@ the screen.
 
 __Note:__ A frontend class must override only one of these two methods.
 
-### Creating the FrontendBuilder class
+### Creating the frontend-builder class
 
 Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIVI_INDIGO_API) class.
 Override the `build()` method in the class and return a new instance of the `AccountFrontend` class.
@@ -347,3 +350,11 @@ ivi {
 
 The above example replaces the `userProfileFrontend` with the `accountFrontend` and replaces
 the `userProfileMenuItem` with the `accountMenuItem`.
+
+
+## More information
+
+For information on how to call the [`@IviServiceApi`](TTIVI_INDIGO_API) members from 
+[Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins) 
+refer to section 
+[Calling service methods](/tomtom-indigo/documentation/development/ivi-services#calling-service-methods).

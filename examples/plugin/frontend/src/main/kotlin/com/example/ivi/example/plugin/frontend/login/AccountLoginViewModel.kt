@@ -66,7 +66,26 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
         isLoginEnabled.valueUpToDate?.takeIf { it }?.let {
             val username = username.value ?: return
             val password = password.value ?: return
+
+            /**
+             * Log in a user with asynchronous call.
+             */
             accountsServiceApi.logInAsync(username, SensitiveString(password))
+
+            /**
+             * Suspendable method, callable from a Kotlin co-routine
+             */
+            // runBlocking {
+            //     accountsServiceApi.coLogIn(username, password)
+            // }
+
+            /**
+             * It is also possible to call a setter when the service becomes available by using
+             * the TomTom IndiGO utility method [AccountsService.queueOrRun()]"
+             */
+            // accountsServiceApi.queueOrRun { service ->
+            //     service.logInAsync(username, SensitiveString(password))
+            // }
         }
     }
 

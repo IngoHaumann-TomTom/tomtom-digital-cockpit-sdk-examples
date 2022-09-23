@@ -28,7 +28,7 @@ adding of many implementations of a defined interface. An example of this is a
 MessagingProviderService that can for example be implemented for SMS but also for any other 
 messaging technology.
 
-### Android Services
+### Android services
 
 TomTom IndiGO services hosts are built on 
 [Android Services](https://developer.android.com/guide/components/services), and use the same 
@@ -84,7 +84,7 @@ interface ExampleService {
   	val timeStamp: Long
   
     // A companion object is needed for the generated code (as a minimum
-    //  an empty object needs to be supplied).
+    // an empty object needs to be supplied).
     companion object
 }
 ```
@@ -140,9 +140,24 @@ becomes a `LiveData<Long>` in the service interface:
 val timeStamp: LiveData<Long>
 ```
 
+### Calling service methods
+
 The actual methods are mapped to both a synchronous and an asynchronous version. The synchronous 
 method is using [coroutines](https://kotlinlang.org/docs/async-programming.html#coroutines) and 
 are prepended with `co`, the asynchronous method is appended with `Async`.
+These methods are exposed in the `<Interface>Api` as follows.
+
+```kotlin
+// Asynchronous
+// When not 'null', 'onResult' is invoked when the service function execution
+// completes with that result or when the execution failed.
+fun exampleMethodAsync(..., onResult = null)
+
+// Suspendable
+// This allows the function to be called from a Kotlin coroutine.
+// The function throws an exception when the execution failed.
+suspend fun coExampleMethod(...): <ReturnType>
+```
 
 Once the service has set itself ready to be used, the client can directly call the APIs. The following 
 example is using a TomTom IndiGO utility method to call the API once the service is available.
