@@ -52,20 +52,22 @@ gradleEnterprise {
             value("Build Number", buildNumber)
         }
     }
+}
 
-    buildCache {
-        local {
-            isEnabled = true
-        }
+buildCache {
+    local {
+        // Local cache is for local developent only.
+        isEnabled = !isCiBuild
+    }
 
-        remote<HttpBuildCache> {
-            isEnabled = true
-            isPush = isCiBuild
-            url = uri("https://gradle-poc.tomtomgroup.com/cache/")
-            credentials {
-                username = "ci"
-                password = System.getenv("GRADLE_REMOTE_CACHE_PWD")
-            }
+    remote<HttpBuildCache> {
+        // Remote cache is for CI builds only (as it requires corp network and password).
+        isEnabled = isCiBuild
+        isPush = isCiBuild
+        url = uri("https://gradlecache-ivi.tomtomgroup.com/cache/")
+        credentials {
+            username = "ci"
+            password = System.getenv("GRADLE_REMOTE_CACHE_PWD")
         }
     }
 }
