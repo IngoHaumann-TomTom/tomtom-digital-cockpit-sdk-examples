@@ -44,7 +44,7 @@ RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi
 RELEASES_NEXUS_BASE_URL = "https://repo.tomtom.com/repository/ivi/com/tomtom/indigo/tomtom-indigo-sdk"
 
 # Base URL for GitHub releases.
-RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indigo-sdk-examples/releases/tag"
+RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree"
 
 # Placeholder to be replaced by a list of paired API References.
 API_PLACEHOLDER = "TTIVI_API_ANCHOR"
