@@ -64,10 +64,9 @@ Now open the TomTom IndiGO example app project:
 
 - When this dialog does not show, you can open the project via `File` > `Open`.
 
-- Open the `examples/products_indigo_examples_<version>-sources` folder where you extracted the
-  source code.
-
-- Select the `build.gradle.kts` file from this folder, and click `OK`.
+- From your local clone of the
+  [TomTom IndiGO Example sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources),
+  select the top-level `build.gradle.kts` file, and click `OK`.
 
 - Android Studio may show a popup `Trust Gradle Project?`, on which you must click the `Trust
   Project` button.

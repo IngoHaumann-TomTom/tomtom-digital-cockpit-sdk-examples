@@ -86,7 +86,7 @@ applications.
 Should you want to change or add functionality to the application, then you need to customize the
 “app service” and provide it yourself. In that case, you can use the source code of the provided
 service or application as a starting point.
-All of the other apps would still be pulled from our Nexus and you can still benefit from
+All of the other apps would still be pulled from our Nexus repository and you can still benefit from
 the automatic updates for those. That is a powerful way of completely customizing the look and feel
 of applications, with limited effort.
 
