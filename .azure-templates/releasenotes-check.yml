@@ -58,7 +58,7 @@ steps:
   - bash: |
       set -eu
 
-      if [ "$(CheckForReleaseNotes.publishDocumentation)" = "true" ]
+      if [ "$(CheckForReleaseNotes.publishDocumentation)" = "True" ]
       then
         echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(RELEASED_PLATFORM_VERSION)"
       else
