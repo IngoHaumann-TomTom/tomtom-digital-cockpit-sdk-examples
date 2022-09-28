@@ -226,7 +226,7 @@ stages:
       - job: DeveloperPortalExport
         timeoutInMinutes: 10
         displayName: Developer Portal
-        container: docker_indigo_delivery
+        container: docker_indigo_build
         steps:
           - template: .azure-templates/portal_export.yml
           - template: build/build-cleanup.yml@devops-templates
