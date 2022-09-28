@@ -315,13 +315,14 @@ stages:
                 )
 
   - stage: Cleanup
-    dependsOn: [ Versions, Documentation, Publication ]
+    dependsOn: [ Versions, Documentation, DevPortal, Publication ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
     condition: or(
       eq(dependencies.Documentation.result, 'Failed'),
+      eq(dependencies.DevPortal.result, 'Failed'),
       eq(dependencies.Publication.result, 'Failed')
       )
     jobs:
