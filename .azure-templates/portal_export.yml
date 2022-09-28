@@ -15,9 +15,8 @@ steps:
 
   - bash: |
       set -eux
-      cd $(Build.SourcesDirectory)/ivi-example-app
       git checkout tags/$(VERSION_EXAMPLES)
-    displayName: Checkout example-app $(VERSION_EXAMPLES)
+    displayName: Checkout ivi-example-app version $(VERSION_EXAMPLES)
     condition: succeeded()
 
   - template: gradle/gradle.yml@devops-templates
@@ -26,7 +25,7 @@ steps:
         portal_export
       displayName: Generate Developer Portal export
 
-  - publish: $(Build.SourcesDirectory)/ivi-example-app/docs/portal/build/export
+  - publish: $(Build.SourcesDirectory)/docs/portal/build/export
     artifact: developer-portal-export
     displayName: 'Publish Developer Portal export as artifact'
     condition: succeeded()
