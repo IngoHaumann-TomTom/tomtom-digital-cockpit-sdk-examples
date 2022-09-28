@@ -101,7 +101,7 @@ stages:
   - job: UnitTests
     displayName: Unit tests
     container: 'docker_indigo_test'
-    timeoutInMinutes: 15
+    timeoutInMinutes: 30
     steps:
     - template: .azure-templates/test-unit.yml
       parameters:
@@ -111,7 +111,7 @@ stages:
   - job: IntegrationTests
     displayName: Integration & E2E tests
     container: 'docker_indigo_test'
-    timeoutInMinutes: 15
+    timeoutInMinutes: 30
     steps:
     - template: .azure-templates/test-instrumented.yml
       parameters:
