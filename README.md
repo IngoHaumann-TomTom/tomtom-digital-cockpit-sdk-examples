@@ -89,7 +89,7 @@ to create a TomTom IndiGO application with all the default functionality from th
 
 ### `keystore/`
 
-The keys needed to sign the application with the same keys as the TomTom Indigo reference hardware
+The keys needed to sign the application with the same keys as the TomTom IndiGO reference hardware
 build (see
 [Flashing the reference hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware))
 for more details on the reference hardware).

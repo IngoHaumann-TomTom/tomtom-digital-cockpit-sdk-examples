@@ -230,7 +230,8 @@ subprojects {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
-        // TODO(IVI-8723): Force `androidx.core` to indigo platform version: the latest sets compileSdk=33.
+        // TODO(IVI-8723): Force `androidx.core` to TomTom IndiGO platform version:
+        // TODO(IVI-8723): the latest sets compileSdk=33.
         configurations.all {
             resolutionStrategy.force("androidx.core:core:1.8.0")
             resolutionStrategy.force("androidx.core:core-ktx:1.8.0")

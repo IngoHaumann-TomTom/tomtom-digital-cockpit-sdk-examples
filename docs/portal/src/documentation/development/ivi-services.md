@@ -60,7 +60,7 @@ that is, as long as any of the `lifecyleOwner` passed to `createApi` is active.
 
 ## How does it work?
 
-The TomTom Indigo build system generates multiple classes and methods from the service interface 
+The TomTom IndiGO build system generates multiple classes and methods from the service interface 
 definition based on the annotated interfaces. They all get generated in the same package as the 
 service interface, these classes include an abstract base class for the service host 
 implementation, client's API, and the service IPC logic.

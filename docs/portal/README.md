@@ -4,9 +4,9 @@ This directory contains the source files for the Developer Portal.
 
 The documentation in the `/src` folder covers the following 3 sections on the Portal:
 
--   [Documentation](https://developer.tomtom.com/indigo/documentation)
--   [API Reference](https://developer.tomtom.com/indigo/api-reference)
--   [Releases](https://developer.tomtom.com/indigo/releases)
+-   [Documentation](https://developer.tomtom.com/tomtom-indigo/documentation)
+-   [API Reference](https://developer.tomtom.com/tomtom-indigo/api-reference)
+-   [Releases](https://developer.tomtom.com/tomtom-indigo/releases)
 
 ## Getting started
 

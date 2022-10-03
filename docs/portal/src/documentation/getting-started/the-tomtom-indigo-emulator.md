@@ -49,7 +49,7 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
 
 - Switch to tab `SDK platforms` and tick `Show Package Details` on the bottom right.
 
-- Expand the `Android 11 (R)` section, enable the `Indigo Automotive Android System Image` and click
+- Expand the `Android 11 (R)` section, enable the `IndiGO Automotive Android System Image` and click
   `Apply` to start downloading this image.
 
 ![Android Studio - SDK download list](images/android_studio_sdk_platforms_download_list.png)
@@ -75,7 +75,7 @@ Android Virtual Device (AVD) with it:
   - `Release Name` : `R`
   - `API level` : `30`
   - `ABI` : `x86_64`
-  - `Target` : `Android 11.0 (Indigo Automotive Android System Image)`
+  - `Target` : `Android 11.0 (IndiGO Automotive Android System Image)`
   - __Note:__ The entries displayed differ only in the last part of their `Target` field.
 
 - __Mac _with_ an M1 processor:__ Go to tab `Other Images` and select `Android S` for `arm64-v8a` as
