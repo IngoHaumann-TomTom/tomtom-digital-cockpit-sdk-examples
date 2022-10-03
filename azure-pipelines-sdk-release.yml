@@ -258,19 +258,6 @@ stages:
               artifact: tomtom-indigo-sdk
               path: $(Build.SourcesDirectory)/downloads
             displayName: Download the tomtom-indigo-sdk pipeline artifact
-          # TODO(IVI-4825): Remove the SDK tarball on Nexus
-          - bash: |
-              set -eux
-              curl -v -u '$(NEXUS_USERNAME):$(NEXUS_PASSWORD)'\
-                -F "maven2.generate-pom=true"\
-                -F "maven2.groupId=com.tomtom.indigo"\
-                -F "maven2.artifactId=tomtom-indigo-sdk"\
-                -F "version=$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)"\
-                -F "maven2.asset1=@$(Build.SourcesDirectory)/downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz"\
-                -F "maven2.asset1.extension=tar.gz"\
-                "https://repo.tomtom.com/service/rest/v1/components?repository=ivi"
-            displayName: 'Publish tomtom-indigo-sdk tarball to Nexus'
-            condition: succeeded()
           - task: ExtractFiles@1
             displayName: Extracting SDK artifact
             inputs:
