@@ -17,12 +17,12 @@ apply(from = "build-logic/indigodependencies.versioncatalog.gradle.kts")
 
 /**
  * Note:
- * This plugin configuration file is intended for TomTom internal use and not relevant
+ * This configuration file is intended for TomTom internal use and not relevant
  * to an external developer so it can be removed
  */
-val enterprisePluginConfig: File = file("build-logic/gradle.enterprise.gradle.kts")
-if (enterprisePluginConfig.exists()) {
-    apply(from = enterprisePluginConfig.path)
+val cacheConfig: File = file("build-logic/cache.gradle.kts")
+if (cacheConfig.exists()) {
+    apply(from = cacheConfig.path)
 }
 
 val templateAppDir = File(rootProject.projectDir, "template")
