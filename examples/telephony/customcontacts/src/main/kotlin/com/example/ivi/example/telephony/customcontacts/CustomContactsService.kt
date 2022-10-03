@@ -31,11 +31,8 @@ import com.tomtom.ivi.platform.framework.api.ipc.iviservice.mirrormap.MutableMir
 internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     ContactsServiceBase(iviServiceHostContext) {
 
-    // A mutable list of contacts that can be updated with the contactsSource changes.
-    private val mutableContacts = MutableMirrorableMap<ContactId, Contact>()
-
     // A mutable contacts data source that can be updated with the contactsSource changes.
-    private val mutableContactsDataSource = MutableCustomContactsDataSource()
+    private val mutableContacts = MutableCustomContactsDataSource()
 
     // The source of contacts.
     internal val contactsSource = mutableListOf(
@@ -51,6 +48,9 @@ internal class CustomContactsService(iviServiceHostContext: IviServiceHostContex
             addresses = listOf(Address("45 Some Street, SomeCity, SC 10000", AddressType.Home)),
             defaultAddressIndex = 0,
             favorite = true,
+            image = Bitmap.createBitmap(
+                IntArray(50 * 50) { Color.BLACK }, 50, 50, Bitmap.Config.ARGB_8888
+            ),
             primarySortKey = "John Smith",
             alternativeSortKey = "Smith John"
         ),
@@ -69,6 +69,7 @@ internal class CustomContactsService(iviServiceHostContext: IviServiceHostContex
                     AddressType.Work
                 )
             ),
+            image = null,
             defaultAddressIndex = 0,
             favorite = false,
             primarySortKey = "Kelly Goodwin",
@@ -80,35 +81,20 @@ internal class CustomContactsService(iviServiceHostContext: IviServiceHostContex
         super.onCreate()
         // Initialize the synchronization status.
         phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.NO_CONNECTED_DEVICES
-        // Bind the contacts property to an empty mutable map.
+        // Bind the contacts property to an empty mutable contacts data source.
         contacts = mutableContacts
-        // Bind the contactsDataSource property to an empty mutable contacts data source.
-        contactsDataSource = mutableContactsDataSource
         // Set the service to ready. Now clients can call the service's APIs.
         serviceReady = true
         // The source of contacts is ready and synchronization starts.
         phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
         contactsSource.forEach {
-            // Updating the contacts property with contacts from the source.
-            mutableContacts[it.contactId] = it
-            // Updating the contactsDataSource property with contacts from the source.
-            mutableContactsDataSource.addOrUpdateContact(it)
+            // Updating the property holding the contacts with contacts from the source.
+            mutableContacts.addOrUpdateContact(it)
         }
     }
 
     override fun onDestroy() {
         // Put cleanup code here, if necessary.
         super.onDestroy()
-    }
-
-    override suspend fun getImage(contactId: ContactId): Bitmap? {
-        return when (contactId) {
-            // Return a bitmap for contactId 1.
-            ContactId("1") -> Bitmap.createBitmap(
-                IntArray(50 * 50) { Color.BLACK }, 50, 50, Bitmap.Config.ARGB_8888
-            )
-            // Return null for other contacts.
-            else -> null
-        }
     }
 }
