@@ -8,10 +8,8 @@ Here you'll find all the TomTom IndiGO platform early-access releases.
 
 ## Download the TomTom IndiGO SDK
 
-The latest TomTom IndiGO SDK can be downloaded from the TomTom IndiGO repository, using the
-credentials you received after signing the Evaluation Agreement. To request access, please go to the
-[Getting Started](/tomtom-indigo/documentation/getting-started/introduction) guide, and click
-[Register for early access](/tomtom-indigo/request-access).
+The latest TomTom IndiGO SDK can be downloaded from the TomTom IndiGO repository, as explained in
+[Accessing TomTom IndiGO SDK Example sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources).
 
 The TomTom IndiGO SDK contains the code needed to start developing for the TomTom IndiGO platform.
 It contains the [template application](/tomtom-indigo/documentation/platform-overview/example-apps)
@@ -25,7 +23,7 @@ The template and example applications come with Gradle files to build them. The 
 binary artefacts of the TomTom IndiGO platform, which are pulled from the TomTom binary artefact
 repository. This requires the same credentials that you used when downloading the SDK.
 For more details, see
-[accessing-the-artifact-repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository).
+[Accessing the artifact repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository).
 
 ### TomTom IndiGO SDK version number
 
