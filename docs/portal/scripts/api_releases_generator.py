@@ -40,9 +40,6 @@ GITHUB_INTRODUCTION_VERSION = 1864
 # Internal Artifactory URL to releases.json file.
 RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
 
-# Base URL for Nexus releases.
-RELEASES_NEXUS_BASE_URL = "https://repo.tomtom.com/repository/ivi/com/tomtom/indigo/tomtom-indigo-sdk"
-
 # Base URL for GitHub releases.
 RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree"
 
@@ -136,7 +133,7 @@ def get_api_link(api_version, library_url, library_name):
 
 def get_release_link(release_version):
     '''
-    Generates an HTML link to an SDK release on Nexus specified by 'release_version'.
+    Generates an HTML link to an SDK release on GitHub specified by 'release_version'.
 
     Parameters
     -----------
@@ -146,20 +143,18 @@ def get_release_link(release_version):
     Returns
     -------
     str
-        An HTML link to an SDK release on Nexus.
+        An HTML link to an SDK release on GitHub.
     '''
-    # TODO(IVI-4825) Remove Example App Sources Nexus link
 
     # Retrieve Example App Sources version number.
     example_app_sources_version = int(release_version[-4:])
 
-    if example_app_sources_version >= GITHUB_INTRODUCTION_VERSION:
-        return f"\n<a href=\"{RELEASES_GITHUB_BASE_URL}/{release_version}\">"\
-            f"GitHub - TomTom IndiGO SDK - version {release_version}</a>\n"\
-            f"<a href=\"{RELEASES_NEXUS_BASE_URL}/{release_version}/tomtom-indigo-sdk-{release_version}.tar.gz\">"\
-            f"Nexus - TomTom IndiGO SDK - version {release_version}</a>\n"
-    return f"\n<a href=\"{RELEASES_NEXUS_BASE_URL}/{release_version}/tomtom-indigo-sdk-{release_version}.tar.gz\">"\
-        f"TomTom IndiGO SDK - version {release_version}</a>"
+    # Return empty string if release version is not available on GitHub.
+    if example_app_sources_version < GITHUB_INTRODUCTION_VERSION:
+        return ""
+    
+    return f"\n<a href=\"{RELEASES_GITHUB_BASE_URL}/{release_version}\">"\
+            f"TomTom IndiGO SDK - version {release_version}</a>\n"
 
 def get_release_notes(tickets):
     '''
@@ -238,7 +233,6 @@ def construct_release(releases_dict, release_version, is_open):
     date = releases_dict[release_version]['date']
     tickets = releases_dict[release_version]['tickets']
 
-    # TODO(IVI-4825) Remove Example App Sources Nexus link
     accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
         f"{get_release_link(release_version)}"\
         f"<b>Release notes</b>\n"\
