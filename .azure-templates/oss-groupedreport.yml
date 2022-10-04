@@ -159,7 +159,7 @@ steps:
         --output "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md"
         --markdown-table "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
         --version "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
-        --project-name "IndiGO SDK"
+        --project-name "Digital Cockpit SDK"
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
