@@ -28,7 +28,7 @@ a few demonstration maps are provided in the
 Click one of these links and download the map of your choice:
 
 - A map of the USA state of
-  [Michigan](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Findigo%2Ftomtom-indigo-maps/usa-michigan).
+  [Michigan](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fdigital-cockpit%2Ftomtom-digital-cockpit-maps%2Fusa-michigan).
 
 Each map consists of a keystore file and a tarball with the map data.
 
