@@ -86,7 +86,7 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Perform configuration and link project scans
     retryCountOnTaskFailure: 3
-    continueOnError: true
+    failOnStderr: true
     timeoutInMinutes: 20
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
@@ -99,14 +99,14 @@ steps:
       tarCompression: 'gz'
       archiveFile: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools.lock.tar.gz'
       replaceExistingArchive: true
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish lock file in pipeline artifacts'
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/lockfile/bdtools.lock.tar.gz'
       artifactName: scanning-lockfile-$(System.JobAttempt)
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: ArchiveFiles@2
     displayName: 'Archive BlackDuck logs'
@@ -117,14 +117,14 @@ steps:
       tarCompression: 'gz'
       archiveFile: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs.tar.gz'
       replaceExistingArchive: true
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish logs in pipeline artifacts'
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/bdtoolslogs/bdtoolslogs.tar.gz'
       artifactName: scanning-logs-$(System.JobAttempt)
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - script: |
       # This will generete a JSON report to a file on the current working directory
@@ -139,14 +139,15 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Generate report
     retryCountOnTaskFailure: 3
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    failOnStderr: true
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish output in pipeline artifacts'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
       artifactName: scanning-output-$(System.JobAttempt)
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PythonScript@0
     name: OSS_compliance_report
@@ -160,7 +161,7 @@ steps:
         --markdown-table "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json"
         --version "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
         --project-name "Digital Cockpit SDK"
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish OSS compliance report in pipeline artifacts'
