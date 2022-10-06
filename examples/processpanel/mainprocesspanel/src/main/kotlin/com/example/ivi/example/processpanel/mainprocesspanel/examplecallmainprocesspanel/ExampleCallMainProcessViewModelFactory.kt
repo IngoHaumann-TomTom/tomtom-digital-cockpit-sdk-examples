@@ -12,7 +12,6 @@
 package com.example.ivi.example.processpanel.mainprocesspanel.examplecallmainprocesspanel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.ivi.example.processpanel.mainprocesspanel.R
 import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.template.compactprocesspanel.CompactProcessControlViewModel
@@ -38,43 +37,38 @@ internal class ExampleCallMainProcessViewModelFactory(
     @OptIn(IviExperimental::class)
     private val endCallControl = CompactProcessControlViewModel(
         buttonViewModel = TtButtonViewModel(
-            actionType = ImmutableLiveData(TtButton.ActionType.DESTRUCTIVE),
-            image = ImmutableLiveData(
-                ResourceDrawableResolver(
-                    R.drawable.ttivi_processcreation_icon_callhangup
-                )
+            actionType = TtButton.ActionType.DESTRUCTIVE,
+            image = ResourceDrawableResolver(
+                R.drawable.ttivi_processcreation_icon_callhangup
             ),
-            isEnabled = ImmutableLiveData(true),
-            isVisible = ImmutableLiveData(true),
+            isEnabled = true,
+            isVisible = true,
             onClick = doEndCall
-        ), isFixedWidth = ImmutableLiveData(true)
+        ),
+        isFixedWidth = true
     )
 
     private val toggleMuteControl = CompactProcessControlViewModel(
         buttonViewModel = TtButtonViewModel(
-            isActivated = ImmutableLiveData(true),
-            actionType = ImmutableLiveData(TtButton.ActionType.TERTIARY),
-            isEnabled = ImmutableLiveData(true),
+            isActivated = true,
+            actionType = TtButton.ActionType.TERTIARY,
+            isEnabled = true,
             onClick = {
                 // Add your implementation to toggle mute control.
             },
-            image = ImmutableLiveData(true).map {
-                ResourceDrawableResolver(R.drawable.ttivi_processcreation_icon_microphonemuted)
-            },
-            isVisible = ImmutableLiveData(true)
+            image = ResourceDrawableResolver(R.drawable.ttivi_processcreation_icon_microphonemuted),
+            isVisible = true
         )
     )
 
     private val closeControl = CompactProcessControlViewModel(
         buttonViewModel = TtButtonViewModel(
-            actionType = ImmutableLiveData(TtButton.ActionType.SECONDARY),
-            text = ImmutableLiveData(
-                ResourceStringResolver(R.string.ttivi_processcreation_common_action_close)
-            ),
-            isVisible = ImmutableLiveData(true),
+            actionType = TtButton.ActionType.SECONDARY,
+            text = ResourceStringResolver(R.string.ttivi_processcreation_common_action_close),
+            isVisible = true,
             onClick = doDismissCall
         ),
-        isFixedWidth = ImmutableLiveData(true)
+        isFixedWidth = true
     )
 
     fun createPrimaryControls():

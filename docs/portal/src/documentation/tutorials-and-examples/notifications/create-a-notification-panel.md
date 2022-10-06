@@ -78,15 +78,15 @@ internal class NotificationCreationViewModel(panel: NotificationCreationPanel) :
 
         val PRIMARY_BUTTON: LiveData<TtButtonViewModel?> = ImmutableLiveData(
             TtButtonViewModel(
-                text = ImmutableLiveData(StaticStringResolver("Primary")),
-                actionType = ImmutableLiveData(TtButton.ActionType.PRIMARY)
+                text = StaticStringResolver("Primary"),
+                actionType = TtButton.ActionType.PRIMARY
             )
         )
 
         val SECONDARY_BUTTON: LiveData<TtButtonViewModel?> = ImmutableLiveData(
             TtButtonViewModel(
-                text = ImmutableLiveData(StaticStringResolver("Secondary")),
-                actionType = ImmutableLiveData(TtButton.ActionType.DESTRUCTIVE)
+                text = StaticStringResolver("Secondary"),
+                actionType = TtButton.ActionType.DESTRUCTIVE
             )
         )
 
@@ -180,8 +180,8 @@ internal class ExampleNotificationViewModel(panel: ExampleNotificationPanel) :
     override val primaryActionButtonViewModel: LiveData<TtButtonViewModel?> =
         ImmutableLiveData(
             TtButtonViewModel(
-                text = ImmutableLiveData(StaticStringResolver("Primary")),
-                actionType = ImmutableLiveData(TtButton.ActionType.ACCEPTANCE),
+                text = StaticStringResolver("Primary"),
+                actionType = TtButton.ActionType.ACCEPTANCE,
                 onClick = { onPrimaryButtonClicked() }
             )
         )
@@ -192,8 +192,8 @@ internal class ExampleNotificationViewModel(panel: ExampleNotificationPanel) :
 
     override val secondaryActionButtonViewModel: LiveData<TtButtonViewModel?> = ImmutableLiveData(
         TtButtonViewModel(
-            text = ImmutableLiveData(StaticStringResolver("Secondary")),
-            actionType = ImmutableLiveData(TtButton.ActionType.DESTRUCTIVE),
+            text = StaticStringResolver("Secondary"),
+            actionType = TtButton.ActionType.DESTRUCTIVE,
             onClick = { onSecondaryButtonClicked() }
         )
     )
