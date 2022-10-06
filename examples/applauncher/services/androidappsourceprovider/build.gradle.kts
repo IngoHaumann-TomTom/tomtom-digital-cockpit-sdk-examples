@@ -18,6 +18,6 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoAppsuiteAppstoreApiCommonModel)
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceAppsourceprovider)
+    implementation(libraries.iviAppsuiteAppstoreApiCommonModel)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceAppsourceprovider)
 }

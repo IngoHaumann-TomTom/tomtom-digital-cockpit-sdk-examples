@@ -64,5 +64,5 @@ android {
 
 dependencies {
     implementation(project(":examples_common"))
-    implementation(libraries.indigoAppsuiteMediaApiCommonFrontend)
+    implementation(libraries.iviAppsuiteMediaApiCommonFrontend)
 }

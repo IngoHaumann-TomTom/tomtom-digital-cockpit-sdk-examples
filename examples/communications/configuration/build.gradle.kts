@@ -35,5 +35,5 @@ android {
 dependencies {
     implementation(project(":examples_common"))
 
-    implementation(libraries.indigoPlatformFrontendApiCommonFrontend)
+    implementation(libraries.iviPlatformFrontendApiCommonFrontend)
 }

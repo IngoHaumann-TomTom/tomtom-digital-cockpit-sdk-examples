@@ -18,5 +18,5 @@ ivi {
 dependencies {
     api(project(":examples_plugin_common"))
 
-    implementation(libraries.indigoPlatformFrameworkApiCommonUid)
+    implementation(libraries.iviPlatformFrameworkApiCommonUid)
 }

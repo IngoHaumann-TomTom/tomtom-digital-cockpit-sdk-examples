@@ -14,7 +14,7 @@ pluginManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom IndiGO's Nexus repository.
+        // TomTom Digital Cockpit's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =
@@ -36,7 +36,7 @@ dependencyResolutionManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom IndiGO's Nexus repository.
+        // TomTom Digital Cockpit's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =

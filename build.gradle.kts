@@ -46,7 +46,7 @@ plugins {
 
 apply(from = rootProject.file("buildSrc/tasks/installRepositoriesCfg.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/setupEnv.gradle.kts"))
-apply(from = rootProject.file("buildSrc/tasks/indigoPlatformUpdate.gradle.kts"))
+apply(from = rootProject.file("buildSrc/tasks/iviPlatformUpdate.gradle.kts"))
 apply(from = rootProject.file("buildSrc/tasks/developerPortal.gradle.kts"))
 
 val isRunningOnCi: Boolean by extra(
@@ -55,7 +55,7 @@ val isRunningOnCi: Boolean by extra(
         .isNotEmpty()
 )
 
-val jvmVersion = JavaVersion.toVersion(indigoDependencies.versions.jvm.get())
+val jvmVersion = JavaVersion.toVersion(iviDependencies.versions.jvm.get())
 
 // Make a single directory where to store all test results.
 val testOutputDirectory: File by extra {
@@ -70,7 +70,7 @@ val testOutputDirectory: File by extra {
 
 ivi {
     dependencySource =
-        IviDependencySource.ArtifactRepository(libraries.versions.indigoPlatform.get())
+        IviDependencySource.ArtifactRepository(libraries.versions.iviPlatform.get())
 }
 
 sonarqube {
@@ -78,7 +78,7 @@ sonarqube {
         property("sonar.projectVersion", extra.get("iviVersion") as String)
         property("sonar.sourceEncoding", "UTF-8")
         property("sonar.java.coveragePlugin", "jacoco")
-        val jvmVersion = indigoDependencies.versions.jvm.get()
+        val jvmVersion = iviDependencies.versions.jvm.get()
         property("sonar.java.source", jvmVersion)
         property("sonar.java.target", jvmVersion)
     }
@@ -97,9 +97,9 @@ iviEmulators {
     findProperty("emulatorImage")?.let {
         emulatorImage = it.toString()
     }
-    minApiLevel = indigoDependencies.versions.minSdk.get().toInt()
+    minApiLevel = iviDependencies.versions.minSdk.get().toInt()
     outputDirectory = testOutputDirectory
-    targetApiLevel = indigoDependencies.versions.compileSdk.get().toInt()
+    targetApiLevel = iviDependencies.versions.compileSdk.get().toInt()
 }
 
 // Set up global test options
@@ -159,8 +159,8 @@ subprojects {
     val isApplicationProject by extra(getGradleProperty("isApplicationProject", false))
     val isAndroidTestProject by extra(getGradleProperty("isAndroidTestProject", false))
 
-    val indigoDependencies = rootProject.indigoDependencies
-    val versions = rootProject.indigoDependencies.versions
+    val iviDependencies = rootProject.iviDependencies
+    val versions = rootProject.iviDependencies.versions
 
     when {
         isApplicationProject -> apply(plugin = "com.android.application")
@@ -179,11 +179,11 @@ subprojects {
         constraints {
             // kotlin-reflect dependency is not constrained up by kotlin-bom, so we need to
             // constrain it explicitly.
-            implementation(indigoDependencies.kotlinReflect)
+            implementation(iviDependencies.kotlinReflect)
         }
 
-        implementation(indigoDependencies.androidxAnnotation)
-        implementation(indigoDependencies.androidxCoreKtx)
+        implementation(iviDependencies.androidxAnnotation)
+        implementation(iviDependencies.androidxCoreKtx)
     }
 
     // Override some conflicting transitive dependencies which duplicate classes.
@@ -230,7 +230,7 @@ subprojects {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
-        // TODO(IVI-8723): Force `androidx.core` to TomTom IndiGO platform version:
+        // TODO(IVI-8723): Force `androidx.core` to TomTom Digital Cockpit platform version:
         // TODO(IVI-8723): the latest sets compileSdk=33.
         configurations.all {
             resolutionStrategy.force("androidx.core:core:1.8.0")

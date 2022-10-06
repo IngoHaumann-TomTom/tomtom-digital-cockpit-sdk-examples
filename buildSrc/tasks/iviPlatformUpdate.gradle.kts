@@ -9,19 +9,19 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.environment.IndigoUpdateHelper
+import com.tomtom.ivi.buildsrc.environment.IviPlatformUpdateHelper
 
-tasks.register<DefaultTask>("generateIndigoLibrariesVersionFile") {
+tasks.register<DefaultTask>("generateIviPlatformLibrariesVersionFile") {
     group = "Help"
-    description = "Takes a `-PlatestIndigoVersion=x.y.z` Gradle input argument and, if " +
+    description = "Takes a `-PlatestIviPlatformVersion=x.y.z` Gradle input argument and, if " +
         "different from the version currently in use, creates a new version file."
 
     doLast {
         val versionLibraryFile = "libraries.versions.toml"
-        val indigoUpdateHelper = IndigoUpdateHelper(rootProject)
+        val updateHelper = IviPlatformUpdateHelper(rootProject)
         val currentVersionFile = File(rootProject.projectDir, "build-logic/$versionLibraryFile")
         val newVersionFile = File(rootProject.projectDir, versionLibraryFile)
 
-        indigoUpdateHelper.generateNewVersionFile(currentVersionFile, newVersionFile)
+        updateHelper.generateNewVersionFile(currentVersionFile, newVersionFile)
     }
 }

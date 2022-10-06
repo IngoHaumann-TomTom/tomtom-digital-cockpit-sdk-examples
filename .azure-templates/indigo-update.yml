@@ -12,7 +12,7 @@
 
 parameters:
   branch: 'indigo-platform-canary'
-  newIndigoVersion: ''
+  newIviPlatformVersion: ''
 
 steps:
   - bash: |
@@ -31,10 +31,10 @@ steps:
   - template: gradle/gradle.yml@devops-templates
     parameters:
       tasks: >-
-        generateIndigoLibrariesVersionFile
+        generateIviPlatformLibrariesVersionFile
       projectOptions: >-
-        -PlatestIndigoVersion=${{parameters.newIndigoVersion}}
-      displayName: 'Check for new IndiGO library versions'
+        -PlatestPlatformVersion=${{parameters.newIviPlatformVersion}}
+      displayName: 'Check for new IVI Platform versions'
 
   - bash: |
       set -eux
@@ -42,21 +42,21 @@ steps:
       REPO_VERSION_NEW_FILE="./libraries.versions.toml"
       if [ ! -f $REPO_VERSION_NEW_FILE ]
       then
-        echo "No IndiGO library update file was found."
+        echo "No IVI Platform update file was found."
         exit 1
       fi
-      if ! grep -qs indigoPlatform ${REPO_VERSION_NEW_FILE}
+      if ! grep -qs iviPlatform ${REPO_VERSION_NEW_FILE}
       then
-        echo "${REPO_VERSION_NEW_FILE} does not contain an IndiGO platform version."
+        echo "${REPO_VERSION_NEW_FILE} does not contain an IVI Platform version."
         exit 1
       fi
 
-      OLD_INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_OLD_FILE} | awk '{split($0,a," "); print a[3]}')"
-      NEW_INDIGO_VERSION="$(grep "indigoPlatform = " ${REPO_VERSION_NEW_FILE} | awk '{split($0,a," "); print a[3]}')"
+      OLD_PLATFORM_VERSION="$(grep "iviPlatform = " ${REPO_VERSION_OLD_FILE} | awk '{split($0,a," "); print a[3]}')"
+      NEW_PLATFORM_VERSION="$(grep "iviPlatform = " ${REPO_VERSION_NEW_FILE} | awk '{split($0,a," "); print a[3]}')"
 
-      if [ "${OLD_INDIGO_VERSION}" = "${NEW_INDIGO_VERSION}" ]
+      if [ "${OLD_PLATFORM_VERSION}" = "${NEW_PLATFORM_VERSION}" ]
       then
-        echo "No IndiGO update was found."
+        echo "No IVI Platform update was found."
         exit 1
       fi
 
@@ -71,8 +71,8 @@ steps:
       echo "##vso[task.setvariable variable=branchCreated]True"
       mv ${REPO_VERSION_NEW_FILE} ${REPO_VERSION_OLD_FILE}
       git diff > $(Build.ArtifactStagingDirectory)/indigo-update.patch
-      git commit -a -m "Last integrated version of IndiGO platform: ${NEW_INDIGO_VERSION}"
-    displayName: 'Commit updated IndiGO lib to ${{parameters.branch}} branch'
+      git commit -a -m "Last integrated version of IVI Platform: ${NEW_PLATFORM_VERSION}"
+    displayName: 'Commit updated IVI Platform lib to ${{parameters.branch}} branch'
 
   - bash: |
       set -eux

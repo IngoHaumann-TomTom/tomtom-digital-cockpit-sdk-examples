@@ -15,20 +15,18 @@ import org.gradle.api.Project
 import java.io.File
 
 /**
- * Generates a versions file based on existing versions file and TomTom IndiGO version provided as a
+ * Generates a versions file based on existing versions file and TomTom Digital Cockput platform version provided as a
  * Gradle parameter.
  *
- * The new version number must be given as `-PlatestIndigoVersion=x.y.z` command line argument to
- * Gradle.
- * A new TOML version file will be generated with whatever old version number replaced by the new
- * one.
+ * The new version number must be given as `-PlatestIviPlatformVersion=x.y.z` command line argument to Gradle.
+ * A new TOML version file will be generated with whatever old version number replaced by the new one.
  */
-class IndigoUpdateHelper(project: Project) {
+class IviPlatformUpdateHelper(project: Project) {
 
-    private val latestVersion = project.property("latestIndigoVersion") as String
+    private val latestVersion = project.property("latestIviPlatformVersion") as String
 
     fun generateNewVersionFile(oldFile: File, newFile: File) {
-        val versionTag = "indigoPlatform = "
+        val versionTag = "iviPlatform = "
         val versionValue = Regex("""(\d+.\d+.\d+)""")
         oldFile.useLines { lines ->
             newFile.bufferedWriter().use { outFile ->
@@ -36,7 +34,7 @@ class IndigoUpdateHelper(project: Project) {
                     val newLine = when {
                         oldLine.contains(versionTag) -> {
                             val currentVersion: String? = versionValue.find(oldLine)?.value
-                            println("Replacing $currentVersion IndiGO version with $latestVersion")
+                            println("Replacing $currentVersion IVI platform version with $latestVersion")
                             oldLine.replace(versionValue, latestVersion)
                         }
                         else -> oldLine

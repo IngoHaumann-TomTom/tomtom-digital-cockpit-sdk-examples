@@ -20,7 +20,7 @@ ivi {
 }
 
 dependencies {
-    implementation(indigoDependencies.amazonAlexaAacsConstants)
-    implementation(libraries.indigoPlatformAlexaApiCommonUtil)
-    implementation(libraries.indigoPlatformAlexaApiServiceAlexahandler)
+    implementation(iviDependencies.amazonAlexaAacsConstants)
+    implementation(libraries.iviPlatformAlexaApiCommonUtil)
+    implementation(libraries.iviPlatformAlexaApiServiceAlexahandler)
 }

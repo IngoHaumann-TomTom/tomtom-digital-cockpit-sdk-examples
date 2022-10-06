@@ -24,5 +24,5 @@ ivi {
 
 dependencies {
     androidTestImplementation(project(":examples_telephony_customconnection"))
-    androidTestImplementation(libraries.indigoPlatformFrontendApiTestingFrontend)
+    androidTestImplementation(libraries.iviPlatformFrontendApiTestingFrontend)
 }

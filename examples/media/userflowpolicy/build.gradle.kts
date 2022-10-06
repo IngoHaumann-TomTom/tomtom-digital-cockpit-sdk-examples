@@ -58,5 +58,5 @@ android {
 dependencies {
     implementation(project(":examples_common"))
 
-    implementation(indigoDependencies.tomtomToolsApiUicontrols)
+    implementation(iviDependencies.tomtomToolsApiUicontrols)
 }

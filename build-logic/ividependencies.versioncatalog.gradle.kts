@@ -15,13 +15,13 @@ val versionLibraryFile = "libraries.versions.toml"
 
 /**
  * This is a workaround to be able to import the correct dependencies catalog produced and published
- * by the indigo repository. When the version catalogs are created below, there are no
- * accessors available. Therefore the value of `indigoPlatform` can not be retrieved using the
+ * by the digital-cockpit repository. When the version catalogs are created below, there are no
+ * accessors available. Therefore the value of `iviPlatform` can not be retrieved using the
  * accessors.
  */
-fun getIndigoPlatformVersionFromTomlFile() : String {
+fun getIviPlatformVersionFromTomlFile() : String {
     val localLibrariesTomlFile = File(files(versionLibraryFile).asPath)
-    val versionRegex = Regex("""indigoPlatform = "([^"]*)"""")
+    val versionRegex = Regex("""iviPlatform = "([^"]*)"""")
     localLibrariesTomlFile.useLines { lines ->
         return lines.mapNotNull { versionRegex.matchEntire(it) }.first().groupValues[1]
     }
@@ -30,10 +30,10 @@ fun getIndigoPlatformVersionFromTomlFile() : String {
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     versionCatalogs {
-        create("indigoDependencies") {
+        create("iviDependencies") {
             val group = "com.tomtom.ivi.platform"
             val artifact = "dependencies-catalog"
-            val version = getIndigoPlatformVersionFromTomlFile()
+            val version = getIviPlatformVersionFromTomlFile()
             from("${group}:${artifact}:${version}")
         }
     }

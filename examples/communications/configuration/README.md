@@ -9,7 +9,7 @@ be changed.
 
 # Setup
 
-Please follow the guide [Installing TomTom IndiGO on Hardware](/tomtom-indigo/documentation/integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware) before installing this app.
+Please follow the guide [Installing TomTom Digital Cockpit on Hardware](/digital-cockpit/documentation/integrating-digital-cockpit/installing-digital-cockpit-on-hardware) before installing this app.
 
 # Setting this example app to be the system dialer
 

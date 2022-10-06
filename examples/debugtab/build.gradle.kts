@@ -58,7 +58,7 @@ android {
 
 dependencies {
     implementation(project(":examples_common"))
-    implementation(indigoDependencies.androidxActivityKtx)
-    implementation(indigoDependencies.tomtomToolsApiUicontrols)
-    implementation(libraries.indigoPlatformDebugApiFrontendExtensionDebugTab)
+    implementation(iviDependencies.androidxActivityKtx)
+    implementation(iviDependencies.tomtomToolsApiUicontrols)
+    implementation(libraries.iviPlatformDebugApiFrontendExtensionDebugTab)
 }

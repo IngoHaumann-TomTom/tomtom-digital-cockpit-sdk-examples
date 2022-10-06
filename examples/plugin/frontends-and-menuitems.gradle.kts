@@ -31,9 +31,9 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendE
  *
  * plugins {
  *     // Apply the Gradle plugin to define the default frontends, menu items and services from
- *     // TomTom IndiGO Platform and from all TomTom IndiGO Applications (from the appsuite). The
- *     // default frontends, menu items and services are defined in groups. The groups are applied
- *     // to the IVI application configuration below.
+ *     // TomTom Digital Cockpit Platform and from all TomTom Digital Cockpit Applications (from
+ *     // the appsuite). The default frontends, menu items and services are defined in groups. The
+ *     // groups are applied to the IVI application configuration below.
  *     id("com.tomtom.ivi.platform.defaults.core")
  * }
  *

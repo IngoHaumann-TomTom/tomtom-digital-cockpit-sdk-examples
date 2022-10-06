@@ -7,9 +7,9 @@ you to provide support for your own custom app types, or modify how the App Laun
 launching of Android apps.
 
 For more information see the
-[app launcher](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service)
+[app launcher](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service)
 pages on the
-[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
+[TomTom Digital Cockpit Developer Portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction).
 
 ## Copyright
 

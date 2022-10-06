@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This example app demonstrates how to embed a third-party Android activity in your TomTom IndiGO
+This example app demonstrates how to embed a third-party Android activity in your TomTom Digital Cockpit
 based application.
 
 ## Copyright

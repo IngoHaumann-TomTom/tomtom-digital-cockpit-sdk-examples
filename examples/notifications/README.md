@@ -4,9 +4,9 @@
 
 This example app demonstrates how to create and show notifications.
 For a detailed explanation, see the
-[Create a Notification Panel](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel)
+[Create a Notification Panel](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/notifications/create-a-notification-panel)
 page on the
-[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
+[TomTom Digital Cockpit Developer Portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction).
 
 ## Copyright
 

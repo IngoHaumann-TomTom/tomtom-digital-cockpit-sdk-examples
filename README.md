@@ -1,23 +1,23 @@
-# TomTom IndiGO example applications
+# TomTom Digital Cockpit SDK examples
 
 ## Introduction
 
 This repository contains the source code of a template app and several example apps, built on
-TomTom IndiGO.
+TomTom Digital Cockpit.
 
-TomTom IndiGO is a framework that delivers Android-based digital cockpits for automotive
+TomTom Digital Cockpit is a framework that delivers Android-based digital cockpits for automotive
 environments. It includes an application platform to support the development of highly integrated
 applications on top of Android Automotive. For more information, see the
-[TomTom IndiGO developer portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
+[TomTom Digital Cockpit developer portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction).
 
 ### Template application
 
-The TomTom IndiGO template application contains all of the off-the-shelf functionality implemented
-by the TomTom IndiGO platform. It is a fully working infotainment system, including navigation, a
+The TomTom Digital Cockpit template application contains all of the off-the-shelf functionality implemented
+by the TomTom Digital Cockpit platform. It is a fully working infotainment system, including navigation, a
 media center, phone calling, messaging and much more.
 
 The template application is explained in more detail on the
-[Example Apps](https://developer.tomtom.com/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality)
+[Example Apps](https://developer.tomtom.com/digital-cockpit/documentation/platform-overview/example-apps#off-the-shelf-functionality)
 page of the developer portal.
 
 The source code is provided in the `template/` directory.
@@ -26,12 +26,12 @@ The source code is provided in the `template/` directory.
 
 The example applications also contain all of the off-the-shelf functionality of the template
 application, but on top of this they contain code demonstrating how to implement and integrate
-specific features into the TomTom IndiGO platform.
+specific features into the TomTom Digital Cockpit platform.
 
 The example applications are explained on the
-[Example apps](https://developer.tomtom.com/tomtom-indigo/documentation/platform-overview/example-apps#example-apps)
+[Example apps](https://developer.tomtom.com/digital-cockpit/documentation/platform-overview/example-apps#example-apps)
 page of the developer portal. Each example is explained in more detail in the
-[Tutorials and Examples](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/overview)
+[Tutorials and Examples](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/overview)
 section of the developer portal.
 
 Each subdirectory of the `examples/` directory holds one or more example applications. Each
@@ -40,24 +40,24 @@ subdirectory holds a `README.md` file that briefly explains the purpose of the e
 ## Building and running
 
 For the entire setup process, please consult the
-[Getting Started](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/introduction)
-pages on the TomTom IndiGO developer portal.
+[Getting Started](https://developer.tomtom.com/digital-cockpit/documentation/getting-started/introduction)
+pages on the TomTom Digital Cockpit developer portal.
 
-### IndiGO platform libraries
+### TomTom Digital Cockpit platform libraries
 
-The TomTom IndiGO template app and example apps are delivered as source code, so that they can serve
-as inspiration for developing your own application. These apps are built on the TomTom IndiGO
+The TomTom Digital Cockpit template app and example apps are delivered as source code, so that they can serve
+as inspiration for developing your own application. These apps are built on the TomTom Digital Cockpit
 platform, which is provided in binary format only.
 
-The TomTom IndiGO platform libraries can be downloaded from an on-line repository hosted by TomTom.
+The TomTom Digital Cockpit platform libraries can be downloaded from an on-line repository hosted by TomTom.
 To use these libraries in your build process, you should request access to this repository, as
 explained on the
-[Getting Started](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/introduction)
+[Getting Started](https://developer.tomtom.com/digital-cockpit/documentation/getting-started/introduction)
 page of the developer portal, then follow the instructions on the
-[Accessing the Artifact Repository](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository)
+[Accessing the Artifact Repository](https://developer.tomtom.com/digital-cockpit/documentation/getting-started/accessing-the-artifact-repository)
 page.
 
-Once you have configfured your credentials, the build process will pull the TomTom IndiGO platform
+Once you have configfured your credentials, the build process will pull the TomTom Digital Cockpit platform
 libraries from the repository and use them in the template app and the example apps.
 
 ## Directory structure
@@ -85,13 +85,13 @@ application (in the `template/` folder) is needed, see below.
 ### `template/`
 
 This is a template application to create your own IVI application, it contains the minimum needed
-to create a TomTom IndiGO application with all the default functionality from the platform.
+to create a TomTom Digital Cockpit application with all the default functionality from the platform.
 
 ### `keystore/`
 
-The keys needed to sign the application with the same keys as the TomTom IndiGO reference hardware
+The keys needed to sign the application with the same keys as the TomTom Digital Cockpit reference hardware
 build (see
-[Flashing the reference hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/flashing-the-reference-hardware))
+[Flashing the reference hardware](https://developer.tomtom.com/digital-cockpit/documentation/integrating-digital-cockpit/flashing-the-reference-hardware))
 for more details on the reference hardware).
 
 ### `permissions/`
@@ -99,7 +99,7 @@ for more details on the reference hardware).
 Platform permissions needed on hardware for some of the functionality (related to media) to work.
 This file will work with the template app, if another example app is used, please update the
 package name at the top of the file. See
-[Installing TomTom IndiGO on Hardware](https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware)
+[Installing TomTom Digital Cockpit on Hardware](https://developer.tomtom.com/digital-cockpit/documentation/integrating-digital-cockpit/installing-digital-cockpit-on-hardware)
 for more information about the permissions.
 
 ## Copyright

@@ -31,7 +31,7 @@ android {
 
 dependencies {
     implementation(project(":examples_plugin_frontend"))
-    implementation(libraries.indigoPlatformMainmenuApiTestingFrontend)
-    implementation(libraries.indigoPlatformSystemuiApiTestingTools)
-    implementation(libraries.indigoPlatformToolsApiTestingFunctional)
+    implementation(libraries.iviPlatformMainmenuApiTestingFrontend)
+    implementation(libraries.iviPlatformSystemuiApiTestingTools)
+    implementation(libraries.iviPlatformToolsApiTestingFunctional)
 }

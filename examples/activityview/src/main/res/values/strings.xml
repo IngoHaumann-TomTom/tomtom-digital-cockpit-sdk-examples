@@ -15,6 +15,6 @@
     <string name="app_name">IVI Example: ActivityView</string>
 
     <string name="activityview_title">App Embedding</string>
-    <string name="activityview_info">TtiviActivityView embeds another application inside IndiGO.\nPress the button to embed the Android Clock app in a modal panel.</string>
+    <string name="activityview_info">TtiviActivityView embeds another application inside TomTom Digital Cockpit.\nPress the button to embed the Android Clock app in a modal panel.</string>
     <string name="activityview_button">Show external activity</string>
 </resources>

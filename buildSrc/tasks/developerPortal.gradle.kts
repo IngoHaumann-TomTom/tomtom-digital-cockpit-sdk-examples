@@ -11,9 +11,9 @@
 
 val portalDirectory = "${project.projectDir}/docs/portal"
 val targetDir = "${portalDirectory}/build/export"
-val indigoVersion = libraries.versions.indigoPlatform.get()
-val commsVersion = indigoDependencies.versions.iviCommunicationsSdk.get()
-val androidToolsVersion = indigoDependencies.versions.tomtomAndroidTools.get()
+val iviPlatformVersion = libraries.versions.iviPlatform.get()
+val iviCommsVersion = iviDependencies.versions.iviCommunicationsSdk.get()
+val androidToolsVersion = iviDependencies.versions.tomtomAndroidTools.get()
 
 /**
  * TomTom internal tooling, see docs/portal/README.md if you are a TomTom developer.
@@ -26,7 +26,7 @@ tasks.register<Exec>("portal_check") {
     workingDir(portalDirectory)
     commandLine("python3")
     args("-B", "scripts/portal_generator.py", 
-        indigoVersion, commsVersion, androidToolsVersion, targetDir)
+        iviPlatformVersion, iviCommsVersion, androidToolsVersion, targetDir)
 }
 
 /**
@@ -39,5 +39,5 @@ tasks.register<Exec>("portal_export") {
     workingDir(portalDirectory)
     commandLine("python3")
     args("-B", "scripts/portal_generator.py",
-        indigoVersion, commsVersion, androidToolsVersion, targetDir, "export")
+        iviPlatformVersion, iviCommsVersion, androidToolsVersion, targetDir, "export")
 }

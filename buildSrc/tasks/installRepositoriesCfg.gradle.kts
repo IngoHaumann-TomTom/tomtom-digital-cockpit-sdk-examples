@@ -20,7 +20,7 @@ tasks.create("installRepositoriesCfg") {
         val srcKey = "src%02d"
         val enabledKey = "enabled%02d"
         val dispKey = "disp%02d"
-        val dispTitle = "TomTom IndiGO Update Site - Android 11 Emulators"
+        val dispTitle = "TomTom Digital Cockpit Update Site - Android 11 Emulators"
         val versionEmulator = project.properties["versionEmulator"] as String?
         val srcUrl = if (project.hasProperty("nexusUsername")) {
             // TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal

@@ -16,9 +16,9 @@ ivi {
 }
 
 dependencies {
-    implementation(indigoDependencies.androidxLifecycleService)
-    implementation(libraries.indigoPlatformTelecomApiCommonUtils)
-    implementation(libraries.indigoPlatformTelecomApiServiceTelecom)
+    implementation(iviDependencies.androidxLifecycleService)
+    implementation(libraries.iviPlatformTelecomApiCommonUtils)
+    implementation(libraries.iviPlatformTelecomApiServiceTelecom)
 
-    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
+    testImplementation(libraries.iviPlatformToolsApiTestingUnit)
 }

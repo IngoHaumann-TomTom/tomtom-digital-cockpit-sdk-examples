@@ -1,15 +1,15 @@
-# TomTom IndiGO template application
+# TomTom Digital Cockpit template application
 
 ## Introduction
 
-The TomTom IndiGO template application contains all of the off-the-shelf functionality implemented
-by the TomTom IndiGO platform. It is a fully working infotainment system, including navigation, a
+The TomTom Digital Cockpit template application contains all of the off-the-shelf functionality implemented
+by the TomTom Digital Cockpit platform. It is a fully working infotainment system, including navigation, a
 media center, phone calling, messaging and much more.
 
 A detailed explanation of the template app and the off-the-shelf functionality is provided on
-[this page](https://developer.tomtom.com/tomtom-indigo/documentation/platform-overview/example-apps)
+[this page](https://developer.tomtom.com/digital-cockpit/documentation/platform-overview/example-apps)
 of the
-[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction).
+[TomTom Digital Cockpit Developer Portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction).
 
 ## Copyright
 

@@ -2,16 +2,16 @@
 
 ## Introduction
 
-This example app demonstrates how to write plugins, both frontends and services, for the TomTom
-IndiGO platform. It also shows how to use TomTom IndiGO's configuration framework for customizing
-the behavior of the TomTom IndiGO platform.
+This example app demonstrates how to write plugins, both frontends and services, for the
+TomTom IndiGO platform. It also shows how to use TomTom Digital Cockpit's configuration framework
+for customizing the behavior of the TomTom Digital Cockpit platform.
 
 For a detailed explanation of this example app, see the following pages on the
-[TomTom IndiGO Developer Portal](https://developer.tomtom.com/tomtom-indigo/documentation/introduction):
+[TomTom Digital Cockpit Developer Portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction):
 
-- [Create a Frontend Plugin](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin).
-- [Create an IVI Service](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service).
-- [Use the Configuration Framework](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
+- [Create a Frontend Plugin](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin).
+- [Create an IVI Service](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service).
+- [Use the Configuration Framework](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
 
 ## Copyright
 

@@ -58,8 +58,8 @@ ivi {
 
 dependencies {
     implementation(project(":examples_common"))
-    implementation(libraries.indigoPlatformFrontendApiCommonFrontend)
-    implementation(libraries.indigoPlatformFrontendApiCommonUicontrols)
-    implementation(libraries.indigoPlatformThemingApiCommonAttributes)
-    implementation(libraries.indigoPlatformFrontendApiTemplateCompactProcessPanel)
+    implementation(libraries.iviPlatformFrontendApiCommonFrontend)
+    implementation(libraries.iviPlatformFrontendApiCommonUicontrols)
+    implementation(libraries.iviPlatformThemingApiCommonAttributes)
+    implementation(libraries.iviPlatformFrontendApiTemplateCompactProcessPanel)
 }

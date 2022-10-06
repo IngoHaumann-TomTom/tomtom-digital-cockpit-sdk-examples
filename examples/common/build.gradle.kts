@@ -40,9 +40,9 @@ ivi {
 }
 
 dependencies {
-    implementation(indigoDependencies.tomtomAutomotiveAndroidCar)
-    implementation(libraries.indigoPlatformFrameworkApiProductDebugPermissions)
-    implementation(libraries.indigoPlatformFrameworkApiProductDefaultActivity)
-    implementation(libraries.indigoPlatformFrameworkApiProductDefaultApplication)
-    implementation(libraries.indigoPlatformThemingApiCommonAttributes)
+    implementation(iviDependencies.tomtomAutomotiveAndroidCar)
+    implementation(libraries.iviPlatformFrameworkApiProductDebugPermissions)
+    implementation(libraries.iviPlatformFrameworkApiProductDefaultActivity)
+    implementation(libraries.iviPlatformFrameworkApiProductDefaultApplication)
+    implementation(libraries.iviPlatformThemingApiCommonAttributes)
 }

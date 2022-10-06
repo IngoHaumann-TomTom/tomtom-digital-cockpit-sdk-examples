@@ -18,5 +18,5 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoPlatformVpaApiServiceVpaadaptation)
+    implementation(libraries.iviPlatformVpaApiServiceVpaadaptation)
 }

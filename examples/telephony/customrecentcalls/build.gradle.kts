@@ -16,8 +16,8 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoPlatformRecentcallsApiServiceRecentcalls)
-    implementation(libraries.indigoPlatformTelecomApiCommonModel)
+    implementation(libraries.iviPlatformRecentcallsApiServiceRecentcalls)
+    implementation(libraries.iviPlatformTelecomApiCommonModel)
     
-    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
+    testImplementation(libraries.iviPlatformToolsApiTestingUnit)
 }

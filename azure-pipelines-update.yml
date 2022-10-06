@@ -85,7 +85,7 @@ stages:
     - template: .azure-templates/indigo-update.yml
       parameters:
         branch: '$(indigoBranchName)-$(platform_version)'
-        newIndigoVersion: '$(platform_version)'
+        newIviPlatformVersion: '$(platform_version)'
 
 - stage: Build
   displayName: 'Build pipeline'

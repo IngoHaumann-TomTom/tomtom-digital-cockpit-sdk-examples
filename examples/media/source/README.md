@@ -11,15 +11,16 @@ It is implemented using the AndroidX Media library
 ([androidx.media](https://developer.android.com/reference/kotlin/androidx/media/package-summary.html))
 and the base AOSP
 [android.media](https://developer.android.com/reference/kotlin/android/media/package-summary) API.
-The AndroidX Media library is IndiGO's supported and recommended media API. Use of this library
-ensures full compatibility with IndiGO and with the AOSP media framework.
+The AndroidX Media library is TomTom Digital Cockpit's supported and recommended media API. Use of
+this library ensures full compatibility with TomTom Digital Cockpit and with the AOSP media
+framework.
 
 The implementation is built following the basic concepts of the official guide
 [Android Media apps for cars](https://developer.android.com/training/cars/media#implement_browser).
 
 This app does not provide activities, and is thus not visible in a normal phone's app launcher.
-It must be installed alongside an IndiGO-based app and will then be possible to browse its contents
-via the Media app.
+It must be installed alongside a TomTom Digital Cockpit-based app and will then be possible to
+browse its contents via the Media app.
 Its contents are also browsable via the standard Android Open Source Project car media browser app.
 
 ## Copyright

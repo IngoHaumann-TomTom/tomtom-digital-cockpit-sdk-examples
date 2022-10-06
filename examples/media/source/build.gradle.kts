@@ -10,7 +10,7 @@
  */
 
 dependencies {
-    implementation(indigoDependencies.androidxAppcompat)
-    implementation(indigoDependencies.androidxMedia)
-    implementation(indigoDependencies.utilTraceEvents)
+    implementation(iviDependencies.androidxAppcompat)
+    implementation(iviDependencies.androidxMedia)
+    implementation(iviDependencies.utilTraceEvents)
 }

@@ -64,5 +64,5 @@ ivi {
 dependencies {
     androidTestImplementation(project(":examples_plugin_serviceapi"))
     androidTestImplementation(project(":examples_plugin_settingsservice"))
-    androidTestImplementation(libraries.indigoPlatformFrontendApiTestingFrontend)
+    androidTestImplementation(libraries.iviPlatformFrontendApiTestingFrontend)
 }

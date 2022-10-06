@@ -72,6 +72,6 @@ ivi {
 dependencies {
     implementation(project(":examples_common"))
 
-    implementation(libraries.indigoPlatformFrameworkApiProductDefaultActivity)
-    implementation(libraries.indigoPlatformSystemuiApiStockSystemuihost)
+    implementation(libraries.iviPlatformFrameworkApiProductDefaultActivity)
+    implementation(libraries.iviPlatformSystemuiApiStockSystemuihost)
 }

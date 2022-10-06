@@ -3,7 +3,7 @@
 ## Example media fallback policy
 
 This is an example demonstrating how to customize the browsing experience for media sources for
-which a specific customization is not provided by the TomTom IndiGO stock media player UI.
+which a specific customization is not provided by the TomTom Digital Cockpit stock media player UI.
 
 Every media source installed in the system has its data and information provided to the stock
 media player UI via a [`PolicyProvider`](TTIVI_INDIGO_API). When a product hardware platform
@@ -16,8 +16,8 @@ is used to display generic contents for non manually customized media sources, b
 desirable to replace it with a different one.
 
 The example demonstrates concepts also explained in the
-[Customize a media source](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source)
-guide in the TomTom IndiGO documentation.
+[Customize a media source](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/media/customize-a-media-source)
+guide in the TomTom Digital Cockpit documentation.
 
 To be able to try the customizations in this example, other than installing it on a device, it is
 also necessary to compile and install the example module `examples_media_source`, as that contains

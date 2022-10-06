@@ -16,10 +16,10 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoPlatformContactsApiCommonUtil)
-    implementation(libraries.indigoPlatformContactsApiServiceContacts)
-    implementation(libraries.indigoPlatformTelecomApiCommonModel)
+    implementation(libraries.iviPlatformContactsApiCommonUtil)
+    implementation(libraries.iviPlatformContactsApiServiceContacts)
+    implementation(libraries.iviPlatformTelecomApiCommonModel)
 
-    testImplementation(libraries.indigoPlatformFrameworkApiTestingIpc)
-    testImplementation(libraries.indigoPlatformToolsApiTestingUnit)
+    testImplementation(libraries.iviPlatformFrameworkApiTestingIpc)
+    testImplementation(libraries.iviPlatformToolsApiTestingUnit)
 }

@@ -10,5 +10,5 @@
  */
 
 dependencies {
-    api(libraries.indigoPlatformFrameworkApiCommonUid)
+    api(libraries.iviPlatformFrameworkApiCommonUid)
 }

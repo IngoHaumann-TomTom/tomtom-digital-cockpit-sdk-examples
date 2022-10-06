@@ -17,5 +17,5 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoAppsuiteAppstoreApiCommonModel)
+    implementation(libraries.iviAppsuiteAppstoreApiCommonModel)
 }

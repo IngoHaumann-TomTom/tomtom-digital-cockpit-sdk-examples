@@ -19,5 +19,5 @@ ivi {
 
 dependencies {
     implementation(project(":examples_applauncher_common_webapp"))
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceApplaunchhandler)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceApplaunchhandler)
 }

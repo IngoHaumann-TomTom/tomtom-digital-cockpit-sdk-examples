@@ -58,7 +58,7 @@ ivi {
 
 dependencies {
     implementation(project(":examples_common"))
-    implementation(libraries.indigoPlatformFrontendApiCommonFrontend)
-    implementation(libraries.indigoPlatformFrontendApiTemplateNotificationPanel)
-    implementation(indigoDependencies.tomtomToolsApiUicontrols)
+    implementation(libraries.iviPlatformFrontendApiCommonFrontend)
+    implementation(libraries.iviPlatformFrontendApiTemplateNotificationPanel)
+    implementation(iviDependencies.tomtomToolsApiUicontrols)
 }

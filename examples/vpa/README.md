@@ -3,7 +3,7 @@
 ## Introduction
 
 This example application provides an empty VPA service, as a starting point for building your own
-VPA service. This may be needed when your requirements are not covered by the TomTom IndiGO
+VPA service. This may be needed when your requirements are not covered by the TomTom Digital Cockpit
 off-the-shelf VPA services.
 
 ## Copyright
