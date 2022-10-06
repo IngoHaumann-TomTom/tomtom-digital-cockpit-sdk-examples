@@ -33,7 +33,7 @@ steps:
       tasks: >-
         generateIviPlatformLibrariesVersionFile
       projectOptions: >-
-        -PlatestPlatformVersion=${{parameters.newIviPlatformVersion}}
+        -PlatestIviPlatformVersion=${{parameters.newIviPlatformVersion}}
       displayName: 'Check for new IVI Platform versions'
 
   - bash: |
