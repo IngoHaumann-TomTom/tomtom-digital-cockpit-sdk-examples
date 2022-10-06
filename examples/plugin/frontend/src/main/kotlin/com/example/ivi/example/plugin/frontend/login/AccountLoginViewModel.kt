@@ -81,7 +81,7 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
 
             /**
              * It is also possible to call a setter when the service becomes available by using
-             * the TomTom IndiGO utility method [AccountsService.queueOrRun()]"
+             * the TomTom Digital Cockpit utility method [AccountsService.queueOrRun()]"
              */
             // accountsServiceApi.queueOrRun { service ->
             //     service.logInAsync(username, SensitiveString(password))

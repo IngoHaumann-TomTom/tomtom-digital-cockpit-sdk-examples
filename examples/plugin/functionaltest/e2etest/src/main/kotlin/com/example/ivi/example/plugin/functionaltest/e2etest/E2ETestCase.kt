@@ -79,8 +79,8 @@ internal abstract class E2ETestCase :
          * the second test. In between the first test and the second test the `lowmemorykiller` even
          * kills our service processes (rightfully, as the processes are low hanging fruit at this
          * time), making matters worse for the second test to restart the processes. The first
-         * startup of the activity also triggers download of maps etc, so making IndiGo even more
-         * hungry for memory.
+         * startup of the activity also triggers download of maps etc, so making
+         * TomTom Digital Cockpit even more hungry for memory.
          * Once the party dies out, all is fine and our service processes keep running in between
          * tests and they lived happily ever after. Or so they say.
          */

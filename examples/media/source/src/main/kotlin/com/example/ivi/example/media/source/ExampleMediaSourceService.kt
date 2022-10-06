@@ -25,8 +25,8 @@ import com.tomtom.kotlin.traceevents.Tracer
  *
  * This service provides static media to be browsed and played (without sound) via the
  * Android Automotive Media framework.
- * It can be used via the TomTom IndiGO Media Plugin and via the standard AOSP Automotive media
- * browser.
+ * It can be used via the TomTom Digital Cockpit Media Plugin and via the standard AOSP Automotive
+ * media browser.
  *
  * Not meant for production usage.
  */

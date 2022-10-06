@@ -16,7 +16,7 @@ import com.tomtom.tools.android.api.livedata.flatMap
  * Contains the currently active [Panel]s.
  *
  * If any frontend added a [CustomSystemUiPanel], then it can be found in [customPanel]. The
- * [Panel]s for TomTom IndiGO's stock system UI can be found in [iviPanelRegistry].
+ * [Panel]s for TomTom Digital Cockpit's stock system UI can be found in [iviPanelRegistry].
  */
 internal class CustomPanelRegistry(
     val customPanel: LiveData<CustomSystemUiPanel?>,

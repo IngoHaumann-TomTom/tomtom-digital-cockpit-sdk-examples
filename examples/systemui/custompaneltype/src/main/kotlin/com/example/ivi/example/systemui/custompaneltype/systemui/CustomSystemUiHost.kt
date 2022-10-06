@@ -28,7 +28,9 @@ import com.tomtom.tools.android.core.animation.LifecycleAwareAnimationController
  * The system UI host is the overarching class of the system UI. It's responsible for creating the
  * [viewModel], and for creating the view through the [viewFactory].
  *
- * @see https://developer.tomtom.com/tomtom-indigo/documentation/development/system-ui
+ * See the
+ * [System UI guide](https://developer.tomtom.com/digital-cockpit/documentation/development/system-ui)
+ * for more information.
  */
 internal class CustomSystemUiHost(systemUiHostContext: SystemUiHostContext) :
     SystemUiHost(systemUiHostContext) {

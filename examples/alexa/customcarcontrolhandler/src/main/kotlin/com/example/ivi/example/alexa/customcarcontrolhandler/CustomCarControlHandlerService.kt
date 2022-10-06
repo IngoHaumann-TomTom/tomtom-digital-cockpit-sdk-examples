@@ -234,8 +234,8 @@ internal class CustomCarControlHandlerService(
         topic = Topic.CAR_CONTROL
 
         // This [AlexaHandlerService] implementation has default priority, so CarControl AASB
-        // messages will be forwarded to this handler first, before reaching the stock IndiGO
-        // CarControl message handler.
+        // messages will be forwarded to this handler first, before reaching the stock
+        // TomTom Digital Platform CarControl message handler.
         priority = AlexaHandlerService.DEFAULT_HANDLER_PRIORITY
 
         // Copy the `custom_assets.json` file from the assets storage to the internal storage, so

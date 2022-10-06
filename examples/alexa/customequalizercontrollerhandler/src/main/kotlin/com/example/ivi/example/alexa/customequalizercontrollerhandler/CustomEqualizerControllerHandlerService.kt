@@ -99,8 +99,8 @@ internal class CustomEqualizerControllerHandlerService(
         topic = Topic.EQUALIZER_CONTROLLER
 
         // This [AlexaHandlerService] implementation has default priority, so CarControl AASB
-        // messages will be forwarded to this handler first, before reaching the stock IndiGO
-        // EqualizerController message handler.
+        // messages will be forwarded to this handler first, before reaching the stock
+        // TomTom Digital Cockpit EqualizerController message handler.
         priority = AlexaHandlerService.DEFAULT_HANDLER_PRIORITY
 
         // All required properties have been set, so the service is now ready.

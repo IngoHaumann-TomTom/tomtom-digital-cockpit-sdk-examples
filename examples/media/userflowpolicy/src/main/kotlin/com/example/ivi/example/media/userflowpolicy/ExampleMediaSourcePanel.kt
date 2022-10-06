@@ -28,7 +28,7 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendV
 /**
  * This panel enables browsing through the content of the example media source.
  *
- * Panels in TomTom IndiGO are composed of three classes:
+ * Panels in TomTom Digital Cockpit are composed of three classes:
  * - a [TaskPanel] to define the logic, which is this class.
  * - a [FrontendViewModel] that transforms the panels' data into information ready to use in a view,
  *   [ExampleMediaSourceViewModel] in this example.

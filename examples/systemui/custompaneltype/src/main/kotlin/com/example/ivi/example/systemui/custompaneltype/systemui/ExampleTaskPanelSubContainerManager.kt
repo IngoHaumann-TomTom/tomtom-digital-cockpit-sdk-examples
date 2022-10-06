@@ -35,9 +35,9 @@ import com.tomtom.tools.android.core.animation.view.LeftSideSpringAnimation
  * A sub container manager that adds and remove [TaskPanel] sub containers.
  *
  * __Note:__
- * This is currently the best way to implement this in TomTom IndiGO. This is suboptimal, and we
- * are working to simplify this as part of pluggable system UI. We decided to provide this example
- * nonetheless, so it does not block anyone wanting to create a custom system UI.
+ * This is currently the best way to implement this in TomTom Digital Cockpit. This is suboptimal,
+ * and we are working to simplify this as part of pluggable system UI. We decided to provide this
+ * example nonetheless, so it does not block anyone wanting to create a custom system UI.
  */
 internal class ExampleTaskPanelSubContainerManager(
     private val animationController: LifecycleAwareAnimationController
