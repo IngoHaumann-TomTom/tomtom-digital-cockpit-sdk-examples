@@ -60,9 +60,9 @@ steps:
     set -eu
 
     tomlFilePath=build-logic/libraries.versions.toml
-    INDIGO_PLATFORM=$(cat $tomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
+    IVI_PLATFORM=$(cat $tomlFilePath | grep "iviPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
 
     echo "##vso[build.addbuildtag]$(product_version)"
-    echo "##vso[build.addbuildtag]indigoPlatform=$INDIGO_PLATFORM"
+    echo "##vso[build.addbuildtag]indigoPlatform=$IVI_PLATFORM"
   displayName: Add version tag to pipeline run
   condition: succeeded()
