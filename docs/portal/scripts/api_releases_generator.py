@@ -18,24 +18,36 @@ from enum import Enum
 
 # Paths to Markdown files to generate.
 API_REFERENCE_FILE = "api-reference/api-reference.md"
+OLDER_API_REFERENCES_FILE = "api-reference/older-api-references.md"
 RECENT_RELEASES_FILE = "releases/releases.md"
 OLDER_RELEASES_FILE = "releases/older-releases.md"
 
-# Base URLs for the API References hosted on S3.
-INDIGO_S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo"
-INDIGO_BASE_URL = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-api"
-INDIGO_GRADLEPLUGINS_BASE_URL = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-gradleplugins-api"
-INDIGO_COMMS_BASE_URL = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-comms-sdk-api"
-ANDROID_TOOLS_BASE_URL = f"{INDIGO_S3_BASE_URL}/tomtom-android-tools-api"
+# TODO(IVI-8827): Delete old API Reference code
+# Base URLs for the API References hosted on old IndiGO S3 bucket.
+OLD_S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo"
+INDIGO_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-indigo-api"
+INDIGO_GRADLEPLUGINS_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-indigo-gradleplugins-api"
+INDIGO_COMMS_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-indigo-comms-sdk-api"
+OLD_ANDROID_TOOLS_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-android-tools-api"
+
+# Base URLs for the API References hosted on new Digital Cockpit S3 bucket.
+S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/digital-cockpit"
+PLATFORM_BASE_URL = f"{S3_BASE_URL}/platform-api"
+GRADLEPLUGINS_BASE_URL = f"{S3_BASE_URL}/gradleplugins-api"
+COMMS_BASE_URL = f"{S3_BASE_URL}/comms-sdk-api"
+ANDROID_TOOLS_BASE_URL = f"{S3_BASE_URL}/tomtom-android-tools-api"
 
 # JSON library fields.
-INDIGO_JSON = "indigoPlatform"
-INDIGO_GRADLEPLUGINS_JSON = INDIGO_JSON
-INDIGO_COMMS_JSON = "iviCommunicationsSdk"
+PLATFORM_JSON = "indigoPlatform"
+GRADLEPLUGINS_JSON = PLATFORM_JSON
+COMMS_JSON = "iviCommunicationsSdk"
 ANDROID_TOOLS_JSON = "tomtomAndroidTools"
 
 # Example App Sources version first introduced on GitHub
 GITHUB_INTRODUCTION_VERSION = 1864
+
+# API References for later versions are pushed to Digital Cockpit S3 bucket. 
+DIGITAL_COCKPIT_S3_INTRODUCTION = 2000
 
 # Internal Artifactory URL to releases.json file.
 RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
@@ -45,6 +57,8 @@ RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indig
 
 # Placeholder to be replaced by a list of paired API References.
 API_PLACEHOLDER = "TTIVI_API_ANCHOR"
+# TODO(IVI-8827): Delete old API Reference code
+OLDER_API_REF_PLACEHOLDER = "TTIVI_OLDER_API_REFERENCES_ANCHOR"
 
 # Placeholder to be replaced by a list of releases.
 RECENT_RELEASES_PLACEHOLDER = "TTIVI_RECENT_RELEASES_ANCHOR"
@@ -56,7 +70,6 @@ class Accordion_style(Enum):
     FIRST_OPEN = 1
     ALL_OPEN = 2
     ALL_CLOSED = 3
-
 
 def get_releases_dict():
     '''
@@ -178,6 +191,40 @@ def get_release_notes(tickets):
     release_notes.append("</ul></div>")
     return "\n".join(release_notes)
 
+# TODO(IVI-8827): Delete old API Reference code
+def construct_api_old(releases_dict, release_version, is_open):
+    '''
+    Generates a single custom Accordion element (for a single SDK release) for the API Reference
+    section.
+
+    Parameters
+    -----------
+    releases_dict : dict
+        A dictionary with release versions as keys, and release data as values.
+    release_version : str
+        The version number of an SDK Release.
+    is_open : bool
+        Boolean that indicates whether Accordion component needs to be set to 'isOpened'.
+
+    Returns
+    -------
+    accordion : str
+        An HTML '<Accordion>' element of a single SDK release with linked API References.
+    '''
+    indigo_version = releases_dict[release_version]['versions'][PLATFORM_JSON]
+    gradleplugins_version = releases_dict[release_version]['versions'][GRADLEPLUGINS_JSON]
+    comms_version = releases_dict[release_version]['versions'][COMMS_JSON]
+    android_tools_version = releases_dict[release_version]['versions'][ANDROID_TOOLS_JSON]
+    date = releases_dict[release_version]['date']
+
+    accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
+        f"{get_api_link(indigo_version, INDIGO_BASE_URL, 'TomTom IndiGO platform')}"\
+        f"{get_api_link(gradleplugins_version, INDIGO_GRADLEPLUGINS_BASE_URL, 'TomTom IndiGO Gradle plugins')}"\
+        f"{get_api_link(comms_version, INDIGO_COMMS_BASE_URL, 'TomTom IndiGO Comms SDK')}"\
+        f"{get_api_link(android_tools_version, OLD_ANDROID_TOOLS_BASE_URL, 'TomTom Android Tools')}"\
+        "\n</Accordion>\n"
+    return accordion
+
 def construct_api(releases_dict, release_version, is_open):
     '''
     Generates a single custom Accordion element (for a single SDK release) for the API Reference
@@ -197,19 +244,20 @@ def construct_api(releases_dict, release_version, is_open):
     accordion : str
         An HTML '<Accordion>' element of a single SDK release with linked API References.
     '''
-    indigo_version = releases_dict[release_version]['versions'][INDIGO_JSON]
-    gradleplugins_version = releases_dict[release_version]['versions'][INDIGO_GRADLEPLUGINS_JSON]
-    comms_version = releases_dict[release_version]['versions'][INDIGO_COMMS_JSON]
+    platform_version = releases_dict[release_version]['versions'][PLATFORM_JSON]
+    gradleplugins_version = releases_dict[release_version]['versions'][GRADLEPLUGINS_JSON]
+    comms_version = releases_dict[release_version]['versions'][COMMS_JSON]
     android_tools_version = releases_dict[release_version]['versions'][ANDROID_TOOLS_JSON]
     date = releases_dict[release_version]['date']
 
+    # TODO(IVI-8827): Delete old API Reference code and rename API refs
     accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
-        f"{get_api_link(indigo_version, INDIGO_BASE_URL, 'TomTom IndiGO platform')}"\
-        f"{get_api_link(gradleplugins_version, INDIGO_GRADLEPLUGINS_BASE_URL, 'TomTom IndiGO Gradle plugins')}"\
-        f"{get_api_link(comms_version, INDIGO_COMMS_BASE_URL, 'TomTom IndiGO Comms SDK')}"\
+        f"{get_api_link(platform_version, PLATFORM_BASE_URL, 'TomTom IndiGO platform')}"\
+        f"{get_api_link(gradleplugins_version, GRADLEPLUGINS_BASE_URL, 'TomTom IndiGO Gradle plugins')}"\
+        f"{get_api_link(comms_version, COMMS_BASE_URL, 'TomTom IndiGO Comms SDK')}"\
         f"{get_api_link(android_tools_version, ANDROID_TOOLS_BASE_URL, 'TomTom Android Tools')}"\
         "\n</Accordion>\n"
-    return accordion
+    return accordion    
 
 def construct_release(releases_dict, release_version, is_open):
     '''
@@ -261,6 +309,10 @@ def get_accordions(construct_function, releases_dict, accordion_style):
     '''
     accordions = deque()
 
+    # TODO(IVI-8827): Delete old API Reference code
+    if not releases_dict:
+        return ""
+
     if accordion_style == Accordion_style.ALL_OPEN:
         for release in releases_dict:
             # Append left to accordions container so the order becomes chronologic.
@@ -307,7 +359,7 @@ def generate_file(file_path, placeholder, construct_function, releases_dict, acc
         file.write(content)
         file.truncate()
 
-def split_dict(releases_dict):
+def split_dict_releases(releases_dict):
     '''
     Splits 'releases_dict' into 'recent_releases_dict' which holds the 12 most recent releases and
     'older_releases_dict' which holds all other releases.
@@ -322,6 +374,26 @@ def split_dict(releases_dict):
 
     return older_releases_dict, recent_releases_dict
 
+# TODO(IVI-8827): Delete old API Reference code
+def split_dict_api_references(releases_dict):
+    '''
+    Splits 'releases_dict' into 'recent_api_dict' which holds the releases for which the API
+    References have been published to the Digital Cockpit S3 bucket and 'older_api_dict' which 
+    holds all other releases.
+
+    Parameters
+    -----------
+    releases_dict : dict
+        A dictionary with release versions as keys, and release data as values.
+    '''
+
+    recent_api_dict = {key:value for (key, value) in releases_dict.items() \
+        if int(key[-4:]) > DIGITAL_COCKPIT_S3_INTRODUCTION}
+    older_api_dict = {key:value for (key, value) in releases_dict.items() \
+        if int(key[-4:]) <= DIGITAL_COCKPIT_S3_INTRODUCTION}
+
+    return older_api_dict, recent_api_dict
+
 def generate_api_releases_sections(target_dir):
     '''
     Generates the API Reference and Releases section for a Dev Portal export.
@@ -332,13 +404,20 @@ def generate_api_releases_sections(target_dir):
         Path to directory containing the export files.
     '''
     releases_dict = get_releases_dict()
-    older_releases_dict, recent_releases_dict = split_dict(releases_dict)
+    older_releases_dict, recent_releases_dict = split_dict_releases(releases_dict)
+    older_api_dict, recent_api_dict = split_dict_api_references(releases_dict)
 
-    # Generate API Reference section.
+    # Generate recent API Reference section.
     api_reference_path = os.path.join(target_dir, API_REFERENCE_FILE)
     generate_file(api_reference_path, API_PLACEHOLDER, \
-        construct_api, releases_dict, Accordion_style.FIRST_OPEN)
+        construct_api, recent_api_dict, Accordion_style.FIRST_OPEN)
 
+    # TODO(IVI-8827): Delete old API Reference code
+    # Generate older API Reference section.
+    api_reference_path = os.path.join(target_dir, OLDER_API_REFERENCES_FILE)
+    generate_file(api_reference_path, OLDER_API_REF_PLACEHOLDER, \
+        construct_api_old, older_api_dict, Accordion_style.FIRST_OPEN)
+        
     # Generate recent Releases section.
     recent_releases_path = os.path.join(target_dir, RECENT_RELEASES_FILE)
     generate_file(recent_releases_path, RECENT_RELEASES_PLACEHOLDER, \

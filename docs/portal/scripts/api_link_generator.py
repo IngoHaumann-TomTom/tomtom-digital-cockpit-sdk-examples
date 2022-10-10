@@ -13,7 +13,6 @@ import re
 import os
 import tarfile
 import shutil
-import time
 from pathlib import Path
 import requests
 
@@ -22,18 +21,18 @@ DOWNLOAD_DIR = "build/downloads"
 IGNORE = ["scripts",  "images", "styles", "package-list"]
 
 # The placeholders in the Markdown files that will be replaced by an API Reference URL.
-INDIGO_PLACEHOLDER = "TTIVI_INDIGO_API"
-INDIGO_GRADLEPLUGINS_PLACEHOLDER = "TTIVI_INDIGO_GRADLEPLUGINS_API"
-INDIGO_COMMS_PLACEHOLDER = "TTIVI_INDIGO_COMMS_API"
+PLATFORM_PLACEHOLDER = "TTIVI_INDIGO_API"
+GRADLEPLUGINS_PLACEHOLDER = "TTIVI_INDIGO_GRADLEPLUGINS_API"
+COMMS_PLACEHOLDER = "TTIVI_INDIGO_COMMS_API"
 ANDROID_TOOLS_PLACEHOLDER = "TTIVI_ANDROID_TOOLS_API"
 
 # Regex patterns to find API-links: [api-element](placeholder).
-REGEX_INDIGO_PLACEHOLDER = f"\[.*?\]\({INDIGO_PLACEHOLDER}\)"
-REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({INDIGO_GRADLEPLUGINS_PLACEHOLDER}\)"
-REGEX_INDIGO_COMMS_PLACEHOLDER = f"\[.*?\]\({INDIGO_COMMS_PLACEHOLDER}\)"
+REGEX_PLATFORM_PLACEHOLDER = f"\[.*?\]\({PLATFORM_PLACEHOLDER}\)"
+REGEX_GRADLEPLUGINS_PLACEHOLDER = f"\[.*?\]\({GRADLEPLUGINS_PLACEHOLDER}\)"
+REGEX_COMMS_PLACEHOLDER = f"\[.*?\]\({COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
-INDIGO_S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-indigo"
+S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/digital-cockpit"
 ARTIFACTORY_BASE_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
 
 # Regex pattern to retrieve the API element without brackets.
@@ -57,9 +56,9 @@ def is_valid_placeholder(match):
         True if valid placeholder syntax.
 
     '''
-    return match == INDIGO_PLACEHOLDER or \
-        match == INDIGO_GRADLEPLUGINS_PLACEHOLDER or \
-        match == INDIGO_COMMS_PLACEHOLDER or \
+    return match == PLATFORM_PLACEHOLDER or \
+        match == GRADLEPLUGINS_PLACEHOLDER or \
+        match == COMMS_PLACEHOLDER or \
         match == ANDROID_TOOLS_PLACEHOLDER
 
 def download_api_ref(artifactory_url, target_dir):
@@ -250,33 +249,33 @@ def generate_api_links(target_dir, versions):
     '''
 
     assert (len(versions) == 3), "Invalid number of versions."
-    indigo_version = versions[0]
-    indigo_gradleplugins_version = indigo_version
-    indigo_comms_version = versions[1]
+    platform_version = versions[0]
+    gradleplugins_version = platform_version
+    comms_version = versions[1]
     android_tools_version = versions[2]
 
     print("Using API reference versions:")
-    print(f"    IndiGO Platform version {indigo_version}")
-    print(f"    IndiGO Gradle Plugins version {indigo_gradleplugins_version}")
-    print(f"    IndiGO Comms SDK version {indigo_comms_version}")
+    print(f"    Platform version {platform_version}")
+    print(f"    Gradle Plugins version {gradleplugins_version}")
+    print(f"    Comms SDK version {comms_version}")
     print(f"    TomTom Android Tools version {android_tools_version}")
 
     # The base URLs of the hosted API References on the S3 bucket.
-    indigo_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-api/{indigo_version}"
-    indigo_gradleplugins_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-gradleplugins-api/{indigo_gradleplugins_version}"
-    indigo_comms_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-indigo-comms-sdk-api/{indigo_comms_version}"
-    android_tools_base_url = f"{INDIGO_S3_BASE_URL}/tomtom-android-tools-api/{android_tools_version}"
+    platform_base_url = f"{S3_BASE_URL}/platform-api/{platform_version}"
+    gradleplugins_base_url = f"{S3_BASE_URL}/gradleplugins-api/{gradleplugins_version}"
+    comms_base_url = f"{S3_BASE_URL}/comms-sdk-api/{comms_version}"
+    android_tools_base_url = f"{S3_BASE_URL}/tomtom-android-tools-api/{android_tools_version}"
 
     # The URLs of the API Reference on Artifactory.
-    indigo_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/api-reference-docs/{indigo_version}/api-reference-docs-{indigo_version}.tar.gz"
-    indigo_gradleplugins_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/{indigo_gradleplugins_version}/api-reference-docs-{indigo_gradleplugins_version}.tar.gz"
-    indigo_comms_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/{indigo_comms_version}/api-reference-docs-{indigo_comms_version}.tar.gz"
+    platform_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/api-reference-docs/{platform_version}/api-reference-docs-{platform_version}.tar.gz"
+    gradleplugins_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/{gradleplugins_version}/api-reference-docs-{gradleplugins_version}.tar.gz"
+    comms_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/{comms_version}/api-reference-docs-{comms_version}.tar.gz"
     android_tools_artifactory_url = f"{ARTIFACTORY_BASE_URL}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/{android_tools_version}/api-reference-docs-{android_tools_version}.tar.gz"
 
     # The directories where the downloaded API References will be saved.
-    indigo_download_dir = f"{DOWNLOAD_DIR}/indigo_{indigo_version}"
-    indigo_gradleplugins_download_dir = f"{DOWNLOAD_DIR}/indigo_gradleplugins_{indigo_gradleplugins_version}"
-    indigo_comms_download_dir = f"{DOWNLOAD_DIR}/indigo_comms_{indigo_comms_version}"
+    platform_download_dir = f"{DOWNLOAD_DIR}/platform_{platform_version}"
+    gradleplugins_download_dir = f"{DOWNLOAD_DIR}/gradleplugins_{gradleplugins_version}"
+    comms_download_dir = f"{DOWNLOAD_DIR}/comms_{comms_version}"
     android_tools_download_dir = f"{DOWNLOAD_DIR}/android_tools_{android_tools_version}"
 
     validate_placeholders(target_dir)
@@ -286,15 +285,15 @@ def generate_api_links(target_dir, versions):
         shutil.rmtree(DOWNLOAD_DIR)
 
     # Download API References stored on Artifactory.
-    download_api_ref(indigo_artifactory_url, indigo_download_dir)
-    download_api_ref(indigo_gradleplugins_artifactory_url, indigo_gradleplugins_download_dir)
-    download_api_ref(indigo_comms_artifactory_url, indigo_comms_download_dir)
+    download_api_ref(platform_artifactory_url, platform_download_dir)
+    download_api_ref(gradleplugins_artifactory_url, gradleplugins_download_dir)
+    download_api_ref(comms_artifactory_url, comms_download_dir)
     download_api_ref(android_tools_artifactory_url, android_tools_download_dir)
 
     # Create look-up maps by indexing API References.
-    indigo_map = create_index(indigo_download_dir)
-    indigo_gradleplugins_map = create_index(indigo_gradleplugins_download_dir)
-    indigo_comms_map = create_index(indigo_comms_download_dir)
+    platform_map = create_index(platform_download_dir)
+    gradleplugins_map = create_index(gradleplugins_download_dir)
+    comms_map = create_index(comms_download_dir)
     android_tools_map = create_index(android_tools_download_dir)
 
     errors = []
@@ -303,15 +302,15 @@ def generate_api_links(target_dir, versions):
             content = file.read()
 
             # Replace TTIVI_ placeholders in documentation.
-            for match in re.findall(REGEX_INDIGO_PLACEHOLDER, content):
-                content = content.replace(INDIGO_PLACEHOLDER, \
-                    os.path.join(indigo_base_url, url_lookup(indigo_map, match, path, errors)), 1)
-            for match in re.findall(REGEX_INDIGO_GRADLEPLUGINS_PLACEHOLDER, content):
-                content = content.replace(INDIGO_GRADLEPLUGINS_PLACEHOLDER, \
-                    os.path.join(indigo_gradleplugins_base_url, url_lookup(indigo_gradleplugins_map, match, path, errors)), 1)
-            for match in re.findall(REGEX_INDIGO_COMMS_PLACEHOLDER, content):
-                content = content.replace(INDIGO_COMMS_PLACEHOLDER, \
-                    os.path.join(indigo_comms_base_url, url_lookup(indigo_comms_map, match, path, errors)), 1)
+            for match in re.findall(REGEX_PLATFORM_PLACEHOLDER, content):
+                content = content.replace(PLATFORM_PLACEHOLDER, \
+                    os.path.join(platform_base_url, url_lookup(platform_map, match, path, errors)), 1)
+            for match in re.findall(REGEX_GRADLEPLUGINS_PLACEHOLDER, content):
+                content = content.replace(GRADLEPLUGINS_PLACEHOLDER, \
+                    os.path.join(gradleplugins_base_url, url_lookup(gradleplugins_map, match, path, errors)), 1)
+            for match in re.findall(REGEX_COMMS_PLACEHOLDER, content):
+                content = content.replace(COMMS_PLACEHOLDER, \
+                    os.path.join(comms_base_url, url_lookup(comms_map, match, path, errors)), 1)
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
                 content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
                     os.path.join(android_tools_base_url, url_lookup(android_tools_map, match, path, errors)), 1)

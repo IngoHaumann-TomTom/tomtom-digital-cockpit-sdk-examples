@@ -10,14 +10,14 @@
 parameters:
   artifactoryBaseUrl: https://artifactory.navkit-pipeline.tt3.com/artifactory
   # The API reference subfolder names being used on S3.
-  gradlepluginsApiSubFolder: 'tomtom-indigo-gradleplugins-api'
-  commsSdkApiSubFolder: 'tomtom-indigo-comms-sdk-api'
+  gradlepluginsApiSubFolder: 'gradleplugins-api'
+  commsSdkApiSubFolder: 'comms-sdk-api'
   androidToolsApiSubFolder: 'tomtom-android-tools-api'
-  indigoPlatformApiSubFolder: 'tomtom-indigo-api'
+  iviPlatformApiSubFolder: 'platform-api'
 
 jobs:
   - job: ApiDocsToS3
-    displayName: 'Upload API reference docs to S3'
+    displayName: 'Upload API References to S3'
     timeoutInMinutes: 15
     container: docker_indigo_delivery
     steps:
@@ -78,8 +78,8 @@ jobs:
         displayName: 'Publish ${{ parameters.androidToolsApiSubFolder }} docs as a pipeline artifact'
       - template: build/build-cleanup.yml@devops-templates
 
-  - job: GenerateIndigoApiDocs
-    displayName: 'Generate IndiGO API docs'
+  - job: GeneratePlatformApiDocs
+    displayName: 'Generate Platform API docs'
     timeoutInMinutes: 60
     container: 'docker_indigo_build'
     dependsOn: ApiDocsToS3
@@ -88,7 +88,7 @@ jobs:
       - bash: |
           cd $(Build.SourcesDirectory)
           git checkout tags/$(VERSION_PLATFORM)
-        displayName: 'Checkout IndiGO v$(VERSION_PLATFORM)'
+        displayName: 'Checkout Platform v$(VERSION_PLATFORM)'
       - template: gradle/gradle.yml@devops-templates
         parameters:
           tasks: >-
@@ -96,22 +96,22 @@ jobs:
           projectOptions:
             -PiviVersion=$(VERSION_PLATFORM)
             -PandroidToolsExternalApiRefVersion=$(VERSION_TOMTOM_ANDROID_TOOLS)
-          displayName: 'Generate IndiGO API docs'
+          displayName: 'Generate Platform API docs'
       - publish: $(System.DefaultWorkingDirectory)/build/docs
-        artifact: indigo-api-docs
-        displayName: 'Publish IndiGO API docs as a pipeline artifact'
+        artifact: ${{ parameters.iviPlatformApiSubFolder }}
+        displayName: 'Publish Platform API Reference as a pipeline artifact'
       - template: build/build-cleanup.yml@devops-templates
 
   - job: IndigoApiDocsToS3
-    displayName: 'Upload IndiGO API docs to S3'
+    displayName: 'Upload Platform API Reference to S3'
     timeoutInMinutes: 10
     container: docker_indigo_delivery
-    dependsOn: GenerateIndigoApiDocs
+    dependsOn: GeneratePlatformApiDocs
     steps:
       - checkout: none
       - template: aws-S3-upload.yml
         parameters:
-          artifactName: indigo-api-docs
-          apiSubFolder: ${{ parameters.indigoPlatformApiSubFolder }}
+          artifactName: ${{ parameters.iviPlatformApiSubFolder }}
+          apiSubFolder: ${{ parameters.iviPlatformApiSubFolder }}
           version: $(VERSION_PLATFORM)
       - template: build/build-cleanup.yml@devops-templates

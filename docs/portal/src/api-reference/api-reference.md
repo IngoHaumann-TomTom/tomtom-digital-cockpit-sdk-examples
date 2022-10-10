@@ -37,3 +37,7 @@ extended with custom services.
 ## Releases
 
 TTIVI_API_ANCHOR
+
+## Older API References
+
+See the API References for [older releases](/tomtom-indigo/api-reference/older-api-references).
