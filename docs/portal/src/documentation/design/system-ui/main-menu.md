@@ -40,7 +40,7 @@ good, albeit more laborious option.
      title: 'Out of the box',
      body: 'How the menu looks by default.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui/main-menu/out-of-box.png',
+       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/main-menu/out-of-box.png',
        alt: 'out of box',
      }
    },
@@ -48,7 +48,7 @@ good, albeit more laborious option.
      title: 'Configured',
      body: 'Changed the content, visualization style, and theming.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui/main-menu/configured.png',
+       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/main-menu/configured.png',
        alt: 'configured',
      }
    },
@@ -56,7 +56,7 @@ good, albeit more laborious option.
      title: 'Replaced',
      body: 'Entirely substituted the stock menu frontend with a custom one with extended functionality (not yet supported).',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/tomtom-indigo/image-components/system-ui/main-menu/replaced.png',
+       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/main-menu/replaced.png',
        alt: 'replaced',
      }
    },
