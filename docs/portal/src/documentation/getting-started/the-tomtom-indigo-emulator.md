@@ -28,12 +28,12 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
 - Open the SDK Manager via `Tools` > `SDK Manager`.
 
 - Select tab `SDK Update Sites` and add a new entry:
-  - Name: `TomTom IndiGO - Android 11 Emulators`
-  - URL: `https://aaos.blob.core.windows.net/indigo-automotive/repo-sys-img.xml`
+  - Name: `TomTom Digital Cockpit - Android 11 Emulators`
+  - URL: `https://aaos.blob.core.windows.net/tomtom-digital-cockpit/repo-sys-img.xml`
   - Leave `Use Authentication` unchecked, and click `OK`.
 
 - Add another `SDK Update Sites` entry:
-  - Name: `TomTom IndiGO - Artifact Repository`
+  - Name: `TomTom Digital Cockpit - Artifact Repository`
   - URL: `https://repo.tomtom.com/`
   - Tick `Use Authentication`, enter your TomTom
     [repository credentials](/tomtom-indigo/documentation/getting-started/introduction)
@@ -42,14 +42,14 @@ Follow these steps to install the TomTom IndiGO emulator image in Android Studio
 - __Note__ the `s` in `https://`, because Android Studio proposes a default URL as `http://`.
 
 - Click `Apply` to activate these update sites.
-  - The `TomTom IndiGO - Android 11 Emulators` entry should not show an error.
-  - The `TomTom IndiGO - Nexus repository` entry will show an error, which you can ignore.
+  - The `TomTom Digital Cockpit - Android 11 Emulators` entry should not show an error.
+  - The `TomTom Digital Cockpit - Artifact Repository` entry will show an error, which you can ignore.
 
 ![Android Studio - SDK Update Sites](images/android_studio_sdk_update_sites.png)
 
 - Switch to tab `SDK platforms` and tick `Show Package Details` on the bottom right.
 
-- Expand the `Android 11 (R)` section, enable the `IndiGO Automotive Android System Image` and click
+- Expand the `Android 11 (R)` section, enable the `TomTom Digital Cockpit System Image` and click
   `Apply` to start downloading this image.
 
 ![Android Studio - SDK download list](images/android_studio_sdk_platforms_download_list.png)
@@ -67,20 +67,21 @@ Android Virtual Device (AVD) with it:
 
 - Select tab `Virtual` and click `Create device`. You should now see a list of device definitions.
 
-- In the `Automotive` category, select item `IndiGO_Test_Device`, then click `Next`:
+- In the `Automotive` category, select item `TomTom_Digital_Cockpit_Test_Device`, then click `Next`:
 
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
 ![Android Studio - Select Hardware](images/android_studio_select_hardware.png)
 
 - In the `System Image` dialog, go to tab `x86 Images` and select the upper entry:
   - `Release Name` : `R`
   - `API level` : `30`
   - `ABI` : `x86_64`
-  - `Target` : `Android 11.0 (IndiGO Automotive Android System Image)`
+  - `Target` : `Android 11.0 (TomTom Digital Cockpit System Image)`
   - __Note:__ The entries displayed differ only in the last part of their `Target` field.
 
 - __Mac _with_ an M1 processor:__ Go to tab `Other Images` and select `Android S` for `arm64-v8a` as
-  the System Image. This is a standard Android image, without TomTom IndiGO-specific customizations
-  or Android Automotive features!
+  the System Image. This is a standard Android image, without TomTom IndiGO-specific
+  customizations or Android Automotive features!
 
 ![Android Studio - System Image](images/android_studio_android_r.png)
 
@@ -97,19 +98,22 @@ Android Virtual Device (AVD) with it:
 
 - You now see a new TomTom IndiGO emulator device listed in the Device Manager:
 
-![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_tomtom-indigo_emulator_device.png)
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
+![Android Studio - TomTom IndiGO Emulator Device](images/android_studio_emulator_device.png)
 
 ## Running the TomTom IndiGO emulator
 
 - Click the triangular `play` icon on the right to start the emulator.
 - When the emulator has started, it shows inside a `Device Manager` subwindow:
 
-![Android Studio - TomTom IndiGO Emulator In Device Manager](images/android_studio_tomtom-indigo_emulator_in_device_manager.png)
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
+![Android Studio - TomTom IndiGO Emulator In Device Manager](images/android_studio_emulator_in_device_manager.png)
 
 - To show the emulator in its own window, click the `Settings` icon in the top-right corner of the
   emulator panel and select `View Mode` > `Window`:
 
-![Android Studio - TomTom IndiGO Emulator Window](images/android_studio_tomtom-indigo_emulator_window.png)
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
+![Android Studio - TomTom IndiGO Emulator Window](images/android_studio_emulator_window.png)
 
 - Enable wifi, to allow the emulator network access:
   - Click the Home button (circle) in the top bar of the emulator screen.
@@ -127,10 +131,12 @@ Android Virtual Device (AVD) with it:
     picture below.
   - Close the `Extended Controls` dialog.
 
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
 ![Emulator - OpenGL Settings](images/emulator_opengl_settings.png)
 
 - Now restart the emulator, for the new settings to take effect:
-  - Close the `IndiGO Test Device API 30` tab in the emulator window to stop the emulator.
+  - Close the `TomTom Digital Cockpit Test Device API 30` tab in the emulator
+    window to stop the emulator.
   - In Android Studio go to: `Tools` > `Device Manager`.
   - On the right-hand side of each configured AVD there is a down-arrow that opens a context menu.
     Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
@@ -141,7 +147,8 @@ Android Virtual Device (AVD) with it:
     background without access to its user interface.
 </Blockquote>
 
-![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_tomtom-indigo_emulator_cold_boot.png)
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
+![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_emulator_cold_boot.png)
 
 - Go to the emulator window and wait for the emulator to start up.
 
@@ -151,16 +158,19 @@ Android Virtual Device (AVD) with it:
     the application will run on.
   - Build and run the application by clicking the green `play` icon.
 
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
 ![Android Studio - Build and run](images/android_studio_build_and_run.png)
 
 - When the application starts, you must select `IVI Template App` as the default phone app.
 
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
 - You will now see the TomTom IndiGO home screen. Note that map data shows only when you have
   [installed an on-board map](/tomtom-indigo/documentation/getting-started/accessing-the-map-data)
   and the current location is inside this map.
 
+[TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
 ![TomTom IndiGO Home Screen](images/tomtom-indigo_home_screen.png)
 
 __Next step:__
