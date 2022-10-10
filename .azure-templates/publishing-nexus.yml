@@ -56,6 +56,25 @@ steps:
     displayName: Publish the repo-sys-img.xml file as a pipeline artifact
     condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
 
+    # Since it is not possible to upload this xml file to a root folder on Nexus (400 Invalid path for
+    # a Maven 2 repository), upload this file to Azure Blob using a dedicated container as a temporary
+    # solution. So that external customers can download the latest version of the IndiGO AAOS system
+    # images for emulators, while needing to setup their environment only once.
+    # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '$(SUBSCRIPTION_ID)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az storage copy \
+        --source $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml \
+        --account-name $(ACCOUNT_NAME) \
+        --account-key $(ACCOUNT_KEY) \
+        --destination-container tomtom-digital-cockpit
+    displayName: Upload repo-sys-img.xml to Azure Storage
+    condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
+
   - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.indigoPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
     artifact: tomtom-indigo-sdk
     displayName: Publish tomtom-indigo-sdk as a pipeline artifact
