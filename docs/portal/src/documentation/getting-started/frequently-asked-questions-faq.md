@@ -2,14 +2,6 @@
 title: Frequently Asked Questions (FAQ)
 ---
 
-<Blockquote>
-    For TomTom IndiGO version 1.0.3880-1630 and earlier,&nbsp;
-    <a href="/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq-navkit2">
-        some additional issues
-    </a>
-    &nbsp;are explained.
-</Blockquote>
-
 Table of content:
 
 - [When building, there are a lot of unresolved dependencies](#when-building-there-are-a-lot-of-unresolved-dependencies)
@@ -290,7 +282,7 @@ directory, then rebuild and deploy.
 
 ## Android doesn't allow my application while driving
 
-An IVI application must tag all its activities to be _Distraction Optimized_; see more about 
+An IVI application must tag all its activities to be _Distraction Optimized_; see more about
 [driver distraction guidelines](https://source.android.com/devices/automotive/driver_distraction/guidelines#do).
-To do this, add the `distractionOptimized` meta-data attribute in the `AndroidManifest.xml` for all 
+To do this, add the `distractionOptimized` meta-data attribute in the `AndroidManifest.xml` for all
 activities and activity aliases. See also [`IviActivity`](TTIVI_INDIGO_API).

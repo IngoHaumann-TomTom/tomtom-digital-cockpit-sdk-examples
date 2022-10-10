@@ -8,7 +8,7 @@ The TomTom IndiGO platform is divided into a number of functional domains which 
 ## Navigation
 
 Navigation is central to the TomTom IndiGO experience. It is built on top of TomTom's online
-navigation SDK: [NavKit2](https://developer.tomtom.com/docs-and-tools). When the connection is lost
+navigation SDK: [NavKit](https://developer.tomtom.com/docs-and-tools). When the connection is lost
 during turn-by-turn guidance or free driving, the system will keep operating normally using cached
 map content. Online navigation enables fresh and always up-to-date map content.
 [Navigation](/tomtom-indigo/documentation/development/platform-domains/navigation)
@@ -62,7 +62,7 @@ values in a type-safe manner.
 
 ## User Profiles
 
-Customization plays an important role in an infotainment system. Users expect the ability to 
-customize their experience by setting up their environment based on their preferences. TomTom IndiGO 
+Customization plays an important role in an infotainment system. Users expect the ability to
+customize their experience by setting up their environment based on their preferences. TomTom IndiGO
 provides user profile management functionalities which make all this possible.
 [User Profiles](/tomtom-indigo/documentation/development/platform-domains/user-profiles)

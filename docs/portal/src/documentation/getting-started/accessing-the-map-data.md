@@ -2,20 +2,6 @@
 title: Accessing the Map Data
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, you should have followed the
-    instructions on&nbsp;
-    <a href="/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key-navkit2">
-        Getting the TomTom API Key (NavKit2)
-    </a>
-    .
-    Skip the instructions on this page, and go directly to the&nbsp;
-    <a href="/tomtom-indigo/documentation/getting-started/accessing-the-map-data#next-steps">
-        Next steps
-    </a>
-    &nbsp;section.
-</Blockquote>
-
 TomTom IndiGO uses an on-board map for its navigation features, but this map is not included in the
 SDK package or in the emulator image. You must download and install the map separately.
 
@@ -35,14 +21,14 @@ Each map consists of a keystore file and a tarball with the map data.
 
 ## Installing the map
 
-Make sure you have built the `IVI Template App` and you are running it in the 
-[TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#running-the-tomtom-indigo-emulator), 
+Make sure you have built the `IVI Template App` and you are running it in the
+[TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#running-the-tomtom-indigo-emulator),
 if you are installing the on-board map on an emulator.
 
 <Blockquote>
-  The on-board map and keystore file need to be installed for each application individually. In 
-  these instructions the target application is the IVI Template App, with the package 
-  name <code>com.example.ivi.template.app</code>. For one of the example apps, use the package name 
+  The on-board map and keystore file need to be installed for each application individually. In
+  these instructions the target application is the IVI Template App, with the package
+  name <code>com.example.ivi.template.app</code>. For one of the example apps, use the package name
   from that specific AndroidManifest.xml file.
 </Blockquote>
 
@@ -83,7 +69,7 @@ If the map and keystore file were succesfully installed, you will now see a blue
 ## Setting the emulator location
 
 The IVI Template App's navigation features only work if the emulator device's location is within
-the on-board map's region. 
+the on-board map's region.
 
 - Change the device's location:
   - Click the three vertical dots in the top bar of the emulator screen. This opens the `Extended

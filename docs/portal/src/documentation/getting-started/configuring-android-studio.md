@@ -2,15 +2,6 @@
 title: Configuring Android Studio
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, please follow the instructions
-    on&nbsp;
-    <a href="/tomtom-indigo/documentation/getting-started/getting-the-tomtom-api-key-navkit2">
-        Getting the TomTom API Key (NavKit2)
-    </a>
-    &nbsp;<i>before</i> you install Android Studio.
-</Blockquote>
-
 To install the Android Studio IDE, follow the instructions from the
 [official Android guide](https://developer.android.com/studio/install).
 For TomTom IndiGO the recommended version is Android Studio version `Chipmunk | 2021.2.1` or newer.

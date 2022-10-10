@@ -3,18 +3,9 @@ title: Navigation
 layout: default
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, please skip this page and instead go
-    to&nbsp;
-    <a href="/tomtom-indigo/documentation/development/platform-domains/navigation-navkit2">
-        Navigation (NavKit2)
-    </a>
-    .
-</Blockquote>
-
 Navigation is central to the TomTom IndiGO experience. Online navigation enables fresh and always
-up-to-date map content. It is built on top of TomTom's navigation SDK:
-NavKit and makes use of common UI controls, made available through the NavKitUI SDK.
+up-to-date map content. It is built on top of TomTom's navigation SDK: NavKit and makes use of
+common UI controls, made available through the NavKitUI SDK.
 
 TomTom IndiGO provides a set of generic core services as well as
 [_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
@@ -59,7 +50,7 @@ The following diagram shows a high-level overview of the architecture of search 
 
 ![Search high-level overview image](images/navigation_domain-search-high-level-overview.svg)
 
-It shows the following components: 
+It shows the following components:
 - __Search frontend__: This implements the user interface for the search functionality.
 - __Search ui component api__: Provides the NavKit and NavKitUI components.
 - __Vehicle location service__: This service exposes information related to the current driving

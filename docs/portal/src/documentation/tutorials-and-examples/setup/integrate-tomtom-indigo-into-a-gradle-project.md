@@ -2,15 +2,6 @@
 title: Integrate TomTom IndiGO into a Gradle Project
 ---
 
-<Blockquote>
-    When using TomTom IndiGO version 1.0.3880-1630 or earlier, please skip this page and instead go
-    to&nbsp;
-    <a href="/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project-navkit2">
-        Integrate TomTom IndiGO into a Gradle Project (NavKit2)
-    </a>
-    .
-</Blockquote>
-
 This pages contains the steps required to integrate the TomTom IndiGO platform into an existing
 Android Gradle project. If you are new to TomTom IndiGO, our recommendation is to use the examples
 as a starting point, as these already cover the steps described on this page. Use the steps on this

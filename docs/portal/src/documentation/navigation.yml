@@ -42,9 +42,6 @@ menu:
         title: The TomTom IndiGO Emulator
       - fileId: /getting-started/accessing-the-map-data
         title: Accessing the Map Data
-      - fileId: /getting-started/getting-the-tomtom-api-key-navkit2
-        title: Getting the TomTom API Key (NavKit2)
-        isHidden: true
       - fileId: /getting-started/the-debug-menu
         title: The Debug Menu
       - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-indigo
@@ -53,9 +50,6 @@ menu:
         title: Additional Resources
       - fileId: /getting-started/frequently-asked-questions-faq
         title: Frequently Asked Questions (FAQ)
-      - fileId: /getting-started/frequently-asked-questions-faq-navkit2
-        title: Frequently Asked Questions (NavKit2)
-        isHidden: true
   - title: Design
     items:
       - fileId: /design/introduction
@@ -101,9 +95,6 @@ menu:
             title: Overview
           - fileId: /development/platform-domains/navigation
             title: Navigation
-          - fileId: /development/platform-domains/navigation-navkit2
-            title: Navigation (NavKit2)
-            isHidden: true
           - fileId: /development/platform-domains/media
             title: Media
           - fileId: /development/platform-domains/vehicle-functions
@@ -152,12 +143,6 @@ menu:
         items:
           - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project
             title: Integrate TomTom IndiGO into a Gradle Project
-          - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project-navkit2
-            title: Integrate TomTom IndiGO into a Gradle Project (NavKit2)
-            isHidden: true
-          - fileId: /tutorials-and-examples/setup/configure-a-tomtom-api-key-navkit2
-            title: Configure a TomTom API Key (NavKit2)
-            isHidden: true
           - fileId: /tutorials-and-examples/setup/configure-an-app-store
             title: Configure an App Store
       - title: Basics

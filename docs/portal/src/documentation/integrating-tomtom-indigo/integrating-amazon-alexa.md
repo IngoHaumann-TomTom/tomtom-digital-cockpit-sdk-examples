@@ -32,7 +32,7 @@ Follow these steps to integrate Amazon Alexa on your custom hardware platform:
   Alternatively, add the line below to one of your SELinux policy files:
   ```cmd
   # Allow platform_app to manage UDS sockets. This is needed both
-  # for Navkit2 and Alexa Local Voice Controller.
+  # for Navkit and Alexa Local Voice Controller.
   allow platform_app app_data_file:sock_file create_file_perms;
   ```
 
