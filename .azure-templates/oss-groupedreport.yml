@@ -86,7 +86,6 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Perform configuration and link project scans
     retryCountOnTaskFailure: 3
-    failOnStderr: true
     timeoutInMinutes: 20
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
@@ -139,7 +138,6 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Generate report
     retryCountOnTaskFailure: 3
-    failOnStderr: true
     condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
