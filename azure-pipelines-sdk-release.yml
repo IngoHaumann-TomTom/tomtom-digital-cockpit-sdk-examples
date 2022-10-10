@@ -46,7 +46,7 @@ variables:
   - group: 'IviArtifactoryCredentials'
   - group: 'IviNexusCredentials'
   - group: 'IviGithubCredentials'
-  - group: 'JiraCredentials'  
+  - group: 'JiraCredentials'
   - group: 'NavKit2ApiKey'
   - group: 'ProductVersion'
   - name: isMainlineBuild
@@ -160,8 +160,8 @@ stages:
     dependsOn: Versions
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
-      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_COMMS_SDK'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_NAVTESTCORE: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVTEST'] ]
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
@@ -191,7 +191,7 @@ stages:
     dependsOn: [ Publishing, Versions ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
     jobs:
       - template: .azure-templates/verify-sdk-jobs.yml
@@ -200,9 +200,9 @@ stages:
     dependsOn: [ Versions, Verification ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
-      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_COMMS_SDK'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_COMMS_SDK'] ]
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
@@ -239,7 +239,7 @@ stages:
     dependsOn: [ OSSCompliance, Documentation, DevPortal, Verification, Publishing, Versions ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
     condition: and(
@@ -304,7 +304,7 @@ stages:
     dependsOn: [ Versions, Documentation, DevPortal, Publication ]
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.INDIGO_PLATFORM'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
     condition: or(
       eq(dependencies.Documentation.result, 'Failed'),

@@ -25,29 +25,29 @@ steps:
       cd $(Build.SourcesDirectory)/ivi-example-app
       git checkout tags/$EXAMPLES
       examplesTomlFilePath=build-logic/libraries.versions.toml
-      INDIGO_PLATFORM=$(cat $examplesTomlFilePath | grep "indigoPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      IVI_PLATFORM=$(cat $examplesTomlFilePath | grep "iviPlatform = " | grep -Eo "[0-9].[0-9].[0-9]+")
 
       cd $(Build.SourcesDirectory)/indigo
-      git checkout tags/$INDIGO_PLATFORM
+      git checkout tags/$IVI_PLATFORM
       indigoTomlFilePath=build-logic/libraries.versions.toml
       NAVAPP_COMPONENTS=$(cat $indigoTomlFilePath | grep "navAppComponents = " | grep -Eo "[0-9]+.[0-9]+.*[^\"]")
       TOMTOM_ANDROID_TOOLS=$(cat $examplesTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
-      INDIGO_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      IVI_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
       NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
       NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
       ALEXA_AUTO_SDK=$(cat $examplesTomlFilePath | grep "amazonAlexaAutoSdk = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
       echo "##vso[task.setvariable variable=EXAMPLES;isOutput=true]$EXAMPLES"
-      echo "##vso[task.setvariable variable=INDIGO_PLATFORM;isOutput=true]$INDIGO_PLATFORM"
+      echo "##vso[task.setvariable variable=IVI_PLATFORM;isOutput=true]$IVI_PLATFORM"
       echo "##vso[task.setvariable variable=TOMTOM_ANDROID_TOOLS;isOutput=true]$TOMTOM_ANDROID_TOOLS"
-      echo "##vso[task.setvariable variable=INDIGO_COMMS_SDK;isOutput=true]$INDIGO_COMMS_SDK"
+      echo "##vso[task.setvariable variable=IVI_COMMS_SDK;isOutput=true]$IVI_COMMS_SDK"
       echo "##vso[task.setvariable variable=NAVTEST;isOutput=true]$NAVTEST"
       echo "##vso[task.setvariable variable=NAVUI_EMULATORS;isOutput=true]$NAVUI_EMULATORS"
       echo "##vso[task.setvariable variable=NAVAPP_COMPONENTS;isOutput=true]$NAVAPP_COMPONENTS"
       echo "##vso[task.setvariable variable=ALEXA_AUTO_SDK;isOutput=true]$ALEXA_AUTO_SDK"
 
       echo "##vso[build.addbuildtag]versionExamples=$EXAMPLES"
-      echo "##vso[build.addbuildtag]indigoPlatform=$INDIGO_PLATFORM"
+      echo "##vso[build.addbuildtag]indigoPlatform=$IVI_PLATFORM"
       echo "##vso[build.addbuildtag]navAppComponents=$NAVAPP_COMPONENTS"
     name: Version
     displayName: 'Expose versions to Azure'

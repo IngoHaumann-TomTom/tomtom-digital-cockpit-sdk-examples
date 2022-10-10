@@ -91,7 +91,7 @@ Add the following dependency to the `build.gradle.kts` file of the module where 
 configuration provider will reside:
 
 ```kotlin
-implementation("com.tomtom.ivi.appsuite:appsuite_appstore_api_common_config:${Versions.INDIGO_PLATFORM}")
+implementation("com.tomtom.ivi.appsuite:appsuite_appstore_api_common_config:${Versions.IVI_PLATFORM}")
 ```
 
 Create the static configuration provider:
