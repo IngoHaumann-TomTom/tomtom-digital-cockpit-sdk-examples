@@ -166,7 +166,8 @@ In the same file, configure the TomTom IndiGO platform dependency source.
 
 ```kotlin
 ivi {
-    dependencySource = IviDependencySource.Artifactory(Versions.IVI_PLATFORM)
+    dependencySource =
+        IviDependencySource.ArtifactRepository(libraries.versions.iviPlatform.get())
 }
 ```
 
