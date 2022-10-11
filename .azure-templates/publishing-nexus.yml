@@ -75,7 +75,7 @@ steps:
     displayName: Upload repo-sys-img.xml to Azure Storage
     condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
 
-  - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.indigoPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
+  - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.iviPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
     artifact: tomtom-indigo-sdk
     displayName: Publish tomtom-indigo-sdk as a pipeline artifact
     condition: and(eq(variables.publishLibraries, '--publish_libs'), succeeded())
