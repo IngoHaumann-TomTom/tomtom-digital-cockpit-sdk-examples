@@ -7,7 +7,8 @@ installed in. This happens through the car API of AAOS, which makes it possible 
 properties. When these properties change, the UI can be adjusted accordingly. Similarly when the UI
 controls are operated by the user, the new property value can be communicated to the vehicle.
 
-Read more about [AAOS and vehicle integration](https://source.android.com/docs/devices/automotive).
+See 
+[Android Physical Car Interaction](https://www.androidautomotivebook.com/android-automotive-and-physical-car-interaction/).
 
 ## Integrating TomTom IndiGO into the vehicle
 
