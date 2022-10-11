@@ -5,7 +5,7 @@ package "Application frontend"<<Rectangle>> {
     class MyPanel<<Frontend>>
 }
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     package "appsuite_media_api_service_core" {
         interface MediaService<<Service>>
         class MediaServiceApi<<Service>>

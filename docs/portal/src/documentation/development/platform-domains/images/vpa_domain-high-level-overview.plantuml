@@ -4,14 +4,14 @@ skinparam packageStyle rectangle
 
 title VPA domain architecture
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     [VPA2 Frontend]<<Frontend>>
     [VPA1 Frontend]<<Frontend>>
     [VPA Mediator Service]<<Service>>
     [VPA Mediator Settings Service]<<Service>>
 }
 
-package "IndiGO platform (VPA adaptations)" {
+package "Digital Cockpit platform (VPA adaptations)" {
     [Stock VPA1 Service]<<Service>>
     [Stock VPA2 Service]<<Service>>
 }

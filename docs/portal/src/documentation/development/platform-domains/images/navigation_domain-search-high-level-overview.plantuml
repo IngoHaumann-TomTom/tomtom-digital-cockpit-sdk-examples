@@ -4,13 +4,13 @@ skinparam packageStyle rectangle
 
 title Search
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     component StockSearchFrontend as [Stock Search Frontend]<<Frontend>>
     component SearchUiComponentApi as [Search Ui Component Api]<<Api>>
 
 }
 
-package "IndiGO platform"<<Rectangle>> {
+package "Digital Cockpit platform"<<Rectangle>> {
     package "Common APIs" {
         component Coordinate as [Coordinate]<<Api>>
         component TripId as [Trip Id]<<Api>>

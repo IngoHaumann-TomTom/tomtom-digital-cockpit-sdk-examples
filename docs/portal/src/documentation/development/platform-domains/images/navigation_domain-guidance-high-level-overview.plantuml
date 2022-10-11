@@ -4,11 +4,11 @@ skinparam packageStyle rectangle
 
 title Guidance
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     component StockGuidanceFrontend as [Stock Guidance Frontend]<<Frontend>>
 }
 
-package "IndiGO platform"<<Rectangle>> {
+package "Digital Cockpit platform"<<Rectangle>> {
      package "Core Service APIs" {
          component NavigationService<<Service>>
          component GuidanceInstructionsService as [Guidance Instructions Service]<<Service>>

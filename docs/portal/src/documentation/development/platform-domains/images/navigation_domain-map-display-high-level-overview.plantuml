@@ -4,12 +4,12 @@ skinparam packageStyle rectangle
 
 title Map Display
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     component StockMapDisplayFrontend as [Stock Map Display Frontend]<<Frontend>>
     component TripRenderManager as [Trip Renderer Manager]<<Frontend>>
 }
 
-package "IndiGO platform"<<Rectangle>> {
+package "Digital Cockpit platform"<<Rectangle>> {
     package "Core Service APIs"{
         component MapDisplayService as [Map Display Service]<<Service>>
         component MapDisplayConnectionService as [Map Display Connection Service]<<Service>>

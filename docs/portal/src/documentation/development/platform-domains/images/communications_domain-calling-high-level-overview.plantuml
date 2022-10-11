@@ -4,11 +4,11 @@ skinparam packageStyle rectangle
 
 title Calling Architecture
 
-package "IndiGO application suite"<<Rectangle>> {
+package "Digital Cockpit application suite"<<Rectangle>> {
     component CommunicationsFrontend as [Communications Frontend]<<Frontend>>
 }
 
-package "IndiGO platform"<<Rectangle>> {
+package "Digital Cockpit platform"<<Rectangle>> {
     component TelecomService as [Telecom Service]<<Service>>
     component ContactsService as [Contacts Service]<<Service>>
     component RecentCallsService as [Recent Calls Service]<<Service>>
