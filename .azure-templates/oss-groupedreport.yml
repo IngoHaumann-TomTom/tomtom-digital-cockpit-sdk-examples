@@ -89,6 +89,16 @@ steps:
     timeoutInMinutes: 20
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
+  - script: |
+      bdt compliance  --project ${{parameters.product}} \
+                      --version ${{parameters.productVersion}} \
+                      --quick
+    env:
+      BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
+      BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
+    displayName: Check compliance
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+
   - task: ArchiveFiles@2
     displayName: 'Archive BlackDuck lock file'
     inputs:
@@ -138,14 +148,14 @@ steps:
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Generate report
     retryCountOnTaskFailure: 3
-    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PublishPipelineArtifact@1
     displayName: 'Publish output in pipeline artifacts'
     inputs:
       targetPath: '$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json'
       artifactName: scanning-output-$(System.JobAttempt)
-    condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: PythonScript@0
     name: OSS_compliance_report
