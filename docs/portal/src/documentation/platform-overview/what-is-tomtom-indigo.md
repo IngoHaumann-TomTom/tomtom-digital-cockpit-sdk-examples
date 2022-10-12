@@ -37,7 +37,7 @@ This diagram shows how TomTom IndiGO fits in a digital cockpit system and how it
 software in a vehicle. It shows some of the off-the-shelf components in the application suite and
 platform.
 
-![TomTom IndiGO architecture overview](images/digital-cockpit-architecture-overview.png)
+![TomTom Digital Cockpit architecture overview](images/tomtom-digital-cockpit-architecture-overview.png)
 
 The TomTom IndiGO SDK includes a template app that integrates the TomTom IndiGO platform with all
 of its

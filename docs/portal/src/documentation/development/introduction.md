@@ -20,7 +20,7 @@ should be replaced with your own _applications_, or merely add new functionality
 The following diagram shows everything that’s included in TomTom IndiGO, all off-the-shelf
 components (purple colored) and how these relate to other software in a vehicle.
 
-![TomTom IndiGO architecture](images/digital-cockpit-architecture.png)
+![TomTom Digital Cockpit architecture](images/tomtom-digital-cockpit-architecture.png)
 
 ## Off-the-shelf components (or _stock_ components)
 
