@@ -95,7 +95,7 @@ enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     versionCatalogs {
-        create("indigoDependencies") {
+        create("iviDependencies") {
             val group = "com.tomtom.ivi.platform"
             val artifact = "dependencies-catalog"
             val version = "<TOMTOM-INDIGO-VERSION>"
@@ -122,20 +122,20 @@ as `implementation` dependencies to the `buildSrc`. The following adds these dep
 
 ```kotlin
 dependencies {
-    val indigoPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val iviPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
 
     // Mandatory: Plugin to configure the IVI application at build-time.
-    implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$iviPlatformVersion")
 
     // Optional: Plugin for versioning the APK based on the Git repository information.
-    implementation("com.tomtom.ivi.platform.gradle:api_tools_version:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_tools_version:$iviPlatformVersion")
 
     // Optional: Plugin to use the default frontends and services from the TomTom IndiGO platform
     // and app suite.
-    implementation("com.tomtom.ivi.product.gradle:api_productdefaults_core:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.product.gradle:api_productdefaults_core:$iviPlatformVersion")
 
     // Mandatory: For IVI services plugins.
-    implementation(indigoDependencies.gradlePluginKsp)
+    implementation(iviDependencies.gradlePluginKsp)
 }
 ```
 
@@ -306,36 +306,36 @@ To allow these Gradle plugins to be used in the Gradle projects, it is required 
 
 ```kotlin
 dependencies {
-    val indigoPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val iviPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
 
     // Optional: Plugin to configure in the default frontends and services from the TomTom IndiGO platform.
-    implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:$iviPlatformVersion")
 
     // Optional: Plugin to configure in the defaults from Media TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.media:api_appsuitedefaults_media:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.media:api_appsuitedefaults_media:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Communications TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.communications:api_appsuitedefaults_communications:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.communications:api_appsuitedefaults_communications:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from User Profiles TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Vehicle Settings TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.vehiclesettings:api_appsuitedefaults_vehiclesettings:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.vehiclesettings:api_appsuitedefaults_vehiclesettings:$iviPlatformVersion")
 
     // Optional: Plugin to configure in the defaults from App Store TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.appstore:api_appsuitedefaults_appstore:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.appstore:api_appsuitedefaults_appstore:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Bluetooth TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.bluetooth:api_appsuitedefaults_bluetooth:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.bluetooth:api_appsuitedefaults_bluetooth:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Companion TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.companionapp:api_appsuitedefaults_companionapp:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.companionapp:api_appsuitedefaults_companionapp:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Hvac TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.hvac:api_appsuitedefaults_hvac:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.hvac:api_appsuitedefaults_hvac:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Messaging TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.messaging:api_appsuitedefaults_messaging:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.messaging:api_appsuitedefaults_messaging:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Navigation TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.navigation:api_appsuitedefaults_navigation:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.navigation:api_appsuitedefaults_navigation:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from System Status TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.systemstatus:api_appsuitedefaults_systemstatus2:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.systemstatus:api_appsuitedefaults_systemstatus2:$iviPlatformVersion")
     // Optional: Plugin to configure in the defaults from Vpa TomTom IndiGO Application.
-    implementation("com.tomtom.ivi.appsuite.gradle.vpa:api_appsuitedefaults_vpa:$indigoPlatformVersion")
+    implementation("com.tomtom.ivi.appsuite.gradle.vpa:api_appsuitedefaults_vpa:$iviPlatformVersion")
 }
 ```
 

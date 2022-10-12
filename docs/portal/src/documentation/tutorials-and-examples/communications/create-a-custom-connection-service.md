@@ -61,7 +61,7 @@ file:
 
 ```kotlin
 dependencies {
-    implementation(libraries.indigoPlatformTelecomApiServiceTelecom)
+    implementation(libraries.iviPlatformTelecomApiServiceTelecom)
     implementation("androidx.lifecycle:lifecycle-service:2.3.1")
 }
 ```

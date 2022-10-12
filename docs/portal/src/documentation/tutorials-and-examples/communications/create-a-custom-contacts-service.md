@@ -34,7 +34,7 @@ file should contain:
 
 ```kotlin
 dependencies {
-    implementation(libraries.indigoPlatformContactsApiServiceContacts)
+    implementation(libraries.iviPlatformContactsApiServiceContacts)
 }
 ```
 

@@ -154,8 +154,8 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoPlatformAlexaApiCommonUtil)
-    implementation(libraries.indigoPlatformAlexaApiServiceAlexahandler)
+    implementation(libraries.iviPlatformAlexaApiCommonUtil)
+    implementation(libraries.iviPlatformAlexaApiServiceAlexahandler)
 }
 ```
 
@@ -164,8 +164,8 @@ Declare Alexa dependencies in the
 file:
 
 ```toml
-indigoPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "indigoPlatform" }
-indigoPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:platform_alexa_api_service_alexahandler", version.ref = "indigoPlatform" }
+iviPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "iviPlatform" }
+iviPlatformAlexaApiServiceAlexahandler = { module = "com.tomtom.ivi.platform:platform_alexa_api_service_alexahandler", version.ref = "iviPlatform" }
 ```
 
 The Alexa Handler service implementation project is an Android project, so it must also have

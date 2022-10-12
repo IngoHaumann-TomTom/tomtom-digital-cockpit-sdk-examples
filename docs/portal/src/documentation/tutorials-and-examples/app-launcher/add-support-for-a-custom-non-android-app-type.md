@@ -32,7 +32,7 @@ ivi {
 }
 
 dependencies {
-    implementation(libraries.indigoAppsuiteAppstoreApiCommonModel)
+    implementation(libraries.iviAppsuiteAppstoreApiCommonModel)
 }
 ```
 
@@ -41,7 +41,7 @@ Declare an app store dependency in the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "iviPlatform" }
 ```
 
 The app launcher common module is an Android module, so it must also have an `AndroidManifest.xml`
@@ -108,7 +108,7 @@ First, add the [`AppSourceProviderService`](TTIVI_INDIGO_API) dependency to the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "iviPlatform" }
 ```
 
 Create a module for the [`AppSourceProviderService`](TTIVI_INDIGO_API) implementation under
@@ -131,7 +131,7 @@ ivi {
 }
 dependencies {
     api(project(":examples_applauncher_common_webapp"))
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceAppsourceprovider)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceAppsourceprovider)
 }
 ```
 
@@ -327,7 +327,7 @@ First, add the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) dependency to the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "iviPlatform" }
 ```
 
 Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
@@ -350,7 +350,7 @@ ivi {
 }
 dependencies {
     api(project(":examples_applauncher_common_webapp"))
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceApplaunchhandler)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceApplaunchhandler)
 }
 ```
 

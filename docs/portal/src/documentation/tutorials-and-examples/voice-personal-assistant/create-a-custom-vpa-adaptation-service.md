@@ -29,14 +29,14 @@ The new module depends on [`VpaAdaptationService`](TTIVI_INDIGO_API), declared i
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L67)
 
 ```toml
-indigoPlatformVpaApiServiceVpaadaptation = { module = "com.tomtom.ivi.platform:platform_vpa_api_service_vpaadaptation", version.ref = "indigoPlatform" }
+iviPlatformVpaApiServiceVpaadaptation = { module = "com.tomtom.ivi.platform:platform_vpa_api_service_vpaadaptation", version.ref = "iviPlatform" }
 ```
 
 [`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L21)
 
 ```kotlin
 dependencies {
-    implementation(libraries.indigoPlatformVpaApiServiceVpaadaptation)
+    implementation(libraries.iviPlatformVpaApiServiceVpaadaptation)
 }
 ```
 

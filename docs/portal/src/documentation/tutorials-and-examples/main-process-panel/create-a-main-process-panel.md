@@ -39,7 +39,7 @@ First, add the _CompactProcessPanel_ dependencies to the
 file:
 
 ```toml
-indigoPlatformFrontendApiTemplateCompactProcessPanel = { module = "com.tomtom.ivi.platform:platform_frontend_api_template_compactprocesspanel", version.ref = "indigoPlatform"}
+iviPlatformFrontendApiTemplateCompactProcessPanel = { module = "com.tomtom.ivi.platform:platform_frontend_api_template_compactprocesspanel", version.ref = "iviPlatform"}
 ```
 
 Then, create an `ExampleCallMainProcessPanel` class, extended from `MainProcessPanel`:

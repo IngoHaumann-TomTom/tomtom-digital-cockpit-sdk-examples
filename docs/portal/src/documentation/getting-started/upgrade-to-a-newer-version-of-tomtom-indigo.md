@@ -13,7 +13,7 @@ To have your application use a newer version of the TomTom IndiGO platform, you 
 file and search for a line like:
 
 ```toml
-indigoPlatform = "1.0.3714"
+iviPlatform = "1.0.3714"
 ```
 
 Change the version to a recent version listed in the

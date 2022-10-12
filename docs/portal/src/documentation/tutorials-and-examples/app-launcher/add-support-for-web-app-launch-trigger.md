@@ -36,7 +36,7 @@ First, add the [`AppLaunchTriggerService`](TTIVI_INDIGO_API) dependency to the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiServiceApplaunchtrigger = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchtrigger", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiServiceApplaunchtrigger = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchtrigger", version.ref = "iviPlatform" }
 ```
 
 Create a new module (for example,
@@ -58,7 +58,7 @@ ivi {
 
 dependencies {
     api(project(":examples_applauncher_common_webapp"))
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceApplaunchtrigger)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceApplaunchtrigger)
 }
 ```
 

@@ -102,7 +102,7 @@ file. For example:
 
 ```kotlin
 dependencies {
-    implementation(indigoDependencies.gradlePluginTomtomTools)
+    implementation(iviDependencies.gradlePluginTomtomTools)
 }
 ```
 

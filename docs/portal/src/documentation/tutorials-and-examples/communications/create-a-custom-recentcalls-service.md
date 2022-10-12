@@ -38,7 +38,7 @@ file should contain:
 
 ```kotlin
 dependencies {
-    implementation(libraries.indigoPlatformRecentcallsApiServiceRecentcalls)
+    implementation(libraries.iviPlatformRecentcallsApiServiceRecentcalls)
 }
 ```
 

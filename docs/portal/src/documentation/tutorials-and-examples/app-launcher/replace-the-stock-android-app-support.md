@@ -51,8 +51,8 @@ to the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "indigoPlatform" }
-indigoAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "iviPlatform" }
+iviAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "iviPlatform" }
 ```
 
 Create a module for the [`AppSourceProviderService`](TTIVI_INDIGO_API) implementation under
@@ -74,8 +74,8 @@ ivi {
     optInToExperimentalApis = true
 }
 dependencies {
-    implementation(libraries.indigoAppsuiteAppstoreApiCommonModel)
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceAppsourceprovider)
+    implementation(libraries.iviAppsuiteAppstoreApiCommonModel)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceAppsourceprovider)
 }
 ```
 
@@ -278,8 +278,8 @@ to the
 file:
 
 ```toml
-indigoAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "indigoPlatform" }
-indigoAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "indigoPlatform" }
+iviAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_common_model", version.ref = "iviPlatform" }
+iviAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "iviPlatform" }
 ```
 
 Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
@@ -301,8 +301,8 @@ ivi {
     optInToExperimentalApis = true
 }
 dependencies {
-    implementation(libraries.indigoAppsuiteAppstoreApiCommonModel)
-    implementation(libraries.indigoAppsuiteAppstoreApiServiceApplaunchhandler)
+    implementation(libraries.iviAppsuiteAppstoreApiCommonModel)
+    implementation(libraries.iviAppsuiteAppstoreApiServiceApplaunchhandler)
 }
 ```
 
