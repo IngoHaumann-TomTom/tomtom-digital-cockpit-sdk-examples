@@ -212,12 +212,13 @@ In some situation a cold boot of the emulator is required, for example after cha
 configuration, or as a precaution when unexpected behavior occurs.
 
 To cold boot the emulator, follow these steps:
+
 - If the emulator is running, click the `x` in the upper-right corner of the emulator sidebar.
 - In Android Studio go to: `Tools` > `AVD Manager`.
 - On the right-hand side of each configured AVD there is a down-arrow that launches a context menu.
   Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-- ![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_tomtom-indigo_emulator_cold_boot.png)
+![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_emulator_cold_boot.png)
 
 Now wait for the emulator to start up.
 
