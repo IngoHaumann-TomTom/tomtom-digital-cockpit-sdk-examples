@@ -89,15 +89,16 @@ steps:
     timeoutInMinutes: 20
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
-  - script: |
-      bdt compliance  --project ${{parameters.product}} \
-                      --version ${{parameters.productVersion}} \
-                      --quick
-    env:
-      BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
-      BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
-    displayName: Check compliance
-    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
+  # TODO(IVI-8860): Enable compliance check for OSS scan in SDK release pipeline
+#  - script: |
+#      bdt compliance  --project ${{parameters.product}} \
+#                      --version ${{parameters.productVersion}} \
+#                      --quick
+#    env:
+#      BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
+#      BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
+#    displayName: Check compliance
+#    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   - task: ArchiveFiles@2
     displayName: 'Archive BlackDuck lock file'
