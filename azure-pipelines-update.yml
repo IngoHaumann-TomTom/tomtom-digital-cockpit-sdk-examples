@@ -17,6 +17,7 @@ variables:
     value: indigo-platform-canary
   - group: 'ProductVersion'
   - group: 'IviArtifactoryCredentials'
+  - group: IviGradleCache
 
 trigger: none
 

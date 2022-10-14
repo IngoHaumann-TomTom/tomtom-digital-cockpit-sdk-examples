@@ -17,7 +17,7 @@ variables:
   - group: IviArtifactoryCredentials
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
-  - group: GradleEnterprisePoC
+  - group: IviGradleCache
   - group: 'NavKit2ApiKey'
   # Use to limit jobs to builds of the 'master' branch, made on the pipeline whose definition id
   # is 1986 (the IndiGO Docs main pipeline).
@@ -202,3 +202,10 @@ stages:
         artifactId: "products_indigo_examples"
         folderOrFileName: "products_indigo_examples-$(product_version)-sources.tar.gz"
         condition: and(eq(variables.isMainlineBuild, true), succeeded())
+
+- stage: Metrics
+  displayName: Collect Metrics
+  dependsOn: [ ProductVersion, Build, Analyse, OSSCompliance, Publishing ]
+  condition: eq(variables['System.TeamProject'], 'IVI')
+  jobs:
+    - template: metrics/start-metrics-pipeline.yml@devops-templates
