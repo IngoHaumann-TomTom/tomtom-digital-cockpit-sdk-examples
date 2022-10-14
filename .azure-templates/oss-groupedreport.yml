@@ -89,17 +89,6 @@ steps:
     timeoutInMinutes: 20
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
-  # TODO(IVI-8860): Enable compliance check for OSS scan in SDK release pipeline
-#  - script: |
-#      bdt compliance  --project ${{parameters.product}} \
-#                      --version ${{parameters.productVersion}} \
-#                      --quick
-#    env:
-#      BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
-#      BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
-#    displayName: Check compliance
-#    condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
-
   - task: ArchiveFiles@2
     displayName: 'Archive BlackDuck lock file'
     inputs:
@@ -136,14 +125,19 @@ steps:
       artifactName: scanning-logs-$(System.JobAttempt)
     condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
+  # TODO(IVI-8860): Enable compliance check on security risk and project links for OSS scan in SDK release pipeline
   - script: |
-      # This will generete a JSON report to a file on the current working directory
-      # called "license_compliance_report.json" based on the BOM of the project specified.
-      bdt report  --project ${{parameters.product}} \
-                  --version ${{parameters.productVersion}} \
-                  --output "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json" \
-                  --timeout 1000 \
-                  --no-await
+      # This will check the complaince and generete a JSON report based on the BOM of the project.
+      # we are ignoring high operational risk warning from compliance check as it indicates an
+      # outdated version of the 3rd party that may become deprecated soon component and can be
+      # ignored for platform release.
+
+      bdt compliance  --project ${{parameters.product}} \
+                      --version ${{parameters.productVersion}} \
+                      --report "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json" \
+                      --ignore-warning 308 \
+                      --ignore-warning 309 \
+                      --ignore-warning 314
     env:
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
