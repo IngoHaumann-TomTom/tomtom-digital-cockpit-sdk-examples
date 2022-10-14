@@ -87,7 +87,7 @@ apply(from = "../build-logic/repositories.gradle.kts")
 The TomTom IndiGO platform publishes a version catalog which you can use to ensure your product
 uses the same versions as used by the TomTom IndiGO platform.
 
-[`build-logic/indigodependencies.versioncatalog.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/indigodependencies.versioncatalog.gradle.kts#L30-L40)
+[`build-logic/ividependencies.versioncatalog.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/ividependencies.versioncatalog.gradle.kts#L30-L40)
 
 ```kotlin
 enableFeaturePreview("VERSION_CATALOGS")
