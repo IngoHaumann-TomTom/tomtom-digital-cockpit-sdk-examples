@@ -31,7 +31,7 @@ INDIGO_COMMS_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-indigo-comms-sdk-api"
 OLD_ANDROID_TOOLS_BASE_URL = f"{OLD_S3_BASE_URL}/tomtom-android-tools-api"
 
 # Base URLs for the API References hosted on new Digital Cockpit S3 bucket.
-S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/digital-cockpit"
+S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit"
 PLATFORM_BASE_URL = f"{S3_BASE_URL}/platform-api"
 GRADLEPLUGINS_BASE_URL = f"{S3_BASE_URL}/gradleplugins-api"
 COMMS_BASE_URL = f"{S3_BASE_URL}/comms-sdk-api"
@@ -47,7 +47,7 @@ ANDROID_TOOLS_JSON = "tomtomAndroidTools"
 GITHUB_INTRODUCTION_VERSION = 1864
 
 # API References for later versions are pushed to Digital Cockpit S3 bucket. 
-DIGITAL_COCKPIT_S3_INTRODUCTION = 2000
+DIGITAL_COCKPIT_S3_INTRODUCTION = 1995
 
 # Internal Artifactory URL to releases.json file.
 RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
@@ -388,9 +388,9 @@ def split_dict_api_references(releases_dict):
     '''
 
     recent_api_dict = {key:value for (key, value) in releases_dict.items() \
-        if int(key[-4:]) > DIGITAL_COCKPIT_S3_INTRODUCTION}
+        if int(key[-4:]) >= DIGITAL_COCKPIT_S3_INTRODUCTION}
     older_api_dict = {key:value for (key, value) in releases_dict.items() \
-        if int(key[-4:]) <= DIGITAL_COCKPIT_S3_INTRODUCTION}
+        if int(key[-4:]) < DIGITAL_COCKPIT_S3_INTRODUCTION}
 
     return older_api_dict, recent_api_dict
 

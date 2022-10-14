@@ -17,7 +17,7 @@ parameters:
   localDownloadBasePath: '$(Build.SourcesDirectory)/downloads'
   apiSubFolder: ''
   version: ''
-  s3BaseUrl: 's3://devportal-bucket/downloads/digital-cockpit'
+  s3BaseUrl: 's3://devportal-bucket/downloads/tomtom-digital-cockpit'
 
 steps:
   - task: DownloadPipelineArtifact@2
