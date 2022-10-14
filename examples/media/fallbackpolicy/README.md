@@ -6,14 +6,14 @@ This is an example demonstrating how to customize the browsing experience for me
 which a specific customization is not provided by the TomTom Digital Cockpit stock media player UI.
 
 Every media source installed in the system has its data and information provided to the stock
-media player UI via a [`PolicyProvider`](TTIVI_INDIGO_API). When a product hardware platform
-already pre-installs all necessary media sources preinstalled, it is advantageous to customize them.
-But if the user is allowed to install their own media sources via an app store, then it is hard to
-keep track of which media sources are available in the store to customize them.
+media player UI via a `PolicyProvider`. When a product hardware platform already has all necessary
+media sources pre-installed, it is advantageous to customize them. But if the user is allowed to
+install their own media sources via an app store, then it is hard to keep track of which media
+sources are available in the store to customize them.
 
-The stock media player UI contains a predefined fallback [`PolicyProvider`](TTIVI_INDIGO_API) which
-is used to display generic contents for non manually customized media sources, but it can be
-desirable to replace it with a different one.
+The stock media player UI contains a predefined fallback `PolicyProvider` which is used to display
+generic contents for non-manually customized media sources. However, it can be desirable to replace
+this with a different one.
 
 The example demonstrates concepts also explained in the
 [Customize a media source](https://developer.tomtom.com/digital-cockpit/documentation/tutorials-and-examples/media/customize-a-media-source)

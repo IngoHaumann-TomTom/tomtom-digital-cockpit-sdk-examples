@@ -30,21 +30,6 @@ For more details, see
 The TomTom IndiGO SDK version number has the format `x.y.zzzz-pppp`, where `x.y.zzzz` refers to the
 TomTom IndiGO platform version and `-pppp` is the version of the template and example applications.
 
-### TomTom IndiGO SDK content
-
-Once extracted, you will find the following files and directory:
-
-```cmd
-examples/products_indigo_examples-<version>-*.apk
-examples/products_indigo_examples-<version>-sources/
-```
-
-The APK files contain the IndiGO Template Application and can be run directly on hardware or in an
-Android Automotive emulator. You can also opt to build your own APK from the sources directory.
-
-The `README.md` file in the sources folder contains information related to the structure of the
-application.
-
 ## Recent releases
 
 TTIVI_RECENT_RELEASES_ANCHOR

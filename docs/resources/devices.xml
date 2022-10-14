@@ -11,7 +11,7 @@
   -->
 <d:devices xmlns:d="http://schemas.android.com/sdk/devices/5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <d:device>
-    <d:name>IndiGO_Test_Device</d:name>
+    <d:name>TomTom_Digital_Cockpit_Test_Device</d:name>
     <d:manufacturer>TomTom</d:manufacturer>
     <d:meta/>
     <d:hardware>

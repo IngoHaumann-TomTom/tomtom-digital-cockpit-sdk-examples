@@ -3,8 +3,8 @@
 ## Introduction
 
 This example app demonstrates how to write plugins, both frontends and services, for the
-TomTom IndiGO platform. It also shows how to use TomTom Digital Cockpit's configuration framework
-for customizing the behavior of the TomTom Digital Cockpit platform.
+TomTom Digital Cockpit platform. It also shows how to use TomTom Digital Cockpit's configuration
+framework for customizing the behavior of the TomTom Digital Cockpit platform.
 
 For a detailed explanation of this example app, see the following pages on the
 [TomTom Digital Cockpit Developer Portal](https://developer.tomtom.com/digital-cockpit/documentation/introduction):

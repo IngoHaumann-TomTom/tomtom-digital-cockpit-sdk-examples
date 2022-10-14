@@ -24,7 +24,7 @@ tasks.create("installRepositoriesCfg") {
         val versionEmulator = project.properties["versionEmulator"] as String?
         val srcUrl = if (project.hasProperty("nexusUsername")) {
             // TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
-            "https://aaos.blob.core.windows.net/indigo-automotive/repo-sys-img.xml"
+            "https://aaos.blob.core.windows.net/tomtom-digital-cockpit/repo-sys-img.xml"
         } else {
             "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml"
         }
