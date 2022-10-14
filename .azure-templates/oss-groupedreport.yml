@@ -135,6 +135,9 @@ steps:
       bdt compliance  --project ${{parameters.product}} \
                       --version ${{parameters.productVersion}} \
                       --report "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json" \
+                      --timeout 300 \
+                      --ignore-warning 301 --ignore-warning 302 --ignore-warning 306 --ignore-warning 307 --ignore-warning 308 \
+                      --ignore-warning 309 --ignore-warning 311 --ignore-warning 315 --ignore-warning 318 --ignore-warning 319 \
                       --ignore-warning 308 \
                       --ignore-warning 309 \
                       --ignore-warning 314
