@@ -4,9 +4,9 @@ This directory contains the source files for the Developer Portal.
 
 The documentation in the `/src` folder covers the following 3 sections on the Portal:
 
--   [Documentation](https://developer.tomtom.com/digital-cockpit/documentation)
--   [API Reference](https://developer.tomtom.com/digital-cockpit/api-reference)
--   [Releases](https://developer.tomtom.com/digital-cockpit/releases)
+-   [Documentation](https://developer.tomtom.com/tomtom-digital-cockpit/documentation)
+-   [API Reference](https://developer.tomtom.com/tomtom-digital-cockpit/api-reference)
+-   [Releases](https://developer.tomtom.com/tomtom-digital-cockpit/releases)
 
 ## Getting started
 

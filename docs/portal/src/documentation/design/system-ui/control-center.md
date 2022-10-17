@@ -49,7 +49,7 @@ The positioning, styling and other aspects of the control center layer can be cu
      title: 'Out of the box',
      body: 'The control center from the stock system UI.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/control-center/out-of-box.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/control-center/out-of-box.png',
        alt: 'out of box',
      }
    },
@@ -57,7 +57,7 @@ The positioning, styling and other aspects of the control center layer can be cu
      title: 'Change container',
      body: 'The control center sections are repositioned and themed. The control center container is a custom one, but the content of each section remains unchanged.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/control-center/change-container.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/control-center/change-container.png',
        alt: 'change container',
      }
    },
@@ -65,7 +65,7 @@ The positioning, styling and other aspects of the control center layer can be cu
      title: 'Change content',
      body: 'The individual sections are replaced with custom content.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/control-center/change-content.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/control-center/change-content.png',
        alt: 'change content',
      }
    },

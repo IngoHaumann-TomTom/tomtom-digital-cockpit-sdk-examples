@@ -29,7 +29,7 @@ directory.
 
 The default view, when starting the application, looks like this:
 
-![start view](images/digital-cockpit_detroit_map.png)
+![start view](images/tomtom-digital-cockpit-detroit-map.png)
 
 The contents of the map view will vary depending on your current location.
 The screen of the TomTom IndiGO system is divided into a few different areas. The background

@@ -58,7 +58,7 @@ its boundaries.
      title: 'Out of the box',
      body: 'How modals look in the stock system UI.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/modal-panels/out-of-box.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/modal-panels/out-of-box.png',
        alt: 'out of box',
      }
    },
@@ -66,7 +66,7 @@ its boundaries.
      title: 'Themed',
      body: 'Global and modal-specific theme attributes can be used to change the styling.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/modal-panels/themed.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/modal-panels/themed.png',
        alt: 'themed',
      }
    },
@@ -74,7 +74,7 @@ its boundaries.
      title: 'Custom panel',
      body: 'The system UI is tweaked to reposition the modal panel, and the modal template and backdrop are replaced.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/system-ui/modal-panels/custom.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/modal-panels/custom.png',
        alt: 'custom panel',
      }
    },

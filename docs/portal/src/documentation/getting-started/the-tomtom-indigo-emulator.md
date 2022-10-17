@@ -171,7 +171,7 @@ Android Virtual Device (AVD) with it:
   and the current location is inside this map.
 
 [TODO(IVI-8801)]: # (Update image after IviEmulatorsPlugin.kt changes have been released)
-![TomTom IndiGO Home Screen](images/digital-cockpit_home_screen.png)
+![TomTom IndiGO Home Screen](images/tomtom-digital-cockpit-home-screen.png)
 
 __Next step:__
 [Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data)

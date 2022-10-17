@@ -20,7 +20,7 @@ build new applications in a consistent and unified way.
      title: 'System UI',
      body: 'This section provides an overview of TomTom IndiGO as a System Interaction model, components for elements such as Notifications, Settings, etc. It includes hero shots, use cases with descriptions, framework functions, a usage guide, links to engineering guides and tutorials, and configuration and customization options.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/introduction/design-frameworks.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/design-frameworks.png',
        alt: 'design frameworks',
      }
    },
@@ -28,7 +28,7 @@ build new applications in a consistent and unified way.
      title: 'Application Suite (expected Q3 2022)',
      body: 'This section provides an overview of the applications delivered with TomTom IndiGO. It includes hero shots, main screens and flows, links to engineering guides and tutorials, and configuration and customization options.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/introduction/application-suite.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/application-suite.png',
        alt: 'application suite',
      }
    },
@@ -41,7 +41,7 @@ build new applications in a consistent and unified way.
      title: 'UI Controls & Customization (expected Q4 2022)',
      body: 'This section provides an overview of the UI Controls delivered with TomTom IndiGO. It includes hero shots, component description and usage, links to API references, and configuration and customization options.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/introduction/ui-controls.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/ui-controls.png',
        alt: 'ui controls',
      }
    },
@@ -49,7 +49,7 @@ build new applications in a consistent and unified way.
      title: 'Design Guidance & Rationale (expected Q4 2022)',
      body: 'This section provides principles for designing, customizing, and extending IndiGO apps, along with an overview of the rationale of some design decisions based on previous User Research findings.',
      img: {
-       src: 'https://developer.tomtom.com/assets/downloads/digital-cockpit/image-components/introduction/design-guidance.png',
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/design-guidance.png',
        alt: 'design guidance',
      }
    },
