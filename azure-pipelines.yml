@@ -98,6 +98,25 @@ stages:
     - template: .azure-templates/portal_check.yml
     - template: build/build-cleanup.yml@devops-templates
 
+  - job: BuildExternal
+    displayName: Build for external use
+    container: 'docker_indigo_build'
+    steps:
+    - bash: |
+        set -eux
+        rm -r buildSrc/tasks
+        rm build.gradle.kts
+        mv sdk-build.gradle.kts build.gradle.kts
+      displayName: Replace build file
+    - template: gradle/gradle.yml@devops-templates
+      parameters:
+        tasks: >-
+          assemble
+        projectOptions: >-
+          -PiviVersion=$(product_version)
+        displayName: 'Assemble APKs'
+        condition: succeeded()
+
   - job: UnitTests
     displayName: Unit tests
     container: 'docker_indigo_test'
