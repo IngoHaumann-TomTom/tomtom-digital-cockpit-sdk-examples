@@ -45,7 +45,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.3
+    ref: refs/tags/2.2.16
   - repository: indigo-pr
     type: git
     name: IVI/indigo
