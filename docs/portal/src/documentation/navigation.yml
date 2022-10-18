@@ -121,19 +121,19 @@ menu:
     items:
       - fileId: /testing/introduction
         title: Introduction
-  - title: Integrating TomTom IndiGO
+  - title: Integrating
     items:
-      - fileId: /integrating-tomtom-indigo/introduction
+      - fileId: /integrating/introduction
         title: Introduction
-      - fileId: /integrating-tomtom-indigo/integration-into-a-vehicle
+      - fileId: /integrating/integration-into-a-vehicle
         title: Integration into a Vehicle
-      - fileId: /integrating-tomtom-indigo/installing-tomtom-indigo-on-hardware
+      - fileId: /integrating/installing-tomtom-indigo-on-hardware
         title: Installing TomTom IndiGO on Hardware
-      - fileId: /integrating-tomtom-indigo/flashing-the-reference-hardware
+      - fileId: /integrating/flashing-the-reference-hardware
         title: Flashing the Reference Hardware
-      - fileId: /integrating-tomtom-indigo/companion-application
+      - fileId: /integrating/companion-application
         title: Companion Application
-      - fileId: /integrating-tomtom-indigo/integrating-amazon-alexa
+      - fileId: /integrating/integrating-amazon-alexa
         title: Integrating Amazon Alexa
   - title: Tutorials and Examples
     items:

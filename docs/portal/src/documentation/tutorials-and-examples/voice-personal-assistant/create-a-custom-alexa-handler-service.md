@@ -3,7 +3,7 @@ title: Create a Custom Alexa Handler Service
 ---
 
 <Blockquote type="announcement" hasIcon>
-    <a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa">
+    <a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating/integrating-amazon-alexa">
         Additional requirements
     </a>
     &nbsp;exist for using Amazon Alexa in your TomTom IndiGO product.
@@ -90,7 +90,7 @@ Alternatively, you can set this Gradle property from the command-line:
 
 Additionally, you will need to register your own Alexa product with Amazon and obtain a set of Alexa
 IDs, as explained on the
-[Register your Alexa product with Amazon](/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
+[Register your Alexa product with Amazon](/tomtom-indigo/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
 page.
 
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:

@@ -13,7 +13,7 @@ submenu: # Additional submenu items for example - blog posts which will be displ
     - title: "Design Guide"
       url: "/tomtom-indigo/documentation/design/introduction"
     - title: "Integration Guide"
-      url: "/tomtom-indigo/documentation/integrating-tomtom-indigo/introduction"
+      url: "/tomtom-indigo/documentation/integrating/introduction"
     - title: "Tutorials"
       url: "/tomtom-indigo/documentation/tutorials-and-examples/overview"
 ---
@@ -119,7 +119,7 @@ guide, and "Register for early access".
         hardware.`,
         button: {
           label: "Integration Guide",
-          href: "/tomtom-indigo/documentation/integrating-tomtom-indigo/introduction"
+          href: "/tomtom-indigo/documentation/integrating/introduction"
         }
       },
       {
@@ -153,7 +153,7 @@ guide, and "Register for early access".
         specifically Alexa Auto.`,
         button: {
           label: "Read more",
-          href: "/tomtom-indigo/documentation/integrating-tomtom-indigo/integrating-amazon-alexa"
+          href: "/tomtom-indigo/documentation/integrating/integrating-amazon-alexa"
         }
       },
       {
