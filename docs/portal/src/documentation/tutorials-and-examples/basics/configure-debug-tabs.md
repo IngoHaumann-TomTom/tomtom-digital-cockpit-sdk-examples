@@ -13,12 +13,12 @@ To add a new debug tab, an example app is provided in the
 directory, with
 `com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFrontendExtension`.
 
-The debug tab's fragment is made with the [`DebugTabFragment`](TTIVI_INDIGO_API) and the view model 
-with a normal [`FrontendViewModel`](TTIVI_INDIGO_API), templated with the
-[`TabbedDebugPanel`](TTIVI_INDIGO_API) type.
+The debug tab's fragment is made with the [`DebugTabFragment`](TTIVI_PLATFORM_API) and the view
+model with a normal [`FrontendViewModel`](TTIVI_PLATFORM_API), templated with the
+[`TabbedDebugPanel`](TTIVI_PLATFORM_API) type.
 
 The debug tab is then registered in the debug menu with a
-[`DebugTabFrontendExtension`](TTIVI_INDIGO_API).
+[`DebugTabFrontendExtension`](TTIVI_PLATFORM_API).
 
 The product's
 [`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/debugtab/build.gradle.kts#L12-L51)
@@ -66,4 +66,4 @@ how-to guide.
 
 Similarly to adding debug tabs, the same sort of `ivi` configuration must be used.
 However, the `debugFrontend` configuration must be changed by adding the `extensions` parameter,
-which takes a list of [`DebugTabFrontendExtension`](TTIVI_INDIGO_API) objects.
+which takes a list of [`DebugTabFrontendExtension`](TTIVI_PLATFORM_API) objects.

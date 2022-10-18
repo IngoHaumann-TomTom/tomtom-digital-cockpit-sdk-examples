@@ -2,19 +2,19 @@
 title: Create a Notification Panel
 ---
 
-A notification itself is a panel, and a panel needs an [`IviFragment`](TTIVI_INDIGO_API) and a
-[`FrontendViewModel`](TTIVI_INDIGO_API) for the creation.
+A notification itself is a panel, and a panel needs an [`IviFragment`](TTIVI_PLATFORM_API) and a
+[`FrontendViewModel`](TTIVI_PLATFORM_API) for the creation.
 
 To create notifications, you need:
 
-- [`NotificationPanel`](TTIVI_INDIGO_API)
-- [`NotificationFragment`](TTIVI_INDIGO_API)
-- [`NotificationViewModel`](TTIVI_INDIGO_API)
+- [`NotificationPanel`](TTIVI_PLATFORM_API)
+- [`NotificationFragment`](TTIVI_PLATFORM_API)
+- [`NotificationViewModel`](TTIVI_PLATFORM_API)
 
 TomTom IndiGO provides clients different ways for the notification creation. You can either use:
 
-- [`StockNotificationPanel`](TTIVI_INDIGO_API) to create a notification;
-- or implement a [`NotificationPanel`](TTIVI_INDIGO_API) yourself.
+- [`StockNotificationPanel`](TTIVI_PLATFORM_API) to create a notification;
+- or implement a [`NotificationPanel`](TTIVI_PLATFORM_API) yourself.
 
 The following sections explain different ways to create a notification. An example app is
 provided in the
@@ -23,14 +23,14 @@ directory.
 
 ## Create a Stock Notification Panel
 
-[`StockNotificationPanel`](TTIVI_INDIGO_API) is a notification panel which can only be created by
-[`StockNotificationPanel`](TTIVI_INDIGO_API)`.create`. You don't need to derive
-[`NotificationPanel`](TTIVI_INDIGO_API), [`NotificationFragment`](TTIVI_INDIGO_API), and
-[`NotificationViewModel`](TTIVI_INDIGO_API) yourself. You can just focus on providing data for the
+[`StockNotificationPanel`](TTIVI_PLATFORM_API) is a notification panel which can only be created by
+[`StockNotificationPanel`](TTIVI_PLATFORM_API)`.create`. You don't need to derive
+[`NotificationPanel`](TTIVI_PLATFORM_API), [`NotificationFragment`](TTIVI_PLATFORM_API), and
+[`NotificationViewModel`](TTIVI_PLATFORM_API) yourself. You can just focus on providing data for the
 content.
 
 The example below creates a notification when you click on the button. It demonstrates how you can
-create it by using [`StockNotificationPanel`](TTIVI_INDIGO_API)`.create`.
+create it by using [`StockNotificationPanel`](TTIVI_PLATFORM_API)`.create`.
 
 [`src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt#L27-L82)
 
@@ -108,9 +108,9 @@ internal class NotificationCreationViewModel(panel: NotificationCreationPanel) :
 ## Implement your own Notification Panel
 
 If you need more complex logic for notifications, for example extra actions to be performed when a
-notification is dismissed, you can implement [`NotificationPanel`](TTIVI_INDIGO_API) yourself. The
+notification is dismissed, you can implement [`NotificationPanel`](TTIVI_PLATFORM_API) yourself. The
 example below is similar to the previous one, except we choose to implement
-[`NotificationPanel`](TTIVI_INDIGO_API) manually.
+[`NotificationPanel`](TTIVI_PLATFORM_API) manually.
 
 [`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt#L19-L38)
 

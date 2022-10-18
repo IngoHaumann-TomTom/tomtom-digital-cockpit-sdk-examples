@@ -54,7 +54,7 @@ The responsibility of a message handler is:
   event.
 
 Some topics, though, are device-specific and cannot be implemented as part of the TomTom IndiGO
-platform. The [AlexaHandlerService](TTIVI_INDIGO_API) is a
+platform. The [AlexaHandlerService](TTIVI_PLATFORM_API) is a
 [discoverable IVI service](/tomtom-indigo/documentation/development/ivi-services#discoverable-services)
 interface that can be implemented by an OEM to fulfill one of these purposes:
 - handle topics that are not supported by the TomTom IndiGO platform.
@@ -64,7 +64,7 @@ interface that can be implemented by an OEM to fulfill one of these purposes:
   For example, you might want to add support for switching the Cabin Light in the vehicle on and
   off: this is a setting that Alexa Auto supports, but for which the TomTom IndiGO platform's
   CarControl message handler doesn't have built-in support. You could then add this functionality by
-  implementing an [AlexaHandlerService](TTIVI_INDIGO_API).
+  implementing an [AlexaHandlerService](TTIVI_PLATFORM_API).
 
 ## Example app
 
@@ -183,10 +183,10 @@ an `AndroidManifest.xml` file.
 
 The Alexa Handler service can be implemented by defining a class (for example,
 `CustomAlexaHandlerService`) that inherits from the abstract `AlexaHandlerServiceBase` base class
-and implements the methods defined in the [AlexaHandlerService](TTIVI_INDIGO_API) interface.
+and implements the methods defined in the [AlexaHandlerService](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [AlexaHandlerService](TTIVI_INDIGO_API) API reference
+TomTom IndiGO platform. Please refer to the [AlexaHandlerService](TTIVI_PLATFORM_API) API reference
 documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method. For example:
@@ -218,7 +218,7 @@ override fun onCreate() {
 ```
 
 Additionally, the service needs to override a number of methods.
-Please refer to the [AlexaHandlerService](TTIVI_INDIGO_API) API reference documentation for
+Please refer to the [AlexaHandlerService](TTIVI_PLATFORM_API) API reference documentation for
 detailed information on these methods.
 
 #### Parsing AASB messages
@@ -231,7 +231,7 @@ page.
 
 Whenever the TomTom IndiGO platform receives a JSON AASB message from the Alexa Auto Client Service
 which matches with the topic configured in the service implementation, the
-[AlexaHandlerService](TTIVI_INDIGO_API).`onMessageReceived` method is called.
+[AlexaHandlerService](TTIVI_PLATFORM_API).`onMessageReceived` method is called.
 
 The service implementation needs to parse this message and handle it as needed.
 Typically, in order to parse an AASB message, you would:
@@ -271,8 +271,8 @@ Typically, in order to parse an AASB message, you would:
    ```
 
 3. Decode the AASB message into an instance of the data class using the
-   [`com.tomtom.ivi.platform.alexa.api.common.util`](TTIVI_INDIGO_API).`parseAasbMessage` function.
-   For example:<br/>
+   [`com.tomtom.ivi.platform.alexa.api.common.util`](TTIVI_PLATFORM_API).`parseAasbMessage`
+   function. For example:<br/>
    [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L294-L326)
 
    ```kotlin
@@ -318,8 +318,8 @@ Typically, in order to send an AASB reply message, you would:
    ```
 
 2. Create an instance of this class, encode it as a JSON string and send it using the
-   [AacsSenderWrapper](TTIVI_INDIGO_API) helper class. You would normally also use the
-   [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbReplyHeader` helper
+   [AacsSenderWrapper](TTIVI_PLATFORM_API) helper class. You would normally also use the
+   [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_PLATFORM_API).`createAasbReplyHeader` helper
    function to create the AASB reply header. For example:<br/>
    [`CustomAlexaHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L430-L444)
 
@@ -346,8 +346,8 @@ Typically, in order to send an AASB reply message, you would:
 
 Some domains require the handler to proactively send a "Publish" message to AACS, for example, to
 send a request to Alexa or report an event. You can create these kinds of messages using the
-[com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbRequestNoPayload` or
-[com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbRequestHeader` helper
+[com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_PLATFORM_API).`createAasbRequestNoPayload` or
+[com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_PLATFORM_API).`createAasbRequestHeader` helper
 functions.
 Typically, in order to send an AASB "Publish" message, you would:
 
@@ -370,9 +370,9 @@ Typically, in order to send an AASB "Publish" message, you would:
     ```
 
 2. Create an instance of this class, encode it as a JSON string and send it using the
-   [AacsSenderWrapper](TTIVI_INDIGO_API) helper class. You would normally also use the
-   [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_INDIGO_API).`createAasbRequestHeader` helper function to
-   create the AASB Publish header. For example:
+   [AacsSenderWrapper](TTIVI_PLATFORM_API) helper class. You would normally also use the
+   [com.tomtom.ivi.platform.alexa.api.common.util](TTIVI_PLATFORM_API).`createAasbRequestHeader`
+   helper function to create the AASB Publish header. For example:
 
    ```kotlin
    private fun sendDoNotDisturbChanged(messageId: String, success: Boolean) {
@@ -511,7 +511,7 @@ ivi {
 
 ## References
 
-- TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
+- TomTom IndiGO [AlexaHandlerService](TTIVI_PLATFORM_API)
 - TomTom IndiGO [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
 - [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 - [Alexa Auto AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)

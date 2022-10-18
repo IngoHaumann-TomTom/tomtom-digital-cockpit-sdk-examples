@@ -31,12 +31,12 @@ This section shows how to:
 ## Replace the stock Android app source support
 
 The stock Android app source provider implementation can be overridden by creating your own
-[`AppSourceProviderService`](TTIVI_INDIGO_API) implementation and returning the
-[`AndroidApp`](TTIVI_INDIGO_API) class as the value of the
-[`AppSourceProviderService`](TTIVI_INDIGO_API)`.supportedAppClass`.
+[`AppSourceProviderService`](TTIVI_PLATFORM_API) implementation and returning the
+[`AndroidApp`](TTIVI_PLATFORM_API) class as the value of the
+[`AppSourceProviderService`](TTIVI_PLATFORM_API)`.supportedAppClass`.
 
 The following steps describe how to override the implementation of the stock
-[`AndroidApp`](TTIVI_INDIGO_API) source provider:
+[`AndroidApp`](TTIVI_PLATFORM_API) source provider:
 
 - [Create the replacement app source provider module](#create-the-replacement-app-source-provider-module)
 - [Implement the replacement app source provider service](#implement-the-replacement-app-source-provider-service)
@@ -45,8 +45,8 @@ The following steps describe how to override the implementation of the stock
 
 ### Create the replacement app source provider module
 
-First add the app store common module and [`AppSourceProviderService`](TTIVI_INDIGO_API) dependency
-to the
+First add the app store common module and [`AppSourceProviderService`](TTIVI_PLATFORM_API)
+dependency to the
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L55-L56)
 file:
 
@@ -55,7 +55,7 @@ iviAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite
 iviAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "iviPlatform" }
 ```
 
-Create a module for the [`AppSourceProviderService`](TTIVI_INDIGO_API) implementation under
+Create a module for the [`AppSourceProviderService`](TTIVI_PLATFORM_API) implementation under
 [`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
 (for example
 [`examples/applauncher/services/androidappsourceprovider`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/androidappsourceprovider))
@@ -95,11 +95,11 @@ file:
 
 The app source provider service can be implemented by defining a class (for example,
 `AndroidAppSourceProviderService`) that inherits from the abstract `AppSourceProviderServiceBase`
-base class and implements the methods defined in the [`AppSourceProviderService`](TTIVI_INDIGO_API)
-interface.
+base class and implements the methods defined in the
+[`AppSourceProviderService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_INDIGO_API) API
+TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
@@ -255,15 +255,15 @@ ivi {
 ## Replace the stock launchable Android app launch support
 
 The stock Android app launch handler implementation can be overridden by creating your own
-[`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation and returning either the
-[`LaunchableAndroidApp`](TTIVI_INDIGO_API) or [`MediaAndroidApp`](TTIVI_INDIGO_API) class as the
-value of the [`AppLaunchHandlerService`](TTIVI_INDIGO_API)`.supportedAppClass`.
+[`AppLaunchHandlerService`](TTIVI_PLATFORM_API) implementation and returning either the
+[`LaunchableAndroidApp`](TTIVI_PLATFORM_API) or [`MediaAndroidApp`](TTIVI_PLATFORM_API) class as the
+value of the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API)`.supportedAppClass`.
 
 In this example we will override the launching implementation for
-[`LaunchableAndroidApp`](TTIVI_INDIGO_API).
+[`LaunchableAndroidApp`](TTIVI_PLATFORM_API).
 
 The following steps describe how to override the implementation of the stock
-[`LaunchableAndroidApp`](TTIVI_INDIGO_API) launch handler:
+[`LaunchableAndroidApp`](TTIVI_PLATFORM_API) launch handler:
 
 - [Create the replacement app launch handler module](#create-the-replacement-app-launch-handler-module)
 - [Implement the replacement app launch handler service](#implement-the-replacement-app-launch-handler-service)
@@ -272,7 +272,7 @@ The following steps describe how to override the implementation of the stock
 
 ### Create the replacement app launch handler module
 
-First add the app store common module and [`AppLaunchHandlerService`](TTIVI_INDIGO_API) dependency
+First add the app store common module and [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) dependency
 to the
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L57)
 file:
@@ -282,7 +282,7 @@ iviAppsuiteAppstoreApiCommonModel = { module = "com.tomtom.ivi.appsuite:appsuite
 iviAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "iviPlatform" }
 ```
 
-Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
+Create a module for the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) implementation under
 [`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
 (for example
 [`examples/applauncher/services/launchableandroidapplaunchhandler`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/launchableandroidapplaunchhandler))
@@ -323,10 +323,10 @@ file:
 The app launch handler service can be implemented by defining a class (for example,
 `LaunchableAndroidAppLaunchHandlerService`) that inherits from the abstract
 `AppLaunchHandlerServiceBase` class and implements the methods defined in the
-[`AppLaunchHandlerService`](TTIVI_INDIGO_API) interface.
+[`AppLaunchHandlerService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) API
+TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.

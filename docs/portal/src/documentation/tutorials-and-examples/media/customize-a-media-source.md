@@ -16,7 +16,7 @@ These customization capabilities are currently offered:
   See the [name and icon](#customize-name-and-icon) section for details.
 - Define how media items provided by the media app are compared with each other.
   See the documentation of type `MediaItemComparisonPolicy` in the package
-  [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)
+  [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_PLATFORM_API)
   for more information.
 
 These customizations are possible through the use of policies, which are applied based on the
@@ -31,11 +31,12 @@ experience in a more radical way, then it is possible to
 Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO
 with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
 
-For this guide, knowledge of the TomTom IndiGO media APIs [`appsuite_media_api_common_core`](TTIVI_INDIGO_API)
-and [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
-will be of great help. In the
-[media overview](/tomtom-indigo/documentation/development/platform-domains/media) documentation, more
-details can be found about the Android Automotive Media framework and how TomTom IndiGO uses it.
+For this guide, knowledge of the TomTom IndiGO media APIs
+[`appsuite_media_api_common_core`](TTIVI_PLATFORM_API) and
+[`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) will be of great help. In the
+[media overview](/tomtom-indigo/documentation/development/platform-domains/media)
+documentation, more details can be found about the Android Automotive Media framework and how TomTom
+IndiGO uses it.
 
 If you want to configure the media plugins with a more global configuration, you can follow
 this guide:
@@ -50,15 +51,15 @@ A media source might provide poor quality of its input data, due to a sub-par im
 Android Automotive Media API, causing the default user interface to display it incorrectly.
 
 When browsing through content from the `ExampleInternetRadio` app, normally the TomTom IndiGO user
-interface would display the [`IviMediaItem`](TTIVI_INDIGO_API)`.title` field of a playable media
+interface would display the [`IviMediaItem`](TTIVI_PLATFORM_API)`.title` field of a playable media
 item in a more visually-prominent fashion (in bold and with a bigger font size) and the
-[`IviMediaItem`](TTIVI_INDIGO_API)`.subtitle` field, when present, in a less-prominent fashion
+[`IviMediaItem`](TTIVI_PLATFORM_API)`.subtitle` field, when present, in a less-prominent fashion
 (not in bold, and with a smaller font size).
 
 When browsing stations from `ExampleInternetRadio`, a playable radio station media item has: its
-[`IviMediaItem`](TTIVI_INDIGO_API)`.title` field set to the name of the station; its
-[`IviMediaItem`](TTIVI_INDIGO_API)`.subtitle` field set to the full current track name,
-"Artist - Track Name"; and its [`IviMediaItem`](TTIVI_INDIGO_API)`.artist` field is left
+[`IviMediaItem`](TTIVI_PLATFORM_API)`.title` field set to the name of the station; its
+[`IviMediaItem`](TTIVI_PLATFORM_API)`.subtitle` field set to the full current track name,
+"Artist - Track Name"; and its [`IviMediaItem`](TTIVI_PLATFORM_API)`.artist` field is left
 empty.
 
 With such data, the track name will always be shown smaller, and only the radio station's name will
@@ -68,8 +69,8 @@ is displayed more prominently, and the radio station's name is shown in a less p
 
 The first step to achieve this result is to create a new module made to contain all code related to
 `ExampleInternetRadio`. In this new module, a new `MediaItemMappingPolicy` object (see
-package [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_INDIGO_API)), should be
-created:
+package [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_PLATFORM_API)), should
+be created:
 
 [`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt#L24-L31)
 
@@ -92,14 +93,14 @@ class ExampleInternetRadioMediaItemMappingPolicy : MediaItemMappingPolicy {
 
 A `MediaItemMappingPolicy` customizes how the user interface will display media item data, and can
 be as complex as necessary: it might be useful to examine whether an item is playable or browsable
-(or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_INDIGO_API) fields; or
-maybe the [`IviMediaItem`](TTIVI_INDIGO_API)`.id` should be parsed to find out what type of content
-is being played. It all depends on how the media source presents its information. Also note that
-this data might change over time, posing integration issues when new versions are released
+(or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_PLATFORM_API) fields; or
+maybe the [`IviMediaItem`](TTIVI_PLATFORM_API)`.id` should be parsed to find out what type of
+content is being played. It all depends on how the media source presents its information. Also note
+that this data might change over time, posing integration issues when new versions are released
 potentially with changes in media item data provisioning.
 
 The new `ExampleInternetRadioMediaItemMappingPolicy` data mapping policy class needs to be
-specified in a [`PolicyProvider`](TTIVI_INDIGO_API), which will only be used  when browsing
+specified in a [`PolicyProvider`](TTIVI_PLATFORM_API), which will only be used  when browsing
 `ExampleInternetRadio` content.
 The [policy installation](#install-customization-policies) section explains how.
 
@@ -116,14 +117,14 @@ playing a station, it is always possible to remove it from the quick access list
 heart icon again.
 
 During playback, a media source will constantly advertise which custom actions are currently
-available for the user to perform. The [`MediaService`](TTIVI_INDIGO_API) service API contains an
+available for the user to perform. The [`MediaService`](TTIVI_PLATFORM_API) service API contains an
 `availableActions` field, which is always updated with a list of whatever actions the
 media source provides for the media that is currently being played,
 `activeMediaItem`.
 
-Such list of [`Action`](TTIVI_INDIGO_API)s will have to be examined to find out what `Actions` are
+Such list of [`Action`](TTIVI_PLATFORM_API)s will have to be examined to find out what `Actions` are
 available. When `ExampleInternetRadio` is playing a track, the device's logcat will show events from
-the stock [`MediaService`](TTIVI_INDIGO_API) called `onAvailableActionsChanged`, such as this one:
+the stock [`MediaService`](TTIVI_PLATFORM_API) called `onAvailableActionsChanged`, such as this one:
 
 ```
 MediaServiceBase: event=onAvailableActionsChanged([PauseAction(id=ivi_media:pause), SkipMediaItemForwardAction(id=ivi_media:skip_media_item_forward), Action(id=heart_this_station)])
@@ -139,8 +140,8 @@ MediaServiceBase: event=onAvailableActionsChanged([PauseAction(id=ivi_media:paus
 The ID `un-heart_this_station` from the last `Action(id=un-heart_this_station)` is then needed to
 remove the favorite state from the current station.
 
-A new [`ActionMediaControl`](TTIVI_INDIGO_API) is needed. Since this seems to be a simple toggle
-behavior, the [`ToggleActionMediaControl`](TTIVI_INDIGO_API) specialization fits the use case
+A new [`ActionMediaControl`](TTIVI_PLATFORM_API) is needed. Since this seems to be a simple toggle
+behavior, the [`ToggleActionMediaControl`](TTIVI_PLATFORM_API) specialization fits the use case
 better:
 
 ```kotlin
@@ -167,12 +168,12 @@ class HeartActionMediaControl(context: MediaControlContext) :
 ```
 
 Note that in this example the new media control is a _custom_ media control. All media controls
-which use [`StandardActionId`](TTIVI_INDIGO_API) IDs are considered _standard_, all others are
-considered _custom_ media controls. The documentation for [`MediaControlPolicy`](TTIVI_INDIGO_API)
+which use [`StandardActionId`](TTIVI_PLATFORM_API) IDs are considered _standard_, all others are
+considered _custom_ media controls. The documentation for [`MediaControlPolicy`](TTIVI_PLATFORM_API)
 offers more information about how to work with standard media controls.
 
 The new `HeartActionMediaControl` should then be specified in a
-[`MediaControlPolicy`](TTIVI_INDIGO_API).
+[`MediaControlPolicy`](TTIVI_PLATFORM_API).
 
 ```kotlin
 package com.example.exampleinternetradio
@@ -188,7 +189,7 @@ class ExampleInternetRadioMediaControlPolicy : MediaControlPolicy {
 ```
 
 Finally, the new `ExampleInternetRadioMediaControlPolicy` needs to be specified in a
-[`PolicyProvider`](TTIVI_INDIGO_API) which will only be used  when browsing `ExampleInternetRadio`
+[`PolicyProvider`](TTIVI_PLATFORM_API) which will only be used  when browsing `ExampleInternetRadio`
 content. The [policy installation](#install-customization-policies) section explains how.
 
 ## Customize name and icon
@@ -203,8 +204,8 @@ The name must be fully displayed as "Example Internet Radio", if possible, and o
 "ExampleRadio". Different icons and colors are also prescribed for light and dark themes.
 
 To aid the process of adherence to these branding guidelines, the
-[`MediaSourceAttributionPolicy`](TTIVI_INDIGO_API) policy is available. A
-[`SourceAttributionFormat`](TTIVI_INDIGO_API) parameter can be used to specify the preferred
+[`MediaSourceAttributionPolicy`](TTIVI_PLATFORM_API) policy is available. A
+[`SourceAttributionFormat`](TTIVI_PLATFORM_API) parameter can be used to specify the preferred
 UI display mode depending on the current display context. The `mediaItem` parameter can be used to
 determine what to display based on the metadata contained in the current media item.
 
@@ -253,17 +254,17 @@ class ExampleInternetRadioSourceAttributionPolicy : MediaSourceAttributionPolicy
 
 The `getName()` method uses the right string at the right time, and the `getLogo()` method uses
 resources which are selected by Android by the type of theme currently in use.
-The `getStyle()` method can return a [`SourceStyle`](TTIVI_INDIGO_API) to override the default
+The `getStyle()` method can return a [`SourceStyle`](TTIVI_PLATFORM_API) to override the default
 `accentColor` provided by the source APK theme. When not specified, it returns `null` and will keep
 the default color.
 
 The new `ExampleInternetRadioSourceAttributionPolicy` needs to be specified in a
-[`PolicyProvider`](TTIVI_INDIGO_API) which will be used only when browsing `ExampleInternetRadio`
+[`PolicyProvider`](TTIVI_PLATFORM_API) which will be used only when browsing `ExampleInternetRadio`
 content. Section [policy installation](#install-customization-policies) explains how to do this.
 
 ## Install customization policies
 
-Policy configuration is done using a [`MediaPolicyFrontendExtension`](TTIVI_INDIGO_API). When the
+Policy configuration is done using a [`MediaPolicyFrontendExtension`](TTIVI_PLATFORM_API). When the
 user starts browsing the internet radio, this configuration will be used to customize the user
 experience:
 
@@ -308,4 +309,4 @@ val exampleInternetRadioPolicyProvider = PolicyProvider(
 Activating the new `exampleInternetRadioFrontendExtension` is done via a Gradle configuration.
 The guide on
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
-and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) are available for more details.
+and the documentation for [`FrontendExtension`](TTIVI_PLATFORM_API) are available for more details.

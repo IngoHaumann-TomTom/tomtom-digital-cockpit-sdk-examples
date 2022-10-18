@@ -34,7 +34,7 @@ The diagram shows the most relevant components in this architecture:
   request TomTom IndiGO's implementation for Alexa Auto please contact your local sales
   representative.
 
-- _[`VpaMediatorService`](TTIVI_INDIGO_API)_: This is a platform service whose role is to ensure
+- _[`VpaMediatorService`](TTIVI_PLATFORM_API)_: This is a platform service whose role is to ensure
   that multiple VPAs do not interfere with each other and that commands to and from a VPA go to the
   right UI / VPA adaptation.<br/>
   For example:
@@ -49,9 +49,9 @@ The diagram shows the most relevant components in this architecture:
   user would like to login to their service, if that is needed.<br/>
   VPA frontends must communicate through this service to interact with a VPA.
 
-- _[`VpaMediatorSettingsService`](TTIVI_INDIGO_API)_: This is a platform service providing access to
-  all the VPA-related settings. It can be used to update settings like the language used by a VPA or
-  whether the VPA can be invoked with a wake word.
+- _[`VpaMediatorSettingsService`](TTIVI_PLATFORM_API)_: This is a platform service providing access
+  to all the VPA-related settings. It can be used to update settings like the language used by a VPA
+  or whether the VPA can be invoked with a wake word.
 
 - _VPA frontends_: The application frontends for the VPAs. More information on the typical features
   provided by a VPA frontend can be found in section
@@ -105,8 +105,8 @@ Typically, a VPA frontend would render 2 main UI components:
 - A "chrome" component that is only activated when a voice interaction is ongoing, showing the VPA's
   dialogue state (for example, whether the VPA is idle, listening, thinking, speaking, or
   expecting an answer from the user).<br/>
-  In the off-the-shelf Alexa frontend, this is implemented as an [`OverlayPanel`](TTIVI_INDIGO_API)
-  that temporarily overlays the system UI's main content area.
+  In the off-the-shelf Alexa frontend, this is implemented as an
+  [`OverlayPanel`](TTIVI_PLATFORM_API) that temporarily overlays the system UI's main content area.
 
 - A "template" component that is displayed when the VPA provides additional visual metadata that
   complements the current voice interaction. Typically, VPAs provide this visual information for
@@ -118,6 +118,6 @@ Typically, a VPA frontend would render 2 main UI components:
   - Information about subjects that are available on Wikipedia.
 
   In the off-the-shelf Alexa frontend, the "templates" are rendered inside a
-  [`VpaNotificationPanel`](TTIVI_INDIGO_API), which behaves like a
-  [`NotificationPanel`](TTIVI_INDIGO_API), but also stops the current voice interaction when
+  [`VpaNotificationPanel`](TTIVI_PLATFORM_API), which behaves like a
+  [`NotificationPanel`](TTIVI_PLATFORM_API), but also stops the current voice interaction when
   dismissed.

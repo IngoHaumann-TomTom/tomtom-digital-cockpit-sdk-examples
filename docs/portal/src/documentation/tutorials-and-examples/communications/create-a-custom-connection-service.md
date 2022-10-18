@@ -53,7 +53,7 @@ package="com.example.ivi.example.telephony.customconnection">
 </manifest>
 ```
 
-Add a dependency to the [`TelecomService`](TTIVI_INDIGO_API) and
+Add a dependency to the [`TelecomService`](TTIVI_PLATFORM_API) and
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
 in your
 [`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/build.gradle.kts#L21)
@@ -66,9 +66,9 @@ dependencies {
 }
 ```
 
-The dependency to the [`TelecomService`](TTIVI_INDIGO_API) is necessary in order to use
-[`CallState`](TTIVI_INDIGO_API) and
-`toPhoneUri` (package [com.tomtom.ivi.platform.telecom.api.common.utils](TTIVI_INDIGO_API)),
+The dependency to the [`TelecomService`](TTIVI_PLATFORM_API) is necessary in order to use
+[`CallState`](TTIVI_PLATFORM_API) and
+`toPhoneUri` (package [com.tomtom.ivi.platform.telecom.api.common.utils](TTIVI_PLATFORM_API)),
 both required for the phone call state management.
 
 The dependency to the
@@ -299,6 +299,6 @@ The instance of the `CustomConnectionService` is null.
 
 ## External links
 
-- TomTom IndiGO [`TelecomService`](TTIVI_INDIGO_API).
+- TomTom IndiGO [`TelecomService`](TTIVI_PLATFORM_API).
 - Android [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService).
 

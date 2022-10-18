@@ -21,9 +21,9 @@ DOWNLOAD_DIR = "build/downloads"
 IGNORE = ["scripts",  "images", "styles", "package-list"]
 
 # The placeholders in the Markdown files that will be replaced by an API Reference URL.
-PLATFORM_PLACEHOLDER = "TTIVI_INDIGO_API"
-GRADLEPLUGINS_PLACEHOLDER = "TTIVI_INDIGO_GRADLEPLUGINS_API"
-COMMS_PLACEHOLDER = "TTIVI_INDIGO_COMMS_API"
+PLATFORM_PLACEHOLDER = "TTIVI_PLATFORM_API"
+GRADLEPLUGINS_PLACEHOLDER = "TTIVI_GRADLEPUGINS_API"
+COMMS_PLACEHOLDER = "TTIVI_COMMS_API"
 ANDROID_TOOLS_PLACEHOLDER = "TTIVI_ANDROID_TOOLS_API"
 
 # Regex patterns to find API-links: [api-element](placeholder).
@@ -243,8 +243,8 @@ def generate_api_links(target_dir, versions):
     target_dir : str
         The files within this directory will be altered, replacing the placeholders with URLs.
     versions : list
-        [0] IndiGO version.
-        [1] IndiGO Comms SDK version.
+        [0] IVI platform version.
+        [1] IVI Comms SDK version.
         [2] TomTom Android Tools version.
     '''
 
@@ -255,9 +255,9 @@ def generate_api_links(target_dir, versions):
     android_tools_version = versions[2]
 
     print("Using API reference versions:")
-    print(f"    Platform version {platform_version}")
-    print(f"    Gradle Plugins version {gradleplugins_version}")
-    print(f"    Comms SDK version {comms_version}")
+    print(f"    IVI Platform version {platform_version}")
+    print(f"    IVI Gradle Plugins version {gradleplugins_version}")
+    print(f"    IVI Comms SDK version {comms_version}")
     print(f"    TomTom Android Tools version {android_tools_version}")
 
     # The base URLs of the hosted API References on the S3 bucket.

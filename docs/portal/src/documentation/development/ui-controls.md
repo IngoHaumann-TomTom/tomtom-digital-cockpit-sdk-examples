@@ -6,28 +6,28 @@ In TomTom IndiGO, the
 [System UI](/tomtom-indigo/documentation/development/system-ui)
 is made up of a number of panels, such as the main menu, notifications, etc.
 Each panel visually represents a frontend through a fragment made up of different UI elements like
-text, images, buttons, etc. 
+text, images, buttons, etc.
 
-TomTom provides a reusable UI controls library 
-[TomTom Android Tools](/tomtom-indigo/api-reference/api-reference) that developers can use to build 
-the user interface of their frontend. These controls have additional features compared to their 
-built-in Android equivalents to allow developers to build a consistent look-and-feel and to 
-minimize implementation effort. The controls also support various forms of user interaction and 
+TomTom provides a reusable UI controls library
+[TomTom Android Tools](/tomtom-indigo/api-reference/api-reference) that developers can use to build
+the user interface of their frontend. These controls have additional features compared to their
+built-in Android equivalents to allow developers to build a consistent look-and-feel and to
+minimize implementation effort. The controls also support various forms of user interaction and
 their appearance can be easily customized.
 
-It is recommended that, __where__ __possible__, controls from these libraries are used instead of 
-their Android equivalents so that the resulting IVI system has a consistent UI across their 
-frontends. The standard build-in Android control should still be used where no equivalent exists 
+It is recommended that, __where__ __possible__, controls from these libraries are used instead of
+their Android equivalents so that the resulting IVI system has a consistent UI across their
+frontends. The standard build-in Android control should still be used where no equivalent exists
 in the UI library or where the Android control provides features not available in the UI library
 control.
 
-For a complete list of available controls and specific details about each one, see the API 
+For a complete list of available controls and specific details about each one, see the API
 reference of the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
 
 It is possible to customize the style of the UI controls by setting their attribute values to
-specific theme attributes. The `com.tomtom.tools.android.core.theme` module declares the view 
-element attributes that these controls need, to define their appearance. When using these controls, 
-it is mandatory to define these attribute values. More information on how to theme UI controls 
+specific theme attributes. The `com.tomtom.tools.android.core.theme` module declares the view
+element attributes that these controls need, to define their appearance. When using these controls,
+it is mandatory to define these attribute values. More information on how to theme UI controls
 can be found in the [Theming](/tomtom-indigo/documentation/development/theming-and-customization)
 documentation.
 
@@ -59,8 +59,8 @@ Other controls that are also available in TomTom IndiGO are:
 
 ### TextView
 
-The [`TtTextView`](TTIVI_ANDROID_TOOLS_API) class is a user interface element that represents a label
-control that displays text to the end-user. It acts in a similar way to Android's
+The [`TtTextView`](TTIVI_ANDROID_TOOLS_API) class is a user interface element that represents a
+label control that displays text to the end-user. It acts in a similar way to Android's
 [`TextView`](https://developer.android.com/reference/android/widget/TextView)
 but should be used instead of it (or similar) classes so that the UI of the frontend being developed
 is consistent with the rest of the UI of the IVI system.
@@ -73,7 +73,7 @@ This is how a [`TtTextView`](TTIVI_ANDROID_TOOLS_API)s can look when configured 
 
 ![TtTextView objects with different configurations](images/ui-controls-textview.png)
 
-A [`TtTextView`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a 
+A [`TtTextView`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a
 standard Android view. The following example illustrates how to do this and how to style the control:
 
 ```xml
@@ -86,14 +86,14 @@ standard Android view. The following example illustrates how to do this and how 
     android:textColor="?attr/tt_surface_content_color_emphasis_low" />
 ```
 
-Predefined styling attributes are provided to help style the text label. More information on these can 
-be found in the 
+Predefined styling attributes are provided to help style the text label. More information on these can
+be found in the
 [Theming and Customization](/tomtom-indigo/documentation/development/theming-and-customization)
 document.
 
 ### Button
 
-The [`TtButton`](TTIVI_ANDROID_TOOLS_API) class contains an implementation of a basic tappable 
+The [`TtButton`](TTIVI_ANDROID_TOOLS_API) class contains an implementation of a basic tappable
 button UI control and adds additional features not present in the built-in Android
 [`AppCompatButton`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatButton)
 class. These include:
@@ -111,14 +111,14 @@ class. These include:
     - __Floating__ is used for buttons which hover over content to promote an action.
     - __Toggle__ is used for buttons which allow the user to change a setting between two states.
 
-The following diagram shows examples of these buttons. The specific appearances such as 
+The following diagram shows examples of these buttons. The specific appearances such as
 __Destructive__ and __Acceptance__ can be used to ensure that all buttons with those roles look
 and behave in the same way across the entire IVI system.
 
 ![TtButton objects with various configurations](images/ui-controls-buttons-overview.png)
 
-A [`TtButton`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a 
-standard Android view. 
+A [`TtButton`](TTIVI_ANDROID_TOOLS_API) can be added to a UI XML layout file in the same way as a
+standard Android view.
 
 The following example illustrates how to add a primary button with a text label to your UI:
 
@@ -130,7 +130,7 @@ The following example illustrates how to add a primary button with a text label 
     android:text="I am a Primary Button"
     auto:ttActionType="ActionType.PRIMARY" />
 ```
-    
+
 where the `TtAppButtonStyle` style is defined as
 
 ```xml
@@ -141,7 +141,7 @@ where the `TtAppButtonStyle` style is defined as
 </style>
 ```
 
-The style can be reused so that other buttons with different `ttActionType`s have the same 
+The style can be reused so that other buttons with different `ttActionType`s have the same
 margin and padding.
 
 To add a teriary button with an icon, the following XML code can be used:
@@ -156,7 +156,7 @@ To add a teriary button with an icon, the following XML code can be used:
     auto:ttDrawableTint="?attr/tt_surface_content_color_emphasis_high" />
 ```
 
-The [`TtButton`](TTIVI_ANDROID_TOOLS_API) API reference describes the other available attributes 
+The [`TtButton`](TTIVI_ANDROID_TOOLS_API) API reference describes the other available attributes
 which can be used to for example, add an image to the button.
 
 ### TextInputField
@@ -211,8 +211,8 @@ the following features:
 
 #### TtListTableLayout
 
-The [`TtListTableLayout`](TTIVI_ANDROID_TOOLS_API) class presents views as a table, with multiple rows
-and columns.
+The [`TtListTableLayout`](TTIVI_ANDROID_TOOLS_API) class presents views as a table, with multiple
+rows and columns.
 
 The [`TtListTableLayout`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
 [`TableLayout`](https://developer.android.com/reference/android/widget/TableLayout)
@@ -263,7 +263,7 @@ You can configure the [`TtScrollBar`](TTIVI_ANDROID_TOOLS_API) for either scroll
 scroll-to-top, but not both.
 
 Here is an example demonstrating a combined usage of [`TtScrollBar`](TTIVI_ANDROID_TOOLS_API) and
-[`TtListRecyclerView`](TTIVI_ANDROID_TOOLS_API). From the image, you can see the star icon as the 
+[`TtListRecyclerView`](TTIVI_ANDROID_TOOLS_API). From the image, you can see the star icon as the
 `up` button on the top of the bar. Also, the scroll bar indicator shows `D` for the current scroll
 position.
 
@@ -307,7 +307,7 @@ notifications, process panels, etc.
 The content within this control consists of three sections that can be configured individually:
 
 - The optional _head section_ is positioned on the left and holds an image.
-- The _main section_ is positioned in the center. It starts with three vertically aligned text 
+- The _main section_ is positioned in the center. It starts with three vertically aligned text
   areas, with an optional icon: primary, secondary and tertiary. At the bottom it shows a rating bar
   with a dedicated text label.
 - The optional _tail section_ is positioned on the right and holds a text and an image. The user can
@@ -333,8 +333,8 @@ The navigation bar can be configured to look as:
 
 ### SearchView
 
-The [`TtSearchView`](TTIVI_ANDROID_TOOLS_API) class consists of an icon on the left, an input field in
-the middle, a _clear icon_, and a _searching indicator_ on the right.
+The [`TtSearchView`](TTIVI_ANDROID_TOOLS_API) class consists of an icon on the left, an input field
+in the middle, a _clear icon_, and a _searching indicator_ on the right.
 
 The [`TtSearchView`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
 [`SearchView`](https://developer.android.com/reference/android/widget/SearchView)
@@ -351,9 +351,9 @@ _searching indicator_ animating:
 
 ### SeekBar
 
-The [`TtSmoothSeekBar`](TTIVI_ANDROID_TOOLS_API) class is used to indicate the progress of an operation
-with a draggable thumb. The user can touch the thumb and drag left or right to set the current
-progress.
+The [`TtSmoothSeekBar`](TTIVI_ANDROID_TOOLS_API) class is used to indicate the progress of an
+operation with a draggable thumb. The user can touch the thumb and drag left or right to set the
+current progress.
 
 The [`TtSmoothSeekBar`](TTIVI_ANDROID_TOOLS_API) adds to the Android class
 [`AppCompatSeekBar`](https://developer.android.com/reference/androidx/appcompat/widget/AppCompatSeekBar)

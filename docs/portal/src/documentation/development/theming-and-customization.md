@@ -103,7 +103,7 @@ attribute names consist of:
 
 - `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO
   specific component attributes, which are defined in
-  [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) is `ttivi`.
+  [`platform_theming_api_common_attributes`](TTIVI_PLATFORM_API) is `ttivi`.
 - `what` determines the _background color_.
 - `where` determines the _place_ where it is used. Optional.
 - `which` for all color attributes is `color`.
@@ -187,23 +187,23 @@ system UI will get that context with the correct styles applied. Similarly, when
 run-time, like when switching between light and dark mode themes, all views are created with a new
 context that has the new styles applied.
 
-The theme is provided by the [`ThemingService`](TTIVI_INDIGO_API). This service is responsible for
+The theme is provided by the [`ThemingService`](TTIVI_PLATFORM_API). This service is responsible for
 deciding which theme should be used by the system UI. It loads the styles that themes can use from
-all discoverable [`ThemeComponentProviderService`](TTIVI_INDIGO_API) instances. (You can read more
+all discoverable [`ThemeComponentProviderService`](TTIVI_PLATFORM_API) instances. (You can read more
 on discoverable services in the documentation on
-[`IviDiscoverableServiceIdProvider`](TTIVI_INDIGO_API).) You can add your own instances, or replace
-the default one with custom instances that provide alternative styles.
+[`IviDiscoverableServiceIdProvider`](TTIVI_PLATFORM_API).) You can add your own instances, or
+replace the default one with custom instances that provide alternative styles.
 
-__Note:__ The [`ThemingService`](TTIVI_INDIGO_API) works with [`IviTheme`](TTIVI_INDIGO_API)s, which
-are explained in detail in the [Customization](#customization) section.
+__Note:__ The [`ThemingService`](TTIVI_PLATFORM_API) works with [`IviTheme`](TTIVI_PLATFORM_API)s,
+which are explained in detail in the [Customization](#customization) section.
 
 The styles must provide values for _all_ attributes within their respective categories. Failing to
 do so will result in unexpected behavior as the views are missing some of their attributes. The
 available attributes are defined within the
-[`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) and `core_theme` modules.
+[`platform_theming_api_common_attributes`](TTIVI_PLATFORM_API) and `core_theme` modules.
 
 The `core_theme` is a _TomTomAndroidTools_ module which defines common theme attributes that can be
-used in various projects. The [`platform_theming_api_common_attributes`](TTIVI_INDIGO_API) module,
+used in various projects. The [`platform_theming_api_common_attributes`](TTIVI_PLATFORM_API) module,
 which extends `core_theme`, also defines extra theme attributes for TomTom IndiGO. You can customize
 the visual appearance of your product by providing the desired values of these attributes.
 
@@ -214,9 +214,9 @@ If you want a look based on the TomTom UX design specification, you can use the
 the default one for TomTom IndiGO.
 
 If you want a customized theme, you must add your own
-[`ThemeComponentProviderService`](TTIVI_INDIGO_API) to provide the extra styles for the
-[`ThemingService`](TTIVI_INDIGO_API) to discover. In that implementation you can override the values
-of the `platform_theming_api_stock_theme` to suit your look, or replace the
+[`ThemeComponentProviderService`](TTIVI_PLATFORM_API) to provide the extra styles for the
+[`ThemingService`](TTIVI_PLATFORM_API) to discover. In that implementation you can override the
+values of the `platform_theming_api_stock_theme` to suit your look, or replace the
 `platform_theming_api_stock_theme` entirely.
 
 ## Theming Design Concepts
@@ -341,8 +341,8 @@ Emphasis is classified into:
 Here we'll dive deeper into the way you can customize your product using the tools that theming
 provides.
 
-An [`IviThemeComponent`](TTIVI_INDIGO_API) contains the necessary style information and it belongs
-to a single [`IviThemeCategory`](TTIVI_INDIGO_API). The theme component styles are defined as
+An [`IviThemeComponent`](TTIVI_PLATFORM_API) contains the necessary style information and it belongs
+to a single [`IviThemeCategory`](TTIVI_PLATFORM_API). The theme component styles are defined as
 Android [style](https://developer.android.com/guide/topics/resources/style-resource) resources. For
 example, a Noto Sans font style is defined as:
 
@@ -356,25 +356,25 @@ example, a Noto Sans font style is defined as:
 </resource>
 ```
 
-A theme category, like color or font, is represented by an [`IviThemeCategory`](TTIVI_INDIGO_API).
-They may contain multiple [`IviThemeComponent`](TTIVI_INDIGO_API)s. For example, a font
-[`IviThemeCategory`](TTIVI_INDIGO_API) can have several font
-[`IviThemeComponent`](TTIVI_INDIGO_API)s, each for a different font.
+A theme category, like color or font, is represented by an [`IviThemeCategory`](TTIVI_PLATFORM_API).
+They may contain multiple [`IviThemeComponent`](TTIVI_PLATFORM_API)s. For example, a font
+[`IviThemeCategory`](TTIVI_PLATFORM_API) can have several font
+[`IviThemeComponent`](TTIVI_PLATFORM_API)s, each for a different font.
 
-An [`IviTheme`](TTIVI_INDIGO_API) is a collection of [`IviThemeComponent`](TTIVI_INDIGO_API)s.
+An [`IviTheme`](TTIVI_PLATFORM_API) is a collection of [`IviThemeComponent`](TTIVI_PLATFORM_API)s.
 
-A [`TtiviThemeCategoryPreset`](TTIVI_INDIGO_API) is a pre-defined set of
-[`IviThemeCategory`](TTIVI_INDIGO_API)s.
+A [`TtiviThemeCategoryPreset`](TTIVI_PLATFORM_API) is a pre-defined set of
+[`IviThemeCategory`](TTIVI_PLATFORM_API)s.
 
-An [`IviTheme`](TTIVI_INDIGO_API) must contain at least one [`IviThemeComponent`](TTIVI_INDIGO_API)
-for each [`IviThemeCategory`](TTIVI_INDIGO_API) listed in the
-[`TtiviThemeCategoryPreset`](TTIVI_INDIGO_API). The [`ThemingService`](TTIVI_INDIGO_API) has the
-responsibility to check this.
+An [`IviTheme`](TTIVI_PLATFORM_API) must contain at least one
+[`IviThemeComponent`](TTIVI_PLATFORM_API) for each [`IviThemeCategory`](TTIVI_PLATFORM_API) listed
+in the [`TtiviThemeCategoryPreset`](TTIVI_PLATFORM_API). The [`ThemingService`](TTIVI_PLATFORM_API)
+has the responsibility to check this.
 
 ![Customization class diagram](images/theming-customization-class-diagram.svg)
 
 First you need to define styleable attributes for a category. Next you can define a style for it,
-which will be used by an [`IviThemeComponent`](TTIVI_INDIGO_API) later.
+which will be used by an [`IviThemeComponent`](TTIVI_PLATFORM_API) later.
 
 Let's use an example to demonstrate the creation of a custom theme. TomTom IndiGO extends color
 attributes like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It
@@ -431,8 +431,8 @@ enum class TtiviThemeCategoryPreset(val category: IviThemeCategory) {
 }
 ```
 
-Then the corresponding [`IviThemeComponent`](TTIVI_INDIGO_API)s are created and provided by a
-[`ThemeComponentProviderService`](TTIVI_INDIGO_API):
+Then the corresponding [`IviThemeComponent`](TTIVI_PLATFORM_API)s are created and provided by a
+[`ThemeComponentProviderService`](TTIVI_PLATFORM_API):
 
 ```kotlin
 class StockThemeComponentProviderService(
@@ -456,8 +456,8 @@ class StockThemeComponentProviderService(
 }
 ```
 
-Finally an [`IviTheme`](TTIVI_INDIGO_API) is created from the
-[`ThemeComponentProviderService`](TTIVI_INDIGO_API):
+Finally an [`IviTheme`](TTIVI_PLATFORM_API) is created from the
+[`ThemeComponentProviderService`](TTIVI_PLATFORM_API):
 
 ```kotlin
 class StockThemingService(iviServiceHostContext: IviServiceHostContext) :
@@ -471,6 +471,6 @@ class StockThemingService(iviServiceHostContext: IviServiceHostContext) :
 
 If you want to slightly change the look, then you can change individual attribute values. If
 you need to change the look dramatically, then you can create your own theme categories and
-attributes and provide your own [ThemeComponentProviderService](TTIVI_INDIGO_API) to the
+attributes and provide your own [ThemeComponentProviderService](TTIVI_PLATFORM_API) to the
 `ThemeService`.
 

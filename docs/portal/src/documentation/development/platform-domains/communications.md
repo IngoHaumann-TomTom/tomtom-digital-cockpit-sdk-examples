@@ -10,14 +10,14 @@ The communications domain spans the following sub-domains:
 
 ## Making a phone call
 
-The TomTom IndiGO platform provides flexible architecture components that allow the integration of 
-a wide range of voice calling services. The TomTom IndiGO application suite provides the end-user 
-with a consistent user interface through which they can make and receive calls, as well as view 
+The TomTom IndiGO platform provides flexible architecture components that allow the integration of
+a wide range of voice calling services. The TomTom IndiGO application suite provides the end-user
+with a consistent user interface through which they can make and receive calls, as well as view
 contacts and recent calls.
 
-The TomTom IndiGO platform comes with support for making phone calls using a Bluetooth-connected 
-phone. TomTom IndiGO can also be extended to support other communications services. For example 
-Voice Over Internet Protocol (VOIP) calling. This can be done by integrating an SDK of an online 
+The TomTom IndiGO platform comes with support for making phone calls using a Bluetooth-connected
+phone. TomTom IndiGO can also be extended to support other communications services. For example
+Voice Over Internet Protocol (VOIP) calling. This can be done by integrating an SDK of an online
 conference calling service by implementing a
 [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService) for
 it.
@@ -52,7 +52,7 @@ It shows the following components:
 ## Send and receive messages
 
 The TomTom IndiGO platform provides flexible architecture components to allow a wide range of
-messaging services to be integrated. The TomTom IndiGO application suite provides the end-user with 
+messaging services to be integrated. The TomTom IndiGO application suite provides the end-user with
 a consistent user interface through which messages can be read and responded to. For some messaging
 systems (like SMS) it is  also possible to directly send messages, instead of only responding to
 an existing conversation.
@@ -60,10 +60,9 @@ an existing conversation.
 Currently the suite comes with support for SMS, using devices connected through Bluetooth, and
 WhatsApp using the example companion app.
 
-In TomTom IndiGO, messages are subdivided in
-[`Conversation`](TTIVI_INDIGO_API)s.
-A conversation contains all messages sent between the user and a specific list of peers using the
-same messaging provider like SMS, WhatsApp, Facebook Messenger, etc.
+In TomTom IndiGO, messages are subdivided in [`Conversation`](TTIVI_PLATFORM_API)s. A conversation
+contains all messages sent between the user and a specific list of peers using the same messaging
+provider like SMS, WhatsApp, Facebook Messenger, etc.
 
 TomTom IndiGO can be extended with support for a new messaging service as follows:
 
@@ -95,12 +94,10 @@ It shows the following components:
 ### Extending TomTom IndiGO with a new messaging service
 
 TomTom IndiGO can be directly extended with support for a new messaging service by implementing a
-new discoverable
-[`MessagingProviderService`](TTIVI_INDIGO_API).
+new discoverable [`MessagingProviderService`](TTIVI_PLATFORM_API).
 
 ### Extending messaging using a companion app
 
 TomTom IndiGO comes together with a framework that supports running remote services on a companion app.
-This framework also contains the communications
-[`MessagingService`](TTIVI_INDIGO_API),
-which can directly be used to extend TomTom IndiGO messaging.
+This framework also contains the communications [`MessagingService`](TTIVI_PLATFORM_API), which can
+directly be used to extend TomTom IndiGO messaging.

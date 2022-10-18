@@ -7,7 +7,7 @@ installed in. This happens through the car API of AAOS, which makes it possible 
 properties. When these properties change, the UI can be adjusted accordingly. Similarly when the UI
 controls are operated by the user, the new property value can be communicated to the vehicle.
 
-See 
+See
 [Android Physical Car Interaction](https://www.androidautomotivebook.com/android-automotive-and-physical-car-interaction/).
 
 ## Integrating TomTom IndiGO into the vehicle
@@ -33,19 +33,19 @@ information to the vehicle.
 
 ## Signal transfer
 
-The vehicle data used by the application is abstracted from AAOS by the use of the TomTom IndiGO 
-module, specifically by the use of [`VehicleProperties`](TTIVI_INDIGO_API).
+The vehicle data used by the application is abstracted from AAOS by the use of the TomTom IndiGO
+module, specifically by the use of [`VehicleProperties`](TTIVI_PLATFORM_API).
 These properties hold the current status of the different data values. A value can be changed by the
 application, when the user operates a control, or by the vehicle when the data in the vehicle
 changes.
 
-The vehicle data must be mapped to these [`VehicleProperties`](TTIVI_INDIGO_API). This means that 
+The vehicle data must be mapped to these [`VehicleProperties`](TTIVI_PLATFORM_API). This means that
 the data (for example CAN data) is mapped to a vehicle property and sent to the
 [VHAL](https://source.android.com/devices/automotive/vhal) of AAOS. For this a native system service
-can be used that receives the vehicle signal, converts it to a [VehicleProperties](TTIVI_INDIGO_API) 
-value and sends it to Android. To do that, HIDL must be used, because it can be versioned, in 
-contrast to the C/C++ implementations of drivers and JNI interfacing, which was common before 
-Android 8.
+can be used that receives the vehicle signal, converts it to a
+[VehicleProperties](TTIVI_PLATFORM_API) value and sends it to Android. To do that, HIDL must be
+used, because it can be versioned, in contrast to the C/C++ implementations of drivers and JNI
+interfacing, which was common before Android 8.
 
 ![Signal transfer example](images/integrating_in_vehicle_vehicle_property.svg)
 

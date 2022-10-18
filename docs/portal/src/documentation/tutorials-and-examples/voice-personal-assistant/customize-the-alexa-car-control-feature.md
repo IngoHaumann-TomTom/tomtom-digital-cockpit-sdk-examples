@@ -18,7 +18,7 @@ A full description of the Car Control module and its features is available in th
 
 TomTom IndiGO offers a stock implementation of a `CarControl` handler service, aimed at
 controlling heating, ventilation, and air-conditioning (HVAC) of the vehicle by interacting with the
-[VehicleHvacService](TTIVI_INDIGO_API).
+[VehicleHvacService](TTIVI_PLATFORM_API).
 
 To allow an OEM to customize the stock Car Control service implementation (or completely replace
 it), the TomTom IndiGO platform offers the possibility of implementing an Alexa handler service for
@@ -90,7 +90,7 @@ page.
 
 The stock TomTom IndiGO Alexa Car Control service dynamically generates a Car Control configuration
 for a number of endpoints, based on information retrieved from the
-[VehicleHvacService](TTIVI_INDIGO_API):
+[VehicleHvacService](TTIVI_PLATFORM_API):
 - Air Conditioning
 - Climate Control
 - Fan
@@ -263,7 +263,7 @@ to deploy the custom Car Control handler service in your application.
 
 ## References
 
-- TomTom IndiGO [AlexaHandlerService](TTIVI_INDIGO_API)
+- TomTom IndiGO [AlexaHandlerService](TTIVI_PLATFORM_API)
 - [Alexa Auto Car Control Module](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/car-control)
 - [Alexa Auto Car Control AASB Reference](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl)
 - [Automotive Catalog of Assets](https://github.com/alexa/alexa-auto-sdk/blob/master/modules/car-control/assets/assets-1P.json)

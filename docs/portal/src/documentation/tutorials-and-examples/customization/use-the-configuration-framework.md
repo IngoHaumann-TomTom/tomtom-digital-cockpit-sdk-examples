@@ -39,7 +39,7 @@ The source code for the frontend and service can be found in the
 [`examples/plugin`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin)
 directory. See also
 [Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
-and the [`@IviService`](TTIVI_INDIGO_API) annotation.
+and the [`@IviService`](TTIVI_PLATFORM_API) annotation.
 
 To demonstrate usage of different configurations, the accounts service will use a static
 configuration to get the URL of the online API endpoint to authenticate the user.
@@ -58,7 +58,7 @@ and `configurations/dynamic` directories of the source set.
 For example: `<moduleRoot>/src/main/configurations/static`.
 
 The JSON file schema is fully documented in the API reference documentation of
-[`IviConfigurationGeneratorConfig`](TTIVI_INDIGO_GRADLEPLUGINS_API).
+[`IviConfigurationGeneratorConfig`](TTIVI_GRADLEPUGINS_API).
 
 ### Static configuration file
 
@@ -142,7 +142,7 @@ are used for updating old values in the device's persistent storage to the curre
 The configuration version is `2`, so the current value is `30`. The `"updateStrategy"` field
 defines how old values are updated. In the example, it defines that old values are overridden with
 the new values. See the API reference documentation for
-[`ConfigurationUpdateStrategy`](TTIVI_INDIGO_API).
+[`ConfigurationUpdateStrategy`](TTIVI_PLATFORM_API).
 The latest configuration version will be stored on the device, and will remain unchanged until a
 configuration file with a newer version is loaded.
 
@@ -155,8 +155,8 @@ the configuration generator.
 The configuration generator looks for JSON files and processes them into:
 
 - Kotlin source files with configuration keys that can be used by the application. Generated keys
-  are wrapped into [`StaticConfigurationKey`](TTIVI_INDIGO_API) or
-  [`DynamicConfigurationKey`](TTIVI_INDIGO_API) objects.
+  are wrapped into [`StaticConfigurationKey`](TTIVI_PLATFORM_API) or
+  [`DynamicConfigurationKey`](TTIVI_PLATFORM_API) objects.
 - Resource files with static configuration values.
 - Android asset files with dynamic configuration values.
 
@@ -195,7 +195,7 @@ executed automatically during `assemble` or `build` tasks.
 ### Static configuration value
 
 Static configurations are provided by the static configuration provider that is in the context of
-IVI service [`IviServiceHostContext`](TTIVI_INDIGO_API)`.staticConfigurationProvider`.
+IVI service [`IviServiceHostContext`](TTIVI_PLATFORM_API)`.staticConfigurationProvider`.
 
 To get the configuration value of the `StockAccountsService`, use the
 `StaticConfiguration.onlineAccountEndpointConfigKey` variable.

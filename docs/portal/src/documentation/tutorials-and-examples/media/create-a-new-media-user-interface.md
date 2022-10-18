@@ -25,10 +25,11 @@ the content from a media app is displayed to the user, or to add an icon to perf
 specific to that app, using the default media user interface should be preferred and
 [appropriately customized](/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
 
-For this guide, knowledge of the TomTom IndiGO [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) and
-[`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) modules will greatly help. In the
-[media overview](/tomtom-indigo/documentation/development/platform-domains/media), more details can be
-found over the Android Automotive Media framework and how TomTom IndiGO uses it.
+For this guide, knowledge of the TomTom IndiGO
+[`appsuite_media_api_common_core`](TTIVI_PLATFORM_API) and
+[`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) modules will greatly help. In the
+[media overview](/tomtom-indigo/documentation/development/platform-domains/media),
+more details can be found over the Android Automotive Media framework and how TomTom IndiGO uses it.
 
 ## Concepts
 
@@ -39,17 +40,15 @@ Through the standard API for media, an Android
 will provide access to a hardware radio tuner module.
 
 This user interface will be a new panel. A panel is composed by three classes: a
-[`TaskPanel`](TTIVI_INDIGO_API) to define the logic; a view
-model, [`FrontendViewModel`](TTIVI_INDIGO_API),
-potentially using data binding; an [`IviFragment`](TTIVI_INDIGO_API)
-defining the Android fragment and creating the instance of the view model.
-Please refer to the
+[`TaskPanel`](TTIVI_PLATFORM_API) to define the logic; a view model,
+[`FrontendViewModel`](TTIVI_PLATFORM_API), potentially using data binding; an
+[`IviFragment`](TTIVI_PLATFORM_API) defining the Android fragment and creating the instance of the
+view model. Please refer to the
 [frontend plugin guide](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 to get started.
 
 This user interface will use a specialization of the base user interface panel type
-[`TaskPanel`](TTIVI_INDIGO_API),
-[`MediaTaskPanel`](TTIVI_INDIGO_API). This panel type is more
+[`TaskPanel`](TTIVI_PLATFORM_API), [`MediaTaskPanel`](TTIVI_PLATFORM_API). This panel type is more
 suitable for media apps, as it contains media-specific facilities.
 
 This being merely an example, the user interface is very sparse and only contains one panel to
@@ -61,17 +60,17 @@ An application that implements the concepts presented here is provided in the
 [`examples/media/userflowpolicy`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/media/userflowpolicy)
 directory.
 
-The example's panel class, based on [`MediaTaskPanel`](TTIVI_INDIGO_API), enables browsing through the
-stations recognized by the radio and the raw frequencies offered by each radio band.
+The example's panel class, based on [`MediaTaskPanel`](TTIVI_PLATFORM_API), enables browsing through
+the stations recognized by the radio and the raw frequencies offered by each radio band.
 
-In the panel the media [`Options`](TTIVI_INDIGO_API) are used to print out to
-the device logcat all media items retrieved by all media services: this helps __only__ in the
-initial discovery phase to analyze the format of all content returned by the media source. This
-setting __must not__ be used in production, and will not function in _release_ builds.
+In the panel the media [`Options`](TTIVI_PLATFORM_API) are used to print out to the device logcat
+all media items retrieved by all media services: this helps __only__ in the initial discovery phase
+to analyze the format of all content returned by the media source. This setting __must not__ be used
+in production, and will not function in _release_ builds.
 
-The [`RootSourceClient`](TTIVI_INDIGO_API) is used to browse the content and retrieve the available
+The [`RootSourceClient`](TTIVI_PLATFORM_API) is used to browse the content and retrieve the available
 categories (in the case of radio, those are bands and stations), while the
-[`MediaService`](TTIVI_INDIGO_API) lets the user play a radio.
+[`MediaService`](TTIVI_PLATFORM_API) lets the user play a radio.
 
 [`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt#L38-L74)
 
@@ -138,7 +137,7 @@ internal class RadioPanel(mediaContext: MediaFrontendContext) :
 
 ### Example view model
 
-The view model, a [`FrontendViewModel`](TTIVI_INDIGO_API), transforms the panel's data into
+The view model, a [`FrontendViewModel`](TTIVI_PLATFORM_API), transforms the panel's data into
 information ready to use in a view.
 
 In this example, the `RadioRecyclerViewItem` type represents an entry to display with a standard
@@ -193,12 +192,10 @@ internal class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>
 
 ### Example fragment
 
-The fragment, inheriting from [`IviFragment`](TTIVI_INDIGO_API), is mostly
-a container for glue code to connect the ViewModel to the XML layout, represented by
-`RadioFragmentBinding`; additionally, it links the
-[`SourceClient`](TTIVI_INDIGO_API)
-used in the panel to the necessary Android
-[`Context`](https://developer.android.com/reference/kotlin/android/content/Context).
+The fragment, inheriting from [`IviFragment`](TTIVI_PLATFORM_API), is mostly a container for glue
+code to connect the ViewModel to the XML layout, represented by `RadioFragmentBinding`;
+additionally, it links the [`SourceClient`](TTIVI_PLATFORM_API) used in the panel to the necessary
+Android [`Context`](https://developer.android.com/reference/kotlin/android/content/Context).
 
 [`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt#L24-L45)
 
@@ -235,18 +232,18 @@ To create more complex user interfaces, additional facilities are provided:
 ### Media visualization components
 
 Standardizing how media contents are displayed is not a simple task; to simplify it,
-[`MediaContentView`](TTIVI_INDIGO_API), an Android
+[`MediaContentView`](TTIVI_PLATFORM_API), an Android
 [`RecyclerView`](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView)
 specialization, displays media items according to their type as specified by the Android Automotive
-Media APIs. Its item types, defined by the [`MediaGroupItem`](TTIVI_INDIGO_API)
-sealed class, will be displayed together without restriction as dictated by the standard: a part of
-the displayed content can be shown as a list, while another can be laid out in a grid, and headers
-can logically separate different groups of contents. Both the list and the grid items display
-the artwork, title, and sub-title for media items in a predictable way.
+Media APIs. Its item types, defined by the [`MediaGroupItem`](TTIVI_PLATFORM_API) sealed class, will
+be displayed together without restriction as dictated by the standard: a part of the displayed
+content can be shown as a list, while another can be laid out in a grid, and headers can logically
+separate different groups of contents. Both the list and the grid items display the artwork, title,
+and sub-title for media items in a predictable way.
 
 ### Media view model components
 
 You can easily create views that display playback information and/or contain media controls by using
 the media-oriented set of view models:
-[`MediaPlaybackViewModel`](TTIVI_INDIGO_API), [`TouchTrackViewModel`](TTIVI_INDIGO_API), and
-[`MediaButtonsViewModel`](TTIVI_INDIGO_API).
+[`MediaPlaybackViewModel`](TTIVI_PLATFORM_API), [`TouchTrackViewModel`](TTIVI_PLATFORM_API), and
+[`MediaButtonsViewModel`](TTIVI_PLATFORM_API).

@@ -286,4 +286,4 @@ directory, then rebuild and deploy.
 An IVI application must tag all its activities to be _Distraction Optimized_; see more about
 [driver distraction guidelines](https://source.android.com/devices/automotive/driver_distraction/guidelines#do).
 To do this, add the `distractionOptimized` meta-data attribute in the `AndroidManifest.xml` for all
-activities and activity aliases. See also [`IviActivity`](TTIVI_INDIGO_API).
+activities and activity aliases. See also [`IviActivity`](TTIVI_PLATFORM_API).

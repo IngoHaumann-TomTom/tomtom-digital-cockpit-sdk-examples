@@ -23,8 +23,8 @@ The following sections describe how to create a custom VPA Adaptation service im
 
 ### Create a service implementation module
 
-The new module depends on [`VpaAdaptationService`](TTIVI_INDIGO_API), declared in the package
-[`com.tomtom.ivi.platform.vpa.api.service.vpaadaptation`](TTIVI_INDIGO_API).
+The new module depends on [`VpaAdaptationService`](TTIVI_PLATFORM_API), declared in the package
+[`com.tomtom.ivi.platform.vpa.api.service.vpaadaptation`](TTIVI_PLATFORM_API).
 
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L67)
 
@@ -40,7 +40,8 @@ dependencies {
 }
 ```
 
-The [`VpaAdaptationService`](TTIVI_INDIGO_API) API is experimental, and has to be explicitly opted in.
+The [`VpaAdaptationService`](TTIVI_PLATFORM_API) API is experimental, and has to be explicitly opted
+in.
 
 [`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L17)
 
@@ -54,7 +55,7 @@ ivi {
 
 The VPA Adaptation service can be implemented by defining a class that inherits from the abstract
 `VpaAdaptationServiceBase` class and implements the methods defined in the
-[`VpaAdaptationService`](TTIVI_INDIGO_API) interface.
+[`VpaAdaptationService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation requires a number of properties to be set for configuring itself with the
 TomTom IndiGO platform. The properties can be set by overriding the `onCreate()` method:
@@ -142,7 +143,7 @@ override suspend fun logOut() {
 }
 ```
 
-Refer to [`VpaAuthenticationStatus`](TTIVI_INDIGO_API) for the details.
+Refer to [`VpaAuthenticationStatus`](TTIVI_PLATFORM_API) for the details.
 
 #### Availability State
 
@@ -191,8 +192,8 @@ hasPendingNotifications = false
 #### Settings
 
 Property `vpaSettings` holds a number of settings of the VPA. The `VpaAdaptationService` provides
-functions to update these settings; please refer to the [`VpaAdaptationService`](TTIVI_INDIGO_API) API
-reference documentation for details.
+functions to update these settings; please refer to the [`VpaAdaptationService`](TTIVI_PLATFORM_API)
+API reference documentation for details.
 
 [`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L54-L62)
 
@@ -236,7 +237,7 @@ override suspend fun enablePrivacyMode(enable: Boolean) {
 }
 ```
 
-Please refer to the [`VpaAdaptationService`](TTIVI_INDIGO_API) API reference documentation for
+Please refer to the [`VpaAdaptationService`](TTIVI_PLATFORM_API) API reference documentation for
 detailed information on its properties and functions.
 
 ### Create a service host

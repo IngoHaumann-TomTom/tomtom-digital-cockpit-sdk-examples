@@ -2,10 +2,10 @@
 title: Create a Custom Recent Calls Service
 ---
 
-The IVI platform comes with a [`RecentCallsService`](TTIVI_INDIGO_API) interface for accessing recent
-calls information. A product may provide its own implementation of the
-[`RecentCallsService`](TTIVI_INDIGO_API) interface or use an existing implementation. When
-the existing implementation of a [`RecentCallsService`](TTIVI_INDIGO_API) is inadequate
+The IVI platform comes with a [`RecentCallsService`](TTIVI_PLATFORM_API) interface for accessing
+recent calls information. A product may provide its own implementation of the
+[`RecentCallsService`](TTIVI_PLATFORM_API) interface or use an existing implementation. When
+the existing implementation of a [`RecentCallsService`](TTIVI_PLATFORM_API) is inadequate
 (for example if we want to only show the recent calls of the day, filtering out older
 calls) it is possible to define a custom recent calls service. In order for the UI to be able to
 display recent calls from this service, a custom recent calls service needs to be written. This
@@ -21,7 +21,7 @@ The example code for the concepts presented here is provided in
 ### Service module setup
 
 To create a custom recent calls service, add a manifest file to your module and add a dependency to
-the [`RecentCallsService`](TTIVI_INDIGO_API) to your Gradle file.
+the [`RecentCallsService`](TTIVI_PLATFORM_API) to your Gradle file.
 
 Your
 [`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/AndroidManifest.xml#L14)
@@ -66,7 +66,7 @@ val customRecentCallsServiceHost by extra {
 ```
 
 In this configuration, the `services_customrecentcalls` module defines the implementation for
-the [`platform_recentcalls_api_service_recentcalls`](TTIVI_INDIGO_API) interface.
+the [`platform_recentcalls_api_service_recentcalls`](TTIVI_PLATFORM_API) interface.
 
 In order to create the service host configuration named `CustomRecentCallsServiceHost`, the IVI
 platform needs a service host builder class with the specific
@@ -182,7 +182,7 @@ override fun onCreate() {
 }
 ```
 
-then the [`RecentCallsService`](TTIVI_INDIGO_API) properties `recentCallsDescending` and
+then the [`RecentCallsService`](TTIVI_PLATFORM_API) properties `recentCallsDescending` and
 `phoneBookSynchronizationStatus` have been initialized.
 
 When the service is destroyed:
@@ -198,6 +198,6 @@ override fun onDestroy() {
 
 ## External links
 
-- TomTom IndiGO [`RecentCallsService`](TTIVI_INDIGO_API).
+- TomTom IndiGO [`RecentCallsService`](TTIVI_PLATFORM_API).
 - Android [`CallLog provider`](https://developer.android.com/reference/android/provider/CallLog).
 

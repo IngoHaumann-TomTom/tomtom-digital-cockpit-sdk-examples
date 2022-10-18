@@ -20,11 +20,11 @@ be launched by displaying the content in a
 App launcher app support can be replaced or extended by implementing the following discoverable IVI
 services:
 
-- [`AppSourceProviderService`](TTIVI_INDIGO_API): provides the list of apps available to display in
-  the App Launcher.
-- [`AppLaunchHandlerService`](TTIVI_INDIGO_API): handles launching instances of the different app
+- [`AppSourceProviderService`](TTIVI_PLATFORM_API): provides the list of apps available to display
+  in the App Launcher.
+- [`AppLaunchHandlerService`](TTIVI_PLATFORM_API): handles launching instances of the different app
   types.
-- [`AppLaunchTriggerService`](TTIVI_INDIGO_API): triggers the launching of different app types
+- [`AppLaunchTriggerService`](TTIVI_PLATFORM_API): triggers the launching of different app types
   from an external source, like an App Store.
 
 The following sections show how to perform these tasks:

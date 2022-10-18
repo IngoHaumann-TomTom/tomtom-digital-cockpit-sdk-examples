@@ -3,18 +3,18 @@ title: Vehicle Functions
 layout: default
 ---
 
-The vehicle functions domain APIs and modules enable TomTom IndiGO to interact with the vehicle, 
+The vehicle functions domain APIs and modules enable TomTom IndiGO to interact with the vehicle,
 like opening a window, setting the Air Conditioning temperature, or being informed about the current
 speed.
 
 ## Introduction
 
-A TomTom IndiGO-based system consists of multiple parts: the vehicle platform, Android services, 
-and TomTom IndiGO. The _vehicle platform_ is the part that Android Car uses to communicate with the 
+A TomTom IndiGO-based system consists of multiple parts: the vehicle platform, Android services,
+and TomTom IndiGO. The _vehicle platform_ is the part that Android Car uses to communicate with the
 vehicle.
 
 Because vehicle platforms differ from brand to brand, and sometimes even from model to model,
-TomTom IndiGO provides an abstraction of that vehicle platform. By adding an `IviService` layer on 
+TomTom IndiGO provides an abstraction of that vehicle platform. By adding an `IviService` layer on
 top of Android Car, TomTom IndiGO can communicate with each vehicle using the same interface.
 
 This interface uses its own definitions of the properties a vehicle platform may expose and
@@ -23,9 +23,9 @@ their value.
 
 ![Vehicle functions decomposition](images/vehicle_functions_domain-vehicle-function-diagram.svg)
 
-As shown in the diagram, TomTom IndiGO has a single interface for all types of vehicle platforms. 
-In the [`platform_vehiclefunctions_api_common_vehiclefunctions`](TTIVI_INDIGO_API) module we define 
-the different types of vehicle properties and how we communicate with them.
+As shown in the diagram, TomTom IndiGO has a single interface for all types of vehicle platforms.
+In the [`platform_vehiclefunctions_api_common_vehiclefunctions`](TTIVI_PLATFORM_API) module we
+define the different types of vehicle properties and how we communicate with them.
 
 The vehicle function services are built on top of Android Car, which in turn uses the Vehicle
 Hardware Abstraction Layer (VHAL). Working our way up we describe how to write or use a vehicle
@@ -129,7 +129,7 @@ when (property?.value) {
 
 ## Implementing a vehicle functions service
 
-A vehicle functions service interface should have the [`@IviService`](TTIVI_INDIGO_API) annotation 
+A vehicle functions service interface should have the [`@IviService`](TTIVI_PLATFORM_API) annotation
 so TomTom IndiGO can discover it:
 
 ```kotlin
@@ -153,8 +153,8 @@ The vehicle functions service ensures that the value is within a specified range
 
 The interface should provide a setter function for any writable properties. It should return
 `false` if the property could not be updated, for example when the property is not (yet) available.
-The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation and `suspend` are required to expose the service 
-function to the generated API version of this service.
+The [`@IviServiceFun`](TTIVI_PLATFORM_API) annotation and `suspend` are required to expose the
+service function to the generated API version of this service.
 
 __Note:__ These are only possible for vehicle properties with write access.
 
@@ -167,7 +167,7 @@ suspend fun set[PropertyName](value: [type]): Boolean
 
 The interface should provide a setter function for any writable properties which work in a certain
 area. It should return `false` if the property could not be updated, for example when the property
-is not (yet) available. The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation and `suspend` are 
+is not (yet) available. The [`@IviServiceFun`](TTIVI_PLATFORM_API) annotation and `suspend` are
 required to expose the service function to the generated API version of this service.
 
 __Note:__ These are only possible for vehicle properties with write access.
@@ -204,23 +204,23 @@ rows of three seats, so the rows need to be split unevenly into two zones: _left
 _right_. By setting the cabin temperature for the _left/center_ zone in the `SEAT` area separately,
 the _right_ zone temperature is unaffected, and vice versa.
 
-If there is no specific area applicable to the property, then the 
-[`VehicleProperties`](TTIVI_INDIGO_API)`.[type]` `Property` types are used. If the area _is_ 
-relevant, then the [`VehicleZoneProperty`](TTIVI_INDIGO_API) type is used, providing a value per 
+If there is no specific area applicable to the property, then the
+[`VehicleProperties`](TTIVI_PLATFORM_API)`.[type]` `Property` types are used. If the area _is_
+relevant, then the [`VehicleZoneProperty`](TTIVI_PLATFORM_API) type is used, providing a value per
 area.
 
 An area must be a sub-type of `WINDOW`, `SEAT`, `DOOR`, `MIRROR`, or `WHEEL`. It must also include
 a zone, like: `WINDOW_ROW_1_LEFT` or `SEAT_ROW_2_CENTER`. See the
-[`com.tomtom.ivi.platform.vehiclefunctions.api.common.vehiclefunctions`](TTIVI_INDIGO_API) package
+[`com.tomtom.ivi.platform.vehiclefunctions.api.common.vehiclefunctions`](TTIVI_PLATFORM_API) package
 documentation for more examples.
 
 ## Related modules
 
-The [`platform_vehiclefunctions_api_service_vehicleelectricengine`](TTIVI_INDIGO_API) module shows
+The [`platform_vehiclefunctions_api_service_vehicleelectricengine`](TTIVI_PLATFORM_API) module shows
 the definition of a simple vehicle functions service. It only exposes the current battery level for
 an Electric Vehicle (EV) or a hybrid vehicle. See the example application to see how this gets used.
 
-The [`platform_vehiclefunctions_api_service_vehiclehvac`](TTIVI_INDIGO_API) module is a definition
+The [`platform_vehiclefunctions_api_service_vehiclehvac`](TTIVI_PLATFORM_API) module is a definition
 of an IVI service that is a conduit to the HVAC functionalities of the vehicle. It shows how to
 define a more involved interface for your service.
 

@@ -196,7 +196,7 @@ be added to your SCM.
 
 Last but not least is to configure a static configuration provider in the Android Application class
 that provides the key. For this you can use an
-[`AlexaDeviceInfoStaticConfigurationProvider`](TTIVI_INDIGO_API)
+[`AlexaDeviceInfoStaticConfigurationProvider`](TTIVI_PLATFORM_API)
 instance. The `ExampleApplication` class contains an example explaining how to configure it.
 
 Disable the build-time check by setting the `disableAlexaDeviceIdBuildTimeCheck` property to `true`
@@ -249,10 +249,10 @@ and are also listed in the table below:
 
 ### Dynamic configuration
 
-The [`VpaMediatorSettingsService`](TTIVI_INDIGO_API) defines a set of VPA-related settings that the
+The [`VpaMediatorSettingsService`](TTIVI_PLATFORM_API) defines a set of VPA-related settings that the
 service clients are able to change at runtime.
 The default values of these settings for the Alexa VPA are defined by a
-[`DynamicConfigurationProvider`](TTIVI_INDIGO_API), but, if necessary, they can be overriden by
+[`DynamicConfigurationProvider`](TTIVI_PLATFORM_API), but, if necessary, they can be overriden by
 providing a custom dynamic configuration. More information on dynamic configurations is available in
 the
 [configuration framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
@@ -261,9 +261,9 @@ The dynamic configuration values are listed in the table below:
 
 | Configuration key name          --             | Description | Type  | Default value |
 | -----------------------------------------------| ------------|------ |---------------|
-| `alexaLocaleConfigKey`                         | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.activeLocale` setting. Valid values: "en-US", "es-US", "de-DE", "en-AU", "en-CA", "en-GB", "en-IN", "es-ES", "es-MX", "fr-CA", "fr-FR", "hi-IN", "it-IT", "ja-JP", "pt-BR". | String | "en-US" |
-| `alexaWakeUpWordEnabledConfigKey`              | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.wakeUpWordEnabled` setting. | Boolean | `true` |
-| `alexaSyncNavigationFavoritesEnabledConfigKey` | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.syncVehicleNavigationFavoritesEnabled` setting. | Boolean | `true` |
-| `alexaLocationSharingEnabledConfigKey`         | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.locationSharingEnabled` setting. | Boolean | `false` |
-| `alexaDoNotDisturbModeConfigKey`               | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.doNotDisturbModeEnabled` setting. | Boolean | `false` |
-| `alexaEnabledEarconsConfigKey`                 | The default value of the Alexa [`VpaSettings`](TTIVI_INDIGO_API)`.enabledEarcons` setting. Provided as a JSON array of the enabled [`VpaEarconType`](TTIVI_INDIGO_API) earcons. | JSON String | "[\\"START_LISTENING\\",\\"END_LISTENING\\"]" |
+| `alexaLocaleConfigKey`                         | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.activeLocale` setting. Valid values: "en-US", "es-US", "de-DE", "en-AU", "en-CA", "en-GB", "en-IN", "es-ES", "es-MX", "fr-CA", "fr-FR", "hi-IN", "it-IT", "ja-JP", "pt-BR". | String | "en-US" |
+| `alexaWakeUpWordEnabledConfigKey`              | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.wakeUpWordEnabled` setting. | Boolean | `true` |
+| `alexaSyncNavigationFavoritesEnabledConfigKey` | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.syncVehicleNavigationFavoritesEnabled` setting. | Boolean | `true` |
+| `alexaLocationSharingEnabledConfigKey`         | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.locationSharingEnabled` setting. | Boolean | `false` |
+| `alexaDoNotDisturbModeConfigKey`               | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.doNotDisturbModeEnabled` setting. | Boolean | `false` |
+| `alexaEnabledEarconsConfigKey`                 | The default value of the Alexa [`VpaSettings`](TTIVI_PLATFORM_API)`.enabledEarcons` setting. Provided as a JSON array of the enabled [`VpaEarconType`](TTIVI_PLATFORM_API) earcons. | JSON String | "[\\"START_LISTENING\\",\\"END_LISTENING\\"]" |

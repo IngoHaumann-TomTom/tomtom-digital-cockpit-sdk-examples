@@ -13,7 +13,7 @@ plugins to be independently added, removed, or replaced.
 Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a
 cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the
 containers to place the panels in. In common usage, each `Activity` uses a single system UI instance
-in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_INDIGO_API) that does just that.
+in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_PLATFORM_API) that does just that.
 Different system UIs can be used per display, hosted in multiple or a single `Activity`.
 
 TomTom IndiGO provides a system UI for the
@@ -43,7 +43,7 @@ panel and when to close it. Common situations where a frontend opens a panel inc
 
 - At launch, where a frontend always wants to show a certain panel, like a main menu panel.
 - Through a system callback to
-  [`Frontend`](TTIVI_INDIGO_API)`.openTaskPanels`,
+  [`Frontend`](TTIVI_PLATFORM_API)`.openTaskPanels`,
   in response to a menu item being clicked.
 - Responding to a service update, like opening a notification panel when the telecom service
   indicates there is an incoming call.
@@ -64,7 +64,7 @@ not to show:
 - A low priority notification panel, like a text message, when the system UI is already showing a high
   priority notification, like incoming phone call. This is done to not overload the driver with
   information.
-- A low priority main process panel, like a media player, when a high priority main process panel, 
+- A low priority main process panel, like a media player, when a high priority main process panel,
   like for an ongoing call, is more relevant to the driver.
 - The search panel on the home screen when a guidance panel is available for an active route, in
   order to not clutter the home screen.
@@ -104,32 +104,32 @@ TomTom IndiGO framework provides a set of contracts in the form of interfaces an
 allow a basic level of interaction between the system UI and frontends.
 
 The majority of these contracts are defined in
-[`platform_frontend_api_common_frontend`](TTIVI_INDIGO_API). Apart from the core classes
-[`Frontend`](TTIVI_INDIGO_API) and `Panel`
-(see package [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API)),
+[`platform_frontend_api_common_frontend`](TTIVI_PLATFORM_API). Apart from the core classes
+[`Frontend`](TTIVI_PLATFORM_API) and `Panel`
+(see package [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_PLATFORM_API)),
 the various predefined extensions of `Panel` allow the system UI to recognize how to present that
 type of panel. For example, by having a frontend panel extend
-[`NotificationPanel`](TTIVI_INDIGO_API), the system UI knows to treat that panel as a notification,
+[`NotificationPanel`](TTIVI_PLATFORM_API), the system UI knows to treat that panel as a notification,
 and can judge whether or not to show it based on the priority specified in the
-[`NotificationPanel`](TTIVI_INDIGO_API) properties.
+[`NotificationPanel`](TTIVI_PLATFORM_API) properties.
 
 In addition to the system UI getting information from frontends and panels, the contract also
 contains methods that allow the system UI to pass information back. For example, when a panel is
 attached to the system UI, `Panel.onAttached` will be called with a
-[`PanelContext`](TTIVI_INDIGO_API) parameter, that allows the panel to use a limited set of
+[`PanelContext`](TTIVI_PLATFORM_API) parameter, that allows the panel to use a limited set of
 information from the system UI for its contents.
 
 ## System UI Anatomy
 
-A [`SystemUiHost`](TTIVI_INDIGO_API) hosts a system UI, which is responsible for providing the
-system a UI view containing the [`Frontend`](TTIVI_INDIGO_API)s within it. It has a layout which
+A [`SystemUiHost`](TTIVI_PLATFORM_API) hosts a system UI, which is responsible for providing the
+system a UI view containing the [`Frontend`](TTIVI_PLATFORM_API)s within it. It has a layout which
 is composed of containers for panels. The image below gives an overview of how a stock system UI may
-look. In this example, the [`StockSystemUiHost`](TTIVI_INDIGO_API) defines a layout which contains
+look. In this example, the [`StockSystemUiHost`](TTIVI_PLATFORM_API) defines a layout which contains
 the following visible containers:
 
-- A container on the left for the 
+- A container on the left for the
   [main menu](/tomtom-indigo/documentation/development/frontend-plugins#Main-menu-panel).
-- A container on the bottom for the 
+- A container on the bottom for the
   [control center](/tomtom-indigo/documentation/development/frontend-plugins#Control-center-panels).
 - A container at the top for the [search](/tomtom-indigo/documentation/development/frontend-plugins#Search-panel).
 - A container as the background for the [navigation](/tomtom-indigo/documentation/development/frontend-plugins#Home-panel).
@@ -140,7 +140,7 @@ the following visible containers:
 
 And it also defines containers which are only visible when necessary
 
-- The notification container. 
+- The notification container.
   [Notifications](/tomtom-indigo/documentation/development/frontend-plugins#Notification-panels) are
   triggered when events, like phone calls or messages, occur in the system. This container becomes
   visible when such an event occurs. Notifications will be added to this container and displayed as
@@ -159,50 +159,50 @@ the map, may be covered by the main process panel and the user can't see it unti
 panel is gone.
 
 To provide a better user experience, the system UI needs some information to inform the panels about
-them being overlapped. This is achieved through the [`SafeArea`](TTIVI_INDIGO_API) in
-[`PanelContext`](TTIVI_INDIGO_API). The _safe area_ indicates the amount of space from each side of 
+them being overlapped. This is achieved through the [`SafeArea`](TTIVI_PLATFORM_API) in
+[`PanelContext`](TTIVI_PLATFORM_API). The _safe area_ indicates the amount of space from each side of
 a panel that is not safe to display important content due to the panel being overlapped by others.
-And each panel can have its own [`SafeArea`](TTIVI_INDIGO_API).
+And each panel can have its own [`SafeArea`](TTIVI_PLATFORM_API).
 
 With _safe area_, in the example above, the map display home panel can use this information to make
 sure the chevron isn't shown underneath the main process panel, by moving it upwards. When doing so,
-the home panel must still draw the map outside of the safe area because that area might not be 
-covered in its entirety. For example, the main process panel has space on either side where the map 
+the home panel must still draw the map outside of the safe area because that area might not be
+covered in its entirety. For example, the main process panel has space on either side where the map
 is still visible.
 
 ## System UI services
 
-Apart from [`SystemUiHost`](TTIVI_INDIGO_API), there are services which are used by the system UI.
+Apart from [`SystemUiHost`](TTIVI_PLATFORM_API), there are services which are used by the system UI.
 The sections below provide an overview of these services.
 
 [TODO(IVI-7779)]: # (Complete this section with services the system UI provides)
 
 ### Notification Services
 
-[`NotificationPanel`](TTIVI_INDIGO_API)s are displayed as a part of the system UI. The container for
-notifications defines their width and where the notifications will be presented. Additional services
-provide input for the system UI, so it can decide when notifications can be displayed.
+[`NotificationPanel`](TTIVI_PLATFORM_API)s are displayed as a part of the system UI. The container
+for notifications defines their width and where the notifications will be presented. Additional
+services provide input for the system UI, so it can decide when notifications can be displayed.
 
 #### NotificationDisplayService
 
-The [`NotificationDisplayService`](TTIVI_INDIGO_API) provides information for clients responsible
+The [`NotificationDisplayService`](TTIVI_PLATFORM_API) provides information for clients responsible
 for displaying notifications to the user. The client of this service will typically be a system UI,
 which uses this information to decide when to display certain notifications to the user.
-The [`NotificationDisplayService`](TTIVI_INDIGO_API) should gather the values of all
-[`NotificationSuppressionService`](TTIVI_INDIGO_API) implementations to determine the final
+The [`NotificationDisplayService`](TTIVI_PLATFORM_API) should gather the values of all
+[`NotificationSuppressionService`](TTIVI_PLATFORM_API) implementations to determine the final
 notification suppression policy.
 
 #### NotificationSuppressionService
 
-A [`NotificationSuppressionService`](TTIVI_INDIGO_API) indicates whether notifications should be
+A [`NotificationSuppressionService`](TTIVI_PLATFORM_API) indicates whether notifications should be
 suppressed. As this is a discoverable service, various domains can have their own implementation of
 this interface. For example, the system can suppress notifications when the user is providing input
-by using the keyboard. The values of all [`NotificationSuppressionService`](TTIVI_INDIGO_API)
+by using the keyboard. The values of all [`NotificationSuppressionService`](TTIVI_PLATFORM_API)
 implementations combined can be used to determine the final notification suppression policy.
 
 #### NotificationCenterService
 
-The [`NotificationCenterService`](TTIVI_INDIGO_API) is for a notification center, which offers
+The [`NotificationCenterService`](TTIVI_PLATFORM_API) is for a notification center, which offers
 additional interaction with notifications to the user. A notification center is a UI that allows
 users to access notifications in more detail than the system UI offers by default. For example, a
 notification center may allow previously suppressed or dismissed notifications to be seen. The image

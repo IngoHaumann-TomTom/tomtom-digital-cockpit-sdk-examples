@@ -81,7 +81,7 @@ file:
 ### The IVI service interface
 
 When the project is configured, create a Kotlin `interface` class, annotated with the
-[`@IviService`](TTIVI_INDIGO_API) annotation, which takes one mandatory argument `serviceId` which
+[`@IviService`](TTIVI_PLATFORM_API) annotation, which takes one mandatory argument `serviceId` which
 specifies the unique identifier that is used by client connections.
 
 Create
@@ -113,8 +113,8 @@ interface AccountsService {
 ```
 
 The interface may have nullable or non-nullable values, methods, and event listener interfaces. All
-methods must have the `suspend` modifier and the [`@IviServiceFun`](TTIVI_INDIGO_API) annotation.
-The [`@IviServiceFun`](TTIVI_INDIGO_API) annotation is required to distinguish methods of the
+methods must have the `suspend` modifier and the [`@IviServiceFun`](TTIVI_PLATFORM_API) annotation.
+The [`@IviServiceFun`](TTIVI_PLATFORM_API) annotation is required to distinguish methods of the
 service interface from auxiliary methods added by Kotlin/Java compiler. The interface must at
 least contain the empty companion object, which will be extended by the IVI service framework with
 a few methods, such as `createApi` and `createApiOrNull`. Kotlin does not allow extending the
@@ -137,7 +137,7 @@ annotate a class with `@Parcelize`, a `Parcelable` implementation is automatical
 
 While the service interface may use properties of `Map<K,V>` it is not recommended because it is
 inefficient. Any change of such property will require the transfer of a full map object to clients.
-Instead, use [`MirrorableMap`](TTIVI_INDIGO_API) which is optimized for updates over Binder
+Instead, use [`MirrorableMap`](TTIVI_PLATFORM_API) which is optimized for updates over Binder
 transactions. It becomes a regular `Map` on the client side.
 
 ```kotlin
@@ -151,20 +151,20 @@ interface ExampleService {
 
 The values of IVI service properties are pushed to all clients. When a pull model is desired, for
 instance for large data sets, it is possible to instead use a property of type
-[`IviDataSource`](TTIVI_INDIGO_API). An `IviDataSource` can be used to expose a data set
+[`IviDataSource`](TTIVI_PLATFORM_API). An `IviDataSource` can be used to expose a data set
 to clients without requiring the full data set to be loaded into memory. It also allows querying and
 sorting of the data on the service side and allows clients to process the data while it is also
 loading it from the service.
 
 To load data from an `IviDataSource` you need to create one or more
-[`IviPagingSource`](TTIVI_INDIGO_API)s. The `IviPagingSource`s can be used to load data pages from
+[`IviPagingSource`](TTIVI_PLATFORM_API)s. The `IviPagingSource`s can be used to load data pages from
 the data source. Each `IviPagingSource` is bound to a query.
 
 The `IviPagingSource` class is designed to seamlessly integrate with the
 [Android Paging library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview).
 This makes it possible to represent elements in a
 [`RecyclerView`](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView).
-The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_INDIGO_API) module contains
+The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_PLATFORM_API) module contains
 extension functions for the integration.
 
 [`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt#L33-L37)
@@ -306,7 +306,7 @@ An IVI service needs a host to run. A host may implement multiple service interf
 service framework provides the abstract builder class `IviServiceHostBuilder` to build a service
 host. There is also the generic implementation of a service host that takes a list of service
 interface implementations. The generic implementation can be created by implementing the
-[`SimpleIviServiceHostBuilder`](TTIVI_INDIGO_API).
+[`SimpleIviServiceHostBuilder`](TTIVI_PLATFORM_API).
 
 The builder class must at least contain an empty companion object, which will be extended by the
 IVI service framework. Kotlin does not allow extending the companion object if it has not been

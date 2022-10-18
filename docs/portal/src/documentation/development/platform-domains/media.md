@@ -89,15 +89,15 @@ types of media sources (for example: radio, video playing) while ensuring that t
 holds up to the highest standards for user experience simplicity and distraction-free usage.
 
 The off-the-shelf application frontend, the stock frontend, can be configured using
-[`MediaPolicyFrontendExtension`](TTIVI_INDIGO_API)s to activate a
-[`PolicyProvider`](TTIVI_INDIGO_API) which configures a specific source. See
+[`MediaPolicyFrontendExtension`](TTIVI_PLATFORM_API)s to activate a
+[`PolicyProvider`](TTIVI_PLATFORM_API) which configures a specific source. See
 [configuring media frontend](#configuring-the-media-application-frontend) for more details.
 
 If that is not sufficient, it is possible to completely replace the stock frontend and/or service
 with custom implementations. Similar to configuring the stock media frontend, outright replacement
-of the stock media frontend is done via a [`FrontendExtension`](TTIVI_INDIGO_API). Check out the
+of the stock media frontend is done via a [`FrontendExtension`](TTIVI_PLATFORM_API). Check out the
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
-page and the documentation for [`FrontendExtension`](TTIVI_INDIGO_API) for more details on how to
+page and the documentation for [`FrontendExtension`](TTIVI_PLATFORM_API) for more details on how to
 replace a stock frontend.
 
 ## Detailed overview
@@ -109,8 +109,8 @@ Let's take a look at the various components in the media domain, and how they co
 This diagram shows the most relevant components:
 - The media service, see [division of responsibility](#division-of-responsibility).
 - The source client, which is contained in the [media library](#media-library).
-- The [`PolicyProvider`](TTIVI_INDIGO_API), which provides [policies](#policies). For example, the
-  [`UserFlowPolicy`](TTIVI_INDIGO_API) can be used to customize user flows such as browsing a
+- The [`PolicyProvider`](TTIVI_PLATFORM_API), which provides [policies](#policies). For example, the
+  [`UserFlowPolicy`](TTIVI_PLATFORM_API) can be used to customize user flows such as browsing a
   source, logging in and opening settings.
 
 ### Configuring the media application frontend
@@ -125,25 +125,26 @@ These configurations are activated via a frontend plugin using Gradle configurat
 [How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 guide explains this procedure.
 
-Some customization of the frontend can be achieved using the [media plugins configuration](#media-plugins-configuration), 
-based on the [configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
+Some customization of the frontend can be achieved using the
+[media plugins configuration](#media-plugins-configuration), based on the
+[configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
 
 ### Media plugins configuration
 
 The media plugin default configuration can be changed by adding a custom configuration resource file
-in your application, such as `<module>/res/value/ttivi-media-configuration.xml`. The custom 
-configuration overrides the default values. The 
+in your application, such as `<module>/res/value/ttivi-media-configuration.xml`. The custom
+configuration overrides the default values. The
 [How to configure the media plugin](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins)
 guide explains this procedure.
 
 ### Media library
 
-The [`appsuite_media_api_common_core`](TTIVI_INDIGO_API) library can be used to retrieve media
+The [`appsuite_media_api_common_core`](TTIVI_PLATFORM_API) library can be used to retrieve media
 content for a custom implementation.
 
 ### Media sources library
 
-The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains the building blocks
+The [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) library contains the building blocks
 for a more thorough customization of media frontends.
 
 #### Panels
@@ -154,7 +155,7 @@ frontend.
 
 To ensure the most straightforward development of support for such alternative sources, a number
 of facilities are provided to immediately start building suitable user interfaces.
-The [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API) library contains these facilities.
+The [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) library contains these facilities.
 
 #### Media controls
 
@@ -168,8 +169,8 @@ media-related command. They appear in the following locations:
 - The mini player. This is the main process panel from the stock media frontend that appears when the
   frontend is closed.
 
-Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
-library, and more specifically, in the [`MediaControl`](TTIVI_INDIGO_API) page.
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API)
+library, and more specifically, in the [`MediaControl`](TTIVI_PLATFORM_API) page.
 
 #### Policies
 
@@ -183,5 +184,5 @@ stock Media user interface can display it in the best way; for example by modify
 when they're given as a single "artist - track name" string, or by changing how a specific type of
 media is displayed.
 
-Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_INDIGO_API)
-library, and more specifically in the [`PolicyProvider`](TTIVI_INDIGO_API) page.
+Further information is available in the [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API)
+library, and more specifically in the [`PolicyProvider`](TTIVI_PLATFORM_API) page.

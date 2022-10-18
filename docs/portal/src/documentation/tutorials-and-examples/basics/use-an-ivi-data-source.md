@@ -5,13 +5,13 @@ title: Use an IVI Data Source
 ## Introduction to IVI Data Sources
 
 Properties of an [IVI service interface](/tomtom-indigo/documentation/development/ivi-services) are
-mirrored to all clients of the service. A property of type [`IviDataSource`](TTIVI_INDIGO_API) can
+mirrored to all clients of the service. A property of type [`IviDataSource`](TTIVI_PLATFORM_API) can
 be used in an IVI service interface to expose a data set to clients without requiring the full data
 set to be loaded into memory. It also allows querying and sorting of the data on the service side
 and allows clients to process the data while it is also loading it from the service.
 
 To load data from an `IviDataSource` you need to create one or more
-[`IviPagingSource`](TTIVI_INDIGO_API)s. The `IviPagingSource`s can be used to load data pages from
+[`IviPagingSource`](TTIVI_PLATFORM_API)s. The `IviPagingSource`s can be used to load data pages from
 the data source. Each `IviPagingSource` is bound to a query.
 
 The `IviPagingSource` class is designed to seamlessly integrate with the
@@ -160,7 +160,7 @@ interface AccountsService {
 ## The data source implementation
 
 To implement the data source on the client side we need a class that extends
-[`MutableIviDataSource`](TTIVI_INDIGO_API). To construct this class we need to indicate whether
+[`MutableIviDataSource`](TTIVI_PLATFORM_API). To construct this class we need to indicate whether
 our implementation will support jumping. If jumping is not supported, only sequential pages are
 loaded. If jumping is supported, it is possible that pages are skipped. A typical use case of this
 is when a user performs a jump scroll though a list shown by means of a `RecyclerView`. If a data
@@ -171,7 +171,7 @@ new records from the cursor. Jumps can be detected based on the requested data i
 
 The `MutableIviDataSource` requires us to implement one method: `createIviPagingSource`. This
 method is called every time a client requests a new set of pages for a given query. It has to
-return a class that extends [`MutableIviPagingSource`](TTIVI_INDIGO_API).
+return a class that extends [`MutableIviPagingSource`](TTIVI_PLATFORM_API).
 
 To implement `MutableIviPagingSource`, we have to implement the `loadSizeLimit` property and the
 `loadWithLoadSizeLimited` method. The `loadWithLoadSizeLimited` method is given an
@@ -337,7 +337,7 @@ function.
 
 It is also possible to use other transformations. A `mapQuery` extension exists which takes a
 transformation lambda as an argument. The lambda is provided with a
-[PageProvider](TTIVI_INDIGO_API) instance to load pages for the created `IviPagingSource`.
+[PageProvider](TTIVI_PLATFORM_API) instance to load pages for the created `IviPagingSource`.
 
 See [this page](https://developer.android.com/topic/libraries/data-binding/expressions) for binding
 the `Account` `LiveData` to a view.
@@ -352,7 +352,7 @@ create pairs of
 [`PagingConfig`](https://developer.android.com/reference/kotlin/androidx/paging/PagingConfig)
 instance. The `Pager` provides a [`Flow`](https://kotlinlang.org/docs/flow.html) of `PagingData`.
 
-The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_INDIGO_API) module provides
+The [`platform_framework_api_ipc_iviserviceandroidpaging`](TTIVI_PLATFORM_API) module provides
 extension functions to convert an `IviDataSource` or an `IviDataSource` `LiveData` to a `Flow` of
 `PagingData`. This creates the `Pager` instance under the hood. To use these extensions you need to
 provide the `PagingConfig` instance too.

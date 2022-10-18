@@ -2,7 +2,7 @@
 title: How to use the Communications Plugin Settings
 ---
 
-The IVI platform comes with a [`MessagingAppSettingsService`](TTIVI_INDIGO_API) that provides
+The IVI platform comes with a [`MessagingAppSettingsService`](TTIVI_PLATFORM_API) that provides
 settings for quick replies that can be exposed to end-users. The current settings include:
 
 - A boolean that indicates whether the quick replies of a message notification should include
@@ -13,7 +13,7 @@ settings for quick replies that can be exposed to end-users. The current setting
 
 ## Reading a setting
 
-To read a setting, you first need to create a [`MessagingAppSettingsService`](TTIVI_INDIGO_API):
+To read a setting, you first need to create a [`MessagingAppSettingsService`](TTIVI_PLATFORM_API):
 
 ```kotlin
 private val messagingSettingsService =
@@ -30,7 +30,7 @@ val showDefaultQuickReplies = messagingSettingsService.includeDefaultQuickReplie
 
 ## Updating a setting
 
-To update a setting, you first need to create a [`MessagingAppSettingsService`](TTIVI_INDIGO_API):
+To update a setting, you first need to create a [`MessagingAppSettingsService`](TTIVI_PLATFORM_API):
 
 ```kotlin
 private val messagingSettingsService =

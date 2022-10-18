@@ -4,7 +4,7 @@ title: Add Support for a Custom Non-Android App Type
 
 For a custom, non-Android, app type, a means to access the list of available apps to display in the
 App Launcher and also a means to launch these apps will be required. To do this the
-[`AppSourceProviderService`](TTIVI_INDIGO_API) and [`AppLaunchHandlerService`](TTIVI_INDIGO_API)
+[`AppSourceProviderService`](TTIVI_PLATFORM_API) and [`AppLaunchHandlerService`](TTIVI_PLATFORM_API)
 will need to be implemented.
 
 The following steps describe how to create source provider and launch handler service
@@ -103,7 +103,7 @@ The following steps describe how to create a custom app source provider service 
 
 ### Create the web app source provider service module
 
-First, add the [`AppSourceProviderService`](TTIVI_INDIGO_API) dependency to the
+First, add the [`AppSourceProviderService`](TTIVI_PLATFORM_API) dependency to the
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L56)
 file:
 
@@ -111,7 +111,7 @@ file:
 iviAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_appsourceprovider", version.ref = "iviPlatform" }
 ```
 
-Create a module for the [`AppSourceProviderService`](TTIVI_INDIGO_API) implementation under
+Create a module for the [`AppSourceProviderService`](TTIVI_PLATFORM_API) implementation under
 [`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
 (for example
 [`examples/applauncher/services/webappsourceprovider`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/webappsourceprovider))
@@ -151,11 +151,11 @@ file:
 
 The app source provider service can be implemented by defining a class (for example,
 `WebAppSourceProviderService`) that inherits from the abstract `AppSourceProviderServiceBase` base
-class, and implements the methods defined in the [`AppSourceProviderService`](TTIVI_INDIGO_API)
+class, and implements the methods defined in the [`AppSourceProviderService`](TTIVI_PLATFORM_API)
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_INDIGO_API) API
+TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
@@ -182,7 +182,7 @@ class WebAppSourceProviderService(
 
         appStore = null
 
-        // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass] 
+        // An IVI service interface can use only [Parcelable] types, so the [supportedAppClass]
         // must be returned inside a [Parcelable] wrapper class.
         supportedAppClass = ParcelableAppClass(WebApp::class.java)
 
@@ -322,7 +322,7 @@ The following steps describe how to create a web app launch handler service impl
 
 ### Create the web app launch handler service module
 
-First, add the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) dependency to the
+First, add the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) dependency to the
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L57)
 file:
 
@@ -330,7 +330,7 @@ file:
 iviAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsuite:appsuite_appstore_api_service_applaunchhandler", version.ref = "iviPlatform" }
 ```
 
-Create a module for the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) implementation under
+Create a module for the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) implementation under
 [`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
 (for example
 [`examples/applauncher/services/webapplaunchhandler`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/webapplaunchhandler))
@@ -371,11 +371,11 @@ file:
 
 The app launch handler service can be implemented by defining a class (for example,
 `WebAppLaunchHandlerService`) that inherits from the abstract `AppLaunchHandlerServiceBase` base
-class, and implements the methods defined in the [`AppLaunchHandlerService`](TTIVI_INDIGO_API)
+class, and implements the methods defined in the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API)
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_INDIGO_API) API
+TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 In this example we will launch the _web app_ in the default browser app, whereas in production, it
@@ -437,7 +437,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
   [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHost.kt#L14-L26)
 
-  ```kotlin 
+  ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
@@ -457,7 +457,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
   [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchhandler/WebAppLaunchHandlerServiceHostBuilder.kt#L14-L26)
 
-  ```kotlin   
+  ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBuilder
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
@@ -475,12 +475,12 @@ provide a service host builder. This can be achieved by creating two classes.
 
 ### Configure the web app launch handler service host deployment
 
-__Note:__ Every service host needs to be configured and registered in your application. This is 
+__Note:__ Every service host needs to be configured and registered in your application. This is
 necessary to know which service should be started with which implementation when a client requires
 the access to a service api.
 
 Define an IVI service host implementation, in your gradle file, This can also be defined in a
-top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a 
+top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
 Modify the

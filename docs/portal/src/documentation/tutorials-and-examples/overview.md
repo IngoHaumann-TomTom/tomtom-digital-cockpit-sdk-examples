@@ -96,7 +96,7 @@ IndiGO can display in the recent calls panel.
 This guide explains how to configure the behavior of the off-the-shelf communications plugin.
 
 - [How to use the Communications Plugin Settings](https://developer.tomtom.com/tomtom-indigo/documentation/tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings) -
-This guide explains how to configure the [`MessagingAppSettingsService`](TTIVI_INDIGO_API) for
+This guide explains how to configure the [`MessagingAppSettingsService`](TTIVI_PLATFORM_API) for
 _custom quick replies_ handling.
 
 ## App Launcher

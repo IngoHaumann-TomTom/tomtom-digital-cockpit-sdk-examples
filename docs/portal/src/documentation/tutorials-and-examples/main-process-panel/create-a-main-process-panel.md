@@ -1,30 +1,30 @@
----  
+---
 title: Create a Main Process Panel
----  
+---
 
-A [`MainProcessPanel`](TTIVI_INDIGO_API) is a panel that is used to visualize the state of an
-ongoing process. And like any panel, it needs an [`IviFragment`](TTIVI_INDIGO_API) and a 
-[`FrontendViewModel`](TTIVI_INDIGO_API) to be created.
+A [`MainProcessPanel`](TTIVI_PLATFORM_API) is a panel that is used to visualize the state of an
+ongoing process. And like any panel, it needs an [`IviFragment`](TTIVI_PLATFORM_API) and a
+[`FrontendViewModel`](TTIVI_PLATFORM_API) to be created.
 
-By extending [`MainCompactProcessFragment`](TTIVI_INDIGO_API) and 
-[`MainCompactProcessViewModel`](TTIVI_INDIGO_API), you get a default template for the panel. 
-Alternatively, you can still extend [`IviFragment`](TTIVI_INDIGO_API) and
-[`FrontendViewModel`](TTIVI_INDIGO_API) from scratch to have a custom panel layout. For more 
+By extending [`MainCompactProcessFragment`](TTIVI_PLATFORM_API) and
+[`MainCompactProcessViewModel`](TTIVI_PLATFORM_API), you get a default template for the panel.
+Alternatively, you can still extend [`IviFragment`](TTIVI_PLATFORM_API) and
+[`FrontendViewModel`](TTIVI_PLATFORM_API) from scratch to have a custom panel layout. For more
 information and details about the template look and feel, and the elements which compose the layout,
 please check
 [Main process panel](/tomtom-indigo/documentation/design/system-ui/main-process-panels).
 
-The following sections explain how to add a [`MainProcessPanel`](TTIVI_INDIGO_API) similar to the
+The following sections explain how to add a [`MainProcessPanel`](TTIVI_PLATFORM_API) similar to the
 `CallMainProcessPanel` implemented by the communication frontend in TomTom IndiGO. An example app is
-provided in the 
+provided in the
 [`examples/processpanel/mainprocesspanel`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/processpanel/mainprocesspanel)
 directory.
 
 ## Create a main process panel for calling
 
-In this example, we will create _ExampleCallMainProcessPanel_ using the process panel template 
-offered by extending the [`MainCompactProcessFragment`](TTIVI_INDIGO_API) and 
-[`MainCompactProcessViewModel`](TTIVI_INDIGO_API). To do so, we need to create the following 
+In this example, we will create _ExampleCallMainProcessPanel_ using the process panel template
+offered by extending the [`MainCompactProcessFragment`](TTIVI_PLATFORM_API) and
+[`MainCompactProcessViewModel`](TTIVI_PLATFORM_API). To do so, we need to create the following
 classes:
 
 - [`ExampleCallMainProcessPanel`](#create-the-panel-class).
@@ -78,7 +78,7 @@ internal class ExampleCallMainProcessFragment : MainCompactProcessFragment
 
 Create an `ExampleCallMainProcessViewModel` class, derived from `MainCompactProcessViewModel`:
 
-[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt#L22-L39) 
+[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt#L22-L39)
 
 ```kotlin
 import androidx.lifecycle.viewModelScope
@@ -111,11 +111,11 @@ internal class ExampleCallMainProcessViewModel(panel: ExampleCallMainProcessPane
 
 ### Create the ViewModel factory class
 
-Creating the `ExampleCallMainProcessViewModelFactory` class is optional. Still, it is a good 
-practice to have a central place responsible for creating the 
-[`CompactProcessViewModel`](TTIVI_INDIGO_API) ViewModels.
+Creating the `ExampleCallMainProcessViewModelFactory` class is optional. Still, it is a good
+practice to have a central place responsible for creating the
+[`CompactProcessViewModel`](TTIVI_PLATFORM_API) ViewModels.
 
-In this code snippet, we will provide ViewModels for the primary control section, secondary control 
+In this code snippet, we will provide ViewModels for the primary control section, secondary control
 section, and Metadata section.
 
 [`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt#L34-L117)
@@ -147,15 +147,15 @@ internal class ExampleCallMainProcessViewModelFactory(
     // Add your implementation for the mute control button.
     private val toggleMuteControl = CompactProcessControlViewModel()
 
-    // Add your implementation for the close control button. 
+    // Add your implementation for the close control button.
     private val closeControl = CompactProcessControlViewModel()
 
-    // Return a list of the primary section ViewModels. 
+    // Return a list of the primary section ViewModels.
     fun createPrimaryControls():
         LiveData<VisibilityProvidingCompositeViewModel<CompactProcessControlViewModel>> =
         ImmutableLiveData(StockVisibilityProvidingCompositeViewModel(endCallControl))
 
-    // Return a list of the secondary section ViewModels. 
+    // Return a list of the secondary section ViewModels.
     fun createSecondaryControls():
         LiveData<VisibilityProvidingCompositeViewModel<CompactProcessControlViewModel>> =
         ImmutableLiveData(
@@ -164,7 +164,7 @@ internal class ExampleCallMainProcessViewModelFactory(
                 closeControl
             )
         )
-    
+
     // Return the Metadata section ViewModel.
     fun createMetadata() = CompactProcessMetadataViewModel(
         image = ImmutableLiveData(
@@ -181,10 +181,10 @@ internal class ExampleCallMainProcessViewModelFactory(
 }
 ```
 
-The [`MainProcessPanel`](TTIVI_INDIGO_API) should be positioned on top of the Navigation UI/Home
-panel. For more details about the order of the [`MainProcessPanel`](TTIVI_INDIGO_API) compared to
+The [`MainProcessPanel`](TTIVI_PLATFORM_API) should be positioned on top of the Navigation UI/Home
+panel. For more details about the order of the [`MainProcessPanel`](TTIVI_PLATFORM_API) compared to
 the other TomTom IndiGO system UI components, please check the
-[Anatomy](/tomtom-indigo/documentation/design/system-ui/overview#Anatomy) section in the 
+[Anatomy](/tomtom-indigo/documentation/design/system-ui/overview#Anatomy) section in the
 _system UI_.
 
 ![Call main process panel](images/call_main_process_panel.png)

@@ -4,15 +4,15 @@ title: Add Support for Web App Launch Trigger
 
 TomTom IndiGO provides a means for app launching functionality to be triggered from an external
 source, like an App Store, by providing an implementation for
-[`AppLaunchTriggerService`](TTIVI_INDIGO_API). For example, when a third-party app store broadcasts
-an intent to launch an app, the implementation of this interface could observe such a broadcast and
-trigger the launch functionality associated with that app type.
+[`AppLaunchTriggerService`](TTIVI_PLATFORM_API). For example, when a third-party app store
+broadcasts an intent to launch an app, the implementation of this interface could observe such a
+broadcast and trigger the launch functionality associated with that app type.
 
 In this example, we will continue where we left off after adding an implementation for
-[`AppLaunchHandlerService`](TTIVI_INDIGO_API) to support launching _web apps_ (see
+[`AppLaunchHandlerService`](TTIVI_PLATFORM_API) to support launching _web apps_ (see
 [`Add support for a custom non-Android app type`](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)),
-as adding app launch trigger for any [`App`](TTIVI_INDIGO_API) type requires having an
-implementation for [`AppLaunchHandlerService`](TTIVI_INDIGO_API) for the same app type.
+as adding app launch trigger for any [`App`](TTIVI_PLATFORM_API) type requires having an
+implementation for [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) for the same app type.
 
 In this example, we will be using the Android Debug Bridge
 ([ADB](https://developer.android.com/studio/command-line/adb)) to fire a broadcast with the required
@@ -31,7 +31,7 @@ broadcast:
 
 ## Create web app launch trigger service module
 
-First, add the [`AppLaunchTriggerService`](TTIVI_INDIGO_API) dependency to the
+First, add the [`AppLaunchTriggerService`](TTIVI_PLATFORM_API) dependency to the
 [`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L58)
 file:
 
@@ -123,7 +123,7 @@ class WebAppLaunchTriggerBroadcastReceiver : BroadcastReceiver() {
 The app launch trigger service can be implemented by defining a class (for example,
 `WebAppLaunchTriggerService`) that inherits from the abstract `AppLaunchTriggerServiceBase` base
 class, and provides the required implementation for the
-[`AppLaunchTriggerService`](TTIVI_INDIGO_API) interface.
+[`AppLaunchTriggerService`](TTIVI_PLATFORM_API) interface.
 
 For an instance of `WebAppLaunchTriggerBroadcastReceiver` to receive a broadcast, we need to
 register it with an
@@ -216,7 +216,7 @@ __Note:__ Every service host needs to be configured and registered in your appli
 necessary to know which service should be started with which implementation, when a client requires
 the access to a service API.
 
-Define an IVI service host implementation in your gradle file. This can also be defined in a 
+Define an IVI service host implementation in your gradle file. This can also be defined in a
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be
 used in a multi-project build, including the tests.
 
@@ -273,7 +273,7 @@ ivi {
 
 After setting up everything we need to test the implementation by sending a broadcast from our
 development machine. To do this we can use the `adb` command-line tool which provides a command for
-sending a 
+sending a
 [broadcast](https://developer.android.com/studio/command-line/adb#:~:text=broadcast%20%5Boptions%5D%20intent).
 
 __Note:__ Make sure that the action sent through the broadcast is identical to the action defined in

@@ -47,7 +47,7 @@ internal class AccountFrontend(frontendContext: FrontendContext) : Frontend(fron
 }
 ```
 
-There are no abstract methods in the [`Frontend`](TTIVI_INDIGO_API) class, but some methods, like
+There are no abstract methods in the [`Frontend`](TTIVI_PLATFORM_API) class, but some methods, like
 the lifecycle ones (see below), are good to consider implementing.
 
 #### Frontend lifecycle methods
@@ -57,8 +57,8 @@ the lifecycle ones (see below), are good to consider implementing.
 
 #### Showing panels on the screen
 
-There are two callbacks for when an event is triggered to show a [`TaskPanel`](TTIVI_INDIGO_API) on
-the screen.
+There are two callbacks for when an event is triggered to show a [`TaskPanel`](TTIVI_PLATFORM_API)
+on the screen.
 
 - `createMainTaskPanel` - override it to display a single `TaskPanel` when the UI is shown.
 - `openTaskPanels` - override it when more control is needed over which panels should be shown.
@@ -67,8 +67,9 @@ __Note:__ A frontend class must override only one of these two methods.
 
 ### Creating the frontend-builder class
 
-Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIVI_INDIGO_API) class.
-Override the `build()` method in the class and return a new instance of the `AccountFrontend` class.
+Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIVI_PLATFORM_API)
+class. Override the `build()` method in the class and return a new instance of the `AccountFrontend`
+class.
 
 [`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt#L14-L22)
 
@@ -90,18 +91,18 @@ suffix and must start with an upper case character.
 ### Creating the panel
 
 There are a number of specialised `Panel` classes that can be used in the platform, see package
-[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_INDIGO_API)).
-For this example we will create a `Panel` class inheriting from the [`TaskPanel`](TTIVI_INDIGO_API)
-class.
+[`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_PLATFORM_API)).
+For this example we will create a `Panel` class inheriting from the
+[`TaskPanel`](TTIVI_PLATFORM_API) class.
 
-A [`TaskPanel`](TTIVI_INDIGO_API) is typically launched by tapping one of the menu items, like
+A [`TaskPanel`](TTIVI_PLATFORM_API) is typically launched by tapping one of the menu items, like
 opening Contacts; or some other UI event, like opening the Climate panel. It encapsulates a task
 that the user may perform, typically away from the map, going back to the map when the task is
 finished.
 
-Derive from the [`TaskPanel`](TTIVI_INDIGO_API) class, and override the
+Derive from the [`TaskPanel`](TTIVI_PLATFORM_API) class, and override the
 `createInitialFragmentInitializer()` method, which should return a new instance of the
-[`IviFragment`](TTIVI_INDIGO_API) class (described further down).
+[`IviFragment`](TTIVI_PLATFORM_API) class (described further down).
 
 [`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt#L18-L23)
 
@@ -114,7 +115,7 @@ internal class AccountLoginPanel(frontendContext: FrontendContext) :
 }
 ```
 
-Also create a `ViewModel` class, derived from the [`FrontendViewModel`](TTIVI_INDIGO_API) class.
+Also create a `ViewModel` class, derived from the [`FrontendViewModel`](TTIVI_PLATFORM_API) class.
 The `ViewModel` is the ViewModel in the Model-View-ViewModel (MVVM) pattern, whose role is to
 expose streams of data relevant to the view and streams of events to the model.
 
@@ -134,7 +135,7 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
 }
 ```
 
-Finally create a `Fragment` class, derived from [`IviFragment`](TTIVI_INDIGO_API) and using the
+Finally create a `Fragment` class, derived from [`IviFragment`](TTIVI_PLATFORM_API) and using the
 newly created `Panel` and `ViewModel` classes, overriding the `viewFactory` property. The
 TomTom IndiGO platform is designed to work well with the MVVM pattern, and this is used in the
 `onCreateView` callback as a convenience to inflate a data binding layout and using that in the
@@ -159,11 +160,11 @@ ViewFactory, is auto generated.
 ### Creating a menu item
 
 In this tutorial a menu item is added to the main menu that will open the main task panel of the
-`AccountFrontend`. To add the menu item to the main menu we need a [`MenuItem`](TTIVI_INDIGO_API)
+`AccountFrontend`. To add the menu item to the main menu we need a [`MenuItem`](TTIVI_PLATFORM_API)
 instance.
 
 Create an `AccountMenuItem.kt` file, add a property in the file and assign it a
-[`MenuItem`](TTIVI_INDIGO_API) instance. The name of the property must follow a specific naming
+[`MenuItem`](TTIVI_PLATFORM_API) instance. The name of the property must follow a specific naming
 convention. It must have a "MenuItem" suffix and must start with a lower case character.
 
 [`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt#L16-L21)
@@ -176,7 +177,7 @@ val accountMenuItem = MenuItem(
 )
 ```
 
-The [`MenuItem`](TTIVI_INDIGO_API) constructor takes a unique ID, a `DrawableResolver`, and a
+The [`MenuItem`](TTIVI_PLATFORM_API) constructor takes a unique ID, a `DrawableResolver`, and a
 `StringResolver`. The latter two resolve the icon and the name of the menu item. In the above
 example the resolvers are defined as Android resources.
 
@@ -354,7 +355,7 @@ the `userProfileMenuItem` with the `accountMenuItem`.
 
 ## More information
 
-For information on how to call the [`@IviServiceApi`](TTIVI_INDIGO_API) members from 
-[Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins) 
-refer to section 
+For information on how to call the [`@IviServiceApi`](TTIVI_PLATFORM_API) members from
+[Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins)
+refer to section
 [Calling service methods](/tomtom-indigo/documentation/development/ivi-services#calling-service-methods).

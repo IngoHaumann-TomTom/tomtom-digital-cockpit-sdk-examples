@@ -36,13 +36,13 @@ There are two aspects of an IVI runtime configuration:
 
 ### `globalDeployments`
 
-The [`RuntimeConfigurator`](TTIVI_INDIGO_GRADLEPLUGINS_API).`globalDeployments()` will contain the
+The [`RuntimeConfigurator`](TTIVI_GRADLEPUGINS_API).`globalDeployments()` will contain the
 service hosts that host IVI Service APIs that are relevant for the whole application. These service
 hosts will only have one instance available system-wide.
 
 In production, there should be only one runtime deployment created inside the `globalDeployments`
 configuration: the
-[`RuntimeDeploymentIdentifier`](TTIVI_INDIGO_GRADLEPLUGINS_API)`.globalRuntime`. However, it is
+[`RuntimeDeploymentIdentifier`](TTIVI_GRADLEPUGINS_API)`.globalRuntime`. However, it is
 possible to define multiple runtimes. This can be useful, for instance when creating integration
 tests, in order to test how certain functionality behaves under different deployment configurations.
 The example below shows two global deployment configurations for the `connectionTestServiceHosts`.
@@ -84,7 +84,7 @@ ivi {
 
 ### `multipleInstanceDeployments`
 
-The [`RuntimeConfigurator`](TTIVI_INDIGO_GRADLEPLUGINS_API).`multipleInstanceDeployments()` will
+The [`RuntimeConfigurator`](TTIVI_GRADLEPUGINS_API).`multipleInstanceDeployments()` will
 contain service hosts that are relevant for a given IVI instance. Multiple IVI instances can be
 configured in one deployment. This means, that a given process will run as many instances of a
 service host as there are IVI instances configured.
@@ -167,7 +167,7 @@ The above example uses the default deployment configuration and configures the
 ## How to replace a default service host
 
 The default IVI service hosts can be found inside the module
-[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_INDIGO_GRADLEPLUGINS_API) and in the
+[com.tomtom.ivi.platform.gradle.api.defaults.config](TTIVI_GRADLEPUGINS_API) and in the
 `api_appsuitedefaults_*` modules. It is possible to replace a default service host, for instance to
 deploy a new implementation of an IVI service API. The example below replaces the default
 `contactsServiceHost` with a custom `cloudContactsServiceHost`.
@@ -270,8 +270,8 @@ option is to selectively deploy services across deployments.
 To use an IVI instance, an Android Activity needs to be bound to an IVI instance. The Android
 manifest entry for the activity must define a metadata entry with the name
 `com.tomtom.ivi.platform.framework.api.product.activity.IVI_INSTANCE` and the value of the name of
-IVI instance. The activity must subclass the [`IviActivity`](TTIVI_INDIGO_API) class. To use the
-default system UI use [`DefaultActivity`](TTIVI_INDIGO_API) as the base class.
+IVI instance. The activity must subclass the [`IviActivity`](TTIVI_PLATFORM_API) class. To use the
+default system UI use [`DefaultActivity`](TTIVI_PLATFORM_API) as the base class.
 
 __AndroidManifest.xml:__
 
