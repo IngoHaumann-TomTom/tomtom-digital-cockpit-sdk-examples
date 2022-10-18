@@ -70,9 +70,6 @@ dependencyResolutionManagement {
         // PU NAV repo for NavTest and Gradle plugins from NAV.
         tomtomArtifactory("navapp-releases")
 
-        // PU LNS repo for the Connectivity Agent.
-        maven("https://maven.tomtom.com:8443/nexus/content/repositories/releases/")
-
         // Analytics repo (used by NavApp components)
         tomtomArtifactory("dataunit-maven-release")
 
