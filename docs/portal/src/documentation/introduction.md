@@ -164,7 +164,7 @@ guide, and "Register for early access".
         on the &apos;beta&apos; branch.`,
         button: {
           label: "Visit GitHub repository",
-          href: "https://github.com/tomtom-international/tomtom-indigo-sdk-examples"
+          href: "https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples"
         }
       },
     ]

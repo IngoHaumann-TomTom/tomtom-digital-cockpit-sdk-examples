@@ -72,7 +72,7 @@ The first step to achieve this result is to create a new module made to contain 
 package [`com.tomtom.ivi.appsuite.media.api.common.frontend.policies`](TTIVI_PLATFORM_API)), should
 be created:
 
-[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt#L24-L31)
+[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceItemMappingPolicy.kt#L24-L31)
 
 ```kotlin
 package com.example.exampleinternetradio
@@ -209,7 +209,7 @@ To aid the process of adherence to these branding guidelines, the
 UI display mode depending on the current display context. The `mediaItem` parameter can be used to
 determine what to display based on the metadata contained in the current media item.
 
-[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceSourceAttributionPolicy.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceSourceAttributionPolicy.kt#L28-L49)
+[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceSourceAttributionPolicy.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceSourceAttributionPolicy.kt#L28-L49)
 
 ```kotlin
 package com.example.exampleinternetradio
@@ -268,7 +268,7 @@ Policy configuration is done using a [`MediaPolicyFrontendExtension`](TTIVI_PLAT
 user starts browsing the internet radio, this configuration will be used to customize the user
 experience:
 
-[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceFrontendExtension.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceFrontendExtension.kt#L28-L32)
+[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceFrontendExtension.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourceFrontendExtension.kt#L28-L32)
 
 ```kotlin
 package com.example.exampleinternetradio
@@ -292,7 +292,7 @@ val exampleInternetRadioFrontendExtension: FrontendExtension =
 This is an example defining how `exampleInternetRadioPolicyProvider` might look with all the
 customizations described in the other sections.
 
-[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourcePolicyProvider.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourcePolicyProvider.kt#L24-L30)
+[`src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourcePolicyProvider.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/custompolicies/src/main/kotlin/com/example/ivi/example/media/custompolicies/ExampleMediaSourcePolicyProvider.kt#L24-L30)
 
 ```kotlin
 package com.example.exampleinternetradio

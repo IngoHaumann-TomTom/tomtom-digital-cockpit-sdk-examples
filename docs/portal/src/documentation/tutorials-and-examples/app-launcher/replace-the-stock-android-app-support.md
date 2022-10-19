@@ -47,7 +47,7 @@ The following steps describe how to override the implementation of the stock
 
 First add the app store common module and [`AppSourceProviderService`](TTIVI_PLATFORM_API)
 dependency to the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L55-L56)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L55-L56)
 file:
 
 ```toml
@@ -56,13 +56,13 @@ iviAppsuiteAppstoreApiServiceAppsourceprovider = { module = "com.tomtom.ivi.apps
 ```
 
 Create a module for the [`AppSourceProviderService`](TTIVI_PLATFORM_API) implementation under
-[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
+[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services)
 (for example
-[`examples/applauncher/services/androidappsourceprovider`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/androidappsourceprovider))
+[`examples/applauncher/services/androidappsourceprovider`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services/androidappsourceprovider))
 and add a Gradle build script.
 
 Create a
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/build.gradle.kts#L12-L23)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/build.gradle.kts#L12-L23)
 file:
 
 ```kotlin
@@ -83,7 +83,7 @@ The app source provider service module is an Android module, so it must also hav
 `AndroidManifest.xml` file.
 
 Create a
-[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/AndroidManifest.xml#L14)
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/AndroidManifest.xml#L14)
 file:
 
 ```xml
@@ -105,7 +105,7 @@ reference documentation for detailed information on these properties.
 The properties can be set by overriding the `onCreate()` method.
 
 Create
-[`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderService.kt#L14-L45)
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderService.kt#L14-L45)
 
 ```kotlin
 import com.tomtom.ivi.appsuite.appstore.api.common.model.ParcelableAppClass
@@ -152,7 +152,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - An `AndroidAppSourceProviderServiceHost` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt#L14-L29)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHost.kt#L14-L29)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
@@ -175,7 +175,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - An `AndroidAppSourceProviderServiceHostBuilder` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt#L14-L26)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/androidappsourceprovider/src/main/kotlin/com/example/ivi/example/applauncher/services/androidappsourceprovider/AndroidAppSourceProviderServiceHostBuilder.kt#L14-L26)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
@@ -203,7 +203,7 @@ top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be u
 multi-project build, including the tests.
 
 Modify the
-[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L54-L67)
+[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L54-L67)
 file:
 
 ```kotlin
@@ -233,7 +233,7 @@ val androidAppSourceProviderServiceHost by extra {
 Register the service host build configuration in the main application's build script.
 
 Modify the
-[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L37)
+[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L37)
 file:
 
 ```kotlin
@@ -274,7 +274,7 @@ The following steps describe how to override the implementation of the stock
 
 First add the app store common module and [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) dependency
 to the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L57)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L57)
 file:
 
 ```toml
@@ -283,13 +283,13 @@ iviAppsuiteAppstoreApiServiceApplaunchhandler = { module = "com.tomtom.ivi.appsu
 ```
 
 Create a module for the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) implementation under
-[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services)
+[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services)
 (for example
-[`examples/applauncher/services/launchableandroidapplaunchhandler`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/launchableandroidapplaunchhandler))
+[`examples/applauncher/services/launchableandroidapplaunchhandler`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services/launchableandroidapplaunchhandler))
 and add a Gradle build script.
 
 Create a
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/build.gradle.kts#L12-L23)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/build.gradle.kts#L12-L23)
 file:
 
 ```kotlin
@@ -310,7 +310,7 @@ The app launch handler service module is an Android module, so it must also have
 `AndroidManifest.xml` file.
 
 Create a
-[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/AndroidManifest.xml#L14)
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/AndroidManifest.xml#L14)
 file:
 
 ```xml
@@ -332,7 +332,7 @@ reference documentation for detailed information on these properties.
 The properties can be set by overriding the `onCreate()` method.
 
 Create
-[`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerService.kt#L14-L48)
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerService.kt#L14-L48)
 
 ```kotlin
 import com.tomtom.ivi.appsuite.appstore.api.common.model.App
@@ -380,7 +380,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - A `LaunchableAndroidAppLaunchHandlerServiceHost` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHost.kt#L14-L29)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHost.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHost.kt#L14-L29)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
@@ -400,7 +400,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - A `LaunchableAndroidAppLaunchHandlerServiceHostBuilder` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHostBuilder.kt#L14-L26)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/launchableandroidapplaunchhandler/src/main/kotlin/com/example/ivi/example/applauncher/services/launchableandroidapplaunchhandler/LaunchableAndroidAppLaunchHandlerServiceHostBuilder.kt#L14-L26)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
@@ -429,7 +429,7 @@ top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be u
 multi-project build, including the tests.
 
 Modify the
-[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L69-L82)
+[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L69-L82)
 file:
 
 ```kotlin
@@ -458,7 +458,7 @@ val launchableAndroidAppLaunchHandlerServiceHost by extra {
 Register the service host build configuration in the main application's build script.
 
 Modify the
-[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L38)
+[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L38)
 file:
 
 ```kotlin

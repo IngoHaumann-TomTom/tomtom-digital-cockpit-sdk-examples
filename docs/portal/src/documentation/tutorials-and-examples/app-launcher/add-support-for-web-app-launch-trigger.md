@@ -32,7 +32,7 @@ broadcast:
 ## Create web app launch trigger service module
 
 First, add the [`AppLaunchTriggerService`](TTIVI_PLATFORM_API) dependency to the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L58)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L58)
 file:
 
 ```toml
@@ -40,13 +40,13 @@ iviAppsuiteAppstoreApiServiceApplaunchtrigger = { module = "com.tomtom.ivi.appsu
 ```
 
 Create a new module (for example,
-[`webapplaunchtrigger`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services/webapplaunchtrigger))
+[`webapplaunchtrigger`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services/webapplaunchtrigger))
 under
-[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/applauncher/services),
+[`examples/applauncher/services`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/applauncher/services),
 and add a Gradle build script.
 
 Create a
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/build.gradle.kts#L12-L21)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/build.gradle.kts#L12-L21)
 file:
 
 ```kotlin
@@ -66,7 +66,7 @@ The app launch trigger module is an Android module, so it must also have an `And
 file.
 
 Create a
-[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/AndroidManifest.xml#L14)
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/AndroidManifest.xml#L14)
 file:
 
 ```xml
@@ -86,7 +86,7 @@ we can extract the required information for launching a _web app_.
 Let's assume that the _web app_ URL value will be sent with a key name `url`.
 
 Create
-[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt#L14-L40)
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerBroadcastReceiver.kt#L14-L40)
 
 ```kotlin
 import android.content.BroadcastReceiver
@@ -131,7 +131,7 @@ register it with an
 which identifies the broadcast action.
 
 Create
-[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt#L14-L47)
+[`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerService.kt#L14-L47)
 
 ```kotlin
 import android.content.IntentFilter
@@ -172,7 +172,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - A `WebAppLaunchTriggerServiceHost` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt#L14-L26)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHost.kt#L14-L26)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
@@ -192,7 +192,7 @@ provide a service host builder. This can be achieved by creating two classes.
 
 - A `WebAppLaunchTriggerServiceHostBuilder` class:
 
-  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt#L14-L26)
+  [`src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/services/webapplaunchtrigger/src/main/kotlin/com/example/ivi/example/applauncher/services/webapplaunchtrigger/WebAppLaunchTriggerServiceHostBuilder.kt#L14-L26)
 
   ```kotlin
   import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostBase
@@ -221,7 +221,7 @@ top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be
 used in a multi-project build, including the tests.
 
 Modify the
-[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L84-L97)
+[`examples/applauncher/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/iviservicehosts.gradle.kts#L84-L97)
 file:
 
 ```kotlin
@@ -250,7 +250,7 @@ val webAppLaunchTriggerServiceHost by extra {
 Register the service host build configuration in the main application's build script.
 
 Modify the
-[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L39)
+[`examples/applauncher/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/applauncher/app/build.gradle.kts#L39)
 file:
 
 ```kotlin

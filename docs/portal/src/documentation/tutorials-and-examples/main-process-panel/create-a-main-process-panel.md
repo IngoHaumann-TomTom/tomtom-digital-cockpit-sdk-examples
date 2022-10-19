@@ -17,7 +17,7 @@ please check
 The following sections explain how to add a [`MainProcessPanel`](TTIVI_PLATFORM_API) similar to the
 `CallMainProcessPanel` implemented by the communication frontend in TomTom IndiGO. An example app is
 provided in the
-[`examples/processpanel/mainprocesspanel`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/processpanel/mainprocesspanel)
+[`examples/processpanel/mainprocesspanel`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/processpanel/mainprocesspanel)
 directory.
 
 ## Create a main process panel for calling
@@ -35,7 +35,7 @@ classes:
 ### Create the panel class
 
 First, add the _CompactProcessPanel_ dependencies to the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L43)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L43)
 file:
 
 ```toml
@@ -44,7 +44,7 @@ iviPlatformFrontendApiTemplateCompactProcessPanel = { module = "com.tomtom.ivi.p
 
 Then, create an `ExampleCallMainProcessPanel` class, extended from `MainProcessPanel`:
 
-[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessPanel.kt#L18-L25)
+[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessPanel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessPanel.kt#L18-L25)
 
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
@@ -65,7 +65,7 @@ internal class ExampleCallMainProcessPanel(
 
 Create an `ExampleCallMainProcessFragment` class, derived from `MainCompactProcessFragment`:
 
-[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessFragment.kt#L18-L19)
+[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessFragment.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessFragment.kt#L18-L19)
 
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.template.compactprocesspanel.MainCompactProcessFragment
@@ -78,7 +78,7 @@ internal class ExampleCallMainProcessFragment : MainCompactProcessFragment
 
 Create an `ExampleCallMainProcessViewModel` class, derived from `MainCompactProcessViewModel`:
 
-[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt#L22-L39)
+[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModel.kt#L22-L39)
 
 ```kotlin
 import androidx.lifecycle.viewModelScope
@@ -118,7 +118,7 @@ practice to have a central place responsible for creating the
 In this code snippet, we will provide ViewModels for the primary control section, secondary control
 section, and Metadata section.
 
-[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt#L34-L117)
+[`src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/processpanel/mainprocesspanel/src/main/kotlin/com/example/ivi/example/processpanel/mainprocesspanel/examplecallmainprocesspanel/ExampleCallMainProcessViewModelFactory.kt#L34-L117)
 
 ```kotlin
 import androidx.lifecycle.LiveData

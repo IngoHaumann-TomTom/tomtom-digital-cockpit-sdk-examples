@@ -30,16 +30,16 @@ tutorial.
 ## Example app
 
 The TomTom IndiGO SDK comes with an example Alexa app. See directory
-[`examples/alexa`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa).
+[`examples/alexa`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa).
 The app includes an example
-[`CustomCarControlHandlerService`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler),
+[`CustomCarControlHandlerService`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler),
 showing:
 - How to define custom CarControl endpoints and assets.
 - How to handle user requests such as "Turn on the light", "Increase the light brightness" or
   "Switch on my custom device".
 
 To build the Alexa example app, you should edit the top-level
-[`gradle.properties`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/gradle.properties#L52)
+[`gradle.properties`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/gradle.properties#L52)
 file:
 
 ```kotlin
@@ -60,7 +60,7 @@ page.
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:
 
 - Edit the
-  [`examples/alexa/app/src/main/res/values/alexa_ids.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml)
+  [`examples/alexa/app/src/main/res/values/alexa_ids.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml)
   file and add your own Alexa IDs.
 - Set the `disableAlexaDeviceIdBuildTimeCheck` Gradle property to `true` to disable the build-time
   check for Alexa IDs.
@@ -106,7 +106,7 @@ To define a custom Car Control configuration:
 
 1. Add an `aacs_customcarcontrol_config.json` file to the Android assets of your
    `CustomCarControlHandlerService` module (for example
-   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json)).
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json)).
 
 2. Define your custom Car Control configuration in the `aacs_customcarcontrol_config.json` file. The
    format of the file is described in the Alexa Auto
@@ -115,7 +115,7 @@ To define a custom Car Control configuration:
 
 3. In the initialization of your `CustomCarControlHandlerService`, read the contents of the
    `aacs_customcarcontrol_config.json` file into the `aacsConfiguration` property.<br/>
-   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L280-L292)
+   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L280-L292)
 
    ```kotlin
    private fun readAacsConfig(context: Context): String? =
@@ -153,7 +153,7 @@ To define and use custom assets:
 
 1. Add a `custom_assets.json` file to the Android assets of your `CustomCarControlHandlerService`
    module (for example
-   [`src/main/assets/config/custom_assets.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/custom_assets.json)).
+   [`src/main/assets/config/custom_assets.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/custom_assets.json)).
 
 2. Add your custom assets definitions to the `custom_assets.json` file. The format of this file must
    follow the same schema as the
@@ -161,7 +161,7 @@ To define and use custom assets:
 
 3. In the initialization of your `CustomCarControlHandlerService`, copy the `custom_assets.json`
    file to the app's internal storage:<br/>
-   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L262-L278)
+   [`src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/kotlin/com/example/ivi/example/alexa/customcarcontrolhandler/CustomCarControlHandlerService.kt#L262-L278)
 
    ```kotlin
        override fun onCreate() {
@@ -190,7 +190,7 @@ To define and use custom assets:
 
 4. Add a reference to the `custom_assets.json` file in the `aacs_customcarcontrol_config.json`
    file.<br/>
-   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L2-L10)
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L2-L10)
 
    ```json
    {
@@ -211,7 +211,7 @@ To define and use custom assets:
 5. In your Car Control configuration (`aacs_customcarcontrol_config.json`), you can then refer to
    your custom assets by the `assetId` defined in the `custom_assets.json` file. For example, to
    define an endpoint that includes a custom asset in its list of `friendlyNames`:<br/>
-   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L13-L23)
+   [`src/main/assets/config/aacs_customcarcontrol_config.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/customcarcontrolhandler/src/main/assets/config/aacs_customcarcontrol_config.json#L13-L23)
 
    ```json
    {

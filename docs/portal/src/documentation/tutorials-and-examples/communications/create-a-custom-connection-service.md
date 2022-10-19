@@ -28,7 +28,7 @@ file your custom service has to be declared so it can be seen by the system. Thi
 also contain the package name together with some permissions:
 
 Add a
-[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/AndroidManifest.xml#L14-L33)
+[`src/main/AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/AndroidManifest.xml#L14-L33)
 file:
 
 ```xml
@@ -56,7 +56,7 @@ package="com.example.ivi.example.telephony.customconnection">
 Add a dependency to the [`TelecomService`](TTIVI_PLATFORM_API) and
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
 in your
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/build.gradle.kts#L21)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/build.gradle.kts#L21)
 file:
 
 ```kotlin
@@ -78,7 +78,7 @@ inherit from
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService)
 directly:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L48)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L48)
 
 ```kotlin
 private val dispatcher = ServiceLifecycleDispatcher(this)
@@ -90,7 +90,7 @@ To use your custom implementation you need to create an internal object
 `CustomConnectionServiceHolder.kt` that will create and store an instance of
 `CustomConnectionService`.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt#L21-L42)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionServiceHolder.kt#L21-L42)
 
 ```kotlin
 internal object CustomConnectionServiceHolder {
@@ -129,7 +129,7 @@ like `onCreateOutgoingConnection`, `onCreateOutgoingConnectionFailed`, `onCreate
 and `onCreateIncomingConnectionFailed`. It should also implement `getLifecycle` from
 [`LifecycleService`](https://developer.android.com/reference/android/arch/lifecycle/LifecycleService).
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L67-L115)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L67-L115)
 
 ```kotlin
 internal class CustomConnectionService : ConnectionService(), LifecycleOwner {
@@ -195,7 +195,7 @@ In this example we have created the `CustomConnectionFacade` class that simulate
 outgoing calls. This class is also able to change the current call's state. Simulated calls can be
 created after registering a custom phone account in the system.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt#L58-L131)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionFacade.kt#L58-L131)
 
 ```kotlin
 class CustomConnectionFacade(private val context: Context) {
@@ -270,7 +270,7 @@ methods.
 
 When the service is created:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L50-L54)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L50-L54)
 
 ```kotlin
 override fun onCreate() {
@@ -285,7 +285,7 @@ The `CustomConnectionServiceHolder` creates and stores an instance of the
 
 When the service is destroyed:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L56-L60)
+[`src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customconnection/src/main/kotlin/com/example/ivi/example/telephony/customconnection/CustomConnectionService.kt#L56-L60)
 
 ```kotlin
 override fun onDestroy() {

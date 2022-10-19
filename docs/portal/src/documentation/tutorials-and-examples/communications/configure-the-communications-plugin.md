@@ -9,7 +9,7 @@ configuration is based on the
 and can be changed if necessary. This guide explains how to make such changes.
 
 For a code example, see the
-[`examples/communications/configuration`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/communications/configuration)
+[`examples/communications/configuration`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/communications/configuration)
 directory.
 
 ## Communications plugin default configuration
@@ -29,7 +29,7 @@ plugin:
 
 The communications plugin default configuration can be changed by adding a custom configuration
 resource file in your application, such as
-[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml),
+[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml),
 which then overrides the default values with the ones provided.
 
 ## Configuring the frontend's behavior when making an outgoing call
@@ -39,7 +39,7 @@ When an outgoing call is made, the communications frontend will be closed by def
 If you don't want to close the frontend provided with the off-the-shelf communications plugin, you
 can configure it by setting the `keepCommunicationsPanelOpenOnOutgoingCallConfigKey` to `true`:
 
-[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml#L14-L17)
+[`src/main/res/values/example-communication-configuration.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/communications/configuration/src/main/res/values/example-communication-configuration.xml#L14-L17)
 
 ```xml
 <bool name="keepCommunicationsPanelOpenOnOutgoingCallConfigKey">true</bool>

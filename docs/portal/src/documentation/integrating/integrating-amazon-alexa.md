@@ -48,14 +48,14 @@ followed:
 ### Apply the Alexa plugins
 
 Declare a reference to the Alexa plugin library in the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L21)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L21)
 file:
 ```toml
 gradlePluginApiAppsuiteDefaultsAlexa = { module = "com.tomtom.ivi.appsuite.gradle.alexa:api_appsuitedefaults_alexa", version.ref = "iviPlatform" }
 ```
 
 Add a dependency on the Alexa plugin library in the
-[`/buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/build.gradle.kts#L30)
+[`/buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/buildSrc/build.gradle.kts#L30)
 file:
 ```kotlin
 dependencies {
@@ -66,7 +66,7 @@ dependencies {
 ```
 
 Apply the Alexa plugins in the product's
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20-L21)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20-L21)
 file:
 ```kotlin
 plugins {
@@ -77,11 +77,11 @@ plugins {
 ```
 
 Explicitly include the Alexa group (this is an opt-in group) in the product's
-[`iviInstances`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L41)
+[`iviInstances`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L41)
 and
-[`services`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L50)
+[`services`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L50)
 in the
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L32)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L32)
 file.
 
 ```kotlin
@@ -165,7 +165,7 @@ The latter option makes the IDs available in any Gradle project.
 You can override static configuration values in Android resources.
 
 For example in the
-[`alexa_ids.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml#L29-L34)
+[`alexa_ids.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/src/main/res/values/alexa_ids.xml#L29-L34)
 file:
 
 ```xml
@@ -186,7 +186,7 @@ disableAlexaDeviceIdBuildTimeCheck=true
 ```
 
 or by not applying the `com.tomtom.ivi.appsuite.alexa.defaults.config` Gradle plugin in the
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L20)
 file.
 
 This option is preferred if you want to simplify the project setup. However, it requires the IDs to

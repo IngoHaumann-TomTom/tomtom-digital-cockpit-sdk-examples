@@ -14,7 +14,7 @@ you can create your own VPA Adaptation Service.
 
 The TomTom IndiGO SDK comes with an example app showing how to create a custom VPA Adaptation
 Service. See the
-[`examples/vpa`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/vpa)
+[`examples/vpa`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/vpa)
 directory.
 
 ## Create a custom VPA Adaptation Service
@@ -26,13 +26,13 @@ The following sections describe how to create a custom VPA Adaptation service im
 The new module depends on [`VpaAdaptationService`](TTIVI_PLATFORM_API), declared in the package
 [`com.tomtom.ivi.platform.vpa.api.service.vpaadaptation`](TTIVI_PLATFORM_API).
 
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L67)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L67)
 
 ```toml
 iviPlatformVpaApiServiceVpaadaptation = { module = "com.tomtom.ivi.platform:platform_vpa_api_service_vpaadaptation", version.ref = "iviPlatform" }
 ```
 
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L21)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L21)
 
 ```kotlin
 dependencies {
@@ -43,7 +43,7 @@ dependencies {
 The [`VpaAdaptationService`](TTIVI_PLATFORM_API) API is experimental, and has to be explicitly opted
 in.
 
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L17)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/build.gradle.kts#L17)
 
 ```kotlin
 ivi {
@@ -60,7 +60,7 @@ The VPA Adaptation service can be implemented by defining a class that inherits 
 The service implementation requires a number of properties to be set for configuring itself with the
 TomTom IndiGO platform. The properties can be set by overriding the `onCreate()` method:
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L35-L65)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L35-L65)
 
 ```kotlin
 override fun onCreate() {
@@ -104,7 +104,7 @@ service so that the VPA can react to certain actions by the user.
 Static information about the VPA, such as its name, supported locales and countries, are stored
 in `vpaProperties`.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L38-L42)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L38-L42)
 
 ```kotlin
 vpaProperties = VpaProperties(
@@ -121,7 +121,7 @@ supports user authentication, the `logIn()` and `logOut()` functions should be o
 client to authenticate with or log out of the VPA service. These functions should update the
 `vpaAuthenticationStatus` to reflect the new situation.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L67-L79)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L67-L79)
 
 ```kotlin
 override fun onCreate() {
@@ -149,7 +149,7 @@ Refer to [`VpaAuthenticationStatus`](TTIVI_PLATFORM_API) for the details.
 
 Property `vpaAvailabilityState` indicates whether this VPA is ready to be used by clients.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L46)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L46)
 
 ```kotlin
 vpaAvailabilityState = VpaAvailabilityState.AVAILABLE
@@ -161,7 +161,7 @@ The state of the conversation with the VPA is reflected by `dialogueState`. This
 whether, for example, the VPA is waiting for the user to reply to a question. It is essential for
 the service to monitor the VPA dialogue state and update the property accordingly.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L48)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L48)
 
 ```kotlin
 dialogueState = DialogueState.IDLE
@@ -172,7 +172,7 @@ dialogueState = DialogueState.IDLE
 Property `alerts` is used to hold information about the alerts that have been scheduled through
 interaction with the VPA.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L50)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L50)
 
 ```kotlin
 alerts = emptyList()
@@ -183,7 +183,7 @@ alerts = emptyList()
 Some of the VPA messages may not be played at once. Property `hasPendingNotifications` informs a
 client whether the VPA has voice notifications ready to be played.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L52)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L52)
 
 ```kotlin
 hasPendingNotifications = false
@@ -195,7 +195,7 @@ Property `vpaSettings` holds a number of settings of the VPA. The `VpaAdaptation
 functions to update these settings; please refer to the [`VpaAdaptationService`](TTIVI_PLATFORM_API)
 API reference documentation for details.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L54-L62)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L54-L62)
 
 ```kotlin
 override fun onCreate() {
@@ -217,7 +217,7 @@ To define how the VPA reacts to a push-to-talk button press, override the `start
 function. In this function you would typically inform the VPA engine that the user is ready to talk
 to the VPA.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L112-L114)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L112-L114)
 
 ```kotlin
 override suspend fun startListening() {
@@ -229,7 +229,7 @@ override suspend fun startListening() {
 
 The privacy mode is controlled by the `enablePrivacyMode()` function.
 
-[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L116-L118)
+[`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L116-L118)
 
 ```kotlin
 override suspend fun enablePrivacyMode(enable: Boolean) {
@@ -246,7 +246,7 @@ Your module will also need to define a service host where the service will be ru
 provide a service host builder.
 
 - An `ExampleVpaServiceHost` class:<br/>
-  [`src/main/kotlin/ExampleVpaServiceHost.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaServiceHost.kt#L21-L30)
+  [`src/main/kotlin/ExampleVpaServiceHost.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaServiceHost.kt#L21-L30)
 
    ```kotlin
    import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviDiscoverableServiceIdProvider
@@ -269,7 +269,7 @@ provide a service host builder.
    ```
 
 - An `ExampleVpaServiceHostBuilder` class:<br/>
-  [`src/main/kotlin/ExampleVpaServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaServiceHostBuilder.kt#L21-L29)
+  [`src/main/kotlin/ExampleVpaServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaServiceHostBuilder.kt#L21-L29)
 
    ```kotlin
    /**
@@ -295,7 +295,7 @@ Define an IVI service host implementation in your Gradle file, This can also be 
 top-level gradle file (for example, `iviservicehosts.gradle.kts`) so it can be used in a
 multi-project build, including the tests.
 
-[`/examples/vpa/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/iviservicehosts.gradle.kts#L52-L66)
+[`/examples/vpa/iviservicehosts.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/iviservicehosts.gradle.kts#L52-L66)
 
 ```kotlin
 import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
@@ -328,7 +328,7 @@ val exampleVpaServiceHost by extra {
 
 Register the service host build configuration in the main application's build script.
 
-[`examples/vpa/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/vpa/app/build.gradle.kts#L25-L35)
+[`examples/vpa/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/app/build.gradle.kts#L25-L35)
 
 ```kotlin
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig

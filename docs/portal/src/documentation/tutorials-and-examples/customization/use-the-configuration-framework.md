@@ -36,7 +36,7 @@ by a menu item. The account status is managed by the accounts service. When the 
 authenticated, the user name is stored in persistent storage by the accounts settings service, so
 the user does not need to log in again after a restart of the application.
 The source code for the frontend and service can be found in the
-[`examples/plugin`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin)
+[`examples/plugin`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin)
 directory. See also
 [Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and the [`@IviService`](TTIVI_PLATFORM_API) annotation.
@@ -63,10 +63,10 @@ The JSON file schema is fully documented in the API reference documentation of
 ### Static configuration file
 
 To create a static configuration for the accounts service, create a JSON file in the
-[`configurations/static`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/service/src/main/configurations/static)
+[`configurations/static`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin/service/src/main/configurations/static)
 directory:
 
-[`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json#L2-L10)
+[`examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/configurations/static/com.example.ivi.example.plugin.service.json#L2-L10)
 
 ```json
 {
@@ -95,10 +95,10 @@ keys.
 ### Dynamic configuration file
 
 To create a dynamic configuration for the accounts settings service, create a JSON file in the
-[`configurations/dynamic`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/settingsservice/src/main/configurations/dynamic)
+[`configurations/dynamic`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin/settingsservice/src/main/configurations/dynamic)
 directory:
 
-[`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json#L2-L22)
+[`examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/configurations/dynamic/com.example.ivi.example.plugin.service.json#L2-L22)
 
 ```json
 {
@@ -163,9 +163,9 @@ The configuration generator looks for JSON files and processes them into:
 To enable the configuration generator, add following Gradle configuration into Gradle build
 configurations of modules that contains the configuration.
 For the given example, these are the _accounts service_ module
-[`examples/plugin/service/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/build.gradle.kts#L14-L19)
+[`examples/plugin/service/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/build.gradle.kts#L14-L19)
 and the _accounts settings service_ module
-[`examples/plugin/settingsservice/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/build.gradle.kts#L18-L23):
+[`examples/plugin/settingsservice/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/settingsservice/build.gradle.kts#L18-L23):
 
 ```kotlin
 ivi {
@@ -200,7 +200,7 @@ IVI service [`IviServiceHostContext`](TTIVI_PLATFORM_API)`.staticConfigurationPr
 To get the configuration value of the `StockAccountsService`, use the
 `StaticConfiguration.onlineAccountEndpointConfigKey` variable.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27-L31)
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27-L31)
 
 ```kotlin
 import com.example.ivi.example.plugin.service.StaticConfiguration.onlineAccountEndpointConfigKey
@@ -217,7 +217,7 @@ The `onlineAccountEndpoint` is a string with the configuration value that is use
 in. The `logIn` method calls `logInOnline()` to authenticate the user. The latter does not make a
 real network query but only does simple validation.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L86-L91)
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L86-L91)
 
 ```kotlin
 private fun logInOnline(username: String, password: SensitiveString): Account? =
@@ -234,7 +234,7 @@ Dynamic configurations are used by settings services to initialize settings.
 First, add a new setting `onlineLoginValidPeriodInDays` to the accounts settings service that holds
 the number of days the user may stay logged in.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt#L22-L38)
+[`src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/settingsserviceapi/src/main/kotlin/com/example/ivi/example/plugin/settingsserviceapi/AccountSettingsService.kt#L22-L38)
 
 ```kotlin
 interface AccountSettingsService {
@@ -247,7 +247,7 @@ By default, the settings service initializes properties with values from dynamic
 The service implementation only needs to set the configuration key and the setting key.
 The latter can be easily made from the former.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt#L40-L47)
+[`src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/settingsservice/src/main/kotlin/com/example/ivi/example/plugin/settingsservice/StockAccountSettingsService.kt#L40-L47)
 
 ```kotlin
 // Both variables are generated by the configuration generator.

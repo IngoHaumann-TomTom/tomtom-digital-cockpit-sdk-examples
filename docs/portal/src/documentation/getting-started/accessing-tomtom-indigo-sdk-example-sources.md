@@ -11,12 +11,12 @@ __Note:__ When you decide to store (parts of) the SDK in a repository, please ma
 not publicly accessible.
 
 The latest example sources for the TomTom IndiGO platform can be downloaded from GitHub:
-https://github.com/tomtom-international/tomtom-indigo-sdk-examples
+https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples
 
 Run the following command to clone the sources:
 
 ```cmd
-git clone git@github.com:tomtom-international/tomtom-indigo-sdk-examples.git
+git clone :git@github.com:tomtom-international/tomtom-digital-cockpit-sdk-examples.git
 ```
 
 To see the latest version of the sources, check out the `main` branch:

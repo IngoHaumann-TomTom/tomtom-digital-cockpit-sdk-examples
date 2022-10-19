@@ -47,7 +47,7 @@ installed on the system partition. You can read more about privileged and system
 
 The TomTom IndiGO platform debug key and password files (used for the pre-created tablet and 
 emulator images) are in the
-[`keystore`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/keystore)
+[`keystore`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/keystore)
 directory in the example source. If you're not using the pre-created tablet or emulator images, you
 can simply replace these with your own platform keys and rebuild.
 
@@ -55,7 +55,7 @@ can simply replace these with your own platform keys and rebuild.
 
 - Remount the system partition to be writeable.
 - Copy the `privapp-permissions-tomtom-ivi.xml` file from the
-  [`permissions`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/permissions)
+  [`permissions`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/permissions)
   directory to `/system/etc/permissions` on the device.
 - Install the TomTom IndiGO APK to `/system/priv-app` on the device.
 

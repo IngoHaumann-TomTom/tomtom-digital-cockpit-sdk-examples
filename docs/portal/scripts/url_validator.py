@@ -37,11 +37,11 @@ REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
 # Regex pattern to retrieve API Reference URLs hosted on S3.
 REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 
-# Regex pattern to retrieve TomTom IndiGO Github URLs.
-REGEX_INDIGO_GITHUB_URL = "\w+://github.com/tomtom-international/tomtom-indigo-sdk-examples/.*?"
+# Regex pattern to retrieve Digital Cockpit GitHub URLs.
+REGEX_GITHUB_URL = "\w+://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/.*?"
 
 # Regex pattern to retrieve restricted Nexus URLs.
-REGEX_TOMTOM_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
+REGEX_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
 
 # Regex pattern to retrieve code-blocks.
 REGEX_CODE = "```(.*?)```"
@@ -105,14 +105,14 @@ def check_external_url(content, warnings, errors, path, is_export):
                 continue
 
             # Skip validation of TomTom Nexus URLs as access is restricted.
-            if re.fullmatch(REGEX_TOMTOM_NEXUS_URL, external_url, re.IGNORECASE) != None:
+            if re.fullmatch(REGEX_NEXUS_URL, external_url, re.IGNORECASE) != None:
                 continue
 
             status = is_url_available(external_url)
 
             # Check for client and server error responses.
             if status >= 400 or status == 204:
-                if re.fullmatch(REGEX_INDIGO_GITHUB_URL, external_url, re.IGNORECASE) != None:
+                if re.fullmatch(REGEX_GITHUB_URL, external_url, re.IGNORECASE) != None:
                     warnings.append(f"{external_url} in {path}:{line_number} (status {status})")
                 else:
                     errors.append(f"{external_url} in {path}:{line_number} (status {status})")

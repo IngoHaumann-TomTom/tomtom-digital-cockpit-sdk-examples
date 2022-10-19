@@ -44,7 +44,7 @@ COMMS_JSON = "iviCommunicationsSdk"
 ANDROID_TOOLS_JSON = "tomtomAndroidTools"
 
 # Example App Sources version first introduced on GitHub
-GITHUB_INTRODUCTION_VERSION = 1864
+GITHUB_INTRODUCTION_VERSION = 2049
 
 # API References for later versions are pushed to Digital Cockpit S3 bucket. 
 DIGITAL_COCKPIT_S3_INTRODUCTION = 1995
@@ -53,7 +53,7 @@ DIGITAL_COCKPIT_S3_INTRODUCTION = 1995
 RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
 
 # Base URL for GitHub releases.
-RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree"
+RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree"
 
 # Placeholder to be replaced by a list of paired API References.
 API_PLACEHOLDER = "TTIVI_API_ANCHOR"
@@ -167,7 +167,7 @@ def get_release_link(release_version):
         return ""
     
     return f"\n<a href=\"{RELEASES_GITHUB_BASE_URL}/{release_version}\">"\
-            f"TomTom IndiGO SDK - version {release_version}</a>\n"
+            f"TomTom Digital Cockpit SDK - version {release_version}</a>\n"
 
 def get_release_notes(tickets):
     '''

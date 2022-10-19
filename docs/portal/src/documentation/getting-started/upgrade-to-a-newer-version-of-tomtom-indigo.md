@@ -9,7 +9,7 @@ platform.
 ## Upgrade to a Newer Version of the TomTom IndiGO Platform
 
 To have your application use a newer version of the TomTom IndiGO platform, you should edit the
-[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/libraries.versions.toml#L17)
+[`/build-logic/libraries.versions.toml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/libraries.versions.toml#L17)
 file and search for a line like:
 
 ```toml

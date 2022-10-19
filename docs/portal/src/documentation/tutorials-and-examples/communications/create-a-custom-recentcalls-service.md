@@ -24,7 +24,7 @@ To create a custom recent calls service, add a manifest file to your module and 
 the [`RecentCallsService`](TTIVI_PLATFORM_API) to your Gradle file.
 
 Your
-[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/AndroidManifest.xml#L14)
+[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/AndroidManifest.xml#L14)
 should contain:
 
 ```xml
@@ -33,7 +33,7 @@ should contain:
 ```
 
 Your
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/build.gradle.kts#L19)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/build.gradle.kts#L19)
 file should contain:
 
 ```kotlin
@@ -48,7 +48,7 @@ To configure a recent calls service to use your custom implementation, define a 
 configuration class that inherits from the `IviServiceHostConfig` class. This class should be placed
 in the application Gradle build file.
 
-[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L37-L48)
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L37-L48)
 
 ```kotlin
 val customRecentCallsServiceHost by extra {
@@ -72,7 +72,7 @@ In order to create the service host configuration named `CustomRecentCallsServic
 platform needs a service host builder class with the specific
 name `CustomRecentCallsServiceHostBuilder`.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt#L24-L33)
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsServiceHostBuilder.kt#L24-L33)
 
 ```kotlin
 class CustomRecentCallsServiceHostBuilder : IviServiceHostBuilder() {
@@ -93,7 +93,7 @@ requires the access to a service api.
 
 To register this configuration, add the service host to your application Gradle file:
 
-[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L61-L64)
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L61-L64)
 
 ```kotlin
 ivi {
@@ -116,7 +116,7 @@ ivi {
 In order to create a recent calls service implementation you need to create a class that
 inherits from the `RecentCallsServiceBase` base class.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L27-L28)
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L27-L28)
 
 ```kotlin
 internal class CustomRecentCallsService(iviServiceHostContext: IviServiceHostContext) :
@@ -132,7 +132,7 @@ In this example, the recent calls service always returns a list of two hard-code
 recent calls contains those two recent calls after initialization. The list `recentCallsSource` is
 the source of recent calls:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L31-L46)
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L31-L46)
 
 ```kotlin
 // The source of recent calls.
@@ -161,7 +161,7 @@ methods.
 
 When the service is created:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L48-L63)
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L48-L63)
 
 ```kotlin
 override fun onCreate() {
@@ -187,7 +187,7 @@ then the [`RecentCallsService`](TTIVI_PLATFORM_API) properties `recentCallsDesce
 
 When the service is destroyed:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L65-L68)
+[`src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customrecentcalls/src/main/kotlin/com/example/ivi/example/telephony/customrecentcalls/CustomRecentCallsService.kt#L65-L68)
 
 ```kotlin
 override fun onDestroy() {

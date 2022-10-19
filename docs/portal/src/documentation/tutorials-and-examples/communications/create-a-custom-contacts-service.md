@@ -20,7 +20,7 @@ To create a custom contacts service, add a manifest file to your module and add 
 the [`ContactsService`](TTIVI_PLATFORM_API) to your Gradle file.
 
 Your
-[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/AndroidManifest.xml#L14)
+[`AndroidManifest.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/AndroidManifest.xml#L14)
 should contain:
 
 ```xml
@@ -29,7 +29,7 @@ should contain:
 ```
 
 Your
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/build.gradle.kts#L20)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/build.gradle.kts#L20)
 file should contain:
 
 ```kotlin
@@ -44,7 +44,7 @@ To configure a contacts service to use your custom implementation, define a serv
 configuration class that inherits from the [`IviServiceHostConfig`](TTIVI_GRADLEPUGINS_API)
 class. This class should be placed in the application Gradle build file.
 
-[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L24-L35)
+[`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L24-L35)
 
 ```kotlin
 val customContactsServiceHost by extra {
@@ -68,7 +68,7 @@ In order to create the service host configuration named `CustomContactsServiceHo
 platform needs a service host builder class with the specific
 name `CustomContactsServiceHostBuilder`.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt#L21-L29)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsServiceHostBuilder.kt#L21-L29)
 
 ```kotlin
 class CustomContactsServiceHostBuilder : SimpleIviServiceHostBuilder() {
@@ -87,7 +87,7 @@ necessary to know which service should be started with which implementation when
 the access to a service api.
 
 To register this configuration, add the service host to your application
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L53-L61)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L53-L61)
 file:
 
 ```kotlin
@@ -110,7 +110,7 @@ ivi {
 In order to create a custom contacts service implementation you need to create a class that inherits
 from the `ContactsServiceBase` class.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L31-L35)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L31-L35)
 
 ```kotlin
 internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
@@ -128,7 +128,7 @@ In this example the contacts service contains two contacts. The list of contacts
 contacts after initialization. Only the contact with the id `1` has an image. The mutable
 list `contactsSource` is the source of contacts:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L41-L77)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L41-L77)
 
 ```kotlin
 // The source of contacts.
@@ -178,7 +178,7 @@ methods.
 
 When the service is created:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L79-L97)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L79-L97)
 
 ```kotlin
 override fun onCreate() {
@@ -203,7 +203,7 @@ initialized.
 
 When the service is destroyed:
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L99-L102)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L99-L102)
 
 ```kotlin
 override fun onDestroy() {
@@ -218,7 +218,7 @@ To provide clients with contact images, override the
 [`ContactsService`](TTIVI_PLATFORM_API)'s `getImage()` method with your custom implementation. In
 this example only `ContactId("1")` has an image.
 
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L104-L113)
+[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L104-L113)
 
 ```kotlin
 override suspend fun getImage(contactId: ContactId): Bitmap? {

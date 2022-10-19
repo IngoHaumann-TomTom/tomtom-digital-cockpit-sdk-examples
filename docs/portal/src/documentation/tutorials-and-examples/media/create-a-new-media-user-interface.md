@@ -57,7 +57,7 @@ display, and no functionality other than basic browsing and playing.
 ### Example panel
 
 An application that implements the concepts presented here is provided in the
-[`examples/media/userflowpolicy`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/media/userflowpolicy)
+[`examples/media/userflowpolicy`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/media/userflowpolicy)
 directory.
 
 The example's panel class, based on [`MediaTaskPanel`](TTIVI_PLATFORM_API), enables browsing through
@@ -72,7 +72,7 @@ The [`RootSourceClient`](TTIVI_PLATFORM_API) is used to browse the content and r
 categories (in the case of radio, those are bands and stations), while the
 [`MediaService`](TTIVI_PLATFORM_API) lets the user play a radio.
 
-[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt#L38-L74)
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourcePanel.kt#L38-L74)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -147,7 +147,7 @@ There is a "back" button, which triggers the `onBackPressed` function to dismiss
 "Stations list" button, that calls `onStationsButtonClicked` to show the list of stations
 recognized by the tuner.
 
-[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt#L31-L56)
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceViewModel.kt#L31-L56)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -197,7 +197,7 @@ code to connect the ViewModel to the XML layout, represented by `RadioFragmentBi
 additionally, it links the [`SourceClient`](TTIVI_PLATFORM_API) used in the panel to the necessary
 Android [`Context`](https://developer.android.com/reference/kotlin/android/content/Context).
 
-[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt#L24-L45)
+[`src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/media/userflowpolicy/src/main/kotlin/com/example/ivi/example/media/userflowpolicy/ExampleMediaSourceFragment.kt#L24-L45)
 
 ```kotlin
 import android.content.Context

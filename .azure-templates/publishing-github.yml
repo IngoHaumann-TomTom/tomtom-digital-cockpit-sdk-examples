@@ -42,14 +42,14 @@ steps:
         echo "##vso[task.setvariable variable=versionTag]$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)-beta"
       fi
 
-      commitMessage='TomTom IndiGO SDK Release $(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
+      commitMessage='Digital Cockpit SDK Release $(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
       echo "##vso[task.setvariable variable=commitMessage]$commitMessage"
 
   - script: |
       ruby $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/indigo_platform_publishing_app.rb \
         --download_base_path=$(System.DefaultWorkingDirectory)/downloads \
         --internal_source_folder=${{parameters.internalExampleSourceFolder}} \
-        --external_repo_name="tomtom-international/tomtom-indigo-sdk-examples" \
+        --external_repo_name="tomtom-international/tomtom-digital-cockpit-sdk-examples" \
         --external_repo_branch=$(externalRepoBranch) \
         --github_app_identifier=$(GITHUB_APP_IDENTIFIER) \
         --github_app_installation_identifier=$(GITHUB_APP_INSTALLATION_IDENTIFIER) \
@@ -58,4 +58,4 @@ steps:
         --version_tag=$(versionTag) \
         --commit_message="$(commitMessage)"
     name: GithubPublish
-    displayName: 'Publish example sources to github'
+    displayName: 'Publish SDK Examples to GitHub'

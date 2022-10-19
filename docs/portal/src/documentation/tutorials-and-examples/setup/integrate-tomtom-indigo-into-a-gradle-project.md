@@ -16,7 +16,7 @@ repositories, for which login credentials are required. These can be obtained fr
 
 Access to these repositories can be configured in Gradle as follows:
 
-[`build-logic/repositories.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/repositories.gradle.kts#L12-L57)
+[`build-logic/repositories.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/repositories.gradle.kts#L12-L57)
 
 ```kotlin
 pluginManagement {
@@ -70,13 +70,13 @@ dependencyResolutionManagement {
 The above needs to be applied to `buildscript`, `buildSrc` and to all projects. As such, apply this
 file in the Gradle settings files.
 
-[`settings.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/settings.gradle.kts#L14)
+[`settings.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/settings.gradle.kts#L14)
 
 ```kotlin
 apply(from = "build-logic/repositories.gradle.kts")
 ```
 
-[`buildSrc/settings.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/settings.gradle.kts#L12)
+[`buildSrc/settings.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/buildSrc/settings.gradle.kts#L12)
 
 ```kotlin
 apply(from = "../build-logic/repositories.gradle.kts")
@@ -87,7 +87,7 @@ apply(from = "../build-logic/repositories.gradle.kts")
 The TomTom IndiGO platform publishes a version catalog which you can use to ensure your product
 uses the same versions as used by the TomTom IndiGO platform.
 
-[`build-logic/ividependencies.versioncatalog.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build-logic/ividependencies.versioncatalog.gradle.kts#L30-L40)
+[`build-logic/ividependencies.versioncatalog.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/ividependencies.versioncatalog.gradle.kts#L30-L40)
 
 ```kotlin
 enableFeaturePreview("VERSION_CATALOGS")
@@ -118,7 +118,7 @@ IndiGO platform. This allows you to, for example, include all of IndiGO's defaul
 product. To allow these Gradle plugins to be used in the Gradle projects, it is required to add them
 as `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
 
-[`buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/build.gradle.kts#L32-L37)
+[`buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/buildSrc/build.gradle.kts#L32-L37)
 
 ```kotlin
 dependencies {
@@ -143,7 +143,7 @@ dependencies {
 
 Apply the following plugins to the root Gradle project:
 
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build.gradle.kts#L36-L39)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build.gradle.kts#L36-L39)
 
 ```kotlin
 plugins {
@@ -162,7 +162,7 @@ plugins {
 
 In the same file, configure the TomTom IndiGO platform dependency source.
 
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build.gradle.kts#L71-L74)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build.gradle.kts#L71-L74)
 
 ```kotlin
 ivi {
@@ -176,7 +176,7 @@ ivi {
 To integrate the TomTom IndiGO platform into an APK, you can add the following to the
 build file of the project that builds the APK:
 
-[`my_project/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L18-L22)
+[`my_project/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L18-L22)
 
 ```kotlin
 plugins {
@@ -216,7 +216,7 @@ blocks, one can have control over how the platform is integrated.
 This can be achieved in a fine-grained way by specifically adding, removing or replacing components
 such as frontends, or in a more coarse-grained way by including or excluding groups.
 
-[`my_project/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L31-L55)
+[`my_project/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L31-L55)
 
 ```kotlin
 ivi {
@@ -389,7 +389,7 @@ IVI service host, and also to resolve the full-qualified package names.
 
 Create the `ModuleReference` implementation class `<ProjectName>ModuleReference` in `buildSrc`.
 You can use
-[`ExampleModuleReference.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/ExampleModuleReference.kt)
+[`ExampleModuleReference.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/ExampleModuleReference.kt)
 in
-[`buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies)
+[`buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/buildSrc/src/main/kotlin/com/tomtom/ivi/buildsrc/dependencies)
 as an example.

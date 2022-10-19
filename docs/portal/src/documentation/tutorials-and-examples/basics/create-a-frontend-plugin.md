@@ -12,8 +12,8 @@ will be associated to the new frontend. The final step will be to let the new fr
 TomTom IndiGO's user profile frontend.
 
 The source for this example can be found in the following directories in the examples source:
-- [`examples/plugin/app/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/app)
-- [`examples/plugin/frontend/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/plugin/frontend)
+- [`examples/plugin/app/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin/app)
+- [`examples/plugin/frontend/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin/frontend)
 
 Creating a frontend and the menu item consists of a number of steps:
 
@@ -36,7 +36,7 @@ All the code snippets in this guide can also be found in the TomTom IndiGO examp
 
 Create a new frontend by deriving the `Frontend` framework class.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt#L26)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontend.kt#L26)
 
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
@@ -71,7 +71,7 @@ Add an `AccountFrontendBuilder` class, derived from the [`FrontendBuilder`](TTIV
 class. Override the `build()` method in the class and return a new instance of the `AccountFrontend`
 class.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt#L14-L22)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountFrontendBuilder.kt#L14-L22)
 
 ```kotlin
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
@@ -104,7 +104,7 @@ Derive from the [`TaskPanel`](TTIVI_PLATFORM_API) class, and override the
 `createInitialFragmentInitializer()` method, which should return a new instance of the
 [`IviFragment`](TTIVI_PLATFORM_API) class (described further down).
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt#L18-L23)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginPanel.kt#L18-L23)
 
 ```kotlin
 internal class AccountLoginPanel(frontendContext: FrontendContext) :
@@ -119,7 +119,7 @@ Also create a `ViewModel` class, derived from the [`FrontendViewModel`](TTIVI_PL
 The `ViewModel` is the ViewModel in the Model-View-ViewModel (MVVM) pattern, whose role is to
 expose streams of data relevant to the view and streams of events to the model.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L41)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L41)
 
 ```kotlin
 internal class AccountLoginViewModel(panel: AccountLoginPanel) :
@@ -142,7 +142,7 @@ TomTom IndiGO platform is designed to work well with the MVVM pattern, and this 
 fragment. If an `onCreateView` custom implementation still is preferred, the `viewFactory` property
 can be left as null instead.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt#L17-L21)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginFragment.kt#L17-L21)
 
 ```kotlin
 internal class AccountLoginFragment :
@@ -167,7 +167,7 @@ Create an `AccountMenuItem.kt` file, add a property in the file and assign it a
 [`MenuItem`](TTIVI_PLATFORM_API) instance. The name of the property must follow a specific naming
 convention. It must have a "MenuItem" suffix and must start with a lower case character.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt#L16-L21)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/AccountMenuItem.kt#L16-L21)
 
 ```kotlin
 val accountMenuItem = MenuItem(
@@ -191,7 +191,7 @@ top-level Gradle file (for example `frontends-and-menuitems.gradle.kts`) so it c
 multi-project build, including the tests.
 
 Create an
-[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L26)
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L26)
 file:
 
 ```kotlin
@@ -228,7 +228,7 @@ The last step is to register the frontend and the menu item to build configurati
 application's build script.
 
 Modify the
-[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L25-L50)
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L25-L50)
 file:
 
 ```kotlin
@@ -294,7 +294,7 @@ The final step is to let the new frontend replace TomTom IndiGO's user profile f
 we have to use `replace` instead of `add`. The same applies for the user profile menu item.
 
 Modify the
-[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L43-L48)
+[`examples/plugin/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/app/build.gradle.kts#L43-L48)
 file:
 
 ```kotlin

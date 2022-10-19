@@ -10,7 +10,7 @@ additional metadata to facilitate localization.
 ## Example application
 
 To try it out, see the
-[`examples/examples_localizestrings`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings)
+[`examples/examples_localizestrings`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings)
 application. This example project uses the default frontends and services from the TomTom IndiGO
 platform and app suite. It also has the above mentioned Gradle plugin applied. Run:
 
@@ -27,13 +27,13 @@ From these files, you can create your own localized strings. The example project
 for the `Media` text in the menu bar:
 
 - The string in
-  [`src/main/res/values-fr-rCA/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rCA/strings.xml#L3)
+  [`src/main/res/values-fr-rCA/strings.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rCA/strings.xml#L3)
   is used when the Android language is set to French (Canada).
 - The string in
-  [`src/main/res/values-fr-rFR/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rFR/strings.xml#L3)
+  [`src/main/res/values-fr-rFR/strings.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-fr-rFR/strings.xml#L3)
   is used when the Android language is set to French (France) or other regions, like French (Algeria).
 - The string in
-  [`src/main/res/values-nl/strings.xml`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl/strings.xml#L3)
+  [`src/main/res/values-nl/strings.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl/strings.xml#L3)
   is used when the Android language is set to Dutch, no matter which region.
 
 The British English version of the strings and the default value come included with the IndiGO
@@ -76,7 +76,7 @@ in your Android Application Gradle subproject. In this tutorial we refer to the 
 Gradle subproject with `app`.
 
 To apply the Gradle plugin define the following in your
-[`app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/localizestrings/app/build.gradle.kts#L16)
+[`app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/localizestrings/app/build.gradle.kts#L16)
 file:
 
 ```kotlin
@@ -87,7 +87,7 @@ plugins {
 
 For this to work, you need to configure the version of this Gradle plugin. Add the following in
 your top-level
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/build.gradle.kts#L43)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build.gradle.kts#L43)
 file:
 
 ```kotlin
@@ -97,7 +97,7 @@ plugins {
 ```
 
 And a dependency to `com.tomtom.tools.android:gradle-plugins:<version>` in your
-[`buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/buildSrc/build.gradle.kts#L29)
+[`buildSrc/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/buildSrc/build.gradle.kts#L29)
 file. For example:
 
 ```kotlin

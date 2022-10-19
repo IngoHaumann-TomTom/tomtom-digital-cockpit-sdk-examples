@@ -18,7 +18,7 @@ TomTom IndiGO provides clients different ways for the notification creation. You
 
 The following sections explain different ways to create a notification. An example app is
 provided in the
-[`examples/notifications`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/notifications)
+[`examples/notifications`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/notifications)
 directory.
 
 ## Create a Stock Notification Panel
@@ -32,7 +32,7 @@ content.
 The example below creates a notification when you click on the button. It demonstrates how you can
 create it by using [`StockNotificationPanel`](TTIVI_PLATFORM_API)`.create`.
 
-[`src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt#L27-L82)
+[`src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/NotificationCreationViewModel.kt#L27-L82)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -112,7 +112,7 @@ notification is dismissed, you can implement [`NotificationPanel`](TTIVI_PLATFOR
 example below is similar to the previous one, except we choose to implement
 [`NotificationPanel`](TTIVI_PLATFORM_API) manually.
 
-[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt#L19-L38)
+[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationPanel.kt#L19-L38)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -159,7 +159,7 @@ internal class ExampleNotificationPanel(
 }
 ```
 
-[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt#L24-L77)
+[`src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/notifications/src/main/kotlin/com/example/ivi/example/notifications/ExampleNotificationViewModel.kt#L24-L77)
 
 ```kotlin
 

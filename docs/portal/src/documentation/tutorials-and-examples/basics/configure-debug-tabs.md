@@ -9,7 +9,7 @@ via the backtick ("\`") key, or via ADB with `adb shell input keyevent --longpre
 ## Adding a debug tab
 
 To add a new debug tab, an example app is provided in the
-[`examples/debugtab`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples/debugtab)
+[`examples/debugtab`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/debugtab)
 directory, with
 `com.tomtom.ivi.platform.debug.api.frontendextension.debugtab.DebugTabFrontendExtension`.
 
@@ -21,7 +21,7 @@ The debug tab is then registered in the debug menu with a
 [`DebugTabFrontendExtension`](TTIVI_PLATFORM_API).
 
 The product's
-[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/debugtab/build.gradle.kts#L12-L51)
+[`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/debugtab/build.gradle.kts#L12-L51)
 file should then be changed to include, in the `ivi` configuration, a customization of the debug
 frontend:
 

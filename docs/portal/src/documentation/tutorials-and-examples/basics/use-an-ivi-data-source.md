@@ -61,7 +61,7 @@ interface. So for custom types, the type needs to implement the
 The element type is the type of data exposed by the `IviDataSource`. In this tutorial we are going
 to expose accounts. As such we have to define an `Account` class, like:
 
-[`src/main/kotlin/com/example/ivi/example/plugin/common/Account.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/common/src/main/kotlin/com/example/ivi/example/plugin/common/Account.kt#L14-L43)
+[`src/main/kotlin/com/example/ivi/example/plugin/common/Account.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/common/src/main/kotlin/com/example/ivi/example/plugin/common/Account.kt#L14-L43)
 
 ```kotlin
 import android.os.Parcelable
@@ -102,7 +102,7 @@ needs to be provided. In this example we allow the client to select all availabl
 select the accounts that are currently logged in. We also allow clients to sort the accounts on the
 username or on the last login date time. An example definition of the query type follows:
 
-[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsDataSourceQuery.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsDataSourceQuery.kt#L13-L31)
+[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsDataSourceQuery.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsDataSourceQuery.kt#L13-L31)
 
 ```kotlin
 import android.os.Parcelable
@@ -129,7 +129,7 @@ data class AccountsDataSourceQuery(
 Now that the element type and query types are defined, we can add the data source to an IVI
 service interface:
 
-[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt#L23-L37)
+[`src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/serviceapi/src/main/kotlin/com/example/ivi/example/plugin/serviceapi/AccountsService.kt#L23-L37)
 
 ```kotlin
 import com.example.ivi.example.plugin.common.Account
@@ -201,7 +201,7 @@ If your `MutableIviPagingSource` implementation keeps resources open, ensure tha
 callback is registered by calling `registerInvalidatedCallback`. And close the resources in the
 callback.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt#L13-L108)
+[`src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt#L13-L108)
 
 ```kotlin
 import com.example.ivi.example.plugin.common.Account
@@ -244,7 +244,7 @@ internal class MutableAccountsDataSource : MutableIviDataSource<Account, Account
 
 Next, initialize a `MutableAccountsDataSource` instance in the `StockAccountsService`.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27-L62)
+[`src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/StockAccountsService.kt#L27-L62)
 
 ```kotlin
 import com.example.ivi.example.plugin.common.Account
@@ -269,7 +269,7 @@ internal class StockAccountsService(iviServiceHostContext: IviServiceHostContext
 
 Don't forget to invalidate all active `IviPagingSource`s when the data set is modified:
 
-[`src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt#L27-L30)
+[`src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/service/src/main/kotlin/com/example/ivi/example/plugin/service/MutableAccountsDataSource.kt#L27-L30)
 
 ```kotlin
 mutableAccountsDataSource.invalidateAllPagingSources()
@@ -293,7 +293,7 @@ The following example maps the `accounts` data source to a
 [`LiveData`](https://developer.android.com/reference/androidx/lifecycle/LiveData) instance which
 value is set to the account info of the the last logged in user:
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L55)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L34-L55)
 
 ```kotlin
 import androidx.lifecycle.LiveData
@@ -360,7 +360,7 @@ provide the `PagingConfig` instance too.
 The following example maps all `Accounts` from the `accounts` data source to a `Flow` of
 `PagingData`.
 
-[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L62-L63)
+[`src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/plugin/frontend/src/main/kotlin/com/example/ivi/example/plugin/frontend/login/AccountLoginViewModel.kt#L62-L63)
 
 ```kotlin
 import androidx.lifecycle.LiveData

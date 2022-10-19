@@ -14,10 +14,10 @@ The example applications are provided as sample implementations. The application
 verify your build environment by making sure Gradle can build this TomTom IndiGO example APK and
 install it on an emulator. The applications also contain several examples on how to add
 functionality to your product. All the examples can be found under the
-[`examples/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/examples)
+[`examples/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples)
 directory.<br/>
 Under the
-[`template/`](https://github.com/tomtom-international/tomtom-indigo-sdk-examples/tree/main/template)
+[`template/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/template)
 directory you can find an empty example application. This only contains the default TomTom IndiGO
 platform functionality, without any additional example source, which can be used as a base for your
 own product.
