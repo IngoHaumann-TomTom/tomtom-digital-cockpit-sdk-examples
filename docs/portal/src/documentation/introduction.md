@@ -18,14 +18,6 @@ submenu: # Additional submenu items for example - blog posts which will be displ
       url: "/tomtom-indigo/documentation/tutorials-and-examples/overview"
 ---
 
-<iframe
-    src="https://player.vimeo.com/video/649985038?h=5a2fa675b4&title=0&portrait=0&color=44ABE0"
-    style="aspect-ratio: 16 / 9; width: 100%; margin-bottom: 3rem;"
-    frameborder="0"
-    allow="autoplay; fullscreen; picture-in-picture;"
-    allowfullscreen>
-</iframe>
-
 TomTom IndiGO is a framework that delivers Android-based digital cockpits. It includes an 
 application platform to support the development of highly integrated applications on top of Android 
 Automotive. It also offers a complete set of industrial strength end-user applications that can be 
