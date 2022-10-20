@@ -92,10 +92,10 @@ display in the contacts panel.
 This guide explains how to add a recent calls service that provides information that TomTom
 Digital Cockpit can display in the recent calls panel.
 
-- [Configure the Communications Plugin](https://developer.tomtom.com/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/configure-the-communications-plugin) -
+- [Configure the Communications Plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/configure-the-communications-plugin) -
 This guide explains how to configure the behavior of the off-the-shelf communications plugin.
 
-- [How to use the Communications Plugin Settings](https://developer.tomtom.com/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings) -
+- [How to use the Communications Plugin Settings](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings) -
 This guide explains how to configure the [`MessagingAppSettingsService`](TTIVI_PLATFORM_API) for
 _custom quick replies_ handling.
 

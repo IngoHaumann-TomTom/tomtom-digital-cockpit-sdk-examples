@@ -31,8 +31,8 @@ PORTAL_BASE_URL = "https://developer.tomtom.com"
 REGEX_EXTERNAL_URL = "(?<=\()http[^)]+(?=\))"
 
 # Regex pattern to retrieve internal Developer Portal URLs.
-REGEX_INTERNAL_URL = "(?<=\()/tomtom-indigo/.*?(?=\))"
-REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-indigo/.*?(?=\))"
+REGEX_INTERNAL_URL = "(?<=\()/tomtom-digital-cockpit/.*?(?=\))"
+REGEX_INTERNAL_URL_NO_SLASH = "(?<=\()tomtom-digital-cockpit/.*?(?=\))"
 
 # Regex pattern to retrieve API Reference URLs hosted on S3.
 REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
