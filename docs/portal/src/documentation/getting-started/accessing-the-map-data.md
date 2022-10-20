@@ -16,7 +16,7 @@ Click one of these links and download the map of your choice:
 - A map of the USA state of
   [Michigan](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fdigital-cockpit%2Ftomtom-digital-cockpit-maps%2Fusa-michigan).
 
-Each map consists of a keystore file and a tarball with the map data.
+Each map consists of a tarball (`.tar`) with the map data and a keystore file (inside a `.zip`).
 
 
 ## Installing the map
@@ -54,13 +54,13 @@ adb push my-directory-with-map-data /data/media/10/Android/data/com.example.ivi.
 - Restart the `IVI Template App`:
   - Swipe up from the bottom of the device's screen.
   - Click on the `All apps` menu icon (grid of nine squares).
-  - Scroll down and select `Settings`.
-  - Scroll down and select `Apps & notifications`.
+  - Swipe up and select `Settings`.
+  - Swipe up and select `Apps & notifications`.
   - Select `Show all apps`.
-  - Scroll down and select `IVI Template App`.
+  - Swipe up and select `IVI Template App`.
   - Select `Force stop` on the top right of the screen, then click `OK`.
   - Click on the `All apps` menu icon (grid of nine squares).
-  - Scroll down and restart the `IVI Template App`.
+  - Swipe up and restart the `IVI Template App`.
 
 If the map and keystore file were succesfully installed, you will now see a blue chevron appear.
 

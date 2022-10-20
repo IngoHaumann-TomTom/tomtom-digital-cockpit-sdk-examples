@@ -163,7 +163,7 @@ To implement the data source on the client side we need a class that extends
 [`MutableIviDataSource`](TTIVI_PLATFORM_API). To construct this class we need to indicate whether
 our implementation will support jumping. If jumping is not supported, only sequential pages are
 loaded. If jumping is supported, it is possible that pages are skipped. A typical use case of this
-is when a user performs a jump scroll though a list shown by means of a `RecyclerView`. If a data
+is when a user performs a jump scroll through a list shown by means of a `RecyclerView`. If a data
 source implements reading elements, for instance, by keeping a database cursor open, the
 implementation will need to detect the jump and move the cursor forwards or backwards before reading
 new records from the cursor. Jumps can be detected based on the requested data index when
