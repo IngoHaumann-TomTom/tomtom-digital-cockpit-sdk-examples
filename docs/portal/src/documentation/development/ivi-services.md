@@ -37,7 +37,7 @@ define the interface to a service directly in Kotlin, and to communicate with it
 to provide an `IBinder`, use a `Messenger`, or define an AIDL interface. In addition, the binding
 is done automatically, and the service is ready to use when the `serviceReady` flag has been set.
 
-By default, Android services run in the main thread in the main process, whereas an TomTom Digital Cockpit
+By default, Android services run in the main thread of the main process, whereas a TomTom Digital Cockpit
 service by default starts and runs in a different process.
 
 As service hosts are using the Android Binder framework to transfer data, they have the same

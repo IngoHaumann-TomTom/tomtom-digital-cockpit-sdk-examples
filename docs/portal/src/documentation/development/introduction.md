@@ -58,7 +58,7 @@ found in the API reference section of this site.
 
 ## TomTom Digital Cockpit Fundamentals
 
-The User Interface (UI) part of an TomTom Digital Cockpit _application_ is built using
+The User Interface (UI) part of a TomTom Digital Cockpit _application_ is built using
 [frontend plugins](/tomtom-digital-cockpit/documentation/development/frontend-plugins). These are created
 using standard Android layouts and fragments, together with _panels_, which are Android views made
 to fit in with the TomTom Digital Cockpit UI framework, each with its own specialized functionality. TomTom

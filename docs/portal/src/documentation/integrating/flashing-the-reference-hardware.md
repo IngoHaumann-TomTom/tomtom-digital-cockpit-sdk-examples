@@ -22,7 +22,7 @@ The image we flash on the Samsung Galaxy S5E tablet is based on version 18.1 of 
 in turn is based on Android 11.
 The image is customized for our own use cases, main modifications are as follows:
 
-- Added an TomTom Digital Cockpit placeholder system app, to give developers' builds access to system-only
+- Added a TomTom Digital Cockpit placeholder system app, to give developer builds access to system-only
   permissions:
 
   - multimedia browsing
