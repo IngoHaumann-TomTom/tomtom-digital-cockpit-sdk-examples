@@ -11,7 +11,7 @@ different use cases.
 
 ![overview-2](images/main-process-panels/overview-2.png)
 
-### Main process panel selection
+## Main process panel selection
 
 Each app must tell the system to visualize its process in the main process panel. 
 The main process panel's metadata is used by the system UI to determine the priority in which the  
@@ -33,18 +33,47 @@ __Priority per domain:__
 __Communication audio processes:__ When multiple communication audio processes are active, these 
 will be prioritized in chronological order, and the newest process is visualized on top.
 
+## Expanded process panel
+
+An expanded process panel is a way to visualize all available information and UI controls that will not fit inside a main process panel. It can be shown by tapping the chevron icon or the metadata inside the main process panel and is always positioned on top of the map or the application it is running within.
+
+<ImageArticleGrid articles={
+ [
+   {
+     title: 'Collapsed',
+     body: 'The  main process panel is running inside an application.',
+     img: {
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/main-process-panels/main-process-panel-collapsed.png',
+       alt: 'Main process panel',
+       width: 570,
+       height: 361
+     }
+   },
+  {
+     title: 'Expanded',
+     body: 'When the user taps the expand button, an expanded process panel is temporarily overlaid on top of the application.',
+     img: {
+       src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/system-ui/main-process-panels/expanded-process-panel-expanded.png',
+       alt: 'Expanded process panel',
+       width: 570, // Helps with lazy-loading but is not necessary
+       height: 361 // Helps with lazy-loading but is not necessary
+     }
+   },
+ ]}
+/>
+
 ## Anatomy
 
-The main process panel is populated using a UI template that comprises several sections:
+The main process panel uses a UI template that is comprised of 4 different sections.
 
 ![anatomy](images/main-process-panels/anatomy.png)
 
 | Section     | Use  |
 | ------------- | ------------- |
-| Main controls | The most important controls for the process (for example, a hang-up button for a phone call), as this section is positioned closer to the driver. This is a list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)). |
-| Metadata | Information about the ongoing process ([TtInformationControl](TTIVI_ANDROID_TOOLS_API)) |
-| Secondary controls | An optional secondary list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)) to perform actions on ongoing process. |
-| Progress | An optional progress indicator along the top of the main process panel. (__Note:__ Coming soon.) |
+| 1. Main controls | The most important controls for the process (for example, a hang-up button for a phone call), as this section is positioned closer to the driver. This is a list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)). |
+| 2. Metadata | Information about the ongoing process ([TtInformationControl](TTIVI_ANDROID_TOOLS_API)) |
+| 3. Secondary controls | An optional secondary list of up to 3 buttons ([TtButton](TTIVI_ANDROID_TOOLS_API)) to perform actions on ongoing process. |
+| 4. Progress | An optional progress indicator along the top of the main process panel. (__Note:__ Coming soon.) |
 
 ## Customization
 

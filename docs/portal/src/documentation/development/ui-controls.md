@@ -15,11 +15,10 @@ built-in Android equivalents to allow developers to build a consistent look-and-
 minimize implementation effort. The controls also support various forms of user interaction and
 their appearance can be easily customized.
 
-It is recommended that, __where__ __possible__, controls from these libraries are used instead of
-their Android equivalents so that the resulting IVI system has a consistent UI across their
-frontends. The standard build-in Android control should still be used where no equivalent exists
-in the UI library or where the Android control provides features not available in the UI library
-control.
+It is recommended that, __where possible__, controls from these libraries are used instead of their
+Android equivalents so that the resulting IVI system has a consistent UI across their frontends. The
+standard build-in Android control should still be used where no equivalent exists in the UI library
+or where the Android control provides features not available in the UI library control.
 
 For a complete list of available controls and specific details about each one, see the API
 reference of the [`api_uicontrols`](TTIVI_ANDROID_TOOLS_API) module.
