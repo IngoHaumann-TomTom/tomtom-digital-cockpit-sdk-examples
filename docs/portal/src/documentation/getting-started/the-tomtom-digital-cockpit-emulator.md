@@ -162,7 +162,7 @@ Android Virtual Device (AVD) with it:
 
 - You will now see the TomTom Digital Cockpit home screen. Note that map data shows only when you
   have
-  [installed an on-board map](/tomtom-indigo/documentation/getting-started/accessing-the-map-data)
+  [installed an on-board map](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-map-data)
   and the current location is inside this map.
 
 ![TomTom Digital Cockpit Home Screen](images/tomtom-digital-cockpit-home-screen.png)
