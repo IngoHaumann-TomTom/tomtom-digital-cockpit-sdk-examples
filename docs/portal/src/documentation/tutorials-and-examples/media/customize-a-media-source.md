@@ -4,7 +4,7 @@ title: Customize a Media Source
 
 Most media apps offer content that can be browsed and played freely, leaving the user more or less
 in control of the playback. Potentially, these apps require logging in before allowing access. This
-kind of media app is easier to customize, as the TomTom IndiGO Application Suite already provides a
+kind of media app is easier to customize, as the TomTom Digital Cockpit Application Suite already provides a
 delightful user interface for media.
 
 These customization capabilities are currently offered:
@@ -26,21 +26,21 @@ apply them to the build.
 
 More venues for customization are planned for the future, but if it is necessary to change the user
 experience in a more radical way, then it is possible to
-[create a new user interface](/tomtom-indigo/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
+[create a new user interface](/tomtom-digital-cockpit/documentation/tutorials-and-examples/media/create-a-new-media-user-interface).
 
-Throughout this customization guide, a practical example will be built to integrate TomTom IndiGO
+Throughout this customization guide, a practical example will be built to integrate TomTom Digital Cockpit
 with an internet radio media app. This fictitious app will be called `ExampleInternetRadio`.
 
-For this guide, knowledge of the TomTom IndiGO media APIs
+For this guide, knowledge of the TomTom Digital Cockpit media APIs
 [`appsuite_media_api_common_core`](TTIVI_PLATFORM_API) and
 [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) will be of great help. In the
-[media overview](/tomtom-indigo/documentation/development/platform-domains/media)
+[media overview](/tomtom-digital-cockpit/documentation/development/platform-domains/media)
 documentation, more details can be found about the Android Automotive Media framework and how TomTom
-IndiGO uses it.
+Digital Cockpit uses it.
 
 If you want to configure the media plugins with a more global configuration, you can follow
 this guide:
-[How to configure the media plugins](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins).
+[How to configure the media plugins](/tomtom-digital-cockpit/documentation/tutorials-and-examples/media/configure-the-media-plugins).
 
 ## Modifying content display
 
@@ -50,7 +50,7 @@ The concepts presented here are implemented in applications that you can find in
 A media source might provide poor quality of its input data, due to a sub-par implementation of the
 Android Automotive Media API, causing the default user interface to display it incorrectly.
 
-When browsing through content from the `ExampleInternetRadio` app, normally the TomTom IndiGO user
+When browsing through content from the `ExampleInternetRadio` app, normally the TomTom Digital Cockpit user
 interface would display the [`IviMediaItem`](TTIVI_PLATFORM_API)`.title` field of a playable media
 item in a more visually-prominent fashion (in bold and with a bigger font size) and the
 [`IviMediaItem`](TTIVI_PLATFORM_API)`.subtitle` field, when present, in a less-prominent fashion
@@ -308,5 +308,5 @@ val exampleInternetRadioPolicyProvider = PolicyProvider(
 
 Activating the new `exampleInternetRadioFrontendExtension` is done via a Gradle configuration.
 The guide on
-[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 and the documentation for [`FrontendExtension`](TTIVI_PLATFORM_API) are available for more details.

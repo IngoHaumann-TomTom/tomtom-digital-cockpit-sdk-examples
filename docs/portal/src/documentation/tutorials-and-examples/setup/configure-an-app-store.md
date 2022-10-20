@@ -5,7 +5,7 @@ title: Configure an App Store
 An app store can allow your product to offer end-users of your system the ability to expand their
 system by installing additional apps.
 
-TomTom IndiGO supports integration of Android app stores through configuration. It does not come
+TomTom Digital Cockpit supports integration of Android app stores through configuration. It does not come
 with an app store configured by default, so you will need to choose and configure your own choice
 of app store.
 
@@ -16,17 +16,17 @@ Automotive app stores include:
 - Harman Ignite
 - Access Twine4Car
 
-Contact your TomTom IndiGO sales representative for more information about available app stores.
+Contact your TomTom Digital Cockpit sales representative for more information about available app stores.
 
 Once installed and configured, an app store can be accessed via the App Launcher frontend, which is
 opened by tapping the `Apps` main menu item when using the example application. As there is no app
-store included with TomTom IndiGO, selecting the `Apps` main menu option currently displays a
+store included with TomTom Digital Cockpit, selecting the `Apps` main menu option currently displays a
 "Coming Soon" screen.
 
    ![App store coming soon](images/app-store-coming-soon.png)
 
 Any Android apps installed using the app store will appear in the App Launcher. From here they can
-be launched into a virtual display within TomTom IndiGO.
+be launched into a virtual display within TomTom Digital Cockpit.
 
 __Note:__ The App Launcher will display all non-system apps which have the
 [LAUNCHER category](https://developer.android.com/reference/android/content/Intent#CATEGORY_LAUNCHER)
@@ -39,7 +39,7 @@ any existing sideloaded apps before configuring an app store.
 The steps below show how to install and configure your choice of app store:
 
 - [Install your app store APK](#install-your-app-store-apk).
-- [Configure TomTom IndiGO to launch your app store](#configure-tomtom-indigo-to-launch-your-app-store).
+- [Configure TomTom Digital Cockpit to launch your app store](#configure-tomtom-digital-cockpit-to-launch-your-app-store).
 - [Overriding app store configuration in Android resources](#overriding-app-store-configuration-in-android-resources).
 - [Overriding app store configuration with a static configuration provider](#overriding-app-store-configuration-with-a-static-configuration-provider).
 
@@ -56,9 +56,9 @@ installed, you can install the app store using the following command:
 adb install <your-app-store-APK-filename>
 ```
 
-## Configure TomTom IndiGO to launch your app store
+## Configure TomTom Digital Cockpit to launch your app store
 
-Once you have installed your app store, you need to configure it within TomTom IndiGO by overriding
+Once you have installed your app store, you need to configure it within TomTom Digital Cockpit by overriding
 the default app store configuration (that is, no app store) with values relating to your chosen app
 store. The configuration values which must be overridden are as follows:
 
@@ -83,9 +83,9 @@ project (substituting with values for your choice of app store):
 ### Overriding app store configuration with a static configuration provider
 
 If you need to configure the app store at runtime, then create a
-[static configuration provider](/tomtom-indigo/documentation/development/platform-domains/configuration-framework#static-configuration-providers)
+[static configuration provider](/tomtom-digital-cockpit/documentation/development/platform-domains/configuration-framework#static-configuration-providers)
 and configure it in your Application class (for example, `TemplateApplication` if you are using the
-[example application](/tomtom-indigo/documentation/platform-overview/example-apps) project).
+[example application](/tomtom-digital-cockpit/documentation/platform-overview/example-apps) project).
 
 Add the following dependency to the `build.gradle.kts` file of the module where your new static
 configuration provider will reside:
@@ -129,7 +129,7 @@ list:
 
 After completing these steps you should see your app store icon above a button with the text
 "Download apps" when you open the App Launcher. Tapping this button should open your app store
-within a virtual display inside TomTom IndiGO.
+within a virtual display inside TomTom Digital Cockpit.
 
 __Note:__ If you have any sideloaded apps on the device then you will see the sideloaded apps
 displayed next to the app store icon and no "Download apps" button. In this case you can launch your

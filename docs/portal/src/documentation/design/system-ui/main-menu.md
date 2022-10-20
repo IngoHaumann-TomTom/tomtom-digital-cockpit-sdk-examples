@@ -3,9 +3,9 @@ title: Main Menu
 ---
 
 The main menu is a useful entry point to launch the core IVI experience and quickly switch between 
-applications. This mechanism is supported on the TomTom IndiGO platform through the 
+applications. This mechanism is supported on the TomTom Digital Cockpit platform through the 
 menu service. An application frontend can be registered with the menu service when configuring a 
-TomTom IndiGO based IVI system. The fact that this service is disconnected from the actual main 
+TomTom Digital Cockpit based IVI system. The fact that this service is disconnected from the actual main 
 menu UI means that this UI can easily be replaced, while still keeping access to the configured 
 applications and menu data like the list of menu items, with their icons and optional labels.
 
@@ -24,7 +24,7 @@ replacable in its entirety.
 | Items and order | The content of the menu is flexible: items can be added, removed, and reordered. The icons of existing menu items can also be replaced. |
 | Orientation | The stock menu currently doesn’t support a horizontal layout. A custom menu frontend could be created to add that orientation. |
 | Selected indicator | The selected indicator is currently not replacable within the stock menu frontend. If there is a requirement to change this, it's best to entirely replace the menu frontend. The selected indicator can also be disabled with theming. |
-| Splitting the menu or creation sections | This is technically possible by replacing the menu frontend, but this mechanism is not accommodated by the TomTom IndiGO menu service. For this to function, additional logic needs to be added to the menu frontend, which may be bad for maintainability. |
+| Splitting the menu or creation sections | This is technically possible by replacing the menu frontend, but this mechanism is not accommodated by the TomTom Digital Cockpit menu service. For this to function, additional logic needs to be added to the menu frontend, which may be bad for maintainability. |
 
 ## Levels of customization
 

@@ -2,17 +2,17 @@
 title: Create a Custom VPA Adaptation Service
 ---
 
-The VPA Adaptation service provides an abstraction for a VPA engine, with which other TomTom IndiGO
+The VPA Adaptation service provides an abstraction for a VPA engine, with which other TomTom Digital Cockpit
 components communicate.
 
-The TomTom IndiGO platform includes a stock implementation of the VPA Adaptation Service for the
-Alexa Auto VPA, and support for the Cerence Assistant VPA is in development. If TomTom IndiGO does
+The TomTom Digital Cockpit platform includes a stock implementation of the VPA Adaptation Service for the
+Alexa Auto VPA, and support for the Cerence Assistant VPA is in development. If TomTom Digital Cockpit does
 not support a specific VPA, or its stock implementation is not suitable for the customer's use case,
 you can create your own VPA Adaptation Service.
 
 ## Example VPA app
 
-The TomTom IndiGO SDK comes with an example app showing how to create a custom VPA Adaptation
+The TomTom Digital Cockpit SDK comes with an example app showing how to create a custom VPA Adaptation
 Service. See the
 [`examples/vpa`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/vpa)
 directory.
@@ -58,7 +58,7 @@ The VPA Adaptation service can be implemented by defining a class that inherits 
 [`VpaAdaptationService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation requires a number of properties to be set for configuring itself with the
-TomTom IndiGO platform. The properties can be set by overriding the `onCreate()` method:
+TomTom Digital Cockpit platform. The properties can be set by overriding the `onCreate()` method:
 
 [`src/main/kotlin/ExampleVpaService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/vpa/service/src/main/kotlin/ExampleVpaService.kt#L35-L65)
 

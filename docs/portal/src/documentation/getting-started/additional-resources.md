@@ -2,7 +2,7 @@
 title: Additional Resources
 ---
 
-TomTom IndiGO is written in Kotlin for the Android platform. If either of these are new or
+TomTom Digital Cockpit is written in Kotlin for the Android platform. If either of these are new or
 relatively new to you, please find some resources here that will explain them further. There is also
 a _Java to Kotlin_ resource, in case you _are_ familiar with Java but not with Kotlin.
 
@@ -25,7 +25,7 @@ Android:
   This course assumes you have at least a basic understanding of Kotlin and will show you how to
   create apps for Android.
 
-TomTom IndiGO makes heavy use of certain Android features. Please make sure you have a good
+TomTom Digital Cockpit makes heavy use of certain Android features. Please make sure you have a good
 understanding of these:
 
 - [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata):

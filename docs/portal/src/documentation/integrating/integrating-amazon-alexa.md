@@ -2,9 +2,9 @@
 title: Integrating Amazon Alexa
 ---
 
-TomTom IndiGO can support the use of multiple voice personal assistants (VPAs) in a single product.
+TomTom Digital Cockpit can support the use of multiple voice personal assistants (VPAs) in a single product.
 The end-user can invoke each one with a separate wake-up-word and then use them one at a time.
-TomTom IndiGO comes with a pre-integration of Amazon's VPA, Alexa, specifically
+TomTom Digital Cockpit comes with a pre-integration of Amazon's VPA, Alexa, specifically
 [Alexa Auto](https://github.com/alexa/alexa-auto-sdk).
 
 To be able to use Alexa in your product, you will need to integrate an additional Android APK in
@@ -13,14 +13,14 @@ This page explains how to do this.
 
 ## Integrating Amazon Alexa on Hardware
 
-You can skip this section if you are trying to run Amazon Alexa on the TomTom IndiGO emulator or on
-the TomTom IndiGO reference hardware (Samsung Galaxy S5e WiFi tablet).
+You can skip this section if you are trying to run Amazon Alexa on the TomTom Digital Cockpit emulator or on
+the TomTom Digital Cockpit reference hardware (Samsung Galaxy S5e WiFi tablet).
 
 Follow these steps to integrate Amazon Alexa on your custom hardware platform:
 
 - Download the Alexa LM app APK:
   - [lm-app-en_US-4.1.1.apk](https://repo.tomtom.com/repository/ivi/com/amazon/alexa/aace/lm-app-en_US/4.1.1/lm-app-en_US-4.1.1.apk)
-- Sign the Alexa APK with the same key that was used for signing the TomTom IndiGO APK
+- Sign the Alexa APK with the same key that was used for signing the TomTom Digital Cockpit APK
 - Install the signed Alexa APK on your device:
   ```cmd
   adb install lm-app-en_US-4.1.1-signed.apk
@@ -38,7 +38,7 @@ Follow these steps to integrate Amazon Alexa on your custom hardware platform:
 
 ## Integrating Amazon Alexa in your product
 
-To be able to use Alexa in your TomTom IndiGO-based product, there are some steps that need to be
+To be able to use Alexa in your TomTom Digital Cockpit-based product, there are some steps that need to be
 followed:
 
 1. [Apply the Alexa plugins](#apply-the-alexa-plugins)
@@ -112,12 +112,12 @@ ivi {
 }
 ```
 
-These plugins will add the Alexa TomTom IndiGO application to your product and will provide a simple
+These plugins will add the Alexa TomTom Digital Cockpit application to your product and will provide a simple
 way to configure the Alexa application.
 
 ### Register your Alexa product with Amazon
 
-In order to use Amazon Alexa as part of your TomTom IndiGO-based product, some information is needed
+In order to use Amazon Alexa as part of your TomTom Digital Cockpit-based product, some information is needed
 from Amazon's developer site.
 
 A list of the prerequisites is provided below:
@@ -138,7 +138,7 @@ A list of the prerequisites is provided below:
 ### Specify your Amazon Alexa IDs
 
 Now that you have your _Product ID_ and _Client ID_ ready, you can configure the product so that
-they can be used with the TomTom IndiGO SDK.
+they can be used with the TomTom Digital Cockpit SDK.
 
 The Amazon Alexa IDs can be configured in various ways depending on your development and
 production needs:
@@ -255,7 +255,7 @@ The default values of these settings for the Alexa VPA are defined by a
 [`DynamicConfigurationProvider`](TTIVI_PLATFORM_API), but, if necessary, they can be overriden by
 providing a custom dynamic configuration. More information on dynamic configurations is available in
 the
-[configuration framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
+[configuration framework](/tomtom-digital-cockpit/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
 page.
 The dynamic configuration values are listed in the table below:
 

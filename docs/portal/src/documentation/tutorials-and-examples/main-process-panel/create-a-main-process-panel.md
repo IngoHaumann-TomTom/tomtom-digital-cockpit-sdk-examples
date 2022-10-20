@@ -12,10 +12,10 @@ Alternatively, you can still extend [`IviFragment`](TTIVI_PLATFORM_API) and
 [`FrontendViewModel`](TTIVI_PLATFORM_API) from scratch to have a custom panel layout. For more
 information and details about the template look and feel, and the elements which compose the layout,
 please check
-[Main process panel](/tomtom-indigo/documentation/design/system-ui/main-process-panels).
+[Main process panel](/tomtom-digital-cockpit/documentation/design/system-ui/main-process-panels).
 
 The following sections explain how to add a [`MainProcessPanel`](TTIVI_PLATFORM_API) similar to the
-`CallMainProcessPanel` implemented by the communication frontend in TomTom IndiGO. An example app is
+`CallMainProcessPanel` implemented by the communication frontend in TomTom Digital Cockpit. An example app is
 provided in the
 [`examples/processpanel/mainprocesspanel`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/processpanel/mainprocesspanel)
 directory.
@@ -183,8 +183,8 @@ internal class ExampleCallMainProcessViewModelFactory(
 
 The [`MainProcessPanel`](TTIVI_PLATFORM_API) should be positioned on top of the Navigation UI/Home
 panel. For more details about the order of the [`MainProcessPanel`](TTIVI_PLATFORM_API) compared to
-the other TomTom IndiGO system UI components, please check the
-[Anatomy](/tomtom-indigo/documentation/design/system-ui/overview#Anatomy) section in the
+the other TomTom Digital Cockpit system UI components, please check the
+[Anatomy](/tomtom-digital-cockpit/documentation/design/system-ui/overview#Anatomy) section in the
 _system UI_.
 
 ![Call main process panel](images/call_main_process_panel.png)

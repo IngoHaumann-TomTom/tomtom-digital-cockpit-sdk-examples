@@ -66,13 +66,13 @@ For example:
 
 ## There is no map and/or search does not work
 
-TomTom IndiGO uses an on-board map for its navigation features, but this map is not included in the
+TomTom Digital Cockpit uses an on-board map for its navigation features, but this map is not included in the
 SDK package or in the emulator image. You must download and install the map separately, as explained
-in [Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data).
+in [Accessing the Map Data](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-map-data).
 
 The
-[demo maps](/tomtom-indigo/documentation/getting-started/accessing-the-map-data#downloading-the-map)
-cover a limited area only. Outside this area, TomTom IndiGO does not show map details, nor can it
+[demo maps](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-map-data#downloading-the-map)
+cover a limited area only. Outside this area, TomTom Digital Cockpit does not show map details, nor can it
 find a location or calculate a route.
 
 If you need a map for an area not included in these demo maps, please ask your TomTom
@@ -83,7 +83,7 @@ representative.
 ## How do I open/close the Debug Menu?
 
 Refer to the explanation on
-[The Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu).
+[The Debug Menu](/tomtom-digital-cockpit/documentation/getting-started/the-debug-menu).
 
 ---
 
@@ -132,7 +132,7 @@ Start a Route Demo:
 Attempting to start the Android emulator results in:
 
 ```cmd
-The emulator process for AVD IndiGO_Emulator was killed.
+The emulator process for AVD Digital Cockpit_Emulator was killed.
 ```
 
 and installing the emulator accelerator package from the Android Update Site results in:
@@ -143,7 +143,7 @@ Your CPU does not support VT-x. Unfortunately, your computer does not support ha
 
 The Apple M1 processor is not an Intel-based chip and the hardware-accelerated virtualization
 package does not work on this processor architecture. Special setup is required to get even the
-default Android emulator working, so this is not just a TomTom IndiGO-specific problem. Official
+default Android emulator working, so this is not just a TomTom Digital Cockpit-specific problem. Official
 Android support for this chip is still in progress.
 
 The previous instructions on how to configure an Android Virtual Device, specify exceptions for
@@ -157,7 +157,7 @@ You may encounter an `INSTALL_FAILED_INSUFFICIENT_STORAGE` error when installing
 emulator. Ensure that the emulator AVD has sufficient disk storage configured:
 
 - In Android Studio open the AVD Manager via `Tools` > `AVD Manager`.
-- Edit the TomTom IndiGO AVD by clicking its pencil icon in the `Actions` column.
+- Edit the TomTom Digital Cockpit AVD by clicking its pencil icon in the `Actions` column.
 - Click `Show Advanced Settings` and scroll down to the `Memory and Storage` section. Ensure these
   fields have at least the following values:
     - `RAM` : `3072 MB`
@@ -178,14 +178,14 @@ Cold boot the emulator, as explained in the
 The emulator may be slow at starting up on some configurations, especially the first time and
 especially on an Apple Mac.
 
-Locate the `config.ini` file for the AVD you are using for running TomTom IndiGO in the emulator.
+Locate the `config.ini` file for the AVD you are using for running TomTom Digital Cockpit in the emulator.
 If you have followed the instructions in
-[The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator), it should
+[The TomTom Digital Cockpit Emulator](/tomtom-digital-cockpit/documentation/getting-started/the-tomtom-digital-cockpit-emulator), it should
 be at the following location:
 
-__Linux or Mac:__ `~/.android/avd/IndiGO_Test_Device_API_30.avd/config.ini`
+__Linux or Mac:__ `~/.android/avd/Digital Cockpit_Test_Device_API_30.avd/config.ini`
 
-__Windows:__ `%UserProfile%\.android\avd\IndiGO_Test_Device_API_30.avd\config.ini`
+__Windows:__ `%UserProfile%\.android\avd\Digital Cockpit_Test_Device_API_30.avd\config.ini`
 
 Otherwise it could be in one of the other `.avd` directories at that location.
 
@@ -218,7 +218,7 @@ To cold boot the emulator, follow these steps:
 - On the right-hand side of each configured AVD there is a down-arrow that launches a context menu.
   Press the down-arrow (instead of pressing the green Play button), and select `Cold Boot Now`.
 
-![Android Studio TomTom IndiGO Emulator Cold Boot](images/android_studio_emulator_cold_boot.png)
+![Android Studio TomTom Digital Cockpit Emulator Cold Boot](images/android_studio_emulator_cold_boot.png)
 
 Now wait for the emulator to start up.
 
@@ -242,7 +242,7 @@ com.tomtom.ivi.example.product.exampleapp E/AndroidRuntime: FATAL EXCEPTION: GLT
 ```
 
 To fix this, set the emulator's OpenGL ES API level to 3.1 and restart the emulator, as explained in
-[The TomTom IndiGO emulator device](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#the-tomtom-indigo-emulator-device)
+[The TomTom Digital Cockpit emulator device](/tomtom-digital-cockpit/documentation/getting-started/the-tomtom-digital-cockpit-emulator#the-tomtom-digital-cockpit-emulator-device)
 under `Set the Emulator's OpenGL` and `Now restart the emulator`.
 
 ---
@@ -268,12 +268,12 @@ For the example applications you can configure this yourself, if needed.
 
 ## How do I install the APK onto a custom device?
 
-Some features of the TomTom IndiGO example application require system permissions. For instance,
+Some features of the TomTom Digital Cockpit example application require system permissions. For instance,
 you won't be able to play music using Spotify nor use HVAC features. If you want to install the
 example app on a different emulator or device, you need to make sure that it is signed with the
 corresponding platform key.
 
-The TomTom IndiGO platform debug key and password files, used for the pre-created tablet and
+The TomTom Digital Cockpit platform debug key and password files, used for the pre-created tablet and
 emulator images, are in the
 [`keystore`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/keystore)
 directory in the example source. Drop in your own platform keys, replacing the existing ones in that

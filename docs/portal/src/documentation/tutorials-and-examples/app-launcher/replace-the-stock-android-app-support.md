@@ -2,18 +2,18 @@
 title: Replace the Stock Android App Support
 ---
 
-The TomTom IndiGO app launcher provides stock implementations for providing the list of Android apps
+The TomTom Digital Cockpit app launcher provides stock implementations for providing the list of Android apps
 to show in the app launcher panel and for launching the Android apps when they are selected.
 
 The stock Android app source provider will provide the list of Android apps which are present on the
-device, and that were not installed as part of the TomTom IndiGO system image or subsequent TomTom
-IndiGO updates. If there is a requirement to show or filter apps based on different criteria then
+device, and that were not installed as part of the TomTom Digital Cockpit system image or subsequent TomTom
+Digital Cockpit updates. If there is a requirement to show or filter apps based on different criteria then
 this can be done by overriding the stock app source provider.
 
 An example of an alternative Android app source implementation could be one which returns a fixed
 list of pre-installed apps.
 
-TomTom IndiGO provides stock implementations for launching "launchable" Android apps (that is,
+TomTom Digital Cockpit provides stock implementations for launching "launchable" Android apps (that is,
 standard Android apps with a launcher activity) and Android media apps (that is, media source apps
 that can be launched in a media player). Launch handling for these two Android app types can be
 overridden individually with separate implementations or both can be overridden together with a
@@ -99,7 +99,7 @@ base class and implements the methods defined in the
 [`AppSourceProviderService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
+TomTom Digital Cockpit platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
@@ -326,7 +326,7 @@ The app launch handler service can be implemented by defining a class (for examp
 [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
+TomTom Digital Cockpit platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.

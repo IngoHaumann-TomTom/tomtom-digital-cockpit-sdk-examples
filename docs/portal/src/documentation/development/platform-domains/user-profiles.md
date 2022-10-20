@@ -3,7 +3,7 @@ title: User Profiles
 layout: default
 ---
 
-It is important to allow users to customize their usage of an infotainment system. TomTom IndiGO
+It is important to allow users to customize their usage of an infotainment system. TomTom Digital Cockpit
 allows the creation of a personalized user experience by linking settings and preferences to
 an active user profile. It is possible to have user profile specific settings with different
 configuration values depending on the current user using the platform. This can be convenient,
@@ -12,7 +12,7 @@ light theme.
 
 ## Overview
 
-Tomtom IndiGO provides the [`UserProfileManagementService`](TTIVI_PLATFORM_API) API to allow
+Tomtom Digital Cockpit provides the [`UserProfileManagementService`](TTIVI_PLATFORM_API) API to allow
 services and frontends to manage user profiles. A user profile can be created with
 [`UserProfileManagementService`](TTIVI_PLATFORM_API)`.createUserProfile`, it will be persistently
 stored, and loaded after the service restarts. The user profile information may be updated with

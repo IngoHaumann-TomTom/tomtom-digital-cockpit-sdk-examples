@@ -3,12 +3,12 @@ title: Navigation
 layout: default
 ---
 
-Navigation is central to the TomTom IndiGO experience. Online navigation enables fresh and always
+Navigation is central to the TomTom Digital Cockpit experience. Online navigation enables fresh and always
 up-to-date map content. It is built on top of TomTom's navigation SDK: NavKit and makes use of
 common UI controls, made available through the NavKitUI SDK.
 
-TomTom IndiGO provides a set of generic core services as well as
-[_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+TomTom Digital Cockpit provides a set of generic core services as well as
+[_off-the-shelf_ or _stock_](/tomtom-digital-cockpit/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 implementations. They are built on top of the NavKit and NavKitUI SDK and provide the customer with
 an out of the box navigation experience. Alternatively the customer can replace the off-the-shelf
 frontend and services with their own implementations.
@@ -31,7 +31,7 @@ inter-process communication. The _NavKit 2 Map Visualisation onboard service_ li
 deployed in separate process to reduce impact of potential malfunction.
 
 The following diagram shows a high-level overview of the architecture of map rendering in TomTom
-IndiGO:
+Digital Cockpit:
 
 ![Map rendering high-level overview image](images/navigation_domain-map-display-high-level-overview.svg)
 
@@ -46,7 +46,7 @@ It shows the following components:
 
 ## Search
 
-The following diagram shows a high-level overview of the architecture of search in TomTom IndiGO:
+The following diagram shows a high-level overview of the architecture of search in TomTom Digital Cockpit:
 
 ![Search high-level overview image](images/navigation_domain-search-high-level-overview.svg)
 
@@ -72,7 +72,7 @@ each other:
 An example of the interactions between these domains is show below:
 ![Planning a route](images/navigation_domain-guidance-planning-a-route.svg)
 
-The following diagram shows a high-level overview of the architecture of guidance in TomTom IndiGO:
+The following diagram shows a high-level overview of the architecture of guidance in TomTom Digital Cockpit:
 
 ![Guidance high-level overview image](images/navigation_domain-guidance-high-level-overview.svg)
 

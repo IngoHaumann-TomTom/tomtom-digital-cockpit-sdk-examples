@@ -7,12 +7,12 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-menuTopTitle: TomTom IndiGO
+menuTopTitle: TomTom Digital Cockpit
 menu:
   - items:
-      - url: /tomtom-indigo/documentation/introduction
+      - url: /tomtom-digital-cockpit/documentation/introduction
         title: Documentation
-      - url: /tomtom-indigo/api-reference/api-reference
+      - url: /tomtom-digital-cockpit/api-reference/api-reference
         title: API Reference
-      - url: /tomtom-indigo/releases/releases
+      - url: /tomtom-digital-cockpit/releases/releases
         title: Releases

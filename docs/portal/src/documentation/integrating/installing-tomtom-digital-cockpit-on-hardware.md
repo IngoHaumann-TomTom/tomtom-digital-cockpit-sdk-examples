@@ -1,15 +1,15 @@
 ---
-title: Installing TomTom IndiGO on Hardware
+title: Installing TomTom Digital Cockpit on Hardware
 ---
 
 For installation on hardware and enabling all the functionality, you need to sign the application,
 install it on the system partition, and do some additional configurations as explained below.
 
-The TomTom IndiGO SDK comes with a prebuilt emulator image and a prebuilt image for our reference
+The TomTom Digital Cockpit SDK comes with a prebuilt emulator image and a prebuilt image for our reference
 hardware (Samsung Galaxy S5E tablet), based on version 18.1 of LineageOS, which in turn is based
 on Android 11.
 
-To use TomTom IndiGO on your own hardware read through the information below.
+To use TomTom Digital Cockpit on your own hardware read through the information below.
 
 ## Platform requirements
 
@@ -22,7 +22,7 @@ To use TomTom IndiGO on your own hardware read through the information below.
 
 ## Automotive vs. plain Android
 
-In principle, TomTom IndiGO can run on any Android device with a TomTom IndiGO-supported CPU 
+In principle, TomTom Digital Cockpit can run on any Android device with a TomTom Digital Cockpit-supported CPU 
 architecture, but the experience will be poorer. If using non-automotive Android, for example, 
 Bluetooth will not behave as expected. This is because standard Android uses Headset and Handsfree 
 server profiles, as the mobile is the audio source that goes to for example a BT headset. Android 
@@ -43,9 +43,9 @@ To enable some features, especially regarding media, the application needs to be
 installed on the system partition. You can read more about privileged and system permissions
 [here](https://source.android.com/devices/tech/config/perms-allowlist).
 
-### Sign the TomTom IndiGO APK with the same key that was used for signing the system image
+### Sign the TomTom Digital Cockpit APK with the same key that was used for signing the system image
 
-The TomTom IndiGO platform debug key and password files (used for the pre-created tablet and 
+The TomTom Digital Cockpit platform debug key and password files (used for the pre-created tablet and 
 emulator images) are in the
 [`keystore`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/keystore)
 directory in the example source. If you're not using the pre-created tablet or emulator images, you
@@ -57,7 +57,7 @@ can simply replace these with your own platform keys and rebuild.
 - Copy the `privapp-permissions-tomtom-ivi.xml` file from the
   [`permissions`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/permissions)
   directory to `/system/etc/permissions` on the device.
-- Install the TomTom IndiGO APK to `/system/priv-app` on the device.
+- Install the TomTom Digital Cockpit APK to `/system/priv-app` on the device.
 
 ```cmd
 $ adb remount
@@ -71,7 +71,7 @@ limitations (note that you should still follow the two other steps):
 
 - Media being played by the system will not be visible in the main process panel, nor will it be 
   possible to control it.
-- The media source Spotify will never work: TomTom IndiGO needs to be signed with platform keys for
+- The media source Spotify will never work: TomTom Digital Cockpit needs to be signed with platform keys for
   Spotify to communicate with it.
 
 To work around the first problem, enable media notification access. This fixes access to all media
@@ -84,7 +84,7 @@ $ adb shell cmd notification allow_listener com.tomtom.ivi.product.standalone.in
 
 Spotify only communicates with system apps signed with the platform signature, so if your APK is
 unsigned or not a system app, this command will only allow you to control Spotify playback started
-with the default AOSP media player, but not to browse Spotify content from within TomTom IndiGO.
+with the default AOSP media player, but not to browse Spotify content from within TomTom Digital Cockpit.
 
 ## Domain-specific notes
 
@@ -98,26 +98,26 @@ Text-to-Speech application.
 
 ### Multimedia sources
 
-TomTom IndiGO supports any Android Automotive media source that can also be found in the Android
+TomTom Digital Cockpit supports any Android Automotive media source that can also be found in the Android
 Automotive Play Store.
 
-By default TomTom IndiGO does not support advanced functionality, such as custom actions. These add
+By default TomTom Digital Cockpit does not support advanced functionality, such as custom actions. These add
 capabilities unique for a single source, such as liking a song. Support for them can be added via
-a TomTom IndiGO plugin.
+a TomTom Digital Cockpit plugin.
 
 If a multimedia app requires a sign in, a modal panel allowing you to do so will open when
 selecting the app.
 
 If the hardware and AOSP build both support Radio (FM/AM/DAB), the radio multimedia source in
-TomTom IndiGO should also work (albeit with a confusing user interface, as no specialization work 
+TomTom Digital Cockpit should also work (albeit with a confusing user interface, as no specialization work 
 for radio has yet been made).
 
 ### Phone
 
-To automatically configure TomTom IndiGO as the default dialer app, set TomTom IndiGO as the 
+To automatically configure TomTom Digital Cockpit as the default dialer app, set TomTom Digital Cockpit as the 
 default dialer in system settings (Settings->Apps & Notifications->Default apps).
 
 Pair a phone with Bluetooth and ensure that all necessary profiles (such as Phone calls, Media
 audio, Text messages and Contact Sharing) are enabled by tapping on the phone name in settings.
-You should thereafter be able to use the phone from TomTom IndiGO.
+You should thereafter be able to use the phone from TomTom Digital Cockpit.
 

@@ -2,15 +2,15 @@
 title: Accessing the Map Data
 ---
 
-TomTom IndiGO uses an on-board map for its navigation features, but this map is not included in the
+TomTom Digital Cockpit uses an on-board map for its navigation features, but this map is not included in the
 SDK package or in the emulator image. You must download and install the map separately.
 
 ## Downloading the map
 
 Under the terms of the
-[TomTom IndiGO evaluation license](/tomtom-indigo/documentation/getting-started/introduction)
+[TomTom Digital Cockpit evaluation license](/tomtom-digital-cockpit/documentation/getting-started/introduction)
 a few demonstration maps are provided in the
-[Artifact Repository](/tomtom-indigo/documentation/getting-started/accessing-the-artifact-repository).
+[Artifact Repository](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-artifact-repository).
 Click one of these links and download the map of your choice:
 
 - A map of the USA state of
@@ -22,7 +22,7 @@ Each map consists of a tarball (`.tar`) with the map data and a keystore file (i
 ## Installing the map
 
 Make sure you have built the `IVI Template App` and you are running it in the
-[TomTom IndiGO emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator#running-the-tomtom-indigo-emulator),
+[TomTom Digital Cockpit emulator](/tomtom-digital-cockpit/documentation/getting-started/the-tomtom-digital-cockpit-emulator#running-the-tomtom-digital-cockpit-emulator),
 if you are installing the on-board map on an emulator.
 
 <Blockquote>
@@ -90,31 +90,31 @@ representative.
 
 ## Next steps
 
-Congratulations, you now have an operational TomTom IndiGO environment.
+Congratulations, you now have an operational TomTom Digital Cockpit environment.
 
 From here on, you have several options:
 
 - Experience the
-  [off-the-shelf features](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality)
+  [off-the-shelf features](/tomtom-digital-cockpit/documentation/platform-overview/example-apps#off-the-shelf-functionality)
   in the template application.
 
 - Build and execute the example applications, as explained in the
-  [Tutorials and Examples](/tomtom-indigo/documentation/tutorials-and-examples/overview) section.
+  [Tutorials and Examples](/tomtom-digital-cockpit/documentation/tutorials-and-examples/overview) section.
 
 - Use the
-  [Debug Menu](/tomtom-indigo/documentation/getting-started/the-debug-menu)
-  to explore the TomTom IndiGO platform in more detail. For example, by
-  [starting a route demo](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq#how-do-i-start-a-route-demo).
+  [Debug Menu](/tomtom-digital-cockpit/documentation/getting-started/the-debug-menu)
+  to explore the TomTom Digital Cockpit platform in more detail. For example, by
+  [starting a route demo](/tomtom-digital-cockpit/documentation/getting-started/frequently-asked-questions-faq#how-do-i-start-a-route-demo).
 
-- As the TomTom IndiGO platform evolves, you can integrate its newest features by following the
+- As the TomTom Digital Cockpit platform evolves, you can integrate its newest features by following the
   instructions on the
-  [Upgrade to a Newer Version of TomTom IndiGO](/tomtom-indigo/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-indigo)
+  [Upgrade to a Newer Version of TomTom Digital Cockpit](/tomtom-digital-cockpit/documentation/getting-started/upgrade-to-a-newer-version-of-tomtom-digital-cockpit)
   page.
 
 - When you want to learn more about Kotlin or the Android platform, explore the documentation listed
   on the
-  [Additional Resources](/tomtom-indigo/documentation/getting-started/additional-resources)
+  [Additional Resources](/tomtom-digital-cockpit/documentation/getting-started/additional-resources)
   page.
 
 - If you encounter any issues, please consult our
-  [Frequently Asked Questions](/tomtom-indigo/documentation/getting-started/frequently-asked-questions-faq).
+  [Frequently Asked Questions](/tomtom-digital-cockpit/documentation/getting-started/frequently-asked-questions-faq).

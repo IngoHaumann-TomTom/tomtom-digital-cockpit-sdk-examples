@@ -4,7 +4,7 @@ title: Use an IVI Data Source
 
 ## Introduction to IVI Data Sources
 
-Properties of an [IVI service interface](/tomtom-indigo/documentation/development/ivi-services) are
+Properties of an [IVI service interface](/tomtom-digital-cockpit/documentation/development/ivi-services) are
 mirrored to all clients of the service. A property of type [`IviDataSource`](TTIVI_PLATFORM_API) can
 be used in an IVI service interface to expose a data set to clients without requiring the full data
 set to be loaded into memory. It also allows querying and sorting of the data on the service side
@@ -45,7 +45,7 @@ understand the concepts introduced in this tutorial, even if you do not intend t
 `RecyclerView`.
 
 Also make yourself familiar with how to create an IVI service interface as explained
-[here](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service) before
+[here](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service) before
 following this tutorial.
 
 ## The IVI service interface

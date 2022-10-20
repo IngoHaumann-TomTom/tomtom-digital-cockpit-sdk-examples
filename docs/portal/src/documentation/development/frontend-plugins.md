@@ -2,10 +2,10 @@
 title: Frontend Plugins
 ---
 
-Frontend plugins are the user interface (UI) modules of the TomTom IndiGO platform. Each frontend
+Frontend plugins are the user interface (UI) modules of the TomTom Digital Cockpit platform. Each frontend
 is an independent module encapsulating the UI of some distinct functionality in the platform. The
-TomTom IndiGO platform provides a number of default, or
-[_off-the-shelf_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components),
+TomTom Digital Cockpit platform provides a number of default, or
+[_off-the-shelf_](/tomtom-digital-cockpit/documentation/development/introduction#off-the-shelf-components-or-stock-components),
 frontend plugins, like the media player, or the phone, etc.
 
 Each frontend is developed against a common set of stable platform APIs. These APIs can be used to
@@ -14,27 +14,27 @@ version.
 
 ![Frontend plugin overview](images/frontend-plugin-overview.svg)
 
-The configuration and inclusion of the frontend plugins in the TomTom IndiGO product are done at
+The configuration and inclusion of the frontend plugins in the TomTom Digital Cockpit product are done at
 build time, thus only the applicable frontend plugins are included in the deployed product.
 
-The TomTom IndiGO product is built and deployed as one Android
+The TomTom Digital Cockpit product is built and deployed as one Android
 [APK](https://developer.android.com/guide/components/fundamentals).
 Therefore, the plugins cannot be replaced, or updated individually after the product has been
 installed on a device. This requires a new build to be re-installed.
 
 This page provides an overview of frontend related components. If you want to start building a
 frontend plug-in, see
-[Create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin).
+[Create a frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin).
 
 ## Off-the-shelf (stock) frontend plugins
 
-There are a number of _off-the-shelf plugins_ in the TomTom IndiGO platform. In the source
+There are a number of _off-the-shelf plugins_ in the TomTom Digital Cockpit platform. In the source
 repository these are usually referred to as _stock plugins_. The following picture shows the default
-view when you launch the example application that comes with TomTom IndiGO. Highlighted in red it
+view when you launch the example application that comes with TomTom Digital Cockpit. Highlighted in red it
 shows the HVAC frontend along the bottom and the main menu frontend on the left side with menu items
 that launch other frontends.
 
-![TomTom IndiGO frontends](images/frontend-example-tomtom-digital-cockpit.png)
+![TomTom Digital Cockpit frontends](images/frontend-example-tomtom-digital-cockpit.png)
 
 Here is an example of one of the stock launched frontends, containing the UI for the contacts
 functionality. The Frontend and the associated menu item are highlighted in red.
@@ -44,7 +44,7 @@ functionality. The Frontend and the associated menu item are highlighted in red.
 ## Frontends and panels
 
 Frontends insert parts of their UI into [panel](#panel)s, which the
-[System UI](/tomtom-indigo/documentation/development/system-ui) processes and displays when needed.
+[System UI](/tomtom-digital-cockpit/documentation/development/system-ui) processes and displays when needed.
 Panels can be considered to be common sections of the overall UI that get reused by different
 applications. The arrangement of these panels is orchestrated by the System UI which ensures that
 the correct parts are displayed and dismissed appropriately.
@@ -57,10 +57,10 @@ the frontend's main task panel and can also be used to create the frontend on de
 
 ![Frontend panel relation](images/frontend-panel-relation.svg)
 
-TomTom IndiGO frontends are designed around using the
+TomTom Digital Cockpit frontends are designed around using the
 [MVVM pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 and [Android's Data Binding Library](https://developer.android.com/topic/libraries/data-binding).
-TomTom IndiGO has many convenience classes to simplify using these. The
+TomTom Digital Cockpit has many convenience classes to simplify using these. The
 [`platform_frontend_api_common_frontend`](TTIVI_PLATFORM_API) module contains the classes needed to
 create your own frontend, panel, and fragment using a `ViewModel` for the data-binding.
 
@@ -85,7 +85,7 @@ dismissed. Panels that can be dismissed, such as [notification panels](#notifica
 `DismissablePanel`. `DismissablePanel`s can be dismissed by the user, through system UI
 functionality, like swiping it away.
 
-TomTom IndiGO offers a base set of panel types that can be used. Customers can also define their own
+TomTom Digital Cockpit offers a base set of panel types that can be used. Customers can also define their own
 panel types. To create your own panel for a frontend, you can derive from any of the panel classes
 in the package [`com.tomtom.ivi.platform.frontend.api.common.frontend.panels`](TTIVI_PLATFORM_API).
 Which panel to derive from depends on how the panel should be presented. For example, deriving from
@@ -96,7 +96,7 @@ item.
 
 ##### Home panel
 
-The home panel is the main element shown on the screen when starting TomTom IndiGO. The default home
+The home panel is the main element shown on the screen when starting TomTom Digital Cockpit. The default home
 panel contains a map that allows the user to plan a trip somewhere and navigate to it.  A frontend
 can provide a home panel by adding a panel that extends [`HomePanel`](TTIVI_PLATFORM_API) to its
 panels.
@@ -111,11 +111,11 @@ frontends directly. A frontend can provide a menu by adding a panel that extends
 
 ##### Task panels
 
-Tapping on a menu item in TomTom IndiGO's main menu commonly leads to a panel sliding open. This
+Tapping on a menu item in TomTom Digital Cockpit's main menu commonly leads to a panel sliding open. This
 panel is called a _task panel_, and it can be created by adding a panel that extends
 [`TaskPanel`](TTIVI_PLATFORM_API) to the frontend's panels. It allows the user to perform a certain
 task, after which the panel typically is closed again. Task panels can be thought of as an "app"
-within TomTom IndiGO.
+within TomTom Digital Cockpit.
 
 Task panels can be stacked to create a user flow through various screens. The top-most task panel
 will be shown to the user, and when that panel is removed, the next task panel on the stack will be
@@ -157,9 +157,9 @@ both these frontends provide a main process panel at the same time, the main pro
 calls will be shown instead of the one for media.
 
 More information about the [`MainProcessPanel`](TTIVI_PLATFORM_API) can be found in
-[Main process panel](/tomtom-indigo/documentation/design/system-ui/main-process-panels). Or, if you
+[Main process panel](/tomtom-digital-cockpit/documentation/design/system-ui/main-process-panels). Or, if you
 want to start building a [`MainProcessPanel`](TTIVI_PLATFORM_API), see
-[Create a main process panel](/tomtom-indigo/documentation/tutorials-and-examples/main-process-panel/create-a-main-process-panel).
+[Create a main process panel](/tomtom-digital-cockpit/documentation/tutorials-and-examples/main-process-panel/create-a-main-process-panel).
 
 ##### Task process panels
 
@@ -169,7 +169,7 @@ overlap the task panel itself.
 
 [TODO(IVI-7779)]: # (Some content below is better be described in the system UI doc.)
 
-TomTom IndiGO's system UI may hide the main process panel when a task panel is opened. However, if
+TomTom Digital Cockpit's system UI may hide the main process panel when a task panel is opened. However, if
 the process is relevant to that task panel, it likely wants to continue presenting that process to
 the user; for example, to show a mini player for the currently playing music. In these cases, the
 frontend can add a panel extending [`TaskProcessPanel`](TTIVI_PLATFORM_API), which the system UI will
@@ -183,14 +183,14 @@ frontends.
 
 ##### Notification panels
 
-A notification is a panel that TomTom IndiGO uses to present information to the user.
+A notification is a panel that TomTom Digital Cockpit uses to present information to the user.
 
 Each [`NotificationPanel`](TTIVI_PLATFORM_API) has its own
 [`NotificationPanel`](TTIVI_PLATFORM_API)`.Priority`. The system UI uses it to determine when and how
 to show the notification. For example, it may choose to suppress a low priority notification, while
 a higher priority notification is active, to avoid distracting the driver.
 
-TomTom IndiGO provides a pre-defined UI [template](#notification-panel-template), that clients can
+TomTom Digital Cockpit provides a pre-defined UI [template](#notification-panel-template), that clients can
 use to present information. The user can also tap on the notification to trigger an action.
 Notification panels that choose to use[`NotificationFragment`](TTIVI_PLATFORM_API) get this UI
 template, but it is not mandatory to use a template. If your panel uses a different layout, then
@@ -198,9 +198,9 @@ extending the regular [`IviFragment`](TTIVI_PLATFORM_API), instead of the templa
 you full control over the contents.
 
 More information about how the system UI handles the notifications can be found in
-[System UI](/tomtom-indigo/documentation/development/system-ui). Or, if you want to start building a
+[System UI](/tomtom-digital-cockpit/documentation/development/system-ui). Or, if you want to start building a
 notification, see
-[Create a notification panel](/tomtom-indigo/documentation/tutorials-and-examples/notifications/create-a-notification-panel).
+[Create a notification panel](/tomtom-digital-cockpit/documentation/tutorials-and-examples/notifications/create-a-notification-panel).
 
 ##### Modal panels
 
@@ -251,7 +251,7 @@ dismiss the whole modal panels stack, rather than just a single one.
 
 ##### Control center panels
 
-TomTom IndiGO's control center is an isolated area of the system UI that provides persistent
+TomTom Digital Cockpit's control center is an isolated area of the system UI that provides persistent
 indicators and controls, that are accessible to the user _at all times_; for example, clock or
 temperature controls. It is populated with various panels extending
 [`ControlCenterPanel`](TTIVI_PLATFORM_API). The metadata, which is set in the panel's interface, lets
@@ -287,7 +287,7 @@ navigation instructions.
 
 Panels in several frontend plugins may have a very similar layout. For example, most notifications
 have an icon, text and buttons arranged in the same way. These panel-specific layouts are offered by
-TomTom IndiGO in the shape of _templates_, that request a view model and put the information that
+TomTom Digital Cockpit in the shape of _templates_, that request a view model and put the information that
 it contains in the right place.
 
 These templates are implemented in the form of a base fragment class. In order to use a template,
@@ -299,7 +299,7 @@ __Note:__ It is not mandatory to use a template. If your panel uses a different 
 extending the regular [`IviFragment`](TTIVI_PLATFORM_API) instead of the template's fragment gives
 you full control over the contents.
 
-TomTom IndiGO offers templates for:
+TomTom Digital Cockpit offers templates for:
 
 - [Notification panels](#notification-panel-template)
 - [Main process panels](#main-process-panel-template)
@@ -336,7 +336,7 @@ The default template for [`MainProcessPanel`](TTIVI_PLATFORM_API)s can be used b
 [`platform_frontend_api_template_compactprocesspanel`](TTIVI_PLATFORM_API).
 
 For More information about the process panel template. please check the
-[Anatomy](/tomtom-indigo/documentation/design/system-ui/main-process-panels#Anatomy) section in the
+[Anatomy](/tomtom-digital-cockpit/documentation/design/system-ui/main-process-panels#Anatomy) section in the
 _main process panels_ page.
 
 ##### Task process panel template
@@ -358,7 +358,7 @@ The default template for [`ModalPanel`](TTIVI_PLATFORM_API)s can be used by exte
 
 Instead of Android's [`Fragment`](https://developer.android.com/guide/fragments),
 [`IviFragment`](TTIVI_PLATFORM_API) is the base class for all fragments used by
-[`Frontend`](TTIVI_PLATFORM_API)s in TomTom IndiGO. Typically, [`IviFragment`](TTIVI_PLATFORM_API)s are
+[`Frontend`](TTIVI_PLATFORM_API)s in TomTom Digital Cockpit. Typically, [`IviFragment`](TTIVI_PLATFORM_API)s are
 responsible for creating a layout and linking it to a [`FrontendViewModel`](TTIVI_PLATFORM_API). It
 provides a helper class [`IviFragment`](TTIVI_PLATFORM_API)`.ViewFactory` that takes care of common
 tasks for creating a view, such as inflation, binding a lifecycle owner and `ViewModel` and

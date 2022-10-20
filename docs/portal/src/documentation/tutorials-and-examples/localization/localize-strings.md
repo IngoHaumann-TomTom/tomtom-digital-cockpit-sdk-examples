@@ -4,14 +4,14 @@ title: Localize Strings
 
 The [Android resource framework](https://developer.android.com/guide/topics/resources/providing-resources)
 provides [localization support](https://developer.android.com/guide/topics/resources/localization).
-On top of the standard Android resource framework, TomTom IndiGO provides additional tooling and
+On top of the standard Android resource framework, TomTom Digital Cockpit provides additional tooling and
 additional metadata to facilitate localization.
 
 ## Example application
 
 To try it out, see the
 [`examples/examples_localizestrings`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings)
-application. This example project uses the default frontends and services from the TomTom IndiGO
+application. This example project uses the default frontends and services from the TomTom Digital Cockpit
 platform and app suite. It also has the above mentioned Gradle plugin applied. Run:
 
 ```cmd
@@ -19,7 +19,7 @@ platform and app suite. It also has the above mentioned Gradle plugin applied. R
 ```
 
 The above command will download and extract all `strings.xml` files from modules in the artifact
-group `com.tomtom.uxstrings` used by the default frontends and services from the TomTom IndiGO
+group `com.tomtom.uxstrings` used by the default frontends and services from the TomTom Digital Cockpit
 platform and app suite. After running the above command, you can find the downloaded files in the
 `examples/localizestrings/app/build/string-sources` directory.
 
@@ -36,7 +36,7 @@ for the `Media` text in the menu bar:
   [`src/main/res/values-nl/strings.xml`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/localizestrings/app/src/main/res/values-nl/strings.xml#L3)
   is used when the Android language is set to Dutch, no matter which region.
 
-The British English version of the strings and the default value come included with the IndiGO
+The British English version of the strings and the default value come included with the Digital Cockpit
 platform, so these are not included in the example application.
 
 See [Localize string resources](#localize-string-resources) to provide additional localizations.
@@ -62,7 +62,7 @@ and [Testing localized apps](https://developer.android.com/guide/topics/resource
 
 ## Additional tooling and metadata to facilitate localization
 
-To facilitate (additional) localizations, TomTom IndiGO platform provides additional tooling
+To facilitate (additional) localizations, TomTom Digital Cockpit platform provides additional tooling
 to discover the strings used in the IVI system. For strings, that can be visible to the end user,
 additional metadata is provided to provide additional context. The context describes how the string
 is used and where.
@@ -144,7 +144,7 @@ have to publish the `strings.xml` files as part of their sources archive (`*-sou
 
 ### Additional metadata
 
-String resources defined in TomTom IndiGO, which are visible to the end user, have additional
+String resources defined in TomTom Digital Cockpit, which are visible to the end user, have additional
 metadata. This provides additional context per string resource to facilitate translations. For
 example:
 

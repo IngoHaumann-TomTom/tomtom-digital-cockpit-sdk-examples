@@ -2,7 +2,7 @@
 title: Add Support for Web App Launch Trigger
 ---
 
-TomTom IndiGO provides a means for app launching functionality to be triggered from an external
+TomTom Digital Cockpit provides a means for app launching functionality to be triggered from an external
 source, like an App Store, by providing an implementation for
 [`AppLaunchTriggerService`](TTIVI_PLATFORM_API). For example, when a third-party app store
 broadcasts an intent to launch an app, the implementation of this interface could observe such a
@@ -10,7 +10,7 @@ broadcast and trigger the launch functionality associated with that app type.
 
 In this example, we will continue where we left off after adding an implementation for
 [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) to support launching _web apps_ (see
-[`Add support for a custom non-Android app type`](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)),
+[`Add support for a custom non-Android app type`](/tomtom-digital-cockpit/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)),
 as adding app launch trigger for any [`App`](TTIVI_PLATFORM_API) type requires having an
 implementation for [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) for the same app type.
 

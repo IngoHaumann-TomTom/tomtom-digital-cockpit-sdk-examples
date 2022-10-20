@@ -2,11 +2,11 @@
 title: Home Panel
 ---
 
-The home panel is, by default, the bottom layer of the system UI in TomTom IndiGO. When the system 
+The home panel is, by default, the bottom layer of the system UI in TomTom Digital Cockpit. When the system 
 is started, or the user closes an application, this is the screen the user is greeted with. By 
-default, TomTom IndiGO serves the navigation experience as the home screen. This choice was made 
+default, TomTom Digital Cockpit serves the navigation experience as the home screen. This choice was made 
 because for many drivers navigation guidance is the primary on-screen task while driving, and 
-setting up a route is the first thing they do. Even when driving without a route, the TomTom IndiGO 
+setting up a route is the first thing they do. Even when driving without a route, the TomTom Digital Cockpit 
 navigation experience provides contextually relevant information about traffic delays and road 
 closures.
 
@@ -28,7 +28,7 @@ Currently, both map display and navigation are decoupled from the system UI and 
 through frontend plugins, like all other panels. The following example shows an alternative 
 approach to the home screen, where the most relevant information of different applications is 
 extracted into widgets. Currently we don't offer widgets, but is it possible to create them using 
-the custom panel types that are supported by TomTom IndiGO.
+the custom panel types that are supported by TomTom Digital Cockpit.
 
 ![example](images/home-panel/example.png)
 

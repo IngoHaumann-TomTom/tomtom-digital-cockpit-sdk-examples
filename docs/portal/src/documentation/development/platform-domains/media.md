@@ -4,7 +4,7 @@ layout: default
 ---
 
 Media plays an important part in users’ digital life and is the most used function of infotainment
-systems. This encompasses radio, music, podcasts, and audio books. TomTom IndiGO provides a way to
+systems. This encompasses radio, music, podcasts, and audio books. TomTom Digital Cockpit provides a way to
 browse and stream content from any audio source.
 
 Media sources (or sources) are apps that provide media content. Sources provide content in a
@@ -27,11 +27,11 @@ This document explains the structure of the media domain through the following m
 
 ## High-level overview
 
-The TomTom IndiGO Application Suite provides flexible architecture components to allow a wide range
+The TomTom Digital Cockpit Application Suite provides flexible architecture components to allow a wide range
 of media sources to be integrated, and to provide the end-user with a consistent user interface
 through which they can browse and play media.
 
-The following diagram shows a high-level overview of the architecture of media in TomTom IndiGO. It
+The following diagram shows a high-level overview of the architecture of media in TomTom Digital Cockpit. It
 displays the following components:
 - The media application frontend. This is the user interface.
 - The media service interface. This interface defines how a frontend (or potentially another
@@ -44,10 +44,10 @@ displays the following components:
 
 ### Android Automotive media ecosystem
 
-TomTom IndiGO hooks into the existing Android Automotive media ecosystem. All developers developing
+TomTom Digital Cockpit hooks into the existing Android Automotive media ecosystem. All developers developing
 a media app can develop their app in this standardized way. Many media apps on the market today,
 made for Android Automotive OS, already conform to this standard. Because of
-that, basic support for these apps is present in TomTom IndiGO. Advanced support can be added by
+that, basic support for these apps is present in TomTom Digital Cockpit. Advanced support can be added by
 [configuring the media application frontend](#configuring-the-media-application-frontend).
 
 The Android Automotive media standard is well documented. To familiarize with this topic, the
@@ -81,7 +81,7 @@ start and control media playback.
 
 ### Available off-the-shelf (or stock) components
 
-By default, the TomTom IndiGO platform offers a delightful user interface that provides a browsable
+By default, the TomTom Digital Cockpit platform offers a delightful user interface that provides a browsable
 hierarchy of media content which can be played and/or browsed from installed media sources.
 
 This user interface can be customized, expanded upon, and even replaced, to accommodate different
@@ -96,7 +96,7 @@ The off-the-shelf application frontend, the stock frontend, can be configured us
 If that is not sufficient, it is possible to completely replace the stock frontend and/or service
 with custom implementations. Similar to configuring the stock media frontend, outright replacement
 of the stock media frontend is done via a [`FrontendExtension`](TTIVI_PLATFORM_API). Check out the
-[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 page and the documentation for [`FrontendExtension`](TTIVI_PLATFORM_API) for more details on how to
 replace a stock frontend.
 
@@ -122,19 +122,19 @@ This diagram shows the most relevant components:
   different user interface for a source.
 
 These configurations are activated via a frontend plugin using Gradle configuration. The
-[How to create a frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[How to create a frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 guide explains this procedure.
 
 Some customization of the frontend can be achieved using the
 [media plugins configuration](#media-plugins-configuration), based on the
-[configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
+[configuration-framework](/tomtom-digital-cockpit/documentation/tutorials-and-examples/customization/use-the-configuration-framework).
 
 ### Media plugins configuration
 
 The media plugin default configuration can be changed by adding a custom configuration resource file
 in your application, such as `<module>/res/value/ttivi-media-configuration.xml`. The custom
 configuration overrides the default values. The
-[How to configure the media plugin](/tomtom-indigo/documentation/tutorials-and-examples/media/configure-the-media-plugins)
+[How to configure the media plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/media/configure-the-media-plugins)
 guide explains this procedure.
 
 ### Media library

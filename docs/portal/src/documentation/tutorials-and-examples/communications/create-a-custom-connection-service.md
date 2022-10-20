@@ -2,8 +2,8 @@
 title: Create a Custom Connection Service
 ---
 
-The TomTom IndiGO platform allows end-users to make phone calls using a Bluetooth-connected phone
-using the Bluetooth Hands Free Profile. TomTom IndiGO can be extended to support other
+The TomTom Digital Cockpit platform allows end-users to make phone calls using a Bluetooth-connected phone
+using the Bluetooth Hands Free Profile. TomTom Digital Cockpit can be extended to support other
 communications services such as VOIP (Voice Over Internet Protocol) calling or integrate an SDK of
 an online conference calling or messaging service and make and receive calls using the existing
 communications framework for these new services.
@@ -299,6 +299,6 @@ The instance of the `CustomConnectionService` is null.
 
 ## External links
 
-- TomTom IndiGO [`TelecomService`](TTIVI_PLATFORM_API).
+- TomTom Digital Cockpit [`TelecomService`](TTIVI_PLATFORM_API).
 - Android [`ConnectionService`](https://developer.android.com/reference/android/telecom/ConnectionService).
 

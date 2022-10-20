@@ -11,7 +11,7 @@ To create notifications, you need:
 - [`NotificationFragment`](TTIVI_PLATFORM_API)
 - [`NotificationViewModel`](TTIVI_PLATFORM_API)
 
-TomTom IndiGO provides clients different ways for the notification creation. You can either use:
+TomTom Digital Cockpit provides clients different ways for the notification creation. You can either use:
 
 - [`StockNotificationPanel`](TTIVI_PLATFORM_API) to create a notification;
 - or implement a [`NotificationPanel`](TTIVI_PLATFORM_API) yourself.

@@ -5,12 +5,12 @@ title: Configure the Media Plugins
 The off-the-shelf media plugin comes with default configuration. This configuration provides a
 default behavior, such as showing a mini player when music is playing. This configuration is based
 on the
-[configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
+[configuration-framework](/tomtom-digital-cockpit/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
 and can be changed if necessary. This guide explains this procedure.
 
 If you want to configure the media frontend plugin for specific media sources, you can follow
 this guide:
-[How to customize a media source](/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
+[How to customize a media source](/tomtom-digital-cockpit/documentation/tutorials-and-examples/media/customize-a-media-source).
 
 ## Media plugin default configuration
 

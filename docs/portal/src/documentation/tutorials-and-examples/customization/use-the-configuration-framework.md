@@ -2,9 +2,9 @@
 title: Use the Configuration Framework
 ---
 
-TomTom IndiGO supports customization on many levels, from configuration of functional features
+TomTom Digital Cockpit supports customization on many levels, from configuration of functional features
 to theming of the user interface. One form of customization is achieved through the use of the
-TomTom IndiGO configuration framework which can be used to specify, for example, API keys or
+TomTom Digital Cockpit configuration framework which can be used to specify, for example, API keys or
 configuration feature flags to toggle features on or off and other values that a component in the
 IVI system can use to configure itself at runtime.
 
@@ -30,7 +30,7 @@ generator and how to use these configurations in the application.
 
 ## Overview of the example application
 
-The example application adds the account frontend to the default TomTom IndiGO application. The
+The example application adds the account frontend to the default TomTom Digital Cockpit application. The
 account frontend adds new panels to show account information or a login page, which can be invoked
 by a menu item. The account status is managed by the accounts service. When the user is
 authenticated, the user name is stored in persistent storage by the accounts settings service, so
@@ -38,7 +38,7 @@ the user does not need to log in again after a restart of the application.
 The source code for the frontend and service can be found in the
 [`examples/plugin`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin)
 directory. See also
-[Create an IVI service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+[Create an IVI service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and the [`@IviService`](TTIVI_PLATFORM_API) annotation.
 
 To demonstrate usage of different configurations, the accounts service will use a static

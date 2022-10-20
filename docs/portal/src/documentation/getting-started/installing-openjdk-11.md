@@ -2,11 +2,11 @@
 title: Installing OpenJDK 11
 ---
 
-TomTom IndiGO is written in 
+TomTom Digital Cockpit is written in 
 [Kotlin](https://en.wikipedia.org/wiki/Kotlin_%28programming_language%29), which is designed to 
 fully interoperate with the 
 [Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine), by compiling to 
-[Java bytecode](https://en.wikipedia.org/wiki/Java_bytecode). TomTom IndiGO requires
+[Java bytecode](https://en.wikipedia.org/wiki/Java_bytecode). TomTom Digital Cockpit requires
 [OpenJDK 11 (Open Java Development Kit)](https://en.wikipedia.org/wiki/OpenJDK), which is a free 
 and open-source implementation of the Java Platform. Other OpenJDK versions may work, but have not 
 been tested and will not be supported by TomTom.
@@ -95,4 +95,4 @@ Open the downloaded `.msi` file, to install the JDK:
 ```
 
 __Next step:__ 
-[Accessing TomTom IndiGO SDK Example Sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources)
+[Accessing TomTom Digital Cockpit SDK Example Sources](/tomtom-digital-cockpit/documentation/getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources)

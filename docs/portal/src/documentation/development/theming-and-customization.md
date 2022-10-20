@@ -4,7 +4,7 @@ title: Theming and Customization
 
 ## Introduction
 
-TomTom IndiGO supports theming of the UI. This enables IVI systems built on top of TomTom IndiGO
+TomTom Digital Cockpit supports theming of the UI. This enables IVI systems built on top of TomTom Digital Cockpit
 to have a customized look and feel which is aligned with the branding, make or model of the
 vehicle and which is consistent across the entire system. It also allows the system to support
 runtime theme switching, enabling the possibility of allowing the end-user to change the look of
@@ -17,7 +17,7 @@ detail.
 
 ## How to Implement a Themable UI
 
-TomTom's IndiGO's theming mechanism makes use of
+TomTom's Digital Cockpit's theming mechanism makes use of
 [Android's stylable XML attributes](https://developer.android.com/training/custom-views/create-view#customattr)
 and [Android styles](https://developer.android.com/guide/topics/resources/style-resource). The
 rest of this guide assumes a basic understanding of these concepts.
@@ -88,20 +88,20 @@ is consistent __and__ changes consistently when the end-user changes the UI them
 To change the actual values of these attributes (and hence the look of the UI), see the section
 [Customizing the Built-In Themes](#customizing-the-built-in-themes)
 
-TomTom IndiGO also provides a
-[UI controls](/tomtom-indigo/documentation/development/ui-controls) library
+TomTom Digital Cockpit also provides a
+[UI controls](/tomtom-digital-cockpit/documentation/development/ui-controls) library
 consisting of a number of UI controls that extend what is available by default in Android. These
 also help with producing a themable UI and it is advised to use them where possible.
 
 ### Theme Attribute Naming Convention
 
-The built-in IndiGO themes are made up of a large number of styleable XML attributes.
+The built-in Digital Cockpit themes are made up of a large number of styleable XML attributes.
 These theme attributes follow a naming convention which help inform the developer of where they
 should be used. The naming convention of theme attributes follows the
 `prefix_what_where_which_quality_quantity` format. Taking color attributes as an example, the
 attribute names consist of:
 
-- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom IndiGO
+- `prefix`  for all attributes defined in `core_theme` this is `tt`. The prefix for TomTom Digital Cockpit
   specific component attributes, which are defined in
   [`platform_theming_api_common_attributes`](TTIVI_PLATFORM_API) is `ttivi`.
 - `what` determines the _background color_.
@@ -110,7 +110,7 @@ attribute names consist of:
 - `quality` represents the _type of emphasis_. Optional.
 - `quantity` determines the _level of emphasis_. Optional.
 
-In the [Color System](#color-system) section we'll explain how TomTom IndiGO classifies
+In the [Color System](#color-system) section we'll explain how TomTom Digital Cockpit classifies
 _background colors_ and _emphasis_, among other things, to achieve a coherent UI design.
 
 Some examples for color attributes are:
@@ -155,11 +155,11 @@ The common naming convention is applied for the following categories in the buil
 
 ## Customizing the Built-In Themes
 
-TomTom IndiGO comes with some pre-defined themes including a dark and a light theme. The theme can
+TomTom Digital Cockpit comes with some pre-defined themes including a dark and a light theme. The theme can
 be customized by deriving a new theme from the existing one and overriding the existing values
 of these attributes in the new theme.
 
-For example, to create new light and dark themes which are based on the build-in TomTom IndiGO
+For example, to create new light and dark themes which are based on the build-in TomTom Digital Cockpit
 themes, the following XML can be used:
 
 ```xml
@@ -179,7 +179,7 @@ All UI controls which use these attributes will get the defined value when the t
 
 ## The Theming System
 
-TomTom IndiGO's theming mechanism is heavily based on
+TomTom Digital Cockpit's theming mechanism is heavily based on
 [Android's theming approach](https://developer.android.com/guide/topics/ui/look-and-feel/themes),
 while additionally providing a means to switch themes at runtime through a service. The Android
 styles within the theme are applied to the context of the system UI. All the fragments hosted in the
@@ -204,14 +204,14 @@ available attributes are defined within the
 
 The `core_theme` is a _TomTomAndroidTools_ module which defines common theme attributes that can be
 used in various projects. The [`platform_theming_api_common_attributes`](TTIVI_PLATFORM_API) module,
-which extends `core_theme`, also defines extra theme attributes for TomTom IndiGO. You can customize
+which extends `core_theme`, also defines extra theme attributes for TomTom Digital Cockpit. You can customize
 the visual appearance of your product by providing the desired values of these attributes.
 
 ![Theming high-level diagram](images/theming-high-level-diagram.svg)
 
 If you want a look based on the TomTom UX design specification, you can use the
 `platform_theming_api_stock_theme`. This theme supports a light and a dark mode. The dark mode is
-the default one for TomTom IndiGO.
+the default one for TomTom Digital Cockpit.
 
 If you want a customized theme, you must add your own
 [`ThemeComponentProviderService`](TTIVI_PLATFORM_API) to provide the extra styles for the
@@ -267,7 +267,7 @@ The color system helps you to apply colors to your UI, including your brand colo
 hierarchy of information, give the correct meaning to UI elements, and meet legibility and contrast
 standards.
 
-The TomTom IndiGO color system is designed with a focus on: hierarchy, background colors,
+The TomTom Digital Cockpit color system is designed with a focus on: hierarchy, background colors,
 content colors, and emphasis.
 
 #### Hierarchy
@@ -376,7 +376,7 @@ has the responsibility to check this.
 First you need to define styleable attributes for a category. Next you can define a style for it,
 which will be used by an [`IviThemeComponent`](TTIVI_PLATFORM_API) later.
 
-Let's use an example to demonstrate the creation of a custom theme. TomTom IndiGO extends color
+Let's use an example to demonstrate the creation of a custom theme. TomTom Digital Cockpit extends color
 attributes like `tt_surface_content_color_emphasis_high` which are defined in `stock_theme`. It
 is defined like this:
 
@@ -398,7 +398,7 @@ And there is a default value for that color attribute in `stock_theme` as well:
 </resources>
 ```
 
-The TomTom IndiGO style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and
+The TomTom Digital Cockpit style `TtiviThemeColorStock` inherits from the style `TtThemeColorLight` and
 there you can define the value you want for your theme:
 
 ```xml

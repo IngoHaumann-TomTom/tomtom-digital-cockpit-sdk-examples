@@ -7,9 +7,9 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-group: tomtom-indigo
+group: tomtom-digital-cockpit
 isPrivate: false
-productName: TomTom IndiGO
+productName: TomTom Digital Cockpit
 menuTitle: API Reference
 isMenuOpened: true
 hasRequestAccess: true

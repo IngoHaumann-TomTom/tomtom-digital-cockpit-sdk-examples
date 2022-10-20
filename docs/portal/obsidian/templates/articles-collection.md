@@ -8,7 +8,7 @@
       body: "Snippet of article 1",
       button: {
         label: "Read more",
-        href: "/tomtom-indigo/documentation/introduction"
+        href: "/tomtom-digital-cockpit/documentation/introduction"
       }
     },
     {
@@ -16,7 +16,7 @@
       body: "Snippet of article 2",
       button: {
         label: "Read more",
-        href: "/tomtom-indigo/documentation/introduction"
+        href: "/tomtom-digital-cockpit/documentation/introduction"
       }
     },
   ]} 

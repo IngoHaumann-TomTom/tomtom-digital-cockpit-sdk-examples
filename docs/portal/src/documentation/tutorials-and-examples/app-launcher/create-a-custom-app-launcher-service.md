@@ -2,9 +2,9 @@
 title: Create a Custom App Launcher Service
 ---
 
-The TomTom IndiGO platform offers a stock implementation of an App Launcher service which provides
+The TomTom Digital Cockpit platform offers a stock implementation of an App Launcher service which provides
 the list of the device's currently installed third party Android apps, whilst also allowing these
-apps to be launched within TomTom IndiGO.
+apps to be launched within TomTom Digital Cockpit.
 
 The app launcher's Android app handling can be replaced with custom behavior. This may for example
 be required when:
@@ -28,9 +28,9 @@ services:
   from an external source, like an App Store.
 
 The following sections show how to perform these tasks:
-- [Replace the stock Android app support](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/replace-the-stock-android-app-support)
-- [Add support for a custom non-Android app type](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)
-- [Add support for web app launch trigger](/tomtom-indigo/documentation/tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger)
+- [Replace the stock Android app support](/tomtom-digital-cockpit/documentation/tutorials-and-examples/app-launcher/replace-the-stock-android-app-support)
+- [Add support for a custom non-Android app type](/tomtom-digital-cockpit/documentation/tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type)
+- [Add support for web app launch trigger](/tomtom-digital-cockpit/documentation/tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger)
 
 
 

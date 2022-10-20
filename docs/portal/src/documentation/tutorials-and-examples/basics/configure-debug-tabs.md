@@ -2,7 +2,7 @@
 title: Configure Debug Tabs
 ---
 
-The TomTom IndiGO distribution comes integrated with a non-user-facing feature useful for
+The TomTom Digital Cockpit distribution comes integrated with a non-user-facing feature useful for
 development: a debug menu. By default, it can be opened by long-pressing the `volume down` button,
 via the backtick ("\`") key, or via ADB with `adb shell input keyevent --longpress KEYCODE_GRAVE`.
 
@@ -59,7 +59,7 @@ ivi {
 ```
 
 For more information about panels, fragments, view models, and adding frontend extensions, see the
-[frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 how-to guide.
 
 ## Replacing debug tabs

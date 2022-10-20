@@ -1,15 +1,15 @@
 ---
 title: Create a Frontend Plugin
 ---
-For an introduction to frontend plugins in the TomTom IndiGO platform, see
-([Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins))
+For an introduction to frontend plugins in the TomTom Digital Cockpit platform, see
+([Frontend Plugins](/tomtom-digital-cockpit/documentation/development/frontend-plugins))
 
 ## Introduction <!-- omit in toc -->
 In this example, we will create a new frontend for managing an account on the device. It will
 provide a login screen where you can enter a username and a password to login, and if the user is
 logged in, you have the option to logout again. We will also add a menu item to the main menu that
 will be associated to the new frontend. The final step will be to let the new frontend replace
-TomTom IndiGO's user profile frontend.
+TomTom Digital Cockpit's user profile frontend.
 
 The source for this example can be found in the following directories in the examples source:
 - [`examples/plugin/app/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/plugin/app)
@@ -28,9 +28,9 @@ Creating a frontend and the menu item consists of a number of steps:
 - [More information](#more-information)
 
 For more information on all the classes and APIs,
-[see the API reference documentation](/tomtom-indigo/api-reference/api-reference).
+[see the API reference documentation](/tomtom-digital-cockpit/api-reference/api-reference).
 
-All the code snippets in this guide can also be found in the TomTom IndiGO example application.
+All the code snippets in this guide can also be found in the TomTom Digital Cockpit example application.
 
 ### Creating the frontend class
 
@@ -137,7 +137,7 @@ internal class AccountLoginViewModel(panel: AccountLoginPanel) :
 
 Finally create a `Fragment` class, derived from [`IviFragment`](TTIVI_PLATFORM_API) and using the
 newly created `Panel` and `ViewModel` classes, overriding the `viewFactory` property. The
-TomTom IndiGO platform is designed to work well with the MVVM pattern, and this is used in the
+TomTom Digital Cockpit platform is designed to work well with the MVVM pattern, and this is used in the
 `onCreateView` callback as a convenience to inflate a data binding layout and using that in the
 fragment. If an `onCreateView` custom implementation still is preferred, the `viewFactory` property
 can be left as null instead.
@@ -219,7 +219,7 @@ val accountMenuItem = accountFrontend.toMenuItem("accountMenuItem")
 
 The above build configurations use the `ExampleModuleReference` to resolve a module name into
 the full-qualified package. It is defined once and used for all configurations. See
-[Integrate TomTom IndiGO into a Gradle Project](/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom Digital Cockpit into a Gradle Project](/tomtom-digital-cockpit/documentation/tutorials-and-examples/setup/integrate-tomtom-digital-cockpit-into-a-gradle-project#module-references)
 for details.
 
 ### Registering the frontend and menu item build config
@@ -240,8 +240,8 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.MenuItemC
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
-    // Apply the plugin to use default frontends and services from TomTom IndiGO Platform
-    // and from all TomTom IndiGO Applications (from appsuite).
+    // Apply the plugin to use default frontends and services from TomTom Digital Cockpit Platform
+    // and from all TomTom Digital Cockpit Applications (from appsuite).
     id("com.tomtom.ivi.product.defaults.core")
 }
 
@@ -287,10 +287,10 @@ ivi {
 The above example adds the `accountFrontend` and the `accountMenuItem` to the default IVI
 instance. A vehicle may have multiple infotainment screens. Each infotainment screen is an IVI
 instance. See
-[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[Configure the Runtime Deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for more details about IVI instance configurations.
 
-The final step is to let the new frontend replace TomTom IndiGO's user profile frontend. For this
+The final step is to let the new frontend replace TomTom Digital Cockpit's user profile frontend. For this
 we have to use `replace` instead of `add`. The same applies for the user profile menu item.
 
 Modify the
@@ -307,7 +307,7 @@ import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 plugins {
     // Apply the Gradle plugin to define the default frontends, menu items and services from
-    // TomTom IndiGO Platform and from all TomTom IndiGO Applications (from the appsuite). The
+    // TomTom Digital Cockpit Platform and from all TomTom Digital Cockpit Applications (from the appsuite). The
     // default frontends, menu items and services are defined in groups. The groups are applied
     // to the IVI application configuration below.
     id("com.tomtom.ivi.product.defaults.core")
@@ -331,12 +331,12 @@ ivi {
                 // `com.tomtom.ivi.platform.defaults.core` Gradle plugin.
                 applyGroups { includeDefaultGroups() }
 
-                // Replace TomTom IndiGO's user profile frontend with the `accountFrontend`.
+                // Replace TomTom Digital Cockpit's user profile frontend with the `accountFrontend`.
                 frontends {
                     replace(userProfileFrontend, accountFrontend)
                 }
 
-                // Replace TomTom IndiGO's user profile menu item with the `accountMenuItem`
+                // Replace TomTom Digital Cockpit's user profile menu item with the `accountMenuItem`
                 // and associate it with the `accountFrontend`.
                 menuItems {
                     replace(userProfileMenuItem, accountMenuItem to accountFrontend)
@@ -356,6 +356,6 @@ the `userProfileMenuItem` with the `accountMenuItem`.
 ## More information
 
 For information on how to call the [`@IviServiceApi`](TTIVI_PLATFORM_API) members from
-[Frontend Plugins](/tomtom-indigo/documentation/development/frontend-plugins)
+[Frontend Plugins](/tomtom-digital-cockpit/documentation/development/frontend-plugins)
 refer to section
-[Calling service methods](/tomtom-indigo/documentation/development/ivi-services#calling-service-methods).
+[Calling service methods](/tomtom-digital-cockpit/documentation/development/ivi-services#calling-service-methods).

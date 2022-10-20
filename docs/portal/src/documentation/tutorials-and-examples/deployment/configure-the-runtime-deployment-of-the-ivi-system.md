@@ -3,9 +3,9 @@ title: Configure the Runtime Deployment of the IVI System
 ---
 
 Android allows the running of Android services in processes separate from the main
-application/activity process(es). The TomTom IndiGO platform uses Android services for IVI service
+application/activity process(es). The TomTom Digital Cockpit platform uses Android services for IVI service
 hosts and therefore it is possible to isolate the IVI service host instances too, see
-[IVI Services](/tomtom-indigo/documentation/development/ivi-services) for more details about IVI
+[IVI Services](/tomtom-digital-cockpit/documentation/development/ivi-services) for more details about IVI
 service hosts. The main advantage of process isolation is that when a process unexpectedly crashes
 (and restarts), this only affects the service host instances running in that process and not all
 other services and does not affect the UI.

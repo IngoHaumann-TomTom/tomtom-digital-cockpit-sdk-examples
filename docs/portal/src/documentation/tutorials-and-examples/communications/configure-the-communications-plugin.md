@@ -5,7 +5,7 @@ title: Configure the Communications Plugin
 The off-the-shelf communications plugin comes with a default configuration. This configuration
 provides a default behavior, such as closing the frontend when making an outgoing call. This
 configuration is based on the
-[configuration-framework](/tomtom-indigo/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
+[configuration-framework](/tomtom-digital-cockpit/documentation/tutorials-and-examples/customization/use-the-configuration-framework)
 and can be changed if necessary. This guide explains how to make such changes.
 
 For a code example, see the

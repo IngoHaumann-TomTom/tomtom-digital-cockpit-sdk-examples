@@ -3,9 +3,9 @@ title: Configuration Framework
 layout: default
 ---
 
-TomTom IndiGO supports customization on many levels, from configuration of functional features
+TomTom Digital Cockpit supports customization on many levels, from configuration of functional features
 to theming of the user interface. One form of customization is achieved through the use of the
-TomTom IndiGO configuration framework which can be used to specify, for example, API keys or
+TomTom Digital Cockpit configuration framework which can be used to specify, for example, API keys or
 configuration feature flags to toggle features on or off and other values that a component in the
 IVI system can use to configure itself at runtime.
 
@@ -21,7 +21,7 @@ and their values can change while the system is running. For example, they can s
 which the user can set to a different value while using the system. Dynamic configurations keep
 hold of the full history of default values. This allows an existing setting value to be updated from
 any previous version to the latest suitable value in a compatible way. See also
-[Settings framework](/tomtom-indigo/documentation/development/platform-domains/settings-framework).
+[Settings framework](/tomtom-digital-cockpit/documentation/development/platform-domains/settings-framework).
 
 Every module may use static configurations directly via a static configuration provider,
 or access settings via settings services. Dynamic configurations can be used by settings services
@@ -114,7 +114,7 @@ See the API reference documentation of
 
 ## Configuration providers setup
 
-The default TomTom IndiGO application uses
+The default TomTom Digital Cockpit application uses
 [`ResourceStaticConfigurationProvider`](TTIVI_PLATFORM_API) for static configurations and
 [`JsonDynamicConfigurationProvider`](TTIVI_PLATFORM_API) for dynamic configurations. This behavior
 is defined in [`IviApplication`](TTIVI_PLATFORM_API) and can be changed by overriding the

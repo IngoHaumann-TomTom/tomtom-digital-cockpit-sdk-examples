@@ -2,12 +2,12 @@
 title: Create a New Media User Interface
 ---
 
-The TomTom IndiGO Application Suite provides a default user interface (UI). This user interface
+The TomTom Digital Cockpit Application Suite provides a default user interface (UI). This user interface
 might not be suitable for a media app (also called "media source"), when it does not conform to the
 typical organization of content, or when their offered content can not be liberally browsed or
 played or controlled.
 Such sources would look disappointing or completely unusable in the default user interface from the
-TomTom IndiGO Application Suite.
+TomTom Digital Cockpit Application Suite.
 
 A few examples of media apps which are not suitable for the default user interface:
 
@@ -23,13 +23,13 @@ A few examples of media apps which are not suitable for the default user interfa
 If such drastic customizations are not necessary, for example if the only needs are fixing up how
 the content from a media app is displayed to the user, or to add an icon to perform an action
 specific to that app, using the default media user interface should be preferred and
-[appropriately customized](/tomtom-indigo/documentation/tutorials-and-examples/media/customize-a-media-source).
+[appropriately customized](/tomtom-digital-cockpit/documentation/tutorials-and-examples/media/customize-a-media-source).
 
-For this guide, knowledge of the TomTom IndiGO
+For this guide, knowledge of the TomTom Digital Cockpit
 [`appsuite_media_api_common_core`](TTIVI_PLATFORM_API) and
 [`appsuite_media_api_common_frontend`](TTIVI_PLATFORM_API) modules will greatly help. In the
-[media overview](/tomtom-indigo/documentation/development/platform-domains/media),
-more details can be found over the Android Automotive Media framework and how TomTom IndiGO uses it.
+[media overview](/tomtom-digital-cockpit/documentation/development/platform-domains/media),
+more details can be found over the Android Automotive Media framework and how TomTom Digital Cockpit uses it.
 
 ## Concepts
 
@@ -44,7 +44,7 @@ This user interface will be a new panel. A panel is composed by three classes: a
 [`FrontendViewModel`](TTIVI_PLATFORM_API), potentially using data binding; an
 [`IviFragment`](TTIVI_PLATFORM_API) defining the Android fragment and creating the instance of the
 view model. Please refer to the
-[frontend plugin guide](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[frontend plugin guide](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 to get started.
 
 This user interface will use a specialization of the base user interface panel type

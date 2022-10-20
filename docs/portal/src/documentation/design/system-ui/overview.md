@@ -4,7 +4,7 @@ title: Overview
 
 ## Overview
 
-The system UI defines the layout of the system on a displayed level in TomTom IndiGO, along with its
+The system UI defines the layout of the system on a displayed level in TomTom Digital Cockpit, along with its
 rules and behaviors. The system UI decides when to show which panel and defines the container 
 to place these panels in. Frontends expose panels, which the system UI processes and presents when 
 appropriate. Panels have many use-cases. This is not limited to opening panels when pressing a menu 
@@ -24,7 +24,7 @@ approaches to customizing it are available.
 
 <Blockquote>
     It is also possible to create Custom panel types. A custom panel is currently not shown in 
-    the layering, but it is supported by TomTom IndiGO.
+    the layering, but it is supported by TomTom Digital Cockpit.
 </Blockquote>
 
 ![anatomy](images/overview/anatomy.png)

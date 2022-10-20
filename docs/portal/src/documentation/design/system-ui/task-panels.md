@@ -27,7 +27,7 @@ stack.
 
 The compact process panel UI template can also be used 
 [outside the process panel](#task-panel-alongside-the-task-process-panel-layout).
-For example, the TomTom IndiGO media application uses it to have UI consistency between the Mini Player main process panel and Now Playing task process panel. 
+For example, the TomTom Digital Cockpit media application uses it to have UI consistency between the Mini Player main process panel and Now Playing task process panel. 
 
 ![process panel](images/task-panels/process-panel.png)
 

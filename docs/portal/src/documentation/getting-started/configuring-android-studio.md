@@ -4,7 +4,7 @@ title: Configuring Android Studio
 
 To install the Android Studio IDE, follow the instructions from the
 [official Android guide](https://developer.android.com/studio/install).
-For TomTom IndiGO the recommended version is Android Studio version `Chipmunk | 2021.2.1` or newer.
+For TomTom Digital Cockpit the recommended version is Android Studio version `Chipmunk | 2021.2.1` or newer.
 
 ![Android Studio Splash screen](images/android_studio_splash_screen.png)
 
@@ -24,17 +24,17 @@ plugin:
 ![Upgrade Gradle Plugin](images/android_studio_upgrade_gradle_plugin.png)
 
 <Blockquote type="warning" hasIcon>
-    <b>Ignore this upgrade!</b> The TomTom IndiGO build files specify the exact version of the
-    plugin that is needed. The upgrade by Android Studio would change the TomTom IndiGO build files
+    <b>Ignore this upgrade!</b> The TomTom Digital Cockpit build files specify the exact version of the
+    plugin that is needed. The upgrade by Android Studio would change the TomTom Digital Cockpit build files
     into using a wrong and hard-coded version of this plugin.
 </Blockquote>
 
 ## Building with Android Studio
 
 This section explains how to configure Android Studio for building the
-[TomTom IndiGO template app](/tomtom-indigo/documentation/platform-overview/example-apps)
+[TomTom Digital Cockpit template app](/tomtom-digital-cockpit/documentation/platform-overview/example-apps)
 and the
-[TomTom IndiGO example apps](/tomtom-indigo/documentation/tutorials-and-examples/overview#example-applications).
+[TomTom Digital Cockpit example apps](/tomtom-digital-cockpit/documentation/tutorials-and-examples/overview#example-applications).
 
 Install Android 11 (R) SDK:
 
@@ -47,7 +47,7 @@ Install Android 11 (R) SDK:
 
 ![Android Studio SDK Manager Android 11](images/android_studio_sdk_manager_android_11.png)
 
-Now open the TomTom IndiGO example app project:
+Now open the TomTom Digital Cockpit example app project:
 
 - In the `Welcome to Android Studio` dialog, select `Open`.
 
@@ -56,7 +56,7 @@ Now open the TomTom IndiGO example app project:
 - When this dialog does not show, you can open the project via `File` > `Open`.
 
 - From your local clone of the
-  [TomTom IndiGO Example sources](/tomtom-indigo/documentation/getting-started/accessing-tomtom-indigo-sdk-example-sources),
+  [TomTom Digital Cockpit Example sources](/tomtom-digital-cockpit/documentation/getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources),
   select the top-level `build.gradle.kts` file, and click `OK`.
 
 - Android Studio may show a popup `Trust Gradle Project?`, on which you must click the `Trust
@@ -96,4 +96,4 @@ License for package Android SDK Build-Tools 30.0.2 not accepted.
 ```
 
 
-__Next step:__ [The TomTom IndiGO Emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator)
+__Next step:__ [The TomTom Digital Cockpit Emulator](/tomtom-digital-cockpit/documentation/getting-started/the-tomtom-digital-cockpit-emulator)

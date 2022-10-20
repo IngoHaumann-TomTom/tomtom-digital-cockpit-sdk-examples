@@ -3,10 +3,10 @@ title: Customize the Alexa Car Control Feature
 ---
 
 <Blockquote type="announcement" hasIcon>
-    <a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating/integrating-amazon-alexa">
+    <a href="https://developer.tomtom.com/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa">
         Additional requirements
     </a>
-    &nbsp;exist for using Amazon Alexa in your TomTom IndiGO product.
+    &nbsp;exist for using Amazon Alexa in your TomTom Digital Cockpit product.
 </Blockquote>
 
 One of the Alexa Auto features that will most likely need customizations for your own vehicle
@@ -16,20 +16,20 @@ that allows users to use Alexa to voice-control vehicle features.
 A full description of the Car Control module and its features is available in the
 [Alexa Auto documentation](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/car-control).
 
-TomTom IndiGO offers a stock implementation of a `CarControl` handler service, aimed at
+TomTom Digital Cockpit offers a stock implementation of a `CarControl` handler service, aimed at
 controlling heating, ventilation, and air-conditioning (HVAC) of the vehicle by interacting with the
 [VehicleHvacService](TTIVI_PLATFORM_API).
 
 To allow an OEM to customize the stock Car Control service implementation (or completely replace
-it), the TomTom IndiGO platform offers the possibility of implementing an Alexa handler service for
+it), the TomTom Digital Cockpit platform offers the possibility of implementing an Alexa handler service for
 the `CarControl` topic. For more information on how to create a custom Alexa handler service, see
 the
-[Create a Custom Alexa Handler Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service)
+[Create a Custom Alexa Handler Service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service)
 tutorial.
 
 ## Example app
 
-The TomTom IndiGO SDK comes with an example Alexa app. See directory
+The TomTom Digital Cockpit SDK comes with an example Alexa app. See directory
 [`examples/alexa`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa).
 The app includes an example
 [`CustomCarControlHandlerService`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler),
@@ -54,7 +54,7 @@ Alternatively, you can set this Gradle property from the command-line:
 
 Additionally, you will need to register your own Alexa product with Amazon and obtain a set of Alexa
 IDs, as explained on the
-[Register your Alexa product with Amazon](/tomtom-indigo/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
+[Register your Alexa product with Amazon](/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
 page.
 
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:
@@ -76,9 +76,9 @@ The following sections describe how to create a custom Car Control handler servi
 ### Create a minimal Custom Car Control handler service module
 
 Follow the steps in
-[Create a service implementation module](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#create-a-service-implementation-module)
+[Create a service implementation module](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#create-a-service-implementation-module)
 to create the initial `CustomCarControl` handler service module and in
-[Implement the Alexa Handler service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#implement-the-alexa-handler-service)
+[Implement the Alexa Handler service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#implement-the-alexa-handler-service)
 to implement a minimal `CustomCarControlHandlerService` implementation.
 
 ### Define a custom Car Control configuration
@@ -88,7 +88,7 @@ Alexa for control by the user. More details can be found on the
 [Configuring the Car Control Module](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/car-control/#configuring-the-car-control-module)
 page.
 
-The stock TomTom IndiGO Alexa Car Control service dynamically generates a Car Control configuration
+The stock TomTom Digital Cockpit Alexa Car Control service dynamically generates a Car Control configuration
 for a number of endpoints, based on information retrieved from the
 [VehicleHvacService](TTIVI_PLATFORM_API):
 - Air Conditioning
@@ -100,7 +100,7 @@ for a number of endpoints, based on information retrieved from the
 
 It's possible to extend this stock Car Control configuration with additional endpoints, to handle
 voice control of other vehicle features. The custom Car Control configuration will be merged with
-the stock Car Control configuration by the TomTom IndiGO platform.
+the stock Car Control configuration by the TomTom Digital Cockpit platform.
 
 To define a custom Car Control configuration:
 
@@ -233,7 +233,7 @@ To define and use custom assets:
 
 Once you have configured your `CustomCarControlHandlerService`, you can implement parsing and
 handling of the CarControl AASB JSON messages, as explained in
-[Parsing AASB messages](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#parsing-aasb-messages).
+[Parsing AASB messages](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#parsing-aasb-messages).
 
 You will need to perform different actions on your vehicle devices, depending on the type of message
 you receive:
@@ -256,15 +256,15 @@ these different types of messages.
 ### Deploy your custom Car Control handler service
 
 Follow the steps in
-[Create a service host](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#create-a-service-host)
+[Create a service host](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#create-a-service-host)
 and
-[Configure the service host deployment](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#configure-the-service-host-deployment)
+[Configure the service host deployment](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service#configure-the-service-host-deployment)
 to deploy the custom Car Control handler service in your application.
 
 ## References
 
-- TomTom IndiGO [AlexaHandlerService](TTIVI_PLATFORM_API)
+- TomTom Digital Cockpit [AlexaHandlerService](TTIVI_PLATFORM_API)
 - [Alexa Auto Car Control Module](https://alexa.github.io/alexa-auto-sdk/docs/explore/features/car-control)
 - [Alexa Auto Car Control AASB Reference](https://alexa.github.io/alexa-auto-sdk/docs/aasb/car-control/CarControl)
 - [Automotive Catalog of Assets](https://github.com/alexa/alexa-auto-sdk/blob/master/modules/car-control/assets/assets-1P.json)
-- [Create a Custom Alexa Handler Service](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service)
+- [Create a Custom Alexa Handler Service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service)

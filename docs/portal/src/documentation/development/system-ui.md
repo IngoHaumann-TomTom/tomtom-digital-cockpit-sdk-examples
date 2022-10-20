@@ -2,29 +2,29 @@
 title: System UI
 ---
 
-Like everything in TomTom IndiGO, its user interface (UI) also consists of plugins:
-[_frontend_ plugins](/tomtom-indigo/documentation/development/frontend-plugins). They expose
-[panels](/tomtom-indigo/documentation/development/frontend-plugins#Panel) which contain a visual
+Like everything in TomTom Digital Cockpit, its user interface (UI) also consists of plugins:
+[_frontend_ plugins](/tomtom-digital-cockpit/documentation/development/frontend-plugins). They expose
+[panels](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Panel) which contain a visual
 user interface for the functionality within the frontend's domain. These panels can be seen as
 pieces of the complete user interface. To enable a high degree of flexibility within the TomTom
-IndiGO framework, there is no direct coupling between different frontends or their panels, allowing
+Digital Cockpit framework, there is no direct coupling between different frontends or their panels, allowing
 plugins to be independently added, removed, or replaced.
 
-Even though frontends are not coupled, TomTom IndiGO presents the frontend panels to users in a
+Even though frontends are not coupled, TomTom Digital Cockpit presents the frontend panels to users in a
 cohesive way. The _system UI_ is a plugin that decides when to show which panel and defines the
 containers to place the panels in. In common usage, each `Activity` uses a single system UI instance
-in its content view; TomTom IndiGO provides [`IviActivity`](TTIVI_PLATFORM_API) that does just that.
+in its content view; TomTom Digital Cockpit provides [`IviActivity`](TTIVI_PLATFORM_API) that does just that.
 Different system UIs can be used per display, hosted in multiple or a single `Activity`.
 
-TomTom IndiGO provides a system UI for the
-[_off-the-shelf_ or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+TomTom Digital Cockpit provides a system UI for the
+[_off-the-shelf_ or _stock_](/tomtom-digital-cockpit/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 implementation. It is built on top of the system UI interface and provides the customer an out of
 the box experience. Alternatively, the customer can replace the off-the-shelf frontend and services
 with their own implementations.
 
 ## The Model-View-ViewModel pattern (MVVM) used in the system UI
 
-Similarly to how [frontends](/tomtom-indigo/documentation/development/frontend-plugins) follow the
+Similarly to how [frontends](/tomtom-digital-cockpit/documentation/development/frontend-plugins) follow the
 [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern, so does the
 system UI. In this pattern:
 
@@ -37,7 +37,7 @@ system UI. In this pattern:
 The model contains the information that the system UI presents in the view. It consists of the
 complete set of panels exposed by the set of frontends. Each system UI instance can have a different
 set of frontends, depending on the _IVI instance_ that it represents; see
-[runtime deployment](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[runtime deployment](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for more information on multiple IVI instances. Frontends decide internally when to expose a certain
 panel and when to close it. Common situations where a frontend opens a panel include:
 
@@ -79,7 +79,7 @@ The view inflates an Android layout and populates it using the information of th
 exposes an Android [`View`](https://developer.android.com/reference/android/view/View) which can be
 integrated in an [`Activity`](https://developer.android.com/reference/android/app/Activity),
 [`VirtualDisplay`](https://developer.android.com/reference/android/hardware/display/VirtualDisplay),
-or any place where TomTom IndiGO should be presented.
+or any place where TomTom Digital Cockpit should be presented.
 
 In order to visualize panels, it asks the panel for an Android
 [`Fragment`](https://developer.android.com/reference/androidx/fragment/app/Fragment). This fragment is
@@ -100,7 +100,7 @@ their contents. This low coupling allows both the system UI and the other plugin
 differently per product.
 
 It is important however, that the system UI and the frontends integrate neatly. To achieve this, the
-TomTom IndiGO framework provides a set of contracts in the form of interfaces and classes, that
+TomTom Digital Cockpit framework provides a set of contracts in the form of interfaces and classes, that
 allow a basic level of interaction between the system UI and frontends.
 
 The majority of these contracts are defined in
@@ -128,11 +128,11 @@ look. In this example, the [`StockSystemUiHost`](TTIVI_PLATFORM_API) defines a l
 the following visible containers:
 
 - A container on the left for the
-  [main menu](/tomtom-indigo/documentation/development/frontend-plugins#Main-menu-panel).
+  [main menu](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Main-menu-panel).
 - A container on the bottom for the
-  [control center](/tomtom-indigo/documentation/development/frontend-plugins#Control-center-panels).
-- A container at the top for the [search](/tomtom-indigo/documentation/development/frontend-plugins#Search-panel).
-- A container as the background for the [navigation](/tomtom-indigo/documentation/development/frontend-plugins#Home-panel).
+  [control center](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Control-center-panels).
+- A container at the top for the [search](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Search-panel).
+- A container as the background for the [navigation](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Home-panel).
 
 ![System UI overview image](images/system-ui-overview.png)
 
@@ -141,7 +141,7 @@ the following visible containers:
 And it also defines containers which are only visible when necessary
 
 - The notification container.
-  [Notifications](/tomtom-indigo/documentation/development/frontend-plugins#Notification-panels) are
+  [Notifications](/tomtom-digital-cockpit/documentation/development/frontend-plugins#Notification-panels) are
   triggered when events, like phone calls or messages, occur in the system. This container becomes
   visible when such an event occurs. Notifications will be added to this container and displayed as
   a list. A notification with a higher priority will be displayed above other notifications with
@@ -213,4 +213,4 @@ interact with it to view previously suppressed notifications.
 
 ## See also
 
-All of TomTom IndiGO's [UI controls](/tomtom-indigo/documentation/development/ui-controls).
+All of TomTom Digital Cockpit's [UI controls](/tomtom-digital-cockpit/documentation/development/ui-controls).

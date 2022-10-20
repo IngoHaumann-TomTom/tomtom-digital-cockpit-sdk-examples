@@ -76,10 +76,10 @@ together to achieve a common goal.
     are run.
 </Blockquote>
 
-## Running TomTom IndiGO tests
+## Running TomTom Digital Cockpit tests
 
 All types of tests, except unit tests, need an Android device to run;
-launch [an emulator](/tomtom-indigo/documentation/getting-started/the-tomtom-indigo-emulator) if no
+launch [an emulator](/tomtom-digital-cockpit/documentation/getting-started/the-tomtom-digital-cockpit-emulator) if no
 physical device is available. The tests will only run on a rooted device, which can be achieved by
 running `adb root` before executing any of the Gradle commands below. All these commands are
 performed in the project's root directory:

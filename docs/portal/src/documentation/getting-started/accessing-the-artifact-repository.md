@@ -3,11 +3,11 @@ title: Accessing the Artifact Repository
 ---
 
 When you provided the
-[signed Evaluation Agreement](https://developer.tomtom.com/tomtom-indigo/documentation/getting-started/introduction),
+[signed Evaluation Agreement](https://developer.tomtom.com/tomtom-digital-cockpit/documentation/getting-started/introduction),
 you would have received the credentials to access the
-[TomTom IndiGO Nexus repository](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Fplatform),
+[TomTom Digital Cockpit Nexus repository](https://repo.tomtom.com/#browse/browse:ivi:com%2Ftomtom%2Fivi%2Fplatform),
 a binary repository hosted by TomTom. The build process needs these credentials to retrieve TomTom
-IndiGO platform dependencies from the repository.
+Digital Cockpit platform dependencies from the repository.
 
 These credentials can be passed to the build process in several ways:
 
@@ -50,4 +50,4 @@ __Windows:__
 ```
 
 __Next step:__
-[Configuring Android Studio](/tomtom-indigo/documentation/getting-started/configuring-android-studio)
+[Configuring Android Studio](/tomtom-digital-cockpit/documentation/getting-started/configuring-android-studio)

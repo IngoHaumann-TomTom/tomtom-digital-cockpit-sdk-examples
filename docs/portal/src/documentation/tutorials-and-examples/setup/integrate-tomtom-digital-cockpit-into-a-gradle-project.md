@@ -1,17 +1,17 @@
 ---
-title: Integrate TomTom IndiGO into a Gradle Project
+title: Integrate TomTom Digital Cockpit into a Gradle Project
 ---
 
-This pages contains the steps required to integrate the TomTom IndiGO platform into an existing
-Android Gradle project. If you are new to TomTom IndiGO, our recommendation is to use the examples
+This pages contains the steps required to integrate the TomTom Digital Cockpit platform into an existing
+Android Gradle project. If you are new to TomTom Digital Cockpit, our recommendation is to use the examples
 as a starting point, as these already cover the steps described on this page. Use the steps on this
-page as a reference to integrate the TomTom IndiGO platform into an existing / newly created Android
+page as a reference to integrate the TomTom Digital Cockpit platform into an existing / newly created Android
 Gradle project. These steps assume a basic level of experience with setting up Gradle build files
 using Kotlin.
 
 ## Maven repositories
 
-Gradle will need to be able to download TomTom IndiGO platform dependencies from TomTom's Maven
+Gradle will need to be able to download TomTom Digital Cockpit platform dependencies from TomTom's Maven
 repositories, for which login credentials are required. These can be obtained from TomTom.
 
 Access to these repositories can be configured in Gradle as follows:
@@ -24,7 +24,7 @@ pluginManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom IndiGO's Nexus repository.
+        // TomTom Digital Cockpit's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =
@@ -46,7 +46,7 @@ dependencyResolutionManagement {
         // Local artifact cache.
         mavenLocal()
 
-        // TomTom IndiGO's Nexus repository.
+        // TomTom Digital Cockpit's Nexus repository.
         maven("https://repo.tomtom.com/repository/ivi") {
             credentials {
                 username =
@@ -84,8 +84,8 @@ apply(from = "../build-logic/repositories.gradle.kts")
 
 ## Dependency management
 
-The TomTom IndiGO platform publishes a version catalog which you can use to ensure your product
-uses the same versions as used by the TomTom IndiGO platform.
+The TomTom Digital Cockpit platform publishes a version catalog which you can use to ensure your product
+uses the same versions as used by the TomTom Digital Cockpit platform.
 
 [`build-logic/ividependencies.versioncatalog.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build-logic/ividependencies.versioncatalog.gradle.kts#L30-L40)
 
@@ -98,14 +98,14 @@ dependencyResolutionManagement {
         create("iviDependencies") {
             val group = "com.tomtom.ivi.platform"
             val artifact = "dependencies-catalog"
-            val version = "<TOMTOM-INDIGO-VERSION>"
+            val version = "<TOMTOM-DIGITAL-COCKPIT-VERSION>"
             from("${group}:${artifact}:${version}")
         }
     }
 }
 ```
 
-Replace the `<TOMTOM-INDIGO-VERSION>` with the TomTom IndiGO version you want to use, in format
+Replace the `<TOMTOM-DIGITAL-COCKPIT-VERSION>` with the TomTom Digital Cockpit version you want to use, in format
 `x.y.z`.
 
 Next, apply this file in the top-level `settings.gradle.kts` file and `buildSrc/settings.gradle.kts`
@@ -113,8 +113,8 @@ files.
 
 ## BuildSrc dependencies
 
-The TomTom IndiGO platform provides Gradle plugins for the build-time configuration of the TomTom
-IndiGO platform. This allows you to, for example, include all of IndiGO's default frontends in your
+The TomTom Digital Cockpit platform provides Gradle plugins for the build-time configuration of the TomTom
+Digital Cockpit platform. This allows you to, for example, include all of Digital Cockpit's default frontends in your
 product. To allow these Gradle plugins to be used in the Gradle projects, it is required to add them
 as `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
 
@@ -122,7 +122,7 @@ as `implementation` dependencies to the `buildSrc`. The following adds these dep
 
 ```kotlin
 dependencies {
-    val iviPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val iviPlatformVersion = "<TOMTOM-DIGITAL-COCKPIT-VERSION>"
 
     // Mandatory: Plugin to configure the IVI application at build-time.
     implementation("com.tomtom.ivi.platform.gradle:api_framework_config:$iviPlatformVersion")
@@ -130,7 +130,7 @@ dependencies {
     // Optional: Plugin for versioning the APK based on the Git repository information.
     implementation("com.tomtom.ivi.platform.gradle:api_tools_version:$iviPlatformVersion")
 
-    // Optional: Plugin to use the default frontends and services from the TomTom IndiGO platform
+    // Optional: Plugin to use the default frontends and services from the TomTom Digital Cockpit platform
     // and app suite.
     implementation("com.tomtom.ivi.product.gradle:api_productdefaults_core:$iviPlatformVersion")
 
@@ -160,7 +160,7 @@ plugins {
 }
 ```
 
-In the same file, configure the TomTom IndiGO platform dependency source.
+In the same file, configure the TomTom Digital Cockpit platform dependency source.
 
 [`build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/build.gradle.kts#L71-L74)
 
@@ -171,16 +171,16 @@ ivi {
 }
 ```
 
-## Integrating TomTom IndiGO platform into the APK
+## Integrating TomTom Digital Cockpit platform into the APK
 
-To integrate the TomTom IndiGO platform into an APK, you can add the following to the
+To integrate the TomTom Digital Cockpit platform into an APK, you can add the following to the
 build file of the project that builds the APK:
 
 [`my_project/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/alexa/app/build.gradle.kts#L18-L22)
 
 ```kotlin
 plugins {
-    // Optional: To use the default frontends and services from the TomTom IndiGO platform
+    // Optional: To use the default frontends and services from the TomTom Digital Cockpit platform
     // and app suite.
     id("com.tomtom.ivi.product.defaults.core")
     // Optional: Add a non-default frontend.
@@ -196,10 +196,10 @@ ivi {
 
 The Gradle plugin applied in this example `id("com.tomtom.ivi.product.defaults.core")`
 configures all the default frontends, frontend extensions, menu items and IVI service hosts from the
-TomTom IndiGO platform and app suite for the default runtime deployment. Unless defined otherwise
+TomTom Digital Cockpit platform and app suite for the default runtime deployment. Unless defined otherwise
 all default components are enabled in the `ivi` `application`.
 
-If you only want to apply defaults from the TomTom IndiGO platform without the appsuite default, you
+If you only want to apply defaults from the TomTom Digital Cockpit platform without the appsuite default, you
 can achieve this by only applying the platform Gradle
 plugin: `id("com.tomtom.ivi.platform.defaults.core")`.
 
@@ -290,51 +290,51 @@ androidComponents {
 }
 ```
 
-### Customization of TomTom IndiGO platform and appsuite default frontends and services
+### Customization of TomTom Digital Cockpit platform and appsuite default frontends and services
 
 The Gradle plugin applied in the example above `id("com.tomtom.ivi.product.defaults.core")`
 enables all the default frontends, frontend extensions, menu items and IVI service hosts from the
-TomTom IndiGO platform and app suite for default runtime deployment.
+TomTom Digital Cockpit platform and app suite for default runtime deployment.
 
-If you only want to apply defaults from the TomTom IndiGO platform without the appsuite default, you
+If you only want to apply defaults from the TomTom Digital Cockpit platform without the appsuite default, you
 can achieve this by only applying the `id("com.tomtom.ivi.platform.defaults.core")` Gradle plugin.
-Additionally, if you want to include a selection of the TomTom IndiGO Applications, you can apply
-the Gradle plugin for each individual TomTom IndiGO Application.
+Additionally, if you want to include a selection of the TomTom Digital Cockpit Applications, you can apply
+the Gradle plugin for each individual TomTom Digital Cockpit Application.
 
 To allow these Gradle plugins to be used in the Gradle projects, it is required to add them as
 `implementation` dependencies to the `buildSrc`. The following adds these dependencies:
 
 ```kotlin
 dependencies {
-    val iviPlatformVersion = "<TOMTOM-INDIGO-VERSION>"
+    val iviPlatformVersion = "<TOMTOM-DIGITAL-COCKPIT-VERSION>"
 
-    // Optional: Plugin to configure in the default frontends and services from the TomTom IndiGO platform.
+    // Optional: Plugin to configure in the default frontends and services from the TomTom Digital Cockpit platform.
     implementation("com.tomtom.ivi.platform.gradle:api_defaults_core:$iviPlatformVersion")
 
-    // Optional: Plugin to configure in the defaults from Media TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Media TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.media:api_appsuitedefaults_media:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Communications TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Communications TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.communications:api_appsuitedefaults_communications:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from User Profiles TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from User Profiles TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.userprofiles:api_appsuitedefaults_userprofiles:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Vehicle Settings TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Vehicle Settings TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.vehiclesettings:api_appsuitedefaults_vehiclesettings:$iviPlatformVersion")
 
-    // Optional: Plugin to configure in the defaults from App Store TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from App Store TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.appstore:api_appsuitedefaults_appstore:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Bluetooth TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Bluetooth TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.bluetooth:api_appsuitedefaults_bluetooth:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Companion TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Companion TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.companionapp:api_appsuitedefaults_companionapp:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Hvac TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Hvac TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.hvac:api_appsuitedefaults_hvac:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Messaging TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Messaging TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.messaging:api_appsuitedefaults_messaging:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Navigation TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Navigation TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.navigation:api_appsuitedefaults_navigation:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from System Status TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from System Status TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.systemstatus:api_appsuitedefaults_systemstatus2:$iviPlatformVersion")
-    // Optional: Plugin to configure in the defaults from Vpa TomTom IndiGO Application.
+    // Optional: Plugin to configure in the defaults from Vpa TomTom Digital Cockpit Application.
     implementation("com.tomtom.ivi.appsuite.gradle.vpa:api_appsuitedefaults_vpa:$iviPlatformVersion")
 }
 ```
@@ -343,34 +343,34 @@ And then, apply necessary plugins in the `build.gradle.kts` of the project that 
 
 ```kotlin
 plugins {
-    // Optional: To use the default frontends and services from the TomTom IndiGO platform only.
+    // Optional: To use the default frontends and services from the TomTom Digital Cockpit platform only.
     // This plugin should be always applied first, before the rest of the `defaults` plugins.
     id("com.tomtom.ivi.platform.defaults.core")
 
-    // Optional: To configure in the defaults from Media TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Media TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.media.defaults.media")
-    // Optional: To configure in the defaults from Communications TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Communications TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.communications.defaults.communications")
-    // Optional: To configure in the defaults from User Profiles TomTom IndiGO Application.
+    // Optional: To configure in the defaults from User Profiles TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.userprofiles.defaults.userprofiles")
-    // Optional: To configure in the defaults from Vehicle Settings TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Vehicle Settings TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.vehiclesettings.defaults.vehiclesettings")
 
-    // Optional: To configure in the defaults from App Store TomTom IndiGO Application.
+    // Optional: To configure in the defaults from App Store TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.appstore.defaults.appstore")
-    // Optional: To configure in the defaults from Bluetooth TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Bluetooth TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.bluetooth.defaults.bluetooth")
-    // Optional: To configure in the defaults from Companion App TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Companion App TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.companionapp.defaults.companionapp")
-    // Optional: To configure in the defaults from Hvac TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Hvac TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.hvac.defaults.hvac")
-    // Optional: To configure in the defaults from Messaging TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Messaging TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.messaging.defaults.messaging")
-    // Optional: To configure in the defaults from Navigation TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Navigation TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.navigation.defaults.navigation")
-    // Optional: To configure in the defaults from System Status TomTom IndiGO Application.
+    // Optional: To configure in the defaults from System Status TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.systemstatus.defaults.systemstatus")
-    // Optional: To configure in the defaults from Vpa TomTom IndiGO Application.
+    // Optional: To configure in the defaults from Vpa TomTom Digital Cockpit Application.
     id("com.tomtom.ivi.appsuite.vpa.defaults.vpa")
 }
 ```

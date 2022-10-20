@@ -3,15 +3,15 @@ title: IVI Services
 ---
 
 An IVI system is made up of IVI services which can provide a UI or another service with information.
-TomTom IndiGO services provide a mechanism to encapsulate longer running tasks and business logic
+TomTom Digital Cockpit services provide a mechanism to encapsulate longer running tasks and business logic
 for some distinct functionality in the platform. They don't contain a User Interface (UI) of their
 own and can run in the background for a long time, matching the platform lifetime if required.
 
-## TomTom IndiGO system
+## TomTom Digital Cockpit system
 
-A TomTom IndiGO based IVI system is deployed as a single Android application that includes all the
+A TomTom Digital Cockpit based IVI system is deployed as a single Android application that includes all the
 functionality of the product. The User Interface (UI) of the application is built using TomTom
-IndiGO [frontend plugins](/tomtom-indigo/documentation/development/frontend-plugins), and are created to
+Digital Cockpit [frontend plugins](/tomtom-digital-cockpit/documentation/development/frontend-plugins), and are created to
 display something on the screen. They are subsequently destroyed when content disappears from the
 screen. Frontend plugins UI interaction must run on a single thread (_the UI thread_), as dictated
 by the Android platform. Whereas IVI services should contain functionality that does not need to
@@ -21,7 +21,7 @@ in separate processes, therefore IVI service implementations may as well run in 
 
 ### Discoverable services
 
-In a deployed TomTom IndiGO product, a _discoverable service_ can have any number of implementations
+In a deployed TomTom Digital Cockpit product, a _discoverable service_ can have any number of implementations
 (whereas a non _discoverable service_ can only have one implementation of each service interface).
 Clients of a discoverable service interface can discover all the implementations. This allows the
 adding of many implementations of a defined interface. An example of this is a
@@ -30,14 +30,14 @@ messaging technology.
 
 ### Android services
 
-TomTom IndiGO services hosts are built on
+TomTom Digital Cockpit services hosts are built on
 [Android Services](https://developer.android.com/guide/components/services), and use the same
 mechanisms, but hide some of the details of the Android service implementation. For example, you
 define the interface to a service directly in Kotlin, and to communicate with it there is no need
 to provide an `IBinder`, use a `Messenger`, or define an AIDL interface. In addition, the binding
 is done automatically, and the service is ready to use when the `serviceReady` flag has been set.
 
-By default, Android services run in the main thread in the main process, whereas an TomTom IndiGO
+By default, Android services run in the main thread in the main process, whereas an TomTom Digital Cockpit
 service by default starts and runs in a different process.
 
 As service hosts are using the Android Binder framework to transfer data, they have the same
@@ -60,7 +60,7 @@ that is, as long as any of the `lifecyleOwner` passed to `createApi` is active.
 
 ## How does it work?
 
-The TomTom IndiGO build system generates multiple classes and methods from the service interface
+The TomTom Digital Cockpit build system generates multiple classes and methods from the service interface
 definition based on the annotated interfaces. They all get generated in the same package as the
 service interface, these classes include an abstract base class for the service host
 implementation, client's API, and the service IPC logic.
@@ -159,7 +159,7 @@ suspend fun coExampleMethod(...): <ReturnType>
 ```
 
 Once the service has set itself ready to be used, the client can directly call the APIs. The following
-example is using a TomTom IndiGO utility method to call the API once the service is available.
+example is using a TomTom Digital Cockpit utility method to call the API once the service is available.
 
 ```kotlin
 import com.tomtom.ivi.platform.framework.api.ipc.iviservice.queueOrRun
@@ -179,10 +179,10 @@ services for this interface.
 ## More information
 
 For more details on how to create a IVI service, see the
-[Create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+[Create an IVI Service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 page, and for more details on how to create a frontend, see the
-[Create a Frontend Plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
+[Create a Frontend Plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)
 page.
 See
-[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[Configure the Runtime Deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for information about how to deploy IVI services.

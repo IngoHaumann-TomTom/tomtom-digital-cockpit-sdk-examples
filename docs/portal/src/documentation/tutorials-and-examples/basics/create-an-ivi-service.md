@@ -13,10 +13,10 @@ frontends. Such services may suit as a model for a frontend.
 
 ## Overview of the example application
 
-The example application replaces TomTom IndiGO's user profile frontend with the account frontend.
+The example application replaces TomTom Digital Cockpit's user profile frontend with the account frontend.
 The account frontend adds new panels to show account information or a login page, which can be
 invoked by a menu item (see
-[frontend plugin](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)).
+[frontend plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-a-frontend-plugin)).
 Account status is managed by the accounts service. The source code for the frontend and service can
 be found in the following directories in the example app source:
 
@@ -178,7 +178,7 @@ interface AccountsService {
 ```
 
 If you want to use an IVI data source, follow the
-[use an IVI data source](/tomtom-indigo/documentation/tutorials-and-examples/basics/use-an-ivi-data-source)
+[use an IVI data source](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/use-an-ivi-data-source)
 tutorial.
 
 __Note:__ `IviDataSource` is an experimental API.
@@ -382,7 +382,7 @@ val accountsServiceHost =
 
 The service host build configuration uses the `ExampleModuleReference` class to resolve a module
 name into the fully-qualified package. It is defined once and used for all configurations. See
-[Integrate TomTom IndiGO into a Gradle Project](/tomtom-indigo/documentation/tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project#module-references)
+[Integrate TomTom Digital Cockpit into a Gradle Project](/tomtom-digital-cockpit/documentation/tutorials-and-examples/setup/integrate-tomtom-digital-cockpit-into-a-gradle-project#module-references)
 for details.
 
 Register the service host build configuration in the main application's build script.

@@ -3,13 +3,13 @@ title: Create a Custom Alexa Handler Service
 ---
 
 <Blockquote type="announcement" hasIcon>
-    <a href="https://developer.tomtom.com/tomtom-indigo/documentation/integrating/integrating-amazon-alexa">
+    <a href="https://developer.tomtom.com/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa">
         Additional requirements
     </a>
-    &nbsp;exist for using Amazon Alexa in your TomTom IndiGO product.
+    &nbsp;exist for using Amazon Alexa in your TomTom Digital Cockpit product.
 </Blockquote>
 
-The TomTom IndiGO platform offers a stock implementation of a VPA Adaptation service for the Alexa
+The TomTom Digital Cockpit platform offers a stock implementation of a VPA Adaptation service for the Alexa
 Auto VPA, provided by the stock Alexa service.
 This service interacts with the Alexa engine by exchanging asynchronous JSON-based messages with
 the Alexa Auto Client Service (AACS) application. More information about the AACS is available in
@@ -25,7 +25,7 @@ implementation. For details about the AASB messages, see the
 and the [AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
 pages.
 
-The stock Alexa service of TomTom IndiGO already implements message handlers for many of the topics
+The stock Alexa service of TomTom Digital Cockpit already implements message handlers for many of the topics
 offered by Alexa Auto, namely:
 
 - AddressBook
@@ -53,22 +53,22 @@ The responsibility of a message handler is:
 - To send "Publish" AASB messages to AACS, for example, to send a request to Alexa or to report an
   event.
 
-Some topics, though, are device-specific and cannot be implemented as part of the TomTom IndiGO
+Some topics, though, are device-specific and cannot be implemented as part of the TomTom Digital Cockpit
 platform. The [AlexaHandlerService](TTIVI_PLATFORM_API) is a
-[discoverable IVI service](/tomtom-indigo/documentation/development/ivi-services#discoverable-services)
+[discoverable IVI service](/tomtom-digital-cockpit/documentation/development/ivi-services#discoverable-services)
 interface that can be implemented by an OEM to fulfill one of these purposes:
-- handle topics that are not supported by the TomTom IndiGO platform.
-- extend or replace some of the existing stock TomTom IndiGO platform message handlers. Currently,
-  the only stock TomTom IndiGO platform message handlers that can be extended or replaced with an
+- handle topics that are not supported by the TomTom Digital Cockpit platform.
+- extend or replace some of the existing stock TomTom Digital Cockpit platform message handlers. Currently,
+  the only stock TomTom Digital Cockpit platform message handlers that can be extended or replaced with an
   `AlexaHandlerService` implementation are the `CarControl` and the `Navigation` handlers.
   For example, you might want to add support for switching the Cabin Light in the vehicle on and
-  off: this is a setting that Alexa Auto supports, but for which the TomTom IndiGO platform's
+  off: this is a setting that Alexa Auto supports, but for which the TomTom Digital Cockpit platform's
   CarControl message handler doesn't have built-in support. You could then add this functionality by
   implementing an [AlexaHandlerService](TTIVI_PLATFORM_API).
 
 ## Example app
 
-The TomTom IndiGO SDK comes with an example app showing how to include Alexa in your product and add
+The TomTom Digital Cockpit SDK comes with an example app showing how to include Alexa in your product and add
 custom Alexa handler services. See the
 [`examples/alexa`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa)
 directory.
@@ -90,7 +90,7 @@ Alternatively, you can set this Gradle property from the command-line:
 
 Additionally, you will need to register your own Alexa product with Amazon and obtain a set of Alexa
 IDs, as explained on the
-[Register your Alexa product with Amazon](/tomtom-indigo/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
+[Register your Alexa product with Amazon](/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon)
 page.
 
 Once you have your own set of Alexa IDs, you can configure the Alexa example app:
@@ -117,14 +117,14 @@ The example app includes 2 examples of custom Alexa handler services:
   shows how to define custom CarControl endpoints and assets, as well as how to handle user requests
   such as "Turn on the light", "Increase the light brightness" or "Switch on my custom device".
   More details about customizing the Alexa Car Control feature are available in the
-  [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
+  [Customize the Alexa Car Control Feature](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
   tutorial.
 
 ## How to create a custom Alexa Handler service
 
 The following sections describe how to create a custom Alexa Handler service implementation.
 
-The IndiGO Alexa example app shows two implementations of such a service, a
+The Digital Cockpit Alexa example app shows two implementations of such a service, a
 [custom car control handler](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa/customcarcontrolhandler)
 and a
 [custom equalizer control handler](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa/customequalizercontrollerhandler).
@@ -186,7 +186,7 @@ The Alexa Handler service can be implemented by defining a class (for example,
 and implements the methods defined in the [AlexaHandlerService](TTIVI_PLATFORM_API) interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [AlexaHandlerService](TTIVI_PLATFORM_API) API reference
+TomTom Digital Cockpit platform. Please refer to the [AlexaHandlerService](TTIVI_PLATFORM_API) API reference
 documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method. For example:
@@ -229,7 +229,7 @@ More information on the format of the AASB messages is available in the
 [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)
 page.
 
-Whenever the TomTom IndiGO platform receives a JSON AASB message from the Alexa Auto Client Service
+Whenever the TomTom Digital Cockpit platform receives a JSON AASB message from the Alexa Auto Client Service
 which matches with the topic configured in the service implementation, the
 [AlexaHandlerService](TTIVI_PLATFORM_API).`onMessageReceived` method is called.
 
@@ -511,8 +511,8 @@ ivi {
 
 ## References
 
-- TomTom IndiGO [AlexaHandlerService](TTIVI_PLATFORM_API)
-- TomTom IndiGO [Customize the Alexa Car Control Feature](/tomtom-indigo/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
+- TomTom Digital Cockpit [AlexaHandlerService](TTIVI_PLATFORM_API)
+- TomTom Digital Cockpit [Customize the Alexa Car Control Feature](/tomtom-digital-cockpit/documentation/tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature)
 - [Alexa Auto Client Service (AACS)](https://alexa.github.io/alexa-auto-sdk/docs/android/aacs/)
 - [Alexa Auto AASB message interfaces](https://github.com/alexa/alexa-auto-sdk/blob/4.0/modules/core/README.md#aasb-message-interfaces)
 - [Alexa Auto AASB message definitions](https://alexa.github.io/alexa-auto-sdk/docs/aasb/)

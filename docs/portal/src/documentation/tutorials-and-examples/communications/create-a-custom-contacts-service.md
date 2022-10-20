@@ -235,7 +235,7 @@ override suspend fun getImage(contactId: ContactId): Bitmap? {
 
 ## External links
 
-- TomTom IndiGO [`ContactsService`](TTIVI_PLATFORM_API).
+- TomTom Digital Cockpit [`ContactsService`](TTIVI_PLATFORM_API).
 - Android [`Contacts provider`](https://developer.android.com/guide/topics/providers/contacts-provider).
 
 

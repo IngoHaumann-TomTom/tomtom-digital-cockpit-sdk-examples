@@ -155,7 +155,7 @@ class, and implements the methods defined in the [`AppSourceProviderService`](TT
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
+TomTom Digital Cockpit platform. Please refer to the [`AppSourceProviderService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 The properties can be set by overriding the `onCreate()` method.
@@ -375,12 +375,12 @@ class, and implements the methods defined in the [`AppLaunchHandlerService`](TTI
 interface.
 
 The service implementation needs to set a number of properties for configuring itself with the
-TomTom IndiGO platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
+TomTom Digital Cockpit platform. Please refer to the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) API
 reference documentation for detailed information on these properties.
 
 In this example we will launch the _web app_ in the default browser app, whereas in production, it
 would be expected to launch the _web app_ within a
-[`WebView`](https://developer.android.com/reference/android/webkit/WebView) within a TomTom IndiGO
+[`WebView`](https://developer.android.com/reference/android/webkit/WebView) within a TomTom Digital Cockpit
 panel.
 
 The properties can be set by overriding the `onCreate()` method.

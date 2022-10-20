@@ -37,7 +37,7 @@ Follow these steps to install the TomTom Digital Cockpit emulator image in Andro
   - Name: `TomTom Digital Cockpit - Artifact Repository`
   - URL: `https://repo.tomtom.com/`
   - Tick `Use Authentication`, enter your TomTom
-    [repository credentials](/tomtom-indigo/documentation/getting-started/introduction)
+    [repository credentials](/tomtom-digital-cockpit/documentation/getting-started/introduction)
     and click `OK`.
 
 - __Note__ the `s` in `https://`, because Android Studio proposes a default URL as `http://`.
@@ -168,4 +168,4 @@ Android Virtual Device (AVD) with it:
 ![TomTom Digital Cockpit Home Screen](images/tomtom-digital-cockpit-home-screen.png)
 
 __Next step:__
-[Accessing the Map Data](/tomtom-indigo/documentation/getting-started/accessing-the-map-data)
+[Accessing the Map Data](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-map-data)

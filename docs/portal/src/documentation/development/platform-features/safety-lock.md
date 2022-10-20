@@ -9,7 +9,7 @@ considered unsafe for the driver to be typing, and so a frontend that allows tex
 its input field when safety lock is enabled.
 
 Safety lock can be configured per
-[_IVI instance_](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system),
+[_IVI instance_](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system),
 allowing safety lock to be enabled on the driver display without impacting passenger displays. This
 allows frontend plugins to remain agnostic as to whether the display is for a driver or passenger
 and simply use the service information as provided.
@@ -103,21 +103,21 @@ kilometers an hour.
 
 To change the stock behaviour, the service plugin `safetyLockServiceHost` can be replaced with a
 custom one, implemented as seen fit. The pages
-[Create an IVI Service](/tomtom-indigo/documentation/tutorials-and-examples/basics/create-an-ivi-service)
+[Create an IVI Service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service)
 and
-[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[Configure the Runtime Deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 describe this in further detail.
 
 ## Safety lock static configuration
 
 As explained in the introduction, the safety lock service is configured per _IVI instance_, see also
-[Configure the Runtime Deployment of the IVI System](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system).
+[Configure the Runtime Deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system).
 
 In addition, it is also possible to specify how the safety lock impacts the user experience.
 For example, while driving it is commonly considered unsafe for the driver to be typing,
 and therefore, a frontend that allows text input may disable its input when the safety lock is
 enabled. It is possible to configure this restriction by changing the safety lock static
-configuration, see also [Configuration Framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework).
+configuration, see also [Configuration Framework](/tomtom-digital-cockpit/documentation/development/platform-domains/configuration-framework).
 
 The safety lock default configuration is defined as a resource file that contains configuration
 keys and their values. The following keys and values are defined by default:

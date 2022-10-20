@@ -7,9 +7,9 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-group: tomtom-indigo
+group: tomtom-digital-cockpit
 isPrivate: false
-productName: TomTom IndiGO
+productName: TomTom Digital Cockpit
 menuTitle: Documentation
 isMenuOpened: true
 hasRequestAccess: true
@@ -22,8 +22,8 @@ menu:
         title: Documentation
   - title: Platform Overview
     items:
-      - fileId: /platform-overview/what-is-tomtom-indigo
-        title: What is TomTom IndiGO?
+      - fileId: /platform-overview/what-is-tomtom-digital-cockpit
+        title: What is TomTom Digital Cockpit?
       - fileId: /platform-overview/example-apps
         title: Example Apps
   - title: Getting Started
@@ -32,20 +32,20 @@ menu:
         title: Introduction
       - fileId: /getting-started/installing-openjdk-11
         title: Installing OpenJDK 11
-      - fileId: /getting-started/accessing-tomtom-indigo-sdk-example-sources
-        title: Accessing TomTom IndiGO SDK Example Sources
+      - fileId: /getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources
+        title: Accessing TomTom Digital Cockpit SDK Example Sources
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
-      - fileId: /getting-started/the-tomtom-indigo-emulator
-        title: The TomTom IndiGO Emulator
+      - fileId: /getting-started/the-tomtom-digital-cockpit-emulator
+        title: The TomTom Digital Cockpit Emulator
       - fileId: /getting-started/accessing-the-map-data
         title: Accessing the Map Data
       - fileId: /getting-started/the-debug-menu
         title: The Debug Menu
-      - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-indigo
-        title: Upgrade to a Newer Version of TomTom IndiGO
+      - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-digital-cockpit
+        title: Upgrade to a Newer Version of TomTom Digital Cockpit
       - fileId: /getting-started/additional-resources
         title: Additional Resources
       - fileId: /getting-started/frequently-asked-questions-faq
@@ -127,8 +127,8 @@ menu:
         title: Introduction
       - fileId: /integrating/integration-into-a-vehicle
         title: Integration into a Vehicle
-      - fileId: /integrating/installing-tomtom-indigo-on-hardware
-        title: Installing TomTom IndiGO on Hardware
+      - fileId: /integrating/installing-tomtom-digital-cockpit-on-hardware
+        title: Installing TomTom Digital Cockpit on Hardware
       - fileId: /integrating/flashing-the-reference-hardware
         title: Flashing the Reference Hardware
       - fileId: /integrating/companion-application
@@ -141,8 +141,8 @@ menu:
         title: Overview
       - title: Setup
         items:
-          - fileId: /tutorials-and-examples/setup/integrate-tomtom-indigo-into-a-gradle-project
-            title: Integrate TomTom IndiGO into a Gradle Project
+          - fileId: /tutorials-and-examples/setup/integrate-tomtom-digital-cockpit-into-a-gradle-project
+            title: Integrate TomTom Digital Cockpit into a Gradle Project
           - fileId: /tutorials-and-examples/setup/configure-an-app-store
             title: Configure an App Store
       - title: Basics

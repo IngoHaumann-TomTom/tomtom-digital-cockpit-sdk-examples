@@ -3,7 +3,7 @@ title: Voice Personal Assistant (VPA)
 layout: default
 ---
 
-TomTom IndiGO allows the integration of one or more 3rd-party voice engines in one product, to support
+TomTom Digital Cockpit allows the integration of one or more 3rd-party voice engines in one product, to support
 Voice Personal Assistants (VPAs) in the vehicle.
 A generalized interface enables the customer to speak commands and reply to system queries by voice.
 For example, the user can ask the system to make a phone call or find a nearby hospital by talking
@@ -15,23 +15,23 @@ or "earcon"). A good glossary providing definitions for most of these terms is t
 
 ## High-level overview
 
-As explained in the introduction above, TomTom IndiGO can support one or more VPAs in one product.
-Below is the high-level design of the Multi-VPA Architecture in TomTom IndiGO.
+As explained in the introduction above, TomTom Digital Cockpit can support one or more VPAs in one product.
+Below is the high-level design of the Multi-VPA Architecture in TomTom Digital Cockpit.
 
 ![VPA domain high-level overview image](images/vpa_domain-high-level-overview.svg)
 
 The diagram shows the most relevant components in this architecture:
 
-- _TomTom IndiGO platform (VPA adaptations)_: Specific VPA implementations typically provide their
+- _TomTom Digital Cockpit platform (VPA adaptations)_: Specific VPA implementations typically provide their
   engine in the form of a library in an SDK. To abstract the VPA-specific APIs away, each VPA has an
   associated Adaptation Service whose job is to interface directly with the VPA engine.
-  All other components in TomTom IndiGO communicate with the VPA engine via the Adaptation
+  All other components in TomTom Digital Cockpit communicate with the VPA engine via the Adaptation
   Service.<br/>
-  Currently, TomTom IndiGO offers an off-the-shelf implementation of a VPA Adaptation service for
+  Currently, TomTom Digital Cockpit offers an off-the-shelf implementation of a VPA Adaptation service for
   the Alexa Auto VPA, provided by the off-the-shelf Alexa service, and plans to offer a second
   implementation that will provide an abstraction for the Cerence Assistant VPA.<br/>
-  __Note:__ Alexa Auto is available as part of TomTom IndiGO upon approval by TomTom and Amazon. To
-  request TomTom IndiGO's implementation for Alexa Auto please contact your local sales
+  __Note:__ Alexa Auto is available as part of TomTom Digital Cockpit upon approval by TomTom and Amazon. To
+  request TomTom Digital Cockpit's implementation for Alexa Auto please contact your local sales
   representative.
 
 - _[`VpaMediatorService`](TTIVI_PLATFORM_API)_: This is a platform service whose role is to ensure
@@ -56,7 +56,7 @@ The diagram shows the most relevant components in this architecture:
 - _VPA frontends_: The application frontends for the VPAs. More information on the typical features
   provided by a VPA frontend can be found in section
   [Implementing a custom VPA frontend](#implementing-a-custom-vpa-frontend).<br/>
-  Currently, TomTom IndiGO offers an off-the-shelf implementation of a frontend, the Alexa frontend,
+  Currently, TomTom Digital Cockpit offers an off-the-shelf implementation of a frontend, the Alexa frontend,
   designed to be used with the Alexa Auto VPA. This frontend has multiple responsibilities:
 
   - Showing the current state of the dialogue with the Alexa Auto VPA using the Alexa-branded
@@ -68,7 +68,7 @@ The diagram shows the most relevant components in this architecture:
 
 ## Implementing a custom VPA frontend
 
-The TomTom IndiGO application suite provides an off-the-shelf Alexa frontend as well as a simple
+The TomTom Digital Cockpit application suite provides an off-the-shelf Alexa frontend as well as a simple
 generic VPA frontend that shows how to build a frontend for a second VPA.
 
 As explained in the previous section, the most important service that should be used by a VPA

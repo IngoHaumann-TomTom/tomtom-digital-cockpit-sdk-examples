@@ -3,8 +3,8 @@ title: Settings Framework
 layout: default
 ---
 
-The settings framework allows cross-application settings to be shared between TomTom IndiGO
-services and frontends in TomTom IndiGO. TomTom IndiGO components can store them persistently and
+The settings framework allows cross-application settings to be shared between TomTom Digital Cockpit
+services and frontends in TomTom Digital Cockpit. TomTom Digital Cockpit components can store them persistently and
 change their values.
 
 Modules access settings via setting services that offer type-safe and domain-specific interfaces to
@@ -18,7 +18,7 @@ persistent key-value storage. It provides [settings services](#settings-service)
 type-safe and domain-specific interface to a settings management service.
 
 The
-[_off-the-shelf_, or _stock_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components)
+[_off-the-shelf_, or _stock_](/tomtom-digital-cockpit/documentation/development/introduction#off-the-shelf-components-or-stock-components)
 IVI frontends and IVI services use settings services to manage their settings.
 
 ![Settings framework high-level overview image](images/settings_framework-high-level-overview.svg)
@@ -56,7 +56,7 @@ type of a setting value. Available setting key subtypes are:
 
 A setting key consists of a setting scope [`SettingScope`](TTIVI_PLATFORM_API) and a setting
 identifier. The setting scope defines whether a setting has a value per user profile, see
-[User Profiles](/tomtom-indigo/documentation/development/platform-domains/user-profiles)
+[User Profiles](/tomtom-digital-cockpit/documentation/development/platform-domains/user-profiles)
 for details regarding user profiles, or is relevant to the entire application, regardless of the
 active user profile, for more details regarding user profiles.
 
@@ -100,14 +100,14 @@ update the stored settings to the current scheme.
 A settings service gets the default values and update strategies, required to create or update
 settings, from the dynamic configuration provider `dynamicConfigurationProvider` of the
 [`IviSettingsServiceBase`](TTIVI_PLATFORM_API) class. Also see the
-[Configuration framework](/tomtom-indigo/documentation/development/platform-domains/configuration-framework).
+[Configuration framework](/tomtom-digital-cockpit/documentation/development/platform-domains/configuration-framework).
 
 __Note:__ A settings service may also use the static configuration provider
 `staticConfigurationProvider`.
 
 ### Settings service declaration
 
-Like [any IVI service](/tomtom-indigo/documentation/development/ivi-services), a settings service
+Like [any IVI service](/tomtom-digital-cockpit/documentation/development/ivi-services), a settings service
 implements an IVI service interface; see [`IviService`](TTIVI_PLATFORM_API). The difference is that
 the interface only contains properties annotated with the [`@IviSetting`](TTIVI_PLATFORM_API)
 annotation. Clients may access the service using the service API instance, created with
@@ -250,5 +250,5 @@ To reduce IPC load, a settings service and the IVI service that uses it can be d
 the same process.
 
 See the documentation for
-[IVI service deployment](/tomtom-indigo/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
+[IVI service deployment](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system)
 for details.

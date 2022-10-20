@@ -1,13 +1,13 @@
 ---
-title: What is TomTom IndiGO?
+title: What is TomTom Digital Cockpit?
 ---
 
-TomTom IndiGO is a framework to develop Android-based digital cockpits. It includes an application
+TomTom Digital Cockpit is a framework to develop Android-based digital cockpits. It includes an application
 platform to support the development of highly integrated applications on top of Android
 Automotive. It also offers a complete set of industrial strength end-user applications, that can
 be customized to the needs of any car maker.
 
-TomTom IndiGO offers a fully customizable system UI, which allows applications to work together in
+TomTom Digital Cockpit offers a fully customizable system UI, which allows applications to work together in
 a more integrated way than the standard Android application-switching system UI does. Individual
 applications are not just visually seamlessly integrated, they work together to provide
 a single, consistent, cohesive and task-oriented user experience for the end-user, without moving
@@ -15,38 +15,38 @@ from one app to another.
 
 ## Off-the-shelf included components
 
-TomTom IndiGO comes standard with a comprehensive set of automotive grade services and
+TomTom Digital Cockpit comes standard with a comprehensive set of automotive grade services and
 applications, ready to be used for commercial purposes. We call these the
-[_off-the-shelf components_](/tomtom-indigo/documentation/development/introduction#off-the-shelf-components-or-stock-components).
+[_off-the-shelf components_](/tomtom-digital-cockpit/documentation/development/introduction#off-the-shelf-components-or-stock-components).
 
 Off-the-shelf applications can be used “plug-and-play” or they can be customized to the
 car maker’s needs. Performing customization is not limited to visual changes, but may also include
-modified or added features. And using the extensive set of TomTom IndiGO platform APIs, which
+modified or added features. And using the extensive set of TomTom Digital Cockpit platform APIs, which
 extend the standard Android Automotive APIs, new applications can be added with much less effort
 compared to standard Android Automotive development.
 
-## Building your first TomTom IndiGO product
+## Building your first TomTom Digital Cockpit product
 
-When the TomTom IndiGO product is built, it assembles the application platform components and the
+When the TomTom Digital Cockpit product is built, it assembles the application platform components and the
 off-the-shelf applications in the application suite, into an Android APK. This is the application
 that fully controls the center console, typically positioned between the driver and the front-seat
 passenger. It optionally also provides information to the cluster display, the display usually
 positioned directly in front of the driver.
 
-This diagram shows how TomTom IndiGO fits in a digital cockpit system and how it relates to other
+This diagram shows how TomTom Digital Cockpit fits in a digital cockpit system and how it relates to other
 software in a vehicle. It shows some of the off-the-shelf components in the application suite and
 platform.
 
 ![TomTom Digital Cockpit architecture overview](images/tomtom-digital-cockpit-architecture-overview.png)
 
-The TomTom IndiGO SDK includes a template app that integrates the TomTom IndiGO platform with all
+The TomTom Digital Cockpit SDK includes a template app that integrates the TomTom Digital Cockpit platform with all
 of its
-[off-the-shelf functionality](/tomtom-indigo/documentation/platform-overview/example-apps#off-the-shelf-functionality).
+[off-the-shelf functionality](/tomtom-digital-cockpit/documentation/platform-overview/example-apps#off-the-shelf-functionality).
 The template app is a fully working In-Vehicle Infotainment system (IVI), including phone calling,
 contacts handling, messaging, notifications, multimedia, navigation and much more, all
 production-level code. All of the applications included in that template application belong to the
-top of the diagram, in the section “TomTom IndiGO Application Suite”. The
-[Getting Started Guide](/tomtom-indigo/documentation/getting-started/introduction)
+top of the diagram, in the section “TomTom Digital Cockpit Application Suite”. The
+[Getting Started Guide](/tomtom-digital-cockpit/documentation/getting-started/introduction)
 explains step-by-step how to set up your development environment to build the template application
 and the example applications.
 
@@ -56,7 +56,7 @@ When you look at the source code of the IVI Template App, you will notice the Ko
 product is really just a couple of lines of code. Most of the work is done by a Gradle build file
 that pulls in all the off-the-shelf components that provide the actual functionality of the
 application. In the diagram, these off-the-shelf components are the modules (or _puzzle pieces_) in
-the blocks “TomTom IndiGO Application Suite” and “TomTom IndiGO Application Platform”.
+the blocks “TomTom Digital Cockpit Application Suite” and “TomTom Digital Cockpit Application Platform”.
 
 Forking and building the IVI Template App is a great way to start development of a new IVI system.
 It gets you up and running really fast. From there on, you can easily modify or add any puzzle
@@ -90,5 +90,5 @@ All of the other apps would still be pulled from our Nexus repository and you ca
 the automatic updates for those. That is a powerful way of completely customizing the look and feel
 of applications, with limited effort.
 
-For a more detailed view of the TomTom IndiGO platform, please see the
-[Development](/tomtom-indigo/documentation/development/introduction) section.
+For a more detailed view of the TomTom Digital Cockpit platform, please see the
+[Development](/tomtom-digital-cockpit/documentation/development/introduction) section.

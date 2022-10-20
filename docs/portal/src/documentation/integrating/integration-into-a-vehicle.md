@@ -10,14 +10,14 @@ controls are operated by the user, the new property value can be communicated to
 See
 [Android Physical Car Interaction](https://www.androidautomotivebook.com/android-automotive-and-physical-car-interaction/).
 
-## Integrating TomTom IndiGO into the vehicle
+## Integrating TomTom Digital Cockpit into the vehicle
 
 When the APK is installed on a head unit, it needs to get information from the vehicle and send
 information to the vehicle.
 
 ![System overview](images/integrating_in_vehicle_system_overview.svg)
 
-- __TomTom IndiGO Application__: Android Automotive based infotainment system,
+- __TomTom Digital Cockpit Application__: Android Automotive based infotainment system,
   along with an application suite providing common functionality.
 - __Android Automotive OS__: Google’s operating system for connected in-vehicle infotainment (IVI)
   systems.
@@ -33,7 +33,7 @@ information to the vehicle.
 
 ## Signal transfer
 
-The vehicle data used by the application is abstracted from AAOS by the use of the TomTom IndiGO
+The vehicle data used by the application is abstracted from AAOS by the use of the TomTom Digital Cockpit
 module, specifically by the use of [`VehicleProperties`](TTIVI_PLATFORM_API).
 These properties hold the current status of the different data values. A value can be changed by the
 application, when the user operates a control, or by the vehicle when the data in the vehicle
