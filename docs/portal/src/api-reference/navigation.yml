@@ -20,5 +20,3 @@ menu:
     items:
       - fileId: /api-reference
         title: API Reference
-      - fileId: /older-api-references
-        title: Older API References
