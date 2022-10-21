@@ -30,7 +30,7 @@ this library, and learn how you can reduce your implementation effort.
 
 The TomTom Digital Cockpit Comms SDK provides a framework that allows the TomTom Digital Cockpit platform to 
 set up data communication with 
-[Companion Applications](/tomtom-digital-cockpit/documentation/integrating-tomtom-digital-cockpit/companion-application) 
+[Companion Applications](/tomtom-digital-cockpit/documentation/integrating/companion-application) 
 through a Bluetooth Low Energy (BLE) connection. This high-level framework can easily be 
 extended with custom services.
 
