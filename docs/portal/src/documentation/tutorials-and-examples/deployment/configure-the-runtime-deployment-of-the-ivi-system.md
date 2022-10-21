@@ -34,7 +34,7 @@ There are two aspects of an IVI runtime configuration:
 - The [`multipleInstanceDeployments`](#multipleinstancedeployments), which relate to specific IVI
   instances.
 
-### `globalDeployments`
+### globalDeployments
 
 The [`RuntimeConfigurator`](TTIVI_GRADLEPUGINS_API).`globalDeployments()` will contain the
 service hosts that host IVI Service APIs that are relevant for the whole application. These service
@@ -82,7 +82,7 @@ ivi {
 }
 ```
 
-### `multipleInstanceDeployments`
+### multipleInstanceDeployments
 
 The [`RuntimeConfigurator`](TTIVI_GRADLEPUGINS_API).`multipleInstanceDeployments()` will
 contain service hosts that are relevant for a given IVI instance. Multiple IVI instances can be
@@ -283,7 +283,7 @@ __AndroidManifest.xml:__
     android:windowSoftInputMode="adjustPan">
 
     <intent-filter>
-        <action android:name="com.tomtom.ivi.product.standalone.indigo.PASSENGER" />
+        <action android:name="com.example.mydigitalcockpitapp.PASSENGER" />
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 
