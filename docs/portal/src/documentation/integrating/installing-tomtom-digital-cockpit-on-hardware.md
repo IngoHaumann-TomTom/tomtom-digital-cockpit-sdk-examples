@@ -22,15 +22,16 @@ To use TomTom Digital Cockpit on your own hardware read through the information 
 
 ## Automotive vs. plain Android
 
-In principle, TomTom Digital Cockpit can run on any Android device with a TomTom Digital Cockpit-supported CPU 
-architecture, but the experience will be poorer. If using non-automotive Android, for example, 
-Bluetooth will not behave as expected. This is because standard Android uses Headset and Handsfree 
-server profiles, as the mobile is the audio source that goes to for example a BT headset. Android 
-Automotive instead enables the client profile, as the car head unit connects to a mobile instead, 
-and streams from it. Therefore, do not use Bluetooth features such as calling, companion app 
-integration, or media streaming.
+In principle, TomTom Digital Cockpit can run on any Android device with a
+TomTom Digital Cockpit-supported CPU architecture, but the experience will be poorer. If using
+non-automotive Android, for example, Bluetooth will not behave as expected. This is because standard
+Android uses Headset and Handsfree server profiles, as the mobile phone is the audio source that
+goes to for example a Bluetooth headset. Android Automotive instead enables the client profile, as
+the car head unit connects to a mobile phone instead, and streams from it. Therefore, do not use
+Bluetooth features such as calling, companion app integration, or media streaming.
 
-Also, support for secondary displays like a cluster display and AC controls is missing.
+Also, support for secondary displays like a cluster display and air conditioning controls is
+missing.
 
 Android Automotive will support all car-related functionality such as calling, media streaming, and
 air conditioning controls.
@@ -56,14 +57,18 @@ can simply replace these with your own platform keys and rebuild.
 - Remount the system partition to be writeable.
 - Copy the `privapp-permissions-tomtom-ivi.xml` file from the
   [`permissions`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/permissions)
-  directory to `/system/etc/permissions` on the device.
-- Install the TomTom Digital Cockpit APK to `/system/priv-app` on the device.
+  directory to `/system/etc/permissions` on the device. Don't forget to change the
+  [package name](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/permissions/privapp-permissions-tomtom-ivi.xml#L14)
+  when installing your own Digital Cockpit app.
+- Install the Digital Cockpit APK that you have built, into the `/system/priv-app` directory on the
+  device. This can be your own Digital Cockpit app, or it can be built from the Template app in the
+  [TomTom Digital Cockpit SDK example sources](/tomtom-digital-cockpit/documentation/getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources).
 
 ```cmd
 $ adb remount
 $ adb push privapp-permissions-tomtom-ivi.xml /system/etc/permissions/
-$ adb shell mkdir /system/priv-app/TomTomIndigo
-$ adb push standalone_indigo.apk /system/priv-app/TomTomIndigo/
+$ adb shell mkdir /system/priv-app/MyDigitalCockpitApp
+$ adb push MyDigitalCockpitApp.apk /system/priv-app/MyDigitalCockpitApp/
 ```
 
 If it's not possible to sign the APK with the system signature, there will be the following
@@ -79,7 +84,7 @@ sources except Spotify.
 
 ```cmd
 $ adb root
-$ adb shell cmd notification allow_listener com.tomtom.ivi.product.standalone.indigo/com.tomtom.ivi.appsuite.media.plugin.service.media.MediaNotificationListener
+$ adb shell cmd notification allow_listener com.example.mydigitalcockpitapp/com.tomtom.ivi.appsuite.media.plugin.service.media.MediaNotificationListener
 ```
 
 Spotify only communicates with system apps signed with the platform signature, so if your APK is
@@ -115,9 +120,9 @@ for radio has yet been made).
 ### Phone
 
 To automatically configure TomTom Digital Cockpit as the default dialer app, set TomTom Digital Cockpit as the 
-default dialer in system settings (Settings->Apps & Notifications->Default apps).
+default dialer in system settings (Settings > Apps & Notifications > Default apps).
 
 Pair a phone with Bluetooth and ensure that all necessary profiles (such as Phone calls, Media
 audio, Text messages and Contact Sharing) are enabled by tapping on the phone name in settings.
-You should thereafter be able to use the phone from TomTom Digital Cockpit.
+You should thereafter be able to use this phone from TomTom Digital Cockpit.
 
