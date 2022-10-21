@@ -2,17 +2,17 @@
 title: Integrate TomTom Digital Cockpit into a Gradle Project
 ---
 
-This pages contains the steps required to integrate the TomTom Digital Cockpit platform into an existing
-Android Gradle project. If you are new to TomTom Digital Cockpit, our recommendation is to use the examples
-as a starting point, as these already cover the steps described on this page. Use the steps on this
-page as a reference to integrate the TomTom Digital Cockpit platform into an existing / newly created Android
-Gradle project. These steps assume a basic level of experience with setting up Gradle build files
-using Kotlin.
+This pages contains the steps required to integrate the TomTom Digital Cockpit platform into an
+existing Android Gradle project. If you are new to TomTom Digital Cockpit, our recommendation is to
+use the examples as a starting point, as these already cover the steps described on this page. Use
+the steps on this page as a reference to integrate the TomTom Digital Cockpit platform into an
+existing / newly created Android Gradle project. These steps assume a basic level of experience with
+setting up Gradle build files using Kotlin.
 
 ## Maven repositories
 
-Gradle will need to be able to download TomTom Digital Cockpit platform dependencies from TomTom's Maven
-repositories, for which login credentials are required. These can be obtained from TomTom.
+Gradle will need to be able to download TomTom Digital Cockpit platform dependencies from TomTom's
+Maven repositories, for which login credentials are required. These can be obtained from TomTom.
 
 Access to these repositories can be configured in Gradle as follows:
 

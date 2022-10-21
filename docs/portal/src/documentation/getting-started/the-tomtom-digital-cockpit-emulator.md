@@ -160,7 +160,7 @@ Android Virtual Device (AVD) with it:
 
 ![Emulator Default Phone App](images/emulator_default_phone_app.png)
 
-- You will now see the TomTom Digital Cockpit home screen. Note that map data shows only when you
+- You will now see the TomTom Digital Cockpit home screen. Note that map data only shows when you
   have
   [installed an on-board map](/tomtom-digital-cockpit/documentation/getting-started/accessing-the-map-data)
   and the current location is inside this map.

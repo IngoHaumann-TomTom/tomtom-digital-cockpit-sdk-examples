@@ -11,20 +11,20 @@ TomTom Digital Cockpit.
 ## Example applications
 
 The example applications are provided as sample implementations. The applications allow you to
-verify your build environment by making sure Gradle can build this TomTom Digital Cockpit example APK and
-install it on an emulator. The applications also contain several examples on how to add
+verify your build environment by making sure Gradle can build this TomTom Digital Cockpit example
+APK and install it on an emulator. The applications also contain several examples on how to add
 functionality to your product. All the examples can be found under the
 [`examples/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples)
 directory.<br/>
 Under the
 [`template/`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/template)
-directory you can find an empty example application. This only contains the default TomTom Digital Cockpit
-platform functionality, without any additional example source, which can be used as a base for your
-own product.
+directory you can find an empty example application. This only contains the default
+TomTom Digital Cockpit platform functionality, without any additional example source, which can be
+used as a base for your own product.
 
 Check out the functionality of the TomTom Digital Cockpit platform in the
-[walk-through](/tomtom-digital-cockpit/documentation/platform-overview/example-apps) of an example
-application, or get it yourself by following our
+[walk-through](/tomtom-digital-cockpit/documentation/platform-overview/example-apps)
+of an example application, or get it yourself by following our
 [getting started](/tomtom-digital-cockpit/documentation/getting-started/introduction)
 guide.
 
@@ -81,16 +81,16 @@ This guide explains how to change the media plugin configuration.
 ## Communications
 
 - [Create a custom connection service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/create-a-custom-connection-service) -
-This guide explains how to add a new connection service to make phone calls via TomTom Digital Cockpit, like
-Voice Over IP (VOIP).
+This guide explains how to add a new connection service to make phone calls via
+TomTom Digital Cockpit, like Voice Over IP (VOIP).
 
 - [Create a custom contacts service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/create-a-custom-contacts-service) -
-This guide explains how to add a contacts service that provides information that TomTom Digital Cockpit can
-display in the contacts panel.
+This guide explains how to add a contacts service that provides information that
+TomTom Digital Cockpit can display in the contacts panel.
 
 - [Create a custom recent calls service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/create-a-custom-recentcalls-service) -
-This guide explains how to add a recent calls service that provides information that TomTom
-Digital Cockpit can display in the recent calls panel.
+This guide explains how to add a recent calls service that provides information that
+TomTom Digital Cockpit can display in the recent calls panel.
 
 - [Configure the Communications Plugin](/tomtom-digital-cockpit/documentation/tutorials-and-examples/communications/configure-the-communications-plugin) -
 This guide explains how to configure the behavior of the off-the-shelf communications plugin.
@@ -139,11 +139,12 @@ generator, and how to use these to customize the application.
 
 - [Localize strings](/tomtom-digital-cockpit/documentation/tutorials-and-examples/localization/localize-strings) -
 This guide explains how to localize strings, how to discover string resources used in your
-application and how to get additional context information per string resource to facilitate
+application, and how to get additional context information per string resource to facilitate
 translations.
 
 ## Deployment
 
 - [Configure the runtime deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system) -
-This guide explains how to run services in a separate process, configure multiple TomTom Digital Cockpit
-instances, and how to deploy Android services in the same process as an IVI service.
+This guide explains how to run services in a separate process, configure multiple
+TomTom Digital Cockpit instances, and how to deploy Android services in the same process as an IVI
+service.
