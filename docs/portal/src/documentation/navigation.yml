@@ -14,7 +14,7 @@ menuTitle: Documentation
 isMenuOpened: true
 hasRequestAccess: true
 hasRequestAccessButton: false
-requestAccessType: request-access-indigo
+requestAccessType: request-access-tomtom-digital-cockpit
 menu:
   - title: Introduction
     items:
