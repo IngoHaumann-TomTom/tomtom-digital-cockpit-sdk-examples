@@ -18,33 +18,38 @@ submenu: # Additional submenu items for example - blog posts which will be displ
       url: "/tomtom-digital-cockpit/documentation/tutorials-and-examples/overview"
 ---
 
-TomTom Digital Cockpit is a framework that delivers Android-based digital cockpits. It includes an 
-application platform to support the development of highly integrated applications on top of Android 
-Automotive. It also offers a complete set of industrial strength end-user applications that can be 
-customized to the needs of a car maker. Take the in-car experience to new places and get started 
+<img class="image__image" width="832" height="478"
+    src="https://developer.tomtom.com/assets/assets/tomtom-digital-cockpit-bg-2x.png"/>
+
+TomTom Digital Cockpit is a framework that delivers Android-based digital cockpits. It includes an
+application platform to support the development of highly integrated applications on top of Android
+Automotive. It also offers a complete set of industrial strength end-user applications that can be
+customized to the needs of a car maker. Take the in-car experience to new places and get started
 with our comprehensive SDK that includes APIs, supporting documentation, and code examples.
 
-Creating a TomTom Digital Cockpit product requires two distinct activities: development of the software using
-the TomTom Digital Cockpit SDK, and integrating that software in the vehicle. Development for TomTom Digital Cockpit
-is an independent activity, and can be achieved using emulators and mobile devices. We provide
-information on both parts here on this developer portal. You can use the site map on the left to
-skip ahead, or search for specific content by using the search bar above; just click the magnifying
-glass and enter your query.
+Creating a TomTom Digital Cockpit product requires two distinct activities: development of the
+software using the TomTom Digital Cockpit SDK, and integrating that software in the vehicle.
+Development for TomTom Digital Cockpit is an independent activity, and can be achieved using
+emulators and mobile devices. We provide information on both parts here on this developer portal.
+You can use the site map on the left to skip ahead, or search for specific content by using the
+search bar above; just click the magnifying glass and enter your query.
 
 ## API Reference
 
-Developing for TomTom Digital Cockpit requires a set of Application Programming Interfaces (API): the main
-TomTom Digital Cockpit API and the TomTom Android Tools API. The reference documentation for both can be
-found on the [API reference documentation page](/tomtom-digital-cockpit/api-reference/api-reference).
+Developing for TomTom Digital Cockpit requires a set of Application Programming Interfaces (API):
+the main TomTom Digital Cockpit API and the TomTom Android Tools API. The reference documentation
+for both can be found on the
+[API reference documentation page](/tomtom-digital-cockpit/api-reference/api-reference).
 It provides the details of all classes and functions, and insights into the relation between all
 modules and packages.
 
 ## Releases
 
-Releases and release notes can be found on the [Releases page](/tomtom-digital-cockpit/releases/releases). 
-The latest Example Application can be downloaded from the TomTom Digital Cockpit external binary repository, 
-using the credentials you received after signing the Evaluation Agreement (EA). To request access, 
-please go to the [Getting Started](/tomtom-digital-cockpit/documentation/getting-started/introduction) 
+Releases and release notes can be found on the
+[Releases page](/tomtom-digital-cockpit/releases/releases) page.  The latest Example Application can
+be downloaded from the TomTom Digital Cockpit external binary repository, using the credentials you
+received after signing the Evaluation Agreement (EA). To request access, please go to the
+[Getting Started](/tomtom-digital-cockpit/documentation/getting-started/introduction)
 guide, and "Register for early access".
 
 ---
@@ -97,8 +102,8 @@ guide, and "Register for early access".
       {
         title: "Designing for TomTom Digital Cockpit",
         body: `The TomTom Digital Cockpit design documentation helps carmakers's and partner's
-        design and development teams develop faster on TomTom Digital Cockpit, by 
-        better understanding the platform's capabilities, the Application Suite, and how these can be 
+        design and development teams develop faster on TomTom Digital Cockpit, by
+        better understanding the platform's capabilities, the Application Suite, and how these can be
         extended and customized.`,
         button: {
           label: "Design Guide",
@@ -139,10 +144,10 @@ guide, and "Register for early access".
     [
       {
         title: "Integrating Amazon Alexa",
-        body: `TomTom Digital Cockpit can support the use of multiple voice personal assistants (VPAs) in a 
-        single product. The end-user can invoke each one with a separate wake-up-word and then use 
-        them one at a time. TomTom Digital Cockpit comes with a pre-integration of Amazon's VPA, Alexa, 
-        specifically Alexa Auto.`,
+        body: `TomTom Digital Cockpit can support the use of multiple voice personal assistants
+        (VPAs) in a single product. The end-user can invoke each one with a separate wake-up-word
+        and then use them one at a time. TomTom Digital Cockpit comes with a pre-integration of
+        Amazon's VPA, Alexa, specifically Alexa Auto.`,
         button: {
           label: "Read more",
           href: "/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa"
@@ -152,8 +157,8 @@ guide, and "Register for early access".
         title: "TomTom Digital Cockpit Example App Sources on GitHub",
         body: `The Example App Sources of the TomTom Digital Cockpit SDK releases are now published
         to a publicly accessible GitHub repository. Changelogs can be found in the commits.
-        Official releases can be found on the &apos;main&apos; branch, development releases
-        on the &apos;beta&apos; branch.`,
+        Official releases can be found on the &apos;main&apos; branch, development releases on the
+        &apos;beta&apos; branch.`,
         button: {
           label: "Visit GitHub repository",
           href: "https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples"
