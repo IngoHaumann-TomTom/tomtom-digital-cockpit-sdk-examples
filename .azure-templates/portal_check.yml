@@ -19,3 +19,18 @@ steps:
       displayName: 'Validate Developer Portal content'
       continueOnError: true
 
+  - publish: $(Build.SourcesDirectory)/docs/portal/build/export
+    artifact: developer-portal-export
+    displayName: Publish Developer Portal export as artifact
+
+  - bash: |
+      set -ux
+      grep -Rin "indigo" $(Build.SourcesDirectory)/docs/portal/build/export
+      if [ $? -ne 0 ]; then
+        echo "No usage of IndiGO found."
+      else 
+        echo "IndiGO found in Portal export."
+        exit 1
+      fi
+    displayName: Check for usage of IndiGO
+
