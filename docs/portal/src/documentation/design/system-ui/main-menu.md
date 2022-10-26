@@ -14,7 +14,7 @@ applications and menu data like the list of menu items, with their icons and opt
 ## Customization
 
 The stock main menu is themable and flexible in terms of position, layout and content. It is also 
-replacable in its entirety.
+replaceable in its entirety.
 
 | Component     | Customizable  |
 | ------------- | ------------- |
@@ -23,7 +23,7 @@ replacable in its entirety.
 | Position | The position of the menu can be changed by replacing the menu frontend. |
 | Items and order | The content of the menu is flexible: items can be added, removed, and reordered. The icons of existing menu items can also be replaced. |
 | Orientation | The stock menu currently doesn’t support a horizontal layout. A custom menu frontend could be created to add that orientation. |
-| Selected indicator | The selected indicator is currently not replacable within the stock menu frontend. If there is a requirement to change this, it's best to entirely replace the menu frontend. The selected indicator can also be disabled with theming. |
+| Selected indicator | The selected indicator is currently not replaceable within the stock menu frontend. If there is a requirement to change this, it's best to entirely replace the menu frontend. The selected indicator can also be disabled with theming. |
 | Splitting the menu or creation sections | This is technically possible by replacing the menu frontend, but this mechanism is not accommodated by the TomTom Digital Cockpit menu service. For this to function, additional logic needs to be added to the menu frontend, which may be bad for maintainability. |
 
 ## Levels of customization
