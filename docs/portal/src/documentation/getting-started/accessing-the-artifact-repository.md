@@ -37,7 +37,8 @@ escaped as `\#` to be properly recognized.
 
 ## Specifying credentials on the command line
 
-You can also add credentials with the following command:
+When you don't like storing credentials in a local properties file, you can provide them on the
+command line when invoking Gradle. For example:
 
 __Linux or Mac:__
 ```cmd
