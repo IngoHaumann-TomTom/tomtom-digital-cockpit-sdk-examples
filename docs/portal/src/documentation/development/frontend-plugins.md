@@ -128,15 +128,15 @@ in the top-left of the panel, but may be placed anywhere.
 [TODO(IVI-7834)]: # (Provide the tutorial for navigating task panels and remove below.)
 
 System UI provides task panels with data to populate the navigation bar. System UI calls the task
-panel's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_PLATFORM_API) data. When a
-task panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API) interface,
-a fully populated [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the task panel's view
-model in [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this
+panel's `Panel.onAttached` method with [`NavigablePanelContext`](TTIVI_PLATFORM_API) data. When a
+task panel's view model implements the [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) interface, a
+fully populated [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the task panel's view
+model in [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this
 data. When your task panel's view model extends from [`FrontendViewModel`](TTIVI_PLATFORM_API),
-implementing [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no
+implementing [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no
 implementation is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the
 task panel's layout by assigning
-[`NavigatablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to the
+[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to the
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute. Then you have a fully
 functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API). For example, the system UI may hide the
 back button in the navigation bar, if there's only one task panel in the stack. It may also fill in
@@ -230,14 +230,14 @@ in the top-left of the panel, but may be placed anywhere.
 [TODO(IVI-7834)]: # (Provide the tutorial for navigating modal panels and remove below.)
 
 System UI provides modal panels with data to populate the navigation bar. System UI calls the modal
-panel's `Panel.onAttached` method with [`NavigatablePanelContext`](TTIVI_PLATFORM_API) data. When a
-modal panel's view model implements the [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API) interface,
+panel's `Panel.onAttached` method with [`NavigablePanelContext`](TTIVI_PLATFORM_API) data. When a
+modal panel's view model implements the [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) interface,
 a fully populated [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the modal panel's
- [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this data. When
+ [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this data. When
 your modal panel's view model extends from [`FrontendViewModel`](TTIVI_PLATFORM_API), implementing
-[`NavigatablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no implementation
+[`NavigablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no implementation
 is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the modal panel's
-layout by assigning [`NavigatablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to
+layout by assigning [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
 
 Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
