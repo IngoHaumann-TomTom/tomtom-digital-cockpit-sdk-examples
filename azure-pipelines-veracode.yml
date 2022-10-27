@@ -74,4 +74,4 @@ stages:
               applicationVersion: $(productVersion)
               scanFilePath: $(scanFilePath)
               failBuildOnPolicyFail: true
-              maximumWaitTime: 150
+              maximumWaitTime: 800
