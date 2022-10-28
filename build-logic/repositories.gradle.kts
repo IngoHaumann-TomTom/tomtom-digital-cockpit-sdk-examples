@@ -19,17 +19,17 @@
   * `Getting Started` guide of the Developer Portal.
   */
 
-val mainArtifactorySaasUsername: String? by extra
-val mainArtifactorySaasToken: String? by extra
+val artifactoryUser: String? by extra
+val artifactoryToken: String? by extra
 
-val useSaasArtifactory = (mainArtifactorySaasUsername != null) && (mainArtifactorySaasToken != null)
+val useSaasArtifactory = (artifactoryUser != null) && (artifactoryToken != null)
 
 fun RepositoryHandler.tomtomArtifactory(repoName: String) {
     if (useSaasArtifactory) {
         maven("https://artifactory.tomtomgroup.com/artifactory/$repoName") {
             credentials {
-                username = mainArtifactorySaasUsername
-                password = mainArtifactorySaasToken
+                username = artifactoryUser
+                password = artifactoryToken
             }
         }
     } else {
@@ -46,6 +46,7 @@ pluginManagement.repositories {
 
     // Artifactory cache for Maven Central, JCenter, etc.
     tomtomArtifactory("maven-remotes")
+    tomtomArtifactory("as-navapp-maven-release")
     // Repo for shared Android Tools plugins.
     tomtomArtifactory("nav-maven-release")
 }
@@ -64,6 +65,7 @@ dependencyResolutionManagement {
 
         // Repo for shared Android Tools like, UI Controls, resource resolutions,
         // viewcomparison test setup, animations...
+        tomtomArtifactory("as-navapp-maven-release")
         tomtomArtifactory("nav-maven-release")
         tomtomArtifactory("nav-maven-dev")
 

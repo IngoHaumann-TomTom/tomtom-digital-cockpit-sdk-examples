@@ -33,7 +33,7 @@ REGEX_COMMS_PLACEHOLDER = f"\[.*?\]\({COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
 S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit"
-ARTIFACTORY_BASE_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
+ARTIFACTORY_BASE_URL = "https://artifactory.tomtomgroup.com/artifactory"
 
 # Regex pattern to retrieve the API element without brackets.
 REGEX_API_ELEMENT = "(?<=\[).*(?=\])"

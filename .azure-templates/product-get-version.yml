@@ -10,32 +10,28 @@
 # Azure pipelines documentation is available at
 # https://aka.ms/yaml
 
-jobs:
-  - job: Version
-    displayName: Get product version
-    container: 'docker_indigo_build'
-    steps:
-      - bash: |
-          set -eux
+steps:
+  - bash: |
+      set -eux
 
-          version_semver=$(gitversion /nocache /verbosity error /showvariable FullSemVer)
-          test -n "$version_semver"
+      version_semver=$(gitversion /nocache /verbosity error /showvariable FullSemVer)
+      test -n "$version_semver"
 
-          echo "Product version: \"$version_semver\""
+      echo "Product version: \"$version_semver\""
 
-          # Work-around for Azure bug: Disable the shell flag '-x' now , to prevent single-quote appended to values.
-          # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
-          set +x
+      # Work-around for Azure bug: Disable the shell flag '-x' now , to prevent single-quote appended to values.
+      # https://developercommunity.visualstudio.com/content/problem/375679/pipeline-variable-incorrectly-inserts-single-quote.html
+      set +x
 
-          if [ $(Build.Reason) == 'PullRequest' ]
-          then
-            sourceBranch=$(echo $(System.PullRequest.SourceBranch) |sed 's@/@_@g')
-            echo "##vso[task.setvariable variable=platform_version;isOutput=true]$sourceBranch-$(System.PullRequest.sourceCommitId)"
-          else
-            echo "##vso[task.setvariable variable=platform_version;isOutput=true]$(PRODUCT_VERSION)"
-          fi
+      if [ $(Build.Reason) == 'PullRequest' ]
+      then
+        sourceBranch=$(echo $(System.PullRequest.SourceBranch) |sed 's@/@_@g')
+        echo "##vso[task.setvariable variable=platform_version;isOutput=true]$sourceBranch-$(System.PullRequest.sourceCommitId)"
+      else
+        echo "##vso[task.setvariable variable=platform_version;isOutput=true]$(PRODUCT_VERSION)"
+      fi
 
-          # Export the version information to the next steps using VSO task variables.
-          echo "##vso[task.setvariable variable=product_version;isOutput=true]$version_semver"
-        displayName: 'Parse version info'
-        name: version
+      # Export the version information to the next steps using VSO task variables.
+      echo "##vso[task.setvariable variable=product_version;isOutput=true]$version_semver"
+    displayName: 'Parse version info'
+    name: version

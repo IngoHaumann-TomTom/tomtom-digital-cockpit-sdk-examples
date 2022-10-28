@@ -15,9 +15,10 @@ variables:
   - template: .azure-templates/variables.yml
   - name: indigoBranchName
     value: indigo-platform-canary
-  - group: 'ProductVersion'
-  - group: 'IviArtifactoryCredentials'
   - group: IviGradleCache
+  - group: ProductVersion
+  - group: HashiCorpVault
+  - group: ArtifactorySaas
 
 trigger: none
 
@@ -45,7 +46,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.16
+    ref: refs/tags/2.2.21
   - repository: indigo-pr
     type: git
     name: IVI/indigo
@@ -54,16 +55,26 @@ resources:
 pool: 'IVI 2.0'
 
 stages:
-- stage: ProductVersion
-  displayName: Product version
+- stage: Vars
+  displayName: Set up build properties
   jobs:
-  - template: .azure-templates/product-get-version.yml
+  - job: Properties
+    displayName: Fetch product version and artifactory secret
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/product-get-version.yml
+    - template: hashi-corp-vault/get-artifactory-saas-secret.yml@devops-templates
+      parameters:
+        hcvAppRoleId: $(HCV_EDITOR_APPROLE_ID)
+        hcvAppRoleSecretId: $(HCV_EDITOR_SECRET_ID)
+        hcvSecretPath: 'users/$(ARTIFACTORY_EDITOR_USER)'
 
 - stage: PrepareIndigoDocsBranch
   displayName: 'IndiGO Docs canary branch'
-  dependsOn: ProductVersion
+  dependsOn: Vars
   variables:
-    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+    platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: Libraries
     workspace:
@@ -90,10 +101,12 @@ stages:
 
 - stage: Build
   displayName: 'Build pipeline'
-  dependsOn: [ PrepareIndigoDocsBranch, ProductVersion ]
+  dependsOn:
+    - Vars
+    - PrepareIndigoDocsBranch
   variables:
-    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
-    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
   jobs:
   - job: Build
     displayName: 'Lint & Build'
@@ -105,6 +118,13 @@ stages:
         branch: '$(indigoBranchName)-$(platform_version)'
     - template: build/build-cleanup.yml@devops-templates
 
+- stage: Test
+  displayName: Test
+  dependsOn: Vars
+  variables:
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+  jobs:
   - job: UnitTests
     displayName: 'Unit tests'
     container: 'docker_indigo_test'
@@ -114,7 +134,6 @@ stages:
       parameters:
         branch: '$(indigoBranchName)-$(platform_version)'
     - template: build/build-cleanup.yml@devops-templates
-
   - job: IntegrationTests
     displayName: 'Integration & E2E tests'
     container: 'docker_indigo_test'
@@ -130,9 +149,11 @@ stages:
 
 - stage: MergeIndigoDocsBranch
   displayName: 'IndiGO Docs branch merge'
-  dependsOn: [ Build, ProductVersion ]
+  dependsOn:
+    - Vars
+    - Build
   variables:
-    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+    platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   jobs:
   - job: MergeIndigoDocsBranch
@@ -145,9 +166,11 @@ stages:
 
 - stage: Clean
   displayName: 'Clean'
-  dependsOn: [ MergeIndigoDocsBranch, ProductVersion ]
+  dependsOn:
+    - Vars
+    - MergeIndigoDocsBranch
   variables:
-    platform_version: $[ stageDependencies.ProductVersion.Version.outputs['version.platform_version'] ]
+    platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
   condition: always()
   jobs:
   - job: RemoveBranch

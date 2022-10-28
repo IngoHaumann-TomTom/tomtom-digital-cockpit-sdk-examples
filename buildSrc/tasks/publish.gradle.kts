@@ -25,7 +25,7 @@ plugins.apply("maven-publish")
 val isApplicationProject: Boolean by extra
 
 // TODO(IVI-4701): Remove Artifactory reference.
-val artifactoryRepoBaseUrl = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
+val artifactoryRepoBaseUrl = "https://artifactory.tomtomgroup.com/artifactory"
 
 fun convertModuleNameToApkBuildpath(moduleName: String): String {
     val hierarchy = moduleName.split("_")
@@ -98,9 +98,9 @@ artifactory {
     publish(delegateClosureOf<PublisherConfig> {
         repository(delegateClosureOf<GroovyObject> {
             setProperty("repoKey", artifactoryRepo)
-            if (project.hasProperty("publishUsername")) {
-                setProperty("username", properties["publishUsername"].toString())
-                setProperty("password", properties["publishPassword"].toString())
+            if (project.hasProperty("artifactoryUser")) {
+                setProperty("username", properties["artifactoryUser"].toString())
+                setProperty("password", properties["artifactoryToken"].toString())
             }
         })
         defaults(delegateClosureOf<GroovyObject> {

@@ -14,7 +14,8 @@ variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
   - template: .azure-templates/variables.yml
   # Variable groups containing the passwords used below are defined in the project's Pipelines Library.
-  - group: IviArtifactoryCredentials
+  - group: HashiCorpVault
+  - group: ArtifactorySaas
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
   - group: IviGradleCache
@@ -67,7 +68,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.16
+    ref: refs/tags/2.2.21
   - repository: indigoqa
     type: git
     name: IVI/indigo-qa
@@ -75,20 +76,33 @@ resources:
 pool: 'IVI 2.0'
 
 stages:
-- stage: ProductVersion
-  displayName: Product version
+- stage: Vars
+  displayName: Set up build properties
   jobs:
-  - template: .azure-templates/product-get-version.yml
+  - job: Properties
+    displayName: Fetch product version and artifactory secret
+    container: 'docker_indigo_build'
+    steps:
+    - template: .azure-templates/product-get-version.yml
+    - template: hashi-corp-vault/get-artifactory-saas-secret.yml@devops-templates
+      parameters:
+        hcvAppRoleId: $(HCV_EDITOR_APPROLE_ID)
+        hcvAppRoleSecretId: $(HCV_EDITOR_SECRET_ID)
+        hcvSecretPath: 'users/$(ARTIFACTORY_EDITOR_USER)'
 
 - stage: Build
   displayName: 'Build pipeline'
-  dependsOn: ProductVersion
+  dependsOn: Vars
   variables:
-    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - template: gradle/dependencies-scan.yml@devops-templates
     parameters:
       dependenciesTaskName: showAllDependencies
+      projectOptions: >-
+        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
+        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
   - job: Build
     displayName: Lint & Build
     timeoutInMinutes: 45
@@ -97,26 +111,34 @@ stages:
     - template: .azure-templates/build-steps.yml
     - template: .azure-templates/portal_check.yml
     - template: build/build-cleanup.yml@devops-templates
-
   - job: BuildExternal
     displayName: Build for external use
     container: 'docker_indigo_build'
     steps:
-    - bash: |
-        set -eux
-        rm -r buildSrc/tasks
-        rm build.gradle.kts
-        mv sdk-build.gradle.kts build.gradle.kts
-      displayName: Replace build file
-    - template: gradle/gradle.yml@devops-templates
-      parameters:
-        tasks: >-
-          assemble
-        projectOptions: >-
-          -PiviVersion=$(product_version)
-        displayName: 'Assemble APKs'
-        condition: succeeded()
+      - bash: |
+          set -eux
+          rm -r buildSrc/tasks
+          rm build.gradle.kts
+          mv sdk-build.gradle.kts build.gradle.kts
+        displayName: Replace build file
+      - template: gradle/gradle.yml@devops-templates
+        parameters:
+          tasks: >-
+            assemble
+          projectOptions: >-
+            -PiviVersion=$(product_version)
+            -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
+            -PartifactoryToken=$(ARTIFACTORY_TOKEN)
+          displayName: 'Assemble APKs'
+          condition: succeeded()
 
+- stage: Test
+  displayName: Test
+  dependsOn: Vars
+  variables:
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+  jobs:
   - job: UnitTests
     displayName: Unit tests
     container: 'docker_indigo_test'
@@ -126,7 +148,6 @@ stages:
       parameters:
         artifactName: unit-test
     - template: build/build-cleanup.yml@devops-templates
-
   - job: IntegrationTests
     displayName: Integration & E2E tests
     container: 'docker_indigo_test'
@@ -142,10 +163,11 @@ stages:
 - stage: Analyse
   displayName: Analyse
   dependsOn:
-    - ProductVersion
+    - Vars
     - Build
   variables:
-    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: SonarQube
     displayName: Run SonarQube analysis
@@ -164,11 +186,12 @@ stages:
     - template: .azure-templates/sonarqube-steps.yml
 
 - stage: OSSCompliance
-  dependsOn: ProductVersion
+  dependsOn: Vars
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
   displayName: OSS compliance scan
   variables:
-    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: OSSComplianceScan
     displayName: OSS compliance scan
@@ -180,6 +203,8 @@ stages:
         product: ivi-indigo-docs
         productVersion: $(product_version)
         reportFilename: products_indigo_examples
+        artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
+        artifactoryToken: $(ARTIFACTORY_TOKEN)
         artifactoryLocation: products_indigo_examples
         bdtoolsUrl: ${{variables.blackduckUrl}}
         bdApiToken: ${{variables.blackduckApiToken}}
@@ -190,25 +215,23 @@ stages:
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
   dependsOn:
-    - ProductVersion
+    - Vars
     - Analyse
     - OSSCompliance
   variables:
-    product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
+    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: Publish
     container: 'docker_indigo_build'
     displayName: Publish artifacts
     steps:
     - template: .azure-templates/publishing.yml
-
   - job: PublishRepository
     displayName: Publishing Repository to Artifactory
     dependsOn: Publish
     condition: and(eq(variables.isMainlineBuild, true), succeeded())
     container: 'docker_indigo_build'
-    variables:
-      product_version: $[ stageDependencies.ProductVersion.Version.outputs['version.product_version'] ]
     steps:
     - bash: |
         set -eux
@@ -216,6 +239,8 @@ stages:
       displayName: Archive repository to tar
     - template: publish/push-to-artifactory.yml@devops-templates
       parameters:
+        artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
+        artifactoryToken: $(ARTIFACTORY_TOKEN)
         currentProductVersion: "$(product_version)"
         workingDirectory: "$(Build.SourcesDirectory)"
         artifactId: "products_indigo_examples"
@@ -224,7 +249,7 @@ stages:
 
 - stage: Metrics
   displayName: Collect Metrics
-  dependsOn: [ ProductVersion, Build, Analyse, OSSCompliance, Publishing ]
+  dependsOn: [ Vars, Build, Test, Analyse, OSSCompliance, Publishing ]
   condition: eq(variables['System.TeamProject'], 'IVI')
   jobs:
     - template: metrics/start-metrics-pipeline.yml@devops-templates

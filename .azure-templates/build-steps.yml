@@ -25,9 +25,11 @@ steps:
   parameters:
     tasks: >-
       lint
-    projectOptions:
+    projectOptions: >-
       ${{parameters.extraLintParameters}}
       -PiviVersion=$(product_version)
+      -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
+      -PartifactoryToken=$(ARTIFACTORY_TOKEN)
     displayName: 'Run linters'
     condition: succeeded()
 
@@ -44,6 +46,8 @@ steps:
       assemble
     projectOptions: >-
       -PiviVersion=$(product_version)
+      -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
+      -PartifactoryToken=$(ARTIFACTORY_TOKEN)
     displayName: 'Assemble APKs'
     condition: succeeded()
 
