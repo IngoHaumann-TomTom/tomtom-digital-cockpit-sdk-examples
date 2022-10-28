@@ -107,6 +107,7 @@ stages:
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
     platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
+    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: Build
     displayName: 'Lint & Build'
@@ -122,7 +123,7 @@ stages:
   displayName: Test
   dependsOn: Vars
   variables:
-    product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
+    platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
     ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
   jobs:
   - job: UnitTests

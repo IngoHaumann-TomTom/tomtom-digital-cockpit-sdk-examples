@@ -183,6 +183,7 @@ stages:
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
       VERSION_NAVAPP_COMPONENTS: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVAPP_COMPONENTS'] ]
       VERSION_ALEXAAUTOSDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.ALEXA_AUTO_SDK'] ]
+      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
     condition: and(
       eq(variables.isMainlineBuild, true),
       eq(dependencies.Versions.result, 'Succeeded'),
