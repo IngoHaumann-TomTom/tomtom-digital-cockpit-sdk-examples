@@ -46,7 +46,7 @@ stages:
     displayName: Veracode scan for Example app APK
     jobs:
       - job: Veracode
-        timeoutInMinutes: 360
+        timeoutInMinutes: 800
         displayName: Download Example app APK and Scan
         container: 'docker_indigo_build'
         steps:
