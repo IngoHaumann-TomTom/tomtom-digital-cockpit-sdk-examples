@@ -78,7 +78,7 @@ def download_api_ref(artifactory_url, target_dir):
     # Download and extract API Reference from Artifactory.
     response = requests.get(artifactory_url)
     if not response.ok:
-        raise ConnectionError(f"API Reference cannot be retrieved from {url} (status {status}.")
+        raise ConnectionError(f"API Reference cannot be retrieved from {artifactory_url} (status {response.status_code}.")
     with open(download_target, "wb") as file:
         file.write(response.content)
     with tarfile.open(download_target, 'r') as archive:
