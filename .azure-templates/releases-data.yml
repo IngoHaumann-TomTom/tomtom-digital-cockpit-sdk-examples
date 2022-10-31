@@ -31,8 +31,8 @@ steps:
     parameters:
       downloadUrl: ${{parameters.urlReleasesJsonFile}}
       displayName: 'Download releases json file from Artifactory'
-      userName: $(ARTIFACTORY_EDITOR_USER)
-      password: $(ARTIFACTORY_TOKEN)
+      userName: $(IVI_ARTIFACTORY_USERNAME)
+      password: $(IVI_ARTIFACTORY_PASSWORD)
       downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
       checksumType: 'sha256'
 
@@ -91,7 +91,7 @@ steps:
 
   - bash: |
       set -eux
-      curl -X PUT -u '$(ARTIFACTORY_EDITOR_USER):$(ARTIFACTORY_TOKEN)'\
+      curl -X PUT -u '$(IVI_ARTIFACTORY_USERNAME):$(IVI_ARTIFACTORY_PASSWORD)'\
         -T releases.json\
         ${{parameters.urlReleasesJsonFile}}
       rm releases.json

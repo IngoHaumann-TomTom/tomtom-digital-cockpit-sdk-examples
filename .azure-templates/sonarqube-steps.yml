@@ -12,8 +12,6 @@ steps:
       sonarqube
     projectOptions:
       -PiviVersion=$(product_version)
-      -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-      -PartifactoryToken=$(ARTIFACTORY_TOKEN)
     displayName: Analyze
 
 - task: SonarQubePublish@5

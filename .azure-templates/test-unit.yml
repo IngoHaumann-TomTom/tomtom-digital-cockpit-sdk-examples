@@ -23,9 +23,6 @@ steps:
   parameters:
     tasks: >-
       test
-    projectOptions: >-
-      -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-      -PartifactoryToken=$(ARTIFACTORY_TOKEN)
     testResultsFiles: '**/TEST-*Test.xml'
     testRunTitle: 'Unit tests'
     displayName: 'Run unit tests'

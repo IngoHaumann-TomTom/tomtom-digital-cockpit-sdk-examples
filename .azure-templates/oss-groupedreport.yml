@@ -178,8 +178,6 @@ steps:
 
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
-      artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
-      artifactoryToken: $(ARTIFACTORY_TOKEN)
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"
@@ -187,8 +185,6 @@ steps:
       condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))
   - template: publish/push-to-artifactory.yml@devops-templates
     parameters:
-      artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
-      artifactoryToken: $(ARTIFACTORY_TOKEN)
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"

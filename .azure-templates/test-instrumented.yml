@@ -35,8 +35,6 @@ steps:
       projectOptions: >-
         -Pemulators=${{parameters.nrOfEmulators}}
         -PemulatorDirectory=$(Build.SourcesDirectory)/TestAVDs
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
       displayName: 'Start emulators'
 
   - template: gradle/gradle-with-tests.yml@devops-templates
@@ -44,8 +42,6 @@ steps:
       tasks: ${{parameters.testTasks}}
       projectOptions: >-
         --max-workers=12
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
       testResultsFiles: '**/androidTest*/**/TEST-*.xml'
       testRunTitle: 'Tests'
       displayName: 'Run tests'
@@ -55,9 +51,6 @@ steps:
     parameters:
       tasks: >-
         pullDeviceDebugInfo
-      projectOptions: >-
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
       displayName: 'Retrieve emulator logs and metadata'
       condition: succeededOrFailed()
 
@@ -75,8 +68,5 @@ steps:
       tasks: >-
         killEmulators
         deleteEmulators
-      projectOptions: >-
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
       displayName: 'Stop emulators'
       condition: always()

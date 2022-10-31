@@ -41,7 +41,7 @@ GITHUB_INTRODUCTION_VERSION = 2049
 DIGITAL_COCKPIT_S3_INTRODUCTION = 2049
 
 # Internal Artifactory URL to releases.json file.
-RELEASES_JSON_URL = "https://artifactory.tomtomgroup.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
+RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
 
 # Base URL for GitHub releases.
 RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree"

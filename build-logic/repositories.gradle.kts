@@ -19,17 +19,17 @@
   * `Getting Started` guide of the Developer Portal.
   */
 
-val artifactoryUser: String? by extra
-val artifactoryToken: String? by extra
+val mainArtifactorySaasUsername: String? by extra
+val mainArtifactorySaasToken: String? by extra
 
-val useSaasArtifactory = (artifactoryUser != null) && (artifactoryToken != null)
+val useSaasArtifactory = (mainArtifactorySaasUsername != null) && (mainArtifactorySaasToken != null)
 
 fun RepositoryHandler.tomtomArtifactory(repoName: String) {
     if (useSaasArtifactory) {
         maven("https://artifactory.tomtomgroup.com/artifactory/$repoName") {
             credentials {
-                username = artifactoryUser
-                password = artifactoryToken
+                username = mainArtifactorySaasUsername
+                password = mainArtifactorySaasToken
             }
         }
     } else {

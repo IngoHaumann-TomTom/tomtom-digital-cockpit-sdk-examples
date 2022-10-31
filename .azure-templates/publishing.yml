@@ -38,9 +38,9 @@ steps:
   parameters:
     tasks: >-
       artifactoryPublish
-    projectOptions:
-      -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-      -PartifactoryToken=$(ARTIFACTORY_TOKEN)
+    projectOptions: >-
+      -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
+      -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
       -PiviVersion=$(product_version)
     displayName: Publish APKs to Artifactory
     condition: succeeded()

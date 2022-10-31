@@ -25,8 +25,6 @@ jobs:
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/$(VERSION_PLATFORM)/api-reference-docs-$(VERSION_PLATFORM).tar.gz
           checksumType: 'sha256'
-          userName: $(ARTIFACTORY_EDITOR_USER)
-          password: $(ARTIFACTORY_TOKEN)
           displayName: Download Gradle Plugins API Reference
       - task: ExtractFiles@1
         displayName: Extract Gradle Plugins API Reference
@@ -45,8 +43,6 @@ jobs:
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/$(VERSION_COMMUNICATIONS_SDK)/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz
           checksumType: 'sha256'
-          userName: $(ARTIFACTORY_EDITOR_USER)
-          password: $(ARTIFACTORY_TOKEN)
           displayName: Download Communications SDK API Reference
       - task: ExtractFiles@1
         displayName: Extract Communications SDK API Reference
@@ -65,8 +61,6 @@ jobs:
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/nav-maven-release/com/tomtom/tools/android/api-reference-docs/$(VERSION_TOMTOM_ANDROID_TOOLS)/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz
           checksumType: 'sha256'
-          userName: $(ARTIFACTORY_EDITOR_USER)
-          password: $(ARTIFACTORY_TOKEN)
           displayName: Download TomTom Android Tools API Reference
       - task: ExtractFiles@1
         displayName: Extract TomTom Android Tools API Reference
@@ -101,8 +95,6 @@ jobs:
           projectOptions:
             -PiviVersion=$(VERSION_PLATFORM)
             -PandroidToolsExternalApiRefVersion=$(VERSION_TOMTOM_ANDROID_TOOLS)
-            -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-            -PartifactoryToken=$(ARTIFACTORY_TOKEN)
           displayName: 'Generate Platform API docs'
       - publish: $(System.DefaultWorkingDirectory)/build/docs
         artifact: ${{ parameters.iviPlatformApiSubFolder }}

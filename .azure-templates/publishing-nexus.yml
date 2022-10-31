@@ -40,8 +40,8 @@ steps:
       arguments:
         --nexus_user $(NEXUS_USERNAME)
         --nexus_pass $(NEXUS_PASSWORD)
-        --artifactory_user $(ARTIFACTORY_EDITOR_USER)
-        --artifactory_pass $(ARTIFACTORY_TOKEN)
+        --artifactory_user $(IVI_ARTIFACTORY_USERNAME)
+        --artifactory_pass $(IVI_ARTIFACTORY_PASSWORD)
         --version_examples $(VERSION_EXAMPLES)
         --version_lineageos $(versionLineageOs)
         --download_base_path $(System.DefaultWorkingDirectory)/downloads

@@ -34,8 +34,6 @@ steps:
         generateIviPlatformLibrariesVersionFile
       projectOptions: >-
         -PlatestIviPlatformVersion=${{parameters.newIviPlatformVersion}}
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
       displayName: 'Check for new IVI Platform versions'
 
   - bash: |

@@ -16,4 +16,4 @@ variables:
     value: '4.0.31'
   # Artifactory base url.
   - name: artifactoryBaseUrl
-    value: 'https://artifactory.tomtomgroup.com/artifactory'
+    value: 'https://artifactory.navkit-pipeline.tt3.com/artifactory'

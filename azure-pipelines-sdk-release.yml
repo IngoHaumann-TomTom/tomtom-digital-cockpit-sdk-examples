@@ -43,6 +43,7 @@ variables:
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
   - group: AmazonWebServices
+  - group: 'IviArtifactoryCredentials'
   - group: HashiCorpVault
   - group: ArtifactorySaas
   - group: IviNexusCredentials
@@ -100,7 +101,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.21
+    ref: refs/tags/2.2.22
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
@@ -298,8 +299,6 @@ stages:
               downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/indigo_sdk_ossreport/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/$(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md
               downloadDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
               checksumType: 'sha256'
-              userName: $(ARTIFACTORY_EDITOR_USER)
-              password: $(ARTIFACTORY_TOKEN)
               displayName: Download IndiGO SDK OSS report
           - bash: |
               set -eux

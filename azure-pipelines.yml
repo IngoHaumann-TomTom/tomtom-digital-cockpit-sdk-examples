@@ -14,6 +14,7 @@ variables:
   - template: private-pool-agents/private-cloud-agents.yml@devops-templates
   - template: .azure-templates/variables.yml
   # Variable groups containing the passwords used below are defined in the project's Pipelines Library.
+  - group: IviArtifactoryCredentials
   - group: HashiCorpVault
   - group: ArtifactorySaas
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
@@ -68,7 +69,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.21
+    ref: refs/tags/2.2.22
   - repository: indigoqa
     type: git
     name: IVI/indigo-qa
@@ -100,9 +101,6 @@ stages:
   - template: gradle/dependencies-scan.yml@devops-templates
     parameters:
       dependenciesTaskName: showAllDependencies
-      projectOptions: >-
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
   - job: Build
     displayName: Lint & Build
     timeoutInMinutes: 45
@@ -127,8 +125,6 @@ stages:
             assemble
           projectOptions: >-
             -PiviVersion=$(product_version)
-            -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-            -PartifactoryToken=$(ARTIFACTORY_TOKEN)
           displayName: 'Assemble APKs'
           condition: succeeded()
 
@@ -203,8 +199,6 @@ stages:
         product: ivi-indigo-docs
         productVersion: $(product_version)
         reportFilename: products_indigo_examples
-        artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
-        artifactoryToken: $(ARTIFACTORY_TOKEN)
         artifactoryLocation: products_indigo_examples
         bdtoolsUrl: ${{variables.blackduckUrl}}
         bdApiToken: ${{variables.blackduckApiToken}}
@@ -239,8 +233,6 @@ stages:
       displayName: Archive repository to tar
     - template: publish/push-to-artifactory.yml@devops-templates
       parameters:
-        artifactoryUser: $(ARTIFACTORY_EDITOR_USER)
-        artifactoryToken: $(ARTIFACTORY_TOKEN)
         currentProductVersion: "$(product_version)"
         workingDirectory: "$(Build.SourcesDirectory)"
         artifactId: "products_indigo_examples"

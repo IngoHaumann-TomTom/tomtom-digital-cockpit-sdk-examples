@@ -22,8 +22,8 @@ steps:
         publishLibrariesPublicationToArtifactoryRepository
         artifactoryPublish
       projectOptions: >-
-        -PartifactoryUser=$(ARTIFACTORY_EDITOR_USER)
-        -PartifactoryToken=$(ARTIFACTORY_TOKEN)
+        -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
+        -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
         -PartifactoryRepo=ivi-test
         -PiviVersion=${{parameters.iviVersion}}
         -PdependenciesCatalogOnly
