@@ -32,8 +32,7 @@ The image is customized for our own use cases, main modifications are as follows
 - Replaced the platform key with the TomTom Digital Cockpit key, so that TomTom Digital Cockpit is recognized as a
   system app and is granted system permissions.
 - Modified the LineageOS updater app to download and install OTA updates from TomTom's Artifactory
-  server (this modification is for internal use only, as it requires VPN access to the TomTom
-  internal network)
+  server (this modification is for internal use only)
 - Enabled Bluetooth audio profiles for cars (for example, the target behaves as BT speakers):
 
   - A2DP profile in sink mode
