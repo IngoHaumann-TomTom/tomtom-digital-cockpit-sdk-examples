@@ -1,5 +1,6 @@
 ---
-title: Splash Screen layout: default
+title: Splash Screen
+layout: default
 ---
 
 The splash screen is the very first Android
