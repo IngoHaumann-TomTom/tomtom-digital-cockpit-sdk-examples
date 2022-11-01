@@ -145,7 +145,8 @@ steps:
                       --ignore-warning 314 \
                       --ignore-warning 315 \
                       --ignore-warning 318 \
-                      --ignore-warning 319
+                      --ignore-warning 319 \
+                      --ignore-warning 320
     env:
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
