@@ -125,9 +125,9 @@ steps:
       artifactName: scanning-logs-$(System.JobAttempt)
     condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
-  # TODO(IVI-8860): Enable compliance check on security risk and project links for OSS scan in SDK release pipeline
+  # TODO(IVI-9039): Enable compliance check on missing project links for OSS scan in SDK release pipeline
   - script: |
-      # This will check the complaince and generete a JSON report based on the BOM of the project.
+      # This will check the compliance and generate a JSON report based on the BOM of the project.
       # we are ignoring high operational risk warning from compliance check as it indicates an
       # outdated version of the 3rd party that may become deprecated soon component and can be
       # ignored for platform release.
@@ -136,11 +136,16 @@ steps:
                       --version ${{parameters.productVersion}} \
                       --report "$(Agent.TempDirectory)/${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).json" \
                       --timeout 300 \
-                      --ignore-warning 301 --ignore-warning 302 --ignore-warning 306 --ignore-warning 307 --ignore-warning 308 \
-                      --ignore-warning 309 --ignore-warning 311 --ignore-warning 315 --ignore-warning 318 --ignore-warning 319 \
-                      --ignore-warning 308 \
+                      --ignore-warning 301 \
+                      --ignore-warning 302 \
+                      --ignore-warning 306 \
+                      --ignore-warning 307 \
                       --ignore-warning 309 \
-                      --ignore-warning 314
+                      --ignore-warning 311 \
+                      --ignore-warning 314 \
+                      --ignore-warning 315 \
+                      --ignore-warning 318 \
+                      --ignore-warning 319
     env:
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
