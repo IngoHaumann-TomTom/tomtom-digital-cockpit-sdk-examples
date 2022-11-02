@@ -305,6 +305,18 @@ stages:
               mv $(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md "oss-compliancy-report.md"
             workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
             displayName: Rename IndiGO SDK OSS report
+          # Flag -e is omitted from 'set' here because 'grep' exits with 1 if "IndiGO" is not found.
+          - bash: |
+              set -ux
+              grep -Rin "indigo" .
+              if [ $? -ne 0 ]; then
+                echo "No usage of IndiGO found."
+              else 
+                echo "IndiGO found in SDK Examples."
+                exit 1
+              fi
+            workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+            displayName: Check for usage of IndiGO
           - template: .azure-templates/publishing-github.yml
             parameters:
               internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/
