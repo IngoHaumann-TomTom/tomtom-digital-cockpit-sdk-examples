@@ -206,7 +206,9 @@ stages:
               bdApiToken: ${{variables.blackduckApiToken}}
 
   - stage: Verification
-    dependsOn: [ Publishing, Versions ]
+    dependsOn:
+      - Versions
+      - Publishing
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
@@ -239,7 +241,10 @@ stages:
       - template: .azure-templates/api-ref-jobs.yml
 
   - stage: DevPortal
-    dependsOn: [ Versions, Verification, Documentation ]
+    dependsOn:
+      - Versions
+      - Verification
+      - Documentation
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
     displayName: 'Developer Portal'
@@ -258,7 +263,13 @@ stages:
       )
 
   - stage: Publication
-    dependsOn: [ OSSCompliance, Documentation, DevPortal, Verification, Publishing, Versions ]
+    dependsOn:
+      - Versions
+      - Publishing
+      - OSSCompliance
+      - Verification
+      - Documentation
+      - DevPortal
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
@@ -343,13 +354,19 @@ stages:
                 )
 
   - stage: Cleanup
-    dependsOn: [ Versions, Documentation, DevPortal, Publication ]
+    dependsOn:
+      - Versions
+      - OSSCompliance
+      - Documentation
+      - DevPortal
+      - Publication
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
       ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
     condition: or(
+      eq(dependencies.OSSCompliance.result, 'Failed'),
       eq(dependencies.Documentation.result, 'Failed'),
       eq(dependencies.DevPortal.result, 'Failed'),
       eq(dependencies.Publication.result, 'Failed')
@@ -367,7 +384,15 @@ stages:
 
   - stage: Metrics
     displayName: Collect Metrics
-    dependsOn: [ Versions, Publishing, OSSCompliance, Verification, Documentation, DevPortal, Publication, Cleanup ]
+    dependsOn:
+      - Versions
+      - Publishing
+      - OSSCompliance
+      - Verification
+      - Documentation
+      - DevPortal
+      - Publication
+      - Cleanup
     condition: eq(variables['System.TeamProject'], 'IVI')
     jobs:
       - template: metrics/start-metrics-pipeline.yml@devops-templates
