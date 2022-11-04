@@ -250,7 +250,7 @@ stages:
     displayName: 'Developer Portal'
     jobs:
       - job: DeveloperPortalExport
-        timeoutInMinutes: 20
+        timeoutInMinutes: 30
         displayName: Developer Portal
         container: docker_indigo_build
         steps:
