@@ -290,7 +290,7 @@ stages:
       )
     jobs:
       - job: PublishRelease
-        displayName: 'Publish SDK release to Nexus'
+        displayName: 'Publish SDK Examples'
         timeoutInMinutes: 10
         container: docker_indigo_delivery
         steps:
@@ -319,7 +319,7 @@ stages:
           # Flag -e is omitted from 'set' here because 'grep' exits with 1 if "IndiGO" is not found.
           - bash: |
               set -ux
-              grep -Rin "indigo" .
+              grep -rin "indigo" .
               if [ $? -ne 0 ]; then
                 echo "No usage of IndiGO found."
               else 
