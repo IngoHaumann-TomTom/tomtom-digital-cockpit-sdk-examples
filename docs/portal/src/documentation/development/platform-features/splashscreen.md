@@ -15,8 +15,8 @@ TomTom Digital Cockpit's default [`SystemUiHost`](TTIVI_PLATFORM_API) requires a
 [`SplashScreenProvider`](TTIVI_PLATFORM_API) as constructor arguments. The latter is the interface
 that has to be implemented for any splash screen customization.
 
-A splash screen can provided at different levels with a similar syntax. It can be overridden in an
-activity that inherits TomTom Digital Cockpit [`DefaultActivity`](TTIVI_PLATFORM_API):
+A splash screen can be provided at different levels with a similar syntax. It can be overridden in
+an activity that inherits the TomTom Digital Cockpit [`DefaultActivity`](TTIVI_PLATFORM_API):
 
 [`src/main/kotlin/com/example/ivi/splashscreen/SplashScreenActivity.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/splashscreen/src/main/kotlin/com/example/ivi/splashscreen/SplashScreenActivity.kt#L24-L34)
 
@@ -64,7 +64,7 @@ SplashScreenProvider {
 
 ## Running a custom action upon Splash Screen dismissal
 
-TomTom Digital Cockpit allows to trigger any action or animation on the splash screen dismissal. To
+TomTom Digital Cockpit allows triggering any action or animation on the splash screen dismissal. To
 hook into this mechanism, one needs to observe `splashScreenDismissed: LiveData<Boolean>` of the
 [`SplashScreenCoordinator`](TTIVI_PLATFORM_API) that can be found in the
 [`CoreSystemUiViewModel`](TTIVI_PLATFORM_API).
@@ -79,7 +79,7 @@ splashScreenCoordinator.splashScreenDismissed.observe(this) { splashScreenDismis
 
 ## Defining frontend creation policies
 
-The splash screen hides immediately after all frontends with
+The splash screen immediately hides after all frontends with
 [`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` have become ready, and
 just before frontends with
 [`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AFTER_STARTUP` start initializing.

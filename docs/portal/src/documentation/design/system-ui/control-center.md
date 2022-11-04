@@ -33,7 +33,7 @@ fully replaced without much difficulty.
 | Component     | Customizable  |
 | ------------- | ------------- |
 | Theming | The content color, background and size of the control center are exposed as attributes in the system theme. |
-| Replaceable | The control center container, its layout and the individual sections are all replaceable. |
+| Replaceable | The control center container, its layout, and the individual sections are all replaceable. |
 | Position & Orientation | The system UI can position and constrain the control center. However, vertical orientation can be used only in combination with a custom control center frontend suited for vertical orientation as well. |
 | Layout | The system UI can position and constrain the sections (driver system status, top-level control, co-driver system status) freely within the control center container. New sections can be added, but existing sections cannot be individually modified. |
 | Content | The content of the individual sections of the control center is not modifiable, but each section can be replaced with a new (custom) control center section. |
