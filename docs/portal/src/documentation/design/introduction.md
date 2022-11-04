@@ -25,7 +25,7 @@ build new applications in a consistent and unified way.
      }
    },
   {
-     title: 'Application Suite (expected Q3 2022)',
+     title: 'Application Suite',
      body: 'This section provides an overview of the applications delivered with TomTom Digital Cockpit. It includes hero shots, main screens and flows, links to engineering guides and tutorials, and configuration and customization options.',
      img: {
        src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/application-suite.png',
@@ -38,7 +38,7 @@ build new applications in a consistent and unified way.
 <ImageArticleGrid articles={
  [
   {
-     title: 'UI Controls & Customization (expected Q4 2022)',
+     title: 'UI Controls & Customization (coming soon)',
      body: 'This section provides an overview of the UI Controls delivered with TomTom Digital Cockpit. It includes hero shots, component description and usage, links to API references, and configuration and customization options.',
      img: {
        src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/ui-controls.png',
@@ -46,7 +46,7 @@ build new applications in a consistent and unified way.
      }
    },
   {
-     title: 'Design Guidance & Rationale (expected Q4 2022)',
+     title: 'Design Guidance & Rationale (coming soon)',
      body: 'This section provides principles for designing, customizing, and extending Digital Cockpit apps, along with an overview of the rationale of some design decisions based on previous User Research findings.',
      img: {
        src: 'https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit/image-components/introduction/design-guidance.png',

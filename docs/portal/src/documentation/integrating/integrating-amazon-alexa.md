@@ -2,6 +2,13 @@
 title: Integrating Amazon Alexa
 ---
 
+<Blockquote type="announcement" hasIcon>
+    <a href="https://developer.tomtom.com/tomtom-digital-cockpit/documentation/integrating/integrating-amazon-alexa#register-your-alexa-product-with-amazon">
+        Additional requirements
+    </a>
+    &nbsp;exist for using Amazon Alexa in your TomTom Digital Cockpit product.
+</Blockquote>
+
 TomTom Digital Cockpit can support the use of multiple voice personal assistants (VPAs) in a single product.
 The end-user can invoke each one with a separate wake-up-word and then use them one at a time.
 TomTom Digital Cockpit comes with a pre-integration of Amazon's VPA, Alexa, specifically
