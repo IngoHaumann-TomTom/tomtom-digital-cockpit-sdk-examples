@@ -11,7 +11,7 @@ its input field when safety lock is enabled.
 Safety lock can be configured per
 [_IVI instance_](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system),
 allowing safety lock to be enabled on the driver display without impacting passenger displays. This
-allows frontend plugins to remain agnostic as to whether the display is for a driver or passenger
+allows frontend plugins to remain agnostic as to whether the display is for a driver or passenger,
 and simply use the service information as provided.
 
 _Note:_ Configuring services per IVI instance is still under development and will be delivered in
@@ -41,7 +41,7 @@ val isSafetyLockEnabled: LiveData<Boolean> =
         ?: ImmutableLiveData(false)
 ```
 
-Note that `createApiOrNull` means that `?.isSafetyLockEnabled` may return `null`.
+Note that `createApiOrNull` means that `?.isSafetyLockEnabled` may return `null`. The
 `?: ImmutableLiveData(false)` is added here in order to assign a value of type `LiveData<Boolean>`
 instead of a nullable `LiveData<Boolean>?` that has to be checked for `null` in usage.
 
@@ -93,12 +93,12 @@ requires instance-specific information and thus should itself be a service with 
 ## Specifying safety lock criteria
 
 The exact criteria for enabling safety lock depends on the service implementation. Common criteria
-include the vehicle's speed based or the gear stick position.
+include the vehicle's speed or the gear stick position.
 
 The stock implementation monitors the vehicle's speed through
 [`VehicleDrivingStateService`](TTIVI_PLATFORM_API) and enables safety lock depending on the
 `drivingState`. The stock implementation of that service in turn considers the state to be
-[`DrivingState`](TTIVI_PLATFORM_API)`.DRIVING` when the speed reported by NavKit 2 exceeds 5
+[`DrivingState`](TTIVI_PLATFORM_API)`.DRIVING` when the speed reported by NavKit exceeds 5
 kilometers an hour.
 
 To change the stock behaviour, the service plugin `safetyLockServiceHost` can be replaced with a
