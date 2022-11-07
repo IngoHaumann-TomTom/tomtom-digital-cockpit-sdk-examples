@@ -162,7 +162,7 @@ stages:
       - job: PublishToNexus
         timeoutInMinutes: 90
         displayName: Publish artifacts to Nexus
-        container: docker_indigo_delivery
+        container: docker_indigo_build
         steps:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates

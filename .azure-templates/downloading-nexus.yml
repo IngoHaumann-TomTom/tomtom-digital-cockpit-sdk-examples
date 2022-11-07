@@ -27,7 +27,6 @@ steps:
     password: $(NEXUS_PASSWORD)
     condition: and(eq(variables.publishLineageOsImage, '--publish_lineageos'), succeeded())
 
-  # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
 - bash: |
     set -eux
     curl -Lo repo-sys-img.xml https://aaos.blob.core.windows.net/tomtom-digital-cockpit/repo-sys-img.xml

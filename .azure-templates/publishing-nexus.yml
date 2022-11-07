@@ -50,7 +50,6 @@ steps:
         $(publishLineageOsImage)
         $(publishEmulatorImages)
 
-  # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
   - publish: $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml
     artifact: repo-sys-img
     displayName: Publish the repo-sys-img.xml file as a pipeline artifact
@@ -60,7 +59,6 @@ steps:
     # a Maven 2 repository), upload this file to Azure Blob using a dedicated container as a temporary
     # solution. So that external customers can download the latest version of the IndiGO AAOS system
     # images for emulators, while needing to setup their environment only once.
-    # TODO(IVI-3803): Upload the repo-sys-img.xml file to the developer portal
   - task: AzureCLI@2
     inputs:
       azureSubscription: '$(SUBSCRIPTION_ID)'
@@ -72,7 +70,21 @@ steps:
         --account-name $(ACCOUNT_NAME) \
         --account-key $(ACCOUNT_KEY) \
         --destination-container tomtom-digital-cockpit
-    displayName: Upload repo-sys-img.xml to Azure Storage
+    displayName: Upload repo-sys-img.xml to new Azure Storage
+    condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '$(SUBSCRIPTION_ID)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az storage copy \
+        --source $(Build.SourcesDirectory)/downloads/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml \
+        --account-name $(ACCOUNT_NAME) \
+        --account-key $(ACCOUNT_KEY) \
+        --destination-container indigo-automotive
+    displayName: Upload repo-sys-img.xml to old Azure Storage
     condition: and(eq(variables.publishEmulatorImages, '--publish_emulators'), succeeded())
 
   - publish: $(System.DefaultWorkingDirectory)/downloads/tomtom-indigo-sdk-$(Nexus.iviPlatform)-$(Nexus.PATCH_VERSION_EXAMPLES).tar.gz
