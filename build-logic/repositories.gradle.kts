@@ -37,8 +37,10 @@ fun RepositoryHandler.tomtomArtifactory(repoName: String) {
     }
 }
 
-// Doing it in this way (as opposed to `pluginManagement{repositories{...}}`)
-// allows to use the `tomtomArtifactory` function defined above and avoid copypaste
+// Doing it in this way (as opposed to `pluginManagement{repositories{...}}`) allows using the
+// `tomtomArtifactory` function defined above and avoids duplicating the repository details.
+// The downside is that you can not use plugins in the `settings.gradle.kts` file, if that plugin
+// depends on any of the repositories from this block.
 // https://docs.gradle.org/current/userguide/upgrading_version_5.html#the_pluginmanagement_block_in_settings_scripts_is_now_isolated
 pluginManagement.repositories {
     // Local artifact cache.
