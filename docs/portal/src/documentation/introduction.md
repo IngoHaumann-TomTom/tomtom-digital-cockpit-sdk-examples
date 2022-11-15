@@ -18,8 +18,13 @@ submenu: # Additional submenu items for example - blog posts which will be displ
       url: "/tomtom-digital-cockpit/documentation/tutorials-and-examples/overview"
 ---
 
-<img class="image__image" width="832" height="478"
-    src="https://developer.tomtom.com/assets/assets/tomtom-digital-cockpit-bg-2x.png"/>
+<iframe
+    src="https://player.vimeo.com/video/768566915?h=5a2fa675b4&title=0&portrait=0&color=44ABE0"
+    style="aspect-ratio: 16 / 9; width: 100%; margin-bottom: 3rem;"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture;"
+    allowfullscreen>
+</iframe>
 
 TomTom Digital Cockpit is a framework that delivers Android-based digital cockpits. It includes an
 application platform to support the development of highly integrated applications on top of Android
