@@ -15,16 +15,16 @@ To use TomTom Digital Cockpit on your own hardware read through the information 
 
 | Component                       | Minimum                                     | Recommended                                   |
 |---------------------------------|---------------------------------------------|-----------------------------------------------|
-| CPU                             | Quad-core<br>4.000 DMIPS per core           | Octa-core<br>4500 DMIPS per core              |
-| GPU                             | Adreno 330 or better<br>160 GFLOPS (FP32)   | Adreno 615 or equivalent<br>350 GFLOPS (FP32) |
-| RAM                             | 4 GB<br>LPDDR4 – 15 GB/S                    | 6 GB<br>LPDDR4 – 15 GB/S                      |
-| FLASH (depending on map region) | 40 GB<br>EMMC 5.1                           | 64 GB<br>EMMC 5.1                             |
+| CPU                             | Quad-core - 4.000 DMIPS per core            | Octa-core - 4500 DMIPS per core               |
+| GPU                             | Adreno 330 or better - 160 GFLOPS (FP32)    | Adreno 615 or equivalent - 350 GFLOPS (FP32)  |
+| RAM                             | 4 GB - LPDDR4 – 15 GB/S                     | 6 GB - LPDDR4 – 15 GB/S                       |
+| FLASH (depending on map region) | 40 GB - EMMC 5.1                            | 64 GB - EMMC 5.1                              |
 | O.S.                            | Android Automotive 10                       | Android Automotive 11                         |
 | Screen size                     | >12.3″ (landscape) >11.6″ (portrait)        | >12.3″ (landscape) >11.6″ (portrait)          |
 | Connectivity                    | WiFi or cellular (3G or better)             | WiFi or cellular (3G or better)               |
 | Positioning                     | GNSS + dead reckoning                       | GNSS + dead reckoning                         |
 | Bluetooth                       | 4.2                                         | 5.0                                           |
-| Microphone                      | Yes<br>Acoustic echo and noise cancellation | Yes<br>Acoustic echo and noise cancellation   |
+| Microphone                      | Yes - Acoustic echo and noise cancellation  | Yes - Acoustic echo and noise cancellation    |
 | Speaker                         | Yes                                         | Yes                                           |
 
 ## Automotive vs. plain Android
