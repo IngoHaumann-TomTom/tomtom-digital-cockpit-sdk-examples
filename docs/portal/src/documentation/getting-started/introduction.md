@@ -3,7 +3,7 @@ title: Getting Started
 ---
 
 <Blockquote type="announcement" hasIcon>
-    TomTom Digital Cockpit is only available upon request.
+    TomTom Digital Cockpit is only available upon request.&nbsp;
     <a href="https://developer.tomtom.com/tomtom-digital-cockpit/request-access">
         Contact us
     </a>
