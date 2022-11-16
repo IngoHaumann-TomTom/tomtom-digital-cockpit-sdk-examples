@@ -20,7 +20,7 @@ Three sections of controls are provided by default:
   triggered (for example tap-to-talk for VPA).
 - __Top level controls__: Vehicle controls as an optional substitute or extension of hardware 
   controls, particularly for HVAC systems.
-- __Co-driver system status__: Information or status indicators placed on the side of the passenger. 
+- __Front passenger system status__: Information or status indicators placed on the side of the passenger. 
   These controls still often provide (less frequently used) entry points to relevant 
   flows. For instance, the Bluetooth indicator is the entry point for the device pop-over and 
   pairing flow.
@@ -35,7 +35,7 @@ fully replaced without much difficulty.
 | Theming | The content color, background and size of the control center are exposed as attributes in the system theme. |
 | Replaceable | The control center container, its layout, and the individual sections are all replaceable. |
 | Position & Orientation | The system UI can position and constrain the control center. However, vertical orientation can be used only in combination with a custom control center frontend suited for vertical orientation as well. |
-| Layout | The system UI can position and constrain the sections (driver system status, top-level control, co-driver system status) freely within the control center container. New sections can be added, but existing sections cannot be individually modified. |
+| Layout | The system UI can position and constrain the sections (driver system status, top-level control, front passenger system status) freely within the control center container. New sections can be added, but existing sections cannot be individually modified. |
 | Content | The content of the individual sections of the control center is not modifiable, but each section can be replaced with a new (custom) control center section. |
 | Split | This can be achieved by modifying the system UI layout. |
 
