@@ -115,8 +115,8 @@ from the `ContactsServiceBase` class.
 ```kotlin
 internal class CustomContactsService(iviServiceHostContext: IviServiceHostContext) :
     ContactsServiceBase(iviServiceHostContext) {
-    // A mutable list of contacts that can be updated with the contactsSource changes.
-    private val mutableContacts = MutableMirrorableMap<ContactId, Contact>()
+
+    private val mutableContacts = MutableContactsDataSource(context)
 }
 ```
 
@@ -134,7 +134,6 @@ list `contactsSource` is the source of contacts:
 // The source of contacts.
 private val contactsSource = mutableListOf(
     Contact(
-        contactId = ContactId("1"),
         displayName = "John Smith",
         initials = "JS",
         givenName = "John",
@@ -149,7 +148,6 @@ private val contactsSource = mutableListOf(
         alternativeSortKey = "Smith John"
     ),
     Contact(
-        contactId = ContactId("2"),
         displayName = "Kelly Goodwin",
         initials = "KG",
         givenName = "Kelly",
@@ -193,7 +191,7 @@ override fun onCreate() {
     // The source of contacts is ready and synchronization starts.
     phoneBookSynchronizationStatus = PhoneBookSynchronizationStatus.SYNCHRONIZATION_IN_PROGRESS
     // Updating the contacts property with some contacts from the source
-    mutableContacts.putAll(contactsSource.map { it.contactId to it }.toMap())
+    mutableContacts.addContacts(contactsSource)
 }
 ```
 
@@ -209,27 +207,6 @@ When the service is destroyed:
 override fun onDestroy() {
     // Put here cleaning code if necessary.
     super.onDestroy()
-}
-```
-
-### Custom API implementation
-
-To provide clients with contact images, override the
-[`ContactsService`](TTIVI_PLATFORM_API)'s `getImage()` method with your custom implementation. In
-this example only `ContactId("1")` has an image.
-
-[`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L104-L113)
-
-```kotlin
-override suspend fun getImage(contactId: ContactId): Bitmap? {
-    return when (contactId) {
-        // Return a bitmap image for contactId 1.
-        ContactId("1") -> Bitmap.createBitmap(
-            IntArray(50 * 50) { Color.BLACK }, 50, 50, Bitmap.Config.ARGB_8888
-        )
-        // Return null for other contacts.
-        else -> null
-    }
 }
 ```
 
