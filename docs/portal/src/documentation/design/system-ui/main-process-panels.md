@@ -35,7 +35,11 @@ will be prioritized in chronological order, and the newest process is visualized
 
 ## Expanded process panel
 
-An expanded process panel is a way to visualize all available information and UI controls that will not fit inside a main process panel. It can be shown by tapping the chevron icon or the metadata inside the main process panel and is always positioned on top of the map or the application it is running within.
+An 
+[expanded process panel](/tomtom-digital-cockpit/documentation/design/system-ui/expanded-process-panels) 
+is a way to visualize all available information and UI controls that will not fit inside a main 
+process panel. It can be shown by tapping the chevron icon or the metadata inside the main process 
+panel and is always positioned on top of the map or the application it is running within.
 
 <ImageArticleGrid articles={
  [

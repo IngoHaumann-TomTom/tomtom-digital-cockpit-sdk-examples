@@ -4,11 +4,14 @@ title: Overview
 
 ## Overview
 
-The system UI defines the layout of the system on a displayed level in TomTom Digital Cockpit, along with its
-rules and behaviors. The system UI decides when to show which panel and defines the container 
-to place these panels in. Frontends expose panels, which the system UI processes and presents when 
-appropriate. Panels have many use-cases. This is not limited to opening panels when pressing a menu 
-item, but also notifications, main process panels, and even the menu itself. 
+The system UI defines the layout of the system on a displayed level in TomTom Digital Cockpit, along 
+with its rules and behaviors. The system UI decides when to show which panel and defines the 
+container to place these panels in. Frontends expose panels, which the system UI processes and 
+presents when appropriate. Panels have many use-cases. This is not limited to opening panels when 
+pressing a menu item, but also 
+[notifications](/tomtom-digital-cockpit/documentation/design/system-ui/notifications), 
+[main process panels](/tomtom-digital-cockpit/documentation/design/system-ui/main-process-panels), 
+and even the menu itself. 
 
 As the system UI itself is a plugin, it and its components can be replaced in their entirety.
 

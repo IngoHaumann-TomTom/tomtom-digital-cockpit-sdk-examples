@@ -5,8 +5,8 @@ title: Main Menu
 The main menu is a useful entry point to launch the core IVI experience and quickly switch between 
 applications. This mechanism is supported on the TomTom Digital Cockpit platform through the 
 menu service. An application frontend can be registered with the menu service when configuring a 
-TomTom Digital Cockpit based IVI system. The fact that this service is disconnected from the actual main 
-menu UI means that this UI can easily be replaced, while still keeping access to the configured 
+TomTom Digital Cockpit based IVI system. The fact that this service is disconnected from the actual 
+main menu UI means that this UI can easily be replaced, while still keeping access to the configured 
 applications and menu data like the list of menu items, with their icons and optional labels.
 
 ![overview](images/main-menu/overview.png)
