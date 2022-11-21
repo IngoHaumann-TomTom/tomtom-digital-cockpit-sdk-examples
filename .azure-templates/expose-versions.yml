@@ -31,11 +31,11 @@ steps:
       git checkout tags/$IVI_PLATFORM
       indigoTomlFilePath=build-logic/libraries.versions.toml
       NAVAPP_COMPONENTS=$(cat $indigoTomlFilePath | grep "navAppComponents = " | grep -Eo "[0-9]+.[0-9]+.*[^\"]")
-      TOMTOM_ANDROID_TOOLS=$(cat $examplesTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
-      IVI_COMMS_SDK=$(cat $examplesTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
-      NAVTEST=$(cat $examplesTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-      NAVUI_EMULATORS=$(cat $examplesTomlFilePath | grep "navuiEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
-      ALEXA_AUTO_SDK=$(cat $examplesTomlFilePath | grep "amazonAlexaAutoSdk = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      TOMTOM_ANDROID_TOOLS=$(cat $indigoTomlFilePath | grep "tomtomAndroidTools = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      IVI_COMMS_SDK=$(cat $indigoTomlFilePath | grep "iviCommunicationsSdk = " | grep -Eo "[0-9].[0-9].[0-9]+")
+      NAVTEST=$(cat $indigoTomlFilePath | grep "navtest = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      NAVUI_EMULATORS=$(cat $indigoTomlFilePath | grep "navappEmulators = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
+      ALEXA_AUTO_SDK=$(cat $indigoTomlFilePath | grep "amazonAlexaAutoSdk = " | grep -Eo "[0-9]+.[0-9]+.[0-9]+")
 
       echo "##vso[task.setvariable variable=EXAMPLES;isOutput=true]$EXAMPLES"
       echo "##vso[task.setvariable variable=IVI_PLATFORM;isOutput=true]$IVI_PLATFORM"
