@@ -153,22 +153,24 @@ recognized by the tuner.
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.tomtom.ivi.appsuite.media.api.common.frontend.MediaEntryGroupItem
+import com.tomtom.ivi.appsuite.media.api.common.core.IviMediaItem
 import com.tomtom.ivi.appsuite.media.api.common.frontend.viewmodel.RadioPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
 import com.tomtom.tools.android.api.livedata.valueUpToDate
-import com.tomtom.tools.android.api.uicontrols.recyclerview.group.ListGroupItem
+
+internal class RadioRecyclerViewItem(
+    val itemData: IviMediaItem,
+    val clickAction: (RadioRecyclerViewItem) -> Unit
+)
 
 internal class RadioViewModel(panel: RadioPanel) : FrontendViewModel<RadioPanel>(panel) {
 
     val isLoading = panel.sourceClient.isLoading
 
-    val contents: LiveData<List<ListGroupItem>> = panel.sourceClient.contents.map { list ->
+    val contents: LiveData<List<RadioRecyclerViewItem>> = panel.sourceClient.contents.map { list ->
         list.map { item ->
-            MediaEntryGroupItem(
-                itemData = panel.policyProvider.extractItemDataPolicy(item),
-                itemState = MutableLiveData(MediaEntryGroupItem.ItemState.IDLE),
-                type = ListGroupItem.ItemType.LIST_ITEM,
+            RadioRecyclerViewItem(
+                itemData = panel.policyProvider.itemMappingPolicy(item),
                 clickAction = { item.mediaUri?.toString()?.let { panel.startRadio(it) } }
             )
         }
@@ -221,25 +223,6 @@ internal class RadioFragment : IviFragment<RadioPanel, RadioViewModel>(RadioView
     }
 }
 ```
-
-## Additional resources
-
-To create more complex user interfaces, additional facilities are provided:
-
-- [Media visualization components](#media-visualization-components)
-- [Media view model components](#media-view-model-components)
-
-### Media visualization components
-
-Standardizing how media contents are displayed is not a simple task; to simplify it,
-[`MediaContentView`](TTIVI_PLATFORM_API), an Android
-[`RecyclerView`](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView)
-specialization, displays media items according to their type as specified by the Android Automotive
-Media APIs. Its item types, defined by the [`MediaGroupItem`](TTIVI_PLATFORM_API) sealed class, will
-be displayed together without restriction as dictated by the standard: a part of the displayed
-content can be shown as a list, while another can be laid out in a grid, and headers can logically
-separate different groups of contents. Both the list and the grid items display the artwork, title,
-and sub-title for media items in a predictable way.
 
 ### Media view model components
 
