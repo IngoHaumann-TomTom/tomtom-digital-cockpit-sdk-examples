@@ -213,6 +213,8 @@ menu:
         items:
           - fileId: /tutorials-and-examples/localization/localize-strings
             title: Localize Strings
+          - fileId: /tutorials-and-examples/localization/change-localization-settings
+            title: Change Localization Settings
       - title: Deployment
         items:
           - fileId: /tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system

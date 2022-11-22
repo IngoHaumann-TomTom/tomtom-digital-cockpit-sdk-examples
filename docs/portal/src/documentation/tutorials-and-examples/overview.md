@@ -142,6 +142,11 @@ This guide explains how to localize strings, how to discover string resources us
 application, and how to get additional context information per string resource to facilitate
 translations.
 
+- [Change Localization Settings](/tomtom-digital-cockpit/documentation/tutorials-and-examples/localization/change-localization-settings)
+This guide explains how to use the TomTom Digital Cockpit Localization Settings API to allow the user to 
+choose their preferred localization settings. For example, it is possible to change the language in the Android 
+system in order for it to be reflected in the cockpit app as well as in all third-party apps.
+
 ## Deployment
 
 - [Configure the runtime deployment of the IVI System](/tomtom-digital-cockpit/documentation/tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system) -

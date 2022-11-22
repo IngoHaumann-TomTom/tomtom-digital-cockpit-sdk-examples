@@ -1,0 +1,61 @@
+---
+title: Change Localization Settings
+layout: default
+---
+
+## Localization API overview
+
+TomTom Digital Cockpit provides a comprehensive set of tools for changing the localization
+features of the in-vehicle system such as units of measurement and language.
+This allows for greater customisation and scalability across various regions, allowing the driver
+to interact with language and measurements which are familiar to them.
+
+Currently the Localization API module [`platform_localization_api_common_settings`](TTIVI_PLATFORM_API)
+allows for the following in-app customisations:
+- __Language changing__: package [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)
+
+## How to use the API to change the system language
+
+Language changing API for switching the 
+[Android Locale](https://developer.android.com/reference/java/util/Locale) at a system level.
+
+The language change is called via the function [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.setSystemLocale`
+by passing an [Android Locale](https://developer.android.com/reference/kotlin/java/util/Locale)
+object initialised with the desired `language` and `region` fields as illustrated below.
+
+```kotlin
+import com.tomtom.ivi.platform.localization.api.common.settings.setSystemLocale
+
+// Change the system locale to Spanish (language) US (region)
+val spanishLocale = Locale("es", "US")
+setSystemLocale(spanishLocale)
+
+// Change the system locale to Italian (language)
+val italianLocale = Locale("it")
+setSystemLocale(italianLocale)
+```
+
+Because this API switches the whole system Locale, the change in localization 
+is also reflected in third-party apps.
+
+__Note:__ Triggering a system locale change by calling this API will cause all activities to restart.
+
+### Setting system locale with invalid locale
+
+The [Android Locale](https://developer.android.com/reference/kotlin/java/util/Locale) does not 
+perform any validation of the `language` or `region` fields it is constructed with. It is possible 
+to construct an instance of a `Locale` with an invalid language or region field not corresponding to 
+any language or country, such as follows:
+
+```kotlin
+val invalidLocale = Locale("invalidLanguage", "invalidRegion")
+setSystemLocale(invalidLocale)
+```
+
+In these instances it is worth noting that the typical behaviour of the Android system is to fallback
+to __US English__.
+
+### Setting system locale with same locale as current
+
+If the user attempts to set a new Locale which is the same as the current one, the Android system
+will do nothing.

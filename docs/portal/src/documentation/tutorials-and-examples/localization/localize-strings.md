@@ -1,5 +1,6 @@
 ---
 title: Localize Strings
+layout: default
 ---
 
 The [Android resource framework](https://developer.android.com/guide/topics/resources/providing-resources)
