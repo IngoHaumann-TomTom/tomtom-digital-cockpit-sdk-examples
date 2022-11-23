@@ -37,10 +37,8 @@ fun RepositoryHandler.tomtomArtifactory(repoName: String) {
     }
 }
 
-// Doing it in this way (as opposed to `pluginManagement{repositories{...}}`) allows using the
-// `tomtomArtifactory` function defined above and avoids duplicating the repository details.
-// The downside is that you can not use plugins in the `settings.gradle.kts` file, if that plugin
-// depends on any of the repositories from this block.
+// Doing it in this way (as opposed to `pluginManagement{repositories{...}}`)
+// allows to use the `tomtomArtifactory` function defined above and avoid copypaste
 // https://docs.gradle.org/current/userguide/upgrading_version_5.html#the_pluginmanagement_block_in_settings_scripts_is_now_isolated
 pluginManagement.repositories {
     // Local artifact cache.
@@ -48,7 +46,6 @@ pluginManagement.repositories {
 
     // Artifactory cache for Maven Central, JCenter, etc.
     tomtomArtifactory("maven-remotes")
-    tomtomArtifactory("as-navapp-maven-release")
     // Repo for shared Android Tools plugins.
     tomtomArtifactory("nav-maven-release")
 }
@@ -67,7 +64,6 @@ dependencyResolutionManagement {
 
         // Repo for shared Android Tools like, UI Controls, resource resolutions,
         // viewcomparison test setup, animations...
-        tomtomArtifactory("as-navapp-maven-release")
         tomtomArtifactory("nav-maven-release")
         tomtomArtifactory("nav-maven-dev")
 
