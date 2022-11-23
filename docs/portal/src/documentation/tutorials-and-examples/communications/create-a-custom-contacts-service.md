@@ -125,8 +125,7 @@ contacts, for example the Android
 [Contacts provider](https://developer.android.com/guide/topics/providers/contacts-provider).
 
 In this example the contacts service contains two contacts. The list of contacts contains those two
-contacts after initialization. Only the contact with the id `1` has an image. The mutable
-list `contactsSource` is the source of contacts:
+contacts after initialization. The mutable list `contactsSource` is the source of contacts:
 
 [`src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/customcontacts/src/main/kotlin/com/example/ivi/example/telephony/customcontacts/CustomContactsService.kt#L41-L77)
 
