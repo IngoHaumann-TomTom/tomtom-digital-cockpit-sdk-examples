@@ -6,7 +6,9 @@ layout: default
 The splash screen is the very first Android
 [`View`](https://developer.android.com/reference/android/view/View) that is shown in the TomTom
 Digital Cockpit at startup. It covers the UI until all frontends with
-[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` are initialized.
+[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` are initialized. The
+design documentation for it can be found
+[here](/tomtom-digital-cockpit/documentation/design/system-ui/splash-screen).
 
 ## Providing a custom TomTom Digital Cockpit Splash Screen
 

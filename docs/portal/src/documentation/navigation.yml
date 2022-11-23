@@ -121,6 +121,8 @@ menu:
             title: Safety Lock
           - fileId: /development/platform-features/localization
             title: Localization
+          - fileId: /development/platform-features/splash-screen
+            title: Splash Screen
   - title: Testing
     items:
       - fileId: /testing/introduction
