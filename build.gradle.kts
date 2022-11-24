@@ -191,6 +191,10 @@ subprojects {
         exclude(group = "org.bouncycastle", module = "bcprov-jdk15to18")
         exclude(group = "org.bouncycastle", module = "bcutil-jdk15to18")
 
+        // Exclude protobuf-lite, as a normal required protobuf is already pulled in.
+        // protobuf-lite will result in a runtime failure to resolve protobuf symbols at runtime.
+        exclude(group = "com.google.protobuf", module = "protobuf-lite")
+
         resolutionStrategy {
             eachDependency {
                 when (requested.group) {
