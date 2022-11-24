@@ -17,6 +17,7 @@ Table of content:
 - [I get RuntimeException: Required support for OpenGL standard derivatives is missing](#i-get-runtimeexception-required-support-for-opengl-standard-derivatives-is-missing)
 - [Android Studio does not install the application](#android-studio-does-not-install-the-application)
 - [How do I install the APK onto a custom device?](#how-do-i-install-the-apk-onto-a-custom-device)
+- [I do not get a notification when an incoming call is received](#i-do-not-get-a-notification-when-an-incoming-call-is-received)
 
 ---
 
@@ -287,3 +288,14 @@ An IVI application must tag all its activities to be _Distraction Optimized_; se
 [driver distraction guidelines](https://source.android.com/devices/automotive/driver_distraction/guidelines#do).
 To do this, add the `distractionOptimized` meta-data attribute in the `AndroidManifest.xml` for all
 activities and activity aliases. Also see [`IviActivity`](TTIVI_PLATFORM_API).
+
+---
+
+## I do not get a notification when an incoming call is received
+
+To be informed by the platform about an incoming call, the IVI application needs to be configured as
+the system dialer. For example when the stock implementation of the telecom service is used, 
+the command to register it as the platform system dialer is:
+```cmd
+adb shell telecom set-system-dialer <IVI Application Package Name>/com.tomtom.ivi.platform.telecom.plugin.service.telecom.IviInCallService
+```
