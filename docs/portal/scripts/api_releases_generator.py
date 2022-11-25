@@ -17,9 +17,9 @@ from collections import deque
 from enum import Enum
 
 # Paths to Markdown files to generate.
-API_REFERENCE_FILE = "api-reference/api-reference.md"
-RECENT_RELEASES_FILE = "releases/releases.md"
-OLDER_RELEASES_FILE = "releases/older-releases.md"
+API_REFERENCE_FILE = "api-reference/api-reference.mdx"
+RECENT_RELEASES_FILE = "releases/releases.mdx"
+OLDER_RELEASES_FILE = "releases/older-releases.mdx"
 
 # Base URLs for the API References hosted on new Digital Cockpit S3 bucket.
 S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit"
@@ -239,7 +239,7 @@ def construct_release(releases_dict, release_version, is_open):
         f"{get_release_link(release_version)}"\
         f"<b>Release notes</b>\n"\
         f"{get_release_notes(tickets)}"\
-        "</Accordion>\n"
+        "\n\n</Accordion>\n"
     return accordion
 
 def get_accordions(construct_function, releases_dict, accordion_style):

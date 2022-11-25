@@ -22,7 +22,7 @@ import re
 import time
 from pathlib import Path
 
-TARGET_FILETYPE = "*.md"
+TARGET_FILETYPE = "*.mdx"
 
 # Developer Portal base URL.
 PORTAL_BASE_URL = "https://developer.tomtom.com"

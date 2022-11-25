@@ -16,7 +16,7 @@ import shutil
 from pathlib import Path
 import requests
 
-TARGET_FILETYPE = "*.md"
+TARGET_FILETYPE = "*.mdx"
 DOWNLOAD_DIR = "build/downloads"
 IGNORE = ["scripts",  "images", "styles", "package-list"]
 

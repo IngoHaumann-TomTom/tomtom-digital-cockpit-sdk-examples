@@ -48,9 +48,9 @@ from url_validator import validate_urls
 from api_releases_generator import generate_api_releases_sections
 
 SOURCE_DIR = "src"
-TARGET_FILETYPE = "*.md"
+TARGET_FILETYPE = "*.mdx"
 DOCUMENTATION_DIR = "documentation"
-INPUT_CHECK_FILE = "documentation/development/frontend-plugins.md"
+INPUT_CHECK_FILE = "documentation/development/frontend-plugins.mdx"
 
 def parse_parameters():
     '''
