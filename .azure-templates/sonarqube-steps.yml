@@ -18,3 +18,13 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   displayName: Publish
+
+- template: mixer/notify-mixer.yml@devops-templates
+  parameters:
+    projectComponentUnit: 'PU AS'
+    projectComponentName: 'TomTom Digital Cockpit'
+    projectComponentVersion: $(product_version)
+    scanToolName: 'SONARQUBE'
+    scanType: 'SAST'
+    projectnameInTool: 'IVI_Examples'
+    versionnameInTool: $(product_version)
