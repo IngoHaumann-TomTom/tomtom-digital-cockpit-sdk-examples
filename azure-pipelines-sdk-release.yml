@@ -101,7 +101,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.22
+    ref: refs/tags/2.2.27
   - repository: ivi-example-app
     type: git
     name: IVI/ivi-example-app
@@ -204,6 +204,15 @@ stages:
               artifactoryLocation: indigo_sdk_ossreport
               bdtoolsUrl: ${{variables.blackduckUrl}}
               bdApiToken: ${{variables.blackduckApiToken}}
+          - template: mixer/notify-mixer.yml@devops-templates
+            parameters:
+              projectComponentUnit: 'PU AS'
+              projectComponentName: 'TomTom Digital Cockpit'
+              projectComponentVersion: $(VERSION_EXAMPLES)
+              scanToolName: 'BLACKDUCK'
+              scanType: 'SCA'
+              projectnameInTool: 'ivi-indigo-sdk'
+              versionnameInTool: $(VERSION_EXAMPLES)
 
   - stage: Verification
     dependsOn:

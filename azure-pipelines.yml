@@ -205,6 +205,15 @@ stages:
         runComplianceCheck: true
         checkLicenseRisk: true
         checkSecurityRisk: true
+    - template: mixer/notify-mixer.yml@devops-templates
+      parameters:
+        projectComponentUnit: 'PU AS'
+        projectComponentName: 'TomTom Digital Cockpit'
+        projectComponentVersion: $(product_version)
+        scanToolName: 'BLACKDUCK'
+        scanType: 'SCA'
+        projectnameInTool: 'ivi-indigo-docs'
+        versionnameInTool: $(product_version)
 
 - stage: Publishing
   condition: and(eq(variables.isMainlineBuild, true), succeeded())
