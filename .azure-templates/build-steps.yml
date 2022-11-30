@@ -28,6 +28,9 @@ steps:
     projectOptions: >-
       ${{parameters.extraLintParameters}}
       -PiviVersion=$(product_version)
+      -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+      -PartifactoryUser=$(artifactoryUser)
+      -PartifactoryToken=$(artifactoryToken)
     displayName: 'Run linters'
     condition: succeeded()
 
@@ -44,6 +47,9 @@ steps:
       assemble
     projectOptions: >-
       -PiviVersion=$(product_version)
+      -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+      -PartifactoryUser=$(artifactoryUser)
+      -PartifactoryToken=$(artifactoryToken)
     displayName: 'Assemble APKs'
     condition: succeeded()
 
@@ -54,4 +60,3 @@ steps:
       $(System.DefaultWorkingDirectory)/template/app/build/outputs/apk/debug/*.apk
     displayName: 'Publish Example App APKs as pipeline artifact'
     artifact: builds
-

@@ -15,6 +15,7 @@ import datetime
 from urllib.request import urlopen
 from collections import deque
 from enum import Enum
+import requests
 
 # Paths to Markdown files to generate.
 API_REFERENCE_FILE = "api-reference/api-reference.mdx"
@@ -40,8 +41,8 @@ GITHUB_INTRODUCTION_VERSION = 2049
 # API References for later versions are pushed to Digital Cockpit S3 bucket. 
 DIGITAL_COCKPIT_S3_INTRODUCTION = 2049
 
-# Internal Artifactory URL to releases.json file.
-RELEASES_JSON_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
+# Artifact ID of releases.json file.
+JSON_ARTIFACT_ID = "ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json"
 
 # Base URL for GitHub releases.
 RELEASES_GITHUB_BASE_URL = "https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree"
@@ -60,7 +61,7 @@ class Accordion_style(Enum):
     ALL_OPEN = 2
     ALL_CLOSED = 3
 
-def get_releases_dict():
+def get_releases_dict(artifactory_base_url, artifactory_user, artifactory_token):
     '''
     Retrieves the 'releases.json' file from TomTom's internal Artifactory and parses the content.
     Throws a ConnectionError when the file cannot be retrieved.
@@ -69,11 +70,19 @@ def get_releases_dict():
     -------
     releases_dict : dict
         A dictionary with release versions as keys, and release data as values.
+    artifactory_base_url : string
+        The artifactory base url used to download artifacts from.
+    artifactory_user : string
+        The username used to authenticate with artifactory.
+    artifactory_token : string
+        The token used to authenticate with artifactory.
     '''
-    releases_json = json.loads(urlopen(RELEASES_JSON_URL).read())
-    if not releases_json:
-        raise ConnectionError(f"Releases data cannot be retrieved from {RELEASES_JSON_URL}.")
 
+    releases_artifactory_url = f"{artifactory_base_url}/{JSON_ARTIFACT_ID}"
+    response = requests.get(releases_artifactory_url, auth=(artifactory_user, artifactory_token))
+    if not response.ok:
+        raise ConnectionError(f"Releases data cannot be retrieved from {releases_artifactory_url} (status {response.status_code}.")
+    releases_json = response.json()
     releases = [release for release in releases_json["releases"]]
     releases_dict = {release:releases_json["releases"][release] for release in releases}
     return releases_dict
@@ -336,7 +345,7 @@ def get_dict_api_references(releases_dict):
 
     return api_dict
 
-def generate_api_releases_sections(target_dir):
+def generate_api_releases_sections(target_dir, artifactory_base_url, artifactory_user, artifactory_token):
     '''
     Generates the API Reference and Releases section for a Dev Portal export.
 
@@ -344,8 +353,14 @@ def generate_api_releases_sections(target_dir):
     -----------
     target_dir : str
         Path to directory containing the export files.
+    artifactory_url : str
+        The URL to the API Reference tarball on Artifactory which contains the JSON file.
+    artifactory_user : string
+        The username used to authenticate with artifactory.
+    artifactory_token : string
+        The token used to authenticate with artifactory.
     '''
-    releases_dict = get_releases_dict()
+    releases_dict = get_releases_dict(artifactory_base_url, artifactory_user, artifactory_token)
     older_releases_dict, recent_releases_dict = split_dict_releases(releases_dict)
     api_dict = get_dict_api_references(releases_dict)
 
@@ -353,7 +368,7 @@ def generate_api_releases_sections(target_dir):
     api_reference_path = os.path.join(target_dir, API_REFERENCE_FILE)
     generate_file(api_reference_path, API_PLACEHOLDER, \
         construct_api, api_dict, Accordion_style.FIRST_OPEN)
-        
+
     # Generate recent Releases section.
     recent_releases_path = os.path.join(target_dir, RECENT_RELEASES_FILE)
     generate_file(recent_releases_path, RECENT_RELEASES_PLACEHOLDER, \

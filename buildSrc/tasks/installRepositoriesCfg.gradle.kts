@@ -25,7 +25,7 @@ tasks.create("installRepositoriesCfg") {
         val srcUrl = if (project.hasProperty("nexusUsername")) {
             "https://aaos.blob.core.windows.net/tomtom-digital-cockpit/repo-sys-img.xml"
         } else {
-            "https://artifactory.navkit-pipeline.tt3.com/artifactory/ivi-maven/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml"
+            "https://artifactory.tomtomgroup.com/artifactory/ivi-maven/com/tomtom/ivi/ivi-automotive-sdk/android-11/repo-sys-img.xml"
         }
 
         val androidDirectory = File(androidDirectoryName).apply { mkdirs() }

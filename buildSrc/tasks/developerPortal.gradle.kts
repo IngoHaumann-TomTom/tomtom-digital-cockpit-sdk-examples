@@ -15,6 +15,10 @@ val iviPlatformVersion = libraries.versions.iviPlatform.get()
 val iviCommsVersion = iviDependencies.versions.iviCommunicationsSdk.get()
 val androidToolsVersion = iviDependencies.versions.tomtomAndroidTools.get()
 
+val artifactoryBaseUrl: String? by project
+val artifactoryUser: String? by project
+val artifactoryToken: String? by project
+
 /**
  * TomTom internal tooling, see docs/portal/README.md if you are a TomTom developer.
  *
@@ -23,10 +27,18 @@ tasks.register<Exec>("portal_check") {
     description = "Validates Developer Portal content."
     group = "Documentation"
 
+    val artifactoryUrl = artifactoryBaseUrl ?: "https://artifactory.tomtomgroup.com/artifactory"
     workingDir(portalDirectory)
     commandLine("python3")
-    args("-B", "scripts/portal_generator.py", 
-        iviPlatformVersion, iviCommsVersion, androidToolsVersion, targetDir)
+    args("-B", "scripts/portal_generator.py",
+        iviPlatformVersion,
+        iviCommsVersion,
+        androidToolsVersion,
+        targetDir,
+        artifactoryUrl,
+        artifactoryUser,
+        artifactoryToken
+        )
 }
 
 /**
@@ -39,5 +51,13 @@ tasks.register<Exec>("portal_export") {
     workingDir(portalDirectory)
     commandLine("python3")
     args("-B", "scripts/portal_generator.py",
-        iviPlatformVersion, iviCommsVersion, androidToolsVersion, targetDir, "export")
+        iviPlatformVersion,
+        iviCommsVersion,
+        androidToolsVersion,
+        targetDir,
+        artifactoryBaseUrl,
+        artifactoryUser,
+        artifactoryToken,
+        "export"
+        )
 }

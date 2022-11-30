@@ -24,6 +24,8 @@ jobs:
       - template: download/download-and-verify.yml@devops-templates
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/$(VERSION_PLATFORM)/api-reference-docs-$(VERSION_PLATFORM).tar.gz
+          userName: $(artifactoryUser)
+          password: $(artifactoryToken)
           checksumType: 'sha256'
           displayName: Download Gradle Plugins API Reference
       - task: ExtractFiles@1
@@ -42,6 +44,8 @@ jobs:
       - template: download/download-and-verify.yml@devops-templates
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/$(VERSION_COMMUNICATIONS_SDK)/api-reference-docs-$(VERSION_COMMUNICATIONS_SDK).tar.gz
+          userName: $(artifactoryUser)
+          password: $(artifactoryToken)
           checksumType: 'sha256'
           displayName: Download Communications SDK API Reference
       - task: ExtractFiles@1
@@ -60,6 +64,8 @@ jobs:
       - template: download/download-and-verify.yml@devops-templates
         parameters:
           downloadUrl: $(artifactoryBaseUrl)/nav-maven-release/com/tomtom/tools/android/api-reference-docs/$(VERSION_TOMTOM_ANDROID_TOOLS)/api-reference-docs-$(VERSION_TOMTOM_ANDROID_TOOLS).tar.gz
+          userName: $(artifactoryUser)
+          password: $(artifactoryToken)
           checksumType: 'sha256'
           displayName: Download TomTom Android Tools API Reference
       - task: ExtractFiles@1
@@ -93,6 +99,9 @@ jobs:
           tasks: >-
             docs
           projectOptions:
+            -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+            -PartifactoryUser=$(artifactoryUser)
+            -PartifactoryToken=$(artifactoryToken)
             -PiviVersion=$(VERSION_PLATFORM)
             -PandroidToolsExternalApiRefVersion=$(VERSION_TOMTOM_ANDROID_TOOLS)
           displayName: 'Generate Platform API docs'

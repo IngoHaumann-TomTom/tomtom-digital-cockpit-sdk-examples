@@ -54,7 +54,19 @@ steps:
           scan_allowed = False
         print(f"##vso[task.setvariable variable=scanAllowed;isOutput=true]{scan_allowed}")
 
-  - script: |
+  - task: PythonScript@0
+    displayName: 'Update gradle properties'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3
+      script: |
+        with open('$(containerGradleCacheDirectory)/gradle.properties', 'a') as gradlePropertiesFile:
+          gradlePropertiesFile.write('${{ parameters.artifactoryBaseURLName }}=${{ parameters.artifactoryBaseURLValue }}\n')
+          gradlePropertiesFile.write('${{ parameters.artifactoryUserName }}=${{ parameters.artifactoryUserValue }}\n')
+          gradlePropertiesFile.write('${{ parameters.artifactoryTokenName }}=${{ parameters.artifactoryTokenValue }}\n')
+          gradlePropertiesFile.close()
+
+  - bash: |
       echo "Create locked configuration"
 
       bdt config --repo-type=GIT \
@@ -82,6 +94,7 @@ steps:
                 --cache=$(Agent.TempDirectory)/bdtoolscache \
                 --lock-configuration=$(Agent.TempDirectory)/bdtools.lock.yml
     env:
+      GRADLE_USER_HOME: $(containerGradleCacheDirectory)
       BLACKDUCK_API_TOKEN: ${{parameters.bdApiToken}}
       BLACKDUCK_URL: ${{parameters.bdtoolsUrl}}
     displayName: Perform configuration and link project scans
@@ -126,7 +139,7 @@ steps:
     condition: and(succeededOrFailed(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
   # TODO(IVI-9039): Enable compliance check on missing project links for OSS scan in SDK release pipeline
-  - script: |
+  - bash: |
       # This will check the compliance and generate a JSON report based on the BOM of the project.
       # we are ignoring high operational risk warning from compliance check as it indicates an
       # outdated version of the 3rd party that may become deprecated soon component and can be
@@ -182,15 +195,22 @@ steps:
       artifactName: oss-report
     condition: and(succeeded(), eq(variables['CompareVersions.scanAllowed'], 'True'))
 
-  - template: publish/push-to-artifactory.yml@devops-templates
+  - template: artifactory/push-to-artifactory.yml@devops-templates
     parameters:
+      artifactoryBaseUrl: $(artifactoryBaseUrl)
+      artifactoryUser: $(artifactoryUser)
+      artifactoryToken: $(artifactoryToken)
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"
       folderOrFileName: "${{parameters.reportFilename}}_$(VERSION_PLATFORM)-$(PATCH_VERSION).md"
       condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), eq(variables['CompareVersions.scanAllowed'], 'True'))
-  - template: publish/push-to-artifactory.yml@devops-templates
+
+  - template: artifactory/push-to-artifactory.yml@devops-templates
     parameters:
+      artifactoryBaseUrl: $(artifactoryBaseUrl)
+      artifactoryUser: $(artifactoryUser)
+      artifactoryToken: $(artifactoryToken)
       currentProductVersion: "$(VERSION_PLATFORM)-$(PATCH_VERSION)"
       workingDirectory: "$(Agent.TempDirectory)"
       artifactId: "${{parameters.artifactoryLocation}}"

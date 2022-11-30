@@ -16,20 +16,10 @@ steps:
 
 - bash: |
     set -eux
-
     echo "Product version: $(product_version)"
-
     version_tag=$(gitversion /nocache /verbosity error /showvariable SemVer)
     version_branch=$(Build.SourceBranchName)
-
-    if [[ "$version_tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] && [[ "$version_branch" =~ ^(master|release/.+)$ ]]
-    then
-      :
-    else
-      echo "Publication is not allowed, version_tag=\"$version_tag\", version_branch=\"$version_branch\"." >&2
-      exit 1
-    fi
-  displayName: 'Check version can be published'
+  displayName: 'Check version being published'
 
 - download: current
   artifact: builds
@@ -39,11 +29,15 @@ steps:
     tasks: >-
       artifactoryPublish
     projectOptions: >-
-      -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
-      -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
       -PiviVersion=$(product_version)
+      -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+      -PartifactoryUser=$(artifactoryUser)
+      -PartifactoryToken=$(artifactoryToken)
+      -PartifactoryRepo=$(artifactoryRepo)
+      -Dorg.gradle.internal.http.socketTimeout=900000
+      -Dorg.gradle.internal.http.connectionTimeout=900000
     displayName: Publish APKs to Artifactory
-    condition: succeeded()
+    condition: and(ne(variables['Build.Reason'], 'PullRequest'), succeeded())
 
 - bash: |
     set -eu
@@ -53,7 +47,7 @@ steps:
     git tag "$(product_version)"
     git push origin "$(product_version)"
   displayName: Tag commit
-  condition: succeeded()
+  condition: and(eq(variables.isMainlineBuild, true), succeeded())
 
 - bash: |
     # Do not use "set -eux" here, otherwise tag definition below will contain an extra quote at the end

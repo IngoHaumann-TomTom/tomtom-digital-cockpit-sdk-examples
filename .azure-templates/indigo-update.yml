@@ -33,6 +33,9 @@ steps:
       tasks: >-
         generateIviPlatformLibrariesVersionFile
       projectOptions: >-
+        -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+        -PartifactoryUser=$(artifactoryUser)
+        -PartifactoryToken=$(artifactoryToken)
         -PlatestIviPlatformVersion=${{parameters.newIviPlatformVersion}}
       displayName: 'Check for new IVI Platform versions'
 

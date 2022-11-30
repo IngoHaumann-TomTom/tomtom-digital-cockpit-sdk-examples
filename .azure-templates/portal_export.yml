@@ -22,6 +22,10 @@ steps:
     parameters:
       tasks: >-
         portal_export
+      projectOptions: >-
+        -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+        -PartifactoryUser=$(artifactoryUser)
+        -PartifactoryToken=$(artifactoryToken)
       displayName: Generate Developer Portal export
       continueOnError: true
 

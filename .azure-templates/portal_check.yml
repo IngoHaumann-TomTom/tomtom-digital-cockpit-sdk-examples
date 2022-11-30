@@ -17,6 +17,9 @@ steps:
       tasks: >-
         portal_check
       projectOptions: >-
+        -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+        -PartifactoryUser=$(artifactoryUser)
+        -PartifactoryToken=$(artifactoryToken)
       displayName: 'Validate Developer Portal content'
       continueOnError: true
 

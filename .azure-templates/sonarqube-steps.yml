@@ -10,8 +10,11 @@ steps:
   parameters:
     tasks: >-
       sonarqube
-    projectOptions:
+    projectOptions: >-
       -PiviVersion=$(product_version)
+      -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+      -PartifactoryUser=$(artifactoryUser)
+      -PartifactoryToken=$(artifactoryToken)
     displayName: Analyze
 
 - task: SonarQubePublish@5

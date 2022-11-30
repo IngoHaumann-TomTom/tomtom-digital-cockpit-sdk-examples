@@ -22,9 +22,12 @@ steps:
         publishLibrariesPublicationToArtifactoryRepository
         artifactoryPublish
       projectOptions: >-
-        -PpublishUsername=$(IVI_ARTIFACTORY_USERNAME)
-        -PpublishPassword=$(IVI_ARTIFACTORY_PASSWORD)
-        -PartifactoryRepo=ivi-test
+        -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+        -PartifactoryUser=$(artifactoryUser)
+        -PartifactoryToken=$(artifactoryToken)
+        -PartifactoryRepo=$(artifactoryRepo)
         -PiviVersion=${{parameters.iviVersion}}
         -PdependenciesCatalogOnly
+        -Dorg.gradle.internal.http.socketTimeout=900000
+        -Dorg.gradle.internal.http.connectionTimeout=900000
       displayName: 'Publish libraries to ivi-test Artifactory'

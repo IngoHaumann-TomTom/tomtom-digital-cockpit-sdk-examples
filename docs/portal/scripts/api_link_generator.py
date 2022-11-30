@@ -33,7 +33,6 @@ REGEX_COMMS_PLACEHOLDER = f"\[.*?\]\({COMMS_PLACEHOLDER}\)"
 REGEX_ANDROID_TOOLS_PLACEHOLDER = f"\[.*?\]\({ANDROID_TOOLS_PLACEHOLDER}\)"
 
 S3_BASE_URL = "https://developer.tomtom.com/assets/downloads/tomtom-digital-cockpit"
-ARTIFACTORY_BASE_URL = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
 
 # Regex pattern to retrieve the API element without brackets.
 REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
@@ -61,7 +60,7 @@ def is_valid_placeholder(match):
         match == COMMS_PLACEHOLDER or \
         match == ANDROID_TOOLS_PLACEHOLDER
 
-def download_api_ref(artifactory_url, target_dir):
+def download_api_ref(artifactory_url, artifactory_user, artifactory_token, target_dir):
     '''
     Downloads API Reference from Artifactory to specified target_dir.
 
@@ -69,6 +68,10 @@ def download_api_ref(artifactory_url, target_dir):
     -----------
     artifactory_url : str
         The URL to the API Reference tarball on Artifactory which contains the JSON file.
+    artifactory_user : string
+        The username used to authenticate with artifactory.
+    artifactory_token : string
+        The token used to authenticate with artifactory.
     target_dir : str
         The directory to download the API Reference tarball to.
     '''
@@ -76,7 +79,7 @@ def download_api_ref(artifactory_url, target_dir):
     os.makedirs(target_dir)
 
     # Download and extract API Reference from Artifactory.
-    response = requests.get(artifactory_url)
+    response = requests.get(artifactory_url, auth=(artifactory_user, artifactory_token))
     if not response.ok:
         raise ConnectionError(f"API Reference cannot be retrieved from {artifactory_url} (status {response.status_code}.")
     with open(download_target, "wb") as file:
@@ -234,7 +237,7 @@ def create_index(target_dir):
 
     return map
 
-def generate_api_links(target_dir, versions):
+def generate_api_links(target_dir, versions, artifactory_base_url, artifactory_user, artifactory_token):
     '''
     Replaces all API placeholders with the corresponding API Reference URLs.
 
@@ -246,6 +249,12 @@ def generate_api_links(target_dir, versions):
         [0] IVI platform version.
         [1] IVI Comms SDK version.
         [2] TomTom Android Tools version.
+    artifactory_base_url : string
+        The artifactory base url used to download artifacts from.
+    artifactory_user : string
+        The username used to authenticate with artifactory.
+    artifactory_token : string
+        The token used to authenticate with artifactory.
     '''
 
     assert (len(versions) == 3), "Invalid number of versions."
@@ -267,10 +276,10 @@ def generate_api_links(target_dir, versions):
     android_tools_base_url = f"{S3_BASE_URL}/tomtom-android-tools-api/{android_tools_version}"
 
     # The URLs of the API Reference on Artifactory.
-    platform_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/api-reference-docs/{platform_version}/api-reference-docs-{platform_version}.tar.gz"
-    gradleplugins_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/{gradleplugins_version}/api-reference-docs-{gradleplugins_version}.tar.gz"
-    comms_artifactory_url = f"{ARTIFACTORY_BASE_URL}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/{comms_version}/api-reference-docs-{comms_version}.tar.gz"
-    android_tools_artifactory_url = f"{ARTIFACTORY_BASE_URL}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/{android_tools_version}/api-reference-docs-{android_tools_version}.tar.gz"
+    platform_artifactory_url = f"{artifactory_base_url}/ivi-maven/com/tomtom/ivi/api-reference-docs/{platform_version}/api-reference-docs-{platform_version}.tar.gz"
+    gradleplugins_artifactory_url = f"{artifactory_base_url}/ivi-maven/com/tomtom/ivi/platform/gradle/api-reference-docs/{gradleplugins_version}/api-reference-docs-{gradleplugins_version}.tar.gz"
+    comms_artifactory_url = f"{artifactory_base_url}/ivi-maven/com/tomtom/ivi/sdk/communications/api-reference-docs/{comms_version}/api-reference-docs-{comms_version}.tar.gz"
+    android_tools_artifactory_url = f"{artifactory_base_url}/nav-maven-release/com/tomtom/tools/android/api-reference-docs/{android_tools_version}/api-reference-docs-{android_tools_version}.tar.gz"
 
     # The directories where the downloaded API References will be saved.
     platform_download_dir = f"{DOWNLOAD_DIR}/platform_{platform_version}"
@@ -285,10 +294,10 @@ def generate_api_links(target_dir, versions):
         shutil.rmtree(DOWNLOAD_DIR)
 
     # Download API References stored on Artifactory.
-    download_api_ref(platform_artifactory_url, platform_download_dir)
-    download_api_ref(gradleplugins_artifactory_url, gradleplugins_download_dir)
-    download_api_ref(comms_artifactory_url, comms_download_dir)
-    download_api_ref(android_tools_artifactory_url, android_tools_download_dir)
+    download_api_ref(platform_artifactory_url, artifactory_user, artifactory_token, platform_download_dir)
+    download_api_ref(gradleplugins_artifactory_url, artifactory_user, artifactory_token, gradleplugins_download_dir)
+    download_api_ref(comms_artifactory_url, artifactory_user, artifactory_token, comms_download_dir)
+    download_api_ref(android_tools_artifactory_url, artifactory_user, artifactory_token, android_tools_download_dir)
 
     # Create look-up maps by indexing API References.
     platform_map = create_index(platform_download_dir)

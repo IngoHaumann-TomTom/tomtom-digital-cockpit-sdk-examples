@@ -23,6 +23,10 @@ steps:
   parameters:
     tasks: >-
       test
+    projectOptions: >-
+      -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+      -PartifactoryUser=$(artifactoryUser)
+      -PartifactoryToken=$(artifactoryToken)
     testResultsFiles: '**/TEST-*Test.xml'
     testRunTitle: 'Unit tests'
     displayName: 'Run unit tests'

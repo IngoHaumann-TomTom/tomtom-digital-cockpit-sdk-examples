@@ -85,22 +85,29 @@ stages:
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/product-get-version.yml
-    - template: hashi-corp-vault/get-artifactory-saas-secret.yml@devops-templates
+    - template: artifactory/get-artifactory-details.yml@devops-templates
       parameters:
         hcvAppRoleId: $(HCV_EDITOR_APPROLE_ID)
         hcvAppRoleSecretId: $(HCV_EDITOR_SECRET_ID)
-        hcvSecretPath: 'users/$(ARTIFACTORY_EDITOR_USER)'
+        artifactorySaasUser: $(ARTIFACTORY_EDITOR_USER)
 
 - stage: Build
   displayName: 'Build pipeline'
   dependsOn: Vars
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - template: gradle/dependencies-scan.yml@devops-templates
     parameters:
       dependenciesTaskName: showAllDependencies
+      projectOptions: >-
+        -PartifactoryBaseUrl='$(artifactoryBaseUrl)'
+        -PartifactoryUser=$(artifactoryUser)
+        -PartifactoryToken='$(artifactoryToken)'
   - job: Build
     displayName: Lint & Build
     timeoutInMinutes: 45
@@ -125,6 +132,9 @@ stages:
             assemble
           projectOptions: >-
             -PiviVersion=$(product_version)
+            -PartifactoryBaseUrl=$(artifactoryBaseUrl)
+            -PartifactoryUser=$(artifactoryUser)
+            -PartifactoryToken=$(artifactoryToken)
           displayName: 'Assemble APKs'
           condition: succeeded()
 
@@ -133,7 +143,10 @@ stages:
   dependsOn: Vars
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: UnitTests
     displayName: Unit tests
@@ -163,7 +176,10 @@ stages:
     - Build
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: SonarQube
     displayName: Run SonarQube analysis
@@ -183,22 +199,32 @@ stages:
 
 - stage: OSSCompliance
   dependsOn: Vars
-  condition: and(eq(variables.isMainlineBuild, true), succeeded())
+  condition: and(ne(variables['Build.Reason'], 'PullRequest'), succeeded())
   displayName: OSS compliance scan
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: OSSComplianceScan
     displayName: OSS compliance scan
     container: docker_indigo_scanner
     steps:
-    - template: oss/scan-and-report.yml@devops-templates
+    - template: blackduck/scan-and-report.yml@devops-templates
       parameters:
         configurationFilePath: .azure-templates/bdtools.yml
         product: ivi-indigo-docs
         productVersion: $(product_version)
         reportFilename: products_indigo_examples
+        artifactoryBaseURLName: 'artifactoryBaseUrl'
+        artifactoryBaseURLValue: $(artifactoryBaseUrl)
+        artifactoryUserName: 'artifactoryUser'
+        artifactoryUserValue: $(artifactoryUser)
+        artifactoryTokenName: 'artifactoryToken'
+        artifactoryTokenValue: '$(artifactoryToken)'
+        artifactoryRepo: $(artifactoryRepo)
         artifactoryLocation: products_indigo_examples
         bdtoolsUrl: ${{variables.blackduckUrl}}
         bdApiToken: ${{variables.blackduckApiToken}}
@@ -216,20 +242,24 @@ stages:
         versionnameInTool: $(product_version)
 
 - stage: Publishing
-  condition: and(eq(variables.isMainlineBuild, true), succeeded())
+  condition: and(ne(variables['Build.Reason'], 'PullRequest'), succeeded())
   dependsOn:
     - Vars
     - Analyse
     - OSSCompliance
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: Publish
     container: 'docker_indigo_build'
     displayName: Publish artifacts
     steps:
     - template: .azure-templates/publishing.yml
+
   - job: PublishRepository
     displayName: Publishing Repository to Artifactory
     dependsOn: Publish
@@ -240,8 +270,12 @@ stages:
         set -eux
         ls -1A | xargs -d "\n" tar cfz products_indigo_examples-$(product_version)-sources.tar.gz
       displayName: Archive repository to tar
-    - template: publish/push-to-artifactory.yml@devops-templates
+    - template: artifactory/push-to-artifactory.yml@devops-templates
       parameters:
+        artifactoryBaseUrl: $(artifactoryBaseUrl)
+        artifactoryUser: $(artifactoryUser)
+        artifactoryToken: $(artifactoryToken)
+        artifactoryRepo: $(artifactoryRepo)
         currentProductVersion: "$(product_version)"
         workingDirectory: "$(Build.SourcesDirectory)"
         artifactId: "products_indigo_examples"

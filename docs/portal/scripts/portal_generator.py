@@ -65,10 +65,16 @@ def parse_parameters():
     target_dir : string
         The directory where the portal files must be generated.
     is_export : boolean
-        Indicates whether the script is run with the optional argument "export"
+        Indicates whether the script is run with the optional argument "export".
+    artifactory_base_url : string
+        The artifactory base url used to download artifacts from.
+    artifactory_user : string
+        The username used to authenticate with artifactory.
+    artifactory_token : string
+        The token used to authenticate with artifactory.
     '''
     argc = len(sys.argv)
-    assert (argc >= 5 and argc <= 6), "Invalid number of parameters."
+    assert (argc >= 8 and argc <= 9), "Invalid number of parameters."
 
     versions = []
     versions.append(sys.argv[1])
@@ -77,13 +83,17 @@ def parse_parameters():
 
     target_dir = sys.argv[4]
 
+    artifactory_base_url = sys.argv[5]
+    artifactory_user = sys.argv[6]
+    artifactory_token = sys.argv[7]
+
     is_export = False
-    if argc == 6:
-        assert (sys.argv[5] == "export"), "Unexpected 5th parameter."
+    if argc == 9:
+        assert (sys.argv[8] == "export"), "Unexpected 8th parameter."
         is_export = True
 
     # TODO(IVI-6612) Create PortalConfig object
-    return versions, target_dir, is_export
+    return versions, target_dir, is_export, artifactory_base_url, artifactory_user, artifactory_token
 
 def verify_working_directory():
     '''Verifies whether script is run from correct working directory.'''
@@ -115,13 +125,13 @@ def create_intermediate_files(target_dir):
 
 # Input validation and other preparation.
 # TODO(IVI-6612) Create PortalConfig object
-versions, target_dir, is_export = parse_parameters()
+versions, target_dir, is_export, artifactory_base_url, artifactory_user, artifactory_token = parse_parameters()
 verify_working_directory()
 clean_old_files(target_dir)
 
 # Generate and verify the portal content.
 create_intermediate_files(target_dir)
-generate_api_links(target_dir, versions)
-generate_api_releases_sections(target_dir)
+generate_api_links(target_dir, versions, artifactory_base_url, artifactory_user, artifactory_token)
+generate_api_releases_sections(target_dir, artifactory_base_url, artifactory_user, artifactory_token)
 validate_urls(target_dir, is_export)
 

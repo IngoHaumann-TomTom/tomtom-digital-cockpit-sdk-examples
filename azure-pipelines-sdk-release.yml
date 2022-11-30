@@ -43,7 +43,7 @@ variables:
   # Access data required for CI pipeline to publish results from security vulnerabilities scanning.
   - group: bdtools-access-secrets
   - group: AmazonWebServices
-  - group: 'IviArtifactoryCredentials'
+  - group: IviArtifactoryCredentials
   - group: HashiCorpVault
   - group: ArtifactorySaas
   - group: IviNexusCredentials
@@ -132,11 +132,11 @@ stages:
       - job: Properties
         steps:
           - checkout: none
-          - template: hashi-corp-vault/get-artifactory-saas-secret.yml@devops-templates
+          - template: artifactory/get-artifactory-details.yml@devops-templates
             parameters:
               hcvAppRoleId: $(HCV_EDITOR_APPROLE_ID)
               hcvAppRoleSecretId: $(HCV_EDITOR_SECRET_ID)
-              hcvSecretPath: 'users/$(ARTIFACTORY_EDITOR_USER)'
+              artifactorySaasUser: $(ARTIFACTORY_EDITOR_USER)
 
   - stage: Versions
     displayName: 'Get versions'
@@ -156,7 +156,10 @@ stages:
       - Versions
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
-      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     displayName: 'Publish artifacts to Nexus'
     jobs:
       - job: PublishToNexus
@@ -184,7 +187,10 @@ stages:
       VERSION_NAVEMULATOR: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVUI_EMULATORS'] ]
       VERSION_NAVAPP_COMPONENTS: $[ stageDependencies.Versions.GetVersions.outputs['Version.NAVAPP_COMPONENTS'] ]
       VERSION_ALEXAAUTOSDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.ALEXA_AUTO_SDK'] ]
-      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     condition: and(
       eq(variables.isMainlineBuild, true),
       eq(dependencies.Versions.result, 'Succeeded'),
@@ -235,7 +241,10 @@ stages:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_COMMS_SDK'] ]
-      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
@@ -256,6 +265,10 @@ stages:
       - Documentation
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     displayName: 'Developer Portal'
     jobs:
       - job: DeveloperPortalExport
@@ -284,7 +297,10 @@ stages:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PATCH_VERSION_EXAMPLES: $[ stageDependencies.Publishing.PublishToNexus.outputs['Nexus.PATCH_VERSION_EXAMPLES'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
-      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
       ${{ if eq(variables.publishDocumentation, true) }}:
         externalRepoBranch: 'main'
         versionTag: '$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)'
@@ -319,6 +335,8 @@ stages:
               downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/indigo_sdk_ossreport/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/$(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md
               downloadDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
               checksumType: 'sha256'
+              userName: $(artifactoryUser)
+              password: $(artifactoryToken)
               displayName: Download IndiGO SDK OSS report
           - bash: |
               set -eux
@@ -373,7 +391,10 @@ stages:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
-      ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+      artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+      artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+      artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+      artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     condition: or(
       eq(dependencies.OSSCompliance.result, 'Failed'),
       eq(dependencies.Documentation.result, 'Failed'),

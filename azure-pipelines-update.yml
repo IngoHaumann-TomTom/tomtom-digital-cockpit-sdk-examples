@@ -17,7 +17,7 @@ variables:
     value: indigo-platform-canary
   - group: IviGradleCache
   - group: ProductVersion
-  - group: 'IviArtifactoryCredentials'
+  - group: IviArtifactoryCredentials
   - group: HashiCorpVault
   - group: ArtifactorySaas
 
@@ -47,7 +47,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.22
+    ref: refs/tags/2.2.26
   - repository: indigo-pr
     type: git
     name: IVI/indigo
@@ -64,18 +64,21 @@ stages:
     container: 'docker_indigo_build'
     steps:
     - template: .azure-templates/product-get-version.yml
-    - template: hashi-corp-vault/get-artifactory-saas-secret.yml@devops-templates
+    - template: artifactory/get-artifactory-details.yml@devops-templates
       parameters:
         hcvAppRoleId: $(HCV_EDITOR_APPROLE_ID)
         hcvAppRoleSecretId: $(HCV_EDITOR_SECRET_ID)
-        hcvSecretPath: 'users/$(ARTIFACTORY_EDITOR_USER)'
+        artifactorySaasUser: $(ARTIFACTORY_EDITOR_USER)
 
 - stage: PrepareIndigoDocsBranch
   displayName: 'IndiGO Docs canary branch'
   dependsOn: Vars
   variables:
     platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: Libraries
     workspace:
@@ -108,7 +111,10 @@ stages:
   variables:
     product_version: $[ stageDependencies.Vars.Properties.outputs['version.product_version'] ]
     platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: Build
     displayName: 'Lint & Build'
@@ -127,7 +133,10 @@ stages:
     - PrepareIndigoDocsBranch
   variables:
     platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
-    ARTIFACTORY_TOKEN: $[ stageDependencies.Vars.Properties.outputs['artifactory.SECRET'] ]
+    artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
+    artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
+    artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
+    artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
   - job: UnitTests
     displayName: 'Unit tests'
@@ -159,7 +168,7 @@ stages:
     - Test
   variables:
     platform_version: $[ stageDependencies.Vars.Properties.outputs['version.platform_version'] ]
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'IVI'))
   jobs:
   - job: MergeIndigoDocsBranch
     displayName: 'Merge IndiGO Docs canary branch'

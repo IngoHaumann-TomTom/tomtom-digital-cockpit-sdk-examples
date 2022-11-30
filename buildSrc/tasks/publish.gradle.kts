@@ -24,9 +24,6 @@ plugins.apply("maven-publish")
 
 val isApplicationProject: Boolean by extra
 
-// TODO(IVI-4701): Remove Artifactory reference.
-val artifactoryRepoBaseUrl = "https://artifactory.navkit-pipeline.tt3.com/artifactory"
-
 fun convertModuleNameToApkBuildpath(moduleName: String): String {
     val hierarchy = moduleName.split("_")
     val module = hierarchy.joinToString("/")
@@ -92,15 +89,16 @@ fun Project.artifactory(configure: ArtifactoryPluginConvention.() -> Unit): Unit
     configure(project.convention.getPluginByName("artifactory"))
 
 artifactory {
-    setContextUrl(artifactoryRepoBaseUrl)
-    val artifactoryRepo = findProperty("artifactoryRepo") as String? ?: "ivi-maven"
+    val artifactoryBaseUrl = findProperty("artifactoryBaseUrl") as String? ?: "https://artifactory.tomtomgroup.com/artifactory"
+    setContextUrl(artifactoryBaseUrl)
 
+    val artifactoryRepo = findProperty("artifactoryRepo") as String? ?: "ivi-maven"
     publish(delegateClosureOf<PublisherConfig> {
         repository(delegateClosureOf<GroovyObject> {
             setProperty("repoKey", artifactoryRepo)
-            if (project.hasProperty("publishUsername")) {
-                setProperty("username", properties["publishUsername"].toString())
-                setProperty("password", properties["publishPassword"].toString())
+            if (project.hasProperty("artifactoryUser") && project.hasProperty("artifactoryToken")) {
+                setProperty("username", properties["artifactoryUser"].toString())
+                setProperty("password", properties["artifactoryToken"].toString())
             }
         })
         defaults(delegateClosureOf<GroovyObject> {
