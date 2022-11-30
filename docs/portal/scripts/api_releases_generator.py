@@ -130,8 +130,7 @@ def get_api_link(api_version, library_url, library_name):
     str
         An HTML '<a href=>' link to an API Reference.
     '''
-    return f"\n<a href=\"{library_url}/{api_version}/index.html\">"\
-        f"{library_name} - version {api_version}</a>"
+    return f"[{library_name} - version {api_version}]({library_url}/{api_version}/index.html)"
 
 def get_release_link(release_version):
     '''
@@ -155,8 +154,7 @@ def get_release_link(release_version):
     if example_app_sources_version < GITHUB_INTRODUCTION_VERSION:
         return ""
     
-    return f"\n<a href=\"{RELEASES_GITHUB_BASE_URL}/{release_version}\">"\
-            f"TomTom Digital Cockpit SDK - version {release_version}</a>\n"
+    return f"[TomTom Digital Cockpit SDK - version {release_version}]({RELEASES_GITHUB_BASE_URL}/{release_version})"
 
 def get_release_notes(tickets):
     '''
@@ -174,11 +172,10 @@ def get_release_notes(tickets):
     '''
     release_notes = []
 
-    release_notes.append("<div><ul>")
+    release_notes.append("\n**Release notes**")
     for ticket in list(tickets.keys()):
-        release_notes.extend(["<li>", "<br/>".join(tickets[ticket]['release notes']), "</li>"])
-    release_notes.append("</ul></div>")
-    return "\n".join(release_notes)
+        release_notes.extend(["\n    - ".join(tickets[ticket]['release notes'])])
+    return "\n- ".join(release_notes)
 
 def construct_api(releases_dict, release_version, is_open):
     '''
@@ -205,11 +202,11 @@ def construct_api(releases_dict, release_version, is_open):
     android_tools_version = releases_dict[release_version]['versions'][ANDROID_TOOLS_JSON]
     date = releases_dict[release_version]['date']
 
-    accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
-        f"{get_api_link(platform_version, PLATFORM_BASE_URL, 'TomTom Digital Cockpit platform')}"\
-        f"{get_api_link(gradleplugins_version, GRADLEPLUGINS_BASE_URL, 'TomTom Digital Cockpit Gradle plugins')}"\
-        f"{get_api_link(comms_version, COMMS_BASE_URL, 'TomTom Digital Cockpit Comms SDK')}"\
-        f"{get_api_link(android_tools_version, ANDROID_TOOLS_BASE_URL, 'TomTom Android Tools')}"\
+    accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>\n\n"\
+        f"- {get_api_link(platform_version, PLATFORM_BASE_URL, 'TomTom Digital Cockpit platform')}\n"\
+        f"- {get_api_link(gradleplugins_version, GRADLEPLUGINS_BASE_URL, 'TomTom Digital Cockpit Gradle plugins')}\n"\
+        f"- {get_api_link(comms_version, COMMS_BASE_URL, 'TomTom Digital Cockpit Comms SDK')}\n"\
+        f"- {get_api_link(android_tools_version, ANDROID_TOOLS_BASE_URL, 'TomTom Android Tools')}\n"\
         "\n</Accordion>\n"
     return accordion    
 
@@ -236,10 +233,9 @@ def construct_release(releases_dict, release_version, is_open):
     tickets = releases_dict[release_version]['tickets']
 
     accordion = f"<Accordion label=\"Release {release_version} - {get_date(date)}\" {get_opened(is_open)}>"\
-        f"{get_release_link(release_version)}"\
-        f"<b>Release notes</b>\n"\
+        f"\n{get_release_link(release_version)}\n"\
         f"{get_release_notes(tickets)}"\
-        "\n\n</Accordion>\n"
+        "\n</Accordion>\n"
     return accordion
 
 def get_accordions(construct_function, releases_dict, accordion_style):
