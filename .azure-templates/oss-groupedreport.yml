@@ -27,6 +27,19 @@ parameters:
   bdtoolsUrl: ' '
   # bdApiToken: PAT for bd authentication for preprod and prod environments.
   bdApiToken: ''
+  # Artifactory details, URL, Credentials used to publish the scan report to Artifactory.
+  # Since these variables differ accross repositories we have a variable name and value pair
+  # Artifactory Base URL variable and value
+  artifactoryBaseURLName: ''
+  artifactoryBaseURLValue: ''
+  # Artifactory User variable and value
+  artifactoryUserName: ''
+  artifactoryUserValue: ''
+  # Artifactory Token variable and value
+  artifactoryTokenName: ''
+  artifactoryTokenValue: ''
+  # Artifactory repository (ivi-maven or ivi-test)
+  artifactoryRepo: ''
 
 steps:
   - checkout: self

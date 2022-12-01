@@ -177,7 +177,9 @@ stages:
 
   - stage: OSSCompliance
     displayName: 'OSS compliance scan'
-    dependsOn: Versions
+    dependsOn:
+      - Vars
+      - Versions
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
@@ -210,6 +212,13 @@ stages:
               artifactoryLocation: indigo_sdk_ossreport
               bdtoolsUrl: ${{variables.blackduckUrl}}
               bdApiToken: ${{variables.blackduckApiToken}}
+              artifactoryBaseURLName: 'artifactoryBaseUrl'
+              artifactoryBaseURLValue: $(artifactoryBaseUrl)
+              artifactoryUserName: 'artifactoryUser'
+              artifactoryUserValue: $(artifactoryUser)
+              artifactoryTokenName: 'artifactoryToken'
+              artifactoryTokenValue: '$(artifactoryToken)'
+              artifactoryRepo: $(artifactoryRepo)
           - template: mixer/notify-mixer.yml@devops-templates
             parameters:
               projectComponentUnit: 'PU AS'
@@ -260,6 +269,7 @@ stages:
 
   - stage: DevPortal
     dependsOn:
+      - Vars
       - Versions
       - Verification
       - Documentation
@@ -286,6 +296,7 @@ stages:
 
   - stage: Publication
     dependsOn:
+      - Vars
       - Versions
       - Publishing
       - OSSCompliance
@@ -382,6 +393,7 @@ stages:
 
   - stage: Cleanup
     dependsOn:
+      - Vars
       - Versions
       - OSSCompliance
       - Documentation
