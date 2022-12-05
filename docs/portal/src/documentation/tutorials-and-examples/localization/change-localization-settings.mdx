@@ -13,6 +13,7 @@ to interact with language and measurements which are familiar to them.
 Currently the Localization API module [`platform_localization_api_common_settings`](TTIVI_PLATFORM_API)
 allows for the following in-app customisations:
 - __Language changing__: package [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)
+- __Time format changing__: package [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)
 
 ## How to use the API to change the system language
 
@@ -59,3 +60,41 @@ to __US English__.
 
 If the user attempts to set a new Locale which is the same as the current one, the Android system
 will do nothing.
+
+## How to use the API to change the clock time format between 12 hours and 24 hours
+
+TomTom Digital Cockpit provides an API which allows for customisation of the Android system clock
+time format. The tool allows both for setting the desired time format and for retrieving the current
+time format setting.
+
+### Setting the desired time format
+
+To change the clock time format to the desired setting, a call should be made to the function
+[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.setClockTimeFormat`
+by passing as parameters the `Context` instance and the desired setting in the following enum
+format:
+- [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.CLOCK_12H` for a 12 hour format.
+- [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.CLOCK_24H` for a 24 hour format.
+
+It is also possible to call the API with the enum value [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.UNSET`.
+In this case, the API will default to setting the 24-hour format.
+
+```kotlin
+import com.tomtom.ivi.platform.localization.api.common.settings.setSystemLocale
+
+// Change the clock format to 12 hours, e.g. 2:20pm
+setClockTimeFormat(activityContext, TimeFormat.CLOCK_12H)
+
+// Change the clock format to 24 hours, e.g. 14:20
+setClockTimeFormat(activityContext, TimeFormat.CLOCK_24H)
+```
+
+### Retrieving the current system time format
+
+To retrieve the current system time format, simply call
+[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.getClockTimeFormat`
+and pass in the `Context`. The API will return a
+[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat` enum
+representing the current system setting stored in [Settings.System.TIME_12_24] as either
+`TimeFormat.CLOCK_24H`, `TimeFormat.CLOCK_12H` or `TimeFormat.UNSET` in the case that no setting has
+yet been set with this API.
