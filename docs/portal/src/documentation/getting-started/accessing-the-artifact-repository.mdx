@@ -23,7 +23,13 @@ You can store the credentials in your `gradle.properties` file, in the directory
 `GRADLE_USER_HOME` environment variable, usually `~/.gradle/`. When such a file does not exists yet,
 you can create one.
 
-__Windows:__ Use the `gradle.properties` file in the `%UserProfile%\.gradle` folder.
+<Blockquote type="warning" hasIcon>
+    Make sure you add the credentials to the the `gradle.properties` file in the Gradle directory in
+    your **user home** (`Linux/Mac: /Users/<username>/.gradle` or Windows: `%UserProfile%\.gradle`).
+    If you configure the credentials in the `gradle.properties` file in your project, you will 
+    not have access to the project's dependencies on the TomTom Digital Cockpit Nexus repository 
+    and will receive build errors like `Received status code 401 from server: Unauthorized`.
+</Blockquote>
 
 In your `gradle.properties` file, add the following:
 
