@@ -31,3 +31,4 @@ steps:
     scanType: 'SAST'
     projectnameInTool: 'IVI_Examples'
     versionnameInTool: $(product_version)
+    condition: and(eq(variables.isMainlineBuild, true), succeeded())

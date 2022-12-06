@@ -84,3 +84,4 @@ stages:
               scanType: 'SAST'
               projectnameInTool: 'ivi-example-app'
               versionnameInTool: $(productVersion)
+              condition: always()
