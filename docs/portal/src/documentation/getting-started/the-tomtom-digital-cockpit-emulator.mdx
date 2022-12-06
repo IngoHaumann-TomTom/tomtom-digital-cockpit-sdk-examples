@@ -2,6 +2,10 @@
 title: The TomTom Digital Cockpit Emulator
 ---
 
+<Blockquote type="warning" hasIcon>
+  The TomTom Digital Cockpit Emulator is currently not supported on Apple M-type processors.
+</Blockquote>
+
 TomTom Digital Cockpit can run on Android emulators (Android Virtual Devices, AVDs) in addition to
 the reference or demo hardware (Samsung Galaxy Tab S5e). A special Android emulator configuration
 has been created for running TomTom Digital Cockpit. This configuration contains a number of
@@ -78,10 +82,6 @@ Android Virtual Device (AVD) with it:
   - `ABI` : `x86_64`
   - `Target` : `Android 11.0 (TomTom Digital Cockpit System Image)`
   - __Note:__ The entries displayed differ only in the last part of their `Target` field.
-
-- __Mac _with_ an M1 processor:__ Go to tab `Other Images` and select `Android S` for `arm64-v8a` as
-  the System Image. This is a standard Android image, without TomTom Digital Cockpit-specific
-  customizations or Android Automotive features!
 
 ![Android Studio - System Image](images/android_studio_android_r.png)
 
