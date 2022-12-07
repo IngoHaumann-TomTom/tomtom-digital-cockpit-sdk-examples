@@ -182,8 +182,13 @@ def get_release_notes(tickets):
     release_notes = []
 
     release_notes.append("\n**Release notes**")
-    for ticket in list(tickets.keys()):
-        release_notes.extend(["\n    - ".join(tickets[ticket]['release notes'])])
+    for ticket in tickets:
+        # Retrieve all strings from release note.
+        ticket_lines = tickets[ticket]['release notes']
+        # Filter out empty strings.
+        filtered_lines = filter(None, ticket_lines)
+        # Create nested bullet points for strings after the first string.
+        release_notes.extend(["\n    - ".join(filtered_lines)])
     return "\n- ".join(release_notes)
 
 def construct_api(releases_dict, release_version, is_open):
