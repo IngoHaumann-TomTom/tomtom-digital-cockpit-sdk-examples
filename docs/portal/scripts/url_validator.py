@@ -40,6 +40,9 @@ REGEX_S3_URL = "https://developer.tomtom.com/assets/.*?"
 # Regex pattern to retrieve Digital Cockpit GitHub URLs.
 REGEX_GITHUB_URL = "\w+://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/.*?"
 
+# Regex pattern for Android URLs.
+REGEX_ANDROID_URL = "\w+://developer.android.com/.*?"
+
 # Regex pattern to retrieve restricted Nexus URLs.
 REGEX_NEXUS_URL = "\w+://repo.tomtom.com/.*?"
 
@@ -112,8 +115,13 @@ def check_external_url(content, warnings, errors, path, is_export):
 
             # Check for client and server error responses.
             if status >= 400 or status == 204:
-                if re.fullmatch(REGEX_GITHUB_URL, external_url, re.IGNORECASE) != None:
+                # Treat Android developer portal 204 server responses as warnings.
+                if status == 204 and re.fullmatch(REGEX_ANDROID_URL, external_url, re.IGNORECASE) != None:
                     warnings.append(f"{external_url} in {path}:{line_number} (status {status})")
+                # Treat TomTom Digital Cockpit GitHub errors as warnings.
+                elif re.fullmatch(REGEX_GITHUB_URL, external_url, re.IGNORECASE) != None:
+                    warnings.append(f"{external_url} in {path}:{line_number} (status {status})")
+                # Treat anything else as an build error.
                 else:
                     errors.append(f"{external_url} in {path}:{line_number} (status {status})")
 
