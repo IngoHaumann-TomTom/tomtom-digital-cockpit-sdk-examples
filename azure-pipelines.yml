@@ -101,13 +101,6 @@ stages:
     artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
     artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
   jobs:
-  - template: gradle/dependencies-scan.yml@devops-templates
-    parameters:
-      dependenciesTaskName: showAllDependencies
-      projectOptions: >-
-        -PartifactoryBaseUrl='$(artifactoryBaseUrl)'
-        -PartifactoryUser=$(artifactoryUser)
-        -PartifactoryToken='$(artifactoryToken)'
   - job: Build
     displayName: Lint & Build
     timeoutInMinutes: 45
