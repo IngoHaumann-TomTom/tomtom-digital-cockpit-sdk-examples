@@ -8,16 +8,13 @@
 # immediately return or destroy it.
 
 steps:
-  - checkout: indigoqa
-
+  - checkout: self
   - task: PythonScript@0
-    name: BuildTags
-    displayName: 'Check if Docs and Quality pipelines succeeded'
+    name: CheckReleaseReadiness
+    displayName: 'Check release readiness'
     inputs:
       scriptSource: 'filePath'
-      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Azure/match_build_tags.py
+      scriptPath: $(Build.SourcesDirectory)/$(Build.Repository.Name)/.azure-templates/check_release_readiness.py
       pythonInterpreter: /usr/bin/python3.8
       arguments:
-        --token $(System.AccessToken)
-        --top 10
-    condition: eq(variables['versionExamples'], 'latest')
+        --examples_version $(versionExamples)

@@ -8,13 +8,14 @@
 # immediately return or destroy it.
 
 steps:
+  - checkout: indigoqa
   - bash: |
       set -e
 
       # Returns the date and time of a tag.
       # Example: 2022-03-10 17:50:16 +0000 (tag: 1.0.3387).
       newTagInfo=$(git log --tags --pretty="format:%ci %d" |grep $(Version.IVI_PLATFORM))
-      oldTagInfo=$(git log --tags --pretty="format:%ci %d" |grep $(RELEASED_PLATFORM_VERSION))
+      oldTagInfo=$(git log --tags --pretty="format:%ci %d" |grep $(Version.LATEST_RELEASED_IVI_VERSION))
 
       # Returns the date that belongs to the tag.
       newTagDate=$(echo $newTagInfo |cut -d ' ' -f1)
@@ -30,7 +31,7 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)/indigo
     name: TagInfo
     displayName: 'Get date & time of git tags'
-    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))
+    condition: and(succeeded(), eq(variables['CheckReleaseReadiness.ReleaseCandidateFound'], 'True'))
 
     # Sets a task variable [publishDocumentation] to "true" and creates a "tickets.json" file if
     # there are tickets with release notes.
@@ -48,7 +49,7 @@ steps:
         --jira_pass $(JIRA_PASSWORD)
         --new_tag_datetime "$(TagInfo.newTagDateTime)"
         --old_tag_datetime "$(TagInfo.oldTagDateTime)"
-    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))
+    condition: and(succeeded(), eq(variables['CheckReleaseReadiness.ReleaseCandidateFound'], 'True'))
 
   - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/tickets.json
     artifact: jira-tickets
@@ -60,12 +61,12 @@ steps:
 
       if [ "$(CheckForReleaseNotes.publishDocumentation)" = "True" ]
       then
-        echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(RELEASED_PLATFORM_VERSION)"
+        echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(Version.LATEST_RELEASED_IVI_VERSION)"
       else
         echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(RELEASED_BETA_PLATFORM_VERSION)"
       fi
     displayName: 'Get latest released platform version'
-    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))
+    condition: and(succeeded(), eq(variables['CheckReleaseReadiness.ReleaseCandidateFound'], 'True'))
 
   - task: PythonScript@0
     name: CompareVersions
@@ -85,4 +86,4 @@ steps:
           )
           release_allowed = False
         print(f"##vso[task.setvariable variable=releaseAllowed;isOutput=true]{release_allowed}")
-    condition: and(succeeded(), ne(variables['BuildTags.buildTagsMatched'], 'False'))
+    condition: and(succeeded(), eq(variables['CheckReleaseReadiness.ReleaseCandidateFound'], 'True'))
