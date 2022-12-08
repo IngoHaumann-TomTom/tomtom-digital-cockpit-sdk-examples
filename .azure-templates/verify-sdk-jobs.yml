@@ -25,6 +25,7 @@ jobs:
           projectOptions: >-
             -PnexusUsername=$(VERIFICATION_USERNAME)
             -PnexusPassword=$(VERIFICATION_PASSWORD)
+            -Dgradle.user.home=/does/not/exist
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates
 
@@ -57,5 +58,6 @@ jobs:
             -PnexusPassword=$(NEXUS_PASSWORD)
             -PoptInToAlexaExamples=true
             -PdisableAlexaDeviceIdBuildTimeCheck=true
+            -Dgradle.user.home=/does/not/exist
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates
