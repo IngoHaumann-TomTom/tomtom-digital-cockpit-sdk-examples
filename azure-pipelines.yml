@@ -69,7 +69,7 @@ resources:
   - repository: devops-templates
     type: git
     name: IVI/devops-templates
-    ref: refs/tags/2.2.27
+    ref: refs/tags/2.2.28
   - repository: indigoqa
     type: git
     name: IVI/indigo-qa
