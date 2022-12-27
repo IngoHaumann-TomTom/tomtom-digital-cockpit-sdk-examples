@@ -35,6 +35,7 @@ steps:
       password: $(artifactoryToken)
       downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
       checksumType: 'sha256'
+      condition: eq(variables.PUBLISH_DOCUMENTATION, true)
 
   - task: PythonScript@0
     name: Releases
@@ -51,6 +52,10 @@ steps:
         --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
         --releases_file_path releases.json
         --tickets_file_path tickets.json
+        --rrs_base_url $(releaseReadinessBaseUrl)
+        --cosmos_key $(COSMOS_KEY)
+        --destination json
+        --is_production True
     condition: and(
       succeeded(),
       eq(variables.isMainlineBuild, true),
@@ -87,6 +92,36 @@ steps:
             releases_json_file.seek(0)
             releases_json_file.truncate()
             json.dump(releases_data, releases_json_file, indent=4)
+    condition: and(
+      succeeded(), 
+      eq('${{ parameters.deleteReleaseEntry }}', 'true'), 
+      eq(variables.PUBLISH_DOCUMENTATION, true)
+      )
+
+  - task: PythonScript@0
+    displayName: 'Set SDK version to delete'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3
+      script: |
+        platform_version = "$(VERSION_PLATFORM)"
+        examples_version = "$(VERSION_EXAMPLES)"
+        is_production = "$(PUBLISH_DOCUMENTATION)"
+       
+        sdk_version = f"{platform_version}-{examples_version.split('.')[-1]}"
+        if is_production.lower() != "true":
+          sdk_version = f"{sdk_version}.beta"
+        print(f"##vso[task.setvariable variable=sdkVersionToDelete;]{sdk_version}")
+    condition: and(succeeded(), eq('${{ parameters.deleteReleaseEntry }}', 'true'))
+
+  - bash: |
+      set -eux
+      curl -X DELETE -H "Cosmos-Key: $cosmosKey" $baseUrl/release/$sdkVersion
+    displayName: 'Delete entry from RRS'
+    env:
+      cosmosKey: $(COSMOS_KEY)
+      sdkVersion: $(sdkVersionToDelete)
+      baseUrl: $(releaseReadinessBaseUrl)
     condition: and(succeeded(), eq('${{ parameters.deleteReleaseEntry }}', 'true'))
 
   - bash: |
@@ -97,4 +132,7 @@ steps:
       rm releases.json
     workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
     displayName: 'Publish releases json file to Artifactory'
-    condition: and(eq(variables.isMainlineBuild, true), succeeded())
+    condition: and(
+      eq(variables.isMainlineBuild, true),
+      eq(variables.PUBLISH_DOCUMENTATION, true),
+      succeeded())

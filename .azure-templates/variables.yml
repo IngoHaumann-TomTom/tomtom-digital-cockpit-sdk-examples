@@ -14,3 +14,5 @@ variables:
   # Version of the Docker images from the `indigo-docker` repo.
   - name: dockerImageVersion
     value: '4.0.38'
+  - name: releaseReadinessBaseUrl
+    value: 'https://ivi-release-readiness.prod.devsup.az.tt3.com'

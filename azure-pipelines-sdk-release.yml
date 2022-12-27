@@ -49,6 +49,7 @@ variables:
   - group: IviNexusCredentials
   - group: IviGithubCredentials
   - group: JiraCredentials
+  - group: CosmosDbCredentials
   - group: NavKit2ApiKey
   - group: ProductVersion
   - name: isMainlineBuild
@@ -156,6 +157,10 @@ stages:
       - Versions
     variables:
       VERSION_EXAMPLES: $[ stageDependencies.Versions.GetVersions.outputs['Version.EXAMPLES'] ]
+      VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
+      VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_COMMS_SDK'] ]
+      VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
+      PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
       artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
       artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
       artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
@@ -169,6 +174,31 @@ stages:
         steps:
           - template: .azure-templates/publishing-nexus.yml
           - template: build/build-cleanup.yml@devops-templates
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifact: jira-tickets
+              path: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+            displayName: 'Download the jira-tickets artifact'
+            condition: eq(variables.PUBLISH_DOCUMENTATION, true)
+          - task: PythonScript@0
+            displayName: 'Post release to RRS'
+            inputs:
+              scriptSource: 'filePath'
+              scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/update_releases_data.py
+              pythonInterpreter: /usr/bin/python3
+              workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+              arguments:
+                --platform_version $(VERSION_PLATFORM)
+                --examples_version $(VERSION_EXAMPLES)
+                --tomtom_android_tools_version $(VERSION_TOMTOM_ANDROID_TOOLS)
+                --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
+                --releases_file_path releases.json
+                --tickets_file_path tickets.json
+                --rrs_base_url $(releaseReadinessBaseUrl)
+                --cosmos_key $(COSMOS_KEY)
+                --destination rrs
+                --is_production $(PUBLISH_DOCUMENTATION)
+            condition: and(succeeded(), eq(variables.isMainlineBuild, true))
     condition: and(
       eq(variables.isMainlineBuild, true),
       eq(dependencies.Versions.result, 'Succeeded'),
@@ -250,6 +280,7 @@ stages:
       VERSION_PLATFORM: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_PLATFORM'] ]
       VERSION_TOMTOM_ANDROID_TOOLS: $[ stageDependencies.Versions.GetVersions.outputs['Version.TOMTOM_ANDROID_TOOLS'] ]
       VERSION_COMMUNICATIONS_SDK: $[ stageDependencies.Versions.GetVersions.outputs['Version.IVI_COMMS_SDK'] ]
+      PUBLISH_DOCUMENTATION: $[ stageDependencies.Versions.GetVersions.outputs['CheckForReleaseNotes.publishDocumentation'] ]
       artifactoryBaseUrl: $[ stageDependencies.Vars.Properties.outputs['artifactory.BASE_URL'] ]
       artifactoryUser: $[ stageDependencies.Vars.Properties.outputs['artifactory.USER'] ]
       artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
@@ -360,7 +391,7 @@ stages:
               grep -rin "indigo" .
               if [ $? -ne 0 ]; then
                 echo "No usage of IndiGO found."
-              else 
+              else
                 echo "IndiGO found in SDK Examples."
                 exit 1
               fi
@@ -395,6 +426,8 @@ stages:
     dependsOn:
       - Vars
       - Versions
+      - Verification
+      - Publishing
       - OSSCompliance
       - Documentation
       - DevPortal
@@ -408,8 +441,10 @@ stages:
       artifactoryToken: $[ stageDependencies.Vars.Properties.outputs['artifactory.TOKEN'] ]
       artifactoryRepo: $[ stageDependencies.Vars.Properties.outputs['artifactory.REPO'] ]
     condition: or(
-      eq(dependencies.OSSCompliance.result, 'Failed'),
+      eq(dependencies.Publishing.result, 'Failed'),
+      eq(dependencies.Verification.result, 'Failed'),
       eq(dependencies.Documentation.result, 'Failed'),
+      eq(dependencies.OSSCompliance.result, 'Failed'),
       eq(dependencies.DevPortal.result, 'Failed'),
       eq(dependencies.Publication.result, 'Failed')
       )
@@ -418,7 +453,6 @@ stages:
         displayName: 'Delete release entry'
         timeoutInMinutes: 10
         container: docker_indigo_delivery
-        condition: eq(variables.PUBLISH_DOCUMENTATION, true)
         steps:
           - template: .azure-templates/releases-data.yml
             parameters:
