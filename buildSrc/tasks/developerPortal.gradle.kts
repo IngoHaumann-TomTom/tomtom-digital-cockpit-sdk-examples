@@ -48,6 +48,7 @@ tasks.register<Exec>("portal_export") {
     description = "Generates Developer Portal content for export."
     group = "Documentation"
 
+    val artifactoryUrl = artifactoryBaseUrl ?: "https://artifactory.tomtomgroup.com/artifactory"
     workingDir(portalDirectory)
     commandLine("python3")
     args("-B", "scripts/portal_generator.py",
@@ -55,7 +56,7 @@ tasks.register<Exec>("portal_export") {
         iviCommsVersion,
         androidToolsVersion,
         targetDir,
-        artifactoryBaseUrl,
+        artifactoryUrl,
         artifactoryUser,
         artifactoryToken,
         "export"
