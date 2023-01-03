@@ -1,0 +1,74 @@
+---
+title: Implement Alexa Preview Mode
+---
+Alexa Preview Mode allows users to get access to a set of Alexa features without requiring a login
+with an Amazon account. 
+It is a part of the [Alexa setup](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/setup.html)
+process as an alternative to signing in.
+Note that Preview Mode is available in North American and European markets only.
+
+<Blockquote type="announcement">
+To use Alexa Preview Mode, your device must be allowlisted by Amazon. Please contact your Amazon
+Solutions Architect (SA) or Amazon Partner Manager to place your device on the allow list.
+</Blockquote>
+
+## Alexa Preview Mode Service
+
+To use Preview Mode you must implement the [`AlexaPreviewModeService`](TTIVI_PLATFORM_API). This
+service is responsible for handling communication with AVS (Alexa Voice Service) to enable or 
+disable Alexa Preview Mode using the `InstantDeviceRegistration` APIs.
+
+To be able to use this feature, Amazon requires an OEM to adhere to specific security requirements.
+This means that the `InstantDeviceRegistration` API calls must be done on the OEM's backend, rather
+than directly by the `AlexaPreviewModeService` or by any other service running on the device.
+This is due to the usage of the refresh token and the LWA (Login With Amazon) client secret id that
+should never be exposed on a device.
+
+Therefore, `AlexaPreviewModeService` must exclusively communicate with the OEM's backend and the
+OEM's backend is in charge of calling the AVS `InstantDeviceRegistration` APIs.
+
+__Note:__ Reach out to your Amazon Solutions Architect (SA) or Amazon Partner Manager to understand
+more about the preview mode security requirements and obtain documentation about the AVS
+`InstantDeviceRegistration` APIs.
+
+Please refer to the [`AlexaPreviewModeService`](TTIVI_PLATFORM_API) API reference documentation for
+detailed information on the Alexa Preview Mode service functions.
+
+## OEM Backend
+The OEM must implement a backend service that will be a "bridge" between the Alexa Auto device and
+the AVS `InstantDeviceRegistration` APIs.
+It will be in charge of calling various `InstantDeviceRegistration` APIs:
+ - The API for getting a consumer token and registering a device for AVS access.
+ - The API for requesting the new access token using the refresh token.
+ - The API for unregistering a device.
+
+__Note:__ Please reach out to your Amazon Solutions Architect (SA) for information about these APIs.
+
+## Usage
+Once the `AlexaPreviewModeService` is implemented, you can enable Alexa Preview Mode by passing the
+[`com.tomtom.ivi.platform.vpa.api.common.vpa`](TTIVI_PLATFORM_API)`.AuthenticationType.ANONYMOUS`
+authentication type to the [`VpaMediatorService`](TTIVI_PLATFORM_API)`logIn` function.
+If this parameter is not specified, the default authentication type will be used (Code-Based 
+Linking).
+
+## Frontend Setup Flow
+Unlike standard Code-Based Linking (CBL) authentication, `Preview Mode` requires an OEM to show the
+_Alexa Terms of Use_ and _Privacy policy_  as part of the setup flow.
+Please contact your Amazon Solutions Architect for more information on how to retrieve and display
+the _Alexa Terms of Use_ and _Privacy policy_.
+See an example of [Preview Mode (Try Alexa) screen](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/setup.html#try-alexa-preview-mode).
+
+## Example app
+The TomTom Digital Cockpit SDK comes with an example app showing how to create an Alexa Preview Mode
+Service. See the
+[`AlexaPreviewMode`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/alexa/alexapreviewmode)
+directory.
+
+## References
+
+- TomTom Digital Cockpit [AlexaPreviewModeService](TTIVI_PLATFORM_API)
+- [Alexa setup flow](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/setup.html)
+- [Preview Mode screen](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/setup.html#try-alexa-preview-mode)
+
+
+

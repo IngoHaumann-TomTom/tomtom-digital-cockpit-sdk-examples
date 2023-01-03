@@ -207,6 +207,8 @@ menu:
             title: Create a Custom Alexa Handler Service
           - fileId: /tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature
             title: Customize the Alexa Car Control Feature
+          - fileId: /tutorials-and-examples/voice-personal-assistant/implement-preview-mode-feature
+            title: Implement Alexa Preview Mode
       - title: Customization
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
