@@ -131,12 +131,12 @@ System UI provides task panels with data to populate the navigation bar. System 
 panel's `Panel.onAttached` method with [`NavigablePanelContext`](TTIVI_PLATFORM_API) data. When a
 task panel's view model implements the [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) interface, a
 fully populated [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the task panel's view
-model in [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this
+model in [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.getNavigationBarViewModel` based on this
 data. When your task panel's view model extends from [`FrontendViewModel`](TTIVI_PLATFORM_API),
 implementing [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no
 implementation is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the
 task panel's layout by assigning
-[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to the
+[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.getNavigationBarViewModel` to the
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute. Then you have a fully
 functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API). For example, the system UI may hide the
 back button in the navigation bar, if there's only one task panel in the stack. It may also fill in
