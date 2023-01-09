@@ -116,8 +116,23 @@ and can judge whether or not to show it based on the priority specified in the
 In addition to the system UI getting information from frontends and panels, the contract also
 contains methods that allow the system UI to pass information back. For example, when a panel is
 attached to the system UI, `Panel.onAttached` will be called with a
-[`PanelContext`](TTIVI_PLATFORM_API) parameter, that allows the panel to use a limited set of
-information from the system UI for its contents.
+[`PanelAttachment`](TTIVI_PLATFORM_API) instance which contains a
+[`PanelContext`](TTIVI_PLATFORM_API) property, that allows the panel to use a limited set of
+information from the system UI for its contents. [`PanelContext`](TTIVI_PLATFORM_API) property can
+be obtained with `Panel.getPanelContext`. This function requires an
+[`IviFragmentId`](TTIVI_PLATFORM_API) as argument. Fragment views can declare an `iviFragmentId`
+data binding variable to obtain the [`IviFragmentId`](TTIVI_PLATFORM_API). The default
+implementation of [`IviFragment`](TTIVI_PLATFORM_API)`.onViewCreated` binds the `iviFragmentId` data
+binding variable. You can add the following to the Fragment view XML to declare the `iviFragmentId`
+data binding variable:
+
+```xml
+<data>
+    <variable
+        name="iviFragmentId"
+        type="com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragmentId" />
+</data>
+```
 
 ## System UI Anatomy
 
