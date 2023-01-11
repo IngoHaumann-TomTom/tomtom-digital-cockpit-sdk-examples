@@ -1,0 +1,274 @@
+# Copyright © 2023 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+# Azure pipelines documentation is available at
+# https://aka.ms/yaml
+
+parameters:
+  # Location of the releases.json file on Artifactory.
+  urlReleasesJsonFile: '$(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/releases-data/tomtom-indigo-sdk/releases.json'
+
+steps:
+  - checkout: indigoqa
+  - checkout: ivi-example-app
+
+  # Write release to releases.json file & RRS
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: jira-tickets
+      path: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+    displayName: 'Download the jira-tickets artifact'
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+
+  - task: PythonScript@0
+    displayName: 'Post release to RRS'
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/update_releases_data.py
+      pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+      arguments:
+        --platform_version $(VERSION_PLATFORM)
+        --examples_version $(VERSION_EXAMPLES)
+        --tomtom_android_tools_version $(VERSION_TOMTOM_ANDROID_TOOLS)
+        --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
+        --releases_file_path releases.json
+        --tickets_file_path tickets.json
+        --rrs_base_url $(releaseReadinessBaseUrl)
+        --cosmos_key $(COSMOS_KEY)
+        --destination rrs
+        --is_production $(PUBLISH_DOCUMENTATION)
+
+  - template: download/download-and-verify.yml@devops-templates
+    parameters:
+      downloadUrl: ${{parameters.urlReleasesJsonFile}}
+      displayName: 'Download releases json file from Artifactory'
+      userName: $(artifactoryUser)
+      password: $(artifactoryToken)
+      downloadDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+      checksumType: 'sha256'
+      condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+
+  - task: PythonScript@0
+    name: Releases
+    displayName: 'Update releases data'
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/update_releases_data.py
+      pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+      arguments:
+        --platform_version $(VERSION_PLATFORM)
+        --examples_version $(VERSION_EXAMPLES)
+        --tomtom_android_tools_version $(VERSION_TOMTOM_ANDROID_TOOLS)
+        --indigo_comms_sdk_version $(VERSION_COMMUNICATIONS_SDK)
+        --releases_file_path releases.json
+        --tickets_file_path tickets.json
+        --rrs_base_url $(releaseReadinessBaseUrl)
+        --cosmos_key $(COSMOS_KEY)
+        --destination json
+        --is_production True
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+
+  - publish: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/releases.json
+    artifact: releases-info
+    displayName: 'Publish releases.json as pipeline artifact'
+    condition: and(
+      succeeded(),
+      eq(variables.PUBLISH_DOCUMENTATION, true),
+      ne(variables['Agent.JobStatus'], 'Canceled'),
+      ne(variables['Agent.JobStatus'], 'Failed'),
+      ne(variables['Agent.JobStatus'], 'SucceededWithIssues')
+      )
+
+  # Publish updated releases json file to artifactory
+  - bash: |
+      set -eux
+      curl -X PUT -u '$(artifactoryUser):$(artifactoryToken)'\
+        -T releases.json\
+        ${{parameters.urlReleasesJsonFile}}
+      rm releases.json
+    workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
+    displayName: 'Publish releases json file to Artifactory'
+    condition: and(
+      eq(variables.isMainlineBuild, true),
+      eq(variables.PUBLISH_DOCUMENTATION, true),
+      succeeded())
+
+  # Generate portal documentation
+  - bash: |
+      set -eux
+      git checkout tags/$(VERSION_EXAMPLES)
+    displayName: Checkout ivi-example-app version $(VERSION_EXAMPLES)
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+    workingDirectory: $(Build.SourcesDirectory)/ivi-example-app
+
+  - task: PythonScript@0
+    displayName: Generate Developer Portal export
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/ivi-example-app/docs/portal/scripts/portal_generator.py
+      pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/ivi-example-app/docs/portal
+      arguments:
+        $(VERSION_PLATFORM) $(VERSION_COMMUNICATIONS_SDK) $(VERSION_TOMTOM_ANDROID_TOOLS)
+        ./build/export $(artifactoryBaseUrl) $(artifactoryUser) $(artifactoryToken) export
+
+  - publish: $(Build.SourcesDirectory)/ivi-example-app/docs/portal/build/export
+    artifact: developer-portal-export
+    displayName: Publish Developer Portal export as artifact
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+
+  - bash: |
+      set -ux
+      grep -Rin "indigo" $(Build.SourcesDirectory)/docs/portal/build/export
+      if [ $? -ne 0 ]; then
+        echo "No usage of IndiGO found."
+      else 
+        echo "IndiGO found in Portal export."
+        exit 1
+      fi
+    displayName: Check for usage of IndiGO
+    condition: and(succeeded(), eq(variables.PUBLISH_DOCUMENTATION, true))
+    workingDirectory: $(Build.SourcesDirectory)/ivi-example-app
+
+  # Publish to github
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: tomtom-indigo-sdk
+      path: $(Build.SourcesDirectory)/downloads
+    displayName: Download the tomtom-indigo-sdk pipeline artifact
+
+  - task: ExtractFiles@1
+    displayName: Extracting SDK artifact
+    inputs:
+      archiveFilePatterns: 'downloads/tomtom-indigo-sdk-$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).tar.gz'
+      destinationFolder: $(Build.SourcesDirectory)/artifactsource
+      cleanDestinationFolder: true
+
+  - template: download/download-and-verify.yml@devops-templates
+    parameters:
+      downloadUrl: $(artifactoryBaseUrl)/ivi-maven/com/tomtom/ivi/indigo_sdk_ossreport/$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES)/$(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md
+      downloadDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+      checksumType: 'sha256'
+      userName: $(artifactoryUser)
+      password: $(artifactoryToken)
+      displayName: Download IndiGO SDK OSS report
+
+  - bash: |
+      set -eux
+      mv $(ossReportName)_$(VERSION_PLATFORM)-$(PATCH_VERSION_EXAMPLES).md "oss-compliancy-report.md"
+    workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+    displayName: Rename IndiGO SDK OSS report
+
+  # Flag -e is omitted from 'set' here because 'grep' exits with 1 if "IndiGO" is not found.
+  - bash: |
+      set -ux
+      grep -rin "indigo" .
+      if [ $? -ne 0 ]; then
+        echo "No usage of IndiGO found."
+      else
+        echo "IndiGO found in SDK Examples."
+        exit 1
+      fi
+    workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
+    displayName: Check for usage of IndiGO
+
+  - template: .azure-templates/publishing-github.yml
+    parameters:
+      internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/
+
+  - template: azure/updatevariablegroup.yml@devops-templates
+    parameters:
+      endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
+      groupName: 'ProductVersion'
+      variableName: 'RELEASED_PLATFORM_VERSION'
+      variableValue: $(VERSION_PLATFORM)
+      condition: and(
+        succeeded(),
+        eq(variables.isMainlineBuild, true),
+        eq(variables.PUBLISH_DOCUMENTATION, true)
+        )
+  - template: azure/updatevariablegroup.yml@devops-templates
+    parameters:
+      endpoint: $(System.TeamFoundationCollectionUri)/$(System.TeamProject)
+      groupName: 'ProductVersion'
+      variableName: 'RELEASED_BETA_PLATFORM_VERSION'
+      variableValue: $(VERSION_PLATFORM)
+      condition: and(
+        succeeded(),
+        eq(variables.isMainlineBuild, true)
+        )
+
+  # Cleanup
+  - task: PythonScript@0
+    displayName: 'Set SDK version to delete'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3
+      script: |
+        platform_version = "$(VERSION_PLATFORM)"
+        examples_version = "$(VERSION_EXAMPLES)"
+        is_production = "$(PUBLISH_DOCUMENTATION)"
+
+        sdk_version = f"{platform_version}-{examples_version.split('.')[-1]}"
+        if is_production.lower() != "true":
+          sdk_version = f"{sdk_version}.beta"
+        print(f"##vso[task.setvariable variable=sdkVersionToDelete;]{sdk_version}")
+    condition: eq(variables['Agent.JobStatus'], 'Failed')
+
+  - bash: |
+      set -eux
+      curl -X DELETE -H "Cosmos-Key: $cosmosKey" $baseUrl/release/$sdkVersion
+    displayName: 'Delete entry from RRS'
+    condition: eq(variables['Agent.JobStatus'], 'Failed')
+    env:
+      cosmosKey: $(COSMOS_KEY)
+      sdkVersion: $(sdkVersionToDelete)
+      baseUrl: $(releaseReadinessBaseUrl)
+
+  - task: PythonScript@0
+    displayName: 'Delete release entry'
+    inputs:
+      scriptSource: 'inline'
+      pythonInterpreter: /usr/bin/python3
+      workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk
+      script: |
+        import json
+
+        platform_version = "$(VERSION_PLATFORM)"
+        examples_version = "$(VERSION_EXAMPLES)"
+
+        with open('releases.json', 'r+') as releases_json_file:
+          releases_data = json.load(releases_json_file)
+          sdk_version = f"{platform_version}-{examples_version.split('.')[-1]}"
+          if sdk_version in releases_data['releases']:
+            releases_data['releases'].pop(sdk_version)
+            releases_json_file.seek(0)
+            releases_json_file.truncate()
+            json.dump(releases_data, releases_json_file, indent=4)
+    condition: and(
+      eq(variables['Agent.JobStatus'], 'Failed'),
+      eq(variables.PUBLISH_DOCUMENTATION, true)
+      )
+
+  # Publish releases json file with deleted entry to artifactory
+  - bash: |
+      set -eux
+      curl -X PUT -u '$(artifactoryUser):$(artifactoryToken)'\
+        -T releases.json\
+        ${{parameters.urlReleasesJsonFile}}
+      rm releases.json
+    workingDirectory: $(Build.SourcesDirectory)/indigo-qa/tooling/Sdk/
+    displayName: 'Publish releases json file to Artifactory'
+    condition: and(
+      eq(variables['Agent.JobStatus'], 'Failed'),
+      eq(variables.PUBLISH_DOCUMENTATION, true)
+      )
