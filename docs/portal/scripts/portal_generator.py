@@ -53,7 +53,7 @@ DOCUMENTATION_DIR = "documentation"
 INPUT_CHECK_FILE = "documentation/development/frontend-plugins.mdx"
 
 def parse_parameters():
-    '''
+    """
     Parse command-line parameters and store relevant info.
 
     Returns
@@ -72,7 +72,7 @@ def parse_parameters():
         The username used to authenticate with artifactory.
     artifactory_token : string
         The token used to authenticate with artifactory.
-    '''
+    """
     argc = len(sys.argv)
     assert (argc >= 8 and argc <= 9), "Invalid number of parameters."
 
@@ -96,31 +96,31 @@ def parse_parameters():
     return versions, target_dir, is_export, artifactory_base_url, artifactory_user, artifactory_token
 
 def verify_working_directory():
-    '''Verifies whether script is run from correct working directory.'''
+    """Verifies whether script is run from correct working directory."""
     if not os.path.exists(os.path.join(SOURCE_DIR, INPUT_CHECK_FILE)):
         raise EnvironmentError("Script must be run from the 'docs/portal' directory.")
 
 def clean_old_files(target_dir):
-    '''
+    """
     Clean old build files.
 
     Parameters
     -----------
     target_dir : str
         The directory to be cleaned.
-    '''
+    """
     if os.path.exists(target_dir):
         shutil.rmtree(target_dir)
 
 def create_intermediate_files(target_dir):
-    '''
+    """
     Create intermediate files.
 
     Parameters
     -----------
     target_dir : str
         The directory in which to create the intermediate files.
-    '''
+    """
     shutil.copytree(SOURCE_DIR, target_dir)
 
 # Input validation and other preparation.
@@ -134,4 +134,3 @@ create_intermediate_files(target_dir)
 generate_api_links(target_dir, versions, artifactory_base_url, artifactory_user, artifactory_token)
 generate_api_releases_sections(target_dir, artifactory_base_url, artifactory_user, artifactory_token)
 validate_urls(target_dir, is_export)
-

@@ -9,11 +9,12 @@
 # not the licensee, you are not authorized to use this software in any manner and should
 # immediately return or destroy it.
 
-import re
 import os
-import tarfile
+import re
 import shutil
+import tarfile
 from pathlib import Path
+
 import requests
 
 TARGET_FILETYPE = "*.mdx"
@@ -40,8 +41,10 @@ REGEX_API_ELEMENT = "(?<=\[).*(?=\])"
 # Regex pattern to retrieve all placeholders.
 REGEX_GENERIC_PLACEHOLDER = "(?<=\]\()TTIVI_.*?(?=\))"
 
+INDEX_FILE = "index.html"
+
 def is_valid_placeholder(match):
-    '''
+    """
     Checks whether 'match' has correct placeholder syntax. Returns a boolean.
 
     Parameters
@@ -54,14 +57,14 @@ def is_valid_placeholder(match):
     bool
         True if valid placeholder syntax.
 
-    '''
+    """
     return match == PLATFORM_PLACEHOLDER or \
         match == GRADLEPLUGINS_PLACEHOLDER or \
         match == COMMS_PLACEHOLDER or \
         match == ANDROID_TOOLS_PLACEHOLDER
 
 def download_api_ref(artifactory_url, artifactory_user, artifactory_token, target_dir):
-    '''
+    """
     Downloads API Reference from Artifactory to specified target_dir.
 
     Parameters
@@ -74,7 +77,7 @@ def download_api_ref(artifactory_url, artifactory_user, artifactory_token, targe
         The token used to authenticate with artifactory.
     target_dir : str
         The directory to download the API Reference tarball to.
-    '''
+    """
     download_target = os.path.join(target_dir, "api-reference.tar.gz")
     os.makedirs(target_dir)
 
@@ -88,7 +91,7 @@ def download_api_ref(artifactory_url, artifactory_user, artifactory_token, targe
         archive.extractall(target_dir)
 
 def url_lookup(api_reference_map, regex_match, path, errors):
-    '''
+    """
     Returns the URL postfix for a matched API placeholder.
     Retrieves an 'api_element' from 'regex_match' and uses that as a lookup to find the
     corresponding 'url' in the 'api_reference_map'.
@@ -96,7 +99,7 @@ def url_lookup(api_reference_map, regex_match, path, errors):
 
     Parameters
     -----------
-    api_reference_map : map
+    api_reference_map : dict
         A map containing 'api_element' and 'url' key-value pairs.
     regex_match : str
         A string containing the full Markdown link, including the API element and placeholder.
@@ -109,9 +112,10 @@ def url_lookup(api_reference_map, regex_match, path, errors):
     -----------
     str
         The URL postfix of the matched API element.
-    '''
+    """
 
     api_element = (re.search(REGEX_API_ELEMENT, regex_match)).group(0)
+
     if not api_element:
         raise SyntaxError(f"API element cannot be captured from regex match {regex_match} in {path}.")
 
@@ -131,7 +135,7 @@ def url_lookup(api_reference_map, regex_match, path, errors):
     return url
 
 def validate_placeholders(target_dir):
-    '''
+    """
     Validates whether the placeholder syntax is correctly applied.
     Raises an Exception when an incorrect placeholder is found.
 
@@ -139,7 +143,7 @@ def validate_placeholders(target_dir):
     -----------
     target_dir : str
         The files within this directory will be checked for placeholder syntax.
-    '''
+    """
     errors = []
     for path in Path(target_dir).rglob(TARGET_FILETYPE):
         with open(path, 'r+', encoding="utf-8") as file:
@@ -151,8 +155,8 @@ def validate_placeholders(target_dir):
     if len(errors):
         raise SyntaxError("Encountered {} syntax error(s):\n{}".format(len(errors), '\n'.join(errors)))
 
-def mutate_name(property_name):
-    '''
+def mutate_name_to_pascalcase(property_name):
+    """
     Transforms property names to PascalCase, removing dashes.
 
     Parameters
@@ -164,12 +168,29 @@ def mutate_name(property_name):
     -----------
     str
         Property name in PascalCase without dashes.
-    '''
+    """
     capitalized = [word.capitalize() for word in property_name.split("-")]
     return "".join(capitalized)
 
+def mutate_name_to_camelcase(property_name):
+    """
+    Transforms property names to camelCase, removing dashes.
+
+    Parameters
+    -----------
+    property_name : str
+        Property name to transform
+
+    Returns
+    -----------
+    str
+        Property name in camelCase without dashes.
+    """
+    property_name_splitted = property_name.split("-")
+    return property_name_splitted[0] + "".join(word.capitalize() for word in property_name_splitted[1:])
+
 def get_subdirectories(target_dir):
-    '''
+    """
     Returns all the subdirectories of target_dir and ignores directories specified by 'IGNORE'.
 
     Parameters
@@ -181,15 +202,59 @@ def get_subdirectories(target_dir):
     -----------
     list
         List of subdirectories in 'target_dir'
-    '''
+    """
     sub_dirs = os.listdir(target_dir)
-    sub_dirs = [dir for dir in sub_dirs \
-        if dir not in IGNORE \
-        if os.path.isdir(os.path.join(target_dir, dir))]
+    sub_dirs = [directory for directory in sub_dirs \
+        if directory not in IGNORE \
+        if os.path.isdir(os.path.join(target_dir, directory))]
     return sub_dirs
 
+def get_file_paths_to_html_files(target_dir):
+    """
+    Returns the relative path to all '.html' files for the given target directory. Except for the
+    'navigation.html' file.
+
+    Parameters
+    ----------
+    target_dir : str
+        Target directory to return the paths of the html files from.
+
+    Returns
+    -------
+    list
+        List of PosixPath of '.html' files in 'target_dir'
+    """
+    return [p for p in Path(target_dir).rglob("*.html") if p.name != "navigation.html"]
+
+def construct_key_name(*args):
+    """
+    Returns the key name for an api element.
+    Examples:
+    - DefaultAnimationListener
+    - DefaultAnimationListener.onAnimationStart
+    - DismissalStrategy.DismissDirection.LEFT
+    - SpringAnimationConfiguration.Companion.NORMALIZATION_DIVIDER
+
+    Parameters
+    ----------
+    args : tuple
+        A collection of words to create the key name from.
+
+    Returns
+    -------
+    str
+        Name of the api element.
+    """
+    words = [
+        mutate_name_to_pascalcase(name) if name.startswith("-") else mutate_name_to_camelcase(name)
+        for name in args
+    ]
+    if INDEX_FILE in words:
+        words.remove(INDEX_FILE)
+    return ".".join(word.replace(".html", "") for word in words)
+
 def make_index_file(*args):
-    '''
+    """
     Creates URLs to index files.
 
     Parameters
@@ -201,11 +266,11 @@ def make_index_file(*args):
     -----------
     str
         Concatenated string of paths + "index.html"
-    '''
+    """
     return os.path.join(*args, "index.html")
 
 def create_index(target_dir):
-    '''
+    """
     Indexes an API Reference and returns a map of API elements and URLs.
 
     Parameters
@@ -215,30 +280,32 @@ def create_index(target_dir):
 
     Returns
     -----------
-    map
-        A map of API elements and URL key-value pairs.
-    '''
-    map = {}
+    url_for_api_element
+        A dictionary of API elements and URL key-value pairs.
+    """
+    url_for_api_element = {}
 
     modules = get_subdirectories(target_dir)
-    for module in modules:
-        map[module] = make_index_file(module)
+    for module in sorted(modules):
+        url_for_api_element[module] = make_index_file(module)
 
         module_path = os.path.join(target_dir, module)
         packages = get_subdirectories(module_path)
-        for package in packages:
-            map[package] = make_index_file(module, package)
+        for package in sorted(packages):
+            url_for_api_element[package] = make_index_file(module, package)
 
             package_path = os.path.join(module_path, package)
-            properties = get_subdirectories(package_path)
-            for property in properties:
-                map[mutate_name(property)] = make_index_file(module, package, property)
-                # TODO(IVI-5714): Add support class functions
+            files = get_file_paths_to_html_files(package_path)
+            for html_file in files:
+                relative_path = html_file.relative_to(Path(package_path))
+                key = construct_key_name(*relative_path.parts)
+                if len(key) != 0:
+                    url_for_api_element[key] = os.path.join(module, package, relative_path)
 
-    return map
+    return url_for_api_element
 
 def generate_api_links(target_dir, versions, artifactory_base_url, artifactory_user, artifactory_token):
-    '''
+    """
     Replaces all API placeholders with the corresponding API Reference URLs.
 
     Parameters
@@ -255,7 +322,7 @@ def generate_api_links(target_dir, versions, artifactory_base_url, artifactory_u
         The username used to authenticate with artifactory.
     artifactory_token : string
         The token used to authenticate with artifactory.
-    '''
+    """
 
     assert (len(versions) == 3), "Invalid number of versions."
     platform_version = versions[0]
@@ -312,17 +379,41 @@ def generate_api_links(target_dir, versions, artifactory_base_url, artifactory_u
 
             # Replace TTIVI_ placeholders in documentation.
             for match in re.findall(REGEX_PLATFORM_PLACEHOLDER, content):
-                content = content.replace(PLATFORM_PLACEHOLDER, \
-                    os.path.join(platform_base_url, url_lookup(platform_map, match, path, errors)), 1)
+                content = content.replace(
+                    PLATFORM_PLACEHOLDER,
+                    os.path.join(
+                        platform_base_url,
+                        url_lookup(platform_map, match, str(path), errors)
+                    ),
+                    1
+                )
             for match in re.findall(REGEX_GRADLEPLUGINS_PLACEHOLDER, content):
-                content = content.replace(GRADLEPLUGINS_PLACEHOLDER, \
-                    os.path.join(gradleplugins_base_url, url_lookup(gradleplugins_map, match, path, errors)), 1)
+                content = content.replace(
+                    GRADLEPLUGINS_PLACEHOLDER,
+                    os.path.join(
+                        gradleplugins_base_url,
+                        url_lookup(gradleplugins_map, match, str(path), errors)
+                    ),
+                    1
+                )
             for match in re.findall(REGEX_COMMS_PLACEHOLDER, content):
-                content = content.replace(COMMS_PLACEHOLDER, \
-                    os.path.join(comms_base_url, url_lookup(comms_map, match, path, errors)), 1)
+                content = content.replace(
+                    COMMS_PLACEHOLDER,
+                    os.path.join(
+                        comms_base_url,
+                        url_lookup(comms_map, match, str(path), errors)
+                    ),
+                    1
+                )
             for match in re.findall(REGEX_ANDROID_TOOLS_PLACEHOLDER, content):
-                content = content.replace(ANDROID_TOOLS_PLACEHOLDER, \
-                    os.path.join(android_tools_base_url, url_lookup(android_tools_map, match, path, errors)), 1)
+                content = content.replace(
+                    ANDROID_TOOLS_PLACEHOLDER,
+                    os.path.join(
+                        android_tools_base_url,
+                        url_lookup(android_tools_map, match, str(path), errors)
+                    ),
+                    1
+                )
             file.seek(0)
             file.write(content)
             file.truncate()
