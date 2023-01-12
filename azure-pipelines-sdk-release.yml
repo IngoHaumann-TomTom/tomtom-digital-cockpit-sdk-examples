@@ -302,7 +302,7 @@ stages:
         timeoutInMinutes: 10
         container: docker_indigo_delivery
         steps:
-          - template: ./azure-templates/publication.yml
+          - template: .azure-templates/publication.yml
 
   - stage: Metrics
     displayName: Collect Metrics
