@@ -181,7 +181,7 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources
     displayName: Check for usage of IndiGO
 
-  - template: .azure-templates/publishing-github.yml
+  - template: publishing-github.yml
     parameters:
       internalExampleSourceFolder: $(Build.SourcesDirectory)/artifactsource/tomtom-indigo-sdk-$(VERSION_PLATFORM)/examples/products_indigo_examples-$(VERSION_EXAMPLES)-sources/
 
