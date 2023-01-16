@@ -36,6 +36,7 @@ steps:
       -PartifactoryRepo=$(artifactoryRepo)
       -Dorg.gradle.internal.http.socketTimeout=900000
       -Dorg.gradle.internal.http.connectionTimeout=900000
+      -PuseInternalAutomotiveUiApiKey=true
     displayName: Publish APKs to Artifactory
     condition: and(ne(variables['Build.Reason'], 'PullRequest'), succeeded())
 

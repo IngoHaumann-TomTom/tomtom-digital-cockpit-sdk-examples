@@ -37,6 +37,7 @@ steps:
         -PartifactoryUser=$(artifactoryUser)
         -PartifactoryToken=$(artifactoryToken)
         -PlatestIviPlatformVersion=${{parameters.newIviPlatformVersion}}
+        -PuseInternalAutomotiveUiApiKey=true
       displayName: 'Check for new IVI Platform versions'
 
   - bash: |

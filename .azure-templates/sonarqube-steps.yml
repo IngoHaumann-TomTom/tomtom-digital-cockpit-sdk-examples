@@ -15,6 +15,7 @@ steps:
       -PartifactoryBaseUrl=$(artifactoryBaseUrl)
       -PartifactoryUser=$(artifactoryUser)
       -PartifactoryToken=$(artifactoryToken)
+      -PuseInternalAutomotiveUiApiKey=true
     displayName: Analyze
 
 - task: SonarQubePublish@5

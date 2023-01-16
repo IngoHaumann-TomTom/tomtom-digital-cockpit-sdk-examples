@@ -1,0 +1,68 @@
+---
+title: Getting a TomTom API Key
+---
+
+The TomTom Digital Cockpit SDK uses TomTom's online Navigation services, for which an API key is 
+required. 
+An evaluation key with limited authorization can be
+[acquired immediately](#registering-as-a-tomtom-developer).
+After signing 
+[TomTom's evaluation agreement](/tomtom-digital-cockpit/documentation/getting-started/introduction), 
+additional authorizations will be granted and you can experience the full functionality of the 
+TomTom Digital Cockpit SDK and Navigation.
+
+__Note:__ When you decide to store the TomTom API key in a repository, please make sure that it is
+_not_ publicly accessible.
+
+__Note:__ When you do not intend to use the Navigation services, there is no need to set an API key.
+However, the build process fails when no API key has been configured. You can set a Gradle property
+that allows building without the API key, but then TomTom Digital Cockpit will not have any
+online services working, such as Live Traffic, Long Distance Electric Vehicle Routing and map
+updates. Locate
+[the Gradle properties file](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/gradle.properties),
+as explained in the [Configuring your API key](#configuring-your-api-key) section, and add the
+following line. You can then  skip the rest of this page.
+
+```cmd
+disableAutomotiveUiApiKeyBuildTimeCheck=true
+```
+
+## Registering as a TomTom Developer
+
+- Navigate to [developer.tomtom.com](https://developer.tomtom.com/), click `Register`, and fill out
+  the registration form.
+- You will receive a confirmation email; click `Activate Account` and go to your
+  [TomTom Developer dashboard](https://developer.tomtom.com/user/me/apps).
+- The API key you get assigned should be used in the TomTom Digital Cockpit SDK, but it must still 
+  be authorized by TomTom for the Navigation features used by TomTom Digital Cockpit. See also 
+  section [Evaluation agreement](#evaluation-agreement).
+
+![My first API key](images/tomtom_my_first_api_key.png)
+
+## Configuring your API key
+
+Now that you have received your TomTom API key, it can be used with the TomTom Digital Cockpit SDK. 
+Add it to your `gradle.properties` file. The `gradle.properties` file is located in the folder
+specified by the `GRADLE_USER_HOME` environment variable, usually
+  `~/.gradle/`.
+    - __Windows:__ Use the `%UserProfile%\.gradle` folder to find or create the
+      `gradle.properties` file.
+
+Add a line to have the Gradle property match your TomTom API key:
+
+```cmd
+automotiveUiApiKey=<your-tomtom-api-key>
+```
+
+## Evaluation agreement
+
+The initial API key has restrictions on the functionality and the number of requests you can do.
+To enjoy full functionality,
+[apply for an evaluation agreement](/tomtom-digital-cockpit/documentation/getting-started/introduction) 
+with TomTom.
+
+__Note:__ You will not get a new API key, but TomTom will grant access to the navigation services
+for your API key.
+
+__Next step:__
+[Configuring Android Studio](/tomtom-digital-cockpit/documentation/getting-started/configuring-android-studio)

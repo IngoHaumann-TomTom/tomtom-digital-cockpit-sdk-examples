@@ -33,6 +33,7 @@ steps:
         createEmulators
         startEmulators
       projectOptions: >-
+        -PuseInternalAutomotiveUiApiKey=true
         -Pemulators=${{parameters.nrOfEmulators}}
         -PemulatorDirectory=$(Build.SourcesDirectory)/TestAVDs
         -PartifactoryBaseUrl=$(artifactoryBaseUrl)
@@ -48,6 +49,7 @@ steps:
         -PartifactoryBaseUrl=$(artifactoryBaseUrl)
         -PartifactoryUser=$(artifactoryUser)
         -PartifactoryToken=$(artifactoryToken)
+        -PuseInternalAutomotiveUiApiKey=true
       testResultsFiles: '**/androidTest*/**/TEST-*.xml'
       testRunTitle: 'Tests'
       displayName: 'Run tests'
@@ -61,6 +63,7 @@ steps:
         -PartifactoryBaseUrl=$(artifactoryBaseUrl)
         -PartifactoryUser=$(artifactoryUser)
         -PartifactoryToken=$(artifactoryToken)
+        -PuseInternalAutomotiveUiApiKey=true
       displayName: 'Retrieve emulator logs and metadata'
       condition: succeededOrFailed()
 
@@ -82,5 +85,6 @@ steps:
         -PartifactoryBaseUrl=$(artifactoryBaseUrl)
         -PartifactoryUser=$(artifactoryUser)
         -PartifactoryToken=$(artifactoryToken)
+        -PuseInternalAutomotiveUiApiKey=true
       displayName: 'Stop emulators'
       condition: always()

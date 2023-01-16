@@ -27,6 +27,7 @@ steps:
       -PartifactoryBaseUrl=$(artifactoryBaseUrl)
       -PartifactoryUser=$(artifactoryUser)
       -PartifactoryToken=$(artifactoryToken)
+      -PuseInternalAutomotiveUiApiKey=true
     testResultsFiles: '**/TEST-*Test.xml'
     testRunTitle: 'Unit tests'
     displayName: 'Run unit tests'

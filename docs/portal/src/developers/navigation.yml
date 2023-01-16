@@ -36,6 +36,8 @@ menu:
         title: Accessing TomTom Digital Cockpit SDK Example Sources
       - fileId: /getting-started/accessing-the-artifact-repository
         title: Accessing the Artifact Repository
+      - fileId: /getting-started/getting-a-tomtom-api-key
+        title: Getting a TomTom API Key
       - fileId: /getting-started/configuring-android-studio
         title: Configuring Android Studio
       - fileId: /getting-started/the-tomtom-digital-cockpit-emulator

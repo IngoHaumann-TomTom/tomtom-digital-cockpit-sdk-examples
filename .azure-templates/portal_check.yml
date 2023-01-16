@@ -20,6 +20,7 @@ steps:
         -PartifactoryBaseUrl=$(artifactoryBaseUrl)
         -PartifactoryUser=$(artifactoryUser)
         -PartifactoryToken=$(artifactoryToken)
+        -PuseInternalAutomotiveUiApiKey=true
       displayName: 'Validate Developer Portal content'
       continueOnError: true
 

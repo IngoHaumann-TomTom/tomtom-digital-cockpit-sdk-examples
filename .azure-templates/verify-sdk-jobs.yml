@@ -26,6 +26,7 @@ jobs:
             -PnexusUsername=$(VERIFICATION_USERNAME)
             -PnexusPassword=$(VERIFICATION_PASSWORD)
             -Dgradle.user.home=/does/not/exist
+            -PautomotiveUiApiKey=$(AUTOMOTIVEUI_API_KEY)
           displayName: 'Assemble debug APKs using dependencies from Nexus'
       - template: build/build-cleanup.yml@devops-templates
 
@@ -56,6 +57,7 @@ jobs:
           projectOptions: >-
             -PnexusUsername=$(NEXUS_USERNAME)
             -PnexusPassword=$(NEXUS_PASSWORD)
+            -PautomotiveUiApiKey=$(AUTOMOTIVEUI_API_KEY)
             -PoptInToAlexaExamples=true
             -PdisableAlexaDeviceIdBuildTimeCheck=true
             -Dgradle.user.home=/does/not/exist
