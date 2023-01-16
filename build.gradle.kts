@@ -41,6 +41,7 @@ plugins {
     id("com.tomtom.navtest.android") apply true
     id("com.tomtom.navapp.emulators-plugin") apply false
     id("com.tomtom.tools.android.extractstringsources") apply false
+    id("org.jlleitschuh.gradle.ktlint") apply true
     id("org.sonarqube") apply true
 }
 
@@ -170,6 +171,7 @@ subprojects {
 
     apply(plugin = "kotlin-android")
     apply(plugin = "kotlin-parcelize")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     apply(from = rootProject.file("buildSrc/tasks/publish.gradle.kts"))
 
@@ -314,7 +316,6 @@ subprojects {
                 projectSourceSets += it.absolutePath
             }
         }
-
 
         apply(plugin = "com.tomtom.ivi.platform.tools.signing-config")
 

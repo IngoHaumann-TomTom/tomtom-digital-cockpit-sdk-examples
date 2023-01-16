@@ -24,7 +24,7 @@ steps:
 - template: gradle/gradle.yml@devops-templates
   parameters:
     tasks: >-
-      lint
+      lint ktlintCheck
     projectOptions: >-
       ${{parameters.extraLintParameters}}
       -PiviVersion=$(product_version)

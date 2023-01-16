@@ -39,5 +39,4 @@ internal class AccountFrontendTest : E2ETestCase() {
     companion object {
         private val thatIsAccountLoginView = withIdReference(R.id::frontend_account_login_view)
     }
-
 }
