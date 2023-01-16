@@ -10,8 +10,10 @@
 menuTopTitle: TomTom Digital Cockpit
 menu:
   - items:
-      - url: /tomtom-digital-cockpit/documentation/introduction
-        title: Documentation
+      - url: /tomtom-digital-cockpit/developers/introduction
+        title: Developers
+      - url: /tomtom-digital-cockpit/designers/introduction
+        title: Designers
       - url: /tomtom-digital-cockpit/api-reference/api-reference
         title: API Reference
       - url: /tomtom-digital-cockpit/releases/releases

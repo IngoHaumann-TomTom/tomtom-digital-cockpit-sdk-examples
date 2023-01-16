@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="383px" preserveAspectRatio="none" style="width:1067px;height:383px;" version="1.1" viewBox="0 0 1067 383" width="1067px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="60" x="513.5" y="16.708">Search</text><!--cluster Digital Cockpit application suite--><polygon fill="#FFFFFF" points="419,45.4531,671,45.4531,678,67.75,860,67.75,860,132.4531,419,132.4531,419,45.4531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="419" x2="678" y1="67.75" y2="67.75"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="423" y="60.4482">Digital Cockpit application suite</text><!--cluster Digital Cockpit platform--><polygon fill="#FFFFFF" points="22,156.4531,211,156.4531,218,178.75,685,178.75,685,371.9531,22,371.9531,22,156.4531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="218" y1="178.75" y2="178.75"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="183" x="26" y="171.4482">Digital Cockpit platform</text><!--cluster Common APIs--><polygon fill="#FFFFFF" points="67,260.9531,181,260.9531,188,283.25,558,283.25,558,347.9531,67,347.9531,67,260.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="67" x2="188" y1="283.25" y2="283.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="108" x="71" y="275.9482">Common APIs</text><!--cluster NavKit--><polygon fill="#FFFFFF" points="786,252.9531,842,252.9531,849,275.25,1045,275.25,1045,355.9531,786,355.9531,786,252.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="786" x2="849" y1="275.25" y2="275.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="790" y="267.9482">NavKit</text><!--entity StockSearchFrontend--><rect fill="#BCDCF5" height="36.2969" rx="5" ry="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="178" x="435" y="80.4531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="430" y="85.4531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="430" y="106.75"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="158" x="445" y="103.4482">Stock Search Frontend</text><!--entity SearchUiComponentApi--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="196" x="648" y="80.4531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="643" y="85.4531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="643" y="106.75"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="176" x="658" y="103.4482">Search Ui Component Api</text><!--entity NavigationConnectionService--><rect fill="#F8C9DF" height="36.2969" rx="5" ry="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="229" x="439.5" y="191.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="434.5" y="196.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="434.5" y="217.75"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="209" x="449.5" y="214.4482">Navigation Connection Service</text><!--entity NavigationService--><rect fill="#F8C9DF" height="36.2969" rx="5" ry="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="145" x="259.5" y="191.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="254.5" y="196.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="254.5" y="217.75"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="269.5" y="214.4482">Navigation Service</text><!--entity VehicleLocationService--><rect fill="#F8C9DF" height="36.2969" rx="5" ry="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="186" x="38" y="191.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="33" y="196.4531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="33" y="217.75"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="166" x="48" y="214.4482">Vehicle Location Service</text><!--entity Coordinate--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="96" x="83" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="78" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="78" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="76" x="93" y="318.9482">Coordinate</text><!--entity TripId--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="62" x="329" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="324" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="324" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="339" y="318.9482">Trip Id</text><!--entity TripPlan--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="79" x="214.5" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="209.5" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="209.5" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="224.5" y="318.9482">Trip Plan</text><!--entity TripPlanError--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="116" x="426" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="421" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="421" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="436" y="318.9482">Trip Plan Error</text><!--entity FtsResult--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="89" x="932.5" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="927.5" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="927.5" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="942.5" y="318.9482">Fts Result</text><!--entity Search--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="68" x="829" y="295.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="824" y="300.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="824" y="322.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="48" x="839" y="318.9482">Search</text><!--entity NavKitUI--><polygon fill="#FFFFFF" points="703.5,189.9531,764.5,189.9531,771.5,212.25,788.5,212.25,788.5,229.25,703.5,229.25,703.5,189.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="703.5" x2="771.5" y1="212.25" y2="212.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="707.5" y="205.9482">NavKitUI</text><!--link StockSearchFrontend to NavigationConnectionService--><path d="M528.69,116.4831 C533.85,135.2531 542.18,165.5031 547.86,186.1531 " fill="none" id="StockSearchFrontend-NavigationConnectionService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="549.25,191.1831,550.7191,181.4444,547.9236,186.3623,543.0057,183.5668,549.25,191.1831" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockSearchFrontend to NavigationService--><path d="M485.08,116.5931 C465.78,125.4731 442.31,136.8831 422,148.4531 C400.64,160.6231 377.59,176.0331 360.17,188.1931 " fill="none" id="StockSearchFrontend-NavigationService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="355.86,191.2131,365.5265,189.3266,359.9555,188.3449,360.9373,182.7738,355.86,191.2131" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockSearchFrontend to VehicleLocationService--><path d="M434.82,107.4831 C378.4,114.3731 304.56,126.7631 242,148.4531 C213.21,158.4331 182.93,175.2831 161.29,188.5931 " fill="none" id="StockSearchFrontend-VehicleLocationService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="156.8,191.3731,166.5573,190.0336,161.0504,188.7399,162.3441,183.2329,156.8,191.3731" style="stroke: #A80036; stroke-width: 1.0;"/><!--link NavigationService to Coordinate--><path d="M259.01,225.4331 C252.92,226.6331 246.86,227.8231 241,228.9531 C221.48,232.7131 214.27,227.1131 197,236.9531 C174.18,249.9531 155.41,273.8731 143.8,291.4231 " fill="none" id="NavigationService-Coordinate" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="141,295.7331,149.2574,290.3651,143.7239,291.5403,142.5488,286.0068,141,295.7331" style="stroke: #A80036; stroke-width: 1.0;"/><!--link NavigationService to TripId--><path d="M336.75,227.8431 C341.48,245.1731 348.77,271.8631 353.93,290.7231 " fill="none" id="NavigationService-TripId" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="355.32,295.8231,356.7891,286.0844,353.9936,291.0023,349.0757,288.2068,355.32,295.8231" style="stroke: #A80036; stroke-width: 1.0;"/><!--link NavigationService to TripPlan--><path d="M318.38,227.5031 C315.91,230.6331 313.37,233.8831 311,236.9531 C296.82,255.3431 281,276.4831 269.63,291.7931 " fill="none" id="NavigationService-TripPlan" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="266.55,295.9531,275.1307,291.1188,269.534,291.9412,268.7116,286.3444,266.55,295.9531" style="stroke: #A80036; stroke-width: 1.0;"/><!--link NavigationService to TripPlanError--><path d="M390.13,227.6231 C396.36,230.3631 402.44,233.4631 408,236.9531 C431.46,251.6731 453.26,274.8731 467.44,291.7731 " fill="none" id="NavigationService-TripPlanError" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="470.88,295.9231,468.2155,286.4415,467.6889,292.0738,462.0567,291.5472,470.88,295.9231" style="stroke: #A80036; stroke-width: 1.0;"/><!--link VehicleLocationService to Coordinate--><path d="M131,227.8431 C131,245.1731 131,271.8631 131,290.7231 " fill="none" id="VehicleLocationService-Coordinate" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="131,295.8231,135,286.8231,131,290.8231,127,286.8231,131,295.8231" style="stroke: #A80036; stroke-width: 1.0;"/><!--link SearchUiComponentApi to NavKitUI--><path d="M746,116.4831 C746,134.8131 746,164.0931 746,184.6831 " fill="none" id="SearchUiComponentApi-NavKitUI" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="746,189.7131,750,180.7131,746,184.7131,742,180.7131,746,189.7131" style="stroke: #A80036; stroke-width: 1.0;"/><!--link SearchUiComponentApi to NavKit--><path d="M776.73,116.4931 C788.12,124.5631 799.77,135.3331 806,148.4531 C813.735,164.7531 810.95,204.8581 806.1263,241.3856 C805.8248,243.6686 805.5153,245.9376 805.2,248.1859 C805.0423,249.3101 804.8832,250.4291 804.7228,251.5421 C804.6827,251.8203 804.6425,252.0982 804.6023,252.3757 " fill="none" id="SearchUiComponentApi-NavKit" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="804.6023,252.3757,809.8525,244.0429,805.3198,247.4275,801.9353,242.8948,804.6023,252.3757" style="stroke: #A80036; stroke-width: 1.0;"/><!--link NavKitUI to NavKit--><path d="M754.8,229.2531 C761.515,243.5881 770.9225,263.6731 778.8387,280.5744 C780.8178,284.7997 782.7037,288.826 784.431,292.5138 C784.8628,293.4357 785.2847,294.3365 785.6957,295.2139 C785.747,295.3236 785.7982,295.4329 785.8493,295.5419 " fill="none" id="NavKitUI-NavKit" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="785.8493,295.5419,785.6541,285.6949,783.7285,291.0139,778.4095,289.0882,785.8493,295.5419" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+skinparam packageStyle rectangle
+
+title Search
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    component StockSearchFrontend as [Stock Search Frontend]<<Frontend>>
+    component SearchUiComponentApi as [Search Ui Component Api]<<Api>>
+
+}
+
+package "Digital Cockpit platform"<<Rectangle>> {
+    package "Common APIs" {
+        component Coordinate as [Coordinate]<<Api>>
+        component TripId as [Trip Id]<<Api>>
+        component TripPlan as [Trip Plan]<<Api>>
+        component TripPlanError as [Trip Plan Error]<<Api>>
+
+    }
+    component NavigationConnectionService as [Navigation Connection Service]<<Service>>
+    component NavigationService as [Navigation Service]<<Service>>
+    component VehicleLocationService as [Vehicle Location Service]<<Service>>
+}
+
+package "NavKit"<<Rectangle>> {
+    component FtsResult as [Fts Result]<<Api>>
+    component Search as [Search]<<Api>>
+}
+
+package "NavKitUI"<<Rectangle>> {
+}
+
+StockSearchFrontend -d-> NavigationConnectionService
+StockSearchFrontend -d-> NavigationService
+StockSearchFrontend -d-> VehicleLocationService
+
+NavigationService -d-> Coordinate
+NavigationService -d-> TripId
+NavigationService -d-> TripPlan
+NavigationService -d-> TripPlanError
+
+VehicleLocationService -d-> Coordinate
+
+SearchUiComponentApi -d-> NavKitUI
+SearchUiComponentApi -d-> NavKit
+NavKitUI -d-> NavKit
+
+
+
+@enduml
+
+PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.16+8-post-Ubuntu-0ubuntu120.04
+Operating System: Linux
+OS Version: 5.4.0-126-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

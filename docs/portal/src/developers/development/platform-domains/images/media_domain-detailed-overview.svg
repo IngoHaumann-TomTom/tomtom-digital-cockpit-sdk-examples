@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="564px" preserveAspectRatio="none" style="width:1240px;height:564px;" version="1.1" viewBox="0 0 1240 564" width="1240px" zoomAndPan="magnify"><defs/><g><!--cluster Application frontend--><rect fill="#FFFFFF" height="83" style="stroke: #000000; stroke-width: 1.5;" width="177" x="520" y="24"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="161" x="528" y="38.9951">Application frontend</text><!--cluster Digital Cockpit application suite--><rect fill="#FFFFFF" height="150" style="stroke: #000000; stroke-width: 1.5;" width="1158" x="22" y="171"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="478" y="185.9951">Digital Cockpit application suite</text><!--cluster appsuite_media_api_service_core--><polygon fill="#FFFFFF" points="46,214,312,214,319,236.2969,505,236.2969,505,297,46,297,46,214" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="46" x2="319" y1="236.2969" y2="236.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="260" x="50" y="228.9951">appsuite_media_api_service_core</text><!--cluster appsuite_media_api_common_core--><polygon fill="#FFFFFF" points="871,214,1146,214,1153,236.2969,1156,236.2969,1156,297,871,297,871,214" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="871" x2="1153" y1="236.2969" y2="236.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="269" x="875" y="228.9951">appsuite_media_api_common_core</text><!--cluster appsuite_media_api_common_frontend--><polygon fill="#FFFFFF" points="529,214,837,214,844,236.2969,847,236.2969,847,297,529,297,529,214" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="529" x2="844" y1="236.2969" y2="236.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="302" x="533" y="228.9951">appsuite_media_api_common_frontend</text><!--cluster Android --><rect fill="#FFFFFF" height="83" style="stroke: #000000; stroke-width: 1.5;" width="351" x="866" y="354"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="62" x="1008" y="368.9951">Android</text><!--cluster Media source--><rect fill="#FFFFFF" height="83" style="stroke: #000000; stroke-width: 1.5;" width="220" x="1009" y="470"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="1066" y="484.9951">Media source</text><!--class MyPanel--><rect fill="#BCDCF5" height="32" id="MyPanel" style="stroke: #8DC3EB; stroke-width: 1.5;" width="83" x="566.5" y="59"/><ellipse cx="581.5" cy="75" fill="#8DC3EB" rx="11" ry="11" style="stroke: #8DC3EB; stroke-width: 1.0;"/><path d="M584.4688,80.6406 Q583.8906,80.9375 583.25,81.0781 Q582.6094,81.2344 581.9063,81.2344 Q579.4063,81.2344 578.0781,79.5938 Q576.7656,77.9375 576.7656,74.8125 Q576.7656,71.6875 578.0781,70.0313 Q579.4063,68.375 581.9063,68.375 Q582.6094,68.375 583.25,68.5313 Q583.9063,68.6875 584.4688,68.9844 L584.4688,71.7031 Q583.8438,71.125 583.25,70.8594 Q582.6563,70.5781 582.0313,70.5781 Q580.6875,70.5781 580,71.6563 Q579.3125,72.7188 579.3125,74.8125 Q579.3125,76.9063 580,77.9844 Q580.6875,79.0469 582.0313,79.0469 Q582.6563,79.0469 583.25,78.7813 Q583.8438,78.5 584.4688,77.9219 L584.4688,80.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="51" x="595.5" y="79.1543">MyPanel</text><!--class MediaService--><rect fill="#F8C9DF" height="32" id="MediaService" style="stroke: #F29AC2; stroke-width: 1.5;" width="114" x="375" y="249"/><ellipse cx="390" cy="265" fill="#F29AC2" rx="11" ry="11" style="stroke: #F29AC2; stroke-width: 1.0;"/><path d="M385.9219,260.7656 L385.9219,258.6094 L393.3125,258.6094 L393.3125,260.7656 L390.8438,260.7656 L390.8438,268.8438 L393.3125,268.8438 L393.3125,271 L385.9219,271 L385.9219,268.8438 L388.3906,268.8438 L388.3906,260.7656 L385.9219,260.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="82" x="404" y="269.1543">MediaService</text><!--class MediaServiceApi--><rect fill="#F8C9DF" height="32" id="MediaServiceApi" style="stroke: #F29AC2; stroke-width: 1.5;" width="133" x="62.5" y="249"/><ellipse cx="77.5" cy="265" fill="#F29AC2" rx="11" ry="11" style="stroke: #F29AC2; stroke-width: 1.0;"/><path d="M80.4688,270.6406 Q79.8906,270.9375 79.25,271.0781 Q78.6094,271.2344 77.9063,271.2344 Q75.4063,271.2344 74.0781,269.5938 Q72.7656,267.9375 72.7656,264.8125 Q72.7656,261.6875 74.0781,260.0313 Q75.4063,258.375 77.9063,258.375 Q78.6094,258.375 79.25,258.5313 Q79.9063,258.6875 80.4688,258.9844 L80.4688,261.7031 Q79.8438,261.125 79.25,260.8594 Q78.6563,260.5781 78.0313,260.5781 Q76.6875,260.5781 76,261.6563 Q75.3125,262.7188 75.3125,264.8125 Q75.3125,266.9063 76,267.9844 Q76.6875,269.0469 78.0313,269.0469 Q78.6563,269.0469 79.25,268.7813 Q79.8438,268.5 80.4688,267.9219 L80.4688,270.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="101" x="91.5" y="269.1543">MediaServiceApi</text><!--class SourceClient--><rect fill="#E5E5E5" height="32" id="SourceClient" style="stroke: #BEBEBE; stroke-width: 1.5;" width="111" x="886.5" y="249"/><ellipse cx="901.5" cy="265" fill="#BEBEBE" rx="11" ry="11" style="stroke: #BEBEBE; stroke-width: 1.0;"/><path d="M904.4688,270.6406 Q903.8906,270.9375 903.25,271.0781 Q902.6094,271.2344 901.9063,271.2344 Q899.4063,271.2344 898.0781,269.5938 Q896.7656,267.9375 896.7656,264.8125 Q896.7656,261.6875 898.0781,260.0313 Q899.4063,258.375 901.9063,258.375 Q902.6094,258.375 903.25,258.5313 Q903.9063,258.6875 904.4688,258.9844 L904.4688,261.7031 Q903.8438,261.125 903.25,260.8594 Q902.6563,260.5781 902.0313,260.5781 Q900.6875,260.5781 900,261.6563 Q899.3125,262.7188 899.3125,264.8125 Q899.3125,266.9063 900,267.9844 Q900.6875,269.0469 902.0313,269.0469 Q902.6563,269.0469 903.25,268.7813 Q903.8438,268.5 904.4688,267.9219 L904.4688,270.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="915.5" y="269.1543">SourceClient</text><!--class PolicyProvider--><rect fill="#E5E5E5" height="32" id="PolicyProvider" style="stroke: #BEBEBE; stroke-width: 1.5;" width="118" x="549" y="249"/><ellipse cx="564" cy="265" fill="#BEBEBE" rx="11" ry="11" style="stroke: #BEBEBE; stroke-width: 1.0;"/><path d="M566.9688,270.6406 Q566.3906,270.9375 565.75,271.0781 Q565.1094,271.2344 564.4063,271.2344 Q561.9063,271.2344 560.5781,269.5938 Q559.2656,267.9375 559.2656,264.8125 Q559.2656,261.6875 560.5781,260.0313 Q561.9063,258.375 564.4063,258.375 Q565.1094,258.375 565.75,258.5313 Q566.4063,258.6875 566.9688,258.9844 L566.9688,261.7031 Q566.3438,261.125 565.75,260.8594 Q565.1563,260.5781 564.5313,260.5781 Q563.1875,260.5781 562.5,261.6563 Q561.8125,262.7188 561.8125,264.8125 Q561.8125,266.9063 562.5,267.9844 Q563.1875,269.0469 564.5313,269.0469 Q565.1563,269.0469 565.75,268.7813 Q566.3438,268.5 566.9688,267.9219 L566.9688,270.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="86" x="578" y="269.1543">PolicyProvider</text><!--class UserFlowPolicy--><rect fill="#E5E5E5" height="32" id="UserFlowPolicy" style="stroke: #BEBEBE; stroke-width: 1.5;" width="123" x="702.5" y="249"/><ellipse cx="717.5" cy="265" fill="#BEBEBE" rx="11" ry="11" style="stroke: #BEBEBE; stroke-width: 1.0;"/><path d="M713.4219,260.7656 L713.4219,258.6094 L720.8125,258.6094 L720.8125,260.7656 L718.3438,260.7656 L718.3438,268.8438 L720.8125,268.8438 L720.8125,271 L713.4219,271 L713.4219,268.8438 L715.8906,268.8438 L715.8906,260.7656 L713.4219,260.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="91" x="731.5" y="269.1543">UserFlowPolicy</text><!--class MediaBrowser--><rect fill="#65A7A9" height="32" id="MediaBrowser" style="stroke: #008D8D; stroke-width: 1.5;" width="119" x="882.5" y="389"/><ellipse cx="897.5" cy="405" fill="#008D8D" rx="11" ry="11" style="stroke: #008D8D; stroke-width: 1.0;"/><path d="M900.4688,410.6406 Q899.8906,410.9375 899.25,411.0781 Q898.6094,411.2344 897.9063,411.2344 Q895.4063,411.2344 894.0781,409.5938 Q892.7656,407.9375 892.7656,404.8125 Q892.7656,401.6875 894.0781,400.0313 Q895.4063,398.375 897.9063,398.375 Q898.6094,398.375 899.25,398.5313 Q899.9063,398.6875 900.4688,398.9844 L900.4688,401.7031 Q899.8438,401.125 899.25,400.8594 Q898.6563,400.5781 898.0313,400.5781 Q896.6875,400.5781 896,401.6563 Q895.3125,402.7188 895.3125,404.8125 Q895.3125,406.9063 896,407.9844 Q896.6875,409.0469 898.0313,409.0469 Q898.6563,409.0469 899.25,408.7813 Q899.8438,408.5 900.4688,407.9219 L900.4688,410.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="911.5" y="409.1543">MediaBrowser</text><!--class MediaBrowserService--><rect fill="#E94743" height="32" id="MediaBrowserService" style="stroke: #87382B; stroke-width: 1.5;" width="164" x="1037" y="389"/><ellipse cx="1052" cy="405" fill="#87382B" rx="11" ry="11" style="stroke: #87382B; stroke-width: 1.0;"/><path d="M1054.9688,410.6406 Q1054.3906,410.9375 1053.75,411.0781 Q1053.1094,411.2344 1052.4063,411.2344 Q1049.9063,411.2344 1048.5781,409.5938 Q1047.2656,407.9375 1047.2656,404.8125 Q1047.2656,401.6875 1048.5781,400.0313 Q1049.9063,398.375 1052.4063,398.375 Q1053.1094,398.375 1053.75,398.5313 Q1054.4063,398.6875 1054.9688,398.9844 L1054.9688,401.7031 Q1054.3438,401.125 1053.75,400.8594 Q1053.1563,400.5781 1052.5313,400.5781 Q1051.1875,400.5781 1050.5,401.6563 Q1049.8125,402.7188 1049.8125,404.8125 Q1049.8125,406.9063 1050.5,407.9844 Q1051.1875,409.0469 1052.5313,409.0469 Q1053.1563,409.0469 1053.75,408.7813 Q1054.3438,408.5 1054.9688,407.9219 L1054.9688,410.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="132" x="1066" y="409.1543">MediaBrowserService</text><!--class AppMediaBrowserService--><rect fill="#65A7A9" height="32" id="AppMediaBrowserService" style="stroke: #008D8D; stroke-width: 1.5;" width="188" x="1025" y="505"/><ellipse cx="1040" cy="521" fill="#008D8D" rx="11" ry="11" style="stroke: #008D8D; stroke-width: 1.0;"/><path d="M1042.9688,526.6406 Q1042.3906,526.9375 1041.75,527.0781 Q1041.1094,527.2344 1040.4063,527.2344 Q1037.9063,527.2344 1036.5781,525.5938 Q1035.2656,523.9375 1035.2656,520.8125 Q1035.2656,517.6875 1036.5781,516.0313 Q1037.9063,514.375 1040.4063,514.375 Q1041.1094,514.375 1041.75,514.5313 Q1042.4063,514.6875 1042.9688,514.9844 L1042.9688,517.7031 Q1042.3438,517.125 1041.75,516.8594 Q1041.1563,516.5781 1040.5313,516.5781 Q1039.1875,516.5781 1038.5,517.6563 Q1037.8125,518.7188 1037.8125,520.8125 Q1037.8125,522.9063 1038.5,523.9844 Q1039.1875,525.0469 1040.5313,525.0469 Q1041.1563,525.0469 1041.75,524.7813 Q1042.3438,524.5 1042.9688,523.9219 L1042.9688,526.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="156" x="1054" y="525.1543">AppMediaBrowserService</text><!--link MediaServiceApi to MediaService--><path d="M195.87,265 C247.77,265 319.17,265 369.83,265 " fill="none" id="MediaServiceApi-MediaService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="374.98,265,365.98,261,369.98,265,365.98,269,374.98,265" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="143" x="213.75" y="258.0669">is generated based on</text><!--link MediaBrowserService to AppMediaBrowserService--><path d="M1119,441.6 C1119,462.88 1119,488.82 1119,504.87 " fill="none" id="MediaBrowserService-AppMediaBrowserService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="1112,441.37,1119,421.37,1126,441.37,1112,441.37" style="stroke: #A80036; stroke-width: 1.0;"/><!--link MyPanel to SourceClient--><path d="M649.82,85.66 C698.68,98.24 780.64,123.4 842,163 C877.13,185.68 909.57,222.58 927.49,244.95 " fill="none" id="MyPanel-SourceClient" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="930.66,248.95,928.1867,239.4167,927.547,245.0373,921.9264,244.3976,930.66,248.95" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="826" y="136.0669">connects</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="60" x="825" y="151.1997">to source</text><!--link MyPanel to PolicyProvider--><path d="M608,91.07 C608,124.62 608,205.52 608,243.57 " fill="none" id="MyPanel-PolicyProvider" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="608,248.86,612,239.86,608,243.86,604,239.86,608,248.86" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="30" x="617.5" y="136.0669">uses</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="47" x="609" y="151.1997">policies</text><!--link PolicyProvider to UserFlowPolicy--><path d="M667.11,265 C677.1,265 687.09,265 697.08,265 " fill="none" id="PolicyProvider-UserFlowPolicy" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="702.31,265,693.31,261,697.31,265,693.31,269,702.31,265" style="stroke: #A80036; stroke-width: 1.0;"/><!--link MyPanel to MediaServiceApi--><path d="M566.49,89.31 C516.58,105.57 430.48,134.46 358,163 C289.15,190.11 210.56,225.85 165.66,246.74 " fill="none" id="MyPanel-MediaServiceApi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="160.89,248.96,170.7372,248.7771,165.4206,246.8448,167.3528,241.5282,160.89,248.96" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="30" x="461" y="143.5669">uses</text><!--link SourceClient to MediaBrowser--><path d="M942,281.03 C942,305.92 942,355.71 942,383.69 " fill="none" id="SourceClient-MediaBrowser" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="942,388.99,946,379.99,942,383.99,938,379.99,942,388.99" style="stroke: #A80036; stroke-width: 1.0;"/><!--link MediaBrowser to MediaBrowserService--><path d="M1001.81,405 C1011.68,405 1021.56,405 1031.43,405 " fill="none" id="MediaBrowser-MediaBrowserService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1036.6,405,1027.6,401,1031.6,405,1027.6,409,1036.6,405" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+
+package "Application frontend"<<Rectangle>> {
+    class MyPanel<<Frontend>>
+}
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    package "appsuite_media_api_service_core" {
+        interface MediaService<<Service>>
+        class MediaServiceApi<<Service>>
+
+        MediaServiceApi .> MediaService: is generated based on
+    }
+    package "appsuite_media_api_common_core" {
+        class SourceClient<<Api>>
+    }
+
+    package "appsuite_media_api_common_frontend" {
+        class PolicyProvider<<Api>>
+        interface UserFlowPolicy<<Api>>
+    }
+}
+
+package "Android "<<Rectangle>> {
+    class MediaBrowser<<Android>>
+    class MediaBrowserService<<AndroidService>>
+}
+
+package "Media source"<<Rectangle>> {
+    class AppMediaBrowserService<<Android>> extends MediaBrowserService
+}
+
+MyPanel - -> SourceClient : connects\nto source
+MyPanel - -> PolicyProvider : uses\npolicies
+PolicyProvider -> UserFlowPolicy
+MyPanel -> MediaServiceApi : uses
+SourceClient - -> MediaBrowser
+MediaBrowser -right-> MediaBrowserService
+@enduml
+
+PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.16+8-post-Ubuntu-0ubuntu120.04
+Operating System: Linux
+OS Version: 5.4.0-126-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

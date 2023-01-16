@@ -1,0 +1,39 @@
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Calling Architecture
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    component CommunicationsFrontend as [Communications Frontend]<<Frontend>>
+}
+
+package "Digital Cockpit platform"<<Rectangle>> {
+    component TelecomService as [Telecom Service]<<Service>>
+    component ContactsService as [Contacts Service]<<Service>>
+    component RecentCallsService as [Recent Calls Service]<<Service>>
+    component IviInCallService as [Ivi Incall Service]<<Service>>
+    component CustomConnectionService as [Custom Connection Service]<<Service>>
+}
+
+package "Android"<<Rectangle>> {
+    component TelecomManager as [Telecom Manager]<<Android>>
+    component ContentResolver as [Content Resolver]<<Android>>
+    component ConnectionService as [HFP Connection Service]<<Android>>
+}
+
+CommunicationsFrontend -d-> TelecomService
+CommunicationsFrontend -d-> ContactsService
+CommunicationsFrontend -d-> RecentCallsService
+
+IviInCallService -u-> TelecomService
+ContactsService -d-> ContentResolver
+RecentCallsService -d-> ContentResolver
+
+TelecomManager -u-> IviInCallService
+TelecomService -d-> TelecomManager
+
+TelecomManager <--> ConnectionService
+TelecomManager <-u-> CustomConnectionService
+
+@enduml

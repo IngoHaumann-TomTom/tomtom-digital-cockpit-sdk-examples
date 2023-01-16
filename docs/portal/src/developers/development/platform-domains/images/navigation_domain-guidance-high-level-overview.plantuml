@@ -1,0 +1,43 @@
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Guidance
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    component StockGuidanceFrontend as [Stock Guidance Frontend]<<Frontend>>
+}
+
+package "Digital Cockpit platform"<<Rectangle>> {
+     package "Core Service APIs" {
+         component NavigationService<<Service>>
+         component GuidanceInstructionsService as [Guidance Instructions Service]<<Service>>
+
+    }
+
+    package "Common APIs" {
+            component Coordinate as [Coordinate]<<Api>>
+            component TripId as [Trip Id]<<Api>>
+            component TripPlan as [Trip Plan]<<Api>>
+            component TripPlanError as [Trip Plan Error]<<Api>>
+    }
+}
+
+package "NavKit"<<Rectangle>> {
+    component DrivingContextApiProvider as [Driving Context Api Provider]<<Api>>
+    component NavigationProvider as [Navigation Provider]<<Api>>
+
+}
+
+StockGuidanceFrontend -d-> NavigationService
+StockGuidanceFrontend -d-> GuidanceInstructionsService
+
+StockGuidanceFrontend -d-> DrivingContextApiProvider
+StockGuidanceFrontend -d-> NavigationProvider
+
+NavigationService -d-> Coordinate
+NavigationService -d-> TripId
+NavigationService -d-> TripPlan
+NavigationService -d-> TripPlanError
+
+@enduml

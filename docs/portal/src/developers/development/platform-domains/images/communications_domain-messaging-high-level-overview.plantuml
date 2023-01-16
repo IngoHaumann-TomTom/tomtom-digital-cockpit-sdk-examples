@@ -1,0 +1,31 @@
+@startuml
+!include theme.plantuml
+skinparam packageStyle rectangle
+
+title Messaging Architecture
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    component MessagingFrontend as [Messaging Frontend]<<Frontend>>
+    component MessagingAppService as [Messaging Application Service]<<Service>>
+}
+
+package "Digital Cockpit platform"<<Rectangle>> {
+    component MessagingService as [Messaging Service]<<Service>>
+    component SmsService as [Sms Service]<<Service>>
+    component CompanionAppMessagingService as [Companion App Messaging Service]<<Service>>
+    component MessagingProviderService as [Messaging Provider Service]<<Api>>
+}
+
+package "Communications Sdk" {
+    component CommMessagingService as [Messaging Service]
+}
+
+MessagingFrontend -d-> MessagingAppService
+MessagingAppService -d-> MessagingService
+MessagingService -d-> MessagingProviderService
+MessagingProviderService <|-d- SmsService
+MessagingProviderService <|-d- CompanionAppMessagingService
+CompanionAppMessagingService -d-> CommMessagingService
+
+
+@enduml

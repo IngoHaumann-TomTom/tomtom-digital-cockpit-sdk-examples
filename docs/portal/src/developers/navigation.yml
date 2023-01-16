@@ -1,0 +1,196 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+group: tomtom-digital-cockpit
+isPrivate: false
+productName: TomTom Digital Cockpit
+menuTitle: Developers
+isMenuOpened: true
+hasRequestAccess: true
+hasRequestAccessButton: false
+requestAccessType: request-access-tomtom-digital-cockpit
+menu:
+  - title: Introduction
+    items:
+      - fileId: /introduction
+        title: Documentation
+  - title: Platform Overview
+    items:
+      - fileId: /platform-overview/what-is-tomtom-digital-cockpit
+        title: What is TomTom Digital Cockpit?
+      - fileId: /platform-overview/example-apps
+        title: Example Apps
+  - title: Getting Started
+    items:
+      - fileId: /getting-started/introduction
+        title: Introduction
+      - fileId: /getting-started/installing-openjdk-11
+        title: Installing OpenJDK 11
+      - fileId: /getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources
+        title: Accessing TomTom Digital Cockpit SDK Example Sources
+      - fileId: /getting-started/accessing-the-artifact-repository
+        title: Accessing the Artifact Repository
+      - fileId: /getting-started/configuring-android-studio
+        title: Configuring Android Studio
+      - fileId: /getting-started/the-tomtom-digital-cockpit-emulator
+        title: The TomTom Digital Cockpit Emulator
+      - fileId: /getting-started/accessing-the-map-data
+        title: Accessing the Map Data
+      - fileId: /getting-started/the-debug-menu
+        title: The Debug Menu
+      - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-digital-cockpit
+        title: Upgrade to a Newer Version of TomTom Digital Cockpit
+      - fileId: /getting-started/additional-resources
+        title: Additional Resources
+      - fileId: /getting-started/frequently-asked-questions-faq
+        title: Frequently Asked Questions (FAQ)
+  - title: Development
+    items:
+      - fileId: /development/introduction
+        title: Development
+      - fileId: /development/frontend-plugins
+        title: Frontend Plugins
+      - fileId: /development/system-ui
+        title: System UI
+      - fileId: /development/ui-controls
+        title: UI Controls
+      - fileId: /development/ivi-services
+        title: IVI Services
+      - fileId: /development/theming-and-customization
+        title: Theming and Customization
+      - title: Platform Domains
+        items:
+          - fileId: /development/platform-domains/overview
+            title: Overview
+          - fileId: /development/platform-domains/navigation
+            title: Navigation
+          - fileId: /development/platform-domains/media
+            title: Media
+          - fileId: /development/platform-domains/vehicle-functions
+            title: Vehicle Functions
+          - fileId: /development/platform-domains/communications
+            title: Communications
+          - fileId: /development/platform-domains/voice-personal-assistant-vpa
+            title: Voice Personal Assistant (VPA)
+          - fileId: /development/platform-domains/configuration-framework
+            title: Configuration Framework
+          - fileId: /development/platform-domains/settings-framework
+            title: Settings Framework
+          - fileId: /development/platform-domains/user-profiles
+            title: User Profiles
+      - title: Platform Features
+        items:
+          - fileId: /development/platform-features/overview
+            title: Overview
+          - fileId: /development/platform-features/safety-lock
+            title: Safety Lock
+          - fileId: /development/platform-features/localization
+            title: Localization
+          - fileId: /development/platform-features/splash-screen
+            title: Splash Screen
+  - title: Testing
+    items:
+      - fileId: /testing/introduction
+        title: Introduction
+  - title: Integrating
+    items:
+      - fileId: /integrating/introduction
+        title: Introduction
+      - fileId: /integrating/integration-into-a-vehicle
+        title: Integration into a Vehicle
+      - fileId: /integrating/installing-tomtom-digital-cockpit-on-hardware
+        title: Installing TomTom Digital Cockpit on Hardware
+      - fileId: /integrating/flashing-the-reference-hardware
+        title: Flashing the Reference Hardware
+      - fileId: /integrating/companion-application
+        title: Companion Application
+      - fileId: /integrating/integrating-amazon-alexa
+        title: Integrating Amazon Alexa
+  - title: Tutorials and Examples
+    items:
+      - fileId: /tutorials-and-examples/overview
+        title: Overview
+      - title: Setup
+        items:
+          - fileId: /tutorials-and-examples/setup/integrate-tomtom-digital-cockpit-into-a-gradle-project
+            title: Integrate TomTom Digital Cockpit into a Gradle Project
+          - fileId: /tutorials-and-examples/setup/configure-an-app-store
+            title: Configure an App Store
+      - title: Basics
+        items:
+          - fileId: /tutorials-and-examples/basics/create-a-frontend-plugin
+            title: Create a Frontend Plugin
+          - fileId: /tutorials-and-examples/basics/create-an-ivi-service
+            title: Create an IVI Service
+          - fileId: /tutorials-and-examples/basics/use-an-ivi-data-source
+            title: Use an IVI Data Source
+          - fileId: /tutorials-and-examples/basics/configure-debug-tabs
+            title: Configure Debug Tabs
+      - title: Notifications
+        items:
+          - fileId: /tutorials-and-examples/notifications/create-a-notification-panel
+            title: Create a Notification Panel
+      - title: Main Process Panels
+        items:
+          - fileId: /tutorials-and-examples/main-process-panel/create-a-main-process-panel
+            title: Create a Main Process Panel
+      - title: Media
+        items:
+          - fileId: /tutorials-and-examples/media/create-a-new-media-user-interface
+            title: Create a New Media User Interface
+          - fileId: /tutorials-and-examples/media/customize-a-media-source
+            title: Customize a Media Source
+          - fileId: /tutorials-and-examples/media/configure-the-media-plugins
+            title: Configure the Media Plugins
+      - title: Communications
+        items:
+          - fileId: /tutorials-and-examples/communications/create-a-custom-connection-service
+            title: Create a Custom Connection Service
+          - fileId: /tutorials-and-examples/communications/create-a-custom-contacts-service
+            title: Create a Custom Contacts Service
+          - fileId: /tutorials-and-examples/communications/create-a-custom-recentcalls-service
+            title: Create a Custom Recent Calls Service
+          - fileId: /tutorials-and-examples/communications/configure-the-communications-plugin
+            title: Configure the Communications Plugin
+          - fileId: /tutorials-and-examples/communications/how-to-use-the-communications-plugin-settings
+            title: How to use the Communications Plugin Settings
+      - title: App Launcher
+        items:
+          - fileId: /tutorials-and-examples/app-launcher/create-a-custom-app-launcher-service
+            title: Create a Custom App Launcher Service
+          - fileId: /tutorials-and-examples/app-launcher/replace-the-stock-android-app-support
+            title: Replace the Stock Android App Support
+          - fileId: /tutorials-and-examples/app-launcher/add-support-for-a-custom-non-android-app-type
+            title: Add Support for a Custom Non-Android App Type
+          - fileId: /tutorials-and-examples/app-launcher/add-support-for-web-app-launch-trigger
+            title: Add Support for Web App Launch Trigger
+      - title: Voice Personal Assistant
+        items:
+          - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-vpa-adaptation-service
+            title: Create a Custom VPA Adaptation Service
+          - fileId: /tutorials-and-examples/voice-personal-assistant/create-a-custom-alexa-handler-service
+            title: Create a Custom Alexa Handler Service
+          - fileId: /tutorials-and-examples/voice-personal-assistant/customize-the-alexa-car-control-feature
+            title: Customize the Alexa Car Control Feature
+          - fileId: /tutorials-and-examples/voice-personal-assistant/implement-preview-mode-feature
+            title: Implement Alexa Preview Mode
+      - title: Customization
+        items:
+          - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
+            title: Use the Configuration Framework
+      - title: Localization
+        items:
+          - fileId: /tutorials-and-examples/localization/localize-strings
+            title: Localize Strings
+          - fileId: /tutorials-and-examples/localization/change-localization-settings
+            title: Change Localization Settings
+      - title: Deployment
+        items:
+          - fileId: /tutorials-and-examples/deployment/configure-the-runtime-deployment-of-the-ivi-system
+            title: Configure the Runtime Deployment of the IVI System

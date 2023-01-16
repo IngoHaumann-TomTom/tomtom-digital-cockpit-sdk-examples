@@ -1,0 +1,17 @@
+@startuml
+!include theme.plantuml
+
+Component ApplicationService as [Application service]<<Service>>
+Component ApplicationFrontend as [Application frontend]<<Frontend>>
+
+Component MediaBrowser as [MediaBrowser]<<Android>>
+
+MediaService -- ApplicationService
+ApplicationFrontend --> MediaService
+ApplicationService -> MediaBrowser
+ApplicationFrontend -> MediaBrowser
+note on link: Browsing only
+
+note right of ApplicationFrontend: The user interface,\ncustomizable via policies.
+note right of MediaBrowser: Connection to the Android\nAutomotive ecosystem.
+@enduml

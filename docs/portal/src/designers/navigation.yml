@@ -1,0 +1,64 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+group: tomtom-digital-cockpit
+isPrivate: false
+productName: TomTom Digital Cockpit
+menuTitle: Documentation
+isMenuOpened: true
+hasRequestAccess: true
+hasRequestAccessButton: false
+requestAccessType: request-access-tomtom-digital-cockpit
+menu:
+  - fileId: /introduction
+    title: Introduction
+  - title: System UI
+    items:
+      - fileId: /system-ui/overview
+        title: Overview
+      - fileId: /system-ui/overlay-panels
+        title: Overlay Panels
+      - fileId: /system-ui/notifications
+        title: Notifications
+      - fileId: /system-ui/modal-panels
+        title: Modal Panels
+      - fileId: /system-ui/control-center
+        title: Control Center
+      - fileId: /system-ui/main-menu
+        title: Main Menu
+      - fileId: /system-ui/expanded-process-panels
+        title: Expanded Process Panels
+      - fileId: /system-ui/main-process-panels
+        title: Main Process Panels
+      - fileId: /system-ui/task-panels
+        title: Task Panels
+      - fileId: /system-ui/home-panel
+        title: Home Panel
+      - fileId: /system-ui/splash-screen
+        title: Splash Screen
+  - title: Navigation
+    items:
+      - fileId: /navigation/navigation
+        title: Overview
+  - title: Communication
+    items:
+      - fileId: /communication/communication
+        title: Overview
+      - fileId: /communication/receiving-calls
+        title: Receiving Calls
+      - fileId: /communication/messaging
+        title: Messaging
+  - title: Entertainment
+    items:
+      - fileId: /entertainment/entertainment
+        title: Overview
+  - title: Voice Assistant
+    items:
+      - fileId: /voice-assistant/voice-assistant
+        title: Overview

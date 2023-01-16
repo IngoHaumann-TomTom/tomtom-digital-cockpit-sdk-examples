@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="432px" preserveAspectRatio="none" style="width:1380px;height:432px;" version="1.1" viewBox="0 0 1380 432" width="1380px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="107" x="642.5" y="16.708">Map Display</text><!--cluster Digital Cockpit application suite--><polygon fill="#FFFFFF" points="698,44.9531,950,44.9531,957,67.25,1157,67.25,1157,131.9531,698,131.9531,698,44.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="698" x2="957" y1="67.25" y2="67.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="702" y="59.9482">Digital Cockpit application suite</text><!--cluster Digital Cockpit platform--><polygon fill="#FFFFFF" points="22,155.9531,211,155.9531,218,178.25,533,178.25,533,420.9531,22,420.9531,22,155.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="218" y1="178.25" y2="178.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="183" x="26" y="170.9482">Digital Cockpit platform</text><!--cluster Core Service APIs--><polygon fill="#FFFFFF" points="46,198.9531,193,198.9531,200,221.25,509,221.25,509,285.9531,46,285.9531,46,198.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="46" x2="200" y1="221.25" y2="221.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="141" x="50" y="213.9482">Core Service APIs</text><!--cluster Common APIs--><polygon fill="#FFFFFF" points="269,309.9531,383,309.9531,390,332.25,494,332.25,494,396.9531,269,396.9531,269,309.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="269" x2="390" y1="332.25" y2="332.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="108" x="273" y="324.9482">Common APIs</text><!--cluster NavKit--><polygon fill="#FFFFFF" points="557,198.9531,613,198.9531,620,221.25,1358,221.25,1358,285.9531,557,285.9531,557,198.9531" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="557" x2="620" y1="221.25" y2="221.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="561" y="213.9482">NavKit</text><!--entity StockMapDisplayFrontend--><rect fill="#BCDCF5" height="36.2969" rx="5" ry="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="212" x="714" y="79.9531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="709" y="84.9531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="709" y="106.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="192" x="724" y="102.9482">Stock Map Display Frontend</text><!--entity TripRenderManager--><rect fill="#BCDCF5" height="36.2969" rx="5" ry="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="179" x="961.5" y="79.9531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="956.5" y="84.9531"/><rect fill="#BCDCF5" height="5" style="stroke: #8DC3EB; stroke-width: 1.5;" width="10" x="956.5" y="106.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="159" x="971.5" y="102.9482">Trip Renderer Manager</text><!--entity MapDisplayService--><rect fill="#F8C9DF" height="36.2969" rx="5" ry="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="156" x="337" y="233.9531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="332" y="238.9531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="332" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="136" x="347" y="256.9482">Map Display Service</text><!--entity MapDisplayConnectionService--><rect fill="#F8C9DF" height="36.2969" rx="5" ry="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="240" x="62" y="233.9531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="57" y="238.9531"/><rect fill="#F8C9DF" height="5" style="stroke: #F29AC2; stroke-width: 1.5;" width="10" x="57" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="220" x="72" y="256.9482">Map Display Connection Service</text><!--entity Coordinate--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="96" x="382" y="344.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="377" y="349.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="377" y="371.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="76" x="392" y="367.9482">Coordinate</text><!--entity TripId--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="62" x="285" y="344.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="280" y="349.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="280" y="371.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="295" y="367.9482">Trip Id</text><!--entity TripRenderer--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="115" x="1226.5" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="1221.5" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="1221.5" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="95" x="1236.5" y="256.9482">Trip Renderer</text><!--entity Trip--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="46" x="1145" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="1140" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="1140" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="26" x="1155" y="256.9482">Trip</text><!--entity TrafficRenderer--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="130" x="980" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="975" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="975" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="990" y="256.9482">Traffic Renderer</text><!--entity Map--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="49" x="895.5" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="890.5" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="890.5" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="905.5" y="256.9482">Map</text><!--entity MapView--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="81" x="779.5" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="774.5" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="774.5" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="789.5" y="256.9482">MapView</text><!--entity Route--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="62" x="682" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="677" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="677" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="692" y="256.9482">Route</text><!--entity Camera--><rect fill="#E5E5E5" height="36.2969" rx="5" ry="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="73" x="573.5" y="233.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="568.5" y="238.9531"/><rect fill="#E5E5E5" height="5" style="stroke: #BEBEBE; stroke-width: 1.5;" width="10" x="568.5" y="260.25"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="583.5" y="256.9482">Camera</text><!--link StockMapDisplayFrontend to MapDisplayConnectionService--><path d="M713.74,102.6231 C588.49,108.1131 388.59,120.8731 319,147.9531 C271.88,166.2831 226.96,205.6531 202.07,230.0631 " fill="none" id="StockMapDisplayFrontend-MapDisplayConnectionService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="198.25,233.8431,207.4636,230.3634,201.8069,230.3291,201.8412,224.6723,198.25,233.8431" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to MapDisplayService--><path d="M713.84,107.8931 C664.63,114.7331 606.29,126.7731 557,147.9531 C509.8,168.2431 463.14,206.5231 436.81,230.2631 " fill="none" id="StockMapDisplayFrontend-MapDisplayService" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="433.07,233.6631,442.4231,230.5778,436.7729,230.3033,437.0474,224.6531,433.07,233.6631" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to Map--><path d="M845.29,116.0131 C856.48,124.5531 869.09,135.6931 878,147.9531 C896.07,172.8331 907.91,206.6131 914.28,228.5931 " fill="none" id="StockMapDisplayFrontend-Map" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="915.71,233.6431,917.118,223.8954,914.3534,228.8307,909.4181,226.066,915.71,233.6431" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to MapView--><path d="M820,116.0931 C820,143.6931 820,197.9631 820,228.5731 " fill="none" id="StockMapDisplayFrontend-MapView" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="820,233.6431,824,224.6431,820,228.6431,816,224.6431,820,233.6431" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to Route--><path d="M795.31,116.0231 C784.12,124.6431 771.33,135.8431 762,147.9531 C742.67,173.0331 728.37,206.9731 720.36,228.9131 " fill="none" id="StockMapDisplayFrontend-Route" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="718.65,233.6731,725.4727,226.5703,720.3507,228.9712,717.9497,223.8492,718.65,233.6731" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to Camera--><path d="M725.98,115.9931 C704.29,123.2031 682.47,133.4331 665,147.9531 C639.38,169.2431 623.99,205.6331 616.25,228.9731 " fill="none" id="StockMapDisplayFrontend-Camera" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="614.72,233.7431,621.3014,226.4161,616.2625,228.987,613.6917,223.9481,614.72,233.7431" style="stroke: #A80036; stroke-width: 1.0;"/><!--link StockMapDisplayFrontend to TrafficRenderer--><path d="M871.6,116.0131 C910.57,129.0231 958.03,145.1631 962,147.9531 C993.01,169.7331 1018.52,206.2231 1032.75,229.4231 " fill="none" id="StockMapDisplayFrontend-TrafficRenderer" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1035.44,233.8731,1034.2156,224.1007,1032.857,229.592,1027.3657,228.2334,1035.44,233.8731" style="stroke: #A80036; stroke-width: 1.0;"/><!--link TripRenderManager to TripRenderer--><path d="M1140.5,115.9431 C1164.21,123.2131 1188.8,133.4931 1209,147.9531 C1238.68,169.1931 1261.26,205.8431 1273.56,229.2131 " fill="none" id="TripRenderManager-TripRenderer" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1275.88,233.7031,1275.2946,223.8717,1273.5813,229.2628,1268.1902,227.5495,1275.88,233.7031" style="stroke: #A80036; stroke-width: 1.0;"/><!--link TripRenderManager to Trip--><path d="M1087.96,116.1131 C1102.03,124.1331 1117.24,134.8431 1128,147.9531 C1147.49,171.7031 1158.25,206.0531 1163.57,228.4431 " fill="none" id="TripRenderManager-Trip" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1164.75,233.5831,1166.6155,223.9126,1163.6215,228.7121,1158.822,225.7181,1164.75,233.5831" style="stroke: #A80036; stroke-width: 1.0;"/><!--link MapDisplayService to Coordinate--><path d="M417.34,269.9831 C419.93,288.7531 424.09,319.0031 426.93,339.6531 " fill="none" id="MapDisplayService-Coordinate" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="427.62,344.6831,430.3758,335.2277,426.9489,339.7284,422.4482,336.3014,427.62,344.6831" style="stroke: #A80036; stroke-width: 1.0;"/><!--link MapDisplayService to TripId--><path d="M396.01,270.0831 C386.16,279.2431 374.1,290.8931 364,301.9531 C352.7,314.3231 340.94,328.9931 331.89,340.7331 " fill="none" id="MapDisplayService-TripId" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="328.68,344.9131,337.3289,340.2018,331.721,340.9442,330.9786,335.3362,328.68,344.9131" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+skinparam componentRoundCorner 10
+skinparam shadowing false
+hide stereotype
+
+
+skinparam interface {
+  backgroundColor #f8c9df
+  borderColor #f29ac2
+}
+
+skinparam component {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+hide empty methods
+hide empty attributes
+
+skinparam class {
+  BackgroundColor<<Api>> #e5e5e5
+  BorderColor<<Api>> #bebebe
+  BackgroundColor<<Frontend>> #bcdcf5
+  BorderColor<<Frontend>> #8dc3eb
+  BackgroundColor<<Service>> #f8c9df
+  BorderColor<<Service>> #f29ac2
+  BackgroundColor<<Android>> #65a7a9
+  BorderColor<<Android>> #008d8d
+  BackgroundColor<<AndroidService>> #e94743
+  BorderColor<<AndroidService>> #87382B
+}
+
+skinparam stereotypeCBackgroundColor<<Api>> #bebebe
+skinparam stereotypeCBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeCBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeCBackgroundColor<<Android>> #008d8d
+skinparam stereotypeCBackgroundColor<<AndroidService>> #87382B
+
+skinparam stereotypeIBackgroundColor<<Api>> #bebebe
+skinparam stereotypeIBackgroundColor<<Frontend>> #8dc3eb
+skinparam stereotypeIBackgroundColor<<Service>> #f29ac2
+skinparam stereotypeIBackgroundColor<<Android>> #008d8d
+skinparam stereotypeIBackgroundColor<<AndroidService>> #87382B
+skinparam packageStyle rectangle
+
+title Map Display
+
+package "Digital Cockpit application suite"<<Rectangle>> {
+    component StockMapDisplayFrontend as [Stock Map Display Frontend]<<Frontend>>
+    component TripRenderManager as [Trip Renderer Manager]<<Frontend>>
+}
+
+package "Digital Cockpit platform"<<Rectangle>> {
+    package "Core Service APIs"{
+        component MapDisplayService as [Map Display Service]<<Service>>
+        component MapDisplayConnectionService as [Map Display Connection Service]<<Service>>
+
+    }
+
+    package "Common APIs" {
+        component Coordinate as [Coordinate]<<Api>>
+        component TripId as [Trip Id]<<Api>>
+    }
+}
+
+package "NavKit"<<Rectangle>> {
+    component TripRenderer as [Trip Renderer]<<Api>>
+    component Trip as [Trip]<<Api>>
+    component TrafficRenderer as [Traffic Renderer]<<Api>>
+    component Map<<API>>
+    component MapView<<API>>
+    component Route<<API>>
+    component Camera<<API>>
+}
+
+StockMapDisplayFrontend -d-> MapDisplayConnectionService
+StockMapDisplayFrontend -d-> MapDisplayService
+
+StockMapDisplayFrontend -d-> Map
+StockMapDisplayFrontend -d-> MapView
+StockMapDisplayFrontend -d-> Route
+StockMapDisplayFrontend -d-> Camera
+
+StockMapDisplayFrontend -d-> TrafficRenderer
+
+TripRenderManager -d-> TripRenderer
+TripRenderManager -d-> Trip
+
+MapDisplayService -d-> Coordinate
+MapDisplayService -d-> TripId
+
+
+@enduml
+
+PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.16+8-post-Ubuntu-0ubuntu120.04
+Operating System: Linux
+OS Version: 5.4.0-126-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

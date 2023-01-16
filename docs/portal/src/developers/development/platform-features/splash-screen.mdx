@@ -1,0 +1,100 @@
+---
+title: Splash Screen
+layout: default
+---
+
+The splash screen is the very first Android
+[`View`](https://developer.android.com/reference/android/view/View) that is shown in the TomTom
+Digital Cockpit at startup. It covers the UI until all frontends with
+[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` are initialized. The
+design documentation for it can be found
+[here](/tomtom-digital-cockpit/designers/system-ui/splash-screen).
+
+## Providing a custom TomTom Digital Cockpit Splash Screen
+
+TomTom Digital Cockpit's default [`SystemUiHost`](TTIVI_PLATFORM_API) requires a
+[`SystemUiHostContext`](TTIVI_PLATFORM_API) in its constructor, which in turn takes a
+[`SplashScreenProvider`](TTIVI_PLATFORM_API) as constructor arguments. The latter is the interface
+that has to be implemented for any splash screen customization.
+
+A splash screen can be provided at different levels with a similar syntax. It can be overridden in
+an activity that inherits the TomTom Digital Cockpit [`DefaultActivity`](TTIVI_PLATFORM_API):
+
+[`src/main/kotlin/com/example/ivi/splashscreen/SplashScreenActivity.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/splashscreen/src/main/kotlin/com/example/ivi/splashscreen/SplashScreenActivity.kt#L24-L34)
+
+As well as passed right in the constructor of [`SystemUiHostContext`](TTIVI_PLATFORM_API):
+
+```kotlin
+SystemUiHost(
+    SystemUiHostContext(
+        ...
+        splashScreenProvider = object : SplashScreenProvider {
+            override fun createSplashScreenView(splashScreenContainer: ViewGroup): View {
+                // return any Android View
+            }
+        }
+    )
+)
+```
+
+If TomTom Digital Cockpit's [`DefaultActivity`](TTIVI_PLATFORM_API) is used,
+`getSplashScreenProvider()` can be passed to the [`SystemUiHostContext`](TTIVI_PLATFORM_API) to get
+the default TomTom Digital Cockpit splash screen.
+
+In an activity that inherits [`DefaultActivity`](TTIVI_PLATFORM_API):
+
+```kotlin
+SystemUiHost(
+    SystemUiHostContext(
+        ...
+        getSplashScreenProvider(),
+    )
+)
+```
+
+If the TomTom Digital Cockpit splash screen is not needed, for example when another system takes
+care of showing a splash screen, the [`SplashScreenProvider`](TTIVI_PLATFORM_API) should provide an
+empty [`View`](https://developer.android.com/reference/android/view/View).
+
+```kotlin
+SplashScreenProvider {
+    override fun createSplashScreenView(splashScreenContainer: ViewGroup): View {
+        return View(splashScreenContainer.context)
+    }
+}
+```
+
+## Running a custom action upon Splash Screen dismissal
+
+TomTom Digital Cockpit allows triggering any action or animation on the splash screen dismissal. To
+hook into this mechanism, one needs to observe `splashScreenDismissed: LiveData<Boolean>` of the
+[`SplashScreenCoordinator`](TTIVI_PLATFORM_API) that can be found in the
+[`CoreSystemUiViewModel`](TTIVI_PLATFORM_API).
+
+```kotlin
+splashScreenCoordinator.splashScreenDismissed.observe(this) { splashScreenDismissed ->
+    if (splashScreenDismissed) {
+        // Action upon splash screen dismissal
+    }
+}
+```
+
+## Defining frontend creation policies
+
+The splash screen immediately hides after all frontends with
+[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` have become ready, and
+just before frontends with
+[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AFTER_STARTUP` start initializing.
+
+Frontends with [`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_ON_DEMAND` are
+created on demand, for example when the user clicks its menu item from the main menu. These are
+independent from the splash screen behavior. Frontend readiness is marked by the `isReady:
+LiveData<Boolean>` of the [`Frontend`](TTIVI_PLATFORM_API). To define a frontend creation policy,
+you should pass it to the [`Frontend`](TTIVI_PLATFORM_API).`FrontendConfig`.
+
+```kotlin
+FrontendConfig(
+    ...
+    creationPolicy = FrontendCreationPolicy.CREATE_AT_STARTUP
+)
+```
