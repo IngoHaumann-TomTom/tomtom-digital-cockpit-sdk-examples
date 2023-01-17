@@ -64,6 +64,7 @@ dependencyResolutionManagement {
         tomtomArtifactory("nav-maven-dev")
 
         // PU NAV repo for NavTest and Gradle plugins from NAV.
+        tomtomArtifactory("as-icons-maven-release")
         tomtomArtifactory("as-navapp-maven-release")
         tomtomArtifactory("navapp-releases")
 
