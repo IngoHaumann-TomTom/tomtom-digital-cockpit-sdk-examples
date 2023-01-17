@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 TomTom NV. All rights reserved.
+ * Copyright © 2022 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -9,31 +9,20 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.extensions.androidTest
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
 ivi {
     optInToExperimentalApis = true
 }
 
-androidTest {
-    targetProjectPath = ":examples_plugin_app"
-}
-
 android {
-    namespace = "com.example.ivi.example.plugin.functionaltest.e2etest"
-    navTest.android {
-        androidTest {
-            enabled.set(true)
-            testTags.add("e2e")
-        }
-    }
+    namespace = "com.example.ivi.common.commonfunctionaltest"
 }
 
 dependencies {
-    implementation(project(":examples_commonfunctionaltest"))
-    implementation(project(":examples_plugin_frontend"))
+    api(libraries.iviPlatformToolsApiTestingFunctional)
+
+    implementation(project(":examples_common"))
     implementation(libraries.iviPlatformMainmenuApiTestingFrontend)
     implementation(libraries.iviPlatformSystemuiApiTestingTools)
-    implementation(libraries.iviPlatformToolsApiTestingFunctional)
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 TomTom NV. All rights reserved.
+ * Copyright © 2023 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -17,11 +17,11 @@ ivi {
 }
 
 androidTest {
-    targetProjectPath = ":examples_plugin_app"
+    targetProjectPath = ":examples_systemui_frontendcoordinationrule"
 }
 
 android {
-    namespace = "com.example.ivi.example.plugin.functionaltest.e2etest"
+    namespace = "com.example.ivi.example.systemui.frontendcoordinationrule.test"
     navTest.android {
         androidTest {
             enabled.set(true)
@@ -32,8 +32,9 @@ android {
 
 dependencies {
     implementation(project(":examples_commonfunctionaltest"))
-    implementation(project(":examples_plugin_frontend"))
+
+    implementation(iviDependencies.tomtomToolsTestingFunctional)
+    implementation(libraries.iviPlatformDebugApiTestingTools)
+    implementation(libraries.iviPlatformLocationSimulationApiServiceLocationSimulation)
     implementation(libraries.iviPlatformMainmenuApiTestingFrontend)
-    implementation(libraries.iviPlatformSystemuiApiTestingTools)
-    implementation(libraries.iviPlatformToolsApiTestingFunctional)
 }
