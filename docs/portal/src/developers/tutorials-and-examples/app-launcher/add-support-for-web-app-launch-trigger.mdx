@@ -71,7 +71,9 @@ file:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.example.ivi.example.applauncher.services.webapplaunchtrigger" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission android:name="com.example.ivi.example.applauncher.APP_LAUNCH_BROADCAST_PERMISSION" />
+</manifest>
 ```
 
 ## Create web app launch trigger broadcast receiver
@@ -149,7 +151,15 @@ class WebAppLaunchTriggerService(
 
         val webAppLaunchTriggerBroadcastReceiver = WebAppLaunchTriggerBroadcastReceiver()
         val filter = IntentFilter(WEB_APP_LAUNCH_TRIGGER_ACTION_BROADCAST)
-        context.registerReceiver(webAppLaunchTriggerBroadcastReceiver, filter)
+
+        // Register the receiver with a permission to prevent it being triggered insecurely.
+        // Contact the 3rd-party app store provider to add the defined permission when sending the
+        // intent.
+        context.registerReceiver(
+            webAppLaunchTriggerBroadcastReceiver,
+            filter,
+            WEB_APP_BROADCAST_LAUNCH_TRIGGER_PERMISSION,
+            null)
 
         webAppLaunchTriggerBroadcastReceiver.triggeredWebApp.observe(this) {
             appLaunchTriggerEventListener.onAppLaunchTriggered(it)
@@ -160,7 +170,10 @@ class WebAppLaunchTriggerService(
 
     private companion object {
         const val WEB_APP_LAUNCH_TRIGGER_ACTION_BROADCAST =
-            "com.example.ivi.webapplaunchtrigger.action"
+            "com.example.ivi.example.applauncher.WEB_APP_LAUNCH_ACTION"
+
+        const val WEB_APP_BROADCAST_LAUNCH_TRIGGER_PERMISSION =
+            "com.example.ivi.example.applauncher.APP_LAUNCH_BROADCAST_PERMISSION"
     }
 }
 ```
@@ -278,8 +291,9 @@ sending a
 
 __Note:__ Make sure that the action sent through the broadcast is identical to the action defined in
 the [IntentFilter](https://developer.android.com/reference/android/content/IntentFilter) that was
-previously registered for the broadcast.
+previously registered for the broadcast. Also, you will need to temporarily comment out the
+`broadcastPermission` parameter when calling `registerReceiver()` in order to verify it with `adb`.
 
 ```cmd
-adb shell "am broadcast -a com.example.ivi.webapplaunchtrigger.action --es url 'https://www.tomtom.com/'"
+adb shell "am broadcast -a com.example.ivi.example.applauncher.WEB_APP_LAUNCH_ACTION --es url 'https://www.tomtom.com/'"
 ```
