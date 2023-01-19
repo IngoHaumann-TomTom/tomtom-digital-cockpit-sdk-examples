@@ -225,9 +225,10 @@ ivi {
         iviInstances {
             create(IviInstanceIdentifier.default) {
                 applyGroups {
-                    includeDefaultGroups() // include all defaults.
-                    include(IviAppsuite.alexaGroup) // include explicit opt-in app suite plugin.
-                    exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                    includeDefaultPlatformGroups() // Include everything from TTDC platform.
+                    includeDefaultAppsuiteGroups() // Include everything from TTDC appsuite.
+                    include(IviAppsuite.alexaGroup) // Include explicit opt-in app suite plugin.
+                    exclude(IviPlatform.debugGroup) // Exclude the default debug group.
                 }
                 frontends {
                     replace(userProfileFrontend, accountFrontend)
@@ -241,7 +242,8 @@ ivi {
         }
         services {
             applyGroups {
-                includeDefaultGroups()
+                includeDefaultPlatformGroups()
+                includeDefaultAppsuiteGroups()
                 include(IviAppsuite.alexaGroup)
                 exclude(IviPlatform.debugGroup)
             }
@@ -258,10 +260,26 @@ the `build.gradle.kts`, but using groups this is not needed.
 
 Similarly, if a default group needs to be excluded, this can be achieved by excluding all components
 individually (frontends, menu items, services), or simply by excluding its group. The example below
-excludes the `debugGroup` for the release build only.
+includes the `appStoreGroup` for the `minimal` product flavor.
 
 ```kotlin
+
+androidApplication {
+    // Define the `default` and `minimal` product flavors:
+    flavorDimensions.add("iviapplication")
+    productFlavors {
+        create("default") {
+            dimension = "iviapplication"
+            isDefault = true
+        }
+        create("minimal") {
+            dimension = "iviapplication"
+        }
+    }
+}
+
 androidComponents {
+    // Configure each variant (defaultDebug, defaultRelease, minimalDebug, minimalRelease):
     onVariants { variant ->
         variant.ivi {
             application {
@@ -269,18 +287,20 @@ androidComponents {
                 iviInstances {
                     create(IviInstanceIdentifier.default) {
                         applyGroups {
-                            includeDefaultGroups() // include all defaults.
-                            if (variant.buildType == "release") {
-                                exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                            includeDefaultPlatformGroups() // Include everything from TTDC platform.
+                            includeDefaultAppsuiteGroups() // Include everything from TTDC appsuite.
+                            if (variant.flavorName == "minimal") {
+                                exclude(IviAppsuite.appStoreGroup) // Exclude the app store.
                             }
                         }
                     }
                 }
                 services {
                     applyGroups {
-                        includeDefaultGroups()
-                        if (variant.buildType == "release") {
-                            exclude(IviPlatform.debugGroup) // exclude the default debug group.
+                        includeDefaultPlatformGroups()
+                        includeDefaultAppsuiteGroups()
+                        if (variant.flavorName == "minimal") {
+                            exclude(IviAppsuite.appStoreGroup)
                         }
                     }
                 }
@@ -296,10 +316,11 @@ The Gradle plugin applied in the example above `id("com.tomtom.ivi.product.defau
 enables all the default frontends, frontend extensions, menu items and IVI service hosts from the
 TomTom Digital Cockpit platform and app suite for default runtime deployment.
 
-If you only want to apply defaults from the TomTom Digital Cockpit platform without the appsuite default, you
-can achieve this by only applying the `id("com.tomtom.ivi.platform.defaults.core")` Gradle plugin.
-Additionally, if you want to include a selection of the TomTom Digital Cockpit Applications, you can apply
-the Gradle plugin for each individual TomTom Digital Cockpit Application.
+If you only want to apply defaults from the TomTom Digital Cockpit platform without the appsuite
+default, you can achieve this by only applying the `id("com.tomtom.ivi.platform.defaults.core")`
+Gradle plugin. Additionally, if you want to include a selection of the TomTom Digital Cockpit
+Applications, you can apply the Gradle plugin for each individual TomTom Digital Cockpit
+Application.
 
 To allow these Gradle plugins to be used in the Gradle projects, it is required to add them as
 `implementation` dependencies to the `buildSrc`. The following adds these dependencies:

@@ -270,7 +270,10 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 // Use the default frontends and menu items as defined by the plugin applied above:
                 // `com.tomtom.ivi.product.defaults.core`.
-                applyGroups { includeDefaultGroups() }
+                applyGroups {
+                    includeDefaultPlatformGroups()
+                    includeDefaultAppsuiteGroups()
+                }
                 frontends {
                     // Register the `accountFrontend`.
                     add(accountFrontend)
@@ -332,7 +335,10 @@ ivi {
                 // Configure all frontends and menu items from all groups that do not require an
                 // explicit opt-in. The groups are defined by the
                 // `com.tomtom.ivi.platform.defaults.core` Gradle plugin.
-                applyGroups { includeDefaultGroups() }
+                applyGroups {
+                    includeDefaultPlatformGroups()
+                    includeDefaultAppsuiteGroups()
+                }
 
                 // Replace TomTom Digital Cockpit's user profile frontend with the `accountFrontend`.
                 frontends {

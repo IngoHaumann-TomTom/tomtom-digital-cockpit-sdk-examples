@@ -225,7 +225,10 @@ ivi {
         iviInstances {
             // Create the "CenterStack" IVI instance with the default frontends and menu items.
             create(centerStackIviInstance) {
-                applyGroups { includeDefaultGroups() }
+                applyGroups {
+                    includeDefaultPlatformGroups()
+                    includeDefaultAppsuiteGroups()
+                }
             }
             // Create the "Passenger" IVI instance. In this example only the `mainMenuFrontend` is
             // added.
