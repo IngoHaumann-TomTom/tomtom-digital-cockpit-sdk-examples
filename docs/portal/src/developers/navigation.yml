@@ -114,6 +114,8 @@ menu:
         title: Companion Application
       - fileId: /integrating/integrating-amazon-alexa
         title: Integrating Amazon Alexa
+      - fileId: /integrating/long-distance-ev-routing
+        title: Long Distance EV Routing
   - title: Tutorials and Examples
     items:
       - fileId: /tutorials-and-examples/overview
