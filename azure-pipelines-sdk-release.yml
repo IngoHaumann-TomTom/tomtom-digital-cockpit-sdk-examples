@@ -299,7 +299,7 @@ stages:
     jobs:
       - job: PublishRelease
         displayName: 'Publish SDK Examples'
-        timeoutInMinutes: 10
+        timeoutInMinutes: 20
         container: docker_indigo_delivery
         steps:
           - template: .azure-templates/publication.yml
