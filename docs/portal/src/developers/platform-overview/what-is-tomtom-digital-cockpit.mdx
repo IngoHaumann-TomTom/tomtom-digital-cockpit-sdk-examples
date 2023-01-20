@@ -19,7 +19,7 @@ TomTom Digital Cockpit comes standard with a comprehensive set of automotive gra
 applications, ready to be used for commercial purposes. We call these the
 [_off-the-shelf components_](/tomtom-digital-cockpit/developers/development/introduction#off-the-shelf-components-or-stock-components).
 
-Off-the-shelf applications can be used “plug-and-play” or they can be customized to the
+Off-the-shelf applications can be used "plug-and-play" or they can be customized to the
 car maker’s needs. Performing customization is not limited to visual changes, but may also include
 modified or added features. And using the extensive set of TomTom Digital Cockpit platform APIs, which
 extend the standard Android Automotive APIs, new applications can be added with much less effort
@@ -45,7 +45,7 @@ of its
 The template app is a fully working In-Vehicle Infotainment system (IVI), including phone calling,
 contacts handling, messaging, notifications, multimedia, navigation and much more, all
 production-level code. All of the applications included in that template application belong to the
-top of the diagram, in the section “TomTom Digital Cockpit Application Suite”. The
+top of the diagram, in the section "TomTom Digital Cockpit Application Suite". The
 [Getting Started Guide](/tomtom-digital-cockpit/developers/getting-started/introduction)
 explains step-by-step how to set up your development environment to build the template application
 and the example applications.
@@ -56,7 +56,7 @@ When you look at the source code of the IVI Template App, you will notice the Ko
 product is really just a couple of lines of code. Most of the work is done by a Gradle build file
 that pulls in all the off-the-shelf components that provide the actual functionality of the
 application. In the diagram, these off-the-shelf components are the modules (or _puzzle pieces_) in
-the blocks “TomTom Digital Cockpit Application Suite” and “TomTom Digital Cockpit Application Platform”.
+the blocks "TomTom Digital Cockpit Application Suite" and "TomTom Digital Cockpit Application Platform".
 
 Forking and building the IVI Template App is a great way to start development of a new IVI system.
 It gets you up and running really fast. From there on, you can easily modify or add any puzzle
@@ -78,13 +78,13 @@ but it leaves what that looks like to the _UI component_. Together these two com
 the Communications application.
 
 Now, if you want to just change what the application looks like, you just have to provide an
-alternative UI puzzle piece to your application. You can still pull the “app service” from the
-TomTom Nexus repository. This means you can also automatically get the latest version of the “app
-service”, even if you modified the UI. That is really useful for staying up-to-date with your
+alternative UI puzzle piece to your application. You can still pull the "app service" from the
+TomTom Nexus repository. This means you can also automatically get the latest version of the "app
+service", even if you modified the UI. That is really useful for staying up-to-date with your
 applications.
 
 Should you want to change or add functionality to the application, then you need to customize the
-“app service” and provide it yourself. In that case, you can use the source code of the provided
+"app service" and provide it yourself. In that case, you can use the source code of the provided
 service or application as a starting point.
 All of the other apps would still be pulled from our Nexus repository and you can still benefit from
 the automatic updates for those. That is a powerful way of completely customizing the look and feel

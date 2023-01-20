@@ -2,11 +2,9 @@
 title: Entertainment
 ---
 
-## Overview
-
-In-vehicle Voice Personal Assistant (VPA) is a digital assistant that uses voice recognition to help
-users complete their daily tasks without being distracted while driving. All communication between
-the user and any voice assistant is either vocal only or a vocal and visual response.
+The in-vehicle Voice Personal Assistant (VPA) is a digital assistant that uses voice recognition to
+help users complete their daily tasks without being distracted while driving. All communication
+between the user and any voice assistant is either vocal only or a vocal and visual response.
 
 TomTom Digital Cockpit allows you to integrate various voice assistants currently available on the
 market. This documentation describes how voice assistants could work in the system using the example
@@ -34,8 +32,8 @@ For example, two primary ways to invoke Alexa in the vehicle are described in th
 [Alexa Auto Design Guidelines](https://developer.amazon.com/en-US/docs/alexa/alexa-auto/about-this-guide.html).
 Both are required:
 
-- Saying the wake word “Alexa”.
-- Pressing the _push-to-talk_ (PTT) button or an on-screen _tap-to-talk_ (TTT) button to directly
+- Saying the wake word "Alexa".
+- Pressing the `Push to talk` (PTT) button or an on-screen `Tap to talk` (TTT) button to directly
   invoke Alexa without the wake word.
 
 ### Customization
@@ -89,7 +87,7 @@ and has reserved space in the
 For example, Alexa's wake word could be disabled or enabled with status control. Also, the status
 control has a yellow indicator badge that shows whether Alexa notifications are available.
 
-![status control](images/voice-assistant/status-control.png)
+![voice chrome status control](images/vpa-voice-chrome-status-control.png)
 
 ## Voice personal assistant templates
 
@@ -105,43 +103,42 @@ provided generic templates, if additional functionality is required.
 
 There are generic templates supported by TomTom Digital Cockpit:
 
-- Points of interest (POI) list.
-- Points of interest (POI) details.
-- Traffic.
-- Weather.
-- Image and text.
-- List and buttons.
+- Points of interest (POI) list
+- Points of interest (POI) details
+- Traffic
+- Weather
+- Image and text
+- List and buttons
 
 ### Customization
 
 VPA usually provides a visual response, depending on whether the user is driving. Whether or not to
 show a visual response is a customizable setting that depends on the customer's decision. However,
 we recommend avoiding visual responses while driving if it is possible to solve the user's problem
-using only voice response.
+by using only voice response.
 
-For example:
+![customization](images/vpa-customization.png)
 
-- Full visual response (template): the complete visual template version is recommended to be used
-  while parking.
-- Short visual response: short version of template.
-- Voice only: no visual response except voice chrome is recommended while driving.
-
-![customization](images/voice-assistant/customization.png)
+| Section | Use |
+| ------- | --- |
+| 1. Full visual response (template) | The complete visual template version is recommended to be used while parked. |
+| 2. Short visual response | Short version of the template. |
+| 3. Voice only | No visual response, except for the voice chrome, is recommended while driving. |
 
 ### Navigation
 
 When the user requests the voice assistant about POIs (points of interest), the voice and visual
 feedback template from the voice assistant appears on the screen. The template shows the list of
 available POIs nearby/along the way or in any other driving context. For example, if the user asks
-“Alexa, show me restaurants nearby”, Alexa will show a template with a list of restaurants nearby.
+"Alexa, show me restaurants nearby", Alexa will show a template with a list of restaurants nearby.
 Users can interact with an index by referencing the position of the item in the list. For example,
-“Navigate to the first one” or selecting the item with a touch. After selecting one of the provided
+"Navigate to the first one" or selecting the item with a touch. After selecting one of the provided
 options, the user will start navigation to the POI, or the user will open the POI details template.
 This option is customizable.
 
-![navigation 1](images/voice-assistant/navigation-1.png)
+![navigation user flow](images/vpa-navigation-user-flow.png)
 
-![navigation 2](images/voice-assistant/navigation-2.png)
+![navigation template](images/vpa-navigation-template.png)
 
 | Section | Use |
 | ------- | --- |
@@ -154,17 +151,17 @@ This option is customizable.
 
 ### POI details
 
-Voice assistants may provide specific POI details supported with visual by users request.
+Voice assistants may provide specific POI details supported with visuals by the user's request.
 
-![overview](images/voice-assistant/poi-details-1.png)
+![navigation poi details user flow](images/vpa-poi-details-user-flow.png)
 
-![overview](images/voice-assistant/poi-details-2.png)
+![poi details template](images/vpa-poi-details-template.png)
 
 | Section | Use |
 | ------- | --- |
 | 1. Title | Usually contains the answer or an additional question from the voice assistant. |
 | 2. Short POI info | Optional attribute, depends on the data provider. |
-| 3. Main POI info | Usually contains phone number and address, depending on the data provider. |
+| 3. Main POI info | Usually contains a phone number and address, depending on the data provider. |
 | 4. Expandable list | Optional attribute, depends on the data provider. |
 | 5. Image | Optional attribute, depends on the data provider. |
 | 6. Buttons | Optional touch actions that could also be performed by voice. |
@@ -173,25 +170,25 @@ Voice assistants may provide specific POI details supported with visual by users
 
 Voice assistants may provide specific traffic details during navigation to the POI.
 
-![overview](images/voice-assistant/traffic-details-1.png)
+![traffic details user flow](images/vpa-traffic-details-user-flow.png)
 
-![overview](images/voice-assistant/traffic-details-2.png)
+![traffic details template](images/vpa-traffic-details-template.png)
 
 | Section | Use |
 | ------- | --- |
 | 1. Title | Usually contains the answer or additional question from the voice assistant. |
 | 2. Icon/image | Optional attribute, should show the provider logo or any other supportive visual.  |
 | 3. Arrival status | Optional attribute to display the traffic, destination/travel time, and distance indicator, if provided by the data source.
-| 4. Address | Usually contains location icon/image and full address, depending on the data provider. |
+| 4. Address | Usually contains the location icon/image and full address, depending on the data provider. |
 
 ### Weather template
 
 Voice assistants may provide specific weather information with a template by user request. The
 information provided depends on the voice assistant.
 
-![overview](images/voice-assistant/weather-template-1.png)
+![weather user flow](images/vpa-weather-user-flow.png)
 
-![overview](images/voice-assistant/weather-template-2.png)
+![weather template](images/vpa-weather-template.png)
 
 | Section | Use |
 | ------- | --- |
@@ -207,9 +204,9 @@ information provided depends on the voice assistant.
 The generic content and image template usually provides information requested by the user, which is
 read aloud by the voice assistant. The information depends on the provider.
 
-![overview](images/voice-assistant/generic-content-1.png)
+![generic content user flow](images/vpa-generic-content-user-flow.png)
 
-![overview](images/voice-assistant/generic-content-2.png)
+![generic content template](images/vpa-generic-content-template.png)
 
 | Section | Use |
 | ------- | --- |
@@ -221,11 +218,11 @@ read aloud by the voice assistant. The information depends on the provider.
 ### Generic list
 
 The generic list usually provides possible options and depends on the voice assistant. It is only
-possible to interact with the list by voice. The amount of options in the list customizable.
+possible to interact with the list by voice. The amount of options in the list is customizable.
 
-![overview](images/voice-assistant/generic-list-1.png)
+![generic list flow](images/vpa-generic-list-flow.png)
 
-![overview](images/voice-assistant/generic-list-2.png)
+![generic list template](images/vpa-generic-list-template.png)
 
 | Section | Use |
 | ------- | --- |
@@ -241,7 +238,7 @@ assistant and see the VPA status (if available) in a control centre. The moment 
 to log in depends on the integrated voice assistant. For example, a login modal could be part of the
 onboarding flow or appear once the user says a wake word.
 
-![overview](images/voice-assistant/login.png)
+![login](images/vpa-login.png)
 
 ## Customization
 

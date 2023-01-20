@@ -15,7 +15,7 @@ the user through system UI functionality, like swiping it away.
 
 ## Notification list
 
-The notification list manages the positioning, sorting and animation of notifications as they come
+The notification list manages the positioning, sorting, and animation of notifications as they come
 in and go out of view. By default, it positions the notifications at the top on the driver’s side.
 Multiple notifications can be shown simultaneously, but there are several mechanisms (notification
 priority, notification suppression / do not disturb) at work to prevent overwhelming the user with
@@ -69,8 +69,8 @@ notifications created by stock experiences (media, communication app) cannot cur
 | Animation | The animations of the backdrop and invidual notifications are customizable. The animation used for notification panels can depend on the transition source or destination. For example, notification panels can dismiss towards the bottom when transitioning to a process panel. |
 | Theming | The styling of the notification content, container, and backdrop can be modified by changing the system theme. |
 | Notification layout | The stock notification layout currently cannot be replaced, though support for creating alternative layouts for the notification data template is planned. It is also possible to create a notification panel with a completely custom UI. |
-| Notification content | Notifications can be populated by applications/plugins in any way. However, the notifications created by existing applications (for example, the communication app) can currently not be modified. |
-| Notification template | The notification data template can not be modified or extended at the moment, because existing applications rely on the current template being available. |
+| Notification content | Notifications can be populated by applications/plugins in any way. However, the notifications created by existing applications (for example, the communication app) currently cannot be modified. |
+| Notification template | The notification data template cannot be modified or extended at the moment, because existing applications rely on the current template being available. |
 | Notification filtering and sorting | The system can implement a custom filtering and sorting mechanism to determine which notifications should be visible. However, the main way to know the urgency of a notification is limited to its priority (_Low_, _Medium_, _High_, _Critical_). |
 | Communication notifications | Limited customization options exist for communication notifications. It is possible to add more than one quick reply option (OEM), and for the user to change the text of the quick reply message. |
 | Dismissal behaviour | It is also possible to change the dismissal behaviour in a custom System UI. For example, replace the swipe-to-dismiss gesture with another mechanism.|

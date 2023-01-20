@@ -2,11 +2,9 @@
 title: Entertainment
 ---
 
-## Overview
-
 TomTom Digital Cockpit comes with a universal media player for audio entertainment. This application
 provides access to in-vehicle media sources like radio and Bluetooth audio, and sources from
-third-party providers such as Spotify, iHeartRadio and many more. This documentation will cover how
+third-party providers such as Spotify, iHeartRadio, and many more. This documentation will cover how
 the media player works, its functionality, and how the media player can be customized and
 configured.
 
@@ -33,7 +31,7 @@ source. All available media sources are shown in a grid view. Unavailable source
 disabled state, such as Bluetooth audio when no device is connected. Tapping a media source opens
 it, and shows a login screen if required.
 
-![dashboard](images/entertainment/dashboard.png)
+![dashboard](images/entertainment-dashboard.png)
 
 <Blockquote type="announcement">
     All media sources can be customized. However, any customization to media sources provided by
@@ -56,17 +54,17 @@ playable media (for example, radio channels, songs). Media within a section can 
 grid or list layout. Tapping browsable media opens the playlist view and tapping playable media
 starts media playback.
 
-In the top right, a search button can be tapped to search the media source. A settings button is
-next to it, which can show the available settings for the source in a modal. Pressing the back
+In the top right, a `Search` button can be tapped to search the media source. A `Settings` button is
+next to it, which can show the available settings for the source in a modal. Pressing the `Back`
 button returns the user to the dashboard.
 
-![media browser](images/entertainment/media-browser.png)
+![media browser](images/entertainment-media-browser.png)
 
 | Section | Use |
 | ------- | --- |
-| Back button | Return to the previous screen (back to the dashboard in this case). |
-| Search | Open the search view of the current source. |
-| Settings | Open the setting model of the source. |
+| 1. Back button | Return to the previous screen (back to the dashboard in this case). |
+| 2. Search | Open the search view of the current source. |
+| 3. Settings | Open the setting model of the source. |
 
 ### Playlist view
 
@@ -75,14 +73,14 @@ list content is the metadata (cover artwork, title, subtitle, number of the item
 nested pages, like the playlist view, a breadcrumb bar is used to take the user to any level in one
 tap.
 
-![playlist view](images/entertainment/playlist-view.png)
+![playlist view](images/entertainment-playlist-view.png)
 
 | Section | Use |
 | ------- | --- |
-| Metadata | Cover artwork, title, subtitle, number of items, and duration. |
-| Play/pause button | Play/pause the playback of the playlist. |
-| List content | Open the setting model of the source. |
-| Breadcumb | Tapping the item leads back to the level of screens. |
+| 1. Metadata | Cover artwork, title, subtitle, number of items, and duration. |
+| 2. Play/pause button | Play/pause the playback of the playlist. |
+| 3. List content | Open the setting model of the source. |
+| 4. Breadcumb | Tapping the item leads back through the level of screens. |
 
 ### Search view
 
@@ -91,39 +89,39 @@ automatically as the user types into the search field. Search results are presen
 the source, which may contain multiple sections. The search results are presented in a list layout,
 as this makes it easier to see which items match what the user is looking for.
 
-![search](images/entertainment/search.png)
+![search view](images/entertainment-search-view.png)
 
 ### Media playback - Task Process Panel
 
 In the media application, media playback controls are always available in a
 [_Task Process Panel_](/tomtom-digital-cockpit/designers/system-ui/task-panels).
 This presents the primary playback controls (1), metadata of the currently playing content (2),
-secondary playback controls (3) and progress (4). The primary controls (e.g. play, next) control the
-progression of the playback, while the secondary controls (e.g. like, favorite, playback speed,
-shuffle) are a limited selection of less frequently used controls and custom source-specific
-actions. Tapping the _Expand_ button or the metadata sections opens the
+secondary playback controls (3) and progress (4). The primary controls (for example, play, next)
+control the progression of the playback, while the secondary controls (for example, like, favorite,
+playback speed, shuffle) are a limited selection of less frequently used controls and custom
+source-specific actions. Tapping the `Expand` button or the metadata sections opens the
 [_Expanded Process Panel_](/tomtom-digital-cockpit/designers/system-ui/expanded-process-panels).
 
-![task process panel](images/entertainment/task-process-panel.png)
+![task process panel](images/entertainment-task-process-panel.png)
 
 | Section | Use |
 | ------- | --- |
-| Playback controls | Play/pause, next, previous. |
-| Metadata | Title, artist, album name. |
-| Secondary playback controls | Favorite, playback speed, shuffle, expand. |
-| Progress | Progress of the playback. |
+| 1. Playback controls | Play/pause, next, previous. |
+| 2. Metadata | Title, artist, album name. |
+| 3. Secondary playback controls | Favorite, playback speed, shuffle, expand. |
+| 4. Progress | Progress of the playback. |
 
 ### Media playback - Expanded Process Panel
 
 The [_Expanded Process Panel_](/tomtom-digital-cockpit/designers/system-ui/expanded-process-panels)
 presents the currently playing content in a full-size layout, providing access to the full
 collection of playback controls and custom actions, and additionally gives access to the playback
-queue (by pressing the _Queue_ tab on the top). Pressing the collapse button closes the expanded
+queue (by pressing the `Queue` tab on the top). Pressing the `Collapse` button closes the expanded
 process panel, and returns to the previously opened page in the media application.
 
-![expanded process panel 1](images/entertainment/expanded-process-panel-1.png)
+![expanded process panel 1](images/entertainment expanded process panel 1.png)
 
-![expanded process panel 2](images/entertainment/expanded-process-panel-2.png)
+![expanded process panel 2](images/entertainment expanded process panel 2.png)
 
 ### Media playback - Main Process Panel
 
@@ -131,16 +129,16 @@ The [_Main Process Panel_](/tomtom-digital-cockpit/designers/system-ui/main-proc
 the media that is currently playing on top of the navigation application. This makes it possible
 for users to view and control media playback without leaving the navigation/driving task.
 
-![main process panel](images/entertainment/main-process-panel.png)
+![main process panel](images/entertainment-main-process-panel.png)
 
 ### Source login
 
 When a source requires the user to login before opening it, a login screen is shown inside a modal
-window. The login UI is provided by the third-party media source and usually can not be styled or
+window. The login UI is provided by the third-party media source and usually cannot be styled or
 customized. When login completes, the user is redirected to the media browser. If login fails, the
 user is taken back to the dashboard.
 
-![source login](images/entertainment/source-login.png)
+![source login](images/entertainment/entertainment-source-login.png)
 
 ### Source settings
 
@@ -148,18 +146,18 @@ Sources may provide custom user settings, accessible from the settings icon in t
 media browser. Similar to the source login, this UI is provided directly by the media source and
 presented (by default) inside a modal. As such, it can not be customized or styled.
 
-![source settings](images/entertainment/source-settings.png)
+![source settings](images/entertainment-source-settings.png)
 
 ## Flow overview
 
 To change sources, the user always has to navigate back to the dashboard. Playlists and the search
 view are displayed in sub-pages. Controlling playback is important, so it is available on every view
-and even the TomTom Digital Cockpit home panel.
+and even on the TomTom Digital Cockpit home panel.
 
-![flow overview 1](images/entertainment/flow-overview-1.png)
-![flow overview 2](images/entertainment/flow-overview-2.png)
-![flow overview 3](images/entertainment/flow-overview-3.png)
-![flow overview 4](images/entertainment/flow-overview-4.png)
+![user flow media source](images/entertainment-user-flow-media-source.png)
+![user flow process panels](images/entertainment-user-flow-process-panels.png)
+![search](images/entertainment-search.png)
+![settings](images/entertainment-settings.png)
 
 ## Customization
 
@@ -179,5 +177,5 @@ media application and customize it to your needs.
 | Source browser | The source browser (including search and playlist view) can be replaced as a whole on a per-source basis. This way a source can live within the media app but still offer a custom UI internally. |
 | Errors and system feedback | The text and illustrations of different error toasts and empty states are customizable. When and how they occur however is not. |
 | Sources | The data delivered by sources should typically be taken at face value, as writing a lot of source-specific code is hard to maintain. The behavior and appearance of a source can somewhat be customized (logos, custom controls, content, metadata) with the aforementioned policies. For media sources that are not third-party, the behavior and data structure can more freely be customized by changing the standalone application of that media source. |
-| Settings and login | The source settings and login screens are not customizable, as they are offered by the source application directly. The way the view is shown (modal, full screen, etc.) is somewhat customizable. |
+| Settings and login | The source settings and login screens are not customizable, as they are directly offered by the source application. The way the view is shown (modal, full screen, etc.) is somewhat customizable. |
 
