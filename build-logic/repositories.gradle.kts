@@ -67,6 +67,7 @@ dependencyResolutionManagement {
         tomtomArtifactory("as-icons-maven-release")
         tomtomArtifactory("as-navapp-maven-release")
         tomtomArtifactory("navapp-releases")
+        tomtomArtifactory("maps-fcd-maven-release")
 
         // Analytics repo (used by NavApp components)
         tomtomArtifactory("dataunit-maven-release")
