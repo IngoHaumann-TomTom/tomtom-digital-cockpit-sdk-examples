@@ -1,0 +1,141 @@
+---
+title: User Consent
+---
+
+For some online services to work, the user must agree to share their personal data. For example, to 
+be able to see traffic on the map, the user has to agree to share their location, by giving consent.
+
+In TomTom Digital Cockpit (TTDC) there are a number of consent types. This allows for giving the 
+end-user granular control over which data is shared. The consent types are:
+
+- `ANALYTICS` - For data analytics events to be logged and collected by TomTom's back-end.
+- `CONNECTED_SERVICES` - For online navigation services and features, such as for search and 
+routing. Note: onboard services still work without consent, as no personal data is shared.
+- `LOCATION` - For sharing the current location. For example, this consent is required to get 
+traffic services.
+
+To set the end user's consent in the TTDC platform, the following interface need to be 
+implemented: [`PrivacySettingsService`](TTIVI_PLATFORM_API).
+
+<Blockquote type="announcement">
+    For more details on how to create an IVI service, see the
+    [Create an IVI Service](/tomtom-digital-cockpit/documentation/tutorials-and-examples/basics/create-an-ivi-service) 
+    page.
+</Blockquote>
+
+
+## Setting User Consent, code example
+
+For legal reasons, the User Consent UI cannot be implemented in the TTDC platform itself, but must 
+instead be implemented by the customer for their end users.
+
+The following example is using the template app, from the examples source, to add user consent.
+
+__ConfigureConsentPrivacySettingsService.kt:__
+
+Implement the PrivacySettingsService interface.
+
+```kotlin
+package com.example.ivi.template.app.privacysettings
+
+import android.util.Log
+import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.navigation.api.service.privacysettings.PrivacySettingsService
+import com.tomtom.ivi.platform.navigation.api.service.privacysettings.PrivacySettingsServiceBase
+
+/**
+ * Implementation for the [PrivacySettingsService]. This service is implemented to
+ * provide consent for data collection.
+ */
+@OptIn(IviExperimental::class)
+internal class ConfigureConsentPrivacySettingsService(iviServiceHostContext: IviServiceHostContext):
+    PrivacySettingsServiceBase(iviServiceHostContext) {
+
+    override fun onCreate() {
+        super.onCreate()
+        /*
+         * Ask the end-user if they agree to share their personal data here. Then set the 
+         * relevant consentTypes.
+         *
+         * NOTE: This example enables consent for everything, without asking the user!
+         */
+        consentTypes = setOf(
+            PrivacySettingsService.ConsentType.ANALYTICS,
+            PrivacySettingsService.ConsentType.CONNECTED_SERVICES,
+            PrivacySettingsService.ConsentType.LOCATION
+        )
+        serviceReady = true
+    }
+
+    companion object
+}
+```
+
+__ConfigureConsentPrivacySettingsServiceHostBuilder.kt:__
+
+Implement a host builder for the service.
+
+```kotlin
+package com.example.ivi.template.app.privacysettings
+
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.AnyIviServiceBase
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.IviServiceHostContext
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.SimpleIviServiceHostBuilder
+
+public class ConfigureConsentPrivacySettingsServiceHostBuilder : SimpleIviServiceHostBuilder() {
+
+    public override fun createIviServices(iviServiceHostContext: IviServiceHostContext):
+        Collection<AnyIviServiceBase> =
+        listOf(ConfigureConsentPrivacySettingsService(iviServiceHostContext))
+
+    public companion object
+}
+```
+
+__build.gradle.kts:__
+
+Finally, replace the stock service with your own implementation.
+
+```kotlin
+import com.tomtom.ivi.platform.gradle.api.common.annotations.EXPERIMENTAL_API_USAGE
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.IviPlatformModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
+import com.tomtom.ivi.platform.gradle.api.defaults.config.privacySettingsServiceHost
+
+public val configurePrivacySettingsServiceHost: IviServiceHostConfig =
+    IviServiceHostConfig(
+        serviceHostBuilderName = "ConfigureConsentPrivacySettingsServiceHostBuilder",
+        ModuleReference(
+            groupName = "com.example.ivi",
+            moduleName = "template_app",
+            packageName = "com.example.ivi.template.app.privacysettings"
+        ),
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "PrivacySettingsService",
+                serviceApiModule = IviPlatformModuleReference(
+                    "platform_navigation_api_service_privacysettings"
+                )
+            )
+        )
+    )
+
+// Remove the Stock version and add your own service host instead.
+import com.tomtom.ivi.platform.gradle.api.defaults.config.privacySettingsServiceHost
+
+ivi {
+    // ...
+    application {
+        // ...
+        services {
+            @Suppress(EXPERIMENTAL_API_USAGE)
+            removeHost(privacySettingsServiceHost)
+            addHost(configurePrivacySettingsServiceHost)
+        }
+
+    // ...
+
+```

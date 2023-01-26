@@ -116,6 +116,8 @@ menu:
         title: Integrating Amazon Alexa
       - fileId: /integrating/long-distance-ev-routing
         title: Long Distance EV Routing
+      - fileId: /integrating/user-consent
+        title: User Consent
   - title: Tutorials and Examples
     items:
       - fileId: /tutorials-and-examples/overview
