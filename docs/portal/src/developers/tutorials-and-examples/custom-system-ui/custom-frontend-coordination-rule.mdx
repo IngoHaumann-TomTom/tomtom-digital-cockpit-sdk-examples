@@ -1,0 +1,125 @@
+---
+title: Create a Frontend Coordination Rule
+---
+<Blockquote hasIcon>
+    Knowledge of the system UI will help you to understand this guide. If you are not yet familiar, feel free to take a look at the
+    [system UI overview](https://developer.tomtom.com/tomtom-digital-cockpit/developers/development/system-ui).
+</Blockquote>
+
+A system UI in the TomTom Digital Cockpit can use frontend coordination rules to apply business logic that coordinates frontends.
+Such rules commonly trigger a [`Panel`](TTIVI_PLATFORM_API) within a [`Frontend`](TTIVI_PLATFORM_API) to open,
+close or update services with information derived from frontends and their panels. For example,
+[`CloseModalPanelsOnTaskPanelChangeFrontendCoordinationRule`](TTIVI_PLATFORM_API) ensures
+a [`ModalPanel`](TTIVI_PLATFORM_API) is closed when the active [`TaskPanel`](TTIVI_PLATFORM_API) changes;
+[`ToggleTaskPanelsOnMenuItemClickFrontendCoordinationRule`](TTIVI_PLATFORM_API)
+responds to system UI menu items being clicked by opening or closing a [`TaskPanel`](TTIVI_PLATFORM_API).
+More examples can be found in
+[`com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.frontendcoordination`](TTIVI_PLATFORM_API).
+
+These rules have a direct impact on the look-and-feel of the Digital Cockpit and it's possible
+to create custom rules to customize the behavior of the system UI. The following section explains how
+to create a custom [`FrontendCoordinationRule`](TTIVI_PLATFORM_API) to hide the
+[`DebugPanel`](TTIVI_PLATFORM_API) when a main menu item is clicked. Code snippets show only
+significant parts for this example, the full code is provided in the
+[`examples/systemui/frontendcoordinationrule`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/systemui/frontendcoordinationrule)
+directory.
+
+## Create a frontend coordination rule
+Create a
+[`CloseDebugPanelOnMenuItemClickFrontendCoordinationRule.kt`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/systemui/CloseDebugPanelOnMenuItemClickFrontendCoordinationRule.kt).
+
+```kotlin
+internal class CloseDebugPanelOnMenuItemClickFrontendCoordinationRule(
+    private val debugPanelService: DebugPanelServiceApi?
+) : FrontendCoordinationRule {
+    override fun activate(
+        lifecycleOwner: LifecycleOwner,
+        iviServiceProvider: IviInstanceBoundIviServiceProvider,
+        frontends: LiveData<out Collection<Frontend>>
+    ) {
+
+        SystemUiMenuItemsService.createApi(lifecycleOwner, iviServiceProvider)
+            .addMenuItemEventListener(
+                lifecycleOwner,
+                object : SystemUiMenuItemsService.MenuItemEventListener {
+                    override fun onMenuItemClicked(id: MenuItem.Id) {
+                        debugPanelService?.showDebugPanelAsync(false)
+                    }
+                }
+            )
+    }
+}
+```
+
+## Create a view model with the frontend coordination rule
+Create a
+[`CustomSystemUiViewModel`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/systemui/CustomSystemUiViewModel.kt)
+that includes the new rule. Note how the `frontendCoordinator` property is used to provide a collection of
+rules used by the system UI.
+
+```kotlin
+internal class CustomSystemUiViewModel(
+    coreViewModel: CoreSystemUiViewModel
+) : LifecycleViewModel() {
+
+    private val frontendCoordinator = FrontendCoordinator.createDefault(
+        lifecycleOwner = this,
+        iviServiceProvider = coreViewModel.iviServiceProvider,
+        frontendMetadata = coreViewModel.frontendMetadata,
+        frontendContextFactory = coreViewModel.defaultFrontendContextFactory,
+        frontendCoordinationRulesFactory = { frontendRegistry, panelRegistry ->
+            val defaultRules = DefaultFrontendCoordinationRules.create(
+                frontendRegistry,
+                panelRegistry
+            )
+            defaultRules + CloseDebugPanelOnMenuItemClickFrontendCoordinationRule(debugPanelService)
+        }
+    )
+}
+```
+
+## Create a custom system UI host for the view model
+Create a
+[`CustomSystemUiHost`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/systemui/CustomSystemUiHost.kt)
+that uses the
+[`CustomSystemUiViewModel`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/systemui/CustomSystemUiViewModel.kt).
+```kotlin
+internal class CustomSystemUiHost(systemUiHostContext: SystemUiHostContext) :
+    SystemUiHost(systemUiHostContext) {
+
+    private lateinit var viewModel: CustomSystemUiViewModel
+
+    override fun onCreate() {
+        viewModel = ViewModelProvider(
+            viewModelStoreOwner,
+            FixedConstructorFactory(coreViewModel)
+        )[CustomSystemUiViewModel::class.java]
+
+    }
+}
+```
+
+## Create a custom activity for the system UI host
+Create a
+[`CustomActivity`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/CustomActivity.kt)
+that uses the
+[`CustomSystemUiHost`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/frontendcoordinationrule/src/main/kotlin/com/example/ivi/example/systemui/frontendcoordinationrule/systemui/CustomSystemUiHost.kt).
+```kotlin
+class CustomActivity : DefaultActivity() {
+    override fun createSystemUiHost(iviInstanceId: IviInstanceId): SystemUiHost =
+        CustomSystemUiHost(getDefaultSystemUiHostContext(iviInstanceId))
+}
+```
+
+## Try the custom frontend coordination rule
+After the application is built and deployed to a target device, follow these steps to see the new behavior
+of the system UI:
+1. Long press the 'volume down' hardware button.
+1. The debug menu appears on the right of the screen.
+1. Tap a main menu item.
+1. The debug menu is automatically closed.
+
+<Blockquote hasIcon>
+    Debug tabs are normally only included in debug builds. In this example debug
+    tabs are explicitly included.
+</Blockquote>

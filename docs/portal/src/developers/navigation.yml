@@ -190,6 +190,10 @@ menu:
         items:
           - fileId: /tutorials-and-examples/customization/use-the-configuration-framework
             title: Use the Configuration Framework
+      - title: Custom System UI
+        items:
+          - fileId: /tutorials-and-examples/custom-system-ui/custom-frontend-coordination-rule
+            title: Custom Frontend Coordination Rule
       - title: Localization
         items:
           - fileId: /tutorials-and-examples/localization/localize-strings
