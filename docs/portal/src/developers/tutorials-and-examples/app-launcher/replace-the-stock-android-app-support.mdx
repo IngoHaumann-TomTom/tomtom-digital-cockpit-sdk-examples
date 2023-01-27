@@ -33,7 +33,7 @@ This section shows how to:
 The stock Android app source provider implementation can be overridden by creating your own
 [`AppSourceProviderService`](TTIVI_PLATFORM_API) implementation and returning the
 [`AndroidApp`](TTIVI_PLATFORM_API) class as the value of the
-[`AppSourceProviderService`](TTIVI_PLATFORM_API)`.supportedAppClass`.
+[`AppSourceProviderService.supportedAppClass`](TTIVI_PLATFORM_API).
 
 The following steps describe how to override the implementation of the stock
 [`AndroidApp`](TTIVI_PLATFORM_API) source provider:
@@ -257,7 +257,7 @@ ivi {
 The stock Android app launch handler implementation can be overridden by creating your own
 [`AppLaunchHandlerService`](TTIVI_PLATFORM_API) implementation and returning either the
 [`LaunchableAndroidApp`](TTIVI_PLATFORM_API) or [`MediaAndroidApp`](TTIVI_PLATFORM_API) class as the
-value of the [`AppLaunchHandlerService`](TTIVI_PLATFORM_API)`.supportedAppClass`.
+value of the [`AppLaunchHandlerService.supportedAppClass`](TTIVI_PLATFORM_API).
 
 In this example we will override the launching implementation for
 [`LaunchableAndroidApp`](TTIVI_PLATFORM_API).

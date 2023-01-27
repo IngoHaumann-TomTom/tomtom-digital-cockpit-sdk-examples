@@ -6,7 +6,7 @@ layout: default
 The splash screen is the very first Android
 [`View`](https://developer.android.com/reference/android/view/View) that is shown in the TomTom
 Digital Cockpit at startup. It covers the UI until all frontends with
-[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` are initialized. The
+[`FrontendCreationPolicy.CREATE_FRONTEND_AT_STARTUP`](TTIVI_PLATFORM_API) are initialized. The
 design documentation for it can be found
 [here](/tomtom-digital-cockpit/designers/system-ui/splash-screen).
 
@@ -82,15 +82,15 @@ splashScreenCoordinator.splashScreenDismissed.observe(this) { splashScreenDismis
 ## Defining frontend creation policies
 
 The splash screen immediately hides after all frontends with
-[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AT_STARTUP` have become ready, and
+[`FrontendCreationPolicy.CREATE_FRONTEND_AT_STARTUP`](TTIVI_PLATFORM_API) have become ready, and
 just before frontends with
-[`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_AFTER_STARTUP` start initializing.
+[`FrontendCreationPolicy.CREATE_FRONTEND_AFTER_STARTUP`](TTIVI_PLATFORM_API) start initializing.
 
-Frontends with [`FrontendCreationPolicy`](TTIVI_PLATFORM_API).`CREATE_FRONTEND_ON_DEMAND` are
+Frontends with [`FrontendCreationPolicy.CREATE_FRONTEND_ON_DEMAND`](TTIVI_PLATFORM_API) are
 created on demand, for example when the user clicks its menu item from the main menu. These are
 independent from the splash screen behavior. Frontend readiness is marked by the `isReady:
 LiveData<Boolean>` of the [`Frontend`](TTIVI_PLATFORM_API). To define a frontend creation policy,
-you should pass it to the [`Frontend`](TTIVI_PLATFORM_API).`FrontendConfig`.
+you should pass it to the [`FrontendConfig`](TTIVI_GRADLEPLUGINS_API).
 
 ```kotlin
 FrontendConfig(

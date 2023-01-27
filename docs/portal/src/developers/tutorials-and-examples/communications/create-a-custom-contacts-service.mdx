@@ -41,7 +41,7 @@ dependencies {
 ### Service configuration
 
 To configure a contacts service to use your custom implementation, define a service host
-configuration class that inherits from the [`IviServiceHostConfig`](TTIVI_GRADLEPUGINS_API)
+configuration class that inherits from the [`IviServiceHostConfig`](TTIVI_GRADLEPLUGINS_API)
 class. This class should be placed in the application Gradle build file.
 
 [`examples/telephony/app/build.gradle.kts`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/telephony/app/build.gradle.kts#L24-L35)
@@ -194,8 +194,8 @@ override fun onCreate() {
 }
 ```
 
-The [`ContactsService`](TTIVI_PLATFORM_API)`.contacts` and
-[`ContactsService`](TTIVI_PLATFORM_API)`.phoneBookSynchronizationStatus` properties have been
+The [`ContactsService.contacts`](TTIVI_PLATFORM_API) and
+[`ContactsService.phoneBookSynchronizationStatus`](TTIVI_PLATFORM_API) properties have been
 initialized.
 
 When the service is destroyed:

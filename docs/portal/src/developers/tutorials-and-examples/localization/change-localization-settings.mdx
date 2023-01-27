@@ -20,7 +20,7 @@ allows for the following in-app customisations:
 Language changing API for switching the 
 [Android Locale](https://developer.android.com/reference/java/util/Locale) at a system level.
 
-The language change is called via the function [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.setSystemLocale`
+The language change is called via the function [`setSystemLocale`](TTIVI_PLATFORM_API)
 by passing an [Android Locale](https://developer.android.com/reference/kotlin/java/util/Locale)
 object initialised with the desired `language` and `region` fields as illustrated below.
 
@@ -70,13 +70,13 @@ time format setting.
 ### Setting the desired time format
 
 To change the clock time format to the desired setting, a call should be made to the function
-[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.setClockTimeFormat`
+[`setClockTimeFormat`](TTIVI_PLATFORM_API)`.`
 by passing as parameters the `Context` instance and the desired setting in the following enum
 format:
-- [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.CLOCK_12H` for a 12 hour format.
-- [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.CLOCK_24H` for a 24 hour format.
+- [`TimeFormat.CLOCK_12H`](TTIVI_PLATFORM_API) for a 12 hour format.
+- [`TimeFormat.CLOCK_24H`](TTIVI_PLATFORM_API) for a 24 hour format.
 
-It is also possible to call the API with the enum value [`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat.UNSET`.
+It is also possible to call the API with the enum value [`TimeFormat.UNSET`](TTIVI_PLATFORM_API).
 In this case, the API will default to setting the 24-hour format.
 
 ```kotlin
@@ -92,9 +92,8 @@ setClockTimeFormat(activityContext, TimeFormat.CLOCK_24H)
 ### Retrieving the current system time format
 
 To retrieve the current system time format, simply call
-[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.getClockTimeFormat`
-and pass in the `Context`. The API will return a
-[`com.tomtom.ivi.platform.localization.api.common.settings`](TTIVI_PLATFORM_API)`.TimeFormat` enum
-representing the current system setting stored in [Settings.System.TIME_12_24] as either
-`TimeFormat.CLOCK_24H`, `TimeFormat.CLOCK_12H` or `TimeFormat.UNSET` in the case that no setting has
+[`getClockTimeFormat`](TTIVI_PLATFORM_API) and pass in the `Context`. The API will return a
+[`TimeFormat`](TTIVI_PLATFORM_API) enum representing the current system setting stored in 
+`[Settings.System.TIME_12_24]` as either `TimeFormat.CLOCK_24H`, `TimeFormat.CLOCK_12H` or 
+`TimeFormat.UNSET` in the case that no setting has
 yet been set with this API.

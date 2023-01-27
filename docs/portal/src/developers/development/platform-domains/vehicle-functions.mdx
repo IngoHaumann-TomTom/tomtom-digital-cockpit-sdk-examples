@@ -205,9 +205,9 @@ _right_. By setting the cabin temperature for the _left/center_ zone in the `SEA
 the _right_ zone temperature is unaffected, and vice versa.
 
 If there is no specific area applicable to the property, then the
-[`VehicleProperties`](TTIVI_PLATFORM_API)`.[type]` `Property` types are used. If the area _is_
-relevant, then the [`VehicleZoneProperty`](TTIVI_PLATFORM_API) type is used, providing a value per
-area.
+[`VehicleProperties.ListProperty`](TTIVI_PLATFORM_API)` (or any other `Property` type) is used. 
+If the area _is_ relevant, then the [`VehicleZoneProperty`](TTIVI_PLATFORM_API) type is used, 
+providing a value per area.
 
 An area must be a sub-type of `WINDOW`, `SEAT`, `DOOR`, `MIRROR`, or `WHEEL`. It must also include
 a zone, like: `WINDOW_ROW_1_LEFT` or `SEAT_ROW_2_CENTER`. See the

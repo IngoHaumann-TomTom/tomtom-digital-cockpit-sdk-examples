@@ -132,12 +132,12 @@ panel's `Panel.onAttached` method with a [`PanelAttachment`](TTIVI_PLATFORM_API)
 contains the [`NavigablePanelContext`](TTIVI_PLATFORM_API) data. When a task panel's view model
 implements the [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) interface, a fully populated
 [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the task panel's view model in
-[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.getNavigationBarViewModel()` based on this data.
+[`NavigablePanelViewModel.getNavigationBarViewModel`](TTIVI_PLATFORM_API)` based on this data.
 When your task panel's view model extends from [`FrontendViewModel`](TTIVI_PLATFORM_API),
 implementing [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no
 implementation is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the
 task panel's layout by assigning
-[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.getNavigationBarViewModel()` to the
+[`NavigablePanelViewModel.getNavigationBarViewModel`](TTIVI_PLATFORM_API) to the
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute. Then you have a fully
 functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API). For example, the system UI may hide the
 back button in the navigation bar, if there's only one task panel in the stack. It may also fill in
@@ -187,7 +187,7 @@ frontends.
 A notification is a panel that TomTom Digital Cockpit uses to present information to the user.
 
 Each [`NotificationPanel`](TTIVI_PLATFORM_API) has its own
-[`NotificationPanel`](TTIVI_PLATFORM_API)`.Priority`. The system UI uses it to determine when and how
+[`NotificationPanel.Priority`](TTIVI_PLATFORM_API). The system UI uses it to determine when and how
 to show the notification. For example, it may choose to suppress a low priority notification, while
 a higher priority notification is active, to avoid distracting the driver.
 
@@ -235,11 +235,11 @@ panel's `Panel.onAttached` method with a [`PanelAttachment`](TTIVI_PLATFORM_API)
 contains the [`NavigablePanelContext`](TTIVI_PLATFORM_API) data. When a modal panel's view model
 implements the [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) interface, a fully populated
 [`NavigationBarViewModel`](TTIVI_PLATFORM_API) is available in the modal panel's
-[`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` based on this data. When
+[`NavigablePanelViewModel.getNavigationBarViewModel`](TTIVI_PLATFORM_API) based on this data. When
 your modal panel's view model extends from [`FrontendViewModel`](TTIVI_PLATFORM_API), implementing
 [`NavigablePanelViewModel`](TTIVI_PLATFORM_API) is as easy as inheriting from it; no implementation
 is needed. The [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API) can be populated in the modal panel's
-layout by assigning [`NavigablePanelViewModel`](TTIVI_PLATFORM_API)`.navigationBarViewModel` to
+layout by assigning [`NavigablePanelViewModel.getNavigationBarViewModel`](TTIVI_PLATFORM_API) to
 [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API)'s `ttViewModel` XML attribute.
 
 Then you have a fully functioning [`TtNavigationBar`](TTIVI_ANDROID_TOOLS_API).
@@ -362,7 +362,7 @@ Instead of Android's [`Fragment`](https://developer.android.com/guide/fragments)
 [`IviFragment`](TTIVI_PLATFORM_API) is the base class for all fragments used by
 [`Frontend`](TTIVI_PLATFORM_API)s in TomTom Digital Cockpit. Typically, [`IviFragment`](TTIVI_PLATFORM_API)s are
 responsible for creating a layout and linking it to a [`FrontendViewModel`](TTIVI_PLATFORM_API). It
-provides a helper class [`IviFragment`](TTIVI_PLATFORM_API)`.ViewFactory` that takes care of common
+provides a helper class [`IviFragment.ViewFactory`](TTIVI_PLATFORM_API) that takes care of common
 tasks for creating a view, such as inflation, binding a lifecycle owner and `ViewModel` and
 extracting a root view.
 

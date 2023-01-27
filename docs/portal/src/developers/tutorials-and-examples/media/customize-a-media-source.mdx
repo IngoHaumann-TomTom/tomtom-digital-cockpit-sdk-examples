@@ -51,15 +51,15 @@ A media source might provide poor quality of its input data, due to a sub-par im
 Android Automotive Media API, causing the default user interface to display it incorrectly.
 
 When browsing through content from the `ExampleInternetRadio` app, normally the TomTom Digital Cockpit user
-interface would display the [`IviMediaItem`](TTIVI_PLATFORM_API)`.title` field of a playable media
+interface would display the [`IviMediaItem.title`](TTIVI_PLATFORM_API)` field of a playable media
 item in a more visually-prominent fashion (in bold and with a bigger font size) and the
-[`IviMediaItem`](TTIVI_PLATFORM_API)`.subtitle` field, when present, in a less-prominent fashion
+[`IviMediaItem.subtitle`](TTIVI_PLATFORM_API) field, when present, in a less-prominent fashion
 (not in bold, and with a smaller font size).
 
 When browsing stations from `ExampleInternetRadio`, a playable radio station media item has: its
-[`IviMediaItem`](TTIVI_PLATFORM_API)`.title` field set to the name of the station; its
-[`IviMediaItem`](TTIVI_PLATFORM_API)`.subtitle` field set to the full current track name,
-"Artist - Track Name"; and its [`IviMediaItem`](TTIVI_PLATFORM_API)`.artist` field is left
+[`IviMediaItem.title`](TTIVI_PLATFORM_API) field set to the name of the station; its
+[`IviMediaItem.subtitle`](TTIVI_PLATFORM_API) field set to the full current track name,
+"Artist - Track Name"; and its [`IviMediaItem.artist`](TTIVI_PLATFORM_API) field is left
 empty.
 
 With such data, the track name will always be shown smaller, and only the radio station's name will
@@ -94,7 +94,7 @@ class ExampleInternetRadioMediaItemMappingPolicy : MediaItemMappingPolicy {
 A `MediaItemMappingPolicy` customizes how the user interface will display media item data, and can
 be as complex as necessary: it might be useful to examine whether an item is playable or browsable
 (or both) before making a decision on how to map the [`IviMediaItem`](TTIVI_PLATFORM_API) fields; or
-maybe the [`IviMediaItem`](TTIVI_PLATFORM_API)`.id` should be parsed to find out what type of
+maybe the [`IviMediaItem.id`](TTIVI_PLATFORM_API) should be parsed to find out what type of
 content is being played. It all depends on how the media source presents its information. Also note
 that this data might change over time, posing integration issues when new versions are released
 potentially with changes in media item data provisioning.
