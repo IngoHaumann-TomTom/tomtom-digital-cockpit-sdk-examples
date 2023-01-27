@@ -51,15 +51,35 @@ To enable some features, especially regarding media, the application needs to be
 installed on the system partition. You can read more about privileged and system permissions
 [here](https://source.android.com/devices/tech/config/perms-allowlist).
 
+In particular, it is necessary to re-sign the TomTom Digital Cockpit APK with the same key that was
+used to sign the system apps on your Android platform, in order for it to be granted all the
+necessary system permissions. If this is not possible, there will be some limitations; those are
+explained later in this page.
+
 ### Sign the TomTom Digital Cockpit APK with the same key that was used for signing the system image
 
-The TomTom Digital Cockpit platform debug key and password files (used for the pre-created tablet and 
-emulator images) are in the
+The TomTom Digital Cockpit platform debug key and password files (used for the pre-created tablet
+and emulator images) are in the
 [`keystore`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/keystore)
-directory in the example source. If you're not using the pre-created tablet or emulator images, you
-can simply replace these with your own platform keys and rebuild.
+directory in the example source.
 
-### Then push the APK to the system partition
+If you're not using the pre-created tablet or emulator images, but instead have a custom AOSP-based
+build, you can simply replace these with your own platform keys and rebuild.
+By default, all the signing keys used by the AOSP build system can be found in the
+`build/target/product/security/` directory of the AOSP source tree.
+To re-sign the TomTom Digital Cockpit APK with your own platform key, run this command from the root
+of the AOSP source tree:
+
+```cmd
+java -Djava.library.path=out/host/linux-x86/lib64 -jar out/host/linux-x86/framework/signapk.jar build/target/product/security/platform.x509.pem build/target/product/security/platform.pk8 ttdc.apk ttdc-signed.apk
+```
+
+For actual development work, it is recommended to create a new Android keystore file out of the
+platform keys, so that APKs can be built then directly signed using the platform keys. A shell
+script such as [`keytool-importkeypair`](https://github.com/getfatday/keytool-importkeypair) can be
+used to make an Android keystore file out of AOSP certificates.
+
+### Push the signed APK to the system partition
 
 - Remount the system partition to be writeable.
 - Copy the `privapp-permissions-tomtom-ivi.xml` file from the
@@ -77,6 +97,29 @@ $ adb push privapp-permissions-tomtom-ivi.xml /system/etc/permissions/
 $ adb shell mkdir /system/priv-app/MyDigitalCockpitApp
 $ adb push MyDigitalCockpitApp.apk /system/priv-app/MyDigitalCockpitApp/
 ```
+
+### Verify signatures
+
+To ensure that signing of the final application is correct, retrieve the signature of the platform:
+
+```cmd
+$ adb shell dumpsys package android | grep signatures
+signatures=PackageSignatures{efb5875 version:3, signatures:[e977ab68], past signatures:[]}
+```
+
+The `signature:` hash in square brackets, here **`[e977ab68]`**, is the platform signature's hash.
+
+Then retrieve the signature of the package of the installed APK (if unknown, check with
+`adb shell pm list packages`):
+
+```cmd
+$ adb shell dumpsys package $PACKAGE_NAME_HERE | grep signatures
+signatures=PackageSignatures{33fffff version:3, signatures:[e977ab68], past signatures:[]}
+```
+
+If the `signature:` hashes in square brackets match, the app is signed correctly.
+
+### When platform signing is not possible
 
 If it's not possible to sign the APK with the system signature, there will be the following
 limitations (note that you should still follow the two other steps):
