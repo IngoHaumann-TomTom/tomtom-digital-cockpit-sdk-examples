@@ -9,7 +9,7 @@ release_readiness_base_url = "https://ivi-release-readiness.prod.devsup.az.tt3.c
 def get_latest_released_version():
     session = requests.Session()
     response = session.get(
-        url=f"{release_readiness_base_url}/sdk/released",
+        url=f"{release_readiness_base_url}/release/latest",
         timeout=60,
     )
 
@@ -18,7 +18,8 @@ def get_latest_released_version():
         raise Exception("Could not get latest released version.")
 
     response_body = response.json()
-    set_ci_variable("LatestReleasedIviVersion", response_body.get("latest_ivi"))
+    set_ci_variable("LatestReleasedIviVersion", response_body.get("production").get("latest_ivi"))
+    set_ci_variable("LatestReleasedIviBetaVersion", response_body.get("beta").get("latest_ivi"))
 
 def check_release_readiness(examples_version):
     session = requests.Session()

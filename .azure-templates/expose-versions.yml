@@ -41,6 +41,7 @@ steps:
       echo "##vso[task.setvariable variable=NAVAPP_COMPONENTS;isOutput=true]$NAVAPP_COMPONENTS"
       echo "##vso[task.setvariable variable=ALEXA_AUTO_SDK;isOutput=true]$ALEXA_AUTO_SDK"
       echo "##vso[task.setvariable variable=LATEST_RELEASED_IVI_VERSION;isOutput=true]$(CheckReleaseReadiness.LatestReleasedIviVersion)"
+      echo "##vso[task.setvariable variable=LATEST_RELEASED_IVI_BETA_VERSION;isOutput=true]$(CheckReleaseReadiness.LatestReleasedIviBetaVersion)"
 
       echo "##vso[build.addbuildtag]versionExamples=$EXAMPLES"
       echo "##vso[build.addbuildtag]indigoPlatform=$IVI_PLATFORM"

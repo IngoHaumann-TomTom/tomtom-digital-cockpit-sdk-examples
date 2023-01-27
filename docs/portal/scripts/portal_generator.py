@@ -131,5 +131,5 @@ clean_old_files(target_dir)
 # Generate and verify the portal content.
 create_intermediate_files(target_dir)
 generate_api_links(target_dir, versions, artifactory_base_url, artifactory_user, artifactory_token)
-generate_api_releases_sections(target_dir, artifactory_base_url, artifactory_user, artifactory_token)
+generate_api_releases_sections(target_dir)
 validate_urls(target_dir, is_export)

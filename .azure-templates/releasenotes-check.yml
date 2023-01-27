@@ -56,18 +56,6 @@ steps:
     displayName: 'Publish tickets.json as pipeline artifact'
     condition: and(succeeded(), eq(variables['CheckForReleaseNotes.publishDocumentation'], 'true'))
 
-  - bash: |
-      set -eu
-
-      if [ "$(CheckForReleaseNotes.publishDocumentation)" = "True" ]
-      then
-        echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(Version.LATEST_RELEASED_IVI_VERSION)"
-      else
-        echo "##vso[task.setvariable variable=latestReleasedPlatformVersion]$(RELEASED_BETA_PLATFORM_VERSION)"
-      fi
-    displayName: 'Get latest released platform version'
-    condition: and(succeeded(), eq(variables['CheckReleaseReadiness.ReleaseCandidateFound'], 'True'))
-
   - task: PythonScript@0
     name: CompareVersions
     displayName: 'Compare IndiGO platform versions'
@@ -76,13 +64,18 @@ steps:
       pythonInterpreter: /usr/bin/python3.8
       script: |
         from semantic_version import Version
+        latest_production = Version("$(Version.LATEST_RELEASED_IVI_VERSION)")
+        latest_beta = Version("$(Version.LATEST_RELEASED_IVI_BETA_VERSION)")
+        latest_released_version = latest_production \
+                                  if latest_production > latest_beta \
+                                  else latest_beta
 
         release_allowed = True
-        if Version("$(Version.IVI_PLATFORM)") <= Version("$(latestReleasedPlatformVersion)"):
+        if Version("$(Version.IVI_PLATFORM)") <= latest_released_version:
           print(
-            "##vso[task.logissue type=warning;]Not allowed to release platform for version "
-            "[$(Version.IVI_PLATFORM)]! Previously the platform has been already successfully "
-            "released for version [$(latestReleasedPlatformVersion)], which is the same or newer."
+            f"##vso[task.logissue type=warning;]Not allowed to release platform for version "
+            f"[$(Version.IVI_PLATFORM)]! Previously the platform has been already successfully "
+            f"released for version [{latest_released_version}], which is the same or newer."
           )
           release_allowed = False
         print(f"##vso[task.setvariable variable=releaseAllowed;isOutput=true]{release_allowed}")
