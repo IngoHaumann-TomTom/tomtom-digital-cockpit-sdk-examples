@@ -1,0 +1,48 @@
+---
+title: Custom Fragments
+layout: default
+---
+
+Customizing fragments allows you to change the look and feel of an existing
+[`GenericPanel`](TTIVI_PLATFORM_API).
+This can be done in 3 steps, listed below. The full example can be found
+[here](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/systemui/customfragment).
+
+## Define a custom fragment
+
+To define a custom fragment, you have to create an subclass of
+[`IviFragment`](TTIVI_PLATFORM_API), and a view binding for it. You can find the exact syntax for it
+[in the example](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/customfragment/src/main/kotlin/com/example/ivi/example/systemui/customfragment/systemui/CustomNotificationFragment.kt).
+
+If the existing [`ViewModel`](https://developer.android.com/topic/libraries/architecture/viewmodel)
+is usable for the custom fragment and if it's public API, you can reuse it. Otherwise, you can
+create your own ViewModel. The example referenced above uses the existing ViewModel.
+
+## Define a custom fragment rule
+
+A custom fragment rule is a way to communicate to the
+[`system UI`](https://developer.tomtom.com/tomtom-digital-cockpit/developers/development/system-ui),
+that you want to create a certain [`IviFragment`](TTIVI_PLATFORM_API) for a certain
+[`GenericPanel`](TTIVI_PLATFORM_API). The first rule that accepts to create the fragment for a given
+panel creates the fragment. If no rule accepts, the panel creates the fragment.
+
+To create a custom fragment rule, you have to extend the [`CustomFragmentRule`](TTIVI_PLATFORM_API),
+as you can see
+[in the example](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/customfragment/src/main/kotlin/com/example/ivi/example/systemui/customfragment/systemui/CustomNotificationFragmentRule.kt).
+
+## Use a custom fragment rule in a system UI host
+
+To make the
+[`system UI`](https://developer.tomtom.com/tomtom-digital-cockpit/developers/development/system-ui)
+aware of the rule, `fragmentFactory` has to be overridden in your
+[`SystemUiHost`](TTIVI_PLATFORM_API), and the rule has to be added to it.
+
+```kotlin
+override val fragmentFactory: IviFragmentFactory =
+    IviFragmentFactory.create {
+        addRule(CustomFragmentRule())
+    }
+```
+
+You can find an example of a custom [`SystemUiHost`](TTIVI_PLATFORM_API) implementation with such an
+override [here](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/customfragment/src/main/kotlin/com/example/ivi/example/systemui/customfragment/systemui/CustomSystemUiHost.kt).

@@ -19,3 +19,16 @@ provides [localization support](https://developer.android.com/guide/topics/resou
 On top of the standard Android resource framework, TomTom Digital Cockpit provides additional 
 tooling and additional metadata to facilitate localization.
 [Localization](/tomtom-digital-cockpit/developers/development/platform-features/localization)
+
+## Splash screen
+
+The [splash screen](/tomtom-digital-cockpit/developers/development/platform-features/splash-screen)
+is shown when a user starts up TomTom Digital Cockpit and the required frontends are not yet ready.
+When these frontends are ready, the splash screen is dismissed and the home screen is displayed.
+
+## Custom fragments
+
+Every panel is able to create their own initial fragment. It's possible to adjust the look and
+behavior of a panel by customizing this fragment. A system UI host can create custom fragment rules
+that replace the normal fragment of a panel with a
+[custom fragment](/tomtom-digital-cockpit/developers/development/platform-features/custom-fragments).

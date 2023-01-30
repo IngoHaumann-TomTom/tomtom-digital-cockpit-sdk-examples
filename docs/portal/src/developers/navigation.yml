@@ -96,6 +96,8 @@ menu:
             title: Localization
           - fileId: /development/platform-features/splash-screen
             title: Splash Screen
+          - fileId: /development/platform-features/custom-fragments
+            title: Custom Fragments
   - title: Testing
     items:
       - fileId: /testing/introduction
