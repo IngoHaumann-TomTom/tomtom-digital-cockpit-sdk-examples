@@ -5,7 +5,7 @@ git clone \
     --branch develop \
     --single-branch \
     --no-tags \
-    git@github.com-tomtom:tomtom-internal/drumkit-monorepo.git
+    git@github.com:tomtom-internal/drumkit-monorepo.git
 
 docker build \
     --pull \
