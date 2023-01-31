@@ -1,0 +1,42 @@
+# Copyright © 2020 TomTom NV. All rights reserved.
+#
+# This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
+# used for internal evaluation purposes or commercial use strictly subject to separate
+# license agreement between you and TomTom NV. If you are the licensee, you are only permitted
+# to use this software in accordance with the terms of your license agreement. If you are
+# not the licensee, you are not authorized to use this software in any manner and should
+# immediately return or destroy it.
+
+group: tomtom-digital-cockpit
+isPrivate: false
+productName: TomTom Digital Cockpit
+menuTitle: Getting Started
+isMenuOpened: true
+hasRequestAccess: true
+hasRequestAccessButton: false
+requestAccessType: request-access-tomtom-digital-cockpit
+menu:
+  - fileId: /introduction
+    title: Introduction
+  - fileId: /installing-openjdk-11
+    title: Installing OpenJDK 11
+  - fileId: /accessing-tomtom-digital-cockpit-sdk-example-sources
+    title: Accessing TomTom Digital Cockpit SDK Example Sources
+  - fileId: /accessing-the-artifact-repository
+    title: Accessing the Artifact Repository
+  - fileId: /getting-a-tomtom-api-key
+    title: Getting a TomTom API Key
+  - fileId: /configuring-android-studio
+    title: Configuring Android Studio
+  - fileId: /the-tomtom-digital-cockpit-emulator
+    title: The TomTom Digital Cockpit Emulator
+  - fileId: /accessing-the-map-data
+    title: Accessing the Map Data
+  - fileId: /the-debug-menu
+    title: The Debug Menu
+  - fileId: /upgrade-to-a-newer-version-of-tomtom-digital-cockpit
+    title: Upgrade to a Newer Version of TomTom Digital Cockpit
+  - fileId: /additional-resources
+    title: Additional Resources
+  - fileId: /frequently-asked-questions-faq
+    title: Frequently Asked Questions (FAQ)

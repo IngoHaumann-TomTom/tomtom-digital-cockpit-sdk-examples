@@ -26,32 +26,6 @@ menu:
         title: What is TomTom Digital Cockpit?
       - fileId: /platform-overview/example-apps
         title: Example Apps
-  - title: Getting Started
-    items:
-      - fileId: /getting-started/introduction
-        title: Introduction
-      - fileId: /getting-started/installing-openjdk-11
-        title: Installing OpenJDK 11
-      - fileId: /getting-started/accessing-tomtom-digital-cockpit-sdk-example-sources
-        title: Accessing TomTom Digital Cockpit SDK Example Sources
-      - fileId: /getting-started/accessing-the-artifact-repository
-        title: Accessing the Artifact Repository
-      - fileId: /getting-started/getting-a-tomtom-api-key
-        title: Getting a TomTom API Key
-      - fileId: /getting-started/configuring-android-studio
-        title: Configuring Android Studio
-      - fileId: /getting-started/the-tomtom-digital-cockpit-emulator
-        title: The TomTom Digital Cockpit Emulator
-      - fileId: /getting-started/accessing-the-map-data
-        title: Accessing the Map Data
-      - fileId: /getting-started/the-debug-menu
-        title: The Debug Menu
-      - fileId: /getting-started/upgrade-to-a-newer-version-of-tomtom-digital-cockpit
-        title: Upgrade to a Newer Version of TomTom Digital Cockpit
-      - fileId: /getting-started/additional-resources
-        title: Additional Resources
-      - fileId: /getting-started/frequently-asked-questions-faq
-        title: Frequently Asked Questions (FAQ)
   - title: Development
     items:
       - fileId: /development/introduction

@@ -14,6 +14,8 @@ menu:
         title: Developers
       - url: /tomtom-digital-cockpit/designers/introduction
         title: Designers
+      - url: /tomtom-digital-cockpit/getting-started/introduction
+        title: Getting Started
       - url: /tomtom-digital-cockpit/api-reference/api-reference
         title: API Reference
       - url: /tomtom-digital-cockpit/releases/releases
