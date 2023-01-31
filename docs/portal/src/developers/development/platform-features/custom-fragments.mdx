@@ -5,7 +5,7 @@ layout: default
 
 Customizing fragments allows you to change the look and feel of an existing
 [`GenericPanel`](TTIVI_PLATFORM_API).
-This can be done in 3 steps, listed below. The full example can be found
+This can be done in 3 steps listed below. The full example can be found
 [here](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/systemui/customfragment).
 
 ## Define a custom fragment
@@ -15,7 +15,7 @@ To define a custom fragment, you have to create an subclass of
 [in the example](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/blob/main/examples/systemui/customfragment/src/main/kotlin/com/example/ivi/example/systemui/customfragment/systemui/CustomNotificationFragment.kt).
 
 If the existing [`ViewModel`](https://developer.android.com/topic/libraries/architecture/viewmodel)
-is usable for the custom fragment and if it's public API, you can reuse it. Otherwise, you can
+is usable for the custom fragment, and you can reuse it if it's a public API. Otherwise, you can
 create your own ViewModel. The example referenced above uses the existing ViewModel.
 
 ## Define a custom fragment rule
@@ -23,7 +23,7 @@ create your own ViewModel. The example referenced above uses the existing ViewMo
 A custom fragment rule is a way to communicate to the
 [`system UI`](https://developer.tomtom.com/tomtom-digital-cockpit/developers/development/system-ui),
 that you want to create a certain [`IviFragment`](TTIVI_PLATFORM_API) for a certain
-[`GenericPanel`](TTIVI_PLATFORM_API). The first rule that accepts to create the fragment for a given
+[`GenericPanel`](TTIVI_PLATFORM_API). The first rule that accepts the create of the fragment for a given
 panel creates the fragment. If no rule accepts, the panel creates the fragment.
 
 To create a custom fragment rule, you have to extend the [`CustomFragmentRule`](TTIVI_PLATFORM_API),

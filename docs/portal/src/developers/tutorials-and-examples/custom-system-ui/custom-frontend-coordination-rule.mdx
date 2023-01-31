@@ -2,7 +2,8 @@
 title: Create a Frontend Coordination Rule
 ---
 <Blockquote hasIcon>
-    Knowledge of the system UI will help you to understand this guide. If you are not yet familiar, feel free to take a look at the
+    Knowledge of the system UI will help you to understand this guide. If you are not yet familiar
+    with it, feel free to take a look at the
     [system UI overview](https://developer.tomtom.com/tomtom-digital-cockpit/developers/development/system-ui).
 </Blockquote>
 
@@ -16,10 +17,10 @@ responds to system UI menu items being clicked by opening or closing a [`TaskPan
 More examples can be found in
 [`com.tomtom.ivi.platform.systemui.api.common.frontendcoordinator.frontendcoordination`](TTIVI_PLATFORM_API).
 
-These rules have a direct impact on the look-and-feel of the Digital Cockpit and it's possible
+These rules have a direct impact on the look and feel of the Digital Cockpit and it's possible
 to create custom rules to customize the behavior of the system UI. The following section explains how
 to create a custom [`FrontendCoordinationRule`](TTIVI_PLATFORM_API) to hide the
-[`DebugPanel`](TTIVI_PLATFORM_API) when a main menu item is clicked. Code snippets show only
+[`DebugPanel`](TTIVI_PLATFORM_API) when a main menu item is clicked. Code snippets only show
 significant parts for this example, the full code is provided in the
 [`examples/systemui/frontendcoordinationrule`](https://github.com/tomtom-international/tomtom-digital-cockpit-sdk-examples/tree/main/examples/systemui/frontendcoordinationrule)
 directory.
@@ -115,9 +116,9 @@ class CustomActivity : DefaultActivity() {
 After the application is built and deployed to a target device, follow these steps to see the new behavior
 of the system UI:
 1. Long press the 'volume down' hardware button.
-1. The debug menu appears on the right of the screen.
-1. Tap a main menu item.
-1. The debug menu is automatically closed.
+2. The debug menu appears on the right of the screen.
+3. Tap a main menu item.
+4. The debug menu is automatically closed.
 
 <Blockquote hasIcon>
     Debug tabs are normally only included in debug builds. In this example debug
